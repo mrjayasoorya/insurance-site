@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
-Allow: /md/
+Sitemap: https://insuranceconsult.in/sitemap-index.xml
+Sitemap: https://insuranceconsult.in/sitemap-0.xml
 
-Sitemap: https://YOUR_DOMAIN/sitemap.xml
+# Optional: keep sensitive or non-SEO folders blocked if you add them later
+Disallow: /api/
+Disallow: /drafts/
