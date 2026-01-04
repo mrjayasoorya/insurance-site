@@ -1,0 +1,22 @@
+---
+const { services } = Astro.props;
+---
+<div class="m-section-title">
+  <div class="label">Core Services</div>
+  <div style="color:var(--muted);font-weight:950;">⋯</div>
+</div>
+
+<div class="m-list">
+  {services.map((s) => (
+    <div class="m-item">
+      <div class="m-left">
+        {/* <div class="orb" aria-hidden="true"></div> */}
+        <div class="m-text">
+          <div class="t">{s.title}</div>
+          <div class="d">{s.desc}</div>
+        </div>
+      </div>
+      <div class="m-more" aria-hidden="true">›</div>
+    </div>
+  ))}
+</div>

@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://insuranceconsult.in",
+  site: "https://YOUR_DOMAIN",
   trailingSlash: "always",
-  integrations: [sitemap()]
+  integrations: [sitemap()],
 });

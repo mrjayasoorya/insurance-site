@@ -1,0 +1,86 @@
+---
+import PostCard from "./PostCard.astro";
+
+type PostItem = {
+  href: string;
+  title: string;
+  desc: string;
+  chips?: string[];
+  tags?: string[];
+  readTime?: string;
+  levelOrFreq?: string;
+};
+
+type CategoryGroup = {
+  category: string;
+  items: PostItem[];
+};
+
+type PostSectionProps = {
+  title: string;
+  subtitle: string;
+  viewAllHref?: string;
+  viewMoreHref?: string;
+
+  // One of these:
+  items?: PostItem[];
+  categories?: CategoryGroup[];
+
+  anchorId?: string;
+};
+
+const {
+  title,
+  subtitle,
+  viewAllHref = "#",
+  viewMoreHref = "#",
+  items = [],
+  categories = [],
+  anchorId,
+} = Astro.props as PostSectionProps;
+
+const hasCategories = categories && categories.length > 0;
+const hasItems = items && items.length > 0;
+---
+
+<section class="postsec" aria-label={title} id={anchorId}>
+  <header class="postsec-head">
+    <div>
+      <h2 class="postsec-title">{title}</h2>
+      <p class="postsec-sub">{subtitle}</p>
+    </div>
+
+    <a class="postsec-viewall" href={viewAllHref}>
+      View all <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  {hasCategories ? (
+    <div class="postsec-groups" aria-label="Post categories">
+      {categories.map((g) => (
+        <section class="postgroup" aria-label={g.category}>
+          <h3 class="postgroup-title">{g.category}</h3>
+          <div class="postgrid" role="list" aria-label={`${g.category} posts`}>
+            {g.items.map((it) => (
+              <PostCard {...it} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  ) : null}
+
+  {!hasCategories && hasItems ? (
+    <div class="postgrid" role="list" aria-label="Posts">
+      {items.map((it) => (
+        <PostCard {...it} />
+      ))}
+    </div>
+  ) : null}
+
+  <div class="postsec-bottom">
+    <a class="postmore" href={viewMoreHref}>
+      View more <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

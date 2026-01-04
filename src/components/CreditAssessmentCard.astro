@@ -1,0 +1,77 @@
+---
+/**
+ * Props:
+ * - title (string)
+ * - items: Array<{ title: string; badge: string; desc: string }>
+ * - primaryText (string)
+ * - onPrimaryHref (string)  // optional (e.g., /credit-assessment or tel:)
+ * - skipText (string)
+ * - onSkipHref (string)     // optional
+ */
+const {
+  title = "Accelerate the lease of this property by doing a credit assessment",
+  items = [
+    {
+      title: "It only takes 120 seconds",
+      badge: "Fast",
+      desc: "Complete the assessment quickly, in just two minutes, and move one step closer to securing your property.",
+    },
+    {
+      title: "No need to send documents",
+      badge: "Seamless",
+      desc: "Skip the hassle of paperwork—everything you need is verified online with no documents required.",
+    },
+    {
+      title: "Streamline the rental process",
+      badge: "Efficient",
+      desc: "Simplify your rental experience by speeding up approvals and reducing delays with an instant credit assessment.",
+    },
+  ],
+  primaryText = "Credit Assessment",
+  onPrimaryHref = "",
+  skipText = "Skip",
+  onSkipHref = "",
+} = Astro.props;
+
+const PrimaryTag = onPrimaryHref ? "a" : "button";
+const SkipTag = onSkipHref ? "a" : "button";
+---
+
+<section class="ca-card" aria-label="Credit assessment">
+  <header class="ca-head">
+    <div class="ca-title">
+      <h3>{title}</h3>
+    </div>
+
+    <!-- simple inline illustration (no external asset) -->
+    <div class="ca-illu" aria-hidden="true">
+      <span class="ca-blob"></span>
+      <span class="ca-coin">₹</span>
+    </div>
+  </header>
+
+  <div class="ca-list" role="list">
+    {items.map((it) => (
+      <div class="ca-item" role="listitem">
+        <div class="ca-ic" aria-hidden="true">•</div>
+        <div class="ca-copy">
+          <div class="ca-row">
+            <strong>{it.title}</strong>
+            <span class="ca-badge">{it.badge}</span>
+          </div>
+          <p>{it.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <footer class="ca-actions">
+    <SkipTag class="ca-skip" href={onSkipHref || undefined} type={onSkipHref ? undefined : "button"}>
+      {skipText} <span aria-hidden="true">»</span>
+    </SkipTag>
+
+    <PrimaryTag class="ca-primary" href={onPrimaryHref || undefined} type={onPrimaryHref ? undefined : "button"}>
+      {primaryText}
+    </PrimaryTag>
+  </footer>
+</section>

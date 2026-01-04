@@ -1,0 +1,80 @@
+---
+/**
+ * Props:
+ * - pill (string)
+ * - titleIconText (string) // keep simple text, no emoji to avoid glyph issues
+ * - summaryHtml (string)   // safe-ish plain text; if you want true HTML, pass it and use set:html
+ * - currentLabel (string)
+ * - currentValue (string)
+ * - previousLabel (string)
+ * - previousValue (string)
+ * - legendLeft (string)
+ * - legendRight (string)
+ * - open (boolean)
+ */
+const {
+  pill = "Creative Fatigue",
+  titleIconText = "!",
+  summaryText = "Your CPI has decreased for TikTok campaign Appname-PERF-IOS-NU-AppInstall… by 41.20% — from $36.61 to $21.53 while volume of installs remained stable by +1.41%.",
+  currentLabel = "Current 7-day period",
+  currentValue = "27 Sep to 03 Oct 2022",
+  previousLabel = "Previous",
+  previousValue = "20 to 26 Sep 2022",
+  legendLeft = "Installs",
+  legendRight = "CPI",
+  open = false,
+} = Astro.props;
+---
+
+<details class="ins-card" aria-label="Insight card" open={open ? true : undefined}>
+  <summary class="ins-sum">
+    <div class="ins-top">
+      <span class="ins-pill">{pill}</span>
+      <span class="ins-badge" aria-hidden="true">{titleIconText}</span>
+    </div>
+
+    <div class="ins-copy">
+      <p>{summaryText}</p>
+    </div>
+
+    <div class="ins-compare">
+      <div class="ins-col">
+        <div class="ins-k">{currentLabel}</div>
+        <div class="ins-v">{currentValue}</div>
+      </div>
+      <div class="ins-vs">vs</div>
+      <div class="ins-col">
+        <div class="ins-k">{previousLabel}</div>
+        <div class="ins-v">{previousValue}</div>
+      </div>
+    </div>
+
+    <div class="ins-caret" aria-hidden="true">⌄</div>
+  </summary>
+
+  <div class="ins-body">
+    <div class="ins-divider"></div>
+
+    <div class="ins-body-head">
+      <div class="ins-body-title">Insight Data</div>
+      <div class="ins-legend">
+        <span class="dot"></span> {legendLeft}
+        <span class="dot"></span> {legendRight}
+      </div>
+    </div>
+
+    <div class="ins-placeholder" role="img" aria-label="Chart placeholder">
+      Chart area (optional)
+    </div>
+
+    <div class="ins-actions" aria-label="Card actions">
+      <button class="ico" type="button" aria-label="Share">↗</button>
+      <button class="ico" type="button" aria-label="Bookmark">☆</button>
+      <button class="ico" type="button" aria-label="Mute">⨯</button>
+
+      <span class="spacer"></span>
+
+      <button class="ico" type="button" aria-label="More">⋯</button>
+    </div>
+  </div>
+</details>

@@ -1,0 +1,47 @@
+---
+type Props = {
+  title: string;
+  subtitle: string;
+  services: string[];
+  locations: string[];
+  popularAreaServices: string[];
+};
+
+const { title, subtitle, services, locations, popularAreaServices } = Astro.props as Props;
+---
+
+<section class="covsec" aria-label={title}>
+  <header class="covsec-head">
+    <h2 class="covsec-title">{title}</h2>
+    <p class="covsec-sub">{subtitle}</p>
+  </header>
+
+  <div class="covsec-grid">
+    <section class="covbox" aria-label="Services list">
+      <h3 class="covbox-title">Services</h3>
+      <ul class="covlist">
+        {services.map((s) => (
+          <li>{s}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="covbox" aria-label="Locations list">
+      <h3 class="covbox-title">Locations</h3>
+      <ul class="covlist">
+        {locations.map((l) => (
+          <li>{l}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="covbox" aria-label="Popular searches">
+      <h3 class="covbox-title">Popular area + service searches</h3>
+      <ul class="covlist covlist-chips">
+        {popularAreaServices.map((p) => (
+          <li><span class="covchip">{p}</span></li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</section>

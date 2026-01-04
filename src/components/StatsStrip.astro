@@ -1,0 +1,29 @@
+---
+/**
+ * Props:
+ * - title (string)
+ * - stats: Array<{ value: string; label: string }>
+ */
+const {
+  title = "Create your digital legacy on Bitcoin",
+  stats = [
+    { value: "+1.6k", label: "Creators" },
+    { value: "+2.3M", label: "Items sold" },
+    { value: "+$9.5M", label: "Earned by creators" },
+    { value: "+280k", label: "Collectors" },
+  ],
+} = Astro.props;
+---
+
+<section class="s-wrap" aria-label="Stats">
+  <p class="s-title">{title}</p>
+
+  <div class="s-grid" role="list">
+    {stats.map((s) => (
+      <div class="s-card" role="listitem">
+        <strong>{s.value}</strong>
+        <span>{s.label}</span>
+      </div>
+    ))}
+  </div>
+</section>

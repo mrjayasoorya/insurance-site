@@ -1,0 +1,67 @@
+---
+import BlogCard from "./BlogCard.astro";
+
+type BlogItem = {
+  href: string;
+  title: string;
+  desc: string;
+  chipCategory: string;
+  chipMap: string;
+  tags?: string[];
+  readTime?: string;
+  levelOrFreq?: string;
+};
+
+type BlogSectionProps = {
+  title: string;
+  subtitle: string;
+  viewAllHref?: string;
+  viewMoreHref?: string;
+  items: BlogItem[];
+  showSaveButton?: boolean;
+};
+
+const {
+  title,
+  subtitle,
+  viewAllHref = "/insights",
+  viewMoreHref = "/insights",
+  items = [],
+  showSaveButton = true,
+} = Astro.props as BlogSectionProps;
+---
+
+<section class="blogsec" aria-label="Insights">
+  <header class="blogsec-head">
+    <div>
+      <h2 class="blogsec-title">{title}</h2>
+      <p class="blogsec-sub">{subtitle}</p>
+    </div>
+
+    <a class="blogsec-viewall" href={viewAllHref}>
+      View all <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <div class="bloggrid" role="list" aria-label="Articles">
+    {items.map((it) => (
+      <BlogCard
+        href={it.href}
+        title={it.title}
+        desc={it.desc}
+        chipCategory={it.chipCategory}
+        chipMap={it.chipMap}
+        tags={it.tags}
+        readTime={it.readTime}
+        levelOrFreq={it.levelOrFreq}
+        showSaveButton={showSaveButton}
+      />
+    ))}
+  </div>
+
+  <div class="blogsec-bottom">
+    <a class="blogmore" href={viewMoreHref}>
+      View more articles <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

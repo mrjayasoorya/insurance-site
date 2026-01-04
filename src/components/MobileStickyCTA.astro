@@ -1,0 +1,8 @@
+---
+const { phone } = Astro.props;
+---
+<div class="stickybar">
+  <a class="cta" href={`tel:${phone}`} aria-label={`Call Now ${phone}`}>
+    Call Now {phone}
+  </a>
+</div>

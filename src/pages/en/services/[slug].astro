@@ -32,10 +32,8 @@ const description = service.summary;
 const relatedServices = services
   .filter((s) => s.category === service.category && s.slug !== service.slug)
   .slice(0, 6);
----
-<head>
-    <script type="application/ld+json">
-{JSON.stringify({
+
+  const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": service.title,
@@ -46,8 +44,10 @@ const relatedServices = services
     "url": "https://insuranceconsult.in/"
   },
   "areaServed": servedLocations.map(l => l.name)
-})}
-</script>
+};
+---
+<head>
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
 </head>
 <BaseLayout lang="en" title={title} description={description} path={`/en/services/${service.slug}/`} alternates={[{ lang: "en", href: `/en/services/${service.slug}/` }, { lang: "ta", href: `/ta/services/${service.slug}/` }]}>

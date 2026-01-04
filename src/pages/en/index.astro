@@ -1,51 +1,574 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import site from "../../data/en/site.json";
----
-<head>
-    <script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "InsuranceAgency",
-  "name": "M N Rajendrakumar Insurance Services",
-  "url": "https://insuranceconsult.in/",
-  "areaServed": [
-    "Sholavaram",
-    "Karanodai",
-    "Red Hills",
-    "Madhavaram",
-    "Manali",
-    "Ambattur",
-    "Thiruvallur",
-    "Perambur",
-    "Chennai"
-  ],
-  "knowsAbout": [
-    "Commercial insurance",
-    "Fleet insurance",
-    "Contractors plant and machinery (CPM)",
-    "Crane and heavy equipment insurance",
-    "Warehouse and factory insurance",
-    "Fire and burglary insurance",
-    "Marine cargo and transit insurance",
-    "Workmen compensation",
-    "Car insurance",
-    "Bike insurance",
-    "Health insurance",
-    "Life insurance"
-  ]
-})}
-</script>
+import DesktopHero from "../../components/DesktopHero.astro";
+import DesktopCoreServices from "../../components/DesktopCoreServices.astro";
+import DesktopMarketplace from "../../components/DesktopMarketplace.astro";
 
-</head>
-<BaseLayout
-  lang="en"
-  title={`${site.siteName}`}
-  description="Commercial & personal insurance guidance in Chennai (Sholavaram)."
-  path="/en/"
-  alternates={[{ lang: "en", href: "/en/" }, { lang: "ta", href: "/ta/" }]}
-/>
-<h1>{site.siteName}</h1>
-<p>
-  {site.legalName} — {site.experienceYears}+ years experience. Focus: {site.primaryMarket}.
-</p>
+import MobileHero from "../../components/MobileHero.astro";
+import MobileCoreServices from "../../components/MobileCoreServices.astro";
+import MobileAccordion from "../../components/MobileAccordion.astro";
+
+import CreditAssessmentCard from "../../components/CreditAssessmentCard.astro";
+import InsightCard from "../../components/InsightCard.astro";
+import TestimonialsStrip from "../../components/TestimonialsStrip.astro";
+import StatsStrip from "../../components/StatsStrip.astro";
+import FooterCtaBar from "../../components/FooterCtaBar.astro";
+import BlogSection from "../../components/BlogSection.astro";
+import PostSection from "../../components/PostSection.astro";
+import ServicesLocationsSection from "../../components/ServicesLocationsSection.astro";
+
+import { siteData } from "../../content/siteData";
+
+// helpers
+const telHref = `tel:${siteData.brand.phoneE164}`;
+const waHref =
+    `https://wa.me/${encodeURIComponent(siteData.brand.whatsappE164)}` +
+    `?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`;
+
+// LD+JSON (safe: make sure file is saved as UTF-8)
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            name: siteData.brand.name,
+            legalName: siteData.brand.legalName,
+            telephone: siteData.brand.phoneE164,
+            url: siteData.brand.websiteUrl || undefined,
+            sameAs: [siteData.brand.gbpUrl || undefined].filter(Boolean),
+        },
+        {
+            "@type": "LocalBusiness",
+            name: siteData.brand.name,
+            telephone: siteData.brand.phoneE164,
+            url: siteData.brand.websiteUrl || undefined,
+            areaServed: siteData.brand.areaChips,
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: siteData.brand.streetAddress || undefined,
+                addressLocality: siteData.brand.addressLocality,
+                addressRegion: siteData.brand.addressRegion,
+                postalCode: siteData.brand.postalCode || undefined,
+                addressCountry: siteData.brand.addressCountry,
+            },
+        },
+        {
+            "@type": "FAQPage",
+            mainEntity: siteData.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+        },
+        ...siteData.coreServices.map((s) => ({
+            "@type": "Service",
+            name: s.title,
+            serviceType: s.tag,
+            areaServed: siteData.brand.areaChips,
+            provider: { "@type": "Organization", name: siteData.brand.name },
+            description: s.desc,
+        })),
+    ],
+};
+
+const jsonLdorg = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            name: siteData.brand.name,
+            legalName: siteData.brand.legalName,
+            telephone: siteData.brand.phoneE164,
+            url: siteData.brand.websiteUrl || undefined,
+            sameAs: [siteData.brand.gbpUrl || undefined].filter(Boolean),
+        },
+        {
+            "@type": "LocalBusiness",
+            name: siteData.brand.name,
+            telephone: siteData.brand.phoneE164,
+            url: siteData.brand.websiteUrl || undefined,
+            sameAs: [siteData.brand.gbpUrl || undefined].filter(Boolean),
+            hasMap: siteData.brand.gbpUrl || undefined,
+            areaServed: siteData.brand.areaChips,
+
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: siteData.brand.streetAddress || undefined,
+                addressLocality: siteData.brand.addressLocality,
+                addressRegion: siteData.brand.addressRegion,
+                postalCode: siteData.brand.postalCode || undefined,
+                addressCountry: siteData.brand.addressCountry,
+            },
+
+            geo: siteData.brand.geo
+                ? {
+                      "@type": "GeoCoordinates",
+                      latitude: siteData.brand.geo.lat,
+                      longitude: siteData.brand.geo.lng,
+                  }
+                : undefined,
+
+            openingHoursSpecification: siteData.brand.hours?.is24x7
+                ? [
+                      {
+                          "@type": "OpeningHoursSpecification",
+                          dayOfWeek: [
+                              "Monday",
+                              "Tuesday",
+                              "Wednesday",
+                              "Thursday",
+                              "Friday",
+                              "Saturday",
+                              "Sunday",
+                          ],
+                          opens: "00:00",
+                          closes: "23:59",
+                      },
+                  ]
+                : undefined,
+        },
+
+        {
+            "@type": "FAQPage",
+            mainEntity: siteData.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+        },
+
+        ...siteData.coreServices.map((s) => ({
+            "@type": "Service",
+            name: s.title,
+            serviceType: s.tag,
+            areaServed: siteData.brand.areaChips,
+            provider: { "@type": "Organization", name: siteData.brand.name },
+            description: s.desc,
+        })),
+    ],
+};
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>{siteData.brand.name}</title>
+        <meta name="description" content={siteData.brand.subtitle} />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="stylesheet" href="/styles/theme.css" />
+
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(jsonLdorg)}
+        />
+    </head>
+
+    <body>
+        <!-- Accessible skip link -->
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <main id="main" class="app">
+            <div class="container">
+                <!-- =========================
+             DESKTOP UI
+        ========================== -->
+                <div class="ui-desktop">
+                    <header>
+                        <!-- DesktopHero already centers and looks premium -->
+                        <DesktopHero
+                            brand={{
+                                name: siteData.brand.name,
+                                tagline: siteData.brand.tagline,
+                                subtitle: siteData.pageFlow.heroP,
+                                phone: siteData.brand.phone,
+                                areaChips: siteData.brand.areaChips,
+                            }}
+                        />
+                    </header>
+
+                    <main>
+                        <section class="" aria-labelledby="core-services-title">
+                            <!-- <h2 id="core-services-title" class="sr-only">
+                                Core services
+                            </h2> -->
+                            <DesktopCoreServices
+                                services={siteData.coreServices}
+                            />
+                        </section>
+
+                        <section class="section section-padding" aria-labelledby="local-support-title">
+                            <h2 id="local-support-title" class="sr-only">
+                                Local support highlights
+                            </h2>
+                            <DesktopMarketplace
+                                cards={siteData.marketplaceCards}
+                                phone={siteData.brand.phone}
+                            />
+                        </section>
+
+                        <section class="section" aria-labelledby="insights-title">
+                            <h2 id="insights-title" class="sr-only">Insights</h2>
+                            <BlogSection
+                                title={siteData.insights.title}
+                                subtitle={siteData.insights.subtitle}
+                                viewAllHref={siteData.insights.viewAllHref}
+                                viewMoreHref={siteData.insights.viewMoreHref}
+                                items={siteData.insights.items}
+                                showSaveButton={false}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="coverage-title">
+                            <h2 id="coverage-title" class="sr-only">Services and Locations</h2>
+                            <ServicesLocationsSection
+                                title={siteData.coverageIndex.title}
+                                subtitle={siteData.coverageIndex.subtitle}
+                                services={siteData.coverageIndex.services}
+                                locations={siteData.coverageIndex.locations}
+                                popularAreaServices={siteData.coverageIndex
+                                    .popularAreaServices}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="commercial-authority-title">
+                            <h2 id="commercial-authority-title" class="sr-only">Commercial Authority</h2>
+                            <PostSection
+                                anchorId="commercial-authority"
+                                title={siteData.commercialAuthorityPosts.title}
+                                subtitle={siteData.commercialAuthorityPosts
+                                    .subtitle}
+                                viewAllHref={siteData.commercialAuthorityPosts
+                                    .viewAllHref}
+                                viewMoreHref={siteData.commercialAuthorityPosts
+                                    .viewMoreHref}
+                                categories={siteData.commercialAuthorityPosts
+                                    .categories}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="proof-experience-title">
+                            <h2 id="proof-experience-title" class="sr-only">Proof of Experience</h2>
+                            <PostSection
+                                anchorId="proof-experience"
+                                title={siteData.proofExperiencePosts.title}
+                                subtitle={siteData.proofExperiencePosts.subtitle}
+                                viewAllHref={siteData.proofExperiencePosts
+                                    .viewAllHref}
+                                viewMoreHref={siteData.proofExperiencePosts
+                                    .viewMoreHref}
+                                items={siteData.proofExperiencePosts.items}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="renewals-title">
+                            <h2 id="renewals-title" class="sr-only">Renewals</h2>
+                            <PostSection
+                                anchorId="renewals"
+                                title={siteData.renewalLicPosts.title}
+                                subtitle={siteData.renewalLicPosts.subtitle}
+                                viewAllHref={siteData.renewalLicPosts.viewAllHref}
+                                viewMoreHref={siteData.renewalLicPosts.viewMoreHref}
+                                items={siteData.renewalLicPosts.items}
+                            />
+                        </section>
+
+                        <!-- Trust / process block (keep semantic + readable) -->
+                        <section class="section section-padding" style="padding-top:22px;" aria-labelledby="how-it-works-title">
+                            <h2 id="how-it-works-title" class="section-title">
+                                How you’ll get help
+                            </h2>
+                            <div class="section-sub">
+                                Clear guidance → correct coverage →
+                                documentation clarity → smoother claims.
+                            </div>
+
+                            <!-- Use existing MobileAccordion component also on desktop (content is HTML anyway) -->
+                            <MobileAccordion
+                                sections={[
+                                    ...siteData.howWeHelp,
+                                    {
+                                        title: "FAQs",
+                                        items: siteData.faqs.map((f) => ({
+                                            strong: f.q,
+                                            text: f.a,
+                                        })),
+                                    },
+                                ]}
+                                defaultOpen={true}
+                            />
+                        </section>
+
+                        <section class="" style="margin:16px auto 0" aria-labelledby="trust-title">
+                            <h2 id="trust-title" class="sr-only">
+                                Trust signals
+                            </h2>
+
+                            <TestimonialsStrip
+                                title={siteData.testimonials.title}
+                                subtitle={siteData.testimonials.subtitle}
+                                avgScore={siteData.testimonials.avgScore}
+                                avgText={siteData.testimonials.avgText}
+                                pillHref={siteData.testimonials.pillHref}
+                                showControls={siteData.testimonials
+                                    .showControls}
+                                items={siteData.testimonials.items}
+                            />
+
+                            <div style="height:14px;"></div>
+
+                            <StatsStrip
+                                title={siteData.statsStrip.title}
+                                stats={siteData.statsStrip.stats}
+                            />
+                        </section>
+
+                        <section aria-labelledby="visit-title" class="section section-padding" style="padding-top:22px;">
+                            <h2 id="visit-title" class="section-title">
+                                Visit & Contact
+                            </h2>
+                            <p class="section-sub">
+                                Address: {siteData.brand.streetAddress}, {
+                                    siteData.brand.addressLocality
+                                }, {siteData.brand.addressRegion}
+                                {siteData.brand.postalCode}.<br />
+                                Hours: {siteData.brand.hours?.label}.
+                            </p>
+
+                            <div
+                                class="mapbox"
+                                role="group"
+                                aria-label="Google map"
+                            >
+                                <iframe
+                                    src={siteData.brand.mapEmbedUrl}
+                                    width="600"
+                                    height="450"
+                                    style="border:0;"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen
+                                    title={`${siteData.brand.name} location map`}
+                                ></iframe>
+                            </div>
+                        </section>
+
+                        <section class="" aria-labelledby="contact-title">
+                            <h2 id="contact-title" class="sr-only">Contact</h2>
+
+                            <FooterCtaBar
+                                title={siteData.footerCtas.title}
+                                subtitle={siteData.footerCtas.subtitle}
+                                whatsappNumber={siteData.brand.whatsappE164}
+                                whatsappText={siteData.brand.whatsappPrefill}
+                                callNumber={siteData.brand.phoneE164}
+                                callLabel={siteData.footerCtas.callLabel}
+                                brandName={siteData.footerCtas.brandName}
+                                logoText={siteData.footerCtas.logoText}
+                                copyright={siteData.footerCtas.copyright}
+                            />
+                        </section>
+                    </main>
+                </div>
+
+                <!-- =========================
+             MOBILE UI
+        ========================== -->
+                <div class="ui-mobile">
+                    <header>
+                        <MobileHero
+                            brand={{
+                                name: siteData.brand.name,
+                                tagline: siteData.brand.tagline,
+                                subtitle: siteData.pageFlow.heroP,
+                                phone: siteData.brand.phone,
+                                areaChips: [],
+                            }}
+                        />
+                    </header>
+
+                    <main>
+                        <section class="" aria-labelledby="m-core-services-title">
+                            <!-- <h2 id="m-core-services-title" class="sr-only">
+                                Core services
+                            </h2> -->
+                            <MobileCoreServices
+                                services={siteData.coreServices}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="m-insights-title">
+                            <h2 id="m-insights-title" class="sr-only">Insights</h2>
+                            <BlogSection
+                                title={siteData.insights.title}
+                                subtitle={siteData.insights.subtitle}
+                                viewAllHref={siteData.insights.viewAllHref}
+                                viewMoreHref={siteData.insights.viewMoreHref}
+                                items={siteData.insights.items}
+                                showSaveButton={false}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="m-coverage-title">
+                            <h2 id="m-coverage-title" class="sr-only">Services and Locations</h2>
+                            <ServicesLocationsSection
+                                title={siteData.coverageIndex.title}
+                                subtitle={siteData.coverageIndex.subtitle}
+                                services={siteData.coverageIndex.services}
+                                locations={siteData.coverageIndex.locations}
+                                popularAreaServices={siteData.coverageIndex
+                                    .popularAreaServices}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="m-commercial-authority-title">
+                            <h2 id="m-commercial-authority-title" class="sr-only">Commercial Authority</h2>
+                            <PostSection
+                                anchorId="commercial-authority"
+                                title={siteData.commercialAuthorityPosts.title}
+                                subtitle={siteData.commercialAuthorityPosts
+                                    .subtitle}
+                                viewAllHref={siteData.commercialAuthorityPosts
+                                    .viewAllHref}
+                                viewMoreHref={siteData.commercialAuthorityPosts
+                                    .viewMoreHref}
+                                categories={siteData.commercialAuthorityPosts
+                                    .categories}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="m-proof-experience-title">
+                            <h2 id="m-proof-experience-title" class="sr-only">Proof of Experience</h2>
+                            <PostSection
+                                anchorId="proof-experience"
+                                title={siteData.proofExperiencePosts.title}
+                                subtitle={siteData.proofExperiencePosts.subtitle}
+                                viewAllHref={siteData.proofExperiencePosts
+                                    .viewAllHref}
+                                viewMoreHref={siteData.proofExperiencePosts
+                                    .viewMoreHref}
+                                items={siteData.proofExperiencePosts.items}
+                            />
+                        </section>
+
+                        <section class="" aria-labelledby="m-renewals-title">
+                            <h2 id="m-renewals-title" class="sr-only">Renewals</h2>
+                            <PostSection
+                                anchorId="renewals"
+                                title={siteData.renewalLicPosts.title}
+                                subtitle={siteData.renewalLicPosts.subtitle}
+                                viewAllHref={siteData.renewalLicPosts.viewAllHref}
+                                viewMoreHref={siteData.renewalLicPosts.viewMoreHref}
+                                items={siteData.renewalLicPosts.items}
+                            />
+                        </section>
+
+                        <section class="section section-padding" style="padding-top: 22px;" aria-labelledby="m-help-title">
+                            <!-- <h2 id="m-help-title" class="section-title">
+                                How we help
+                            </h2> -->
+                            <MobileAccordion
+                                sections={[
+                                    ...siteData.howWeHelp,
+                                    {
+                                        title: "FAQs",
+                                        items: siteData.faqs.map((f) => ({
+                                            strong: f.q,
+                                            text: f.a,
+                                        })),
+                                    },
+                                ]}
+                                defaultOpen={true}
+                            />
+                        </section>
+
+                        <section class="" style="margin:16px auto 0" aria-labelledby="m-trust-title">
+                            <h2 id="m-trust-title" class="sr-only">
+                                Trust signals
+                            </h2>
+
+                            <TestimonialsStrip
+                                title={siteData.testimonials.title}
+                                subtitle={siteData.testimonials.subtitle}
+                                avgScore={siteData.testimonials.avgScore}
+                                avgText={siteData.testimonials.avgText}
+                                pillHref={siteData.testimonials.pillHref}
+                                showControls={siteData.testimonials
+                                    .showControls}
+                                items={siteData.testimonials.items}
+                            />
+
+                            <div style="height:14px;"></div>
+
+                            <StatsStrip
+                                title={siteData.statsStrip.title}
+                                stats={siteData.statsStrip.stats}
+                            />
+                        </section>
+
+                        <section aria-labelledby="visit-title" class="section section-padding" style="padding-top: 22px;">
+                            <h2 id="visit-title" class="section-title">
+                                Visit & Contact
+                            </h2>
+                            <p class="section-sub">
+                                Address: {siteData.brand.streetAddress}, {
+                                    siteData.brand.addressLocality
+                                }, {siteData.brand.addressRegion}
+                                {siteData.brand.postalCode}.<br />
+                                Hours: {siteData.brand.hours?.label}.
+                            </p>
+
+                            <div
+                                class="mapbox"
+                                role="group"
+                                aria-label="Google map"
+                            >
+                                <iframe
+                                    src={siteData.brand.mapEmbedUrl}
+                                    width="600"
+                                    height="450"
+                                    style="border:0;"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen
+                                    title={`${siteData.brand.name} location map`}
+                                ></iframe>
+                            </div>
+                        </section>
+
+                        <section class="" aria-labelledby="m-contact-title">
+                            <h2 id="m-contact-title" class="sr-only">
+                                Contact
+                            </h2>
+
+                            <FooterCtaBar
+                                title={siteData.footerCtas.title}
+                                subtitle={siteData.footerCtas.subtitle}
+                                whatsappNumber={siteData.brand.whatsappE164}
+                                whatsappText={siteData.brand.whatsappPrefill}
+                                callNumber={siteData.brand.phoneE164}
+                                callLabel={siteData.footerCtas.callLabel}
+                                brandName={siteData.footerCtas.brandName}
+                                logoText={siteData.footerCtas.logoText}
+                                copyright={siteData.footerCtas.copyright}
+                            />
+                        </section>
+                    </main>
+
+                    <!-- Optional: mobile sticky CTA (if you want later) -->
+                    <!-- <nav class="mobile-sticky-cta" aria-label="Quick contact">
+                        <a class="cta" href={telHref}
+                            >{siteData.pageFlow.primaryCtaLabel}</a
+                        >
+                        <a
+                            class="cta cta-ghost"
+                            href={waHref}
+                            target="_blank"
+                            rel="noopener">WhatsApp</a
+                        >
+                    </nav> -->
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

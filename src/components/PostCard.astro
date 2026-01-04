@@ -1,0 +1,58 @@
+---
+type PostCardProps = {
+  href: string;
+  title: string;
+  desc: string;
+  chips?: string[]; // e.g. ["Commercial","Heavy Equipment"]
+  tags?: string[];
+  readTime?: string;
+  levelOrFreq?: string;
+};
+
+const {
+  href,
+  title,
+  desc,
+  chips = [],
+  tags = [],
+  readTime = "6 min read",
+  levelOrFreq = "Practical",
+} = Astro.props as PostCardProps;
+---
+
+<article class="postcard" role="listitem">
+  <div class="postcard-top" aria-label="Post categories">
+    <div class="chiprow">
+      {chips.map((c) => (
+        <span class="chip">{c}</span>
+      ))}
+    </div>
+  </div>
+
+  <h3 class="postcard-title">
+    <a class="postcard-link" href={href}>{title}</a>
+  </h3>
+
+  <p class="postcard-desc">{desc}</p>
+
+  {tags?.length ? (
+    <div class="tagwrap" aria-label="Tags">
+      {tags.map((t) => (
+        <span class="tag">{t}</span>
+      ))}
+    </div>
+  ) : null}
+
+  <div class="postmeta" aria-label="Post meta">
+    <div class="meta-left">
+      <span class="dot" aria-hidden="true"></span>
+      <span>{readTime}</span>
+      <span class="sep">•</span>
+      <span>{levelOrFreq}</span>
+    </div>
+
+    <a class="postcta" href={href}>
+      Read <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</article>

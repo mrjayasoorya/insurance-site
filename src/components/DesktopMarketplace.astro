@@ -1,0 +1,30 @@
+---
+const { cards, phone } = Astro.props;
+---
+<section class="market-wrap" aria-label="Marketplace">
+  <div class="market-head">
+    <h4>Quick Highlights</h4>
+    <a href={`tel:${phone}`}>Call ↗</a>
+  </div>
+
+  <div class="market-grid">
+    {cards.map((c) => (
+      <article class={`mcard ${c.variant}`}>
+        <div>
+          <div class="mcard-top">
+            <div class="mcard-ident">
+              <div class="mcard-icon" aria-hidden="true">{c.iconText}</div>
+              <h5>{c.title}</h5>
+            </div>
+            <div class="rating"><span class="star">★</span> {c.rating}</div>
+          </div>
+          <p>{c.desc}</p>
+        </div>
+        <div class="mcard-actions">
+          <span class="link-muted">Area: {c.area}</span>
+          <a class="btn-mini" href={`tel:${phone}`}>Call <span class="chev">›</span></a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

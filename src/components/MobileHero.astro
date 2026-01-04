@@ -1,0 +1,15 @@
+---
+const { brand } = Astro.props;
+---
+<header class="m-hero">
+  <h2>{brand.name}</h2>
+  <div class="subrow">
+    <span style="font-weight:950;">{brand.tagline}</span>
+    <div class="m-chips">
+      {brand.areaChips.map((c) => <div class="chip">{c}</div>)}
+    </div>
+  </div>
+  <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.35;">
+    {brand.subtitle}
+  </p>
+</header>

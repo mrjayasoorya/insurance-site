@@ -1,0 +1,25 @@
+---
+const { sections = [], defaultOpen = true } = Astro.props;
+---
+
+<section class="accordion" aria-label="Information sections">
+  {sections.map((sec) => (
+    <details class="acc" open={defaultOpen}>
+      <summary>
+        <span class="acc-title">{sec.title}</span>
+        <span class="chev" aria-hidden="true">›</span>
+      </summary>
+      <div class="acc-body">
+        {sec.items.map((it) => (
+          <article class="proj">
+            <div>
+              <strong>{it.strong}</strong>
+              <span>{it.text}</span>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+          </article>
+        ))}
+      </div>
+    </details>
+  ))}
+</section>

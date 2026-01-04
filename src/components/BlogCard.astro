@@ -1,0 +1,73 @@
+---
+type BlogCardProps = {
+  href: string;
+  title: string;
+  desc: string;
+
+  // chips
+  chipCategory: string;   // e.g. "Commercial"
+  chipMap: string;        // e.g. "Property Insurance"
+
+  // tags
+  tags?: string[];        // e.g. ["#risk-checklist", "#documents"]
+
+  // meta
+  readTime?: string;      // e.g. "7 min read"
+  levelOrFreq?: string;   // e.g. "Updated weekly" / "Beginner"
+
+  // optional UI
+  showSaveButton?: boolean;
+};
+
+const {
+  href,
+  title,
+  desc,
+  chipCategory,
+  chipMap,
+  tags = [],
+  readTime = "7 min read",
+  levelOrFreq = "Updated weekly",
+  showSaveButton = true,
+} = Astro.props as BlogCardProps;
+---
+
+<article class="blogcard" role="listitem">
+  <div class="blogcard-top">
+    <div class="chiprow" aria-label="Categories">
+      <span class="chip chip-cat">{chipCategory}</span>
+      <span class="chip chip-map">{chipMap}</span>
+    </div>
+
+    {showSaveButton ? (
+      <button class="iconbtn" type="button" aria-label="Save article">🔖</button>
+    ) : null}
+  </div>
+
+  <h3 class="blogcard-title">
+    <a class="blogcard-link" href={href}>{title}</a>
+  </h3>
+
+  <p class="blogcard-desc">{desc}</p>
+
+  {tags?.length ? (
+    <div class="tagwrap" aria-label="Tags">
+      {tags.map((t) => (
+        <span class="tag">{t}</span>
+      ))}
+    </div>
+  ) : null}
+
+  <div class="blogmeta" aria-label="Article meta">
+    <div class="meta-left">
+      <span class="dot" aria-hidden="true"></span>
+      <span>{readTime}</span>
+      <span class="sep">•</span>
+      <span>{levelOrFreq}</span>
+    </div>
+
+    <a class="blogcta" href={href}>
+      Read <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</article>

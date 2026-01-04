@@ -1,0 +1,64 @@
+---
+/**
+ * Props:
+ * - title (string)
+ * - subtitle (string)
+ * - whatsappNumber (string)  // "917448324068"
+ * - whatsappText (string)    // prefilled message
+ * - callNumber (string)      // "+917448324068"
+ * - callLabel (string)       // "Call Us 7448324068"
+ * - brandName (string)       // footer brand text
+ * - logoText (string)        // single letter or short mark
+ * - copyright (string)
+ */
+const {
+  title = "Need help choosing the right plan?",
+  subtitle = "Chat with us on WhatsApp or call directly. Quick responses.",
+  whatsappNumber = "917448324068",
+  whatsappText = "Hi I need help with insurance plans",
+  callNumber = "+917448324068",
+  callLabel = "Call Now 7448324068",
+  brandName = "M N Rajendrakumar",
+  logoText = "NIA",
+  copyright = `Copyright ${new Date().getFullYear()} © ${brandName}`,
+} = Astro.props;
+
+const waHref =
+  `https://wa.me/${encodeURIComponent(whatsappNumber)}` +
+  `?text=${encodeURIComponent(whatsappText)}`;
+const telHref = `tel:${callNumber}`;
+---
+
+<footer class="fbar" aria-label="Footer actions">
+  <div class="fbar-inner">
+    <div class="fbar-left">
+      <div class="fbar-title">{title}</div>
+      <div class="fbar-sub">{subtitle}</div>
+    </div>
+
+    <div class="fbar-right" aria-label="Footer CTAs">
+      <a
+        class="fbtn fbtn-ghost"
+        href={waHref}
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="ficon" aria-hidden="true">WA</span>
+        WhatsApp Us
+      </a>
+
+      <a class="fbtn fbtn-solid" href={telHref}>
+        <span class="ficon ficon-invert" aria-hidden="true">TEL</span>
+        {callLabel}
+      </a>
+    </div>
+  </div>
+
+  <div class="fbar-bottom">
+    <div class="fbrand">
+      <span class="flogo" aria-hidden="true">{logoText}</span>
+      <span class="fname">{brandName}</span>
+    </div>
+    <div class="fcopy">{copyright}</div>
+  </div>
+</footer>

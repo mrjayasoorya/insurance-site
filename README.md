@@ -44,3 +44,17 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+home page basics about us , services , services with areas, claim ratio,
+type 1, type 2 and type 3 contents
+google posts integration
+images addition of servies
+sticky cta in both mobile and desktop
+box shadows and color differentiation
+
+blog posts page
+individual blog posts page
+list of services / category page
+individual service / category page
+contact us page 
+about us page 

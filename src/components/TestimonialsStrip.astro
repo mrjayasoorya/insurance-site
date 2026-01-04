@@ -1,0 +1,95 @@
+---
+/**
+ * Props:
+ * - title (string)
+ * - subtitle (string)
+ * - testimonials: Array<{
+ *     name: string;
+ *     role: string;
+ *     quote: string;
+ *     rating?: number;   // default 5
+ *     avatarText?: string; // default first letter of name
+ *   }>
+ * - avgText (string)         // "Average rating (2k+ reviews)"
+ * - avgScore (string)        // "+4.5"
+ * - pillHref (string)
+ * - showControls (boolean)
+ */
+const {
+  title = "What Our Customers Are Saying",
+  subtitle = "Real stories from people who trust us.",
+  testimonials = [
+    {
+      name: "Amira K.",
+      role: "Customer",
+      quote: "Quick, clear, and super helpful. The experience felt smooth and trustworthy from start to finish.",
+      rating: 5,
+      avatarText: "A",
+    },
+    {
+      name: "Jared L.",
+      role: "Founder",
+      quote: "Support was fast and practical. I got exactly what I needed without back-and-forth.",
+      rating: 5,
+      avatarText: "J",
+    },
+    {
+      name: "Raj M.",
+      role: "Customer",
+      quote: "Everything was explained in simple language. I felt confident making the next step.",
+      rating: 5,
+      avatarText: "R",
+    },
+  ],
+  avgText = "Average rating (2k+ reviews)",
+  avgScore = "+4.5",
+  pillHref = "#",
+  showControls = true,
+} = Astro.props;
+
+const renderStars = (n = 5) => "★★★★★".slice(0, Math.max(0, Math.min(5, n)));
+---
+
+<section class="t-wrap" aria-label="Testimonials">
+  <header class="t-head">
+    <h2>{title}</h2>
+    <p>{subtitle}</p>
+  </header>
+
+  <div class="t-row" role="list">
+    {testimonials.map((t) => (
+      <article class="t-card" role="listitem">
+        <div class="t-stars" aria-label={`Rating ${t.rating ?? 5} out of 5`}>
+          {renderStars(t.rating ?? 5)}
+        </div>
+
+        <p class="t-quote">“{t.quote}”</p>
+
+        <div class="t-user">
+          <span class="t-avatar" aria-hidden="true">
+            {t.avatarText ?? (t.name?.trim()?.[0] ?? "U")}
+          </span>
+
+          <div class="t-meta">
+            <strong>{t.name}</strong>
+            <span>{t.role}</span>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="t-foot">
+    <a class="t-pill" href={pillHref}>
+      <span class="t-pill-num">{avgScore}</span>
+      {avgText}
+    </a>
+
+    {showControls && (
+      <div class="t-nav" aria-label="Carousel controls">
+        <button class="t-ctl" type="button" aria-label="Previous">←</button>
+        <button class="t-ctl" type="button" aria-label="Next">→</button>
+      </div>
+    )}
+  </div>
+</section>

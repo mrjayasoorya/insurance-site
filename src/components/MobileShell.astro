@@ -1,0 +1,14 @@
+---
+const { children } = Astro.props;
+---
+<div class="phone">
+  <div class="phone-shell">
+    <div class="status">
+      <span><strong>9:41</strong></span>
+      <span>◉ ◉ ◉</span>
+    </div>
+    <div class="notch" aria-hidden="true"></div>
+
+    {children}
+  </div>
+</div>

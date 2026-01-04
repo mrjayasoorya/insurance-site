@@ -1,36 +1,524 @@
 ---
-import SeoHead from "../components/SeoHead.astro";
-const { title, description, lang = "en", path = "/", alternates = [] } = Astro.props;
+const { title = "InsuranceConsult", description = "" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <SeoHead title={title} description={description} lang={lang} path={path} alternates={alternates} />
-  </head>
-<title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="manifest" href="/site.webmanifest" />
-  <body>
-    <a href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  {description ? <meta name="description" content={description} /> : null}
 
-    <header>
-      <nav aria-label="Primary">
-        <a href={`/${lang}/`}>Home</a>
-        <a href={`/${lang}/services/`}>Services</a>
-        <a href={`/${lang}/locations/`}>Locations</a>
-        <a href={`/${lang}/about/`}>About</a>
-      </nav>
-    </header>
+  <style is:global>
+    /* =========================================================
+       THEME TOKENS (Desktop screenshot theme)
+       - Single CSS file
+       - Desktop + Mobile separated using media queries
+    ========================================================= */
+    :root{
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #f6f7f9;
+      --text: #0b0d12;
+      --muted: #5b616e;
+      --border: #e7e9ee;
 
-    <main id="main">
+      --shadow-sm: 0 8px 18px rgba(11,13,18,.06);
+      --shadow-md: 0 14px 40px rgba(11,13,18,.10);
+
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+
+      --container: 1120px;
+
+      /* typography */
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --h1: clamp(34px, 3.4vw, 54px);
+      --h2: 18px;
+      --body: 15px;
+      --small: 13px;
+
+      /* accents used in cards */
+      --a1: #11d4b5; /* teal */
+      --a2: #0f1116; /* near black */
+      --a3: #c77dff; /* purple */
+      --a4: #f3ff6a; /* lemon */
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a{ color:inherit; text-decoration:none; }
+    button,input{ font:inherit; }
+
+    /* =========================================================
+       SHARED LAYOUT
+    ========================================================= */
+    .app{
+      min-height:100%;
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width: var(--container);
+      padding: 28px 22px 46px;
+      margin: 0 auto;
+    }
+
+    /* show desktop UI by default */
+    .ui-desktop{ display:block; }
+    .ui-mobile{ display:none; }
+
+    /* =========================================================
+       DESKTOP UI (matches first screenshot – no navbar)
+    ========================================================= */
+    .brandline{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      color: var(--muted);
+      font-size: var(--small);
+      margin-bottom: 30px;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:var(--text);
+      display:inline-block; opacity:.9;
+    }
+
+    .hero{
+      text-align:center;
+      padding: 22px 0 16px;
+    }
+    .hero h1{
+      margin: 0 auto 12px;
+      max-width: 760px;
+      font-size: var(--h1);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+    .hero p{
+      margin: 0 auto 22px;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: var(--body);
+      line-height: 1.5;
+    }
+
+    .signup{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 12px;
+      margin: 0 auto 26px;
+      width: min(560px, 100%);
+    }
+    .field{
+      flex: 1;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      height: 44px;
+      padding: 0 14px;
+      box-shadow: 0 1px 0 rgba(11,13,18,.04);
+    }
+    .field .icon{
+      width: 18px; height: 18px;
+      display:grid; place-items:center;
+      color: var(--muted);
+      opacity:.95;
+    }
+    .field input{
+      border: 0;
+      outline: 0;
+      width: 100%;
+      font-size: 14px;
+      background: transparent;
+      color: var(--text);
+    }
+    .btn{
+      border: 0;
+      outline: 0;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      font-weight: 700;
+      cursor:pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
+      white-space: nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn:hover{ box-shadow: var(--shadow-md); }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin: 22px 0 12px;
+    }
+    .section-head .title{
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .section-head .link{
+      color: var(--muted);
+      font-size: var(--small);
+      font-weight: 700;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .section-head .link .arrow{
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display:grid;
+      place-items:center;
+      background: var(--surface);
+    }
+
+    .plan-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .plan{
+      position:relative;
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      min-height: 118px;
+      overflow:hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .plan small{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: .06em;
+      font-weight: 900;
+      text-transform: uppercase;
+      opacity: .92;
+      margin-bottom: 8px;
+    }
+    .plan h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      font-weight: 900;
+    }
+    .plan p{
+      margin: 0 0 14px;
+      font-size: 12.5px;
+      color: rgba(0,0,0,.62);
+      line-height: 1.35;
+      max-width: 90%;
+    }
+    .plan .meta{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .plan .cagr{
+      font-size: 11px;
+      color: rgba(0,0,0,.62);
+      font-weight: 700;
+    }
+    .plan .rate{
+      display:block;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+      margin-top: 2px;
+      color: rgba(0,0,0,.92);
+    }
+    .plan .go{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.08);
+      backdrop-filter: blur(8px);
+    }
+
+    /* individual card colors like screenshot */
+    .plan.teal{ background: linear-gradient(180deg, rgba(17,212,181,1) 0%, rgba(17,212,181,.92) 100%); }
+    .plan.black{ background: linear-gradient(180deg, rgba(15,17,22,1) 0%, rgba(15,17,22,.96) 100%); color:#fff; }
+    .plan.purple{ background: linear-gradient(180deg, rgba(199,125,255,1) 0%, rgba(199,125,255,.92) 100%); }
+    .plan.lemon{ background: linear-gradient(180deg, rgba(243,255,106,1) 0%, rgba(243,255,106,.93) 100%); }
+
+    /* adjust text for black card */
+    .plan.black p{ color: rgba(255,255,255,.72); }
+    .plan.black .cagr{ color: rgba(255,255,255,.72); }
+    .plan.black .rate{ color:#fff; }
+    .plan.black .go{ background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18); }
+
+    .footerline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-top: 22px;
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 12.5px;
+      border-top: 1px solid var(--border);
+    }
+    .footerline .left{
+      display:flex; gap:16px; align-items:center;
+    }
+    .footerline .pill{
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display:grid;
+      place-items:center;
+      background: var(--surface);
+      box-shadow: 0 1px 0 rgba(11,13,18,.04);
+    }
+
+    /* =========================================================
+       MOBILE UI (matches second screenshot structure, but uses desktop theme)
+       - Separate "mobile-only" section
+       - Sticky bottom CTA bar
+    ========================================================= */
+    .phone{
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+    .phone-shell{
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 18px 14px 74px; /* bottom space for sticky bar */
+      box-shadow: var(--shadow-md);
+      background: var(--surface);
+      position: relative;
+      overflow:hidden;
+    }
+    .status{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 6px 10px 10px;
+    }
+    .notch{
+      width: 120px;
+      height: 26px;
+      border-radius: 999px;
+      background: #0b0d12;
+      opacity: .95;
+      margin: 0 auto 12px;
+    }
+
+    .m-hero{
+      padding: 10px 10px 6px;
+    }
+    .m-hero h2{
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+    }
+    .m-hero .subrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      padding: 4px 0 10px;
+    }
+    .m-chips{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .chip{
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--text);
+      box-shadow: 0 1px 0 rgba(11,13,18,.04);
+    }
+
+    .m-section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 8px 10px 10px;
+    }
+    .m-section-title .label{
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+    }
+
+    .m-list{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      padding: 0 10px 10px;
+    }
+    .m-item{
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    }
+    .m-left{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .orb{
+      width: 38px; height: 38px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(17,212,181,.9), rgba(199,125,255,.55), rgba(243,255,106,.25));
+      border: 1px solid rgba(0,0,0,.06);
+      flex: 0 0 auto;
+    }
+    .m-text{
+      min-width:0;
+    }
+    .m-text .t{
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      font-size: 14.5px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .m-text .d{
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.25;
+      display:-webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+      max-width: 270px;
+    }
+    .m-more{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display:grid;
+      place-items:center;
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .stickybar{
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .stickybar .mini{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+    .mini-btn{
+      width: 42px; height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 1px 0 rgba(11,13,18,.04);
+      cursor:pointer;
+    }
+    .cta{
+      flex: 1;
+      height: 42px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--text);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      cursor:pointer;
+      box-shadow: var(--shadow-sm);
+      text-align:center;
+      display:grid;
+      place-items:center;
+    }
+
+    /* =========================================================
+       RESPONSIVE SWITCH: Desktop vs Mobile
+    ========================================================= */
+    @media (max-width: 820px){
+      .container{
+        max-width: 520px;
+        padding: 18px 14px 30px;
+      }
+      .ui-desktop{ display:none; }
+      .ui-mobile{ display:block; }
+    }
+
+    /* Desktop tweaks for small desktop widths */
+    @media (max-width: 1080px) and (min-width: 821px){
+      .plan-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <div class="container">
       <slot />
-    </main>
-
-    <footer>
-      <small>© {new Date().getFullYear()} Rajendrakumar Insurance Services</small>
-    </footer>
-  </body>
+    </div>
+  </main>
+</body>
 </html>
