@@ -1,0 +1,35 @@
+---
+const { title = "Insurance", description = "Insurance services in Chennai (Sholavaram).", lang = "en" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+
+  <body>
+    <a href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
+
+    <header>
+      <nav aria-label="Primary">
+        <a href={`/${lang}/`}>Home</a>
+        <a href={`/${lang}/services/`}>Services</a>
+        <a href={`/${lang}/locations/`}>Locations</a>
+        <a href={`/${lang}/about/`}>About</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer>
+      <small>© {new Date().getFullYear()} Rajendrakumar Insurance Services</small>
+    </footer>
+  </body>
+</html>

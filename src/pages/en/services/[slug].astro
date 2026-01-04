@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import services from "@data/en/services.json";
+import locations from "@data/en/locations.json";
+
+// Static generation for GitHub Pages
+export function getStaticPaths() {
+  return services.map((s) => ({
+    params: { slug: s.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+
+const service = services.find((s) => s.slug === slug);
+if (!service) {
+  return Astro.redirect("/404/", 302);
+}
+
+// Map served location slugs -> location objects
+const servedLocations = (service.servedLocations || [])
+  .map((locSlug) => locations.find((l) => l.slug === locSlug))
+  .filter(Boolean);
+
+const commercialFirstNote =
+  "We focus on commercial risk coverage in Chennai outskirts and industrial belts, based on requirement and documentation.";
+
+const title = `${service.title} — Chennai (Sholavaram)`;
+const description = service.summary;
+
+// Basic internal links
+const relatedServices = services
+  .filter((s) => s.category === service.category && s.slug !== service.slug)
+  .slice(0, 6);
+---
+
+<BaseLayout lang="en" title={title} description={description}>
+  <nav aria-label="Breadcrumb" style="margin-bottom:12px;">
+    <a href="/en/">Home</a> /
+    <a href="/en/services/">Services</a> /
+    <span>{service.title}</span>
+  </nav>
+
+  <article>
+    <header>
+      <h1>{service.title}</h1>
+      <p style="opacity:.9">{service.summary}</p>
+    </header>
+
+    <section aria-labelledby="signals">
+      <h2 id="signals">Common needs & signals</h2>
+      <ul>
+        {(service.tags || []).map((t) => <li>{t}</li>)}
+      </ul>
+    </section>
+
+    <section aria-labelledby="areas">
+      <h2 id="areas">Service areas for this</h2>
+      {servedLocations.length ? (
+        <ul>
+          {servedLocations.map((l) => (
+            <li>
+              <a href={`/en/locations/${l.slug}/`}>{l.name}</a>
+              {l.notes ? <span style="opacity:.8"> — {l.notes}</span> : null}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p style="opacity:.8">
+          We support clients based on requirement and documentation, starting from Sholavaram and nearby Chennai belts.
+        </p>
+      )}
+    </section>
+
+    <section aria-labelledby="trust">
+      <h2 id="trust">How we approach this (trust)</h2>
+      <ol>
+        <li>Understand the asset / activity and the risk exposure.</li>
+        <li>Identify suitable coverage structure and documentation requirements.</li>
+        <li>Ensure claim-readiness: correct details, proofs, and process discipline.</li>
+      </ol>
+      {service.category === "commercial" ? (
+        <p style="opacity:.85">{commercialFirstNote}</p>
+      ) : (
+        <p style="opacity:.85">
+          For personal insurance, we focus on clarity: what’s covered, what’s excluded, and how to avoid claim delays.
+        </p>
+      )}
+    </section>
+
+    <section aria-labelledby="related">
+      <h2 id="related">Related {service.category === "commercial" ? "commercial" : "personal"} services</h2>
+      <ul>
+        {relatedServices.map((s) => (
+          <li><a href={`/en/services/${s.slug}/`}>{s.title}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <footer style="margin-top:16px;opacity:.8">
+      <p>
+        Note: We provide guidance and support for selecting suitable coverage. Policy issuance, pricing, and coverage depend on insurer terms and submitted documentation.
+      </p>
+    </footer>
+  </article>
+</BaseLayout>

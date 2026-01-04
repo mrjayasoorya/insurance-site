@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import services from "../../../data/en/services.json";
+
+const commercial = services.filter(s => s.category === "commercial");
+const personal = services.filter(s => s.category === "personal");
+---
+
+<BaseLayout lang="en" title="Insurance Services — Chennai (Sholavaram)" description="Commercial & personal insurance guidance and services across Chennai and outskirts.">
+  <h1>Insurance Services</h1>
+
+  <h2>Commercial (Priority)</h2>
+  <ul>
+    {commercial.map(s => (
+      <li>
+        <a href={`/en/services/${s.slug}/`}>{s.title}</a>
+        <p style="margin:4px 0 0;opacity:.85">{s.summary}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Personal</h2>
+  <ul>
+    {personal.map(s => (
+      <li>
+        <a href={`/en/services/${s.slug}/`}>{s.title}</a>
+        <p style="margin:4px 0 0;opacity:.85">{s.summary}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

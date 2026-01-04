@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import locations from "../../../data/en/locations.json";
+---
+
+<BaseLayout lang="en" title="Service Areas — Chennai & Outskirts" description="Service areas including Sholavaram and nearby Chennai industrial belts and outskirts.">
+  <h1>Service Areas (Chennai & Outskirts)</h1>
+
+  <ul>
+    {locations.map(l => (
+      <li>
+        <a href={`/en/locations/${l.slug}/`}>{l.name}</a>
+        <p style="margin:4px 0 0;opacity:.85">{l.notes}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

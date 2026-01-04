@@ -1,0 +1,5 @@
+---
+// Home at "/" should behave like English homepage.
+// We redirect to "/en/" so only one canonical URL exists.
+return Astro.redirect("/en/", 308);
+---

@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import site from "../../data/en/site.json";
+---
+
+<BaseLayout
+  lang="en"
+  title={`${site.siteName}`}
+  description="Commercial & personal insurance guidance in Chennai (Sholavaram)."
+/>
+<h1>{site.siteName}</h1>
+<p>
+  {site.legalName} — {site.experienceYears}+ years experience. Focus: {site.primaryMarket}.
+</p>

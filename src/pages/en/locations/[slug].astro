@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import locations from "@data/en/locations.json";
+import services from "@data/en/services.json";
+
+// Static generation for GitHub Pages
+export function getStaticPaths() {
+  return locations.map((l) => ({
+    params: { slug: l.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+
+const loc = locations.find((l) => l.slug === slug);
+if (!loc) {
+  return Astro.redirect("/404/", 302);
+}
+
+// Services that explicitly serve this location
+const commercialServices = services.filter(
+  (s) => s.category === "commercial" && (s.servedLocations || []).includes(slug)
+);
+
+const personalServices = services.filter(
+  (s) => s.category === "personal" && (s.servedLocations || []).includes(slug)
+);
+
+// Nearby locations (simple: show 6 others)
+const nearbyLocations = locations
+  .filter((l) => l.slug !== slug)
+  .slice(0, 6);
+
+const title = `Insurance in ${loc.name} — Chennai (Sholavaram)`;
+const description = `Commercial and personal insurance guidance for ${loc.name} and nearby areas, with a focus on high-premium commercial coverage.`;
+---
+
+<BaseLayout lang="en" title={title} description={description}>
+  <nav aria-label="Breadcrumb" style="margin-bottom:12px;">
+    <a href="/en/">Home</a> /
+    <a href="/en/locations/">Locations</a> /
+    <span>{loc.name}</span>
+  </nav>
+
+  <article>
+    <header>
+      <h1>Service Area: {loc.name}</h1>
+      <p style="opacity:.9">{loc.notes}</p>
+    </header>
+
+    <section aria-labelledby="signals">
+      <h2 id="signals">Commercial intent signals</h2>
+      <ul>
+        {(loc.commercialSignals || []).map((s) => <li>{s}</li>)}
+      </ul>
+      <p style="opacity:.85">
+        Service area note: We operate from Sholavaram and support clients across Chennai and outskirts based on requirement and documentation.
+      </p>
+    </section>
+
+    <section aria-labelledby="commercial">
+      <h2 id="commercial">Commercial services (served here)</h2>
+      {commercialServices.length ? (
+        <ul>
+          {commercialServices.map((s) => (
+            <li>
+              <a href={`/en/services/${s.slug}/`}>{s.title}</a>
+              <p style="margin:4px 0 0;opacity:.85">{s.summary}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p style="opacity:.8">Commercial service pages will appear here as we expand coverage pages.</p>
+      )}
+    </section>
+
+    <section aria-labelledby="personal">
+      <h2 id="personal">Personal services (served here)</h2>
+      {personalServices.length ? (
+        <ul>
+          {personalServices.map((s) => (
+            <li><a href={`/en/services/${s.slug}/`}>{s.title}</a></li>
+          ))}
+        </ul>
+      ) : (
+        <p style="opacity:.8">Personal service pages will appear here as we expand coverage pages.</p>
+      )}
+    </section>
+
+    <section aria-labelledby="nearby">
+      <h2 id="nearby">Nearby service areas</h2>
+      <ul>
+        {nearbyLocations.map((l) => (
+          <li><a href={`/en/locations/${l.slug}/`}>{l.name}</a></li>
+        ))}
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

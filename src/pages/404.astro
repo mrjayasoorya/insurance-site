@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Data-driven lists (auto update when you add items)
+import nav from "../data/en/nav.json";
+import services from "../data/en/services.json";
+import locations from "../data/en/locations.json";
+
+
+// Keep this small + useful for humans (not a dump)
+const topCommercial = services
+  .filter((s) => s.category === "commercial")
+  .slice(0, 10);
+
+const topPersonal = services
+  .filter((s) => s.category === "personal")
+  .slice(0, 8);
+
+const topLocations = locations.slice(0, 12);
+---
+
+<BaseLayout
+  lang="en"
+  title="Page not found"
+  description="The page you’re looking for isn’t available. Use the links below to continue."
+>
+  <h1>Page not found</h1>
+  <p>If you typed a URL manually, use these links to find the right page.</p>
+
+  <section aria-labelledby="quick-links">
+    <h2 id="quick-links">Quick links</h2>
+    <ul>
+      {nav.quickLinks.map((l) => (
+        <li><a href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="commercial-services">
+    <h2 id="commercial-services">Commercial insurance (popular)</h2>
+    <ul>
+      {topCommercial.map((s) => (
+        <li>
+          <a href={`/en/services/${s.slug}/`}>{s.title}</a>
+          {s.summary ? <p style="margin: 4px 0 0; opacity: 0.8;">{s.summary}</p> : null}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="personal-services">
+    <h2 id="personal-services">Personal insurance</h2>
+    <ul>
+      {topPersonal.map((s) => (
+        <li>
+          <a href={`/en/services/${s.slug}/`}>{s.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="service-areas">
+    <h2 id="service-areas">Service areas (Chennai)</h2>
+    <ul>
+      {topLocations.map((loc) => (
+        <li>
+          <a href={`/en/locations/${loc.slug}/`}>{loc.name}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

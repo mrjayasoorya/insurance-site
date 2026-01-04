@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "sholavaram",
+    "name": "Sholavaram",
+    "type": "base",
+    "notes": "Primary service focus area (Chennai outskirts).",
+    "commercialSignals": ["fleet", "warehouse", "heavy-equipment", "sme"]
+  },
+  {
+    "slug": "madhavaram",
+    "name": "Madhavaram",
+    "type": "nearby",
+    "notes": "Industrial + transport adjacency.",
+    "commercialSignals": ["fleet", "warehouse", "sme"]
+  },
+  {
+    "slug": "manali",
+    "name": "Manali",
+    "type": "nearby",
+    "notes": "Industrial belt relevance.",
+    "commercialSignals": ["marine-cargo", "warehouse", "fleet"]
+  },
+  {
+    "slug": "ambattur",
+    "name": "Ambattur",
+    "type": "nearby",
+    "notes": "Manufacturing & SME relevance.",
+    "commercialSignals": ["sme", "fleet", "plant-machinery"]
+  },
+  {
+    "slug": "thiruvallur",
+    "name": "Thiruvallur (Outskirts)",
+    "type": "outer",
+    "notes": "Outskirts commercial targeting belt.",
+    "commercialSignals": ["heavy-equipment", "fleet", "warehouse"]
+  },
+  {
+    "slug": "perambur",
+    "name": "Perambur",
+    "type": "city",
+    "notes": "Within-city SME + personal lines.",
+    "commercialSignals": ["sme", "fleet"]
+  },
+  {
+    "slug": "chennai-north",
+    "name": "Chennai (North)",
+    "type": "city",
+    "notes": "City coverage reference for personal + SME needs.",
+    "commercialSignals": ["sme", "marine-cargo", "fleet"]
+  }
+]

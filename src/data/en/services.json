@@ -1,0 +1,67 @@
+[
+  {
+    "slug": "fleet-commercial-vehicle-insurance",
+    "category": "commercial",
+    "title": "Fleet & Commercial Vehicle Insurance",
+    "summary": "For lorry, tempo, taxi, and fleet operators across Chennai outskirts—focus on liability, downtime risk, and claim-ready documentation.",
+    "tags": ["fleet", "commercial-vehicle", "lorry", "goods-carriage", "liability"],
+    "servedLocations": ["sholavaram", "madhavaram", "manali", "ambattur", "thiruvallur", "perambur"]
+  },
+  {
+    "slug": "contractors-plant-machinery-cpm",
+    "category": "commercial",
+    "title": "Contractors Plant & Machinery (CPM) Insurance",
+    "summary": "Coverage guidance for JCB, excavator, crane, loader, and heavy equipment used in contracting and industrial work.",
+    "tags": ["jcb", "crane", "excavator", "heavy-equipment", "plant-machinery"],
+    "servedLocations": ["sholavaram", "manali", "madhavaram", "ambattur", "thiruvallur"]
+  },
+  {
+    "slug": "warehouse-godown-fire-burglary",
+    "category": "commercial",
+    "title": "Warehouse / Godown Insurance (Fire & Burglary)",
+    "summary": "For warehouses and godowns in industrial belts—fire, burglary, stock protection, and documentation discipline.",
+    "tags": ["warehouse", "godown", "fire", "burglary", "stock"],
+    "servedLocations": ["sholavaram", "madhavaram", "manali", "thiruvallur", "perambur"]
+  },
+  {
+    "slug": "marine-cargo-transit-insurance",
+    "category": "commercial",
+    "title": "Marine Cargo / Transit Insurance (Import–Export & Local)",
+    "summary": "Transit risk cover guidance for traders and logistics—invoice/packing list discipline and claim-ready steps.",
+    "tags": ["marine-cargo", "transit", "import-export", "logistics"],
+    "servedLocations": ["chennai-north", "manali", "madhavaram", "thiruvallur"]
+  },
+  {
+    "slug": "shopkeepers-commercial-package",
+    "category": "commercial",
+    "title": "Shopkeepers Insurance (Commercial Package)",
+    "summary": "For SME shops and small offices—fire, burglary, stock cover and practical policy structuring guidance.",
+    "tags": ["sme", "shop", "commercial-package", "fire", "burglary"],
+    "servedLocations": ["sholavaram", "perambur", "ambattur", "madhavaram"]
+  },
+
+  {
+    "slug": "car-insurance",
+    "category": "personal",
+    "title": "Car Insurance",
+    "summary": "Coverage selection guidance for city driving—IDV basics, add-ons, renewals, and claim documentation tips.",
+    "tags": ["car", "comprehensive", "third-party", "zero-dep"],
+    "servedLocations": ["sholavaram", "madhavaram", "perambur", "ambattur", "chennai-north"]
+  },
+  {
+    "slug": "bike-insurance",
+    "category": "personal",
+    "title": "Bike Insurance",
+    "summary": "For daily riders—TP vs comprehensive, add-ons, and common claim mistakes to avoid.",
+    "tags": ["bike", "two-wheeler", "third-party", "comprehensive"],
+    "servedLocations": ["sholavaram", "madhavaram", "perambur", "ambattur", "chennai-north"]
+  },
+  {
+    "slug": "health-insurance",
+    "category": "personal",
+    "title": "Health / Mediclaim Insurance",
+    "summary": "Guidance on waiting periods, room rent limits, network hospitals, and renewal continuity.",
+    "tags": ["health", "mediclaim", "family-floater", "waiting-period"],
+    "servedLocations": ["sholavaram", "madhavaram", "perambur", "ambattur", "chennai-north"]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "quickLinks": [
+    { "label": "English Home", "href": "/en/" },
+    { "label": "Tamil Home", "href": "/ta/" },
+    { "label": "Insurance Services", "href": "/en/services/" },
+    { "label": "Service Areas (Chennai)", "href": "/en/locations/" },
+    { "label": "Claims Guide", "href": "/en/claims-guide/" },
+    { "label": "About (30+ Years Experience)", "href": "/en/about/" }
+  ]
+}
