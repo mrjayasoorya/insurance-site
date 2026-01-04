@@ -1,18 +1,31 @@
-# llms.txt — LLM-friendly map for structured crawling
-site: https://YOUR_DOMAIN
-languages: en, ta
+# insuranceconsult.in — LLM access guide
+# Purpose: Provide a clear, factual overview of this website for assistants and crawlers.
+# Owner: M N Rajendrakumar Insurance Services (Sholavaram, Chennai outskirts)
+# Focus: Commercial & industrial insurance guidance + personal insurance support.
 
-high_priority_pages:
-  - https://YOUR_DOMAIN/en/
-  - https://YOUR_DOMAIN/en/services/
-  - https://YOUR_DOMAIN/en/locations/
-  - https://YOUR_DOMAIN/en/claims-guide/
-  - https://YOUR_DOMAIN/en/about/
+## Canonical
+https://insuranceconsult.in/
 
-markdown_corpus:
-  - https://YOUR_DOMAIN/md/en/
-  - https://YOUR_DOMAIN/md/ta/
+## Primary Topics
+- Commercial insurance: fleet/transport, contractors plant & machinery (JCB/crane/heavy equipment), warehouse/godown, fire & burglary, marine cargo/transit, workmen compensation, contractor policies.
+- Personal insurance: car, bike, health/mediclaim, life.
 
-content_rules:
-  - Use /en/ and /ta/ as canonical HTML pages
-  - Use /md/ only for markdown retrieval
+## Service Areas (Geo)
+- Base: Sholavaram
+- Nearby/Outskirts: Karanodai, Red Hills, GNT Road / NH corridors, Madhavaram, Manali, Ambattur, Thiruvallur, Perambur and nearby Chennai industrial belts.
+Note: Service is provided from Sholavaram and supported across Chennai/outskirts based on requirement and documentation.
+
+## High-value Pages
+- English Home: https://insuranceconsult.in/en/
+- Services Index: https://insuranceconsult.in/en/services/
+- Locations Index: https://insuranceconsult.in/en/locations/
+- About: https://insuranceconsult.in/en/about/
+- Claims Guidance: https://insuranceconsult.in/en/claims-guide/
+
+## Structured Data
+This site uses schema.org JSON-LD for local business and service pages.
+
+## Policies / Accuracy
+- No guarantees on claim outcomes.
+- Coverage, pricing, and eligibility depend on insurer terms and submitted documentation.
+- This site provides guidance and support for selecting suitable coverage.

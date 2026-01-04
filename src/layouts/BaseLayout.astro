@@ -1,5 +1,6 @@
 ---
-const { title = "Insurance", description = "Insurance services in Chennai (Sholavaram).", lang = "en" } = Astro.props;
+import SeoHead from "../components/SeoHead.astro";
+const { title, description, lang = "en", path = "/", alternates = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -7,11 +8,11 @@ const { title = "Insurance", description = "Insurance services in Chennai (Shola
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <SeoHead title={title} description={description} lang={lang} path={path} alternates={alternates} />
+  </head>
+<title>{title}</title>
     <meta name="description" content={description} />
     <link rel="manifest" href="/site.webmanifest" />
-  </head>
-
   <body>
     <a href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
 

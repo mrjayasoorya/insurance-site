@@ -2,11 +2,48 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import site from "../../data/en/site.json";
 ---
+<head>
+    <script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "M N Rajendrakumar Insurance Services",
+  "url": "https://insuranceconsult.in/",
+  "areaServed": [
+    "Sholavaram",
+    "Karanodai",
+    "Red Hills",
+    "Madhavaram",
+    "Manali",
+    "Ambattur",
+    "Thiruvallur",
+    "Perambur",
+    "Chennai"
+  ],
+  "knowsAbout": [
+    "Commercial insurance",
+    "Fleet insurance",
+    "Contractors plant and machinery (CPM)",
+    "Crane and heavy equipment insurance",
+    "Warehouse and factory insurance",
+    "Fire and burglary insurance",
+    "Marine cargo and transit insurance",
+    "Workmen compensation",
+    "Car insurance",
+    "Bike insurance",
+    "Health insurance",
+    "Life insurance"
+  ]
+})}
+</script>
 
+</head>
 <BaseLayout
   lang="en"
   title={`${site.siteName}`}
   description="Commercial & personal insurance guidance in Chennai (Sholavaram)."
+  path="/en/"
+  alternates={[{ lang: "en", href: "/en/" }, { lang: "ta", href: "/ta/" }]}
 />
 <h1>{site.siteName}</h1>
 <p>

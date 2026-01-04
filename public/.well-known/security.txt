@@ -1,0 +1,3 @@
+Contact: mailto:jayasooryadaniel@gmail.com
+Preferred-Languages: en, ta
+Canonical: https://insuranceconsult.in/.well-known/security.txt

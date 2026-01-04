@@ -35,7 +35,7 @@ const title = `Insurance in ${loc.name} — Chennai (Sholavaram)`;
 const description = `Commercial and personal insurance guidance for ${loc.name} and nearby areas, with a focus on high-premium commercial coverage.`;
 ---
 
-<BaseLayout lang="en" title={title} description={description}>
+<BaseLayout lang="en" title={title} description={description} path={`/en/locations/${loc.slug}/`} alternates={[{ lang: "en", href: `/en/locations/${loc.slug}/` }, { lang: "ta", href: `/ta/locations/${loc.slug}/` }]}>
   <nav aria-label="Breadcrumb" style="margin-bottom:12px;">
     <a href="/en/">Home</a> /
     <a href="/en/locations/">Locations</a> /

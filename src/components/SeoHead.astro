@@ -1,0 +1,31 @@
+---
+const {
+  title,
+  description,
+  lang = "en",
+  path = "/",
+  noindex = false,
+  alternates = [], // [{ lang: "en", href: "..." }, { lang: "ta", href: "..." }]
+} = Astro.props;
+
+const site = "https://insuranceconsult.in";
+const canonical = new URL(path, site).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+<link rel="alternate" hreflang="x-default" href={`${site}/en/`} />
+
