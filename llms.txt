@@ -1,0 +1,18 @@
+# llms.txt — LLM-friendly map for structured crawling
+site: https://YOUR_DOMAIN
+languages: en, ta
+
+high_priority_pages:
+  - https://YOUR_DOMAIN/en/
+  - https://YOUR_DOMAIN/en/services/
+  - https://YOUR_DOMAIN/en/locations/
+  - https://YOUR_DOMAIN/en/claims-guide/
+  - https://YOUR_DOMAIN/en/about/
+
+markdown_corpus:
+  - https://YOUR_DOMAIN/md/en/
+  - https://YOUR_DOMAIN/md/ta/
+
+content_rules:
+  - Use /en/ and /ta/ as canonical HTML pages
+  - Use /md/ only for markdown retrieval
