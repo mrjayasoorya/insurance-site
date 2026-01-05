@@ -1,0 +1,535 @@
+---
+// src/components/FloatingContactCta.astro
+// BaseLayout-safe: overlay is portalled to <body> via JS.
+// Desktop: clean popover card (bottom-right)
+// Mobile: bottom sheet (your "pakka" style)
+
+const { brand } = Astro.props;
+
+const telHref = `tel:${brand?.phoneE164 || ""}`;
+const waHref =
+  `https://wa.me/${encodeURIComponent(brand?.whatsappE164 || "")}` +
+  `?text=${encodeURIComponent(
+    brand?.whatsappPrefill || "Hi, I need help choosing the right insurance plan."
+  )}`;
+
+const mapsHref = brand?.gbpUrl || brand?.mapUrl || "#";
+
+const addrLine =
+  brand?.streetAddress
+    ? `${brand.streetAddress}, ${brand.addressLocality}, ${brand.addressRegion} ${brand.postalCode || ""}`
+    : "";
+---
+
+<!-- Floating Button (stays where component is rendered) -->
+<button
+  class="fc2-btn"
+  type="button"
+  aria-haspopup="dialog"
+  aria-expanded="false"
+  data-fc2-trigger
+>
+  <span class="fc2-ring" aria-hidden="true"></span>
+  <span class="fc2-ico" aria-hidden="true">☎</span>
+
+
+  <span class="fc2-textwrap">
+  <span class="fc2-label">Contact Details</span>
+  <span class="fc2-subtxt">Tap to open WhatsApp • Call • Map</span>
+</span>
+</button>
+
+
+<!-- Overlay template (will be moved to document.body on load) -->
+<div class="fc2-overlay" hidden data-fc2-overlay>
+  <div class="fc2-backdrop" data-fc2-close aria-hidden="true"></div>
+
+  <!-- Desktop Popover -->
+  <section
+    class="fc2-pop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="fc2-title"
+    tabindex="-1"
+    data-fc2-panel="desktop"
+  >
+    <button class="fc2-x" type="button" aria-label="Close" data-fc2-close>×</button>
+
+    <header class="fc2-head">
+      <div class="fc2-badge" aria-hidden="true">NIA</div>
+      <div class="fc2-htext">
+        <h3 id="fc2-title" class="fc2-title">{brand?.name || "Insurance Services"}</h3>
+        <p class="fc2-sub">
+          {brand?.primaryArea || "Chennai Outskirts"} • {brand?.hours?.label || "Open 24 hours"}
+        </p>
+      </div>
+    </header>
+
+    <div class="fc2-body">
+      <div class="fc2-info">
+        <div class="fc2-row">
+          <span class="fc2-k">Phone</span>
+          <a class="fc2-v fc2-link" href={telHref}>
+            {brand?.phone || brand?.phoneE164}
+          </a>
+        </div>
+
+        <div class="fc2-row">
+          <span class="fc2-k">Google</span>
+          {mapsHref !== "#" ? (
+            <a class="fc2-v fc2-link" href={mapsHref} target="_blank" rel="noopener">
+              Open Business Profile / Maps
+            </a>
+          ) : (
+            <span class="fc2-v fc2-muted">Add gbpUrl</span>
+          )}
+        </div>
+
+        <div class="fc2-row">
+          <span class="fc2-k">Address</span>
+          {addrLine ? (
+            <span class="fc2-v">{addrLine}</span>
+          ) : (
+            <span class="fc2-v fc2-muted">Add streetAddress in siteData.brand</span>
+          )}
+        </div>
+      </div>
+
+      <div class="fc2-actions">
+        <a class="fc2-a fc2-a--primary" href={telHref}>
+          Call {brand?.phone ? brand.phone.replace(/\s+/g, "") : ""}
+        </a>
+        <a class="fc2-a" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
+        {mapsHref !== "#" ? (
+          <a class="fc2-a" href={mapsHref} target="_blank" rel="noopener">Maps</a>
+        ) : null}
+      </div>
+
+      {brand?.mapEmbedUrl ? (
+        <div class="fc2-map" role="group" aria-label="Map preview">
+          <iframe
+            src={brand.mapEmbedUrl}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            title={`${brand?.name || "Business"} map`}
+          ></iframe>
+        </div>
+      ) : null}
+    </div>
+  </section>
+
+  <!-- Mobile Bottom Sheet -->
+  <section
+    class="fc2-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="fc2-title-m"
+    tabindex="-1"
+    data-fc2-panel="mobile"
+  >
+    <div class="fc2-grab" aria-hidden="true"></div>
+
+    <header class="fc2-shead">
+      <div>
+        <h3 id="fc2-title-m" class="fc2-title">{brand?.name || "Insurance Services"}</h3>
+        <p class="fc2-sub">
+          {brand?.primaryArea || "Chennai Outskirts"} • {brand?.hours?.label || "Open 24 hours"}
+        </p>
+      </div>
+      <button class="fc2-x" type="button" aria-label="Close" data-fc2-close>×</button>
+    </header>
+
+    <div class="fc2-body">
+      <div class="fc2-info">
+        <div class="fc2-row">
+          <span class="fc2-k">Call</span>
+          <a class="fc2-v fc2-link" href={telHref}>{brand?.phone || brand?.phoneE164}</a>
+        </div>
+
+        <div class="fc2-row">
+          <span class="fc2-k">WhatsApp</span>
+          <a class="fc2-v fc2-link" href={waHref} target="_blank" rel="noopener">Open chat</a>
+        </div>
+
+        <div class="fc2-row">
+          <span class="fc2-k">Maps</span>
+          {mapsHref !== "#" ? (
+            <a class="fc2-v fc2-link" href={mapsHref} target="_blank" rel="noopener">Open location</a>
+          ) : (
+            <span class="fc2-v fc2-muted">Add gbpUrl</span>
+          )}
+        </div>
+
+        <div class="fc2-row">
+          <span class="fc2-k">Address</span>
+          {addrLine ? <span class="fc2-v">{addrLine}</span> : <span class="fc2-v fc2-muted">Add streetAddress</span>}
+        </div>
+      </div>
+
+      <div class="fc2-actions fc2-actions--sheet">
+        <a class="fc2-a fc2-a--primary" href={telHref}>Call</a>
+        <a class="fc2-a" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
+        {mapsHref !== "#" ? (
+          <a class="fc2-a" href={mapsHref} target="_blank" rel="noopener">Maps</a>
+        ) : null}
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (function () {
+    const trigger = document.querySelector("[data-fc2-trigger]");
+    const overlay = document.querySelector("[data-fc2-overlay]");
+    if (!trigger || !overlay) return;
+
+    // ✅ IMPORTANT: move overlay to <body> so BaseLayout stacking/overflow cannot clip it
+    if (overlay.parentElement !== document.body) {
+      document.body.appendChild(overlay);
+    }
+
+    const desktopPanel = overlay.querySelector('[data-fc2-panel="desktop"]');
+    const mobilePanel = overlay.querySelector('[data-fc2-panel="mobile"]');
+    const closeEls = overlay.querySelectorAll("[data-fc2-close]");
+
+    const isMobile = () => window.matchMedia("(max-width: 820px)").matches;
+
+    let lastActive = null;
+
+    function positionDesktopPopover() {
+      // Anchor popover above the floating button
+      const btn = trigger.getBoundingClientRect();
+      const pad = 12;
+      const popW = desktopPanel.offsetWidth || 420;
+      const popH = desktopPanel.offsetHeight || 520;
+
+      const right = Math.max(pad, window.innerWidth - btn.right);
+      const bottom = Math.max(pad, window.innerHeight - btn.top + 10); // pop above button
+
+      // Use right/bottom so it stays bottom-right aligned
+      desktopPanel.style.right = right + "px";
+      desktopPanel.style.bottom = bottom + "px";
+
+      // Prevent off-screen top
+      const topIf = window.innerHeight - bottom - popH;
+      if (topIf < pad) {
+        // If too tall, clamp
+        desktopPanel.style.maxHeight = "70vh";
+      }
+    }
+
+    function open() {
+      lastActive = document.activeElement;
+      overlay.hidden = false;
+      document.body.classList.add("fc2-lock");
+      trigger.setAttribute("aria-expanded", "true");
+
+      if (isMobile()) {
+        desktopPanel.style.display = "none";
+        mobilePanel.style.display = "block";
+        requestAnimationFrame(() => mobilePanel.classList.add("is-open"));
+        mobilePanel.focus();
+      } else {
+        mobilePanel.classList.remove("is-open");
+        mobilePanel.style.display = "none";
+        desktopPanel.style.display = "block";
+        requestAnimationFrame(() => {
+          desktopPanel.classList.add("is-open");
+          positionDesktopPopover();
+        });
+        desktopPanel.focus();
+      }
+    }
+
+    function close() {
+      desktopPanel.classList.remove("is-open");
+      mobilePanel.classList.remove("is-open");
+      setTimeout(() => {
+        overlay.hidden = true;
+        document.body.classList.remove("fc2-lock");
+        trigger.setAttribute("aria-expanded", "false");
+        if (lastActive && typeof lastActive.focus === "function") lastActive.focus();
+      }, 160);
+    }
+
+    trigger.addEventListener("click", open);
+    closeEls.forEach((el) => el.addEventListener("click", close));
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.hidden) close();
+    });
+
+    window.addEventListener("resize", () => {
+      if (overlay.hidden) return;
+      if (!isMobile()) positionDesktopPopover();
+    });
+
+    // If your layout hydrates/changes, re-position once after load
+    window.addEventListener("load", () => {
+      if (!overlay.hidden && !isMobile()) positionDesktopPopover();
+    });
+  })();
+</script>
+
+<style>
+  /* Floating button */
+  /* Floating CTA button (more clickable) */
+.fc2-btn{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(0,0,0,.14);
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transform: translateY(0);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.fc2-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 65px rgba(0,0,0,.26);
+  background: rgba(255,255,255,.98);
+}
+
+.fc2-btn:active{
+  transform: translateY(0);
+}
+
+.fc2-btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.10), 0 18px 55px rgba(0,0,0,.22);
+}
+
+.fc2-ring{
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  pointer-events: none;
+  border: 2px solid rgba(0,0,0,.08);
+  opacity: 0.9;
+}
+
+.fc2-ico{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(0,0,0,.92);
+  color: #fff;
+
+  font-size: 16px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.fc2-textwrap{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding-right: 2px;
+}
+
+.fc2-label{
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.fc2-subtxt{
+  font-size: 11px;
+  opacity: .72;
+  font-weight: 650;
+}
+
+/* Make it easier to tap on mobile */
+@media (max-width: 820px){
+  .fc2-btn{
+    right: 14px;
+    bottom: 14px;
+    padding: 12px 14px;
+  }
+  .fc2-label{ font-size: 13px; }
+}
+
+
+  /* Overlay */
+  .fc2-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+  }
+  .fc2-backdrop{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.38);
+  }
+  body.fc2-lock{ overflow: hidden; }
+
+  /* Desktop popover card */
+  .fc2-pop{
+    position: absolute;
+    width: min(420px, calc(100vw - 28px));
+    background: rgba(255,255,255,.98);
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    transform: translateY(10px);
+    opacity: 0;
+    transition: 160ms ease;
+    outline: none;
+    overflow: hidden;
+  }
+  .fc2-pop.is-open{ transform: translateY(0); opacity: 1; }
+
+  /* Close button fixed top-right (proper) */
+  .fc2-x{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(255,255,255,.92);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* Header */
+  .fc2-head{
+    display:flex;
+    gap: 12px;
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+  .fc2-badge{
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: rgba(0,0,0,.04);
+    display:grid;
+    place-items:center;
+    font-weight: 900;
+    font-size: 12px;
+    flex: 0 0 auto;
+  }
+  .fc2-title{ margin:0; font-size: 14px; font-weight: 800; }
+  .fc2-sub{ margin:4px 0 0; font-size: 12px; opacity: .72; }
+  .fc2-htext{ padding-right: 44px; } /* space for close btn */
+
+  .fc2-body{ padding: 14px 16px 16px; display:flex; flex-direction:column; gap: 12px; }
+
+  .fc2-info{ display:flex; flex-direction:column; gap: 10px; }
+  .fc2-row{ display:flex; gap: 10px; align-items:flex-start; }
+  .fc2-k{ width: 92px; font-size: 12px; opacity: .72; }
+  .fc2-v{ font-size: 12px; opacity: .92; min-width: 0; }
+  .fc2-muted{ opacity: .6; }
+
+  .fc2-link{
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(0,0,0,.35);
+  }
+
+  .fc2-actions{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 2px;
+  }
+  .fc2-actions--sheet .fc2-a{ flex: 1 1 0; justify-content: center; }
+  .fc2-a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.14);
+    background: rgba(255,255,255,.9);
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration:none;
+    color: inherit;
+  }
+  .fc2-a--primary{
+    background: rgba(0,0,0,.92);
+    border-color: rgba(0,0,0,.92);
+    color: #fff;
+  }
+
+  .fc2-map{
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,.10);
+  }
+  .fc2-map iframe{
+    width: 100%;
+    height: 210px;
+    border: 0;
+    display:block;
+  }
+
+  /* Mobile Sheet */
+  .fc2-sheet{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,.98);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border: 1px solid rgba(0,0,0,.10);
+    box-shadow: 0 -16px 50px rgba(0,0,0,.22);
+    transform: translateY(18px);
+    opacity: 0;
+    transition: 160ms ease;
+    outline: none;
+    display:none;
+  }
+  .fc2-sheet.is-open{ transform: translateY(0); opacity: 1; }
+
+  .fc2-grab{
+    width: 46px; height: 5px;
+    border-radius: 99px;
+    background: rgba(0,0,0,.18);
+    margin: 10px auto 0;
+  }
+  .fc2-shead{
+    display:flex;
+    justify-content:space-between;
+    gap: 10px;
+    align-items:flex-start;
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  @media (max-width: 820px){
+    .fc2-pop{ display:none !important; }
+    .fc2-sheet{ display:block; }
+    .fc2-btn{ right: 14px; bottom: 14px; }
+  }
+
+</style>

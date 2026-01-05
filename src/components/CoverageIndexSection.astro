@@ -1,0 +1,156 @@
+---
+// src/components/CoverageIndexSection.astro
+// ✅ FIX: make each article + inner content layout HORIZONTAL (not vertical)
+// - All UL/LI still semantic (crawlable)
+// - Lists render as horizontal wrap (chips-like) instead of vertical bullets
+// - Each card header is a single horizontal row (title + optional note)
+
+const { data } = Astro.props;
+
+const safe = (v) => (Array.isArray(v) ? v.filter(Boolean) : []);
+const services = data?.services || {};
+const locations = data?.locations || {};
+const popular = data?.popular || {};
+
+const servicesCommercial = safe(services.commercial);
+const servicesDomestic = safe(services.domestic);
+
+const locationsCommercial = safe(locations.commercialBelts);
+const locationsDomestic = safe(locations.chennaiCityDomestic);
+
+const popularCommercial = safe(popular.commercial);
+const popularDomestic = safe(popular.domestic);
+
+const areaServiceTags = safe(data?.areaServiceTags);
+---
+
+<section class="covsec section section-padding" aria-label={data?.title || "Coverage index"}>
+  <header class="covsec-head section-head">
+    <div class="covsec-head__row">
+      <h2 class="covsec-title">{data?.title || "Services & Locations Covered"}</h2>
+      {data?.subtitle ? <p class="covsec-sub ">{data.subtitle}</p> : null}
+    </div>
+  </header>
+
+  <div class="covsec-grid" role="list">
+    <!-- ===================== SERVICES ===================== -->
+    <article class="covbox card" role="listitem" aria-label="Services">
+      <header class="covbox-head">
+        <h3 class="covbox-title">Services</h3>
+      </header>
+
+      <div class="covbox-split" role="group" aria-label="Services columns">
+        <div class="covcol" aria-label="Commercial services">
+          <h4 class="covcol-title">Commercial & Industrial</h4>
+          <ul class="covlist covlist--wrap">
+            {servicesCommercial.map((s) => (
+              <li class="covtag">{s}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="covcol" aria-label="Domestic services">
+          <h4 class="covcol-title">Domestic & Personal</h4>
+          <ul class="covlist covlist--wrap">
+            {servicesDomestic.map((s) => (
+              <li class="covtag">{s}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== LOCATIONS ===================== -->
+    <article class="covbox card" role="listitem" aria-label="Locations">
+      <header class="covbox-head">
+        <h3 class="covbox-title">Locations</h3>
+      </header>
+
+      <div class="covbox-split" role="group" aria-label="Locations columns">
+        <div class="covcol" aria-label="Commercial belt locations">
+          <h4 class="covcol-title">Commercial belts (NH / Industrial)</h4>
+          <ul class="covlist covlist--wrap">
+            {locationsCommercial.map((l) => (
+              <li class="covtag">{l}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="covcol" aria-label="Chennai city domestic locations">
+          <h4 class="covcol-title">Chennai city (Domestic support)</h4>
+          <ul class="covlist covlist--wrap">
+            {locationsDomestic.map((l) => (
+              <li class="covtag">{l}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== POPULAR AREA SERVICES ===================== -->
+    <article class="covbox card" role="listitem" aria-label="Popular area service searches">
+      <header class="covbox-head">
+        <h3 class="covbox-title">Popular area service searches</h3>
+        <p class="covbox-note muted readable">
+          what you do + where you help.
+        </p>
+      </header>
+
+      <div class="covbox-split" role="group" aria-label="Popular searches columns">
+        <div class="covcol" aria-label="Popular commercial searches">
+          <h4 class="covcol-title">Commercial</h4>
+          <ul class="covlist covlist--wrap">
+            {popularCommercial.map((p) => (
+              <li class="covchip">{p}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="covcol" aria-label="Popular domestic searches">
+          <h4 class="covcol-title">Domestic</h4>
+          <ul class="covlist covlist--wrap">
+            {popularDomestic.map((p) => (
+              <li class="covchip">{p}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===================== AREA × SERVICE FOCUS ===================== -->
+    <article class="covbox card" role="listitem" aria-label="Popular Area Service Focus">
+      <header class="covbox-head">
+        <h3 class="covbox-title">Popular Area Service Focus</h3>
+        <p class="covbox-note muted readable">
+          Area → common insurance guidance.
+        </p>
+      </header>
+
+      <!-- ✅ Horizontal row of area cards (wrap) -->
+      <div class="arearow" role="group" aria-label="Area focus row">
+        {areaServiceTags.map((x) => (
+          <section class="areacard" aria-label={x.area}>
+            <div class="areacard-head">
+              <h4 class="areacard-title">{x.area}</h4>
+              <p class="areacard-sub muted readable">{x.focus}</p>
+            </div>
+
+            <!-- ✅ Inside each area, services also horizontal wrap -->
+            <ul class="covlist covlist--wrap">
+              {x.services.map((s) => (
+                <li class="covtag">{s}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+  </div>
+
+  <div class="covsec-foot ">
+    <p class="muted">
+      If you’re calling about a shop, office, warehouse, factory, fleet, or highway-area business, keep basic details ready:
+      business type, location, approximate value of assets/stock, and any existing policy info (if available).
+    </p>
+  </div>
+</section>
