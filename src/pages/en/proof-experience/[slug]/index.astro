@@ -1,0 +1,69 @@
+---
+import DesktopHero from "../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import ArticlePage from "../../../../components/ArticlePage.astro";
+import { siteData } from "../../../../content/siteData";
+
+export async function getStaticPaths() {
+  const posts = siteData.postDetails || {};
+  const slugs = Object.keys(posts).filter((k) => posts[k].section === "Proof & Experience");
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = siteData.postDetails?.[slug];
+if (!post) throw new Error(`Unknown post slug: ${slug}`);
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/proof-experience/${slug}/`;
+---
+
+<html lang="en">
+  <ArticlePage brand={siteData.brand} post={post} />
+
+  <body>
+    <main class="app">
+      <div class="container">
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.brand.subtitle, phone: siteData.brand.phone, areaChips: siteData.brand.areaChips }} />
+          </header>
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.brand.subtitle, phone: siteData.brand.phone, areaChips: [] }} />
+          </header>
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+      </div>
+    </main>
+
+    <FloatingContactCta brand={siteData.brand} />
+  </body>
+</html>

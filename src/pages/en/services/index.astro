@@ -1,51 +1,115 @@
 ---
-export const prerender = true;
-
-import ServiceLayout from "../../../layouts/ServiceLayout.astro";
-import PageHero from "../../../components/PageHero.astro";
-import LinkGrid from "../../../components/LinkGrid.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-
-import { hubs } from "../../../content/pages/hubs";
-import { servicePages } from "../../../content/pages/services";
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import DesktopCoreServices from "../../../components/DesktopCoreServices.astro";
+import MobileCoreServices from "../../../components/MobileCoreServices.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
 
-const hub = hubs.services;
-
-const breadcrumbItems = [
-  { label: "Home", href: "/en/" },
-  { label: "Services", href: "/en/services/" },
-];
-
-const items = Object.values(servicePages).map((p) => ({
-  title: p.h1,
-  desc: p.metaDesc,
-  href: p.href,
-  chips: [p.serviceType],
+const services = (siteData.coreServices || []).map((s) => ({
+  ...s,
+  href: `/en/services/${s.slug}/`,
 }));
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
 ---
 
-<ServiceLayout page={{ ...hub, serviceType: "Service Hub", areasServed: siteData.brand.areaChips, faqs: [] }} breadcrumbItems={breadcrumbItems}>
-  <section class="section section-padding">
-    <Breadcrumbs items={breadcrumbItems} />
-  </section>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Services | {siteData.brand.name}</title>
+    <meta
+      name="description"
+      content="Commercial, transport, industrial and claim support services in Sholavaram, Red Hills Toll belt, Madhavaram and Chennai outskirts."
+    />
+    <link rel="canonical" href={canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+  </head>
 
-  <PageHero
-    h1={hub.h1}
-    subtitle={hub.metaDesc}
-    chips={hub.intro}
-    primaryCta={{ label: "Call", href: `tel:${siteData.brand.phoneE164}` }}
-    secondaryCta={{
-      label: "WhatsApp",
-      href: `https://wa.me/${siteData.brand.whatsappE164}?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`,
-      target: "_blank",
-      rel: "noopener",
-    }}
-  />
+  <body>
+    <main class="app">
+      <div class="container">
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle:
+                  "Commercial-first insurance guidance for Chennai outskirts (NH + industrial belts) with claim-ready documentation mindset.",
+                phone: siteData.brand.phone,
+                areaChips: siteData.brand.areaChips,
+              }}
+            />
+          </header>
 
-  <LinkGrid
-    title="Pick the service page that matches your need"
-    subtitle="Each page is written for Chennai outskirts risk zones (NH + industrial belts)."
-    items={items}
-  />
-</ServiceLayout>
+          <section class="section section-padding">
+            <h1 class="section-title">Services</h1>
+            <p class="section-sub">
+              Structured guidance for high-premium commercial/industrial needs and stable domestic support across Chennai major areas.
+            </p>
+          </section>
+
+          <DesktopCoreServices services={services} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={siteData.brand.whatsappE164}
+              whatsappText={siteData.brand.whatsappPrefill}
+              callNumber={siteData.brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle:
+                  "Commercial-first insurance guidance for Chennai outskirts (NH + industrial belts) with claim-ready documentation mindset.",
+                phone: siteData.brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">Services</h1>
+            <p class="section-sub">
+              Commercial, transport, industrial and claim support—structured for crawl clarity and user confidence.
+            </p>
+          </section>
+
+          <MobileCoreServices services={services} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={siteData.brand.whatsappE164}
+              whatsappText={siteData.brand.whatsappPrefill}
+              callNumber={siteData.brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <FloatingContactCta brand={siteData.brand} />
+  </body>
+</html>

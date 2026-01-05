@@ -1,27 +1,27 @@
 ---
-import DesktopHero from "../../../components/DesktopHero.astro";
-import MobileHero from "../../../components/MobileHero.astro";
-import BlogSection from "../../../components/BlogSection.astro";
-import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import DesktopHero from "../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData } from "../../../content/siteData";
+import ArticlePage from "../../../../components/ArticlePage.astro";
+import { siteData } from "../../../../content/siteData";
+
+export async function getStaticPaths() {
+  const posts = siteData.postDetails || {};
+  const slugs = Object.keys(posts).filter((k) => posts[k].section === "Commercial Authority");
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = siteData.postDetails?.[slug];
+if (!post) throw new Error(`Unknown post slug: ${slug}`);
 
 const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/`;
+post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/${slug}/`;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Commercial Authority | {siteData.brand.name}</title>
-    <meta
-      name="description"
-      content="Industry-focused insurance guidance for cranes, contractors, warehouses and transport fleets across Chennai outskirts (Sholavaram, Red Hills Toll, Madhavaram, NH belts)."
-    />
-    <link rel="canonical" href={canonical} />
-    <link rel="stylesheet" href="/styles/theme.css" />
-  </head>
+  <ArticlePage brand={siteData.brand} post={post} />
 
   <body>
     <main class="app">
@@ -32,20 +32,12 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/`
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.commercialAuthorityPosts.subtitle,
+                subtitle: siteData.brand.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: siteData.brand.areaChips,
               }}
             />
           </header>
-
-          <BlogSection
-            title={siteData.commercialAuthorityPosts.title}
-            subtitle={siteData.commercialAuthorityPosts.subtitle}
-            viewAllHref={siteData.commercialAuthorityPosts.viewAllHref}
-            viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
-            categories={siteData.commercialAuthorityPosts.categories}
-          />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -66,20 +58,12 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/`
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.commercialAuthorityPosts.subtitle,
+                subtitle: siteData.brand.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: [],
               }}
             />
           </header>
-
-          <BlogSection
-            title={siteData.commercialAuthorityPosts.title}
-            subtitle={siteData.commercialAuthorityPosts.subtitle}
-            viewAllHref={siteData.commercialAuthorityPosts.viewAllHref}
-            viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
-            categories={siteData.commercialAuthorityPosts.categories}
-          />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}

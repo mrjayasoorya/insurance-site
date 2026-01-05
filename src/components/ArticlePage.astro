@@ -1,0 +1,80 @@
+---
+const { brand, post } = Astro.props;
+
+const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = post?.canonical || "";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: post.h1,
+      description: post.seoDesc,
+      author: { "@type": "Person", name: brand.legalName || brand.name },
+      publisher: { "@type": "Organization", name: brand.name },
+      mainEntityOfPage: canonical || undefined,
+    },
+    ...(post.faqs?.length
+      ? [
+          {
+            "@type": "FAQPage",
+            mainEntity: post.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{post.seoTitle} | {brand.name}</title>
+  <meta name="description" content={post.seoDesc} />
+  {canonical ? <link rel="canonical" href={canonical} /> : null}
+  <link rel="stylesheet" href="/styles/theme.css" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+
+<section class="section section-padding">
+  <header>
+    <p class="muted readable">{post.section}</p>
+    <h1 class="section-title">{post.h1}</h1>
+    <p class="section-sub">{post.intro}</p>
+  </header>
+</section>
+
+{post.blocks?.map((b) => (
+  <section class="section section-padding" aria-label={b.title}>
+    <h2 class="section-title">{b.title}</h2>
+    <ul class="bullets">
+      {b.bullets.map((x) => <li>{x}</li>)}
+    </ul>
+  </section>
+))}
+
+{post.localSignals?.length ? (
+  <section class="section section-padding" aria-label="Local signals">
+    <h2 class="section-title">Local service signals</h2>
+    <p class="muted readable">{post.localSignals.join(" • ")}</p>
+  </section>
+) : null}
+
+{post.faqs?.length ? (
+  <section class="section section-padding" aria-label="FAQs">
+    <h2 class="section-title">FAQs</h2>
+    <div class="grid grid-1">
+      {post.faqs.map((f) => (
+        <article class="card">
+          <h3 class="card-title">{f.q}</h3>
+          <p class="card-desc">{f.a}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+) : null}
