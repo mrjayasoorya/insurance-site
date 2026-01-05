@@ -1,31 +1,51 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import services from "../../../data/en/services.json";
+export const prerender = true;
 
-const commercial = services.filter(s => s.category === "commercial");
-const personal = services.filter(s => s.category === "personal");
+import ServiceLayout from "../../../layouts/ServiceLayout.astro";
+import PageHero from "../../../components/PageHero.astro";
+import LinkGrid from "../../../components/LinkGrid.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+
+import { hubs } from "../../../content/pages/hubs";
+import { servicePages } from "../../../content/pages/services";
+import { siteData } from "../../../content/siteData";
+
+const hub = hubs.services;
+
+const breadcrumbItems = [
+  { label: "Home", href: "/en/" },
+  { label: "Services", href: "/en/services/" },
+];
+
+const items = Object.values(servicePages).map((p) => ({
+  title: p.h1,
+  desc: p.metaDesc,
+  href: p.href,
+  chips: [p.serviceType],
+}));
 ---
 
-<BaseLayout lang="en" title="Insurance Services — Chennai (Sholavaram)" description="Commercial & personal insurance guidance and services across Chennai and outskirts." path="/en/services/" alternates={[{ lang: "en", href: "/en/services/" }, { lang: "ta", href: "/ta/services/" }]}>
-  <h1>Insurance Services</h1>
+<ServiceLayout page={{ ...hub, serviceType: "Service Hub", areasServed: siteData.brand.areaChips, faqs: [] }} breadcrumbItems={breadcrumbItems}>
+  <section class="section section-padding">
+    <Breadcrumbs items={breadcrumbItems} />
+  </section>
 
-  <h2>Commercial (Priority)</h2>
-  <ul>
-    {commercial.map(s => (
-      <li>
-        <a href={`/en/services/${s.slug}/`}>{s.title}</a>
-        <p style="margin:4px 0 0;opacity:.85">{s.summary}</p>
-      </li>
-    ))}
-  </ul>
+  <PageHero
+    h1={hub.h1}
+    subtitle={hub.metaDesc}
+    chips={hub.intro}
+    primaryCta={{ label: "Call", href: `tel:${siteData.brand.phoneE164}` }}
+    secondaryCta={{
+      label: "WhatsApp",
+      href: `https://wa.me/${siteData.brand.whatsappE164}?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`,
+      target: "_blank",
+      rel: "noopener",
+    }}
+  />
 
-  <h2>Personal</h2>
-  <ul>
-    {personal.map(s => (
-      <li>
-        <a href={`/en/services/${s.slug}/`}>{s.title}</a>
-        <p style="margin:4px 0 0;opacity:.85">{s.summary}</p>
-      </li>
-    ))}
-  </ul>
-</BaseLayout>
+  <LinkGrid
+    title="Pick the service page that matches your need"
+    subtitle="Each page is written for Chennai outskirts risk zones (NH + industrial belts)."
+    items={items}
+  />
+</ServiceLayout>

@@ -1,0 +1,64 @@
+---
+export const prerender = true;
+
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import PageHero from "../../../components/PageHero.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import LinkGrid from "../../../components/LinkGrid.astro";
+import FAQBlock from "../../../components/FAQBlock.astro";
+
+import { articles } from "../../../content/pages/articles";
+import { siteData } from "../../../content/siteData";
+
+export function getStaticPaths() {
+  const list = Object.values(articles).filter((a) => a.href.startsWith("/en/commercial-authority/"));
+  return list.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+
+const breadcrumbItems = [
+  { label: "Home", href: "/en/" },
+  { label: "Commercial Authority", href: "/en/commercial-authority/" },
+  { label: page.h1, href: page.href },
+];
+---
+
+<ArticleLayout page={page} breadcrumbItems={breadcrumbItems}>
+  <section class="section section-padding">
+    <Breadcrumbs items={breadcrumbItems} />
+  </section>
+
+  <PageHero
+    h1={page.h1}
+    subtitle={page.metaDesc}
+    chips={[...page.scan3s, ...page.proof10s]}
+    primaryCta={{ label: "Call for Guidance", href: `tel:${siteData.brand.phoneE164}` }}
+    secondaryCta={{
+      label: "WhatsApp",
+      href: `https://wa.me/${siteData.brand.whatsappE164}?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`,
+      target: "_blank",
+      rel: "noopener",
+    }}
+  />
+
+  <section class="section section-padding" aria-label="What you'll learn">
+    <h2 class="section-title">{page.action30s.title}</h2>
+    <ul class="bullets">{page.action30s.points.map((x) => <li>{x}</li>)}</ul>
+  </section>
+
+  {page.bodyBlocks?.map((b) => (
+    <section class="section section-padding" aria-label={b.title}>
+      <h2 class="section-title">{b.title}</h2>
+      <ul class="bullets">{(b.bullets || []).map((x) => <li>{x}</li>)}</ul>
+    </section>
+  ))}
+
+  <LinkGrid
+    title="Related links"
+    subtitle="Internal linking improves crawling and topical authority."
+    items={page.internalLinks || []}
+  />
+
+  <FAQBlock items={page.faqs || []} />
+</ArticleLayout>

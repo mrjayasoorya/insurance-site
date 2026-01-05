@@ -1,0 +1,36 @@
+---
+const { h1, subtitle, chips = [], primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="section section-padding" aria-label="Page hero">
+  <div class="card" style="padding:18px;">
+    <h1 class="section-title" style="margin:0 0 8px;">{h1}</h1>
+    {subtitle ? <p class="section-sub" style="margin:0 0 12px;">{subtitle}</p> : null}
+
+    {chips?.length ? (
+      <div class="chips" role="list" aria-label="Highlights">
+        {chips.map((c) => <span class="chip" role="listitem">{c}</span>)}
+      </div>
+    ) : null}
+
+    {(primaryCta || secondaryCta) ? (
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+        {primaryCta ? (
+          <a class="btn" href={primaryCta.href}>{primaryCta.label}</a>
+        ) : null}
+        {secondaryCta ? (
+          <a class="btn" href={secondaryCta.href} target={secondaryCta.target || undefined} rel={secondaryCta.rel || undefined}>
+            {secondaryCta.label}
+          </a>
+        ) : null}
+      </div>
+    ) : null}
+  </div>
+</section>
+
+<style is:global>
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);opacity:.9}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#fff;color:#111;text-decoration:none;font-weight:600}
+  .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.18)}
+</style>

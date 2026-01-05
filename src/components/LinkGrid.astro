@@ -1,0 +1,27 @@
+---
+const { title, subtitle, items = [] } = Astro.props;
+// items: [{title, desc, href, chips?:string[]}]
+---
+
+<section class="section section-padding" aria-label={title}>
+  <h2 class="section-title">{title}</h2>
+  {subtitle ? <p class="section-sub">{subtitle}</p> : null}
+
+  <div class="grid grid-2">
+    {items.map((x) => (
+      <a class="card" href={x.href} aria-label={x.title} style="text-decoration:none; color:inherit;">
+        <h3 class="card-title">{x.title}</h3>
+        <p class="card-desc">{x.desc}</p>
+        {x.chips?.length ? (
+          <div class="chips" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+            {x.chips.map((c) => <span class="chip">{c}</span>)}
+          </div>
+        ) : null}
+      </a>
+    ))}
+  </div>
+
+  <style is:global>
+    .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);opacity:.9}
+  </style>
+</section>

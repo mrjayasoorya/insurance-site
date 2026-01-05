@@ -1,0 +1,71 @@
+---
+import PageLayout from "./PageLayout.astro";
+import FooterCtaBar from "../components/FooterCtaBar.astro";
+import { siteData } from "../content/siteData";
+
+const { page, breadcrumbItems } = Astro.props;
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const url = `${canonicalBase}${page.href}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "InsuranceAgency",
+      name: siteData.brand.name,
+      telephone: siteData.brand.phoneE164,
+      url: canonicalBase,
+      areaServed: siteData.brand.areaChips,
+      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
+    },
+    {
+      "@type": "Article",
+      headline: page.h1,
+      description: page.metaDesc,
+      mainEntityOfPage: url,
+      author: { "@type": "Person", name: siteData.brand.legalName },
+      publisher: { "@type": "Organization", name: siteData.brand.name },
+      about: page.about || [],
+      articleSection: page.section || "",
+      inLanguage: "en",
+      url,
+    },
+    ...(page.faqs?.length ? [{
+      "@type":"FAQPage",
+      mainEntity: page.faqs.map((f)=>({ "@type":"Question", name:f.q, acceptedAnswer:{ "@type":"Answer", text:f.a }})),
+    }] : []),
+    ...(breadcrumbItems?.length ? [{
+      "@type":"BreadcrumbList",
+      itemListElement: breadcrumbItems.map((b, idx)=>({
+        "@type":"ListItem",
+        position: idx+1,
+        name: b.label,
+        item: `${canonicalBase}${b.href || ""}`,
+      })),
+    }] : []),
+  ],
+};
+---
+
+<PageLayout
+  title={`${page.h1} | ${siteData.brand.name}`}
+  description={page.metaDesc}
+  jsonLdGraph={jsonLd}
+>
+  <slot />
+
+  <section aria-label="Contact" class="section">
+    <FooterCtaBar
+      title={siteData.footerCtas.title}
+      subtitle={siteData.footerCtas.subtitle}
+      whatsappNumber={siteData.brand.whatsappE164}
+      whatsappText={siteData.brand.whatsappPrefill}
+      callNumber={siteData.brand.phoneE164}
+      callLabel={siteData.footerCtas.callLabel}
+      brandName={siteData.footerCtas.brandName}
+      logoText={siteData.footerCtas.logoText}
+      copyright={siteData.footerCtas.copyright}
+    />
+  </section>
+</PageLayout>

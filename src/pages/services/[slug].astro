@@ -1,25 +1,17 @@
 ---
-import ServiceLayout from "../../../layouts/ServiceLayout.astro";
-import PageHero from "../../../components/PageHero.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import LinkGrid from "../../../components/LinkGrid.astro";
-import FAQBlock from "../../../components/FAQBlock.astro";
+import ServiceLayout from "../../layouts/ServiceLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import LinkGrid from "../../components/LinkGrid.astro";
+import FAQBlock from "../../components/FAQBlock.astro";
 
-import { servicePages } from "../../../content/pages/services";
-import { siteData } from "../../../content/siteData";
-
-export function getStaticPaths() {
-  return Object.values(servicePages).map((page) => ({
-    params: { slug: page.slug },
-    props: { page },
-  }));
-}
-
+import { servicePages } from "../../content/pages/services";
+import { siteData } from "../../content/siteData";
 
 const { slug } = Astro.params;
 const page = servicePages[slug];
 
-if (!page) return Astro.redirect("/services/");
+if (!page) return Astro.redirect("/services");
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
@@ -68,7 +60,7 @@ const breadcrumbItems = [
       </article>
       <article class="card">
         <h3 class="card-title">Nearby belts</h3>
-        <ul class="bullets">{page.whereWeOperate.nearby?.map((x)=> <li>{x}</li>)}</ul>
+        <ul class="bullets">{page.whereWeOperate.citySupport?.map((x)=> <li>{x}</li>)}</ul>
       </article>
     </div>
     {page.whereWeOperate.citySupport?.length ? (

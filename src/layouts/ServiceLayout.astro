@@ -1,0 +1,77 @@
+---
+import PageLayout from "./PageLayout.astro";
+import FooterCtaBar from "../components/FooterCtaBar.astro";
+import { siteData } from "../content/siteData";
+
+const { page, breadcrumbItems } = Astro.props;
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const url = `${canonicalBase}${page.href}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "InsuranceAgency",
+      name: siteData.brand.name,
+      telephone: siteData.brand.phoneE164,
+      url: canonicalBase,
+      areaServed: siteData.brand.areaChips,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteData.brand.streetAddress,
+        addressLocality: siteData.brand.addressLocality,
+        addressRegion: siteData.brand.addressRegion,
+        postalCode: siteData.brand.postalCode,
+        addressCountry: siteData.brand.addressCountry,
+      },
+      geo: { "@type":"GeoCoordinates", latitude: siteData.brand.geo.lat, longitude: siteData.brand.geo.lng },
+      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
+    },
+    {
+      "@type": "Service",
+      name: page.h1,
+      serviceType: page.serviceType,
+      areaServed: page.areasServed,
+      provider: { "@type": "Organization", name: siteData.brand.name },
+      description: page.metaDesc,
+      url,
+    },
+    ...(page.faqs?.length ? [{
+      "@type":"FAQPage",
+      mainEntity: page.faqs.map((f)=>({ "@type":"Question", name:f.q, acceptedAnswer:{ "@type":"Answer", text:f.a }})),
+    }] : []),
+    ...(breadcrumbItems?.length ? [{
+      "@type":"BreadcrumbList",
+      itemListElement: breadcrumbItems.map((b, idx)=>({
+        "@type":"ListItem",
+        position: idx+1,
+        name: b.label,
+        item: `${canonicalBase}${b.href || ""}`,
+      })),
+    }] : []),
+  ],
+};
+---
+
+<PageLayout
+  title={`${page.h1} | ${siteData.brand.name}`}
+  description={page.metaDesc}
+  jsonLdGraph={jsonLd}
+>
+  <slot />
+
+  <section aria-label="Contact" class="section">
+    <FooterCtaBar
+      title={siteData.footerCtas.title}
+      subtitle={siteData.footerCtas.subtitle}
+      whatsappNumber={siteData.brand.whatsappE164}
+      whatsappText={siteData.brand.whatsappPrefill}
+      callNumber={siteData.brand.phoneE164}
+      callLabel={siteData.footerCtas.callLabel}
+      brandName={siteData.footerCtas.brandName}
+      logoText={siteData.footerCtas.logoText}
+      copyright={siteData.footerCtas.copyright}
+    />
+  </section>
+</PageLayout>

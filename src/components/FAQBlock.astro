@@ -1,0 +1,15 @@
+---
+const { title = "FAQs", items = [] } = Astro.props; // [{q,a}]
+---
+
+<section class="section section-padding" aria-label={title}>
+  <h2 class="section-title">{title}</h2>
+  <div class="grid grid-1">
+    {items.map((f) => (
+      <article class="card">
+        <h3 class="card-title">{f.q}</h3>
+        <p class="card-desc">{f.a}</p>
+      </article>
+    ))}
+  </div>
+</section>

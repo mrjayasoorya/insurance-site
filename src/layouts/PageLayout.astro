@@ -1,0 +1,38 @@
+---
+import FooterCtaBar from "../components/FooterCtaBar.astro";
+import FloatingContactCta from "../components/FloatingContactCta.astro";
+import { siteData } from "../content/siteData";
+
+const { title, description, jsonLdGraph = null } = Astro.props;
+
+const canonical = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+
+    {jsonLdGraph ? (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLdGraph)} />
+    ) : null}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main id="main" class="app">
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <FloatingContactCta brand={siteData.brand} />
+
+    <!-- Keep global CTA bar only if the page doesn't include one -->
+    <!-- Or remove this block if you always include FooterCtaBar per page -->
+  </body>
+</html>
