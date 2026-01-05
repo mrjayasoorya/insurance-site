@@ -1,7 +1,6 @@
 ---
-// src/pages/index.astro
-// ✅ Home page rewrite (desktop + mobile same sequencing, same theme)
-// No new components required; uses your existing components + small semantic sections.
+// src/pages/en/index.astro
+// ✅ Home page (EN) with correct internal links under /en/
 
 import DesktopHero from "../../components/DesktopHero.astro";
 import DesktopCoreServices from "../../components/DesktopCoreServices.astro";
@@ -20,13 +19,64 @@ import CoverageIndexSection from "../../components/CoverageIndexSection.astro";
 import { siteData } from "../../content/siteData";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 
+const HOME = "/en/";
+
+// helper: force internal links under /en
+const EN = (p) => {
+  if (!p) return p;
+  if (p.startsWith("http")) return p;
+  if (p.startsWith("/en/")) return p;
+  if (!p.startsWith("/")) return `/en/${p}`;
+  return `/en${p}`;
+};
+
 const telHref = `tel:${siteData.brand.phoneE164}`;
 const waHref =
   `https://wa.me/${encodeURIComponent(siteData.brand.whatsappE164)}` +
   `?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`;
 
+// ✅ Normalize ALL siteData hrefs used by home page components
+const commercialAuthorityPosts = {
+  ...siteData.commercialAuthorityPosts,
+  viewAllHref: EN(siteData.commercialAuthorityPosts?.viewAllHref || "/commercial-authority/"),
+  viewMoreHref: EN(siteData.commercialAuthorityPosts?.viewMoreHref || "/commercial-authority/"),
+  categories: (siteData.commercialAuthorityPosts?.categories || []).map((c) => ({
+    ...c,
+    items: (c.items || []).map((it) => ({ ...it, href: EN(it.href) })),
+  })),
+};
+
+const proofExperiencePosts = {
+  ...siteData.proofExperiencePosts,
+  viewAllHref: EN(siteData.proofExperiencePosts?.viewAllHref || "/proof-experience/"),
+  viewMoreHref: EN(siteData.proofExperiencePosts?.viewMoreHref || "/proof-experience/"),
+  items: (siteData.proofExperiencePosts?.items || []).map((it) => ({ ...it, href: EN(it.href) })),
+};
+
+const renewalLicPosts = {
+  ...siteData.renewalLicPosts,
+  viewAllHref: EN(siteData.renewalLicPosts?.viewAllHref || "/renewals/"),
+  viewMoreHref: EN(siteData.renewalLicPosts?.viewMoreHref || "/renewals/"),
+  items: (siteData.renewalLicPosts?.items || []).map((it) => ({ ...it, href: EN(it.href) })),
+};
+
+const insights = {
+  ...siteData.insights,
+  viewAllHref: EN(siteData.insights?.viewAllHref || "/insights/"),
+  viewMoreHref: EN(siteData.insights?.viewMoreHref || "/insights/"),
+  items: (siteData.insights?.items || []).map((it) => ({ ...it, href: EN(it.href) })),
+};
+
+// ✅ Services cards should point to /en/services/<slug>/
+const coreServices = (siteData.coreServices || []).map((s) => ({
+  ...s,
+  href: EN(`/services/${s.slug}/`),
+}));
+
+// ✅ Canonical for EN home
+const canonical = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in/en/";
+
 // ✅ One clean JSON-LD graph (avoid duplicates)
-const canonical = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in/";
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -74,13 +124,14 @@ const jsonLd = {
         acceptedAnswer: { "@type": "Answer", text: f.a },
       })),
     },
-    ...siteData.coreServices.map((s) => ({
+    ...coreServices.map((s) => ({
       "@type": "Service",
       name: s.title,
       serviceType: s.tag,
       areaServed: siteData.brand.areaChips,
       provider: { "@type": "Organization", name: siteData.brand.name },
       description: s.desc,
+      url: `${canonical.replace(/\/$/, "")}${s.href}`, // optional
     })),
   ],
 };
@@ -167,8 +218,33 @@ const jsonLd = {
             <!-- ✅ SECTION 5: Services (clean) -->
             <section aria-labelledby="core-services-title">
               <h2 id="core-services-title" class="sr-only">Core services</h2>
-              <DesktopCoreServices services={siteData.coreServices} />
+              <DesktopCoreServices services={coreServices} />
             </section>
+
+            <section class="section section-padding" aria-label="Quick links">
+  <div class="grid grid-2">
+    <a class="card" href={EN("/services/")}>
+      <h3 class="card-title">All Services</h3>
+      <p class="card-desc">Commercial, transport, industrial + claim support.</p>
+    </a>
+
+    <a class="card" href={EN("/commercial-authority/")}>
+      <h3 class="card-title">Commercial Authority</h3>
+      <p class="card-desc">Industry-focused guidance for NH + industrial belts.</p>
+    </a>
+
+    <a class="card" href={EN("/proof-experience/")}>
+      <h3 class="card-title">Proof & Experience</h3>
+      <p class="card-desc">Claim-side insights built from 30+ years.</p>
+    </a>
+
+    <a class="card" href={EN("/renewals/")}>
+      <h3 class="card-title">Renewals (Support)</h3>
+      <p class="card-desc">Car/lorry/LIC continuity checklists.</p>
+    </a>
+  </div>
+</section>
+
 
             <!-- ✅ Local highlights -->
             <section class="section section-padding" aria-labelledby="local-support-title">
@@ -180,11 +256,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="authority-title">
               <h2 id="authority-title" class="sr-only">Industry-focused guidance</h2>
               <BlogSection
-                title={siteData.commercialAuthorityPosts.title}
-                subtitle={siteData.commercialAuthorityPosts.subtitle}
-                viewAllHref={siteData.commercialAuthorityPosts.viewAllHref}
-                viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
-                categories={siteData.commercialAuthorityPosts.categories}
+                title={commercialAuthorityPosts.title}
+                subtitle={commercialAuthorityPosts.subtitle}
+                viewAllHref={commercialAuthorityPosts.viewAllHref}
+                viewMoreHref={commercialAuthorityPosts.viewMoreHref}
+                categories={commercialAuthorityPosts.categories}
               />
             </section>
 
@@ -196,11 +272,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="proof-title">
               <h2 id="proof-title" class="sr-only">Proof & experience</h2>
               <BlogSection
-                title={siteData.proofExperiencePosts.title}
-                subtitle={siteData.proofExperiencePosts.subtitle}
-                viewAllHref={siteData.proofExperiencePosts.viewAllHref}
-                viewMoreHref={siteData.proofExperiencePosts.viewMoreHref}
-                items={siteData.proofExperiencePosts.items}
+                title={proofExperiencePosts.title}
+                subtitle={proofExperiencePosts.subtitle}
+                viewAllHref={proofExperiencePosts.viewAllHref}
+                viewMoreHref={proofExperiencePosts.viewMoreHref}
+                items={proofExperiencePosts.items}
                 showSaveButton={false}
               />
             </section>
@@ -208,11 +284,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="renew-title">
               <h2 id="renew-title" class="sr-only">Renewal support</h2>
               <BlogSection
-                title={siteData.renewalLicPosts.title}
-                subtitle={siteData.renewalLicPosts.subtitle}
-                viewAllHref={siteData.renewalLicPosts.viewAllHref}
-                viewMoreHref={siteData.renewalLicPosts.viewMoreHref}
-                items={siteData.renewalLicPosts.items}
+                title={renewalLicPosts.title}
+                subtitle={renewalLicPosts.subtitle}
+                viewAllHref={renewalLicPosts.viewAllHref}
+                viewMoreHref={renewalLicPosts.viewMoreHref}
+                items={renewalLicPosts.items}
                 showSaveButton={false}
               />
             </section>
@@ -221,11 +297,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="insights-title">
               <h2 id="insights-title" class="sr-only">Insights</h2>
               <BlogSection
-                title={siteData.insights.title}
-                subtitle={siteData.insights.subtitle}
-                viewAllHref={siteData.insights.viewAllHref}
-                viewMoreHref={siteData.insights.viewMoreHref}
-                items={siteData.insights.items}
+                title={insights.title}
+                subtitle={insights.subtitle}
+                viewAllHref={insights.viewAllHref}
+                viewMoreHref={insights.viewMoreHref}
+                items={insights.items}
                 showSaveButton={false}
               />
             </section>
@@ -359,17 +435,42 @@ const jsonLd = {
 
             <section aria-labelledby="m-core-services-title">
               <h2 id="m-core-services-title" class="sr-only">Core services</h2>
-              <MobileCoreServices services={siteData.coreServices} />
+              <MobileCoreServices services={coreServices} />
             </section>
+
+            <section class="section section-padding" aria-label="Quick links">
+  <div class="grid grid-2">
+    <a class="card" href={EN("/services/")}>
+      <h3 class="card-title">All Services</h3>
+      <p class="card-desc">Commercial, transport, industrial + claim support.</p>
+    </a>
+
+    <a class="card" href={EN("/commercial-authority/")}>
+      <h3 class="card-title">Commercial Authority</h3>
+      <p class="card-desc">Industry-focused guidance for NH + industrial belts.</p>
+    </a>
+
+    <a class="card" href={EN("/proof-experience/")}>
+      <h3 class="card-title">Proof & Experience</h3>
+      <p class="card-desc">Claim-side insights built from 30+ years.</p>
+    </a>
+
+    <a class="card" href={EN("/renewals/")}>
+      <h3 class="card-title">Renewals (Support)</h3>
+      <p class="card-desc">Car/lorry/LIC continuity checklists.</p>
+    </a>
+  </div>
+</section>
+
 
             <section class="section" aria-labelledby="m-authority-title">
               <h2 id="m-authority-title" class="sr-only">Industry-focused guidance</h2>
               <BlogSection
-                title={siteData.commercialAuthorityPosts.title}
-                subtitle={siteData.commercialAuthorityPosts.subtitle}
-                viewAllHref={siteData.commercialAuthorityPosts.viewAllHref}
-                viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
-                categories={siteData.commercialAuthorityPosts.categories}
+                title={commercialAuthorityPosts.title}
+                subtitle={commercialAuthorityPosts.subtitle}
+                viewAllHref={commercialAuthorityPosts.viewAllHref}
+                viewMoreHref={commercialAuthorityPosts.viewMoreHref}
+                categories={commercialAuthorityPosts.categories}
               />
             </section>
 
@@ -380,11 +481,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="m-proof-title">
               <h2 id="m-proof-title" class="sr-only">Proof & experience</h2>
               <BlogSection
-                title={siteData.proofExperiencePosts.title}
-                subtitle={siteData.proofExperiencePosts.subtitle}
-                viewAllHref={siteData.proofExperiencePosts.viewAllHref}
-                viewMoreHref={siteData.proofExperiencePosts.viewMoreHref}
-                items={siteData.proofExperiencePosts.items}
+                title={proofExperiencePosts.title}
+                subtitle={proofExperiencePosts.subtitle}
+                viewAllHref={proofExperiencePosts.viewAllHref}
+                viewMoreHref={proofExperiencePosts.viewMoreHref}
+                items={proofExperiencePosts.items}
                 showSaveButton={false}
               />
             </section>
@@ -392,11 +493,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="m-renew-title">
               <h2 id="m-renew-title" class="sr-only">Renewal support</h2>
               <BlogSection
-                title={siteData.renewalLicPosts.title}
-                subtitle={siteData.renewalLicPosts.subtitle}
-                viewAllHref={siteData.renewalLicPosts.viewAllHref}
-                viewMoreHref={siteData.renewalLicPosts.viewMoreHref}
-                items={siteData.renewalLicPosts.items}
+                title={renewalLicPosts.title}
+                subtitle={renewalLicPosts.subtitle}
+                viewAllHref={renewalLicPosts.viewAllHref}
+                viewMoreHref={renewalLicPosts.viewMoreHref}
+                items={renewalLicPosts.items}
                 showSaveButton={false}
               />
             </section>
@@ -404,11 +505,11 @@ const jsonLd = {
             <section class="section" aria-labelledby="m-insights-title">
               <h2 id="m-insights-title" class="sr-only">Insights</h2>
               <BlogSection
-                title={siteData.insights.title}
-                subtitle={siteData.insights.subtitle}
-                viewAllHref={siteData.insights.viewAllHref}
-                viewMoreHref={siteData.insights.viewMoreHref}
-                items={siteData.insights.items}
+                title={insights.title}
+                subtitle={insights.subtitle}
+                viewAllHref={insights.viewAllHref}
+                viewMoreHref={insights.viewMoreHref}
+                items={insights.items}
                 showSaveButton={false}
               />
             </section>
