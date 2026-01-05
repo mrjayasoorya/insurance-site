@@ -129,8 +129,7 @@ export const siteData = {
   },
 
   // ✅ Services summary (clean; details go to service pages)
-  coreServices: [
-  // 1) Business / MSME
+coreServices: [
   {
     tag: "Commercial",
     title: "Business & MSME Insurance",
@@ -140,9 +139,9 @@ export const siteData = {
     metaLabel: "Focus",
     metaValue: "Business",
     slug: "business-msme-insurance",
+    href: EN("/services/business-msme-insurance/"),
   },
 
-  // 2) Fleet / Transport
   {
     tag: "Transport",
     title: "Transport / Fleet / Lorry Insurance",
@@ -152,9 +151,9 @@ export const siteData = {
     metaLabel: "Docs",
     metaValue: "Ready",
     slug: "transport-fleet-lorry-insurance",
+    href: EN("/services/transport-fleet-lorry-insurance/"),
   },
 
-  // 3) Warehouse / Factory
   {
     tag: "Industrial",
     title: "Warehouse / Godown / Factory Insurance",
@@ -164,9 +163,9 @@ export const siteData = {
     metaLabel: "Risk",
     metaValue: "High",
     slug: "warehouse-godown-factory-insurance",
+    href: EN("/services/warehouse-godown-factory-insurance/"),
   },
 
-  // 4) Crane / Heavy equipment (CPM)
   {
     tag: "Heavy Equipment",
     title: "Crane & Heavy Equipment (CPM) Insurance",
@@ -176,9 +175,9 @@ export const siteData = {
     metaLabel: "Premium",
     metaValue: "High",
     slug: "crane-heavy-equipment-cpm-insurance",
+    href: EN("/services/crane-heavy-equipment-cpm-insurance/"),
   },
 
-  // 5) Contractor / Construction (CAR + WC)
   {
     tag: "Construction",
     title: "Construction & Contractor Insurance (CAR / WC)",
@@ -188,9 +187,9 @@ export const siteData = {
     metaLabel: "Sites",
     metaValue: "Active",
     slug: "construction-contractor-car-wc-insurance",
+    href: EN("/services/construction-contractor-car-wc-insurance/"),
   },
 
-  // 6) Public Liability
   {
     tag: "Liability",
     title: "Public Liability & Third-Party Risk",
@@ -200,9 +199,9 @@ export const siteData = {
     metaLabel: "Exposure",
     metaValue: "3rd-party",
     slug: "public-liability-third-party-insurance",
+    href: EN("/services/public-liability-third-party-insurance/"),
   },
 
-  // 7) Marine / Transit (high-premium for logistics)
   {
     tag: "Marine",
     title: "Marine Cargo / Goods-in-Transit",
@@ -212,9 +211,9 @@ export const siteData = {
     metaLabel: "Transit",
     metaValue: "Cargo",
     slug: "marine-cargo-goods-in-transit-insurance",
+    href: EN("/services/marine-cargo-goods-in-transit-insurance/"),
   },
 
-  // 8) Fire / Burglary package (commercial property)
   {
     tag: "Property",
     title: "Fire & Burglary (Commercial Property)",
@@ -224,9 +223,9 @@ export const siteData = {
     metaLabel: "Property",
     metaValue: "Protection",
     slug: "fire-burglary-commercial-property-insurance",
+    href: EN("/services/fire-burglary-commercial-property-insurance/"),
   },
 
-  // 9) Group Health / Employee Benefits (premium for MSME)
   {
     tag: "Employee",
     title: "Group Health / Employee Benefits (SME)",
@@ -236,9 +235,9 @@ export const siteData = {
     metaLabel: "Team",
     metaValue: "Benefits",
     slug: "group-health-employee-benefits-insurance",
+    href: EN("/services/group-health-employee-benefits-insurance/"),
   },
 
-  // 10) Claim Support
   {
     tag: "Claims",
     title: "Claim Support",
@@ -248,9 +247,9 @@ export const siteData = {
     metaLabel: "Process",
     metaValue: "Smooth",
     slug: "claim-support",
+    href: EN("/services/claim-support/"),
   },
 
-  // Domestic support (optional to keep in core list)
   {
     tag: "Personal",
     title: "Car / Bike / Health (Support)",
@@ -260,8 +259,10 @@ export const siteData = {
     metaLabel: "Support",
     metaValue: "Domestic",
     slug: "personal-car-bike-health-support",
+    href: EN("/services/personal-car-bike-health-support/"),
   },
 ],
+
 
 
   // ✅ Marketplace cards (short, credible)

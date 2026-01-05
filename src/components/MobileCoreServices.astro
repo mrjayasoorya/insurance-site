@@ -2,12 +2,15 @@
 const { services } = Astro.props;
 ---
 <div class="m-section-title">
-  <div class="label">Core Services</div>
-  <div style="color:var(--muted);font-weight:950;">⋯</div>
+  <a class="link" href="/en/services/">
+    <div class="label">Core Services</div>
+    <div style="color:var(--muted);font-weight:950;">⋯</div>
+  </a>
 </div>
 
 <div class="m-list">
   {services.map((s) => (
+    <a class="link" href={s.href}>
     <div class="m-item">
       <div class="m-left">
         {/* <div class="orb" aria-hidden="true"></div> */}
@@ -18,5 +21,6 @@ const { services } = Astro.props;
       </div>
       <div class="m-more" aria-hidden="true">›</div>
     </div>
+    </a>
   ))}
 </div>

@@ -3,7 +3,7 @@ const { services } = Astro.props;
 ---
 <div class="section-head">
   <div class="title"></div>
-  <a class="link" href="#">
+  <a class="link" href="/en/services/">
     Service Areas
     <span class="arrow" aria-hidden="true">→</span>
   </a>
@@ -11,6 +11,7 @@ const { services } = Astro.props;
 
 <div class="plan-grid">
   {services.map((s) => (
+    <a class="link" href={s.href}>
     <article class={`plan ${s.tone}`}>
       <small>{s.tag}</small>
       <h3>{s.title}</h3>
@@ -23,5 +24,6 @@ const { services } = Astro.props;
         <div class="go" aria-hidden="true">→</div>
       </div>
     </article>
+    </a>
   ))}
 </div>
