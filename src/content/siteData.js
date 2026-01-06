@@ -2,7 +2,7 @@
 // ✅ COMPLETE siteData rewrite (authority-sequenced, WHO–WHERE–WHY driven)
 // Keeps your existing theme/components, removes generic fluff, anchors experience + geo-risk.
 
-const EN = (href = "") => {
+export const EN = (href = "") => {
   if (!href) return href;
   if (href.startsWith("http")) return href;
   if (href.startsWith("/en/")) return href;
@@ -12,6 +12,109 @@ const EN = (href = "") => {
   const path = href.endsWith("/") ? href : `${href}/`;
   return `/en${path.startsWith("/") ? "" : "/"}${path}`;
 };
+
+// Also add normalized fields for easy UI use.
+const gmbReviewsRaw = {
+  reviews: [
+    {
+      reviewer: { displayName: "VM SQUARE" },
+      starRating: "FIVE",
+      comment:
+        "Found this place through Google Ads. Got insurance for my factory, staff, and godown. Clear explanation and no hidden costs. Local agent with 30+ years experience. Highly trustworthy!",
+      createTime: "2025-08-05T06:40:04.404367Z",
+      updateTime: "2025-08-05T06:40:04.404367Z",
+      reviewReply: {
+        comment:
+          "Thanks for the trust! We're happy you found us through Google and chose us for your factory, godown and worker insurance. We aim to serve with honesty and fast service. Always here to support your business growth!",
+        updateTime: "2025-08-05T06:45:07.843699Z",
+      },
+    },
+    {
+      reviewer: { displayName: "Sanju Dhoni" },
+      starRating: "FIVE",
+      comment:
+        "We needed commercial insurance for our small business and workers.\nGot full support and quick policy from The New India Assurance through Mr.Rajendrakumar.\nVery Reliable service near Madhavaram.",
+      createTime: "2025-08-05T06:39:56.922101Z",
+      updateTime: "2025-08-05T06:39:56.922101Z",
+      reviewReply: {
+        comment:
+          "Thank you for choosing us for your commercial and business insurance needs! We’re proud to serve small businesses and workers insurance coverage under The New India Assurance. We're always here for renewal, claims, or queries.",
+        updateTime: "2025-08-05T06:44:07.712710Z",
+      },
+    },
+    {
+      reviewer: { displayName: "S. AKASH Musician" },
+      starRating: "FIVE",
+      comment: "Very excellent service",
+      createTime: "2025-07-29T03:33:40.318508Z",
+      updateTime: "2025-07-29T03:33:40.318508Z",
+      reviewReply: {
+        comment:
+          "Thanks a lot! We're happy to provide reliable support for all your bike, car, health, and general insurance needs across Madhavaram, Ambattur, and surrounding Chennai North locations. Your satisfaction keeps us going!",
+        updateTime: "2025-07-30T08:07:07.119859Z",
+      },
+    },
+    {
+      reviewer: { displayName: "Alagesan A" },
+      starRating: "FIVE",
+      comment: "Very good service also good explanation about insurance.",
+      createTime: "2025-07-20T05:43:52.139228Z",
+      updateTime: "2025-07-20T05:43:52.139228Z",
+      reviewReply: {
+        comment:
+          "Thank you so much for your kind words! We’re committed to offering clear guidance on vehicle, health, and LIC insurance to customers in Redhills, Sholavaram, and nearby Chennai areas. Your trust means a lot to us!",
+        updateTime: "2025-07-30T08:06:34.832449Z",
+      },
+    },
+    {
+      reviewer: { displayName: "D T" },
+      starRating: "FIVE",
+      comment:
+        "Mr M N Rajendrakumar had done Excellent Support for Car Insurance Policy Issuance & Given Best Services & Guidance for Mediclaim Insurance Claims. I Appreciate his Services.\nD Thiagarajan, Madhavaram, Chennai",
+      createTime: "2025-07-17T17:05:20.539010Z",
+      updateTime: "2025-07-17T17:05:20.539010Z",
+      reviewReply: {
+        comment:
+          "Thank you Mr. Thiagarajan for your kind appreciation! We’re happy to know you were satisfied with the car insurance issuance process and our guidance for mediclaim claims. We look forward to assisting you again!",
+        updateTime: "2025-07-18T08:37:02.114942Z",
+      },
+    },
+    // ...keep adding the rest of your exported reviews here
+  ],
+};
+
+// ✅ Helper: starRating string -> number
+const ratingToNumber = (r) => {
+  switch (r) {
+    case "ONE": return 1;
+    case "TWO": return 2;
+    case "THREE": return 3;
+    case "FOUR": return 4;
+    case "FIVE": return 5;
+    default: return null;
+  }
+};
+
+// ✅ Helper: safe date
+const toISODate = (s) => (typeof s === "string" ? s : "");
+
+// ✅ Helper: shrink long reviews for UI (keep full text in raw)
+const clampText = (t, n = 220) =>
+  typeof t === "string" && t.length > n ? t.slice(0, n).trim() + "…" : (t || "");
+
+// ✅ Normalize for UI (latest first)
+const gmbReviewsNormalized = (gmbReviewsRaw.reviews || [])
+  .map((x) => ({
+    name: x?.reviewer?.displayName || "Customer",
+    stars: ratingToNumber(x?.starRating),
+    quote: (x?.comment || "").trim(),
+    quoteShort: clampText((x?.comment || "").trim(), 220),
+    createdAt: toISODate(x?.createTime),
+    replied: Boolean(x?.reviewReply?.comment),
+    reply: (x?.reviewReply?.comment || "").trim(),
+    replyAt: toISODate(x?.reviewReply?.updateTime),
+  }))
+  .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
 
 
 export const siteData = {
@@ -811,36 +914,27 @@ coreServices: [
     },
   ],
 
-  testimonials: {
-    title: "What Customers Say",
-    subtitle: "Short, real feedback that reflects clarity and support.",
-    avgScore: "+4.8",
-    avgText: "Average rating (49+ reviews)",
+    // ✅ Reviews: raw + normalized
+  reviews: {
+    source: "google-business-profile",
+    gbpUrl: "", // optional: set to your GBP review link if you want later
+    raw: gmbReviewsRaw,
+    items: gmbReviewsNormalized,
+  },
+
+    testimonials: {
+    title: "Google Reviews (Verified)",
+    subtitle: "Recent customer feedback from our Google Business Profile.",
+    avgScore: "+4.8", // optional: compute later if you want
+    avgText: "Average rating (Google)",
     pillHref: EN("/reviews"),
     showControls: false,
-    items: [
-      {
-        stars: 5,
-        quote:
-          "Clear guidance and quick support. Everything was explained in simple language.",
-        name: "Raj M.",
-        role: "Customer",
-      },
-      {
-        stars: 5,
-        quote:
-          "Practical advice and fast response. Felt confident about the documents and next steps.",
-        name: "Amira K.",
-        role: "Customer",
-      },
-      {
-        stars: 5,
-        quote:
-          "Support was smooth and professional. I got clarity without back-and-forth.",
-        name: "Jared L.",
-        role: "Business Owner",
-      },
-    ],
+    items: gmbReviewsNormalized.slice(0, 8).map((r) => ({
+      stars: r.stars || 5,
+      quote: r.quoteShort || r.quote,
+      name: r.name,
+      role: "Google Review",
+    })),
   },
 
   statsStrip: {
@@ -2062,6 +2156,232 @@ postDetails: {
   },
 },
 
+
+  linksHub: {
+    title: "Important Links",
+    subtitle:
+      "Quick access to our key service pages, industry guidance, and location-focused insurance support across Chennai outskirts.",
+
+    sections: [
+      {
+        title: "Core Service Pages",
+        links: [
+          { label: "Business & MSME Insurance", href: EN("/services/business-msme-insurance") },
+          { label: "Transport / Fleet / Lorry Insurance", href: EN("/services/transport-fleet-lorry-insurance") },
+          { label: "Warehouse / Factory Insurance", href: EN("/services/warehouse-godown-factory-insurance") },
+          { label: "Crane & Heavy Equipment Insurance", href: EN("/services/crane-heavy-equipment-cpm-insurance") },
+          { label: "Construction & Contractor Insurance", href: EN("/services/construction-contractor-car-wc-insurance") },
+          { label: "Public Liability Insurance", href: EN("/services/public-liability-third-party-insurance") },
+          { label: "Marine Cargo / Transit Insurance", href: EN("/services/marine-cargo-goods-in-transit-insurance") },
+          { label: "Fire & Burglary Insurance", href: EN("/services/fire-burglary-commercial-property-insurance") },
+          { label: "Group Health / Employee Benefits", href: EN("/services/group-health-employee-benefits-insurance") },
+          { label: "Claim Support", href: EN("/services/claim-support") },
+        ],
+      },
+
+      {
+        title: "Industry & Commercial Guidance",
+        links: [
+          { label: "Commercial Insurance Authority Hub", href: EN("/commercial-authority") },
+          { label: "Crane & Heavy Equipment Insurance Insights", href: EN("/commercial-authority/crane-heavy-equipment-sum-insured") },
+          { label: "Warehouse / Godown Risk Guidance", href: EN("/commercial-authority/factory-fire-theft-risk-basics") },
+          { label: "Transport & Fleet Insurance Guidance", href: EN("/commercial-authority/fleet-insurance-docs-checklist") },
+          { label: "Highway-Area Business Risk Insights", href: EN("/commercial-authority/highway-business-risks") },
+        ],
+      },
+
+      {
+        title: "Proof, Experience & Trust",
+        links: [
+          { label: "Proof & Experience Hub", href: EN("/proof-experience") },
+          { label: "30+ Years Claim Handling Experience", href: EN("/proof-experience/30-years-claim-handling") },
+          { label: "Online vs Advisor – Claim Differences", href: EN("/proof-experience/online-vs-advisor") },
+          { label: "What Insurers Check Before Approval", href: EN("/proof-experience/insurer-approval-checklist") },
+        ],
+      },
+
+      {
+        title: "Renewals & Ongoing Support",
+        links: [
+          { label: "Car Insurance Renewal Guidance", href: EN("/renewals/car-insurance-renewal") },
+          { label: "Lorry Insurance Renewal Tips", href: EN("/renewals/lorry-insurance-renewal") },
+          { label: "LIC Premium Continuity Support", href: EN("/renewals/lic-premium-continuity") },
+        ],
+      },
+
+      {
+        title: "Location-Focused Insurance Support",
+        links: [
+          { label: "Sholavaram Commercial Insurance Services", href: EN("/services/business-msme-insurance") },
+          { label: "Red Hills Transport & Fleet Insurance", href: EN("/services/transport-fleet-lorry-insurance") },
+          { label: "Madhavaram Warehouse & Factory Insurance", href: EN("/services/warehouse-godown-factory-insurance") },
+          { label: "Chennai Outskirts Business Insurance", href: EN("/services/business-msme-insurance") },
+        ],
+      },
+    ],
+  },
+
+  locationsPage: {
+    title: "Locations We Serve (Chennai North + NH Corridors)",
+    subtitle:
+      "Coverage guidance for commercial belts and city zones—built for real operations: fleets, warehouses, factories, contractors, SMEs, and families.",
+    intro: [
+      "Primary base: Sholavaram / Red Hills (Chennai outskirts).",
+      "Commercial focus: transport, fleet, warehouses, factories, contractors, cranes/JCB/heavy equipment.",
+      "City support: car/bike, health, LIC, SME shops/offices—renewals + claim guidance.",
+    ],
+
+    // ✅ Area groups (NO separate slug pages)
+    groups: [
+      {
+        id: "commercial-belts",
+        title: "Commercial belts (high premium focus)",
+        subtitle:
+          "NH-facing and industrial-flow belts where documentation discipline (permits, invoices, valuation proofs) matters most in claims.",
+        areas: [
+          {
+            name: "Sholavaram",
+            notes: ["Base zone", "Chennai outskirts", "Commercial + personal support"],
+            serviceSlugs: [
+              "business-msme-insurance",
+              "transport-fleet-lorry-insurance",
+              "warehouse-godown-factory-insurance",
+              "fire-burglary-commercial-property-insurance",
+              "public-liability-third-party-insurance",
+              "marine-cargo-goods-in-transit-insurance",
+              "construction-contractor-car-wc-insurance",
+              "crane-heavy-equipment-cpm-insurance",
+              "claim-support",
+            ],
+          },
+          {
+            name: "Red Hills",
+            notes: ["Commercial movement belt", "Mixed MSME + families"],
+            serviceSlugs: [
+              "transport-fleet-lorry-insurance",
+              "warehouse-godown-factory-insurance",
+              "fire-burglary-commercial-property-insurance",
+              "business-msme-insurance",
+              "claim-support",
+            ],
+          },
+          {
+            name: "Madhavaram",
+            notes: ["City-edge + business belt", "Motor/Health + SME offices", "Commercial vehicle support"],
+            serviceSlugs: [
+              "business-msme-insurance",
+              "group-health-employee-benefits-insurance",
+              "claim-support",
+              "personal-car-bike-health-support",
+            ],
+          },
+          {
+            name: "Manali",
+            notes: ["Industrial influence", "Liability + property clarity"],
+            serviceSlugs: [
+              "public-liability-third-party-insurance",
+              "warehouse-godown-factory-insurance",
+              "marine-cargo-goods-in-transit-insurance",
+              "transport-fleet-lorry-insurance",
+            ],
+          },
+          {
+            name: "Puzhal",
+            notes: ["City–outskirts connector", "MSME + motor support"],
+            serviceSlugs: [
+              "business-msme-insurance",
+              "fire-burglary-commercial-property-insurance",
+              "claim-support",
+              "personal-car-bike-health-support",
+            ],
+          },
+          {
+            name: "Karanodai",
+            notes: ["NH-facing belt", "Fleet + transit + contractor workflows"],
+            serviceSlugs: [
+              "transport-fleet-lorry-insurance",
+              "marine-cargo-goods-in-transit-insurance",
+              "construction-contractor-car-wc-insurance",
+              "claim-support",
+            ],
+          },
+          {
+            name: "Periyapalayam",
+            notes: ["Outskirts expansion belt", "Transport + small business support"],
+            serviceSlugs: [
+              "transport-fleet-lorry-insurance",
+              "business-msme-insurance",
+              "marine-cargo-goods-in-transit-insurance",
+              "claim-support",
+            ],
+          },
+          {
+            name: "Arani",
+            notes: ["District connector", "NH-linked movement support"],
+            serviceSlugs: [
+              "transport-fleet-lorry-insurance",
+              "marine-cargo-goods-in-transit-insurance",
+              "business-msme-insurance",
+            ],
+          },
+        ],
+      },
+
+      {
+        id: "city-belts",
+        title: "Chennai city belts (cars, bikes, health, SME offices)",
+        subtitle:
+          "Support for personal policies and city SMEs—renewals, comparisons, and claim steps explained clearly.",
+        areas: [
+          {
+            name: "Perambur",
+            notes: ["Motor + health support", "SME shops/offices"],
+            serviceSlugs: ["personal-car-bike-health-support", "business-msme-insurance", "claim-support"],
+          },
+          {
+            name: "Kolathur",
+            notes: ["City residential + SME pockets"],
+            serviceSlugs: ["personal-car-bike-health-support", "business-msme-insurance", "claim-support"],
+          },
+          {
+            name: "Koyambedu",
+            notes: ["High movement connector", "Motor + claims support"],
+            serviceSlugs: ["personal-car-bike-health-support", "business-msme-insurance", "claim-support"],
+          },
+          {
+            name: "Anna Nagar",
+            notes: ["City support zone", "Motor/health/LIC guidance"],
+            serviceSlugs: ["personal-car-bike-health-support", "claim-support"],
+          },
+        ],
+      },
+    ],
+
+    // ✅ Short “how we help here” bullets (safe + factual)
+    claimReadyPrinciples: {
+      title: "What changes claim outcomes (simple, practical)",
+      points: [
+        "Policy wording + declared value clarity before purchase—reduces disputes later.",
+        "Documentation discipline: invoices, valuation proofs, photos, permits, worker registers (where applicable).",
+        "Incident reporting steps and timelines—done correctly to avoid avoidable delays.",
+        "Renewal checks: avoid coverage gaps and mismatched add-ons.",
+      ],
+    },
+  },
+
+    // ✅ Backlinks section dataset (links only, no phone inside)
+  backlinks: {
+    title: "Quick Links",
+    links: [
+      { label: "Home", href: EN("/") },
+      { label: "Services", href: EN("services") },
+      { label: "Reviews", href: EN("reviews") },
+      { label: "Insights", href: EN("insights") },
+      { label: "Locations", href: EN("locations") },
+      { label: "About Us", href: EN("about") },
+      { label: "Contact", href: EN("contact") },
+    ],
+  },
 
   gmbPosts: [],
 };

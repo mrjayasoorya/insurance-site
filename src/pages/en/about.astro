@@ -1,0 +1,555 @@
+---
+import DesktopHero from "../../components/DesktopHero.astro";
+import MobileHero from "../../components/MobileHero.astro";
+import FooterCtaBar from "../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
+
+import { siteData, EN } from "../../content/siteData";
+
+// ✅ Service links (for internal linking + crawl)
+const services = (siteData.coreServices || []).map((s) => ({
+  ...s,
+  href: EN(`services/${s.slug}`),
+}));
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/about/`;
+
+const title = `About | ${siteData.brand.name}`;
+const description =
+  "About M N Rajendrakumar Insurance Services — commercial-first guidance for Chennai North & NH corridors (Sholavaram, Red Hills, Madhavaram and nearby). Claim-ready documentation mindset, renewals and support.";
+
+const brand = siteData.brand;
+
+// ✅ Minimal safe facts (no over-claim)
+// - Do NOT say “official agent of X” unless you truly are and can prove.
+// - Use “Policies issued via …” / “Support for …” phrasing.
+const about = {
+  h1: "About",
+  intro: [
+    "M N Rajendrakumar Insurance Services provides practical insurance guidance for businesses and families in Chennai North and Chennai outskirts—especially NH-facing belts where fleets, warehouses, and contractor activity is high.",
+    "We focus on clarity before purchase (policy wording + declared values + add-ons) and discipline during claims (documents, timelines, reporting steps).",
+  ],
+  experience: {
+    title: "Experience & local understanding",
+    points: [
+      "30+ years of insurance service experience (policy guidance, renewals, and claim support).",
+      "Local-first coverage knowledge for Sholavaram, Red Hills, Madhavaram, Manali, Puzhal, Karanodai, Periyapalayam, and corridor-connected belts.",
+      "Commercial intent: fleets/lorry operators, warehouses/godowns, small factories, contractors, cranes/JCB/heavy equipment, and SMEs.",
+    ],
+  },
+  whyTrust: {
+    title: "How we work (claim-ready mindset)",
+    points: [
+      "We explain coverage in plain language and help match it to real operations—stock movement, workforce exposure, site risks, third-party exposure.",
+      "We highlight what insurers typically need for claims: proof of value, invoices, photos, incident reporting steps, permits/fitness discipline (where applicable).",
+      "We avoid confusing overpromises—our goal is to reduce avoidable delays by preparing you correctly.",
+    ],
+  },
+  providers: {
+    title: "Policy issuance support (provider context)",
+    items: [
+      {
+        name: "The New India Assurance Company Limited",
+        desc:
+          "A leading public sector general insurance company in India, owned by the Government of India. We support customers with policy selection, issuance assistance and claim-side guidance for applicable general insurance needs.",
+      },
+      {
+        name: "Life Insurance Corporation of India (LIC)",
+        desc:
+          "LIC is an Indian state-owned insurance group and investment company. We assist customers with LIC policy guidance, servicing and renewal support.",
+      },
+    ],
+    note:
+      "Note: Insurer terms, underwriting and final acceptance depend on the respective insurance company’s rules and policy conditions.",
+  },
+  whoWeHelp: {
+    title: "Who we serve",
+    groups: [
+      {
+        label: "Commercial (primary focus)",
+        points: [
+          "Transport / Fleet / Lorry operators (NH belts, permits/fitness discipline, third-party exposure).",
+          "Warehouses / Godowns / Factories (fire, burglary, stock-risk guidance; valuation + proof habits).",
+          "Contractors / Construction sites (CAR / WC workflows; documentation discipline).",
+          "Cranes / Heavy equipment (CPM; declared value + third-party alignment).",
+          "Public liability and third-party risk guidance for customer-facing operations.",
+          "Marine cargo / goods-in-transit (invoice + packing proof + route clarity habits).",
+        ],
+      },
+      {
+        label: "Personal & SME support",
+        points: [
+          "Car / Bike insurance support (renewals, add-ons, claim steps).",
+          "Health insurance support (basic guidance + claim paperwork readiness).",
+          "LIC policies (guidance + servicing).",
+          "Small business / office packages for MSMEs.",
+        ],
+      },
+    ],
+  },
+  coverageAreas: {
+    title: "Primary coverage areas (Chennai North + corridors)",
+    subtitle:
+      "We focus on locations where commercial movement, industrial activity, and city connectivity overlap.",
+    points: [
+      "Chennai outskirts / NH belts: Sholavaram, Red Hills, Karanodai, Periyapalayam, Arani corridor support (as applicable), and nearby movement zones.",
+      "Chennai city support: Madhavaram, Puzhal, Manali, Perambur, Kolathur, Koyambedu, Anna Nagar and nearby areas.",
+    ],
+    cta: { label: "See locations page", href: EN("locations") },
+  },
+  faqs: [
+    {
+      q: "Do you handle only commercial insurance?",
+      a: "Commercial and industrial needs are our primary focus, especially transport/fleet and warehouse/property risks. We also support personal motor, health, and LIC policies.",
+    },
+    {
+      q: "What makes claims smoother?",
+      a: "Correct policy selection (wording + declared value), right add-ons, and disciplined documentation—photos, invoices, incident reporting steps, and timelines.",
+    },
+    {
+      q: "Do you provide support after policy issuance?",
+      a: "Yes. We assist with renewals, documentation clarity, and claim process guidance depending on the policy and insurer requirements.",
+    },
+  ],
+};
+
+// ✅ JSON-LD: One graph (avoid duplicates across components if possible)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: "About",
+      url: canonical,
+      description,
+      inLanguage: "en",
+      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
+      url: canonicalBase,
+      name: brand.name,
+    },
+    {
+      "@type": "Organization",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#org`,
+      name: brand.name,
+      legalName: brand.legalName,
+      url: canonicalBase,
+      telephone: brand.phoneE164,
+      sameAs: [brand.gbpUrl].filter(Boolean),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: brand.streetAddress || undefined,
+        addressLocality: brand.addressLocality,
+        addressRegion: brand.addressRegion,
+        postalCode: brand.postalCode || undefined,
+        addressCountry: brand.addressCountry,
+      },
+    },
+    {
+      "@type": "InsuranceAgency",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#agency`,
+      name: brand.name,
+      url: canonicalBase,
+      telephone: brand.phoneE164,
+      sameAs: [brand.gbpUrl].filter(Boolean),
+      areaServed: brand.areaChips,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: brand.streetAddress || undefined,
+        addressLocality: brand.addressLocality,
+        addressRegion: brand.addressRegion,
+        postalCode: brand.postalCode || undefined,
+        addressCountry: brand.addressCountry,
+      },
+      geo: brand.geo
+        ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
+        : undefined,
+    },
+    {
+      "@type": "Person",
+      name: "M N Rajendrakumar",
+      worksFor: { "@id": `${canonicalBase.replace(/\/$/, "")}/#org` },
+      jobTitle: "Insurance Services",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: about.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- =========================
+             DESKTOP
+        ========================== -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Commercial-first insurance guidance with claim-ready documentation discipline.",
+                phone: brand.phone,
+                areaChips: brand.areaChips,
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="about-title">
+            <h1 id="about-title" class="section-title">{about.h1}</h1>
+            <div class="section-sub">
+              {about.intro.map((p) => <p style="margin:0 0 10px">{p}</p>)}
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="exp-title">
+            <h2 id="exp-title" class="section-title">{about.experience.title}</h2>
+            <ul class="bullets">
+              {about.experience.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="trust-title">
+            <h2 id="trust-title" class="section-title">{about.whyTrust.title}</h2>
+            <ul class="bullets">
+              {about.whyTrust.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="providers-title">
+            <h2 id="providers-title" class="section-title">{about.providers.title}</h2>
+
+            <ul class="area-rows" role="list" aria-label="Provider context list">
+              {about.providers.items.map((it) => (
+                <li class="area-row">
+                  <h3 class="area-name">{it.name}</h3>
+                  <p class="area-notes">{it.desc}</p>
+                </li>
+              ))}
+            </ul>
+
+            <p class="section-sub" style="margin-top:12px">{about.providers.note}</p>
+
+            {brand.gbpUrl ? (
+              <p class="section-sub" style="margin-top:10px">
+                <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
+                  View our Google Business Profile
+                </a>
+              </p>
+            ) : null}
+          </section>
+
+          <section class="section section-padding" aria-labelledby="serve-title">
+            <h2 id="serve-title" class="section-title">{about.whoWeHelp.title}</h2>
+
+            <ul class="area-rows" role="list" aria-label="Who we serve">
+              {about.whoWeHelp.groups.map((g) => (
+                <li class="area-row">
+                  <h3 class="area-name">{g.label}</h3>
+                  <ul class="bullets" style="margin-top:10px">
+                    {g.points.map((p) => <li>{p}</li>)}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="areas-title">
+            <h2 id="areas-title" class="section-title">{about.coverageAreas.title}</h2>
+            <p class="section-sub">{about.coverageAreas.subtitle}</p>
+
+            <ul class="bullets">
+              {about.coverageAreas.points.map((p) => <li>{p}</li>)}
+            </ul>
+
+            <p class="section-sub" style="margin-top:10px">
+              <a class="inline-link" href={about.coverageAreas.cta.href}>{about.coverageAreas.cta.label}</a>
+            </p>
+          </section>
+
+          <!-- ✅ Internal linking to services (crawl boost) -->
+          <section class="section section-padding" aria-labelledby="services-title">
+            <h2 id="services-title" class="section-title">Services we support</h2>
+            <p class="section-sub">
+              Explore commercial-first services and support flows. Each page is written to be clear for users and crawlers.
+            </p>
+
+            <ul class="service-links" role="list" aria-label="Service links">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- ✅ FAQs -->
+          <section class="section section-padding" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="section-title">FAQs</h2>
+            <ul class="area-rows" role="list" aria-label="FAQ list">
+              {about.faqs.map((f) => (
+                <li class="area-row">
+                  <h3 class="area-name">{f.q}</h3>
+                  <p class="area-notes">{f.a}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        <!-- ✅ Up-front identity (bots + LLMs) -->
+        <LocalIdentitySection brand={brand} pageTitle="About" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+
+        <!-- =========================
+             MOBILE
+        ========================== -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Commercial-first insurance guidance with claim-ready documentation discipline.",
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="m-about-title">
+            <h1 id="m-about-title" class="section-title">{about.h1}</h1>
+            <div class="section-sub">
+              {about.intro.map((p) => <p style="margin:0 0 10px">{p}</p>)}
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-exp-title">
+            <h2 id="m-exp-title" class="section-title">{about.experience.title}</h2>
+            <ul class="bullets">
+              {about.experience.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-trust-title">
+            <h2 id="m-trust-title" class="section-title">{about.whyTrust.title}</h2>
+            <ul class="bullets">
+              {about.whyTrust.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-providers-title">
+            <h2 id="m-providers-title" class="section-title">{about.providers.title}</h2>
+            <ul class="area-rows" role="list">
+              {about.providers.items.map((it) => (
+                <li class="area-row">
+                  <h3 class="area-name">{it.name}</h3>
+                  <p class="area-notes">{it.desc}</p>
+                </li>
+              ))}
+            </ul>
+            <p class="section-sub" style="margin-top:12px">{about.providers.note}</p>
+
+            {brand.gbpUrl ? (
+              <p class="section-sub" style="margin-top:10px">
+                <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
+                  View our Google Business Profile
+                </a>
+              </p>
+            ) : null}
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-serve-title">
+            <h2 id="m-serve-title" class="section-title">{about.whoWeHelp.title}</h2>
+
+            <ul class="area-rows" role="list">
+              {about.whoWeHelp.groups.map((g) => (
+                <li class="area-row">
+                  <h3 class="area-name">{g.label}</h3>
+                  <ul class="bullets" style="margin-top:10px">
+                    {g.points.map((p) => <li>{p}</li>)}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-areas-title">
+            <h2 id="m-areas-title" class="section-title">{about.coverageAreas.title}</h2>
+            <p class="section-sub">{about.coverageAreas.subtitle}</p>
+            <ul class="bullets">
+              {about.coverageAreas.points.map((p) => <li>{p}</li>)}
+            </ul>
+            <p class="section-sub" style="margin-top:10px">
+              <a class="inline-link" href={about.coverageAreas.cta.href}>{about.coverageAreas.cta.label}</a>
+            </p>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-services-title">
+            <h2 id="m-services-title" class="section-title">Services we support</h2>
+            <p class="section-sub">Explore service pages for clear, structured guidance.</p>
+
+            <ul class="service-links" role="list">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-faq-title">
+            <h2 id="m-faq-title" class="section-title">FAQs</h2>
+            <ul class="area-rows" role="list">
+              {about.faqs.map((f) => (
+                <li class="area-row">
+                  <h3 class="area-name">{f.q}</h3>
+                  <p class="area-notes">{f.a}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        <!-- ✅ Up-front identity (bots + LLMs) -->
+        <LocalIdentitySection brand={brand} pageTitle="About" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={brand} />
+    <FloatingContactCta brand={brand} />
+  </body>
+</html>
+
+<style is:global>
+  /* keep consistent card UI */
+  .area-rows{
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .area-row{
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    padding: 12px 14px;
+  }
+  .area-name{
+    margin: 0;
+    font-size: 15px;
+    font-weight: 950;
+    letter-spacing: -0.01em;
+  }
+  .area-notes{
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .service-links{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .svc{
+    display:block;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+  .svc-title{
+    display:block;
+    font-weight: 950;
+    font-size: 13.5px;
+  }
+  .svc-desc{
+    display:block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .inline-link{
+    font-weight: 900;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

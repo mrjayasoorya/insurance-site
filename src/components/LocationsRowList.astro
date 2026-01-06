@@ -1,0 +1,76 @@
+---
+const { items = [], title = "", subtitle = "" } = Astro.props;
+---
+
+<section class="section section-padding" aria-labelledby="loc-title">
+  <h2 id="loc-title" class="section-title">{title}</h2>
+  {subtitle ? <p class="section-sub">{subtitle}</p> : null}
+
+  <ul class="loc-rows" role="list">
+    {items.map((a) => (
+      <li class="loc-row">
+        <a class="loc-link" href={a.href}>
+          <span class="loc-name">{a.name}</span>
+          <span class="loc-meta">
+            <span class="loc-chip">{a.cluster}</span>
+            <span class="loc-chip">{a.typeLabel}</span>
+            {a.corridors?.slice(0,2).map((c) => <span class="loc-chip">{c}</span>)}
+          </span>
+          <span class="loc-desc">{a.summary}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style is:global>
+  .loc-rows{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .loc-row{ margin:0; padding:0; }
+
+  .loc-link{
+    display:block;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    padding: 12px 14px;
+  }
+  .loc-name{
+    display:block;
+    font-weight: 950;
+    letter-spacing: -0.01em;
+    font-size: 15px;
+  }
+  .loc-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .loc-chip{
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display:inline-flex;
+    align-items:center;
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--text);
+  }
+  .loc-desc{
+    display:block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+</style>

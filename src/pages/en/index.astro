@@ -15,19 +15,26 @@ import StatsStrip from "../../components/StatsStrip.astro";
 import FooterCtaBar from "../../components/FooterCtaBar.astro";
 import BlogSection from "../../components/BlogSection.astro";
 import CoverageIndexSection from "../../components/CoverageIndexSection.astro";
+import LinksHubSection from "../../components/LinksHubSection.astro";
+import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData } from "../../content/siteData";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
 
 const HOME = "/en/";
 
 // helper: force internal links under /en
-const EN = (p) => {
-  if (!p) return p;
-  if (p.startsWith("http")) return p;
-  if (p.startsWith("/en/")) return p;
-  if (!p.startsWith("/")) return `/en/${p}`;
-  return `/en${p}`;
+const EN = (href = "") => {
+  if (!href) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("/en/")) return href;
+  // keep root "/" as "/en/"
+  if (href === "/") return "/en/";
+  // Add trailing slash if missing
+  const path = href.endsWith("/") ? href : `${href}/`;
+  return `/en${path.startsWith("/") ? "" : "/"}${path}`;
 };
 
 const telHref = `tel:${siteData.brand.phoneE164}`;
@@ -345,14 +352,14 @@ const jsonLd = {
             </section>
 
             <!-- ✅ Visit -->
-            <section aria-labelledby="visit-title" class="section section-padding" style="padding-top:22px;">
+            <!-- <section aria-labelledby="visit-title" class="section section-padding" style="padding-top:22px;">
               <h2 id="visit-title" class="section-title">Visit & Contact</h2>
               <p class="section-sub">
                 Address: {siteData.brand.streetAddress}, {siteData.brand.addressLocality}, {siteData.brand.addressRegion} {siteData.brand.postalCode}.<br />
                 Hours: {siteData.brand.hours?.label}.
-              </p>
+              </p> -->
 
-              <div class="mapbox" role="group" aria-label="Google map">
+              <!-- <div class="mapbox" role="group" aria-label="Google map">
                 <iframe
                   src={siteData.brand.mapEmbedUrl}
                   width="600"
@@ -363,9 +370,11 @@ const jsonLd = {
                   allowfullscreen
                   title={`${siteData.brand.name} location map`}
                 ></iframe>
-              </div>
-            </section>
-
+              </div> -->
+              <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
+            <!-- </section> -->
+<LinksHubSection data={siteData.linksHub} />
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
             <!-- ✅ CTA -->
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="sr-only">Contact</h2>
@@ -546,7 +555,7 @@ const jsonLd = {
               <StatsStrip title={siteData.statsStrip.title} stats={siteData.statsStrip.stats} />
             </section>
 
-            <section aria-labelledby="m-visit-title" class="section section-padding" style="padding-top: 22px;">
+            <!-- <section aria-labelledby="m-visit-title" class="section section-padding" style="padding-top: 22px;">
               <h2 id="m-visit-title" class="section-title">Visit & Contact</h2>
               <p class="section-sub">
                 Address: {siteData.brand.streetAddress}, {siteData.brand.addressLocality}, {siteData.brand.addressRegion} {siteData.brand.postalCode}.<br />
@@ -565,8 +574,11 @@ const jsonLd = {
                   title={`${siteData.brand.name} location map`}
                 ></iframe>
               </div>
-            </section>
+            </section> -->
+            <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
 
+            <LinksHubSection data={siteData.linksHub} />
+            <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
             <section aria-labelledby="m-contact-title">
               <h2 id="m-contact-title" class="sr-only">Contact</h2>
 
@@ -590,10 +602,12 @@ const jsonLd = {
               <a class="cta cta-ghost" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
             </nav>
             -->
+            <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
           </main>
         </div>
       </div>
     </main>
+    <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
   </body>
 </html>

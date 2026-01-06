@@ -1,0 +1,40 @@
+---
+const { title = "Quick Links", links = [] } = Astro.props;
+---
+
+<section class="section section-padding" aria-labelledby="ql-title">
+  <h2 id="ql-title" class="sr-only">{title}</h2>
+
+  <nav aria-label={title}>
+    <ul class="backlinks-link-rows" role="list">
+      {links.map((l) => (
+        <li class="backlinks-link-row">
+          <a class="backlinks-link" href={l.href}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</section>
+
+<style is:global>
+  .backlinks-link-rows{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+  .backlinks-link{
+    display:inline-flex;
+    align-items:center;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text); /* ✅ standard text color */
+    font-weight: 900;
+    font-size: 13px;
+  }
+</style>

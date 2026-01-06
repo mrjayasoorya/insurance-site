@@ -1,0 +1,460 @@
+---
+import DesktopHero from "../../components/DesktopHero.astro";
+import MobileHero from "../../components/MobileHero.astro";
+import FooterCtaBar from "../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+// import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
+
+import { siteData } from "../../content/siteData";
+
+const brand = siteData.brand;
+
+const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/contact/`;
+
+const title = `Contact | ${brand.name}`;
+const description =
+  "Contact M N Rajendrakumar Insurance Services — Sholavaram (Chennai outskirts). Call/WhatsApp, visit address and map. Commercial-first insurance guidance with claim-ready documentation discipline.";
+
+const telHref = `tel:${brand.phoneE164}`;
+const waHref =
+  `https://wa.me/${encodeURIComponent(brand.whatsappE164)}` +
+  `?text=${encodeURIComponent(brand.whatsappPrefill || "Hi, I need help with insurance.")}`;
+
+// ✅ JSON-LD (single graph)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      name: "Contact",
+      url: canonical,
+      description,
+      inLanguage: "en",
+      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
+      url: canonicalBase,
+      name: brand.name,
+    },
+    {
+      "@type": "Organization",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#org`,
+      name: brand.name,
+      legalName: brand.legalName,
+      url: canonicalBase,
+      telephone: brand.phoneE164,
+      sameAs: [brand.gbpUrl].filter(Boolean),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: brand.streetAddress || undefined,
+        addressLocality: brand.addressLocality,
+        addressRegion: brand.addressRegion,
+        postalCode: brand.postalCode || undefined,
+        addressCountry: brand.addressCountry,
+      },
+    },
+    {
+      "@type": "InsuranceAgency",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#agency`,
+      name: brand.name,
+      url: canonicalBase,
+      telephone: brand.phoneE164,
+      sameAs: [brand.gbpUrl].filter(Boolean),
+      areaServed: brand.areaChips,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: brand.streetAddress || undefined,
+        addressLocality: brand.addressLocality,
+        addressRegion: brand.addressRegion,
+        postalCode: brand.postalCode || undefined,
+        addressCountry: brand.addressCountry,
+      },
+      geo: brand.geo
+        ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
+        : undefined,
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+        <!-- ✅ Up-front identity (bots + LLMs) -->
+        <!-- <LocalIdentitySection brand={brand} pageTitle="Contact" /> -->
+
+        <!-- =========================
+             DESKTOP
+        ========================== -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Fast access to call, WhatsApp, address and map—structured for crawl clarity.",
+                phone: brand.phone,
+                areaChips: brand.areaChips,
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="contact-title">
+            <h1 id="contact-title" class="section-title">Contact</h1>
+            <p class="section-sub">
+              For commercial insurance guidance, renewals, and claim process support across Chennai North & Chennai outskirts.
+            </p>
+
+            <!-- ✅ Contact details block (semantic + scan-friendly) -->
+            <section class="contact-card" aria-label="Primary contact details">
+              <dl class="dl">
+                <div class="dl-row">
+                  <dt>Business</dt>
+                  <dd>{brand.name}</dd>
+                </div>
+
+                <div class="dl-row">
+                  <dt>Primary area</dt>
+                  <dd>{brand.primaryArea || "Sholavaram (Chennai Outskirts)"}</dd>
+                </div>
+
+                <div class="dl-row">
+                  <dt>Phone</dt>
+                  <dd>
+                    <a class="inline-link" href={telHref} aria-label="Call phone number">
+                      {brand.phone}
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="dl-row">
+                  <dt>WhatsApp</dt>
+                  <dd>
+                    <a class="inline-link" href={waHref} target="_blank" rel="noopener" aria-label="Open WhatsApp chat">
+                      Chat on WhatsApp
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="dl-row">
+                  <dt>Address</dt>
+                  <dd>
+                    {brand.streetAddress}, {brand.addressLocality}, {brand.addressRegion} {brand.postalCode}.
+                  </dd>
+                </div>
+
+                <div class="dl-row">
+                  <dt>Hours</dt>
+                  <dd>{brand.hours?.label || "Contact for availability"}</dd>
+                </div>
+
+                {brand.gbpUrl ? (
+                  <div class="dl-row">
+                    <dt>Google Business</dt>
+                    <dd>
+                      <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
+                        View Google Business Profile
+                      </a>
+                    </dd>
+                  </div>
+                ) : null}
+              </dl>
+
+              <div class="btn-row" role="group" aria-label="Quick actions">
+                <a class="btn btn-solid" href={telHref}>Call now</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
+                {brand.mapUrl ? (
+                  <a class="btn btn-ghost" href={brand.mapUrl} target="_blank" rel="noopener">Open map</a>
+                ) : null}
+              </div>
+            </section>
+          </section>
+
+          <!-- ✅ Map (if embed exists) -->
+          {brand.mapEmbedUrl ? (
+            <section class="section section-padding" aria-labelledby="map-title" style="padding-top:22px;">
+              <h2 id="map-title" class="section-title">Location map</h2>
+              <p class="section-sub">Use the map for directions to Sholavaram / Red Hills belt.</p>
+
+              <div class="mapbox" role="group" aria-label="Google map">
+                <iframe
+                  src={brand.mapEmbedUrl}
+                  width="600"
+                  height="450"
+                  style="border:0;"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                  title={`${brand.name} location map`}
+                ></iframe>
+              </div>
+            </section>
+          ) : null}
+
+          <!-- ✅ Areas (non-confusing, not fake) -->
+          <section class="section section-padding" aria-labelledby="areas-title">
+            <h2 id="areas-title" class="section-title">Areas we commonly support</h2>
+            <p class="section-sub">
+              We work across Chennai North and Chennai outskirts where transport, warehouse and MSME activity is high.
+            </p>
+
+            <ul class="chips" aria-label="Service areas list">
+              {(brand.areaChips || []).map((a) => <li class="chip">{a}</li>)}
+            </ul>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+
+        <!-- =========================
+             MOBILE
+        ========================== -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Call, WhatsApp, address and map—simple and crawl-friendly.",
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="m-contact-title">
+            <h1 id="m-contact-title" class="section-title">Contact</h1>
+            <p class="section-sub">
+              Commercial-first guidance + renewals + claim process support for Chennai North & Chennai outskirts.
+            </p>
+
+            <section class="contact-card" aria-label="Primary contact details">
+              <dl class="dl">
+                <div class="dl-row">
+                  <dt>Phone</dt>
+                  <dd>
+                    <a class="inline-link" href={telHref}>{brand.phone}</a>
+                  </dd>
+                </div>
+                <div class="dl-row">
+                  <dt>WhatsApp</dt>
+                  <dd>
+                    <a class="inline-link" href={waHref} target="_blank" rel="noopener">Chat on WhatsApp</a>
+                  </dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Address</dt>
+                  <dd>
+                    {brand.streetAddress}, {brand.addressLocality}, {brand.addressRegion} {brand.postalCode}.
+                  </dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Hours</dt>
+                  <dd>{brand.hours?.label || "Contact for availability"}</dd>
+                </div>
+
+                {brand.gbpUrl ? (
+                  <div class="dl-row">
+                    <dt>Google Business</dt>
+                    <dd>
+                      <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
+                        View Google Business Profile
+                      </a>
+                    </dd>
+                  </div>
+                ) : null}
+              </dl>
+
+              <div class="btn-row" role="group" aria-label="Quick actions">
+                <a class="btn btn-solid" href={telHref}>Call now</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
+                {brand.mapUrl ? (
+                  <a class="btn btn-ghost" href={brand.mapUrl} target="_blank" rel="noopener">Map</a>
+                ) : null}
+              </div>
+            </section>
+          </section>
+
+          {brand.mapEmbedUrl ? (
+            <section class="section section-padding" aria-labelledby="m-map-title" style="padding-top:22px;">
+              <h2 id="m-map-title" class="section-title">Location map</h2>
+              <div class="mapbox" role="group" aria-label="Google map">
+                <iframe
+                  src={brand.mapEmbedUrl}
+                  width="600"
+                  height="450"
+                  style="border:0;"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                  title={`${brand.name} location map`}
+                ></iframe>
+              </div>
+            </section>
+          ) : null}
+
+          <section class="section section-padding" aria-labelledby="m-areas-title">
+            <h2 id="m-areas-title" class="section-title">Areas we commonly support</h2>
+            <ul class="chips" aria-label="Service areas list">
+              {(brand.areaChips || []).map((a) => <li class="chip">{a}</li>)}
+            </ul>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={brand} />
+    <FloatingContactCta brand={brand} />
+  </body>
+</html>
+
+<style>
+  /* consistent spacing + no “layout” dependency */
+  .contact-card{
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    padding: 14px 14px;
+    margin-top: 12px;
+  }
+
+  .dl{
+    margin: 0;
+  }
+  .dl-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+  }
+  .dl-row:first-child{
+    border-top: 0;
+    padding-top: 0;
+  }
+  dt{
+    width: 130px;
+    flex: 0 0 auto;
+    font-weight: 950;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+  }
+  dd{
+    margin: 0;
+    flex: 1 1 auto;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .inline-link{
+    color: inherit;
+    font-weight: 950;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .btn-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-weight: 950;
+    letter-spacing: -0.01em;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .btn-solid{
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+  .btn-ghost{
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .chips{
+    margin: 10px 0 0;
+    padding: 0;
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+  .chip{
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display:flex;
+    align-items:center;
+    font-weight: 900;
+    font-size: 12px;
+  }
+</style>

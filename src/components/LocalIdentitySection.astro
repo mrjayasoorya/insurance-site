@@ -1,0 +1,208 @@
+---
+const { brand, pageTitle } = Astro.props;
+
+const name = brand?.name || "Insurance Services";
+const legalName = brand?.legalName || "";
+const primaryArea = brand?.primaryArea || "";
+const phone = brand?.phone || "";
+const phoneE164 = brand?.phoneE164 || "";
+const whatsappE164 = brand?.whatsappE164 || "";
+const whatsappPrefill = brand?.whatsappPrefill || "Hi, I need insurance guidance.";
+const gbpUrl = brand?.gbpUrl || "";
+const mapEmbedUrl = brand?.mapEmbedUrl || "";
+const hoursLabel = brand?.hours?.label || "";
+const streetAddress = brand?.streetAddress || "";
+const addressLocality = brand?.addressLocality || "";
+const addressRegion = brand?.addressRegion || "";
+const postalCode = brand?.postalCode || "";
+const addressCountry = brand?.addressCountry || "IN";
+
+const fullAddress =
+  [streetAddress, addressLocality, addressRegion, postalCode]
+    .filter(Boolean)
+    .join(", ");
+
+const telHref = phoneE164 ? `tel:${phoneE164}` : "";
+const waHref =
+  whatsappE164
+    ? `https://wa.me/${encodeURIComponent(whatsappE164)}?text=${encodeURIComponent(whatsappPrefill)}`
+    : "";
+
+const mapLink = gbpUrl || "";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  name,
+  legalName: legalName || undefined,
+  areaServed: brand?.areaChips || undefined,
+  telephone: phoneE164 || undefined,
+  url: brand?.websiteUrl || undefined,
+  hasMap: mapLink || undefined,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: streetAddress || undefined,
+    addressLocality: addressLocality || undefined,
+    addressRegion: addressRegion || undefined,
+    postalCode: postalCode || undefined,
+    addressCountry: addressCountry || undefined,
+  },
+  geo: brand?.geo
+    ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
+    : undefined,
+  openingHours: hoursLabel || undefined,
+  knowsAbout: [
+    "Commercial insurance guidance",
+    "Transport / fleet insurance guidance",
+    "Industrial insurance guidance",
+    "Claim documentation guidance",
+  ],
+  slogan: primaryArea ? `Local guidance anchored in ${primaryArea}` : undefined,
+};
+---
+
+<section class="section section-padding local-id" aria-labelledby="local-id-title">
+  <header class="local-id__head">
+    <h2 id="local-id-title" class="section-title">Contact & Local Office</h2>
+    <p class="section-sub">
+      {name}{primaryArea ? ` — ${primaryArea}` : ""}{pageTitle ? ` · ${pageTitle}` : ""}
+    </p>
+  </header>
+
+  <!-- bot-friendly: microdata + readable -->
+  <div class="local-id__wrap" itemscope itemtype="https://schema.org/LocalBusiness">
+    <meta itemprop="name" content={name} />
+    {phoneE164 && <meta itemprop="telephone" content={phoneE164} />}
+    {mapLink && <meta itemprop="hasMap" content={mapLink} />}
+    {brand?.websiteUrl && <meta itemprop="url" content={brand.websiteUrl} />}
+
+    <div class="local-id__row" role="list">
+      <!-- Phone -->
+      <div class="local-id__item" role="listitem" aria-label="Call">
+        <span class="local-id__k">Call</span>
+        {telHref ? (
+          <a class="local-id__v" href={telHref} itemprop="telephone">
+            {phone || phoneE164}
+          </a>
+        ) : (
+          <span class="local-id__v">{phone || "—"}</span>
+        )}
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="local-id__item" role="listitem" aria-label="WhatsApp">
+        <span class="local-id__k">WhatsApp</span>
+        {waHref ? (
+          <a class="local-id__v" href={waHref} target="_blank" rel="noopener">
+            Message for guidance
+          </a>
+        ) : (
+          <span class="local-id__v">—</span>
+        )}
+      </div>
+
+      <!-- Address -->
+      <div
+        class="local-id__item"
+        role="listitem"
+        aria-label="Office address"
+        itemprop="address"
+        itemscope
+        itemtype="https://schema.org/PostalAddress"
+      >
+        <span class="local-id__k">Office</span>
+        <span class="local-id__v">
+          {streetAddress && <span itemprop="streetAddress">{streetAddress}</span>}
+          {streetAddress && (addressLocality || addressRegion || postalCode) ? ", " : ""}
+          {addressLocality && <span itemprop="addressLocality">{addressLocality}</span>}
+          {addressLocality && addressRegion ? ", " : ""}
+          {addressRegion && <span itemprop="addressRegion">{addressRegion}</span>}
+          {postalCode ? ` ${postalCode}` : ""}
+        </span>
+      </div>
+
+      <!-- Maps -->
+      <div class="local-id__item" role="listitem" aria-label="Maps">
+        <span class="local-id__k">Maps</span>
+        {mapLink ? (
+          <a class="local-id__v" href={mapLink} target="_blank" rel="noopener">
+            Open Google Maps listing
+          </a>
+        ) : (
+          <span class="local-id__v">—</span>
+        )}
+      </div>
+
+      <!-- Hours -->
+      <div class="local-id__item" role="listitem" aria-label="Hours">
+        <span class="local-id__k">Hours</span>
+        <span class="local-id__v">{hoursLabel || "—"}</span>
+      </div>
+    </div>
+
+    <!-- Optional map embed (kept compact; remove if you feel repeated) -->
+    {mapEmbedUrl ? (
+      <div class="local-id__map" aria-label="Map preview">
+        <iframe
+          src={mapEmbedUrl}
+          loading="lazy"
+          style="border:0;"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          title={`${name} map`}
+        ></iframe>
+      </div>
+    ) : null}
+  </div>
+
+  <!-- Clean JSON-LD for LLMs + Google -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <style is:global>
+    .local-id__wrap { margin-top: 10px; }
+    .local-id__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+    }
+    .local-id__item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      /* white-space: nowrap; */
+    }
+    .local-id__k {
+    opacity: 0.72;
+    min-width: 74px;
+    margin: 0 0 12px;
+    font-size: 12.8px;
+    color: #5b616e;
+    font-weight: 750;
+    line-height: 0.4;
+    }
+    .local-id__v { font-size: 0.95rem; }
+    .local-id__v a, .local-id__item a { text-decoration: none; }
+    .local-id__item a:hover { text-decoration: underline; }
+
+    .local-id__map {
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .local-id__map iframe {
+      width: 100%;
+      height: 220px;
+    }
+
+    @media (max-width: 520px) {
+      .local-id__k { min-width: 64px; }
+      .local-id__row { gap: 8px 14px; }
+      .local-id__map iframe { height: 180px; }
+    }
+  </style>
+</section>

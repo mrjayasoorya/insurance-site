@@ -6,6 +6,8 @@ import MobileCoreServices from "../../../components/MobileCoreServices.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
 
 const services = (siteData.coreServices || []).map((s) => ({
   ...s,
@@ -54,7 +56,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
           </section>
 
           <DesktopCoreServices services={services} />
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -92,7 +94,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
           </section>
 
           <MobileCoreServices services={services} />
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -109,7 +111,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
         </div>
       </div>
     </main>
-
+    <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
   </body>
 </html>

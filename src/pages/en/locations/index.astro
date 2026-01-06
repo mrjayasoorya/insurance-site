@@ -1,51 +1,286 @@
 ---
-export const prerender = true;
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "../../../components/FloatingContactCta.astro";
+import FloatingMenu from "../../../components/FloatingMenu.astro";
+import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import BacklinksRow from "../../../components/BacklinksRow.astro";
 
-import ServiceLayout from "../../../layouts/ServiceLayout.astro";
-import PageHero from "../../../components/PageHero.astro";
-import LinkGrid from "../../../components/LinkGrid.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { siteData, EN } from "../../../content/siteData";
 
-import { hubs } from "../../../content/pages/hubs";
-import { servicePages } from "../../../content/pages/services";
-import { siteData } from "../../../content/siteData";
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/locations/`;
 
-const hub = hubs.services;
+const serviceBySlug = new Map(siteData.coreServices.map((s) => [s.slug, s]));
 
-const breadcrumbItems = [
-  { label: "Home", href: "/en/" },
-  { label: "Services", href: "/en/services/" },
-];
+const buildServiceLinks = (slugs = []) =>
+  slugs
+    .map((slug) => serviceBySlug.get(slug))
+    .filter(Boolean)
+    .map((s) => ({ title: s.title, desc: s.desc, href: EN(`services/${s.slug}`) }));
 
-const items = Object.values(servicePages).map((p) => ({
-  title: p.h1,
-  desc: p.metaDesc,
-  href: p.href,
-  chips: [p.serviceType],
-}));
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: "Locations We Serve",
+      url: canonical,
+      description: siteData.locationsPage.subtitle,
+    },
+    {
+      "@type": "InsuranceAgency",
+      name: siteData.brand.name,
+      url: canonicalBase,
+      telephone: siteData.brand.phoneE164,
+      areaServed: siteData.locationsPage.groups.flatMap((g) => g.areas.map((a) => a.name)),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteData.brand.streetAddress || undefined,
+        addressLocality: siteData.brand.addressLocality,
+        addressRegion: siteData.brand.addressRegion,
+        postalCode: siteData.brand.postalCode || undefined,
+        addressCountry: siteData.brand.addressCountry,
+      },
+    },
+  ],
+};
 ---
 
-<ServiceLayout page={{ ...hub, serviceType: "Service Hub", areasServed: siteData.brand.areaChips, faqs: [] }} breadcrumbItems={breadcrumbItems}>
-  <section class="section section-padding">
-    <Breadcrumbs items={breadcrumbItems} />
-  </section>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Locations | {siteData.brand.name}</title>
+    <meta name="description" content={siteData.locationsPage.subtitle} />
+    <link rel="canonical" href={canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
 
-  <PageHero
-    h1={hub.h1}
-    subtitle={hub.metaDesc}
-    chips={hub.intro}
-    primaryCta={{ label: "Call", href: `tel:${siteData.brand.phoneE164}` }}
-    secondaryCta={{
-      label: "WhatsApp",
-      href: `https://wa.me/${siteData.brand.whatsappE164}?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`,
-      target: "_blank",
-      rel: "noopener",
-    }}
-  />
+  <body>
+    <main class="app">
+      <div class="container">
 
-  <LinkGrid
-    title="Pick the service page that matches your need"
-    subtitle="Each page is written for Chennai outskirts risk zones (NH + industrial belts)."
-    items={items}
-  />
-</ServiceLayout>
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.locationsPage.subtitle,
+                phone: siteData.brand.phone,
+                areaChips: siteData.brand.areaChips,
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="loc1">
+            <h2 id="loc1" class="section-title">{siteData.locationsPage.title}</h2>
+            <p class="section-sub">{siteData.locationsPage.subtitle}</p>
+            <ul class="bullets">
+              {siteData.locationsPage.intro.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="loc2">
+            <h2 id="loc2" class="section-title">{siteData.locationsPage.claimReadyPrinciples.title}</h2>
+            <ul class="bullets">
+              {siteData.locationsPage.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          {siteData.locationsPage.groups.map((g) => (
+            <section class="section section-padding" aria-labelledby={g.id}>
+              <h2 id={g.id} class="section-title">{g.title}</h2>
+              <p class="section-sub">{g.subtitle}</p>
+
+              <ul class="area-rows" role="list">
+                {g.areas.map((a) => {
+                  const links = buildServiceLinks(a.serviceSlugs);
+                  return (
+                    <li class="area-row">
+                      <div class="area-top">
+                        <h3 class="area-name">{a.name}</h3>
+                        <p class="area-notes">
+                          {a.notes?.join(" • ")}
+                        </p>
+                      </div>
+
+                      <ul class="service-links" role="list">
+                        {links.map((l) => (
+                          <li class="service-link">
+                            <a class="svc" href={l.href}>
+                              <span class="svc-title">{l.title}</span>
+                              <span class="svc-desc">{l.desc}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))}
+
+                  <!-- ✅ Up-front identity block (bots + LLMs + users) -->
+        <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
+
+          <!-- ✅ Links-only section -->
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar {...{
+            title: siteData.footerCtas.title,
+            subtitle: siteData.footerCtas.subtitle,
+            whatsappNumber: siteData.brand.whatsappE164,
+            whatsappText: siteData.brand.whatsappPrefill,
+            callNumber: siteData.brand.phoneE164,
+            callLabel: siteData.footerCtas.callLabel,
+            brandName: siteData.footerCtas.brandName,
+            logoText: siteData.footerCtas.logoText,
+            copyright: siteData.footerCtas.copyright,
+          }} />
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.locationsPage.subtitle,
+                phone: siteData.brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="m-loc1">
+            <h2 id="m-loc1" class="section-title">{siteData.locationsPage.title}</h2>
+            <p class="section-sub">{siteData.locationsPage.subtitle}</p>
+            <ul class="bullets">
+              {siteData.locationsPage.intro.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-loc2">
+            <h2 id="m-loc2" class="section-title">{siteData.locationsPage.claimReadyPrinciples.title}</h2>
+            <ul class="bullets">
+              {siteData.locationsPage.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          {siteData.locationsPage.groups.map((g) => (
+            <section class="section section-padding" aria-labelledby={`m-${g.id}`}>
+              <h2 id={`m-${g.id}`} class="section-title">{g.title}</h2>
+              <p class="section-sub">{g.subtitle}</p>
+
+              <ul class="area-rows" role="list">
+                {g.areas.map((a) => {
+                  const links = buildServiceLinks(a.serviceSlugs);
+                  return (
+                    <li class="area-row">
+                      <div class="area-top">
+                        <h3 class="area-name">{a.name}</h3>
+                        <p class="area-notes">{a.notes?.join(" • ")}</p>
+                      </div>
+
+                      <ul class="service-links" role="list">
+                        {links.map((l) => (
+                          <li class="service-link">
+                            <a class="svc" href={l.href}>
+                              <span class="svc-title">{l.title}</span>
+                              <span class="svc-desc">{l.desc}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))}
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar {...{
+            title: siteData.footerCtas.title,
+            subtitle: siteData.footerCtas.subtitle,
+            whatsappNumber: siteData.brand.whatsappE164,
+            whatsappText: siteData.brand.whatsappPrefill,
+            callNumber: siteData.brand.phoneE164,
+            callLabel: siteData.footerCtas.callLabel,
+            brandName: siteData.footerCtas.brandName,
+            logoText: siteData.footerCtas.logoText,
+            copyright: siteData.footerCtas.copyright,
+          }} />
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={siteData.brand} />
+    <FloatingContactCta brand={siteData.brand} />
+  </body>
+</html>
+
+<style>
+  .area-rows{
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .area-row{
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    padding: 12px 14px;
+  }
+  .area-top{ margin-bottom: 10px; }
+  .area-name{
+    margin: 0;
+    font-size: 15px;
+    font-weight: 950;
+    letter-spacing: -0.01em;
+  }
+  .area-notes{
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .service-links{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .svc{
+    display:block;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+  .svc-title{
+    display:block;
+    font-weight: 950;
+    font-size: 13.5px;
+  }
+  .svc-desc{
+    display:block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+</style>

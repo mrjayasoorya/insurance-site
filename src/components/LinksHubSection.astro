@@ -1,0 +1,66 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="section section-padding" aria-labelledby="links-hub-title">
+  <h2 id="links-hub-title" class="section-title">
+    {data.title}
+  </h2>
+
+  {data.subtitle && (
+    <p class="section-sub">
+      {data.subtitle}
+    </p>
+  )}
+
+  {data.sections.map((sec) => (
+    <section class="links-row" aria-labelledby={`links-${sec.title}`}>
+      <h3 class="links-row-title" id={`links-${sec.title}`}>
+        {sec.title}
+      </h3>
+
+      <!-- Semantic, crawlable, horizontal list -->
+      <ul class="links-inline" role="list">
+        {sec.links.map((l) => (
+          <li role="listitem">
+            <a href={l.href}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <style is:global>
+    .links-row {
+      margin-top: 22px;
+    }
+
+    .links-row-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* Horizontal UL */
+    .links-inline {
+      list-style: disc;
+      padding-left: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+    }
+
+    .links-inline li {
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .links-inline a {
+      text-decoration: none;
+    }
+
+    .links-inline a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</section>

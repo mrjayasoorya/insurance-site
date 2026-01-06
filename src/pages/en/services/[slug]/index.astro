@@ -7,6 +7,8 @@ import CoverageIndexSection from "../../../../components/CoverageIndexSection.as
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 
 import { siteData } from "../../../../content/siteData";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
 
 export async function getStaticPaths() {
   const all = siteData?.servicesDetail || {};
@@ -155,7 +157,7 @@ const jsonLd = {
               </div>
             </section>
           ) : null}
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -235,7 +237,7 @@ const jsonLd = {
               />
             </section>
           ) : null}
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -252,7 +254,7 @@ const jsonLd = {
         </div>
       </div>
     </main>
-
+    <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
   </body>
 </html>

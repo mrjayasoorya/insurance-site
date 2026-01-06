@@ -5,6 +5,8 @@ import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import ArticlePage from "../../../../components/ArticlePage.astro";
 import { siteData } from "../../../../content/siteData";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
 
 export async function getStaticPaths() {
   const posts = siteData.postDetails || {};
@@ -30,7 +32,7 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/renewals/${slug}/`;
           <header>
             <DesktopHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.brand.subtitle, phone: siteData.brand.phone, areaChips: siteData.brand.areaChips }} />
           </header>
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -48,7 +50,7 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/renewals/${slug}/`;
           <header>
             <MobileHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.brand.subtitle, phone: siteData.brand.phone, areaChips: [] }} />
           </header>
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -64,6 +66,7 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/renewals/${slug}/`;
       </div>
     </main>
 
+    <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
   </body>
 </html>

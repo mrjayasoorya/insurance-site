@@ -2371,7 +2371,7 @@ details summary:hover{
 
 /* If you have a sticky bottom bar or safe-area, this will adapt */
 @media (max-width: 820px){
-  :root{ --fc2-safe-bottom: calc(env(safe-area-inset-bottom, 0px) + 36px); }
+  :root{ --fc2-safe-bottom: calc(env(safe-area-inset-bottom, 0px) + 86px); }
   main{ padding-bottom: var(--fc2-safe-bottom); }
 }
 

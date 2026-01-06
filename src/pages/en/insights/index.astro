@@ -5,6 +5,8 @@ import BlogSection from "../../../components/BlogSection.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
 
 const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
 const canonical = `${canonicalBase.replace(/\/$/, "")}/en/insights/`;
@@ -36,7 +38,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/insights/`;
             items={siteData.insights.items}
             showSaveButton={false}
           />
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -63,7 +65,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/insights/`;
             items={siteData.insights.items}
             showSaveButton={false}
           />
-
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -78,7 +80,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/insights/`;
         </div>
       </div>
     </main>
-
+    <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
   </body>
 </html>
