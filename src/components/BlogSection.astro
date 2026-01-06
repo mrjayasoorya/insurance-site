@@ -19,6 +19,7 @@ type BlogSectionProps = {
   viewMoreHref?: string;
   items: BlogItem[];
   showSaveButton?: boolean;
+  hideViewAll?: boolean;
 };
 
 const {
@@ -28,6 +29,7 @@ const {
   viewMoreHref = "/insights",
   items = [],
   showSaveButton = true,
+  hideViewAll = false,
 } = Astro.props as BlogSectionProps;
 ---
 
@@ -38,9 +40,11 @@ const {
       <p class="blogsec-sub">{subtitle}</p>
     </div>
 
-    <a class="blogsec-viewall" href={viewAllHref}>
-      View all <span aria-hidden="true">↗</span>
-    </a>
+    {!hideViewAll && (
+      <a class="blogsec-viewall" href={viewAllHref}>
+        View all <span aria-hidden="true">↗</span>
+      </a>
+    )}
   </header>
 
   <div class="bloggrid" role="list" aria-label="Articles">
@@ -59,9 +63,11 @@ const {
     ))}
   </div>
 
-  <div class="blogsec-bottom">
-    <a class="blogmore" href={viewMoreHref}>
-      View more articles <span aria-hidden="true">→</span>
-    </a>
-  </div>
+  {!hideViewAll && (
+    <div class="blogsec-bottom">
+      <a class="blogmore" href={viewMoreHref}>
+        View more articles <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  )}
 </section>

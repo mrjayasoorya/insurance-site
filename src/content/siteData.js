@@ -854,6 +854,120 @@ coreServices: [
         readTime: "5 min read",
         levelOrFreq: "Explainer",
       },
+       {
+      href: EN("/insights/claim-documents-checklist"),
+      chipCategory: "Claims",
+      chipMap: "Documentation",
+      title: "Claim documents checklist (what people forget)",
+      desc: "Invoices, photos, reports and timelines—clean essentials that improve claim outcomes.",
+      tags: ["#claim-process", "#documentation", "#proof"],
+      readTime: "6 min read",
+      levelOrFreq: "Practical",
+    },
+    {
+      href: EN("/insights/public-liability-hidden-risk"),
+      chipCategory: "Commercial",
+      chipMap: "Liability",
+      title: "Public liability: the hidden risk many businesses ignore",
+      desc: "Small incidents become big claims. Learn what’s covered, exclusions and habits that reduce disputes.",
+      tags: ["#liability", "#third-party", "#risk"],
+      readTime: "9 min read",
+      levelOrFreq: "Business safety",
+    },
+    {
+      href: EN("/insights/zero-dep-explained"),
+      chipCategory: "Vehicle",
+      chipMap: "Motor",
+      title: "Zero depreciation explained like a human",
+      desc: "When it’s worth it based on vehicle age, usage and the parts replaced most often.",
+      tags: ["#motor", "#zero-dep", "#addons"],
+      readTime: "5 min read",
+      levelOrFreq: "Explainer",
+    },
+
+    // NEW (daily problems)
+    {
+      href: EN("/insights/motor-claim-first-30-minutes"),
+      chipCategory: "Claims",
+      chipMap: "Accident",
+      title: "Accident claim: first 30 minutes checklist",
+      desc: "Safety → evidence → reporting. The steps that prevent disputes and delays.",
+      tags: ["#accident", "#claims", "#timeline"],
+      readTime: "7 min read",
+      levelOrFreq: "Daily use",
+    },
+    {
+      href: EN("/insights/vehicle-insurance-addons-cheat-sheet"),
+      chipCategory: "Vehicle",
+      chipMap: "Add-ons",
+      title: "Vehicle add-ons cheat sheet (useful vs waste)",
+      desc: "Zero dep, RSA, engine protect, RTI—choose based on usage, not hype.",
+      tags: ["#addons", "#zero-dep", "#rsa"],
+      readTime: "8 min read",
+      levelOrFreq: "Practical",
+    },
+    {
+      href: EN("/insights/two-wheeler-insurance-basics-real"),
+      chipCategory: "Vehicle",
+      chipMap: "Bike",
+      title: "Bike insurance basics (what matters at claim time)",
+      desc: "Own-damage vs third-party, add-ons, and claim-friendly proof habits.",
+      tags: ["#bike", "#motor", "#claims"],
+      readTime: "6 min read",
+      levelOrFreq: "Daily use",
+    },
+    {
+      href: EN("/insights/used-vehicle-insurance-transfer"),
+      chipCategory: "Vehicle",
+      chipMap: "Ownership",
+      title: "Used vehicle purchase: insurance transfer checklist",
+      desc: "Ownership, transfer, NCB, claim eligibility—buyers forget these steps.",
+      tags: ["#used-car", "#transfer", "#ncB"],
+      readTime: "7 min read",
+      levelOrFreq: "Checklist",
+    },
+    {
+      href: EN("/insights/garage-overbilling-claim-safety"),
+      chipCategory: "Claims",
+      chipMap: "Repairs",
+      title: "Garage overbilling & claim traps: stay safe",
+      desc: "Inflated estimates, towing traps, unclear documents—safe workflow for repair claims.",
+      tags: ["#garage", "#repairs", "#claim-safety"],
+      readTime: "9 min read",
+      levelOrFreq: "Protective",
+    },
+
+    // NEW (commercial + health)
+    {
+      href: EN("/insights/commercial-vehicle-docs-permit-fitness"),
+      chipCategory: "Transport",
+      chipMap: "Docs",
+      title: "Commercial vehicle docs: permit/fitness—why it affects claims",
+      desc: "A simple doc checklist that reduces delays for lorry/goods vehicles and fleets.",
+      tags: ["#fleet", "#permit", "#fitness"],
+      readTime: "8 min read",
+      levelOrFreq: "Operator",
+    },
+    {
+      href: EN("/insights/business-insurance-avoid-underinsurance"),
+      chipCategory: "Commercial",
+      chipMap: "Sum insured",
+      title: "Business insurance: avoid underinsurance (simple method)",
+      desc: "Stock + assets clarity, valuation basis and proof discipline that supports claims.",
+      tags: ["#msme", "#warehouse", "#suminsured"],
+      readTime: "8 min read",
+      levelOrFreq: "Claim-first",
+    },
+    {
+      href: EN("/insights/health-claim-cashless-vs-reimbursement"),
+      chipCategory: "Health",
+      chipMap: "Claims",
+      title: "Health claim: cashless vs reimbursement (what changes)",
+      desc: "Documents, timelines and common mistakes that delay settlement.",
+      tags: ["#health", "#cashless", "#reimbursement"],
+      readTime: "7 min read",
+      levelOrFreq: "Practical",
+    },
     ],
   },
 
@@ -2154,6 +2268,349 @@ postDetails: {
     localSignals: ["Chennai zero dep guidance", "Car insurance add-on clarity Chennai"],
     faqs: [{ q: "Is zero dep mandatory?", a: "No. It’s a choice. We recommend it only when the usage pattern supports it." }],
   },
+  "motor-claim-first-30-minutes": {
+  section: "Insights",
+  seoTitle: "Accident claim: what to do in the first 30 minutes",
+  seoDesc:
+    "A practical first-30-minutes checklist after an accident: safety, evidence, reporting steps, and what NOT to say/do that later creates claim disputes.",
+  h1: "Accident claim: what to do in the first 30 minutes",
+  intro:
+    "Most claim delays happen because the first steps were messy: unclear timeline, weak proof, or wrong reporting. This is a simple sequence you can follow anywhere in Chennai or on NH routes.",
+  blocks: [
+    {
+      title: "Step 1 — Safety & basics",
+      bullets: [
+        "Move to a safe spot (if possible) and prevent further damage",
+        "Check injuries first; get medical help if needed",
+        "Note exact location + time (this becomes the start of your claim timeline)",
+      ],
+    },
+    {
+      title: "Step 2 — Evidence that actually helps",
+      bullets: [
+        "Photos of vehicle positions, number plates, damages, and surroundings",
+        "Short video walkaround (10–20 seconds is enough)",
+        "If third-party involved: capture their RC/phone (only if safe)",
+      ],
+    },
+    {
+      title: "Step 3 — Reporting discipline (avoid disputes)",
+      bullets: [
+        "Inform insurer/agent early (don’t wait until next day)",
+        "If police report is required in your situation: do it promptly",
+        "Avoid statements like “I accepted fault” in haste—keep facts only",
+      ],
+    },
+    {
+      title: "Common mistakes that delay claims",
+      bullets: [
+        "Repairing or moving parts before photos (proof disappears)",
+        "Late intimation (creates avoidable scrutiny)",
+        "No clean incident timeline (what happened first, second, third)",
+      ],
+    },
+  ],
+  localSignals: [
+    "Accident claim support Chennai",
+    "Sholavaram vehicle claim guidance",
+    "Chennai outskirts NH accident claim checklist",
+  ],
+  faqs: [
+    { q: "Do I always need an FIR?", a: "Not always. It depends on the incident type and policy/insurer process. We guide the correct reporting steps for your case." },
+  ],
+},
+
+"vehicle-insurance-addons-cheat-sheet": {
+  section: "Insights",
+  seoTitle: "Vehicle add-ons cheat sheet (what’s useful vs waste)",
+  seoDesc:
+    "A practical guide to vehicle insurance add-ons: zero dep, engine protect, RSA, consumables, return-to-invoice—when each helps and when it’s unnecessary.",
+  h1: "Vehicle add-ons cheat sheet (what’s useful vs waste)",
+  intro:
+    "Add-ons are not ‘good or bad’ — they’re useful only when they match usage. This cheat sheet helps car owners, bike riders and small commercial operators choose realistically.",
+  blocks: [
+    {
+      title: "Add-ons that often help (usage-based)",
+      bullets: [
+        "Zero Dep: useful for newer vehicles or frequent city usage",
+        "RSA: useful if you travel often or drive outside city limits",
+        "Engine Protect: useful in flood/Water-logging risk zones (monsoon reality)",
+        "Consumables: useful when small repair bills are frequent",
+      ],
+    },
+    {
+      title: "Add-ons that need clear understanding",
+      bullets: [
+        "Return to Invoice (RTI): mainly for new vehicles; check conditions",
+        "NCB Protect: useful only if you’re likely to claim for a minor event",
+      ],
+    },
+    {
+      title: "Common mistakes buyers make",
+      bullets: [
+        "Choosing add-ons without reading limits/exclusions",
+        "Assuming add-ons apply forever regardless of vehicle age",
+        "Not matching add-ons to actual driving/parking conditions",
+      ],
+    },
+  ],
+  localSignals: [
+    "Chennai vehicle add-ons guidance",
+    "Car bike insurance add-on selection Chennai",
+  ],
+  faqs: [
+    { q: "Should I take all add-ons to be safe?", a: "Not needed. Add-ons should match usage and risk. We recommend only what adds real value to your situation." },
+  ],
+},
+
+"two-wheeler-insurance-basics-real": {
+  section: "Insights",
+  seoTitle: "Bike insurance basics (what actually matters at claim time)",
+  seoDesc:
+    "Two-wheeler insurance explained practically: own-damage vs third-party, add-ons, common claim rejections, and proof habits that help.",
+  h1: "Bike insurance basics (what actually matters at claim time)",
+  intro:
+    "Bike owners usually face small accidents, theft risk, and repair disputes. This is the practical version of bike insurance—written for real life, not brochure theory.",
+  blocks: [
+    {
+      title: "What to choose (simple)",
+      bullets: [
+        "Third-party only: cheapest but limited",
+        "Comprehensive: useful if you want own-damage protection",
+        "Add-ons: only if your usage needs it (not default)",
+      ],
+    },
+    {
+      title: "Claim-friendly habits (small effort, big impact)",
+      bullets: [
+        "Keep policy + RC photos in your phone",
+        "Take damage photos immediately after incident",
+        "Inform early and follow the process (avoid late reporting)",
+      ],
+    },
+    {
+      title: "Where riders lose money",
+      bullets: [
+        "No photos/timeline",
+        "Repair done before inspection (as applicable)",
+        "Misunderstanding coverage limits/exclusions",
+      ],
+    },
+  ],
+  localSignals: [
+    "Bike insurance support Chennai",
+    "Sholavaram two wheeler insurance guidance",
+  ],
+  faqs: [
+    { q: "Is comprehensive always needed?", a: "Not always. It depends on bike value, usage and repair risk. We suggest based on your real riding pattern." },
+  ],
+},
+
+"commercial-vehicle-docs-permit-fitness": {
+  section: "Insights",
+  seoTitle: "Commercial vehicle docs: permit, fitness, RC—why it affects claims",
+  seoDesc:
+    "Commercial vehicle insurance moves fast when permit/fitness/RC discipline is clean. A checklist for goods vehicles, fleet operators and NH belt movement.",
+  h1: "Commercial vehicle docs: permit, fitness, RC—why it affects claims",
+  intro:
+    "For lorries and goods vehicles, claim friction often starts with document mismatch. Keeping permits/fitness aligned reduces avoidable delays and disputes.",
+  blocks: [
+    {
+      title: "Keep these clean (basic discipline)",
+      bullets: [
+        "RC validity + correct vehicle details",
+        "Fitness certificate (where applicable)",
+        "Permit (type/route) aligned to real usage",
+        "Pollution certificate (as applicable)",
+        "Hypothecation details (if financed)",
+      ],
+    },
+    {
+      title: "Why it matters at claim time",
+      bullets: [
+        "Insurers check whether declared usage matches actual usage",
+        "Missing/expired documents can create delays and extra scrutiny",
+        "Clean paperwork supports faster approvals and smoother workflow",
+      ],
+    },
+    {
+      title: "Transport operator mistakes we prevent",
+      bullets: [
+        "Renewing policy while permits/fitness are pending",
+        "Mismatch between route/usage vs declared type",
+        "No clear list of vehicles + documents during fleet renewals",
+      ],
+    },
+  ],
+  localSignals: [
+    "Red Hills Toll lorry insurance documents",
+    "Chennai outskirts commercial vehicle insurance guidance",
+    "NH belt fleet insurance support",
+  ],
+  faqs: [
+    { q: "Will expired fitness definitely reject a claim?", a: "It depends on situation and insurer process. But it creates avoidable risk. Keeping compliance updated is the safest path." },
+  ],
+},
+
+"garage-overbilling-claim-safety": {
+  section: "Insights",
+  seoTitle: "Garage overbilling & claim traps: how to protect yourself",
+  seoDesc:
+    "How customers lose money during repairs: inflated estimates, unnecessary parts, towing traps, cash deals. A safe workflow for claim repairs.",
+  h1: "Garage overbilling & claim traps: how to protect yourself",
+  intro:
+    "Most people don’t get cheated because they are careless—they get rushed. This guide is a calm workflow to protect you during repair + claim situations.",
+  blocks: [
+    {
+      title: "Common traps",
+      bullets: [
+        "Inflated estimate + unnecessary part replacement",
+        "Pressure to sign blank papers or unclear documents",
+        "Towing coordination that becomes expensive later",
+        "Cash negotiation that breaks claim transparency",
+      ],
+    },
+    {
+      title: "A safe claim repair workflow",
+      bullets: [
+        "Take photos/videos before repair begins",
+        "Ask for a written estimate and keep copies",
+        "Confirm cashless vs reimbursement path early",
+        "Avoid undocumented promises; keep communication documented",
+      ],
+    },
+    {
+      title: "What to do if you suspect overbilling",
+      bullets: [
+        "Ask for part-wise breakup and justification",
+        "Ask for old parts return (where applicable)",
+        "Pause and verify with insurer/agent before approving big changes",
+      ],
+    },
+  ],
+  localSignals: [
+    "Chennai insurance claim repair guidance",
+    "Car claim safety checklist Chennai",
+  ],
+  faqs: [
+    { q: "Is cashless always safer?", a: "Not always. The process matters more than the payment mode. We guide the workflow so the claim remains clean and dispute-resistant." },
+  ],
+},
+
+"used-vehicle-insurance-transfer": {
+  section: "Insights",
+  seoTitle: "Used vehicle purchase: insurance transfer checklist (buyers forget this)",
+  seoDesc:
+    "Buying a used car/bike: insurance transfer, ownership, NCB and claim eligibility basics—simple checklist to avoid future claim problems.",
+  h1: "Used vehicle purchase: insurance transfer checklist (buyers forget this)",
+  intro:
+    "Many claim disputes happen because ownership/insurance transfer wasn’t completed properly. This checklist helps used vehicle buyers stay safe.",
+  blocks: [
+    {
+      title: "Checklist (simple and practical)",
+      bullets: [
+        "Ownership transfer process started (RC transfer)",
+        "Insurance transfer aligned with owner name",
+        "Confirm policy type + expiry + add-ons status",
+        "Check claim history and NCB logic (as applicable)",
+      ],
+    },
+    {
+      title: "Where people get stuck later",
+      bullets: [
+        "Claim filed with wrong owner name or incomplete transfer",
+        "Policy details not matching vehicle documents",
+        "Assuming add-ons continue without confirming eligibility",
+      ],
+    },
+  ],
+  localSignals: [
+    "Used car insurance transfer Chennai",
+    "Used bike insurance transfer guidance Chennai",
+  ],
+  faqs: [
+    { q: "Can I claim immediately after buying used vehicle?", a: "Eligibility depends on transfer completion and policy terms. We help you make sure nothing breaks later." },
+  ],
+},
+
+"health-claim-cashless-vs-reimbursement": {
+  section: "Insights",
+  seoTitle: "Health claim: cashless vs reimbursement (what changes)",
+  seoDesc:
+    "Health insurance claim types explained: cashless vs reimbursement, documents, timelines, and common mistakes that delay settlement.",
+  h1: "Health claim: cashless vs reimbursement (what changes)",
+  intro:
+    "Health claims become stressful when documentation is unclear. This guide explains cashless vs reimbursement in a simple, practical way.",
+  blocks: [
+    {
+      title: "Cashless (what you must do right)",
+      bullets: [
+        "Inform early, share correct policy details",
+        "Keep ID proof + policy details ready",
+        "Follow hospital TPA workflow (don’t skip steps)",
+      ],
+    },
+    {
+      title: "Reimbursement (what to preserve)",
+      bullets: [
+        "Final bill + discharge summary",
+        "Doctor notes/prescriptions (as applicable)",
+        "Investigation reports and payment proof",
+        "Keep a clean timeline of admission-to-discharge",
+      ],
+    },
+    {
+      title: "Common delay reasons",
+      bullets: [
+        "Missing discharge summary or unclear documents",
+        "Late intimation",
+        "Not maintaining a clean proof folder",
+      ],
+    },
+  ],
+  localSignals: [
+    "Health claim support Chennai",
+    "Mediclaim reimbursement checklist Chennai",
+  ],
+  faqs: [
+    { q: "Which is better: cashless or reimbursement?", a: "Cashless reduces upfront burden. Reimbursement works when cashless network/process isn’t available. We guide the correct path for your situation." },
+  ],
+},
+
+"business-insurance-avoid-underinsurance": {
+  section: "Insights",
+  seoTitle: "Business insurance: a simple method to avoid underinsurance",
+  seoDesc:
+    "A practical underinsurance prevention method for MSMEs: stock + assets + machinery clarity, valuation basis and proof discipline that supports claims.",
+  h1: "Business insurance: a simple method to avoid underinsurance",
+  intro:
+    "Underinsurance is one of the fastest ways to reduce settlement. This is a simple approach MSMEs can use without complicated calculations.",
+  blocks: [
+    {
+      title: "A simple method (no confusion)",
+      bullets: [
+        "Separate stock, furniture, equipment and machinery (don’t lump sum)",
+        "Use invoice/valuation basis for major categories",
+        "Update when business expands or stock type changes",
+      ],
+    },
+    {
+      title: "Proof discipline that prevents disputes",
+      bullets: [
+        "Keep invoices + basic asset list updated",
+        "Maintain a simple photo proof folder (periodic)",
+        "Clarify business operations so wording matches reality",
+      ],
+    },
+  ],
+  localSignals: [
+    "Sholavaram MSME insurance guidance",
+    "Red Hills warehouse business insurance consultant",
+  ],
+  faqs: [
+    { q: "Can I reduce premium by lowering sum insured?", a: "You can, but it often reduces settlement later. We align sum insured to reality so claims don’t surprise you." },
+  ],
+},
 },
 
 

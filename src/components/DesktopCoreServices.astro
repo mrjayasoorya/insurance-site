@@ -1,12 +1,12 @@
 ---
-const { services } = Astro.props;
+const { services, hideViewAll = false } = Astro.props;
 ---
 <div class="section-head">
   <div class="title"></div>
-  <a class="link" href="/en/services/">
+  {!hideViewAll && <a class="link" href="/en/services/">
     Service Areas
     <span class="arrow" aria-hidden="true">→</span>
-  </a>
+  </a>}
 </div>
 
 <div class="plan-grid">

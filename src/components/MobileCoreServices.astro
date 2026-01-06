@@ -1,11 +1,11 @@
 ---
-const { services } = Astro.props;
+const { services, hideViewAll = false } = Astro.props;
 ---
 <div class="m-section-title">
-  <a class="link" href="/en/services/">
+  {!hideViewAll && <a class="link" href="/en/services/">
     <div class="label">Core Services</div>
     <div style="color:var(--muted);font-weight:950;">⋯</div>
-  </a>
+  </a>}
 </div>
 
 <div class="m-list">

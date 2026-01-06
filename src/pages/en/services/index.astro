@@ -55,7 +55,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
             </p>
           </section>
 
-          <DesktopCoreServices services={services} />
+          <DesktopCoreServices services={services} hideViewAll={true}/>
 <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -93,7 +93,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
             </p>
           </section>
 
-          <MobileCoreServices services={services} />
+          <MobileCoreServices services={services} hideViewAll={true}/>
 <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Contact CTA">
             <FooterCtaBar
