@@ -1,0 +1,338 @@
+---
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import FAQSection from "../../../components/FAQSection.astro";
+
+import { siteData, EN } from "../../../content/siteData";
+
+// ✅ Service links (internal linking)
+const services = (siteData.coreServices || []).map((s) => ({
+  ...s,
+  href: EN(`services/${s.slug}`),
+}));
+
+const brand = siteData.brand;
+const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/faqs/`;
+
+const title = `FAQs | ${brand.name}`;
+const description =
+  "Real insurance FAQs for Chennai North & NH corridors: claims, documents, fleet, warehouse, contractors, MSME, liability and personal support — written in plain language.";
+
+// ✅ JSON-LD FAQPage from siteData.faqsPage
+const allFaqItems = Object.values(siteData.faqsPage || {}).flatMap((g) => g?.items || []);
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: allFaqItems.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- =========================
+             DESKTOP
+        ========================== -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Claim-first FAQs for Chennai North & NH-facing business belts.",
+                phone: brand.phone,
+                areaChips: brand.areaChips,
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="faq-page-title">
+            <h1 id="faq-page-title" class="section-title">FAQs</h1>
+            <p class="section-sub">
+              Real questions we get from fleets, warehouses, contractors, MSMEs and families. Built to reduce claim delays by improving clarity and documentation discipline.
+            </p>
+          </section>
+
+
+          {
+            Object.keys(siteData.faqsPage || {}).map((key) => {
+              const faqGroup = siteData.faqsPage[key];
+              return faqGroup ? (
+                <FAQSection
+                  title={faqGroup.title}
+                  intro={faqGroup.intro}
+                  items={faqGroup.items}
+                  sectionId={key}
+                />
+              ) : null;
+            })
+          }
+          <!-- <FAQSection
+            title={siteData.faqsPage.claimsDocs.title}
+            intro={siteData.faqsPage.claimsDocs.intro}
+            items={siteData.faqsPage.claimsDocs.items}
+            sectionId="claims-docs"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.transportFleet.title}
+            intro={siteData.faqsPage.transportFleet.intro}
+            items={siteData.faqsPage.transportFleet.items}
+            sectionId="transport-fleet"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.industrialProperty.title}
+            intro={siteData.faqsPage.industrialProperty.intro}
+            items={siteData.faqsPage.industrialProperty.items}
+            sectionId="industrial-property"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.constructionContractor.title}
+            intro={siteData.faqsPage.constructionContractor.intro}
+            items={siteData.faqsPage.constructionContractor.items}
+            sectionId="construction"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.heavyEquipment.title}
+            intro={siteData.faqsPage.heavyEquipment.intro}
+            items={siteData.faqsPage.heavyEquipment.items}
+            sectionId="heavy-equipment"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.businessMsme.title}
+            intro={siteData.faqsPage.businessMsme.intro}
+            items={siteData.faqsPage.businessMsme.items}
+            sectionId="business-msme"
+          />
+
+          <FAQSection
+            title={siteData.faqsPage.liabilityMarineEmployeePersonal.title}
+            intro={siteData.faqsPage.liabilityMarineEmployeePersonal.intro}
+            items={siteData.faqsPage.liabilityMarineEmployeePersonal.items}
+            sectionId="liability-marine-personal"
+          /> -->
+
+          <!-- ✅ Up-front identity (bots + LLMs) -->
+          <LocalIdentitySection brand={brand} pageTitle="FAQs" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <!-- ✅ Internal linking to services -->
+          <section class="section section-padding" aria-labelledby="services-title">
+            <h2 id="services-title" class="section-title">Services we support</h2>
+            <p class="section-sub">
+              Explore service pages for structured, claim-first guidance. Each page is written to be clear for users and crawlers.
+            </p>
+
+            <ul class="service-links" role="list" aria-label="Service links">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+                    <section aria-labelledby="area-title" class="section section-padding">
+  <h2 id="area-title" class="section-title">
+    {siteData.faqsAreas.title}
+  </h2>
+
+  <p class="section-sub">
+    {siteData.faqsAreas.intro}
+  </p>
+
+  <ul class="area-rows">
+    {siteData.faqsAreas.primaryAreas.map((a) => (
+      <li class="area-row">
+        <strong>{a.label}</strong>
+        <p class="area-notes">{a.note}</p>
+      </li>
+    ))}
+  </ul>
+
+  <p class="section-sub" style="margin-top:10px">
+    {siteData.faqsAreas.note}
+  </p>
+</section>
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+
+        <!-- =========================
+             MOBILE
+        ========================== -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Claim-first FAQs for Chennai North & NH-facing belts.",
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="m-faq-page-title">
+            <h1 id="m-faq-page-title" class="section-title">FAQs</h1>
+            <p class="section-sub">
+              Real questions across claims, fleets, warehouses, contractors, MSMEs and families.
+            </p>
+          </section>
+
+{
+            Object.keys(siteData.faqsPage || {}).map((key) => {
+              const faqGroup = siteData.faqsPage[key];
+              return faqGroup ? (
+                <FAQSection
+                  title={faqGroup.title}
+                  intro={faqGroup.intro}
+                  items={faqGroup.items}
+                  sectionId={key}
+                />
+              ) : null;
+            })
+          }
+
+          <LocalIdentitySection brand={brand} pageTitle="FAQs" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section class="section section-padding" aria-labelledby="m-services-title">
+            <h2 id="m-services-title" class="section-title">Services we support</h2>
+            <p class="section-sub">Explore service pages for structured, claim-first guidance.</p>
+
+            <ul class="service-links" role="list">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section aria-labelledby="area-title" class="section section-padding">
+  <h2 id="area-title" class="section-title">
+    {siteData.faqsAreas.title}
+  </h2>
+
+  <p class="section-sub">
+    {siteData.faqsAreas.intro}
+  </p>
+
+  <ul class="area-rows">
+    {siteData.faqsAreas.primaryAreas.map((a) => (
+      <li class="area-row">
+        <strong>{a.label}</strong>
+        <p class="area-notes">{a.note}</p>
+      </li>
+    ))}
+  </ul>
+
+  <p class="section-sub" style="margin-top:10px">
+    {siteData.faqsAreas.note}
+  </p>
+</section>
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={brand} />
+    <FloatingContactCta brand={brand} />
+  </body>
+</html>
+
+<style is:global>
+  .service-links{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .svc{
+    display:block;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+  .svc-title{
+    display:block;
+    font-weight: 950;
+    font-size: 13.5px;
+  }
+  .svc-desc{
+    display:block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+/**
+ * GooglePostsPhotosSection
+ * - Reusable gallery section to embed on Home / Services / About etc.
+ * - Uses siteData.media.googlePosts.images (public folder links)
+ */
+const {
+  title = "Google Posts (Photos)",
+  subtitle = "",
+  images = [],
+  ctaLabel = "View all photos",
+  ctaHref = "/en/photos/",
+} = Astro.props;
+
+const safeImages = (images || []).filter((img) => img?.src);
+---
+
+<section class="section section-padding" aria-labelledby="gp-photos-title">
+  <div class="head">
+    <div>
+      <h2 id="gp-photos-title" class="section-title">{title}</h2>
+      {subtitle ? <p class="section-sub">{subtitle}</p> : null}
+    </div>
+
+    <a class="view-all" href={ctaHref} aria-label={ctaLabel}>{ctaLabel}</a>
+  </div>
+
+  <ul class="tiles" role="list" aria-label="Google post photos">
+    {safeImages.slice(0, 8).map((img) => {
+      const shape = img.shape || "landscape";
+      return (
+        <li class={`tile ${shape}`}>
+          <a class="tile-link" href={img.src} target="_blank" rel="noopener" aria-label={img.alt || "Photo"}>
+            <img
+              src={img.src}
+              alt={img.alt || "Photo"}
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900"
+            />
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</section>
+
+<style is:global>
+  .head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap: 12px;
+  }
+  .view-all{
+    font-weight: 950;
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: .95;
+    white-space: nowrap;
+  }
+
+  /* ✅ Fixed square grid */
+  .tiles{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  @media (min-width: 900px){
+    .tiles{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
+  .tile{
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    overflow: hidden;
+
+    /* ✅ fixed square box */
+    aspect-ratio: 0.7 / 0.4;
+  }
+
+  .tile-link{ display:block; width:100%; height:100%; }
+
+  .tile img{
+    width: 100%;
+    height: 100%;
+    display:block;
+    object-fit: cover; /* ✅ crop if needed */
+    transform: scale(1);
+    transition: transform .18s ease;
+  }
+  .tile:hover img{ transform: scale(1.02); }
+</style>
+

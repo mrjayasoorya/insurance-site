@@ -215,6 +215,18 @@ const jsonLd = {
             </section>
           ) : null}
 
+          <section aria-labelledby="office-info" class="section section-padding">
+  <h2 id="office-info" class="section-title">
+    {siteData.officeInfo.title}
+  </h2>
+
+  <ul class="bullets">
+    {siteData.officeInfo.points.map((p) => (
+      <li>{p}</li>
+    ))}
+  </ul>
+</section>
+
           <!-- ✅ Areas (non-confusing, not fake) -->
           <section class="section section-padding" aria-labelledby="areas-title">
             <h2 id="areas-title" class="section-title">Areas we commonly support</h2>

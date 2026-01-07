@@ -1,0 +1,247 @@
+---
+import DesktopHero from "../../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../../components/MobileHero.astro";
+import MobileAccordion from "../../../../../components/MobileAccordion.astro";
+import FooterCtaBar from "../../../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import { siteData } from "../../../../../content/siteData";
+
+export async function getStaticPaths() {
+  const all = siteData?.servicesDetail || {};
+  const paths = [];
+
+  for (const category of Object.keys(all)) {
+    const services = all[category] || {};
+    for (const service of Object.keys(services)) {
+      paths.push({ params: { category, service } });
+    }
+  }
+  return paths;
+}
+
+const { category, service: serviceSlug } = Astro.params;
+
+const data = siteData?.servicesDetail?.[category]?.[serviceSlug];
+if (!data) throw new Error(`Unknown service: ${category}/${serviceSlug}`);
+
+const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/${category}/${serviceSlug}/`;
+
+const orgId = `${canonicalBase.replace(/\/$/, "")}/#organization`;
+const websiteId = `${canonicalBase.replace(/\/$/, "")}/#website`;
+const webPageId = `${canonical}#webpage`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": orgId,
+      name: siteData.brand.name,
+      url: canonicalBase.replace(/\/$/, ""),
+      telephone: siteData.brand.phoneE164,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteData.brand.streetAddress,
+        addressLocality: siteData.brand.addressLocality,
+        addressRegion: siteData.brand.addressRegion,
+        postalCode: siteData.brand.postalCode,
+        addressCountry: "IN",
+      },
+      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
+    },
+    { "@type": "WebSite", "@id": websiteId, url: canonicalBase.replace(/\/$/, ""), name: siteData.brand.name, publisher: { "@id": orgId } },
+    { "@type": "WebPage", "@id": webPageId, url: canonical, name: data.seoTitle, description: data.seoDesc, isPartOf: { "@id": websiteId } },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${canonicalBase.replace(/\/$/, "")}/en/` },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${canonicalBase.replace(/\/$/, "")}/en/services/` },
+        { "@type": "ListItem", position: 3, name: category, item: `${canonicalBase.replace(/\/$/, "")}/en/services/${category}/` },
+        { "@type": "ListItem", position: 4, name: data.heroH1, item: canonical },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: data.heroH1,
+      description: data.heroP,
+      url: canonical,
+      provider: { "@id": orgId },
+      areaServed: (siteData.brand.areaChips || []).map((x) => ({ "@type": "Place", name: x })),
+      subjectOf: { "@id": webPageId },
+    },
+    ...(data.faqs?.length
+      ? [
+          {
+            "@type": "FAQPage",
+            "@id": `${canonical}#faq`,
+            mainEntity: data.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{data.seoTitle} | {siteData.brand.name}</title>
+    <meta name="description" content={data.seoDesc} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: data.heroP, phone: siteData.brand.phone, areaChips: siteData.brand.areaChips }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub">{data.heroP}</p>
+          </section>
+
+          <section class="section section-padding" aria-label="Who this is for">
+            <h2 class="section-title">Who this is for</h2>
+            <ul class="bullets">{data.whoFor?.map((x) => <li>{x}</li>)}</ul>
+          </section>
+
+          {data.whatCanGoWrong?.length ? (
+            <section class="section section-padding" aria-label="What can go wrong">
+              <h2 class="section-title">What can go wrong (common claim rejection reasons)</h2>
+              <ul class="bullets">{data.whatCanGoWrong.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <section class="section section-padding" aria-label="Local fit">
+            <h2 class="section-title">Local context</h2>
+            <p class="readable">{data.localFit}</p>
+          </section>
+
+          {data.alsoKnownAs?.length ? (
+            <section class="section section-padding" aria-label="Also known as">
+              <h3 class="section-title">Also known as</h3>
+              <p class="muted readable">{data.alsoKnownAs.join(" • ")}</p>
+            </section>
+          ) : null}
+
+          <section class="section section-padding" aria-label="What we focus on">
+            <h2 class="section-title">What we focus on (claim-first)</h2>
+            <ul class="bullets">{data.keyCoverFocus?.map((x) => <li>{x}</li>)}</ul>
+          </section>
+
+          <section class="section section-padding" aria-label="Claim documents checklist">
+            <h2 class="section-title">Claim-ready documents</h2>
+            <ul class="bullets">{data.claimDocs?.map((x) => <li>{x}</li>)}</ul>
+          </section>
+
+          <section class="section section-padding" aria-label="Common mistakes">
+            <h2 class="section-title">Common mistakes we prevent</h2>
+            <ul class="bullets">{data.commonMistakes?.map((x) => <li>{x}</li>)}</ul>
+          </section>
+
+          {data.areaRealityTitle && data.areaRealityText ? (
+            <section class="section section-padding" aria-label="Area reality">
+              <h2 class="section-title">{data.areaRealityTitle}</h2>
+              <p class="readable">{data.areaRealityText}</p>
+            </section>
+          ) : null}
+
+          <section class="section section-padding" aria-label="Local signals">
+            <h2 class="section-title">Local service signals</h2>
+            <p class="muted readable">{data.areaSignals?.join(" • ")}</p>
+          </section>
+
+          {data.faqs?.length ? (
+            <section class="section section-padding" aria-label="FAQs">
+              <h2 class="section-title">FAQs</h2>
+              <MobileAccordion sections={[{ title: "Questions people ask", items: data.faqs.map((f) => ({ strong: f.q, text: f.a })) }]} defaultOpen={true} />
+            </section>
+          ) : null}
+
+          {data.internalLinks?.length ? (
+            <section class="section section-padding" aria-label="Related pages">
+              <h2 class="section-title">Related pages</h2>
+              <div class="grid grid-2">
+                {data.internalLinks.map((l) => (
+                  <a class="card" href={l.href}>
+                    <h3 class="card-title">{l.label}</h3>
+                    <p class="card-desc">Open</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: data.heroP, phone: siteData.brand.phone, areaChips: [] }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub">{data.heroP}</p>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Who this is for</h2>
+            <ul class="bullets">{data.whoFor?.map((x) => <li>{x}</li>)}</ul>
+          </section>
+
+          {data.whatCanGoWrong?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Common claim rejection reasons</h2>
+              <ul class="bullets">{data.whatCanGoWrong.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu />
+    <FloatingContactCta brand={siteData.brand} />
+  </body>
+</html>

@@ -1,39 +1,65 @@
 ---
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
-import DesktopCoreServices from "../../../components/DesktopCoreServices.astro";
-import MobileCoreServices from "../../../components/MobileCoreServices.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-
-const services = (siteData.coreServices || []).map((s) => ({
-  ...s,
-  href: `/en/services/${s.slug}/`,
-}));
+import { buildMeta } from "../../../lib/seo";
 
 const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
 const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
+
+const meta = buildMeta({
+  title: `Services | ${siteData.brand.name}`,
+  description:
+    "Insurance services for commercial, transport, industrial and claim support—structured for real NH/industrial belt risks around Sholavaram, Red Hills and Madhavaram.",
+  canonical,
+});
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Services | {siteData.brand.name}</title>
-    <meta
-      name="description"
-      content="Commercial, transport, industrial and claim support services in Sholavaram, Red Hills Toll belt, Madhavaram and Chennai outskirts."
-    />
-    <link rel="canonical" href={canonical} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
+
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+
+    {/* Truthy: WebPage + Breadcrumb + Organization reference */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": canonical + "#webpage",
+            url: canonical,
+            name: meta.title,
+            description: meta.description,
+            isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${canonicalBase.replace(/\/$/, "")}/en/` },
+              { "@type": "ListItem", position: 2, name: "Services", item: canonical },
+            ],
+          },
+        ],
+      })} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
+
+        {/* DESKTOP */}
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -41,22 +67,76 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
                 subtitle:
-                  "Commercial-first insurance guidance for Chennai outskirts (NH + industrial belts) with claim-ready documentation mindset.",
+                  "Insurance guidance for commercial, vehicle and industrial risks — built around documentation and claim readiness (not just premium).",
                 phone: siteData.brand.phone,
                 areaChips: siteData.brand.areaChips,
               }}
             />
           </header>
 
-          <section class="section section-padding">
-            <h1 class="section-title">Services</h1>
-            <p class="section-sub">
-              Structured guidance for high-premium commercial/industrial needs and stable domestic support across Chennai major areas.
+          {/* SECTION 1: Overview */}
+          <section class="section section-padding" aria-label="Service overview">
+            <h1 class="section-title">Insurance Services for Commercial, Vehicle & Industrial Risks</h1>
+            <p class="section-sub readable">
+              For businesses, transport operators and families across Sholavaram, Red Hills, Madhavaram and Chennai outskirts.
+              We focus on coverage clarity + documentation habits that prevent claim delays later.
             </p>
           </section>
 
-          <DesktopCoreServices services={services} hideViewAll={true}/>
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          {/* SECTION 2: Popular services (area-driven) */}
+          <section class="section section-padding" aria-label="Most requested services">
+            <h2 class="section-title">Most Requested Insurance Services Around Red Hills & Sholavaram</h2>
+            <div class="grid grid-2">
+              {siteData.servicePopular?.slice(0, 8).map((x) => (
+                <a class="card" href={x.href}>
+                  <div class="card-row">
+                    <span class="chip">{x.tag}</span>
+                  </div>
+                  <h3 class="card-title">{x.title}</h3>
+                  <p class="card-desc">Open guidance</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION 3: Categories (authority layer) */}
+          <section class="section section-padding" aria-label="Service categories">
+            <h2 class="section-title">Insurance Categories We Specialize In</h2>
+            <div class="grid grid-2">
+              {siteData.serviceCategories?.map((c) => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION 4: Vehicle type */}
+          <section class="section section-padding" aria-label="Vehicle based services">
+            <h2 class="section-title">Vehicle-Based Insurance Services</h2>
+            <div class="chips">
+              {siteData.serviceVehicleTypes?.map((x) => (
+                <a class="chiplink" href={x.href}>{x.label}</a>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION 5: Areas (contextual) */}
+          <section class="section section-padding" aria-label="Areas we commonly serve">
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <div class="grid grid-2">
+              {siteData.serviceAreas?.map((a) => (
+                <a class="card" href={a.href}>
+                  <h3 class="card-title">{a.label}</h3>
+                  <p class="card-desc readable">{a.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -72,6 +152,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
           </section>
         </div>
 
+        {/* MOBILE */}
         <div class="ui-mobile">
           <header>
             <MobileHero
@@ -79,7 +160,7 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
                 subtitle:
-                  "Commercial-first insurance guidance for Chennai outskirts (NH + industrial belts) with claim-ready documentation mindset.",
+                  "Commercial, vehicle and industrial insurance guidance—built around documentation and claim readiness.",
                 phone: siteData.brand.phone,
                 areaChips: [],
               }}
@@ -87,14 +168,60 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
           </header>
 
           <section class="section section-padding">
-            <h1 class="section-title">Services</h1>
-            <p class="section-sub">
-              Commercial, transport, industrial and claim support—structured for crawl clarity and user confidence.
+            <h1 class="section-title">Insurance Services</h1>
+            <p class="section-sub readable">
+              Commercial-first guidance for NH + industrial belts (Sholavaram, Red Hills, Madhavaram).
             </p>
           </section>
 
-          <MobileCoreServices services={services} hideViewAll={true}/>
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          <section class="section section-padding">
+            <h2 class="section-title">Most Requested Services</h2>
+            <div class="grid grid-1">
+              {siteData.servicePopular?.slice(0, 8).map((x) => (
+                <a class="card" href={x.href}>
+                  <div class="card-row"><span class="chip">{x.tag}</span></div>
+                  <h3 class="card-title">{x.title}</h3>
+                  <p class="card-desc">Open guidance</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Categories</h2>
+            <div class="grid grid-1">
+              {siteData.serviceCategories?.map((c) => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Vehicle Types</h2>
+            <div class="chips">
+              {siteData.serviceVehicleTypes?.map((x) => (
+                <a class="chiplink" href={x.href}>{x.label}</a>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <div class="grid grid-1">
+              {siteData.serviceAreas?.map((a) => (
+                <a class="card" href={a.href}>
+                  <h3 class="card-title">{a.label}</h3>
+                  <p class="card-desc readable">{a.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -111,7 +238,23 @@ const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
         </div>
       </div>
     </main>
+
     <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
+
+    <style>
+      .grid{display:grid;gap:12px}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-1{grid-template-columns:1fr}
+      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+      .card-title{font-size:16px;margin:8px 0 6px}
+      .card-desc{margin:0;opacity:.85}
+      .readable{max-width:78ch}
+      .chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);font-size:12px;opacity:.9}
+      .chips{display:flex;flex-wrap:wrap;gap:10px}
+      .chiplink{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);text-decoration:none}
+      .card-row{display:flex;gap:8px;align-items:center}
+      @media (max-width: 980px){.grid-2{grid-template-columns:1fr}}
+    </style>
   </body>
 </html>

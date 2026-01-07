@@ -1,0 +1,250 @@
+---
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "../../../components/FloatingContactCta.astro";
+import FloatingMenu from "../../../components/FloatingMenu.astro";
+import BacklinksRow from "../../../components/BacklinksRow.astro";
+import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+
+import { siteData, EN } from "../../../content/siteData";
+
+// ✅ service links
+const services = (siteData.coreServices || []).map((s) => ({
+  ...s,
+  href: EN(`services/${s.slug}`),
+}));
+
+const brand = siteData.brand;
+const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
+const canonical = `${canonicalBase.replace(/\/$/, "")}/en/photos/`;
+
+const page = siteData.media?.photosPage || {};
+const title = `${page.title || "Photos"} | ${brand.name}`;
+const description = page.subtitle || "Photos and visuals from our guidance posts and service explainers.";
+
+// ✅ Images
+const images = (page.images || []).filter((i) => i?.src);
+
+// ✅ JSON-LD (simple + safe)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      name: page.title || "Photos",
+      url: canonical,
+      description,
+      inLanguage: "en",
+      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
+      url: canonicalBase,
+      name: brand.name,
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: brand.subtitle,
+                phone: brand.phone,
+                areaChips: brand.areaChips,
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="photos-title">
+            <h1 id="photos-title" class="section-title">{page.title || "Photos"}</h1>
+            <p class="section-sub">{description}</p>
+
+            <ul class="photo-grid" role="list" aria-label="Photo gallery">
+              {images.map((img) => {
+                const shape = img.shape || "landscape";
+                return (
+                  <li class={`ph ${shape}`}>
+                    <a href={img.src} target="_blank" rel="noopener" class="ph-link" aria-label={img.alt || "Photo"}>
+                      <img src={img.src} alt={img.alt || "Photo"} loading="lazy" decoding="async" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+
+          <!-- ✅ Services we support -->
+          <section class="section section-padding" aria-labelledby="services-title">
+            <h2 id="services-title" class="section-title">Services we support</h2>
+            <p class="section-sub">Explore service pages for clear, structured guidance.</p>
+
+            <ul class="service-links" role="list">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <LocalIdentitySection brand={brand} pageTitle="Photos" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+
+        <!-- ========================= MOBILE ========================= -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: brand.subtitle,
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding" aria-labelledby="m-photos-title">
+            <h1 id="m-photos-title" class="section-title">{page.title || "Photos"}</h1>
+            <p class="section-sub">{description}</p>
+
+            <ul class="photo-grid" role="list" aria-label="Photo gallery">
+              {images.map((img) => {
+                const shape = img.shape || "landscape";
+                return (
+                  <li class={`ph ${shape}`}>
+                    <a href={img.src} target="_blank" rel="noopener" class="ph-link" aria-label={img.alt || "Photo"}>
+                      <img src={img.src} alt={img.alt || "Photo"} loading="lazy" decoding="async" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-services-title">
+            <h2 id="m-services-title" class="section-title">Services we support</h2>
+            <ul class="service-links" role="list">
+              {services.map((s) => (
+                <li class="service-link">
+                  <a class="svc" href={s.href}>
+                    <span class="svc-title">{s.title}</span>
+                    <span class="svc-desc">{s.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <LocalIdentitySection brand={brand} pageTitle="Photos" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <section aria-label="Contact CTA">
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={brand.whatsappE164}
+              whatsappText={brand.whatsappPrefill}
+              callNumber={brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={brand} />
+    <FloatingContactCta brand={brand} />
+  </body>
+</html>
+
+<style is:global>
+  .photo-grid{
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+  }
+
+  .ph{
+    grid-column: span 12;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    overflow: hidden;
+  }
+
+  @media (min-width: 720px){
+    .ph{ grid-column: span 6; }
+  }
+  @media (min-width: 1024px){
+    .ph{ grid-column: span 4; }
+  }
+
+  .ph-link{
+    display:block;
+    padding: 10px;
+  }
+
+  /* ✅ FULL image visible, no cropping */
+  .ph img{
+    width: 100%;
+    height: auto;
+    display:block;
+    object-fit: contain; /* safe even though height auto */
+    background: transparent;
+    border-radius: 12px;
+  }
+</style>
+

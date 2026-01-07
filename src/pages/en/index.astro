@@ -22,6 +22,7 @@ import { siteData } from "../../content/siteData";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import GooglePostsPhotosSection from "../../components/GooglePostsPhotosSection.astro";
 
 const HOME = "/en/";
 
@@ -227,6 +228,15 @@ const jsonLd = {
               <h2 id="core-services-title" class="sr-only">Core services</h2>
               <DesktopCoreServices services={coreServices} />
             </section>
+
+            
+            <GooglePostsPhotosSection
+  title={siteData.media.googlePosts.title}
+  subtitle={siteData.media.googlePosts.subtitle}
+  images={siteData.media.googlePosts.images}
+  ctaLabel="Photos"
+  ctaHref={EN("photos/")}
+/>
 
             <section class="section section-padding" aria-label="Quick links">
   <div class="grid grid-2">
@@ -446,6 +456,13 @@ const jsonLd = {
               <h2 id="m-core-services-title" class="sr-only">Core services</h2>
               <MobileCoreServices services={coreServices} />
             </section>
+                        <GooglePostsPhotosSection
+  title={siteData.media.googlePosts.title}
+  subtitle={siteData.media.googlePosts.subtitle}
+  images={siteData.media.googlePosts.images}
+  ctaLabel="Photos"
+  ctaHref={EN("photos/")}
+/>
 
             <section class="section section-padding" aria-label="Quick links">
   <div class="grid grid-2">

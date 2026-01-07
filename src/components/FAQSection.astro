@@ -1,0 +1,141 @@
+---
+/**
+ * FAQSection.astro
+ * - Semantic collapsible FAQs (details/summary)
+ * - Accessible focus styles
+ * - Anchors for each question
+ *
+ * Props:
+ *  title: string
+ *  intro?: string
+ *  items: Array<{ q: string, a: string }>
+ *  sectionId?: string (optional stable id for anchors)
+ */
+const { title, intro = "", items = [], sectionId = "" } = Astro.props;
+
+const slugify = (s) =>
+  String(s || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const baseId = sectionId || slugify(title);
+---
+
+<section class="section section-padding faq" aria-labelledby={`${baseId}-title`}>
+  <header class="faq__head">
+    <h2 id={`${baseId}-title`} class="section-title">{title}</h2>
+    {intro ? <p class="section-sub">{intro}</p> : null}
+  </header>
+
+  <ul class="faq__list" role="list" aria-label={`${title} questions`}>
+    {items.map((it, idx) => {
+      const qId = `${baseId}-${idx + 1}-${slugify(it.q).slice(0, 40)}`;
+      return (
+        <li class="faq__item">
+          <details class="faq__details" id={qId} open={idx < 2}>
+            <summary class="faq__summary">
+              <span class="faq__q">{it.q}</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div class="faq__answer" role="region" aria-label={`Answer: ${it.q}`}>
+              <p class="faq__a">{it.a}</p>
+
+              {/* <p class="faq__permalink">
+                <a class="inline-link" href={`#${qId}`}>
+                  Link to this question
+                </a>
+              </p> */}
+            </div>
+          </details>
+        </li>
+      );
+    })}
+  </ul>
+</section>
+
+<style is:global>
+  .faq{ margin-top: 6px; }
+  .faq__head{ margin-bottom: 10px; }
+
+  .faq__list{
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+
+  .faq__item{}
+
+  .faq__details{
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+    overflow: hidden;
+  }
+
+  .faq__summary{
+    cursor: pointer;
+    padding: 12px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    list-style: none;
+    user-select: none;
+  }
+
+  /* remove default marker */
+  .faq__summary::-webkit-details-marker{ display:none; }
+
+  .faq__q{
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 950;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .faq__icon{
+    font-weight: 950;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    width: 26px;
+    height: 26px;
+    display:grid;
+    place-items:center;
+    flex: 0 0 auto;
+  }
+
+  /* open state */
+  details[open] .faq__icon{ transform: rotate(45deg); }
+
+  .faq__answer{
+    padding: 0 14px 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq__a{
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .faq__permalink{
+    margin: 10px 0 0;
+    font-size: 12.5px;
+  }
+
+  /* focus */
+  .faq__summary:focus-visible{
+    outline: 2px solid rgba(55, 130, 255, .55);
+    outline-offset: 2px;
+    border-radius: 14px;
+  }
+</style>

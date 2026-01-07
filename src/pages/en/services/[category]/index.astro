@@ -1,0 +1,197 @@
+---
+import DesktopHero from "../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "../../../../components/FloatingContactCta.astro";
+import FloatingMenu from "../../../../components/FloatingMenu.astro";
+import BacklinksRow from "../../../../components/BacklinksRow.astro";
+import { siteData } from "../../../../content/siteData";
+import { buildMeta } from "../../../../lib/seo";
+
+export async function getStaticPaths() {
+  return (siteData.serviceCategories || []).map((c) => ({ params: { category: c.slug } }));
+}
+
+const { category } = Astro.params;
+const cat = (siteData.serviceCategories || []).find((x) => x.slug === category);
+if (!cat) throw new Error(`Unknown category: ${category}`);
+
+const base = (siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in").replace(/\/$/, "");
+const canonical = `${base}/en/services/${category}/`;
+
+const meta = buildMeta({
+  title: `${cat.title} | Services | ${siteData.brand.name}`,
+  description: cat.desc,
+  canonical,
+});
+
+// Category schema (truthy)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": canonical + "#collection",
+      url: canonical,
+      name: cat.title,
+      description: cat.desc,
+      isPartOf: { "@id": `${base}/#website` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${base}/en/` },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${base}/en/services/` },
+        { "@type": "ListItem", position: 3, name: cat.title, item: canonical },
+      ],
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: cat.desc,
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{cat.title}</h1>
+            <p class="section-sub readable">{cat.desc}</p>
+          </section>
+
+          <section class="section section-padding" aria-label="What this category covers">
+            <h2 class="section-title">What this category covers</h2>
+            <p class="readable">
+              This category groups related insurance problems so you can choose the correct service page without confusion.
+              We focus on accurate disclosures, policy wording clarity and documentation habits that protect claims.
+            </p>
+          </section>
+
+          <section class="section section-padding" aria-label="Common problems">
+            <h2 class="section-title">Common real-world problems (what causes claim friction)</h2>
+            <ul class="bullets">
+              {cat.problems?.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-label="Popular services in this category">
+            <h2 class="section-title">Popular services under this category</h2>
+            <div class="grid grid-2">
+              {cat.children?.map((x) => (
+                <a class="card" href={x.href}>
+                  <h3 class="card-title">{x.title}</h3>
+                  <p class="card-desc">Open decision guide</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-label="Why risk sensitive">
+            <h2 class="section-title">Why this category is risk-sensitive</h2>
+            <p class="readable">
+              In high-risk categories, small disclosure or document gaps can lead to delays or settlement reduction.
+              We help prevent that by aligning operations, valuation and proof trail early.
+            </p>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: cat.desc,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{cat.title}</h1>
+            <p class="section-sub readable">{cat.desc}</p>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Common problems</h2>
+            <ul class="bullets">
+              {cat.problems?.map((p) => <li>{p}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Services</h2>
+            <div class="grid grid-1">
+              {cat.children?.map((x) => (
+                <a class="card" href={x.href}>
+                  <h3 class="card-title">{x.title}</h3>
+                  <p class="card-desc">Open</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu />
+    <FloatingContactCta brand={siteData.brand} />
+
+    <style>
+      .grid{display:grid;gap:12px}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-1{grid-template-columns:1fr}
+      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+      .card-title{font-size:16px;margin:0 0 6px}
+      .card-desc{margin:0;opacity:.85}
+      .readable{max-width:78ch}
+      @media (max-width: 980px){.grid-2{grid-template-columns:1fr}}
+    </style>
+  </body>
+</html>
