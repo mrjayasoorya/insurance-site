@@ -8,6 +8,7 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import { siteData } from "../../../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../../lib/seo";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 export async function getStaticPaths() {
   const all = siteData?.servicesDetail || {};
@@ -170,7 +171,7 @@ const jsonLd = buildJsonLd({
           ) : null}
 
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="serviceDetail" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -207,7 +208,7 @@ const jsonLd = buildJsonLd({
           ) : null}
 
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="serviceDetail" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}

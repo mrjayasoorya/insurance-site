@@ -25,6 +25,7 @@ import BacklinksRow from "../../components/BacklinksRow.astro";
 import GooglePostsPhotosSection from "../../components/GooglePostsPhotosSection.astro";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 
 // -----------------------------
@@ -338,7 +339,7 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="home" />
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="sr-only">Contact</h2>
               <FooterCtaBar
@@ -454,7 +455,7 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+            <QuickHelpLinks pageType="home" />
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}

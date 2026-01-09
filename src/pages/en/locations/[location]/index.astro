@@ -12,6 +12,7 @@ import { siteData } from "../../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../lib/seo";
 
 import LinkChipsSection from "src/components/LinkChipsSection.astro";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 export async function getStaticPaths() {
   const all = siteData.locationsDetail || {};
@@ -157,7 +158,7 @@ const jsonLd = buildJsonLd({
   variant="chips"
 />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="locationDetail" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -225,7 +226,7 @@ const jsonLd = buildJsonLd({
   variant="chips"
 />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="locationDetail" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}

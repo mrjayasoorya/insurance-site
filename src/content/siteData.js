@@ -5900,5 +5900,57 @@ intentPages: {
   },
 },
 
+
+  // Intent pages (near-me / renewals / claims etc). Keep hrefs canonical and EN() will wrap.
+  intentPagesURLs: {
+    // Used when pageType not found
+    generic: [
+      { title: "Insurance near me", desc: "Office-based support from Sholavaram + nearby belts.", href: "/insurance-near-me/" },
+      { title: "Insurance renewal help", desc: "Car, bike, commercial renewals + renewal checks.", href: "/insurance-renewal-near-me/" },
+      { title: "Insurance claim help", desc: "Documents + timeline discipline to reduce delays.", href: "/insurance-claim-help/" },
+    ],
+
+    home: [
+      { title: "Insurance near me", desc: "Find office support + WhatsApp guidance.", href: "/insurance-near-me/" },
+      { title: "Policy renewal near me", desc: "Renewal checks: IDV/NCB/add-ons/permits.", href: "/insurance-renewal-near-me/" },
+      { title: "Insurance claim help", desc: "Claim documents + reporting steps.", href: "/insurance-claim-help/" },
+      { title: "Commercial insurance guidance", desc: "Fleet, warehouse, contractor, CPM.", href: "/commercial-insurance-agent-near-me/" },
+    ],
+
+    services: [
+      { title: "Commercial insurance agent", desc: "Fleet, warehouse, contractor, liability.", href: "/commercial-insurance-agent-near-me/" },
+      { title: "Insurance renewal near me", desc: "Motor + commercial renewals and checks.", href: "/insurance-renewal-near-me/" },
+      { title: "Insurance claim help", desc: "Documents + timeline discipline.", href: "/insurance-claim-help/" },
+    ],
+
+    faqs: [
+      { title: "Insurance claim help", desc: "First steps + documents checklist.", href: "/insurance-claim-help/" },
+      { title: "Renewal support", desc: "What to check before paying.", href: "/insurance-renewal-near-me/" },
+      { title: "Office & local support", desc: "Where we operate + what to bring.", href: "/insurance-near-me/" },
+    ],
+
+    locations: [
+      { title: "Insurance near me", desc: "Sholavaram office support + nearby service belts.", href: "/insurance-near-me/" },
+      { title: "Commercial insurance guidance", desc: "NH/industrial belt risks + documentation discipline.", href: "/commercial-insurance-agent-near-me/" },
+      { title: "Claim support", desc: "Claim documents + timeline discipline.", href: "/insurance-claim-help/" },
+    ],
+
+    locationDetail: [
+      { title: "Insurance renewal help", desc: "Renewal checks and clean documentation.", href: "/insurance-renewal-near-me/" },
+      { title: "Insurance claim help", desc: "Claim steps + documents checklist.", href: "/insurance-claim-help/" },
+    ],
+
+    serviceCategory: [
+      { title: "Insurance claim help", desc: "Reduce delays with clean proofs + timelines.", href: "/insurance-claim-help/" },
+      { title: "Insurance renewal support", desc: "Avoid gaps, verify docs/endorsements.", href: "/insurance-renewal-near-me/" },
+    ],
+
+    serviceDetail: [
+      { title: "Insurance claim help", desc: "Reporting steps + documents checklist.", href: "/insurance-claim-help/" },
+      { title: "Visit / WhatsApp support", desc: "Office-based guidance + remote document checks.", href: "/insurance-near-me/" },
+    ],
+  },
+
+
   gmbPosts: [],
 };

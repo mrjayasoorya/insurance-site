@@ -10,6 +10,7 @@ import FAQSection from "../../../components/FAQSection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 // ✅ Service links (internal linking)
 const services = (siteData.coreServices || []).map((s) => ({
@@ -195,6 +196,7 @@ const jsonLd = buildJsonLd({
     {siteData.faqsAreas.note}
   </p>
 </section>
+<QuickHelpLinks pageType="faqs" />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -288,6 +290,7 @@ const jsonLd = buildJsonLd({
     {siteData.faqsAreas.note}
   </p>
 </section>
+<QuickHelpLinks pageType="faqs" />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}

@@ -7,6 +7,7 @@ import { siteData, EN } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../lib/seo";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
 const meta = buildMeta({
@@ -177,6 +178,7 @@ const jsonLd = buildJsonLd({
             title={siteData.backlinks.title}
             links={siteData.backlinks.links}
           />
+          <QuickHelpLinks pageType="services" />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -295,7 +297,7 @@ const jsonLd = buildJsonLd({
             title={siteData.backlinks.title}
             links={siteData.backlinks.links}
           />
-
+          <QuickHelpLinks pageType="services" />
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}

@@ -10,6 +10,7 @@ import BacklinksRow from "../../../components/BacklinksRow.astro";
 import { siteData, EN } from "../../../content/siteData";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
 const meta = buildMeta({
@@ -111,7 +112,7 @@ const jsonLd = buildJsonLd({
           <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
           <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="locations" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -168,7 +169,7 @@ const jsonLd = buildJsonLd({
           <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
           <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+<QuickHelpLinks pageType="locations" />
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
