@@ -1,0 +1,193 @@
+---
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import MobileAccordion from "../../../components/MobileAccordion.astro";
+import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import BacklinksRow from "../../../components/BacklinksRow.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+
+import { siteData } from "../../../content/siteData";
+import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+
+const page = siteData.intentPages["buy-insurance-guidance"];
+if (!page) throw new Error("Missing siteData.intentPages['buy-insurance-guidance']");
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/buy-insurance-guidance/");
+const meta = buildMeta({
+  title: `${page.seoTitle} | ${siteData.brand.name}`,
+  description: page.seoDesc,
+  canonical,
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "intent",
+  canonical,
+    siteData,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Buy Insurance Guidance", href: canonical },
+  ],
+  faqs: page.faqs || [],
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    {Object.entries(meta.tags || {}).map(([k, v]) => <meta property={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+        <!-- DESKTOP -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: page.heroP,
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{page.heroH1}</h1>
+            <p class="section-sub readable">{page.heroP}</p>
+          </section>
+
+          {page.decisionFramework ? (
+            <section class="section section-padding" aria-label="Decision framework">
+              <h2 class="section-title">{page.decisionFramework.title}</h2>
+              <ul class="bullets">
+                {(page.decisionFramework.bullets || []).map((x) => <li>{x}</li>)}
+              </ul>
+            </section>
+          ) : null}
+
+          {page.recommendedLinks?.length ? (
+            <section class="section section-padding" aria-label="Recommended links">
+              <h2 class="section-title">Recommended links</h2>
+              <div class="grid grid-2">
+                {page.recommendedLinks.map((x) => (
+                  <a class="card" href={x.href}>
+                    <h3 class="card-title">{x.label}</h3>
+                    <p class="card-desc">Open</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {page.faqs?.length ? (
+            <section class="section section-padding" aria-label="FAQs">
+              <h2 class="section-title">FAQs</h2>
+              <MobileAccordion
+                sections={[{
+                  title: "Questions people ask",
+                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} pageTitle="Buy insurance guidance" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <!-- MOBILE -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: page.heroP,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{page.heroH1}</h1>
+            <p class="section-sub readable">{page.heroP}</p>
+          </section>
+
+          {page.decisionFramework ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{page.decisionFramework.title}</h2>
+              <ul class="bullets">
+                {(page.decisionFramework.bullets || []).map((x) => <li>{x}</li>)}
+              </ul>
+            </section>
+          ) : null}
+
+          {page.faqs?.length ? (
+            <section class="section section-padding">
+              <MobileAccordion
+                sections={[{
+                  title: "FAQs",
+                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} pageTitle="Buy insurance guidance" />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+      </div>
+    </main>
+
+    <FloatingMenu brand={siteData.brand} />
+    <FloatingContactCta brand={siteData.brand} />
+
+    <style is:global>
+      .readable { max-width: 78ch; }
+      .grid { display: grid; gap: 12px; }
+      .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { display: block; padding: 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; text-decoration: none; }
+      .card-title { font-size: 16px; margin: 8px 0 6px; }
+      .card-desc { margin: 0; opacity: .85; }
+      @media (max-width: 980px){ .grid-2{ grid-template-columns: 1fr; } }
+    </style>
+  </body>
+</html>

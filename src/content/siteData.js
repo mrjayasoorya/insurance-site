@@ -5543,6 +5543,362 @@ trustValidation: {
   ],
 },
 
+// ===========================
+// INTENT PAGES (Near-me, renewal, claim help, etc.)
+// ===========================
+intentPages: {
+  // 1) insurance-near-me
+  "insurance-near-me": {
+    slug: "insurance-near-me",
+    seoTitle: "Insurance Near Me (Agent & Office Support) – Sholavaram / Chennai North",
+    seoDesc:
+      "Local insurance support from Sholavaram office: renewals, claim documentation guidance, and commercial/vehicle/industrial insurance help across Chennai North and corridor belts.",
+    heroH1: "Insurance near me (Sholavaram office support)",
+    heroP:
+      "If you searched “insurance near me”, this page explains what local support means: where we operate, how to reach us, and how we help with renewals, claims and policy guidance—without overpromises.",
+    intentSignals: [
+      "insurance near me",
+      "insurance agent near me",
+      "insurance office near me",
+      "insurance agency near me",
+      "insurance consultant near me",
+    ],
+    whoThisHelps: [
+      "People looking for a nearby insurance agent/office (Sholavaram + Chennai North belts).",
+      "Customers who need renewal checks, claim documentation guidance, or coverage clarity before buying.",
+      "Commercial operators who prefer documentation-first guidance (transport, warehouses, contractors).",
+    ],
+    whatYouGet: [
+      "Clear checklist of what to carry for renewals and new policies (vehicle or business).",
+      "Guidance on claim steps and required documents (case-dependent).",
+      "Local context: where we commonly support, and when insurer inspection rules apply.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Share basics", text: "WhatsApp/call with policy type, location, and renewal/claim requirement." },
+      { title: "Step 2 — Document checklist", text: "We tell you what documents are typically needed (as applicable) and what to avoid." },
+      { title: "Step 3 — Policy/renewal clarity", text: "We align wording, declared values, and operational details to reduce future disputes." },
+    ],
+    office: {
+      title: "Sholavaram office",
+      bullets: [
+        "Base support location: Sholavaram (Chennai outskirts).",
+        "For directions: use our Google Business Profile map listing.",
+        "Call/WhatsApp before visiting so you bring the correct documents (as applicable).",
+      ],
+      mapCtaLabel: "Open Google Maps listing",
+      mapCtaHref: null, // if you want: siteData.brand.gbpUrl
+    },
+    commonAreasTitle: "Areas we commonly support",
+    commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+    // Link out to structured pages (avoid stuffing)
+    quickLinks: [
+      { label: "Services", href: EN("/services/") },
+      { label: "Locations", href: EN("/locations/") },
+      { label: "FAQs", href: EN("/faqs/") },
+      { label: "About", href: EN("/about/") },
+    ],
+
+    // Keep these lean; do not repeat full service content here
+    recommendedServices: [
+      { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+      { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+      { label: "Transport & Fleet", href: EN("/services/transport-fleet/") },
+      { label: "Industrial & Property", href: EN("/services/industrial/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+
+    faqs: [
+      {
+        q: "Do you serve only Sholavaram?",
+        a:
+          "Sholavaram is our base area. We commonly support nearby belts across Chennai North/outskirts depending on the policy type and insurer requirements.",
+      },
+      {
+        q: "Can you help if I only have WhatsApp photos of documents?",
+        a:
+          "Yes. WhatsApp photos are useful for initial guidance and checklists. Final insurer requirements can vary by policy and case type.",
+      },
+      {
+        q: "Do you guarantee claim approval?",
+        a:
+          "No. Claim outcomes depend on policy terms, disclosures, evidence and insurer process. Our role is to guide correct steps and reduce avoidable delays.",
+      },
+      {
+        q: "What documents should I carry for a vehicle renewal visit?",
+        a:
+          "Usually RC, previous policy copy, owner details. For commercial vehicles, permit/fitness details may be needed (as applicable).",
+      },
+      {
+        q: "What should I carry for business/warehouse insurance guidance?",
+        a:
+          "Business type, exact location, a simple stock/assets list and invoices/valuation basis where available. Photos help in some cases (as applicable).",
+      },
+    ],
+  },
+
+  // 2) insurance-renewal-near-me
+  "insurance-renewal-near-me": {
+    slug: "insurance-renewal-near-me",
+    seoTitle: "Insurance Renewal Near Me – Car, Commercial Vehicle & Policy Renewal Support",
+    seoDesc:
+      "Renewal guidance via Sholavaram office support: avoid gaps, check IDV/NCB/add-ons, and keep documentation clean for smoother claims later.",
+    heroH1: "Insurance renewal near me (policy renewal support)",
+    heroP:
+      "Renewals are where most expensive mistakes happen—wrong IDV/NCB, missing add-ons, coverage gaps, or commercial document mismatches. This page explains a practical renewal workflow.",
+    intentSignals: [
+      "insurance renewal near me",
+      "policy renewal near me",
+      "car insurance renewal near me",
+      "commercial insurance renewal near me",
+      "policy renewal company near me",
+    ],
+    renewalChecks: {
+      title: "Renewal checks that prevent claim problems",
+      bullets: [
+        "Correct NCB and claim history alignment (avoid mismatch).",
+        "IDV realism (especially for older vehicles).",
+        "Add-ons chosen based on usage (not default).",
+        "Commercial documents: RC/permit/fitness alignment (as applicable).",
+        "No coverage gaps: expiry dates, break-in rules (case-dependent).",
+      ],
+    },
+    recommendedLinks: [
+      { label: "Services", href: EN("/services/") },
+      { label: "Claim Help", href: EN("/insurance-claim-help/") },
+      { label: "Locations", href: EN("/locations/") },
+      { label: "FAQs", href: EN("/faqs/") },
+    ],
+    faqs: [
+      {
+        q: "Do I need to renew before expiry?",
+        a:
+          "Yes, renewing on time helps avoid gaps and extra rules. The right approach depends on policy type and insurer process.",
+      },
+      {
+        q: "What is the biggest mistake in renewals?",
+        a:
+          "Renewing blindly without checking IDV/NCB/add-ons and (for commercial) permit/fitness alignment (as applicable).",
+      },
+      {
+        q: "Can you help with commercial vehicle renewal documentation?",
+        a:
+          "Yes. We guide the document checklist and ensure the renewal details match real usage and compliance (as applicable).",
+      },
+      {
+        q: "Can renewal affect future claims?",
+        a:
+          "Yes. Coverage gaps, wrong disclosures, and mismatched details can create avoidable disputes later.",
+      },
+    ],
+  },
+
+  // 3) insurance-claim-help
+  "insurance-claim-help": {
+    slug: "insurance-claim-help",
+    seoTitle: "Insurance Claim Help – Documents, Timeline & Next Steps (Sholavaram Support)",
+    seoDesc:
+      "Claim guidance: what to do first, what documents matter, FIR vs non-FIR cases, and how to keep a clean incident timeline to reduce delays.",
+    heroH1: "Insurance claim help (what to do first)",
+    heroP:
+      "Claim delays are usually caused by late reporting, missing proof, unclear timelines, or policy wording mismatches. This page explains a practical claim workflow—without promising outcomes.",
+    intentSignals: [
+      "insurance claim help",
+      "claim rejected what to do",
+      "insurance claim support near me",
+      "claim documents needed",
+      "insurance claim consultant",
+    ],
+    claimWorkflow: {
+      title: "A practical claim workflow",
+      steps: [
+        "Safety first. Then capture photos/videos (as applicable) before repairs.",
+        "Inform insurer/agent early (don’t wait until next day).",
+        "Keep a clean incident timeline (what happened first/second/third).",
+        "Collect documents: policy copy/endorsements, IDs, reports if applicable.",
+        "Follow survey/inspection steps if required before repairs.",
+      ],
+    },
+    whatOftenDelays: {
+      title: "What commonly delays claims",
+      bullets: [
+        "Late intimation/reporting.",
+        "No clean incident timeline or missing first-day photos (as applicable).",
+        "Missing invoices/valuation proof for stock/assets (as applicable).",
+        "Mismatch between operations and policy wording.",
+      ],
+    },
+    recommendedLinks: [
+      { label: "FAQ page", href: EN("/faqs/") },
+      { label: "Claim Support service", href: EN("/services/claims-support/") },
+      { label: "Locations", href: EN("/locations/") },
+    ],
+    faqs: [
+      {
+        q: "Do I always need an FIR?",
+        a:
+          "Not always. FIR requirements depend on incident type, third-party involvement, injury/theft and insurer process. We guide the correct path for your case.",
+      },
+      {
+        q: "Can I start repairs immediately?",
+        a:
+          "Avoid repairs before photos and insurer guidance. Early repairs can remove proof; follow survey/inspection steps if required.",
+      },
+      {
+        q: "Do you guarantee claim approval?",
+        a:
+          "No. We help you follow correct steps and keep evidence/timelines clean to reduce avoidable delays.",
+      },
+      {
+        q: "What are the most important documents?",
+        a:
+          "Policy copy + endorsements, incident timeline, first-day photos/videos (as applicable), and required reports when applicable.",
+      },
+    ],
+  },
+
+  // 4) buy-insurance-guidance
+  "buy-insurance-guidance": {
+    slug: "buy-insurance-guidance",
+    seoTitle: "Buy Insurance Guidance – How to Choose Correct Coverage (No Confusion)",
+    seoDesc:
+      "A decision guide: what to disclose, what wording matters, which add-ons help, and how to choose sum insured/declared values to avoid disputes later.",
+    heroH1: "Buy insurance (how to choose correctly)",
+    heroP:
+      "Buying online or offline isn’t the real risk. The real risk is wrong disclosures, wrong declared values, and misunderstanding policy wording. This page explains how to choose correctly.",
+    intentSignals: [
+      "buy insurance",
+      "best insurance agent",
+      "insurance advisor",
+      "which insurance to buy",
+      "insurance consultant near me",
+    ],
+    decisionFramework: {
+      title: "A practical decision framework",
+      bullets: [
+        "Start with your real usage/operations (not generic assumptions).",
+        "Match disclosures to reality (route, storage, workforce, public exposure).",
+        "Choose add-ons based on usage (avoid default add-ons).",
+        "Keep proof discipline simple: invoices/photos/records (as applicable).",
+      ],
+    },
+    recommendedLinks: [
+      { label: "Services", href: EN("/services/") },
+      { label: "Locations", href: EN("/locations/") },
+      { label: "About", href: EN("/about/") },
+    ],
+    faqs: [
+      {
+        q: "Is buying insurance online safe?",
+        a:
+          "Yes, if disclosures and wording match your real usage and you keep proof discipline. We help verify the few things that decide claim outcomes.",
+      },
+      {
+        q: "What matters more than premium?",
+        a:
+          "Wording fit, correct declared value/sum insured, and documentation readiness. Cheapest policies fail when reality doesn’t match wording.",
+      },
+      {
+        q: "Do you help with commercial buying decisions?",
+        a:
+          "Yes—especially transport, warehouse/property and contractor workflows where documentation and disclosures decide outcomes later.",
+      },
+    ],
+  },
+
+  // 5) spot-insurance-support
+  "spot-insurance-support": {
+    slug: "spot-insurance-support",
+    seoTitle: "Spot Insurance Support – On-Site Visit & Documentation Help (As Applicable)",
+    seoDesc:
+      "Explains what “spot/on-site insurance support” realistically means: document collection, inspection rules, when a visit is possible, and what is handled remotely.",
+    heroH1: "Spot insurance support (on-site visit — as applicable)",
+    heroP:
+      "Some customers prefer on-site help for documents or verification. This page explains what can be done on-site, what must follow insurer inspection rules, and what can be handled remotely.",
+    intentSignals: [
+      "spot insurance",
+      "insurance agent visit",
+      "on-site insurance support",
+      "insurance agent at location",
+      "field insurance support",
+    ],
+    realityChecks: {
+      title: "What on-site support can and cannot do",
+      bullets: [
+        "We can help with document checklist preparation and collection (as applicable).",
+        "Insurer inspections are controlled by insurer rules (not by us).",
+        "Some cases can be handled entirely via WhatsApp/phone; others require in-person steps.",
+      ],
+    },
+    recommendedLinks: [
+      { label: "Remote support", href: EN("/remote-insurance-support/") },
+      { label: "Locations", href: EN("/locations/") },
+      { label: "Claim help", href: EN("/insurance-claim-help/") },
+    ],
+    faqs: [
+      {
+        q: "Do you come to my location for insurance work?",
+        a:
+          "In some cases, yes—depending on the requirement and feasibility. Insurer inspections follow insurer process and rules.",
+      },
+      {
+        q: "Is on-site visit required for every policy?",
+        a:
+          "No. Many renewals and guidance steps can be handled remotely. Some cases require physical verification depending on insurer rules.",
+      },
+    ],
+  },
+
+  // 6) remote-insurance-support
+  "remote-insurance-support": {
+    slug: "remote-insurance-support",
+    seoTitle: "Remote Insurance Support – WhatsApp, Phone & Document Guidance",
+    seoDesc:
+      "Remote insurance support via WhatsApp/phone: what we can do remotely, what documents to share, and what requires insurer inspection or physical steps.",
+    heroH1: "Remote insurance support (WhatsApp + phone)",
+    heroP:
+      "Most guidance, renewals and document checklists can start remotely. This page explains what to share, how we work remotely, and when insurer rules require physical steps.",
+    intentSignals: [
+      "insurance support WhatsApp",
+      "online insurance help",
+      "remote insurance agent",
+      "phone insurance support",
+      "digital insurance assistance",
+    ],
+    whatRemoteWorksFor: {
+      title: "What remote support works well for",
+      bullets: [
+        "Renewal checks (IDV/NCB/add-ons; permit/fitness as applicable).",
+        "Document checklist guidance for claims and approvals (as applicable).",
+        "Basic policy comparison and wording clarity based on your situation.",
+      ],
+    },
+    whatMayNeedPhysical: {
+      title: "What may require physical steps",
+      bullets: [
+        "Insurer inspection/verification in high-risk cases (insurer-controlled).",
+        "Original documents when required by insurer process (case-dependent).",
+      ],
+    },
+    recommendedLinks: [
+      { label: "Insurance near me", href: EN("/insurance-near-me/") },
+      { label: "Renewal support", href: EN("/insurance-renewal-near-me/") },
+      { label: "Claim help", href: EN("/insurance-claim-help/") },
+    ],
+    faqs: [
+      {
+        q: "Can I start with WhatsApp photos of documents?",
+        a:
+          "Yes. Photos help us guide checklists and next steps. Final insurer requirements may vary by policy and case type.",
+      },
+      {
+        q: "Will remote support work for commercial vehicles?",
+        a:
+          "Often, yes for renewals and documentation guidance. Insurer inspections and compliance checks depend on case type and insurer rules.",
+      },
+    ],
+  },
+},
 
   gmbPosts: [],
 };

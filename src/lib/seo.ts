@@ -41,6 +41,7 @@ export interface BuildJsonLdInput {
     | "renewalsIndex"
     | "commercialAuthorityIndex"
     | "proofExperienceIndex"
+    | "intent"
 
   siteData: any
   canonical: string
