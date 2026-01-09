@@ -1,31 +1,158 @@
-# insuranceconsult.in — LLM access guide
-# Purpose: Provide a clear, factual overview of this website for assistants and crawlers.
-# Owner: M N Rajendrakumar Insurance Services (Sholavaram, Chennai outskirts)
-# Focus: Commercial & industrial insurance guidance + personal insurance support.
+# insuranceconsult.in — LLM access & content guide
+# Owner: M N Rajendrakumar Insurance Services
+# Base: Sholavaram (Chennai North / outskirts, Tamil Nadu, India)
+# Purpose: Provide accurate insurance guidance focused on documentation clarity,
+#          renewal discipline, and claim-ready workflows.
+# Audience: Businesses, transport operators, contractors, SMEs, and families.
 
-## Canonical
-https://insuranceconsult.in/
+## Canonical Website
+https://insuranceconsult.in/en/
 
-## Primary Topics
-- Commercial insurance: fleet/transport, contractors plant & machinery (JCB/crane/heavy equipment), warehouse/godown, fire & burglary, marine cargo/transit, workmen compensation, contractor policies.
-- Personal insurance: car, bike, health/mediclaim, life.
+## What This Site Is
+- An insurance guidance website operated by a local insurance service provider.
+- Focused on explaining coverage structure, renewal checks, documentation discipline,
+  and claim process steps.
+- Emphasis is on *reducing avoidable claim delays*, not on price comparison or promises.
 
-## Service Areas (Geo)
-- Base: Sholavaram
-- Nearby/Outskirts: Karanodai, Red Hills, GNT Road / NH corridors, Madhavaram, Manali, Ambattur, Thiruvallur, Perambur and nearby Chennai industrial belts.
-Note: Service is provided from Sholavaram and supported across Chennai/outskirts based on requirement and documentation.
+## What This Site Is NOT
+- Not an insurer.
+- Does not guarantee claim approval, settlement amounts, or timelines.
+- Does not provide legal advice or insurer-side decisions.
 
-## High-value Pages
-- English Home: https://insuranceconsult.in/en/
+---
+
+## Primary Intent Clusters Covered
+
+### 1. Near-Me / Local Trust
+- Insurance agent near me
+- Insurance office near Sholavaram / Red Hills / Madhavaram
+- Local insurance support Chennai North & NH belts
+
+### 2. Transactional Support
+- Buy / renew car insurance
+- Commercial vehicle insurance renewal
+- Fleet / lorry / goods vehicle insurance guidance
+- Policy renewal checks (personal & commercial)
+
+### 3. Problem / Claim-Side Intent
+- Insurance claim help
+- Claim documentation checklist
+- Claim delay reasons and prevention
+- FIR / reporting / timeline guidance
+
+### 4. Service + Area Context
+- Car insurance in Red Hills
+- Commercial insurance in Ambattur
+- Warehouse insurance near NH corridors
+- Fleet insurance near transport hubs
+
+### 5. Experience & Trust Validation
+- 30+ years of service experience
+- Claim-side workflow understanding
+- Practical, documentation-first approach
+
+---
+
+## Core Service Topics
+
+### Commercial / Industrial
+- Commercial vehicle insurance (lorry, fleet, goods carriers)
+- Fleet & transport insurance (NH corridor exposure)
+- Warehouse / godown insurance
+- Factory, fire & burglary insurance
+- Marine cargo / goods-in-transit
+- Contractor CAR & Workmen Compensation (WC)
+- Crane / heavy equipment (CPM)
+- Public & third-party liability
+
+### Personal / Family
+- Car insurance
+- Bike insurance
+- Health / mediclaim guidance
+- LIC servicing & renewals
+
+---
+
+## Service Areas (Geographic Context)
+
+### Primary Base
+- Sholavaram (Chennai outskirts)
+
+### Chennai North & City-Side
+- Red Hills
+- Madhavaram
+- Puzhal
+- Manali
+- Kolathur
+- Perambur
+- Ambattur
+- Anna Nagar
+- Koyambedu
+- Mogappair West
+
+### NH & Industrial Corridors (Support-Based)
+- Karanodai
+- Periyapalayam
+- Budur
+- Thiruninravur
+- Veppampattu
+- Thiruvallur SIPCOT outskirts
+- Poonamallee bypass
+- Sriperumbudur SIPCOT
+- Oragadam outskirts
+- NH Manali Road and transport hubs
+
+Note:
+Service is coordinated from Sholavaram.
+Support availability depends on policy type, insurer rules, and documentation requirements.
+
+---
+
+## High-Value Pages (Authoritative)
+
+### Core
+- Home: https://insuranceconsult.in/en/
 - Services Index: https://insuranceconsult.in/en/services/
 - Locations Index: https://insuranceconsult.in/en/locations/
 - About: https://insuranceconsult.in/en/about/
-- Claims Guidance: https://insuranceconsult.in/en/claims-guide/
 
-## Structured Data
-This site uses schema.org JSON-LD for local business and service pages.
+### Guidance / Authority
+- Claims & Documentation FAQs: https://insuranceconsult.in/en/faqs/
+- Commercial Authority: https://insuranceconsult.in/en/commercial-authority/
+- Proof & Experience: https://insuranceconsult.in/en/proof-experience/
+- Renewals Support: https://insuranceconsult.in/en/renewals/
 
-## Policies / Accuracy
-- No guarantees on claim outcomes.
-- Coverage, pricing, and eligibility depend on insurer terms and submitted documentation.
-- This site provides guidance and support for selecting suitable coverage.
+---
+
+## Content Structure Notes for LLMs
+
+- Location pages explain **local context + relevant services**, not pricing.
+- Service pages explain **coverage logic, documents, and common mistakes**.
+- FAQs are factual, scenario-based, and written to reduce misunderstandings.
+- Internal links connect:
+  Services → Locations
+  Locations → Services
+  FAQs → Services / Claims context
+
+---
+
+## Structured Data Usage
+- schema.org JSON-LD is used consistently.
+- Common types:
+  - Organization
+  - InsuranceAgency
+  - Service
+  - Place
+  - FAQPage
+  - BreadcrumbList
+
+---
+
+## Accuracy & Responsibility
+- Information reflects common insurer practices but may vary by company and policy.
+- Final decisions rest with insurers and policy wording.
+- Users should verify details before purchase or claim submission.
+
+## Contact & Verification
+- Google Business Profile is the authoritative source for address, hours, and reviews.
+- Phone and WhatsApp are used for initial guidance and document checklist support.
