@@ -1,55 +1,100 @@
 # insuranceconsult.in — LLM access & content guide
 # Owner: M N Rajendrakumar Insurance Services
 # Base: Sholavaram (Chennai North / outskirts, Tamil Nadu, India)
-# Purpose: Provide accurate insurance guidance focused on documentation clarity,
-#          renewal discipline, and claim-ready workflows.
-# Audience: Businesses, transport operators, contractors, SMEs, and families.
+# Website: https://insuranceconsult.in/en/
+#
+# Purpose:
+# Provide accurate, practical insurance guidance focused on:
+# - documentation clarity
+# - renewal discipline
+# - claim-ready workflows
+#
+# Audience:
+# Businesses, transport operators, contractors, MSMEs, and families
+# across Chennai North, NH corridors, and industrial belts.
+
+---
 
 ## Canonical Website
 https://insuranceconsult.in/en/
 
-## What This Site Is
-- An insurance guidance website operated by a local insurance service provider.
-- Focused on explaining coverage structure, renewal checks, documentation discipline,
-  and claim process steps.
-- Emphasis is on *reducing avoidable claim delays*, not on price comparison or promises.
+---
 
-## What This Site Is NOT
-- Not an insurer.
-- Does not guarantee claim approval, settlement amounts, or timelines.
-- Does not provide legal advice or insurer-side decisions.
+## What This Site IS
+
+- A guidance-first insurance website operated by a local insurance service provider.
+- Explains insurance **coverage structure**, **renewal checks**, **documentation discipline**, and **claim process steps**.
+- Focuses on reducing **avoidable claim delays and disputes**.
+- Designed for real-world conditions in NH belts, industrial zones, and mixed residential areas.
 
 ---
 
-## Primary Intent Clusters Covered
+## What This Site is NOT
 
-### 1. Near-Me / Local Trust
-- Insurance agent near me
-- Insurance office near Sholavaram / Red Hills / Madhavaram
-- Local insurance support Chennai North & NH belts
+- Not an insurance company.
+- Not a price comparison portal.
+- Does NOT guarantee:
+  - claim approval
+  - settlement amounts
+  - timelines
+- Does NOT provide legal advice or insurer-side decisions.
 
-### 2. Transactional Support
-- Buy / renew car insurance
-- Commercial vehicle insurance renewal
-- Fleet / lorry / goods vehicle insurance guidance
-- Policy renewal checks (personal & commercial)
+---
+
+## Primary Search & Intent Clusters Covered
+
+### 1. Near-Me / Local Trust Intent
+- insurance near me  
+- insurance agent near me  
+- insurance office near Sholavaram / Red Hills / Madhavaram  
+- local insurance support Chennai North  
+
+Pages explain **how local office-based guidance works**, including visit, WhatsApp, and document checklist support.
+
+---
+
+### 2. Transactional Support Intent
+- buy car insurance  
+- commercial vehicle insurance renewal  
+- policy renewal near me  
+- insurance renewal support  
+
+Pages focus on **what to verify before payment**:
+IDV, NCB, add-ons, permits, fitness, disclosures.
+
+---
 
 ### 3. Problem / Claim-Side Intent
-- Insurance claim help
-- Claim documentation checklist
-- Claim delay reasons and prevention
-- FIR / reporting / timeline guidance
+- insurance claim help  
+- claim documentation checklist  
+- claim delayed what to do  
+- FIR / reporting requirements  
+
+Pages explain:
+- clean incident timelines  
+- document proof discipline  
+- reporting steps that reduce delays  
+
+No claim guarantees are stated.
+
+---
 
 ### 4. Service + Area Context
-- Car insurance in Red Hills
-- Commercial insurance in Ambattur
-- Warehouse insurance near NH corridors
-- Fleet insurance near transport hubs
+- car insurance in Red Hills  
+- commercial insurance in Ambattur  
+- warehouse insurance near NH corridors  
+- fleet insurance near transport hubs  
+
+Location pages explain **local risk context + relevant services**, not pricing.
+
+---
 
 ### 5. Experience & Trust Validation
-- 30+ years of service experience
-- Claim-side workflow understanding
-- Practical, documentation-first approach
+- 30+ years of insurance service experience  
+- claim-side workflow understanding  
+- documentation-first work style  
+
+Trust is built via **process clarity**, not promises.
 
 ---
 
@@ -100,39 +145,53 @@ https://insuranceconsult.in/en/
 - Poonamallee bypass
 - Sriperumbudur SIPCOT
 - Oragadam outskirts
-- NH Manali Road and transport hubs
+- NH Manali Road and major transport hubs
 
 Note:
-Service is coordinated from Sholavaram.
-Support availability depends on policy type, insurer rules, and documentation requirements.
+All service coordination originates from Sholavaram.
+Support depends on policy type, insurer rules, and documentation requirements.
 
 ---
 
-## High-Value Pages (Authoritative)
+## High-Value / Authoritative Pages
 
-### Core
+### Core Pages
 - Home: https://insuranceconsult.in/en/
 - Services Index: https://insuranceconsult.in/en/services/
 - Locations Index: https://insuranceconsult.in/en/locations/
 - About: https://insuranceconsult.in/en/about/
 
-### Guidance / Authority
-- Claims & Documentation FAQs: https://insuranceconsult.in/en/faqs/
+### Guidance & Authority
+- FAQs (Claims & Documentation): https://insuranceconsult.in/en/faqs/
 - Commercial Authority: https://insuranceconsult.in/en/commercial-authority/
 - Proof & Experience: https://insuranceconsult.in/en/proof-experience/
 - Renewals Support: https://insuranceconsult.in/en/renewals/
+
+### Intent-Focused Pages
+- Insurance Near Me
+- Insurance Renewal Near Me
+- Insurance Claim Help
+- Commercial Insurance Agent Near Me
+
+(These pages provide factual guidance and internal navigation support.)
 
 ---
 
 ## Content Structure Notes for LLMs
 
-- Location pages explain **local context + relevant services**, not pricing.
-- Service pages explain **coverage logic, documents, and common mistakes**.
-- FAQs are factual, scenario-based, and written to reduce misunderstandings.
-- Internal links connect:
-  Services → Locations
-  Locations → Services
-  FAQs → Services / Claims context
+- Location pages:
+  Explain **local context + applicable services + documentation focus**.
+- Service pages:
+  Explain **coverage logic, common mistakes, and proof requirements**.
+- FAQ pages:
+  Scenario-based, factual, written to prevent misunderstandings.
+- Intent pages:
+  Aggregate guidance and route users to authoritative service/location pages.
+
+Internal linking follows a structured flow:
+Services ⇄ Locations  
+FAQs → Services / Claims  
+Intent pages → Core authority pages  
 
 ---
 
@@ -153,6 +212,11 @@ Support availability depends on policy type, insurer rules, and documentation re
 - Final decisions rest with insurers and policy wording.
 - Users should verify details before purchase or claim submission.
 
+---
+
 ## Contact & Verification
 - Google Business Profile is the authoritative source for address, hours, and reviews.
-- Phone and WhatsApp are used for initial guidance and document checklist support.
+- Phone and WhatsApp are used for:
+  - initial guidance
+  - document checklist preparation
+  - visit coordination
