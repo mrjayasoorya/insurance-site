@@ -1,3 +1,31 @@
-insuranceconsult.in
-M N Rajendrakumar Insurance Services (Sholavaram, Redhills Chennai)
-Commercial & General Insurance Advisor | 30+ Years Experience
+/* TEAM */
+Owner & Operator: M N Rajendrakumar Insurance Services
+Role: Insurance Service Provider
+Location: Sholavaram, Chennai (Tamil Nadu, India)
+Experience: 30+ years in insurance servicing, renewals & claim process support
+
+/* SITE */
+Site Name: insuranceconsult.in
+Purpose: Insurance guidance focused on documentation discipline,
+         renewal clarity, and claim-ready workflows.
+Primary Focus: Commercial, transport, industrial, and MSME insurance
+Secondary Focus: Personal motor, health, and LIC servicing
+
+Languages: English
+Country: India
+Region: Chennai North & NH-facing industrial belts
+
+/* CONTENT */
+Content Style: Factual, experience-based, non-promissory
+Claims Policy: No claim approval guarantees
+Updates: Content updated as insurer practices and local patterns evolve
+
+/* TECH */
+Platform: Astro (static-first)
+Structured Data: schema.org JSON-LD
+SEO Philosophy: Clarity over keywords, intent over volume
+
+/* CONTACT */
+Primary Office Area: Sholavaram (Chennai outskirts)
+Google Business Profile: https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Services+%E2%80%93+Commercial,+Vehicle+%26+Industrial+Insurance+%7C+Sholavaram,+Karanodai,+Redhills/@13.2391084,80.1702588,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527d2b1e29b5ff:0xe9b9b0049f529b6b!8m2!3d13.2391084!4d80.1728337!16s%2Fg%2F11xlhmwb8r
+Website: https://insuranceconsult.in/en/
