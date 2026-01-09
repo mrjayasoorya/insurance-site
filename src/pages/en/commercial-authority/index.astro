@@ -7,21 +7,40 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/commercial-authority/");
+const meta = buildMeta({
+  title: `Commercial Authority | ${siteData.brand.name}`,
+  description:
+    "Commercial-first insurance guidance for fleets, warehouses, contractors and heavy equipment—built for NH + industrial belt realities.",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "commercialAuthorityIndex",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Commercial Authority", href: canonical },
+  ],
+});
+
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Commercial Authority | {siteData.brand.name}</title>
-    <meta
-      name="description"
-      content="Industry-focused insurance guidance for cranes, contractors, warehouses and transport fleets across Chennai outskirts (Sholavaram, Red Hills Toll, Madhavaram, NH belts)."
-    />
-    <link rel="canonical" href={canonical} />
+                          <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 

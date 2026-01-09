@@ -8,6 +8,7 @@ import BacklinksRow from "../../../components/BacklinksRow.astro";
 import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
 // ✅ service links
 const services = (siteData.coreServices || []).map((s) => ({
@@ -16,8 +17,6 @@ const services = (siteData.coreServices || []).map((s) => ({
 }));
 
 const brand = siteData.brand;
-const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/photos/`;
 
 const page = siteData.media?.photosPage || {};
 const title = `${page.title || "Photos"} | ${brand.name}`;
@@ -26,42 +25,40 @@ const description = page.subtitle || "Photos and visuals from our guidance posts
 // ✅ Images
 const images = (page.images || []).filter((i) => i?.src);
 
-// ✅ JSON-LD (simple + safe)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      name: page.title || "Photos",
-      url: canonical,
-      description,
-      inLanguage: "en",
-      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
-      url: canonicalBase,
-      name: brand.name,
-    },
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/photos/");
+const meta = buildMeta({
+  title: `Photos | ${siteData.brand.name}`,
+  description:
+    "Office and Google posts photos from our Sholavaram base—real local context for customers in Chennai North & NH corridors.",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "photos",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Photos", href: canonical },
   ],
-};
+});
+
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+                      <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>

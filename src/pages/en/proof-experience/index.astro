@@ -7,18 +7,40 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/proof-experience/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/proof-experience/");
+const meta = buildMeta({
+  title: `Proof & Experience | ${siteData.brand.name}`,
+  description:
+    "Practical learnings from claim-side conversations: what delays claims and what makes processes smoother.",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "proofExperienceIndex",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Proof & Experience", href: canonical },
+  ],
+});
+
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Proof & Experience | {siteData.brand.name}</title>
-    <meta name="description" content="Experience-driven insurance guidance built from claim-side reality in Chennai outskirts (Sholavaram, Red Hills, Madhavaram and nearby belts)." />
-    <link rel="canonical" href={canonical} />
+                          <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 

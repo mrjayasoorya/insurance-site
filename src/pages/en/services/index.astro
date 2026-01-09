@@ -3,62 +3,56 @@ import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData } from "../../../content/siteData";
+import { siteData, EN } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import { buildMeta } from "../../../lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../lib/seo";
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/`;
-
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
 const meta = buildMeta({
   title: `Services | ${siteData.brand.name}`,
   description:
-    "Insurance services for commercial, transport, industrial and claim support—structured for real NH/industrial belt risks around Sholavaram, Red Hills and Madhavaram.",
+    "Insurance services for commercial, transport, industrial and claim support—structured for NH/industrial belt risks around Sholavaram, Red Hills and Madhavaram.",
   canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "servicesHub",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Services", href: canonical },
+  ],
+  // Keep schema tight here (optional)
+  faqs: siteData.faqsPage?.locationsOffice?.items?.slice(0, 4) || [],
 });
 ---
 
 <html lang="en">
   <head>
+
+    <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{meta.title}</title>
-    <meta name="description" content={meta.description} />
-    <link rel="canonical" href={meta.canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
 
-    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-
-    {/* Truthy: WebPage + Breadcrumb + Organization reference */}
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": canonical + "#webpage",
-            url: canonical,
-            name: meta.title,
-            description: meta.description,
-            isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
-          },
-          {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: `${canonicalBase.replace(/\/$/, "")}/en/` },
-              { "@type": "ListItem", position: 2, name: "Services", item: canonical },
-            ],
-          },
-        ],
-      })} />
+   
   </head>
 
   <body>
     <main class="app">
       <div class="container">
-
         {/* DESKTOP */}
         <div class="ui-desktop">
           <header>
@@ -75,67 +69,114 @@ const meta = buildMeta({
           </header>
 
           {/* SECTION 1: Overview */}
-          <section class="section section-padding" aria-label="Service overview">
-            <h1 class="section-title">Insurance Services for Commercial, Vehicle & Industrial Risks</h1>
+          <section
+            class="section section-padding"
+            aria-label="Service overview"
+          >
+            <h1 class="section-title">
+              Insurance Services for Commercial, Vehicle & Industrial Risks
+            </h1>
             <p class="section-sub readable">
-              For businesses, transport operators and families across Sholavaram, Red Hills, Madhavaram and Chennai outskirts.
-              We focus on coverage clarity + documentation habits that prevent claim delays later.
+              For businesses, transport operators and families across
+              Sholavaram, Red Hills, Madhavaram and Chennai outskirts. We focus
+              on coverage clarity + documentation habits that prevent claim
+              delays later.
             </p>
           </section>
 
           {/* SECTION 2: Popular services (area-driven) */}
-          <section class="section section-padding" aria-label="Most requested services">
-            <h2 class="section-title">Most Requested Insurance Services Around Red Hills & Sholavaram</h2>
+          <section
+            class="section section-padding"
+            aria-label="Most requested services"
+          >
+            <h2 class="section-title">
+              Most Requested Insurance Services Around Red Hills & Sholavaram
+            </h2>
             <div class="grid grid-2">
-              {siteData.servicePopular?.slice(0, 8).map((x) => (
-                <a class="card" href={x.href}>
-                  <div class="card-row">
-                    <span class="chip">{x.tag}</span>
-                  </div>
-                  <h3 class="card-title">{x.title}</h3>
-                  <p class="card-desc">Open guidance</p>
-                </a>
-              ))}
+              {
+                siteData.servicePopular?.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row">
+                      <span class="chip">{x.tag}</span>
+                    </div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc">Open guidance</p>
+                  </a>
+                ))
+              }
             </div>
           </section>
 
           {/* SECTION 3: Categories (authority layer) */}
-          <section class="section section-padding" aria-label="Service categories">
+          <section
+            class="section section-padding"
+            aria-label="Service categories"
+          >
             <h2 class="section-title">Insurance Categories We Specialize In</h2>
             <div class="grid grid-2">
-              {siteData.serviceCategories?.map((c) => (
-                <a class="card" href={c.href}>
-                  <h3 class="card-title">{c.title}</h3>
-                  <p class="card-desc readable">{c.desc}</p>
-                </a>
-              ))}
+              {
+                siteData.serviceCategories?.map((c) => (
+                  <a class="card" href={c.href}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+                  </a>
+                ))
+              }
             </div>
           </section>
 
           {/* SECTION 4: Vehicle type */}
-          <section class="section section-padding" aria-label="Vehicle based services">
+          <section
+            class="section section-padding"
+            aria-label="Vehicle based services"
+          >
             <h2 class="section-title">Vehicle-Based Insurance Services</h2>
             <div class="chips">
-              {siteData.serviceVehicleTypes?.map((x) => (
-                <a class="chiplink" href={x.href}>{x.label}</a>
-              ))}
+              {
+                siteData.serviceVehicleTypes?.map((x) => (
+                  <a class="chiplink" href={x.href}>
+                    {x.label}
+                  </a>
+                ))
+              }
             </div>
           </section>
 
-          {/* SECTION 5: Areas (contextual) */}
-          <section class="section section-padding" aria-label="Areas we commonly serve">
+          {/* SECTION 5: Areas (from Locations Index) */}
+          <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
             <h2 class="section-title">Areas We Commonly Serve</h2>
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
+            </p>
+
             <div class="grid grid-2">
-              {siteData.serviceAreas?.map((a) => (
-                <a class="card" href={a.href}>
-                  <h3 class="card-title">{a.label}</h3>
-                  <p class="card-desc readable">{a.desc}</p>
-                </a>
-              ))}
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
             </div>
+
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
           </section>
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          <BacklinksRow
+            title={siteData.backlinks.title}
+            links={siteData.backlinks.links}
+          />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -170,57 +211,90 @@ const meta = buildMeta({
           <section class="section section-padding">
             <h1 class="section-title">Insurance Services</h1>
             <p class="section-sub readable">
-              Commercial-first guidance for NH + industrial belts (Sholavaram, Red Hills, Madhavaram).
+              Commercial-first guidance for NH + industrial belts (Sholavaram,
+              Red Hills, Madhavaram).
             </p>
           </section>
 
           <section class="section section-padding">
             <h2 class="section-title">Most Requested Services</h2>
             <div class="grid grid-1">
-              {siteData.servicePopular?.slice(0, 8).map((x) => (
-                <a class="card" href={x.href}>
-                  <div class="card-row"><span class="chip">{x.tag}</span></div>
-                  <h3 class="card-title">{x.title}</h3>
-                  <p class="card-desc">Open guidance</p>
-                </a>
-              ))}
+              {
+                siteData.servicePopular?.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row">
+                      <span class="chip">{x.tag}</span>
+                    </div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc">Open guidance</p>
+                  </a>
+                ))
+              }
             </div>
           </section>
 
           <section class="section section-padding">
             <h2 class="section-title">Categories</h2>
             <div class="grid grid-1">
-              {siteData.serviceCategories?.map((c) => (
-                <a class="card" href={c.href}>
-                  <h3 class="card-title">{c.title}</h3>
-                  <p class="card-desc readable">{c.desc}</p>
-                </a>
-              ))}
+              {
+                siteData.serviceCategories?.map((c) => (
+                  <a class="card" href={c.href}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+                  </a>
+                ))
+              }
             </div>
           </section>
 
           <section class="section section-padding">
             <h2 class="section-title">Vehicle Types</h2>
             <div class="chips">
-              {siteData.serviceVehicleTypes?.map((x) => (
-                <a class="chiplink" href={x.href}>{x.label}</a>
-              ))}
+              {
+                siteData.serviceVehicleTypes?.map((x) => (
+                  <a class="chiplink" href={x.href}>
+                    {x.label}
+                  </a>
+                ))
+              }
             </div>
           </section>
 
-          <section class="section section-padding">
+          {/* SECTION 5: Areas (from Locations Index) */}
+          <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
             <h2 class="section-title">Areas We Commonly Serve</h2>
-            <div class="grid grid-1">
-              {siteData.serviceAreas?.map((a) => (
-                <a class="card" href={a.href}>
-                  <h3 class="card-title">{a.label}</h3>
-                  <p class="card-desc readable">{a.desc}</p>
-                </a>
-              ))}
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
+            </p>
+
+            <div class="grid grid-2">
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
             </div>
+
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
           </section>
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+          <BacklinksRow
+            title={siteData.backlinks.title}
+            links={siteData.backlinks.links}
+          />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -243,18 +317,65 @@ const meta = buildMeta({
     <FloatingContactCta brand={siteData.brand} />
 
     <style>
-      .grid{display:grid;gap:12px}
-      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .grid-1{grid-template-columns:1fr}
-      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
-      .card-title{font-size:16px;margin:8px 0 6px}
-      .card-desc{margin:0;opacity:.85}
-      .readable{max-width:78ch}
-      .chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);font-size:12px;opacity:.9}
-      .chips{display:flex;flex-wrap:wrap;gap:10px}
-      .chiplink{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);text-decoration:none}
-      .card-row{display:flex;gap:8px;align-items:center}
-      @media (max-width: 980px){.grid-2{grid-template-columns:1fr}}
+      .grid {
+        display: grid;
+        gap: 12px;
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-1 {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        display: block;
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        text-decoration: none;
+      }
+      .card-title {
+        font-size: 16px;
+        margin: 8px 0 6px;
+      }
+      .card-desc {
+        margin: 0;
+        opacity: 0.85;
+      }
+      .readable {
+        max-width: 78ch;
+      }
+      .chip {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 12px;
+        opacity: 0.9;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chiplink {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        text-decoration: none;
+      }
+      .card-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      @media (max-width: 980px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </body>
 </html>

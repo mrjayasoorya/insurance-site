@@ -8,6 +8,7 @@ import BacklinksRow from "src/components/BacklinksRow.astro";
 import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
 // ✅ Service links (for internal linking + crawl)
 const services = (siteData.coreServices || []).map((s) => ({
@@ -15,8 +16,6 @@ const services = (siteData.coreServices || []).map((s) => ({
   href: EN(`services/${s.slug}`),
 }));
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/about/`;
 
 const title = `About | ${siteData.brand.name}`;
 const description =
@@ -117,77 +116,28 @@ const about = {
   ],
 };
 
-// ✅ JSON-LD: One graph (avoid duplicates across components if possible)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      name: "About",
-      url: canonical,
-      description,
-      inLanguage: "en",
-      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
-      url: canonicalBase,
-      name: brand.name,
-    },
-    {
-      "@type": "Organization",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#org`,
-      name: brand.name,
-      legalName: brand.legalName,
-      url: canonicalBase,
-      telephone: brand.phoneE164,
-      sameAs: [brand.gbpUrl].filter(Boolean),
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: brand.streetAddress || undefined,
-        addressLocality: brand.addressLocality,
-        addressRegion: brand.addressRegion,
-        postalCode: brand.postalCode || undefined,
-        addressCountry: brand.addressCountry,
-      },
-    },
-    {
-      "@type": "InsuranceAgency",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#agency`,
-      name: brand.name,
-      url: canonicalBase,
-      telephone: brand.phoneE164,
-      sameAs: [brand.gbpUrl].filter(Boolean),
-      areaServed: brand.areaChips,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: brand.streetAddress || undefined,
-        addressLocality: brand.addressLocality,
-        addressRegion: brand.addressRegion,
-        postalCode: brand.postalCode || undefined,
-        addressCountry: brand.addressCountry,
-      },
-      geo: brand.geo
-        ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
-        : undefined,
-    },
-    {
-      "@type": "Person",
-      name: "M N Rajendrakumar",
-      worksFor: { "@id": `${canonicalBase.replace(/\/$/, "")}/#org` },
-      jobTitle: "Insurance Services",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: about.faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/about/");
+const meta = buildMeta({
+  title: `About | ${siteData.brand.name}`,
+  description:
+    "About M N Rajendrakumar Insurance Services — claim-first guidance for Chennai North & NH corridors with a documentation discipline mindset.",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "about",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "About", href: canonical },
   ],
-};
+  faqs: (siteData.about?.faqs || []).slice(0, 10),
+});
+
 ---
 
 <html lang="en">
@@ -195,19 +145,13 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-
-    <meta name="twitter:card" content="summary_large_image" />
+            <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>

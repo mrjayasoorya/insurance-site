@@ -12,6 +12,1339 @@ export const EN = (href = "") => {
   const path = href.endsWith("/") ? href : `${href}/`;
   return `/en${path.startsWith("/") ? "" : "/"}${path}`;
 };
+let gbpUrl = "https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Services+%E2%80%93+Commercial,+Vehicle+%26+Industrial+Insurance+%7C+Sholavaram,+Karanodai,+Redhills/@13.2391084,80.1702588,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527d2b1e29b5ff:0xe9b9b0049f529b6b!8m2!3d13.2391084!4d80.1728337!16s%2Fg%2F11xlhmwb8r"
+let phoneE164 = "+917448324068";
+let whatsappE164 = "917448324068";
+let whatsappPrefill = "Hi, I need guidance on the right insurance for my business / vehicle. Please help.";
+
+let locationsDetail = {
+  // ====== PRIORITY BELT: Sholavaram ↔ Madhavaram corridor ======
+sholavaram: {
+    name: "Sholavaram",
+    seoTitle: "Insurance Services in Sholavaram (Chennai Outskirts) – Office Support & Claim Guidance",
+    seoDesc:
+      "Insurance guidance anchored to our Sholavaram office: commercial transport/fleet, warehouses/property basics, contractor workflows (as applicable), and claim documentation support. Practical, claim-ready approach.",
+    heroH1: "Insurance services in Sholavaram",
+    heroP:
+      "Anchored to our Sholavaram office support—commercial-first guidance for NH-facing and industrial activity, plus motor/health/LIC support when needed.",
+    localContext: [
+      "Sholavaram is our primary support base for Chennai North and corridor-connected belts.",
+      "Commercial queries often involve transport documentation discipline and claim reporting steps (as applicable).",
+      "For SMEs, clarity on sum insured and basic proof discipline reduces avoidable disputes (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Can I visit your Sholavaram office directly?",
+        a: "Yes. It’s best to call or WhatsApp before visiting so we can guide the document checklist and avoid repeat trips.",
+      },
+      {
+        q: "Do you serve only Sholavaram?",
+        a: "Sholavaram is our base. We commonly support nearby Chennai North and corridor-connected areas depending on the policy and insurer requirements.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Red Hills", href: EN("/locations/red-hills/") },
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Karanodai", href: EN("/locations/karanodai/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Sholavaram",
+      "insurance agent Sholavaram",
+      "insurance office Sholavaram",
+      "insurance renewal Sholavaram",
+      "insurance claim support Sholavaram",
+    ],
+  },
+
+  "red-hills": {
+    name: "Red Hills",
+    seoTitle: "Insurance Services in Red Hills – NH Belt Transport, Warehouse & Claim Support",
+    seoDesc:
+      "Red Hills insurance guidance via Sholavaram office support: transport/fleet documentation discipline, warehouse/property basics (as applicable), MSME packages and claim documentation support.",
+    heroH1: "Insurance services in Red Hills",
+    heroP:
+      "Commercial-first support for NH-facing movement and storage risk guidance—plus renewals and claim documentation discipline where needed.",
+    localContext: [
+      "NH-facing belts often involve higher third-party exposure and documentation checks during claims (as applicable).",
+      "Warehouse/property risks are proof-driven: invoices/records and valuation basis matter (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Why are NH belt claims more document-heavy?",
+        a: "Third-party involvement and compliance checks (as applicable) are more common. Clean reporting, valid documents and a clear timeline reduce avoidable delays.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Karanodai", href: EN("/locations/karanodai/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Red Hills",
+      "insurance agent Red Hills",
+      "car insurance Red Hills",
+      "commercial insurance Red Hills",
+      "warehouse insurance Red Hills",
+    ],
+  },
+
+  madhavaram: {
+    name: "Madhavaram",
+    seoTitle: "Insurance Services in Madhavaram – Motor, SME & Commercial Vehicle Support",
+    seoDesc:
+      "Madhavaram support via Sholavaram office: motor renewals, SME packages, commercial vehicle documentation discipline and claim documentation guidance.",
+    heroH1: "Insurance services in Madhavaram",
+    heroP:
+      "City-edge logistics corridor support—motor renewals and SME guidance, plus commercial vehicle documentation discipline when required.",
+    localContext: [
+      "Mixed corridor: motor renewals + SME needs appear frequently.",
+      "For commercial vehicles, document discipline (permit/fitness/RC as applicable) helps reduce claim friction.",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Madhavaram customers for renewals?", a: "Yes. Renewals and claim documentation clarity are common requests we handle." },
+    ],
+    relatedLocations: [
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Red Hills", href: EN("/locations/red-hills/") },
+      { label: "Madhavaram Truck Terminal", href: EN("/locations/madhavaram-truck-terminal/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Madhavaram",
+      "car insurance Madhavaram",
+      "insurance renewal Madhavaram",
+      "commercial insurance Madhavaram",
+    ],
+  },
+
+  ambattur: {
+    name: "Ambattur",
+    seoTitle: "Insurance Services in Ambattur – Motor, SME & Claim Documentation Support",
+    seoDesc:
+      "Ambattur support via Sholavaram office: motor renewals, SME packages and claim documentation guidance with a practical, claim-ready approach.",
+    heroH1: "Insurance services in Ambattur",
+    heroP:
+      "Support for Ambattur customers via Sholavaram office—renewals, coverage clarity and claim documentation guidance.",
+    localContext: [
+      "Mixed city-side area where motor renewals and SME packages are common needs.",
+      "We focus on clean documentation and correct process steps (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Ambattur customers even though your office is in Sholavaram?", a: "Yes. We support via phone/WhatsApp and guided documentation depending on requirement." },
+    ],
+    relatedLocations: [
+      { label: "Thiruninravur", href: EN("/locations/thiruninravur/") },
+      { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
+      { label: "Anna Nagar", href: EN("/locations/anna-nagar/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Ambattur",
+      "insurance agent Ambattur",
+      "car insurance Ambattur",
+      "commercial insurance Ambattur",
+      "insurance renewal Ambattur",
+    ],
+  },
+  puzhal: {
+    name: "Puzhal",
+    seoTitle: "Insurance Services in Puzhal (Chennai North) – Motor, SME & Claim Support",
+    seoDesc:
+      "Insurance guidance for Puzhal customers via Sholavaram office support: motor renewals, SME packages, and claim documentation steps. Practical, claim-ready approach.",
+    heroH1: "Insurance services in Puzhal",
+    heroP:
+      "Support for Puzhal customers through our Sholavaram office—renewals, documentation clarity, and service guidance for motor, SME and selected commercial needs.",
+    localContext: [
+      "City–outskirts connector area where renewals and claim documentation clarity are common needs.",
+      "Motor claims and renewals are frequent; clear add-on selection and correct reporting steps reduce delays.",
+      "SME and shop packages are common where stock/assets need basic proof discipline (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Do you support Puzhal customers even though your office is in Sholavaram?",
+        a:
+          "Yes. We support Puzhal customers via call/WhatsApp and guided documentation, depending on the policy and insurer requirements.",
+      },
+      {
+        q: "What is the most common mistake during motor renewals?",
+        a:
+          "Renewing without checking IDV/NCB correctly and taking add-ons without matching real usage. We keep it simple and practical.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Red Hills", href: EN("/locations/red-hills/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Puzhal",
+      "car insurance Puzhal",
+      "insurance renewal Puzhal",
+      "insurance claim support Puzhal",
+    ],
+  },
+
+  kavangarai: {
+    name: "Kavangarai",
+    seoTitle: "Insurance Services in Kavangarai – NH Corridor & Mixed Commercial Support",
+    seoDesc:
+      "Kavangarai insurance guidance via Sholavaram office support for NH movement and mixed SME needs: commercial vehicle documentation discipline, MSME packages, and claim support.",
+    heroH1: "Insurance services in Kavangarai",
+    heroP:
+      "Support for Kavangarai customers through our Sholavaram office—commercial-first guidance for NH-facing movement and SME needs, with claim-ready documentation habits.",
+    localContext: [
+      "NH-facing movement zones tend to involve higher third-party exposure and documentation scrutiny during claims.",
+      "Commercial vehicle renewals work best when permit/fitness/RC discipline is aligned (as applicable).",
+      "SME packages benefit from simple proof discipline for stock/assets (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Do you handle only transport insurance in NH corridor areas?",
+        a:
+          "Transport/fleet is common, but we also support MSME packages, renewals, and claim documentation depending on the requirement.",
+      },
+      {
+        q: "What should commercial vehicle owners keep ready?",
+        a:
+          "RC, previous policy copy, and permit/fitness details where applicable. Clear usage details help avoid mismatches later.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Kavangarai",
+      "commercial vehicle insurance Kavangarai",
+      "insurance agent near Kavangarai",
+    ],
+  },
+
+  kosapaur: {
+    name: "Kosapaur",
+    seoTitle: "Insurance Services in Kosapaur – Motor, SME & Claim Documentation Support",
+    seoDesc:
+      "Kosapaur insurance guidance via Sholavaram office support: motor renewals, SME packages, and claim documentation steps with a practical approach.",
+    heroH1: "Insurance services in Kosapaur",
+    heroP:
+      "Support for Kosapaur customers through our Sholavaram office—renewals, coverage clarity, and claim documentation guidance.",
+    localContext: [
+      "Mixed residential + SME pockets where renewal clarity and claim process guidance are common requirements.",
+      "We focus on reducing avoidable delays by keeping documents and timelines clean (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Can you help with policy renewal and claim steps remotely?",
+        a:
+          "Yes. We can guide via call/WhatsApp. Final insurer requirements may vary by policy and incident type.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Kosapaur",
+      "policy renewal Kosapaur",
+      "car insurance Kosapaur",
+    ],
+  },
+
+  surapet: {
+    name: "Surapet",
+    seoTitle: "Insurance Services in Surapet – Motor, SME & Industrial Pockets Support",
+    seoDesc:
+      "Surapet insurance guidance via Sholavaram office support: motor renewals, SME packages, claim documentation support, and guidance for industrial pockets (as applicable).",
+    heroH1: "Insurance services in Surapet",
+    heroP:
+      "Support for Surapet customers through our Sholavaram office—practical coverage guidance for motor, SME and selected commercial needs.",
+    localContext: [
+      "Surapet has mixed residential activity and industrial pockets (as applicable).",
+      "Common needs: motor renewals, claim documentation clarity, and SME package guidance.",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Do you provide support for Surapet customers?",
+        a:
+          "Yes. We assist via our Sholavaram office support and guided documentation depending on policy type and insurer requirements.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Kolathur", href: EN("/locations/kolathur/") },
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Surapet",
+      "car insurance Surapet",
+      "insurance renewal Surapet",
+    ],
+  },
+
+  "madhavaram-milk-colony": {
+    name: "Madhavaram Milk Colony",
+    seoTitle: "Insurance Services in Madhavaram Milk Colony – Renewals & Claim Support",
+    seoDesc:
+      "Madhavaram Milk Colony support via Sholavaram office: motor renewals, health guidance, SME packages and claim documentation steps.",
+    heroH1: "Insurance services in Madhavaram Milk Colony",
+    heroP:
+      "Support for Madhavaram Milk Colony customers—renewals, add-on clarity and claim documentation guidance via Sholavaram office support.",
+    localContext: [
+      "City-side motor renewals and claim process guidance are common needs.",
+      "For SMEs, simple proof discipline for stock/assets helps avoid disputes (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support renewals for Madhavaram areas?", a: "Yes. Renewals and claim documentation clarity are common requests we handle." },
+    ],
+    relatedLocations: [
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Puzhal", href: EN("/locations/puzhal/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Madhavaram Milk Colony",
+      "car insurance Madhavaram Milk Colony",
+      "policy renewal Madhavaram",
+    ],
+  },
+
+  "madhavaram-truck-terminal": {
+    name: "Madhavaram Truck Terminal",
+    seoTitle: "Insurance Services near Madhavaram Truck Terminal – Commercial Vehicle & Fleet Support",
+    seoDesc:
+      "Commercial-first insurance guidance near Madhavaram Truck Terminal via Sholavaram office: commercial vehicles, goods carriers, fleet documentation discipline and claim support.",
+    heroH1: "Insurance services near Madhavaram Truck Terminal",
+    heroP:
+      "Commercial-first support for transport operators—documentation discipline, renewal clarity and claim support via Sholavaram office guidance.",
+    localContext: [
+      "Transport-heavy zone where document discipline (RC/permit/fitness where applicable) reduces claim friction.",
+      "Third-party exposure increases scrutiny; early reporting and a clean timeline helps.",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      {
+        q: "Do you support fleet renewals and document checklist guidance?",
+        a:
+          "Yes. We help verify policy alignment and prepare document checklists (RC/permit/fitness as applicable) to reduce avoidable delays.",
+      },
+    ],
+    relatedLocations: [
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+      { label: "Red Hills", href: EN("/locations/red-hills/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "commercial insurance Madhavaram Truck Terminal",
+      "fleet insurance Madhavaram",
+      "commercial vehicle insurance Madhavaram",
+    ],
+  },
+
+  // ====== PRIORITY BELT: Sholavaram ↔ Thiruvallur / industrial outskirts ======
+
+  budur: {
+    name: "Budur",
+    seoTitle: "Insurance Services in Budur – NH Belt Transport & SME Guidance",
+    seoDesc:
+      "Budur insurance guidance via Sholavaram office support: commercial vehicles, goods carriers, fleet documentation habits and MSME packages (as applicable).",
+    heroH1: "Insurance services in Budur",
+    heroP:
+      "NH-belt support through Sholavaram office guidance—commercial vehicle renewals, documentation discipline and claim support.",
+    localContext: [
+      "Outskirts movement belt where transport and SME requirements are common.",
+      "Document discipline and correct disclosures are key for claim smoothness (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you help customers outside Chennai city limits?", a: "Yes, depending on policy type and insurer requirements. Guidance and documentation support are possible in many cases." },
+    ],
+    relatedLocations: [
+      { label: "Periyapalayam", href: EN("/locations/periyapalayam/") },
+      { label: "Karanodai", href: EN("/locations/karanodai/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Budur",
+      "lorry insurance Budur",
+      "commercial vehicle insurance Budur",
+    ],
+  },
+
+  thiruninravur: {
+    name: "Thiruninravur",
+    seoTitle: "Insurance Services in Thiruninravur – Motor, SME & Commercial Vehicle Support",
+    seoDesc:
+      "Thiruninravur insurance guidance via Sholavaram office support: motor renewals, SME packages, commercial vehicle documentation habits and claim support.",
+    heroH1: "Insurance services in Thiruninravur",
+    heroP:
+      "Support for Thiruninravur customers through Sholavaram office—renewals, coverage clarity, and claim documentation discipline.",
+    localContext: [
+      "Mixed residential + industrial adjacency where both motor renewals and SME needs appear.",
+      "For commercial vehicles, permit/fitness/RC alignment (as applicable) reduces claim friction.",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support both personal and commercial policies here?", a: "Yes. Support depends on the requirement and insurer rules, but we commonly guide renewals and documentation across both." },
+    ],
+    relatedLocations: [
+      { label: "Ambattur", href: EN("/locations/ambattur/") },
+      { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Thiruninravur",
+      "car insurance Thiruninravur",
+      "commercial insurance Thiruninravur",
+    ],
+  },
+
+  veppampattu: {
+    name: "Veppampattu",
+    seoTitle: "Insurance Services in Veppampattu – Commercial Vehicle & SME Guidance",
+    seoDesc:
+      "Veppampattu insurance guidance via Sholavaram office support for commercial vehicles, goods carriers, SME packages and claim documentation help (as applicable).",
+    heroH1: "Insurance services in Veppampattu",
+    heroP:
+      "Outskirts belt support through Sholavaram office guidance—commercial vehicle renewals, documentation discipline and claim support.",
+    localContext: [
+      "Outskirts belt where transport and SME activities can overlap.",
+      "Claim smoothness depends heavily on correct disclosures and proof discipline (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Can you guide claim documentation even if the incident is outside Chennai?", a: "Yes, depending on the policy/insurer process. We guide steps and document checklist wherever feasible." },
+    ],
+    relatedLocations: [
+      { label: "Thiruvallur SIPCOT outskirts", href: EN("/locations/thiruvallur-sipcot-outskirts/") },
+      { label: "Periyapalayam", href: EN("/locations/periyapalayam/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Veppampattu",
+      "commercial vehicle insurance Veppampattu",
+      "policy renewal Veppampattu",
+    ],
+  },
+
+  "thiruvallur-sipcot-outskirts": {
+    name: "Thiruvallur SIPCOT outskirts",
+    seoTitle: "Insurance Support near Thiruvallur SIPCOT (Outskirts) – Industrial & Contractor Needs",
+    seoDesc:
+      "Support near Thiruvallur SIPCOT outskirts via Sholavaram office guidance: industrial/property insurance basics, contractor CAR/WC guidance and claim documentation discipline (as applicable).",
+    heroH1: "Insurance support near Thiruvallur SIPCOT outskirts",
+    heroP:
+      "Industrial/contractor-oriented guidance via Sholavaram office—coverage clarity, documentation discipline and claim support (as applicable).",
+    localContext: [
+      "Industrial/outskirts zones often require valuation clarity and proof discipline (stock/assets) for property risks.",
+      "Contractor and workforce exposure (CAR/WC) needs correct classification and timeline discipline (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+      { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      { title: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you handle industrial policies for SIPCOT-side businesses?", a: "We can guide based on policy type and insurer requirements. Valuation and documentation discipline are core." },
+    ],
+    relatedLocations: [
+      { label: "Veppampattu", href: EN("/locations/veppampattu/") },
+      { label: "Periyapalayam", href: EN("/locations/periyapalayam/") },
+    ],
+    serviceAreaSignals: [
+      "industrial insurance Thiruvallur SIPCOT outskirts",
+      "warehouse insurance Thiruvallur",
+      "contractor insurance Thiruvallur",
+    ],
+  },
+
+  // ====== PRIORITY BELT: Poonamallee ↔ Sriperumbudur / industrial gold ======
+
+  "poonamallee-bypass": {
+    name: "Poonamallee bypass",
+    seoTitle: "Insurance Support near Poonamallee Bypass – Transport, Contractor & Industrial Guidance",
+    seoDesc:
+      "Support near Poonamallee bypass via Sholavaram office guidance: transport/fleet needs, contractor CAR/WC, industrial/property basics and claim support (as applicable).",
+    heroH1: "Insurance support near Poonamallee bypass",
+    heroP:
+      "Industrial corridor support via Sholavaram office—transport/fleet documentation discipline, contractor workflows and claim-ready guidance (as applicable).",
+    localContext: [
+      "Industrial corridors often see contractor activity and heavy vehicle movement.",
+      "High-value policies become claim-sensitive when disclosures/documents are weak—proof discipline reduces disputes (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+      { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you provide support in high-industrial corridors?", a: "We can guide based on insurer requirements. Many cases can be supported via documentation and correct disclosures." },
+    ],
+    relatedLocations: [
+      { label: "Thirumazhisai", href: EN("/locations/thirumazhisai/") },
+      { label: "Sriperumbudur SIPCOT", href: EN("/locations/sriperumbudur-sipcot/") },
+    ],
+    serviceAreaSignals: [
+      "commercial insurance Poonamallee bypass",
+      "contractor insurance Poonamallee",
+      "fleet insurance Poonamallee",
+    ],
+  },
+
+  kuthambakkam: {
+    name: "Kuthambakkam",
+    seoTitle: "Insurance Support in Kuthambakkam – Industrial Corridor Guidance",
+    seoDesc:
+      "Kuthambakkam support via Sholavaram office guidance: transport/fleet needs, contractor CAR/WC, warehouse/property insurance basics and claim support (as applicable).",
+    heroH1: "Insurance support in Kuthambakkam",
+    heroP:
+      "Industrial corridor support via Sholavaram office—transport, contractor and property risk guidance with claim-ready documentation habits.",
+    localContext: [
+      "Industrial corridor areas often involve contractor workflows and commercial vehicle movement.",
+      "Claim outcomes depend on valuation proof, correct disclosures and clean reporting steps (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/") },
+      { title: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support contractor and workforce-related policies?", a: "Yes. CAR/WC depends on correct classification and documentation discipline." },
+    ],
+    relatedLocations: [
+      { label: "Poonamallee bypass", href: EN("/locations/poonamallee-bypass/") },
+      { label: "Thirumazhisai", href: EN("/locations/thirumazhisai/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Kuthambakkam",
+      "contractor insurance Kuthambakkam",
+      "warehouse insurance Kuthambakkam",
+    ],
+  },
+
+  thirumazhisai: {
+    name: "Thirumazhisai",
+    seoTitle: "Insurance Support in Thirumazhisai – Transport, SME & Industrial Guidance",
+    seoDesc:
+      "Thirumazhisai insurance guidance via Sholavaram office support: commercial vehicles, SME packages, industrial/property basics and claim documentation discipline.",
+    heroH1: "Insurance support in Thirumazhisai",
+    heroP:
+      "Support via Sholavaram office—transport and SME guidance with claim-ready documentation habits.",
+    localContext: [
+      "Industrial adjacency and transport movement can increase documentation scrutiny during claims (as applicable).",
+      "Renewals and claim steps clarity are frequent needs for vehicle owners and SMEs.",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Can you help with renewal and claim guidance for Thirumazhisai?", a: "Yes. We support through Sholavaram office guidance depending on the policy and insurer rules." },
+    ],
+    relatedLocations: [
+      { label: "Poonamallee bypass", href: EN("/locations/poonamallee-bypass/") },
+      { label: "Chembarambakkam", href: EN("/locations/chembarambakkam/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Thirumazhisai",
+      "commercial insurance Thirumazhisai",
+      "policy renewal Thirumazhisai",
+    ],
+  },
+
+  chembarambakkam: {
+    name: "Chembarambakkam",
+    seoTitle: "Insurance Support in Chembarambakkam – Industrial Corridor & Vehicle Guidance",
+    seoDesc:
+      "Chembarambakkam insurance guidance via Sholavaram office support: commercial vehicles, SME packages, industrial/property basics and claim documentation support (as applicable).",
+    heroH1: "Insurance support in Chembarambakkam",
+    heroP:
+      "Support via Sholavaram office—transport and SME guidance with claim-ready documentation discipline.",
+    localContext: [
+      "Corridor-connected area where transport movement and SME needs can overlap.",
+      "Claim friction often comes from missing documents and unclear timelines; we guide a clean process (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support customers outside your immediate area?", a: "Yes. Support depends on policy type and insurer processes. We guide documentation and correct steps wherever feasible." },
+    ],
+    relatedLocations: [
+      { label: "Thirumazhisai", href: EN("/locations/thirumazhisai/") },
+      { label: "Sriperumbudur SIPCOT", href: EN("/locations/sriperumbudur-sipcot/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Chembarambakkam",
+      "commercial vehicle insurance Chembarambakkam",
+    ],
+  },
+
+  "sriperumbudur-sipcot": {
+    name: "Sriperumbudur SIPCOT",
+    seoTitle: "Insurance Support near Sriperumbudur SIPCOT – Industrial, Contractor & Transit Guidance",
+    seoDesc:
+      "Support near Sriperumbudur SIPCOT via Sholavaram office guidance: industrial/property basics, contractor CAR/WC, transit documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance support near Sriperumbudur SIPCOT",
+    heroP:
+      "Industrial corridor support via Sholavaram office—coverage clarity and claim-ready documentation habits for factories, contractors and transport operations (as applicable).",
+    localContext: [
+      "Industrial zones often involve higher-value risks where valuation and proof discipline matter.",
+      "Contractor/workforce exposures need correct classification and timeline discipline (as applicable).",
+      "Transit risks benefit from invoice/packing/dispatch trail discipline (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+      { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support industrial and contractor risks in SIPCOT areas?", a: "We can guide depending on insurer requirements. We focus on disclosures, valuation and document discipline." },
+    ],
+    relatedLocations: [
+      { label: "Oragadam outskirts", href: EN("/locations/oragadam-outskirts/") },
+      { label: "Poonamallee bypass", href: EN("/locations/poonamallee-bypass/") },
+    ],
+    serviceAreaSignals: [
+      "industrial insurance Sriperumbudur SIPCOT",
+      "factory insurance Sriperumbudur",
+      "contractor insurance Sriperumbudur",
+    ],
+  },
+
+  "oragadam-outskirts": {
+    name: "Oragadam outskirts",
+    seoTitle: "Insurance Support near Oragadam (Outskirts) – Industrial, Contractor & Fleet Guidance",
+    seoDesc:
+      "Support near Oragadam outskirts via Sholavaram office guidance: contractor CAR/WC, industrial/property basics, fleet documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance support near Oragadam outskirts",
+    heroP:
+      "Industrial corridor support via Sholavaram office—structured guidance for contractor, fleet and property risks with claim-ready documentation discipline.",
+    localContext: [
+      "Industrial zones tend to be claim-sensitive: valuation, disclosures and documentation discipline matter.",
+      "Contractor/WC exposures need correct workforce classification and clean records (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      { title: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you promise claim approval?", a: "No. Claim outcomes depend on insurer rules and policy terms. We guide correct steps and documentation to reduce avoidable delays." },
+    ],
+    relatedLocations: [
+      { label: "Sriperumbudur SIPCOT", href: EN("/locations/sriperumbudur-sipcot/") },
+      { label: "Chembarambakkam", href: EN("/locations/chembarambakkam/") },
+    ],
+    serviceAreaSignals: [
+      "commercial insurance Oragadam",
+      "contractor insurance Oragadam outskirts",
+      "industrial insurance Oragadam",
+    ],
+  },
+
+  // ====== PRIORITY BELT: Madhavaram ↔ Manali ↔ NH Manali ======
+
+  "manali-new-town": {
+    name: "Manali New Town",
+    seoTitle: "Insurance Support in Manali New Town – Commercial Vehicle & Industrial Guidance",
+    seoDesc:
+      "Manali New Town support via Sholavaram office guidance: commercial vehicles, industrial/property basics, transit documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance support in Manali New Town",
+    heroP:
+      "Commercial-first guidance via Sholavaram office—transport, property and claim documentation discipline for corridor-connected needs.",
+    localContext: [
+      "Industrial influence areas can involve commercial vehicles and transit-related documentation needs (as applicable).",
+      "Claim clarity improves when reporting steps and proof trail are clean (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Manali area customers from Sholavaram office?", a: "Yes. Support depends on policy type and insurer requirements." },
+    ],
+    relatedLocations: [
+      { label: "Manali Industrial Estate", href: EN("/locations/manali-industrial-estate/") },
+      { label: "NH Manali Road", href: EN("/locations/nh-manali-road/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Manali New Town",
+      "commercial insurance Manali New Town",
+      "commercial vehicle insurance Manali",
+    ],
+  },
+
+  "manali-industrial-estate": {
+    name: "Manali Industrial Estate",
+    seoTitle: "Insurance Support in Manali Industrial Estate – Industrial, Liability & Transit Guidance",
+    seoDesc:
+      "Manali Industrial Estate support via Sholavaram office guidance: industrial/property basics, liability awareness, transit documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance support in Manali Industrial Estate",
+    heroP:
+      "Commercial-first guidance via Sholavaram office—industrial/property, liability and transit documentation discipline (as applicable).",
+    localContext: [
+      "Industrial estates typically require better valuation/proof discipline for property and stock (as applicable).",
+      "Liability and transit documentation discipline may be relevant depending on operations (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+      { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you help with property/stock proof discipline?", a: "Yes. Invoices/records and valuation basis (as applicable) are key for avoiding disputes." },
+    ],
+    relatedLocations: [
+      { label: "Manali New Town", href: EN("/locations/manali-new-town/") },
+      { label: "NH Manali Road", href: EN("/locations/nh-manali-road/") },
+    ],
+    serviceAreaSignals: [
+      "industrial insurance Manali Industrial Estate",
+      "warehouse insurance Manali",
+      "liability insurance Manali",
+    ],
+  },
+
+  "nh-manali-road": {
+    name: "NH Manali Road",
+    seoTitle: "Insurance Support near NH Manali Road – Transport, Transit & Claim Guidance",
+    seoDesc:
+      "NH Manali Road belt support via Sholavaram office guidance: commercial vehicles, goods carriers, transit documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance support near NH Manali Road",
+    heroP:
+      "Commercial-first guidance via Sholavaram office—transport and transit documentation discipline with claim-ready reporting steps.",
+    localContext: [
+      "Logistics belts tend to face higher third-party exposure and documentation scrutiny during claims.",
+      "Document readiness and early reporting reduce avoidable delays (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Why are logistics belt claims more document-heavy?", a: "Third-party involvement and compliance checks (as applicable) are more common, so timelines and proof matter." },
+    ],
+    relatedLocations: [
+      { label: "Manali Industrial Estate", href: EN("/locations/manali-industrial-estate/") },
+      { label: "Madhavaram Truck Terminal", href: EN("/locations/madhavaram-truck-terminal/") },
+    ],
+    serviceAreaSignals: [
+      "fleet insurance NH Manali Road",
+      "commercial vehicle insurance NH Manali Road",
+      "insurance claim support NH Manali belt",
+    ],
+  },
+
+  // ====== PRIORITY: Mixed residential + commercial pockets ======
+
+  "kolathur-commercial-pockets": {
+    name: "Kolathur (commercial pockets)",
+    seoTitle: "Insurance Services in Kolathur (Commercial Pockets) – Motor, SME & Claim Support",
+    seoDesc:
+      "Kolathur commercial pockets support via Sholavaram office: motor renewals, SME packages, claim documentation steps and practical guidance.",
+    heroH1: "Insurance services in Kolathur (commercial pockets)",
+    heroP:
+      "Support for Kolathur customers via Sholavaram office—renewals, SME guidance, and claim-ready documentation discipline.",
+    localContext: [
+      "Mixed-use area where SME needs and motor renewals commonly overlap.",
+      "Most issues are renewal mistakes, add-on confusion, and missing claim documentation (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you help with both SME and vehicle insurance in Kolathur?", a: "Yes. We support renewals and documentation clarity depending on the requirement." },
+    ],
+    relatedLocations: [
+      { label: "Retteri", href: EN("/locations/retteri/") },
+      { label: "Villivakkam (industrial areas)", href: EN("/locations/villivakkam-industrial-areas/") },
+      { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Kolathur",
+      "car insurance Kolathur",
+      "commercial insurance Kolathur",
+      "policy renewal Kolathur",
+    ],
+  },
+
+  retteri: {
+    name: "Retteri",
+    seoTitle: "Insurance Services in Retteri – Motor Renewals & Claim Support",
+    seoDesc:
+      "Retteri support via Sholavaram office: car/bike renewals, add-on clarity, claim documentation steps and practical guidance.",
+    heroH1: "Insurance services in Retteri",
+    heroP:
+      "Support for Retteri customers via Sholavaram office—renewals, claim documentation help and practical coverage guidance.",
+    localContext: [
+      "Residential-heavy demand: motor renewals and claim guidance.",
+      "Simple discipline—policy copies, photos after incidents (as applicable), and timely reporting—prevents delays.",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support claim documentation for small motor accidents?", a: "Yes. We guide photos/timeline/reporting steps depending on case type." },
+    ],
+    relatedLocations: [
+      { label: "Kolathur (commercial pockets)", href: EN("/locations/kolathur-commercial-pockets/") },
+      { label: "Anna Nagar", href: EN("/locations/anna-nagar/") },
+    ],
+    serviceAreaSignals: [
+      "car insurance Retteri",
+      "insurance renewal Retteri",
+      "insurance claim help Retteri",
+    ],
+  },
+
+  "villivakkam-industrial-areas": {
+    name: "Villivakkam (industrial areas)",
+    seoTitle: "Insurance Support in Villivakkam (Industrial Areas) – SME, Property & Motor",
+    seoDesc:
+      "Villivakkam industrial areas support via Sholavaram office: SME packages, selected property risk guidance (as applicable), motor renewals and claim documentation help.",
+    heroH1: "Insurance support in Villivakkam (industrial areas)",
+    heroP:
+      "Support via Sholavaram office—SME and motor guidance with claim-ready documentation discipline.",
+    localContext: [
+      "Industrial pockets may involve SME packages and property/stock proof discipline (as applicable).",
+      "Motor renewals and claim documentation clarity remain common needs.",
+    ],
+    serviceLinks: [
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you help with SME packages for small units?", a: "Yes. We focus on sum insured and proof discipline where applicable." },
+    ],
+    relatedLocations: [
+      { label: "Kolathur", href: EN("/locations/kolathur/") },
+      { label: "Perambur", href: EN("/locations/perambur/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Villivakkam",
+      "business insurance Villivakkam",
+      "car insurance Villivakkam",
+    ],
+  },
+
+  "mogappair-west": {
+    name: "Mogappair West",
+    seoTitle: "Insurance Services in Mogappair West – Motor, Health & Renewal Support",
+    seoDesc:
+      "Mogappair West support via Sholavaram office: car/bike renewals, health policy guidance, and claim documentation steps with practical clarity.",
+    heroH1: "Insurance services in Mogappair West",
+    heroP:
+      "Support via Sholavaram office—motor renewals and health guidance, plus claim documentation help when needed.",
+    localContext: [
+      "Residential demand: renewals and health policy guidance are common needs.",
+      "We focus on clear add-on choices and claim-step clarity rather than generic explanations.",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Mogappair customers even though your office is in Sholavaram?", a: "Yes. We support via phone/WhatsApp and guided documentation depending on the requirement." },
+    ],
+    relatedLocations: [
+      { label: "Ambattur", href: EN("/locations/ambattur/") },
+      { label: "Anna Nagar", href: EN("/locations/anna-nagar/") },
+      { label: "Koyambedu", href: EN("/locations/koyambedu/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Mogappair West",
+      "car insurance Mogappair West",
+      "health insurance Mogappair West",
+      "policy renewal Mogappair",
+    ],
+  },
+
+  // ====== Existing ones you requested explicitly ======
+  // manali, karanodai, periyapalayam, arani, perambur, kolathur, koyambedu, anna-nagar
+
+  manali: {
+    name: "Manali",
+    seoTitle: "Insurance Services in Manali – Industrial, Transport & Transit Guidance",
+    seoDesc:
+      "Manali support via Sholavaram office guidance: commercial vehicles, industrial/property basics, transit documentation discipline and claim support (as applicable).",
+    heroH1: "Insurance services in Manali",
+    heroP:
+      "Support for Manali customers through Sholavaram office—commercial-first guidance for transport, industrial/property and claim documentation discipline.",
+    localContext: [
+      "Industrial influence area where commercial vehicles and property risks may overlap (as applicable).",
+      "Transit documentation and liability awareness can matter depending on operations (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Manali industrial requirements?", a: "We can guide depending on the policy type and insurer requirements. Documentation and disclosures are core." },
+    ],
+    relatedLocations: [
+      { label: "Manali Industrial Estate", href: EN("/locations/manali-industrial-estate/") },
+      { label: "NH Manali Road", href: EN("/locations/nh-manali-road/") },
+      { label: "Madhavaram", href: EN("/locations/madhavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Manali",
+      "commercial insurance Manali",
+      "warehouse insurance Manali",
+    ],
+  },
+
+  karanodai: {
+    name: "Karanodai",
+    seoTitle: "Insurance Services in Karanodai – NH Belt Transport & Claim Support",
+    seoDesc:
+      "Karanodai NH belt support via Sholavaram office: transport/fleet documentation discipline, goods carriers, and claim documentation guidance (as applicable).",
+    heroH1: "Insurance services in Karanodai",
+    heroP:
+      "NH-facing belt support through Sholavaram office—transport-focused guidance and claim-ready documentation discipline.",
+    localContext: [
+      "NH belt movement increases third-party exposure and paperwork scrutiny during claims (as applicable).",
+      "Permit/fitness/RC alignment and clean reporting reduces avoidable delays.",
+    ],
+    serviceLinks: [
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+      { title: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Is Karanodai treated like an NH belt for insurance workflows?", a: "Many cases involve NH movement and document checks. We guide documentation discipline and reporting steps based on case type." },
+    ],
+    relatedLocations: [
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+      { label: "Red Hills", href: EN("/locations/red-hills/") },
+      { label: "Periyapalayam", href: EN("/locations/periyapalayam/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Karanodai",
+      "lorry insurance Karanodai",
+      "fleet insurance Karanodai",
+    ],
+  },
+
+  periyapalayam: {
+    name: "Periyapalayam",
+    seoTitle: "Insurance Services in Periyapalayam – Outskirts Corridor Transport & SME Support",
+    seoDesc:
+      "Periyapalayam corridor support via Sholavaram office: transport/fleet guidance, SME packages and claim documentation discipline (as applicable).",
+    heroH1: "Insurance services in Periyapalayam",
+    heroP:
+      "Outskirts corridor support through Sholavaram office—transport and SME guidance with claim-ready documentation habits.",
+    localContext: [
+      "Outskirts corridors often involve mixed transport movement and small business needs.",
+      "Claims and approvals become smoother with correct disclosures and document readiness (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Periyapalayam customers from Sholavaram?", a: "Yes. We commonly support corridor-connected areas depending on policy and insurer requirements." },
+    ],
+    relatedLocations: [
+      { label: "Karanodai", href: EN("/locations/karanodai/") },
+      { label: "Budur", href: EN("/locations/budur/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Periyapalayam",
+      "commercial insurance Periyapalayam",
+      "policy renewal Periyapalayam",
+    ],
+  },
+
+  arani: {
+    name: "Arani",
+    seoTitle: "Insurance Support in Arani (Corridor-Connected) – Transport & Transit Guidance",
+    seoDesc:
+      "Arani corridor-connected support via Sholavaram office guidance: transport/fleet, transit documentation discipline and SME packages (as applicable).",
+    heroH1: "Insurance support in Arani",
+    heroP:
+      "Support via Sholavaram office—transport and transit documentation guidance for corridor-connected requirements (as applicable).",
+    localContext: [
+      "Corridor-connected movement can involve transport and transit documentation needs.",
+      "Claim smoothness improves with clean reporting and proof trail discipline (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+      { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
+      { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+    ],
+    faqs: [
+      { q: "Can you guide documentation even if the location is outside Chennai?", a: "Sometimes yes, depending on insurer process and policy type. We guide wherever feasible." },
+    ],
+    relatedLocations: [
+      { label: "Periyapalayam", href: EN("/locations/periyapalayam/") },
+      { label: "Sholavaram", href: EN("/locations/sholavaram/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Arani",
+      "lorry insurance Arani",
+      "goods in transit insurance Arani",
+    ],
+  },
+
+  perambur: {
+    name: "Perambur",
+    seoTitle: "Insurance Services in Perambur – Motor, Health & SME Support",
+    seoDesc:
+      "Perambur support via Sholavaram office: car/bike renewals, health policy guidance, SME packages and claim documentation support.",
+    heroH1: "Insurance services in Perambur",
+    heroP:
+      "City-side support via Sholavaram office—motor renewals, health guidance, SME packages and claim documentation help.",
+    localContext: [
+      "City-side demand: renewals and claim-step clarity are common needs.",
+      "SME packages may apply where shops/offices need coverage clarity (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Perambur customers for renewals?", a: "Yes. Renewals, add-on clarity and claim documentation guidance are common requests we handle." },
+    ],
+    relatedLocations: [
+      { label: "Villivakkam (industrial areas)", href: EN("/locations/villivakkam-industrial-areas/") },
+      { label: "Kolathur", href: EN("/locations/kolathur/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Perambur",
+      "car insurance Perambur",
+      "health insurance Perambur",
+      "insurance renewal Perambur",
+    ],
+  },
+
+  kolathur: {
+    name: "Kolathur",
+    seoTitle: "Insurance Services in Kolathur – Motor Renewals, SME Packages & Claim Support",
+    seoDesc:
+      "Kolathur support via Sholavaram office: car/bike renewals, SME packages and claim documentation guidance with a practical approach.",
+    heroH1: "Insurance services in Kolathur",
+    heroP:
+      "Support via Sholavaram office—motor renewals, SME packages and claim documentation guidance.",
+    localContext: [
+      "Mixed residential + SME demand where renewals and claim documentation clarity are frequent needs.",
+      "We keep guidance practical: correct details, correct documents, clean timelines (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you help with SME packages in Kolathur?", a: "Yes. We guide sum insured and proof discipline where applicable." },
+    ],
+    relatedLocations: [
+      { label: "Kolathur (commercial pockets)", href: EN("/locations/kolathur-commercial-pockets/") },
+      { label: "Retteri", href: EN("/locations/retteri/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Kolathur",
+      "car insurance Kolathur",
+      "policy renewal Kolathur",
+    ],
+  },
+
+  koyambedu: {
+    name: "Koyambedu",
+    seoTitle: "Insurance Services in Koyambedu – Motor Renewals & Claim Documentation Support",
+    seoDesc:
+      "Koyambedu support via Sholavaram office: motor renewals, add-on clarity and claim documentation steps with practical guidance.",
+    heroH1: "Insurance services in Koyambedu",
+    heroP:
+      "City connector support via Sholavaram office—motor renewals and claim documentation guidance.",
+    localContext: [
+      "High-movement city connector; renewals and claim-step clarity are common needs.",
+      "We focus on practical coverage checks and correct reporting steps (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Can you help with quick renewal checks for Koyambedu customers?", a: "Yes. We can guide via phone/WhatsApp and help keep details clean." },
+    ],
+    relatedLocations: [
+      { label: "Anna Nagar", href: EN("/locations/anna-nagar/") },
+      { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Koyambedu",
+      "car insurance Koyambedu",
+      "insurance renewal Koyambedu",
+    ],
+  },
+
+  "anna-nagar": {
+    name: "Anna Nagar",
+    seoTitle: "Insurance Services in Anna Nagar – Motor, Health & Renewal Support",
+    seoDesc:
+      "Anna Nagar support via Sholavaram office: car/bike renewals, health policy guidance and claim documentation steps with practical clarity.",
+    heroH1: "Insurance services in Anna Nagar",
+    heroP:
+      "City-side support via Sholavaram office—motor renewals, health guidance, and claim documentation help.",
+    localContext: [
+      "City residential demand with strong renewals and health policy guidance requirements.",
+      "We differentiate through clarity: correct details, add-ons based on usage, and clean claim steps (as applicable).",
+    ],
+    serviceLinks: [
+      { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+      { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+      { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Do you support Anna Nagar customers from Sholavaram office?", a: "Yes. We support via phone/WhatsApp and guided documentation depending on requirement." },
+    ],
+    relatedLocations: [
+      { label: "Koyambedu", href: EN("/locations/koyambedu/") },
+      { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
+    ],
+    serviceAreaSignals: [
+      "insurance in Anna Nagar",
+      "car insurance Anna Nagar",
+      "health insurance Anna Nagar",
+      "policy renewal Anna Nagar",
+    ],
+  },
+}
+
+// ✅ Single source of truth for index (no mismatch)
+export const buildLocationsIndexFromDetail = (locationsDetail) => {
+  const detail = locationsDetail || {};
+  const has = (slug) => !!detail[slug];
+
+  // Order = your business priority
+  const NH_PRIORITY = [
+    "sholavaram",
+    "red-hills",
+    "puzhal",
+    "kavangarai",
+    "kosapaur",
+    "surapet",
+    "madhavaram",
+    "madhavaram-milk-colony",
+    "madhavaram-truck-terminal",
+    "manali",
+    "manali-new-town",
+    "manali-industrial-estate",
+    "nh-manali-road",
+    "karanodai",
+    "periyapalayam",
+    "budur",
+    "thiruninravur",
+    "veppampattu",
+    "thiruvallur-sipcot-outskirts",
+    "poonamallee-bypass",
+    "kuthambakkam",
+    "thirumazhisai",
+    "chembarambakkam",
+    "sriperumbudur-sipcot",
+    "oragadam-outskirts",
+    "arani",
+  ].filter(has);
+
+  const CITY_SIDE = [
+    "perambur",
+    "ambattur",
+    "kolathur",
+    "kolathur-commercial-pockets",
+    "retteri",
+    "villivakkam-industrial-areas",
+    "mogappair-west",
+    "koyambedu",
+    "anna-nagar",
+  ].filter(has);
+
+  const mk = (slug) => ({ slug, name: detail[slug].name });
+
+  return {
+    title: "Locations We Serve (Chennai North + NH Corridors)",
+    subtitle:
+      "Service guidance anchored to Sholavaram office support—focused on NH-facing belts (transport, warehouses, contractors, heavy equipment) and city-side areas for motor/health/LIC and SME needs.",
+    intro: [
+      "Primary base: Sholavaram (Chennai outskirts).",
+      "Commercial focus: NH belts and industrial movement zones (fleets, warehouses/godowns, factories, contractors, cranes/heavy equipment).",
+      "City-side support: car/bike, health, LIC and SME shops/offices—renewals + claim documentation guidance.",
+    ],
+    groups: [
+      {
+        id: "nh-industrial-belts",
+        title: "NH & industrial belts (commercial-first)",
+        subtitle:
+          "Areas with high commercial movement where policy wording + documentation discipline matters most for claims.",
+        locations: NH_PRIORITY.map(mk),
+      },
+      {
+        id: "city-areas",
+        title: "Chennai city-side areas (domestic + SME support)",
+        subtitle:
+          "Motor, health, LIC and small office/shop support—kept practical and claim-ready.",
+        locations: CITY_SIDE.map(mk),
+      },
+    ],
+    claimReadyPrinciples: {
+      title: "What improves outcomes (simple, practical)",
+      points: [
+        "Correct disclosures + policy wording clarity before purchase/renewal—reduces disputes later.",
+        "Documentation discipline: invoices, valuation proofs, photos, permits/fitness, worker records (where applicable).",
+        "Timely reporting and clean incident timeline—done correctly to reduce avoidable delays.",
+        "Renewal checks: prevent coverage gaps and mismatched add-ons.",
+      ],
+    },
+  };
+};
 
 // Also add normalized fields for easy UI use.
 const gmbReviewsRaw = {
@@ -126,10 +1459,9 @@ export const siteData = {
       "Claim-first insurance guidance for Chennai outskirts businesses — Sholavaram, Red Hills Toll belt, Madhavaram & nearby highway/industrial zones.",
 
     phone: "7448324068",
-    phoneE164: "+917448324068",
-    whatsappE164: "917448324068",
-    whatsappPrefill:
-      "Hi, I need guidance on the right insurance for my business / vehicle. Please help.",
+    phoneE164,
+    whatsappE164,
+    whatsappPrefill,
 
     primaryArea: "Sholavaram (Chennai Outskirts)",
     areaChips: ["Sholavaram", "Red Hills Toll", "Madhavaram", "Chennai Outskirts"],
@@ -142,8 +1474,7 @@ export const siteData = {
     addressCountry: "IN",
 
     // GBP / Maps
-    gbpUrl:
-      "https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Services+%E2%80%93+Commercial,+Vehicle+%26+Industrial+Insurance+%7C+Sholavaram,+Karanodai,+Redhills/@13.2391084,80.1702588,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527d2b1e29b5ff:0xe9b9b0049f529b6b!8m2!3d13.2391084!4d80.1728337!16s%2Fg%2F11xlhmwb8r",
+    gbpUrl,
     mapEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3883.7801632048363!2d80.1702587736598!3d13.239108387101373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a527d2b1e29b5ff%3A0xe9b9b0049f529b6b!2sM%20N%20Rajendrakumar%20Insurance%20Services%20%E2%80%93%20Commercial%2C%20Vehicle%20%26%20Industrial%20Insurance%20%7C%20Sholavaram%2C%20Karanodai%2C%20Redhills!5e0!3m2!1sen!2sin!4v1767543679104!5m2!1sen!2sin",
 
@@ -154,7 +1485,7 @@ export const siteData = {
       label: "Open 24 hours",
     },
 
-    websiteUrl: "https://insuranceconsult.in/en/", // set later
+    websiteUrl: "https://insuranceconsult.in/", // set later
     logoUrl: "", // optional later
   },
 
@@ -1063,7 +2394,7 @@ export const siteData = {
   // ✅ Reviews: raw + normalized
   reviews: {
     source: "google-business-profile",
-    gbpUrl: "", // optional: set to your GBP review link if you want later
+    gbpUrl: gbpUrl, // optional: set to your GBP review link if you want later
     raw: gmbReviewsRaw,
     items: gmbReviewsNormalized,
   },
@@ -4134,6 +5465,84 @@ servicesDetail: {
       ],
     },
   },
+
+  // In src/content/siteData.js (inside export const siteData = { ... })
+
+// --------------------------------------------
+// LOCATIONS (hub + detail pages)
+// --------------------------------------------
+locationsIndex: buildLocationsIndexFromDetail(locationsDetail),
+
+
+// Location detail pages (each one links to service detail pages)
+locationsDetail,
+
+nearMeIntent: {
+  title: "Insurance near me (Sholavaram office support)",
+  intro:
+    "If you’re searching for an insurance agent near you in Chennai North / outskirts, you can contact our Sholavaram office for commercial-first guidance and policy servicing support.",
+  queries: [
+    "insurance near me",
+    "insurance agent near me",
+    "insurance office near me",
+    "insurance consultant near me",
+    "car insurance near me",
+    "commercial insurance near me",
+    "insurance renewal near me",
+    "insurance claim help near me",
+  ],
+  localQueries: [
+    "insurance agent Sholavaram",
+    "insurance in Red Hills",
+    "commercial insurance Madhavaram",
+    "insurance agent Ambattur",
+    "car insurance Ambattur",
+  ],
+  synonyms: {
+    agent: ["insurance agent", "insurance advisor", "insurance consultant"],
+    renewal: ["policy renewal", "insurance renewal", "renew insurance"],
+    claims: ["claim help", "claim support", "claim documents"],
+    commercial: ["commercial insurance", "business insurance", "MSME insurance"],
+  },
+  primaryCtas: [
+    { label: "Call now", href: `tel:${phoneE164}` },
+    {
+      label: "WhatsApp",
+      href:
+        `https://wa.me/${whatsappE164}` +
+        `?text=${encodeURIComponent(whatsappPrefill)}`,
+    },
+    { label: "View location on Google Maps", href: gbpUrl },
+  ],
+},
+
+trustValidation: {
+  title: "Trust & verification",
+  points: [
+    "Google Business Profile location and reviews are available for verification.",
+    "Policies and servicing support are guided based on insurer rules and policy conditions.",
+    "We do not promise claim outcomes—documentation and disclosure correctness reduces avoidable delays.",
+  ],
+  links: [
+    { label: "Google Business Profile", href: gbpUrl },
+    { label: "Reviews", href: EN("/reviews/") },
+    { label: "Contact", href: EN("/contact/") },
+    { label: "FAQs", href: EN("/faqs/") },
+  ],
+  providers: [
+    {
+      name: "The New India Assurance Company Limited",
+      note:
+        "Public sector general insurance company owned by the Government of India (policies/terms as per insurer rules).",
+    },
+    {
+      name: "Life Insurance Corporation of India (LIC)",
+      note:
+        "Indian state-owned insurance group and investment company (servicing and renewal support depends on policy terms).",
+    },
+  ],
+},
+
 
   gmbPosts: [],
 };

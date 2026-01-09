@@ -1,0 +1,52 @@
+---
+const { data, title = "Local insurance help", subtitle } = Astro.props;
+const nearMe = data?.nearMeIntent || null;
+const trust = data?.trustValidation || null;
+---
+
+{(nearMe || trust) ? (
+  <section class="section section-padding nearMeTrustSec" aria-labelledby="nm-title">
+    <h2 id="nm-title" class="section-title">{title}</h2>
+    {subtitle ? <p class="section-sub readable">{subtitle}</p> : null}
+
+    {nearMe ? (
+      <div class="nm-block" aria-label="Near-me intent">
+        <h3 class="nm-h">Common “near me” searches</h3>
+        <p class="nm-p">{nearMe.intro}</p>
+        <ul class="chips" role="list">
+          {(nearMe.queries || []).map((q) => <li class="chip">{q}</li>)}
+        </ul>
+      </div>
+    ) : null}
+
+    {trust ? (
+      <div class="nm-block" aria-label="Trust validation">
+        <h3 class="nm-h">Trust & verification searches</h3>
+        <p class="nm-p">{trust.intro}</p>
+        <ul class="chips" role="list">
+          {(trust.queries || []).map((q) => <li class="chip">{q}</li>)}
+        </ul>
+
+        {trust.links?.length ? (
+          <ul class="link-rows" role="list" style="margin-top:12px">
+            {trust.links.map((l) => (
+              <li class="link-row">
+                <a class="rowlink" href={l.href} rel={l.rel || undefined} target={l.target || undefined}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+    ) : null}
+  </section>
+) : null}
+
+<style is:global>
+    .nearMeTrustSec .chip {margin:10px 0px;}
+  .readable{ max-width: 78ch; }
+  .nm-block{ margin-top: 12px; }
+  .nm-h{ margin: 0; font-size: 14px; font-weight: 950; }
+  .nm-p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+</style>

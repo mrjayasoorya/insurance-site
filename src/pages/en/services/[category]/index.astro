@@ -6,59 +6,62 @@ import FloatingContactCta from "../../../../components/FloatingContactCta.astro"
 import FloatingMenu from "../../../../components/FloatingMenu.astro";
 import BacklinksRow from "../../../../components/BacklinksRow.astro";
 import { siteData } from "../../../../content/siteData";
-import { buildMeta } from "../../../../lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../../lib/seo";
 
 export async function getStaticPaths() {
   return (siteData.serviceCategories || []).map((c) => ({ params: { category: c.slug } }));
 }
 
+
 const { category } = Astro.params;
 const cat = (siteData.serviceCategories || []).find((x) => x.slug === category);
 if (!cat) throw new Error(`Unknown category: ${category}`);
 
-const base = (siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in").replace(/\/$/, "");
-const canonical = `${base}/en/services/${category}/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/`);
 
 const meta = buildMeta({
   title: `${cat.title} | Services | ${siteData.brand.name}`,
   description: cat.desc,
   canonical,
+  ogType: "website",
 });
 
-// Category schema (truthy)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+const jsonLd = buildJsonLd({
+  pageType: "serviceCategory",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
+    { name: cat.title, href: canonical },
+  ],
+  extraNodes: [
     {
       "@type": "CollectionPage",
-      "@id": canonical + "#collection",
+      "@id": `${canonical}#collection`,
       url: canonical,
       name: cat.title,
       description: cat.desc,
-      isPartOf: { "@id": `${base}/#website` },
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${base}/en/` },
-        { "@type": "ListItem", position: 2, name: "Services", item: `${base}/en/services/` },
-        { "@type": "ListItem", position: 3, name: cat.title, item: canonical },
-      ],
+      isPartOf: { "@id": `${canonicalFromPath(siteData.brand.websiteUrl, "/en/").replace(/\/$/, "")}/#website` },
     },
   ],
-};
+});
 ---
 
 <html lang="en">
   <head>
+
+        <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{meta.title}</title>
-    <meta name="description" content={meta.description} />
-    <link rel="canonical" href={meta.canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
-    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>

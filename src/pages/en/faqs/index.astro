@@ -9,6 +9,7 @@ import LocalIdentitySection from "../../../components/LocalIdentitySection.astro
 import FAQSection from "../../../components/FAQSection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
 // ✅ Service links (internal linking)
 const services = (siteData.coreServices || []).map((s) => ({
@@ -17,24 +18,33 @@ const services = (siteData.coreServices || []).map((s) => ({
 }));
 
 const brand = siteData.brand;
-const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/faqs/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/faqs/");
+const meta = buildMeta({
+  title: `FAQs | ${siteData.brand.name}`,
+  description:
+    "Frequently asked questions about insurance renewals, claims, documentation, service areas and policy selection—focused on Chennai North & NH corridors.",
+  canonical,
+  ogType: "website",
+});
 
-const title = `FAQs | ${brand.name}`;
-const description =
-  "Real insurance FAQs for Chennai North & NH corridors: claims, documents, fleet, warehouse, contractors, MSME, liability and personal support — written in plain language.";
+// Flatten all FAQ groups to one list for schema (cap at ~40-50)
+const allFaqs = Object.values(siteData.faqsPage || {})
+  .flatMap((g) => g?.items || [])
+  .filter(Boolean);
 
-// ✅ JSON-LD FAQPage from siteData.faqsPage
-const allFaqItems = Object.values(siteData.faqsPage || {}).flatMap((g) => g?.items || []);
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: allFaqItems.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+const jsonLd = buildJsonLd({
+  pageType: "faqs",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "FAQs", href: canonical },
+  ],
+  faqs: allFaqs, // full list here is correct
+});
+
 ---
 
 <html lang="en">
@@ -42,19 +52,12 @@ const faqJsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-
+        <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   </head>
 
   <body>

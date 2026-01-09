@@ -7,7 +7,8 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 // import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
-import { siteData } from "../../content/siteData";
+import { siteData, EN } from "../../content/siteData";
+import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 
 const brand = siteData.brand;
 
@@ -228,17 +229,36 @@ const jsonLd = {
 </section>
 
           <!-- ✅ Areas (non-confusing, not fake) -->
-          <section class="section section-padding" aria-labelledby="areas-title">
-            <h2 id="areas-title" class="section-title">Areas we commonly support</h2>
-            <p class="section-sub">
-              We work across Chennai North and Chennai outskirts where transport, warehouse and MSME activity is high.
+                    <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
             </p>
 
-            <ul class="chips" aria-label="Service areas list">
-              {(brand.areaChips || []).map((a) => <li class="chip">{a}</li>)}
-            </ul>
-          </section>
+            <div class="grid grid-2">
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
+            </div>
 
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
+          </section>
+<NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -343,13 +363,37 @@ const jsonLd = {
             </section>
           ) : null}
 
-          <section class="section section-padding" aria-labelledby="m-areas-title">
-            <h2 id="m-areas-title" class="section-title">Areas we commonly support</h2>
-            <ul class="chips" aria-label="Service areas list">
-              {(brand.areaChips || []).map((a) => <li class="chip">{a}</li>)}
-            </ul>
-          </section>
 
+                    <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
+            </p>
+
+            <div class="grid grid-2">
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
+            </div>
+
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
+          </section>
+<NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">

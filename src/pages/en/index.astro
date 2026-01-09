@@ -1,6 +1,5 @@
 ---
 // src/pages/en/index.astro
-// ✅ Home page (EN) with correct internal links under /en/
 
 import DesktopHero from "../../components/DesktopHero.astro";
 import DesktopCoreServices from "../../components/DesktopCoreServices.astro";
@@ -18,32 +17,19 @@ import CoverageIndexSection from "../../components/CoverageIndexSection.astro";
 import LinksHubSection from "../../components/LinksHubSection.astro";
 import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
-import { siteData } from "../../content/siteData";
+import { siteData, EN } from "../../content/siteData";
+
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import FloatingMenu from "src/components/FloatingMenu.astro";
-import BacklinksRow from "src/components/BacklinksRow.astro";
+import BacklinksRow from "../../components/BacklinksRow.astro";
 import GooglePostsPhotosSection from "../../components/GooglePostsPhotosSection.astro";
+import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const HOME = "/en/";
 
-// helper: force internal links under /en
-const EN = (href = "") => {
-  if (!href) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("/en/")) return href;
-  // keep root "/" as "/en/"
-  if (href === "/") return "/en/";
-  // Add trailing slash if missing
-  const path = href.endsWith("/") ? href : `${href}/`;
-  return `/en${path.startsWith("/") ? "" : "/"}${path}`;
-};
-
-const telHref = `tel:${siteData.brand.phoneE164}`;
-const waHref =
-  `https://wa.me/${encodeURIComponent(siteData.brand.whatsappE164)}` +
-  `?text=${encodeURIComponent(siteData.brand.whatsappPrefill)}`;
-
-// ✅ Normalize ALL siteData hrefs used by home page components
+// -----------------------------
+// BLOG DATA NORMALIZATION
+// -----------------------------
 const commercialAuthorityPosts = {
   ...siteData.commercialAuthorityPosts,
   viewAllHref: EN(siteData.commercialAuthorityPosts?.viewAllHref || "/commercial-authority/"),
@@ -75,96 +61,96 @@ const insights = {
   items: (siteData.insights?.items || []).map((it) => ({ ...it, href: EN(it.href) })),
 };
 
-// ✅ Services cards should point to /en/services/<slug>/
-const coreServices = (siteData.coreServices || []).map((s) => ({
-  ...s,
-  href: EN(`/services/${s.slug}/`),
+// -----------------------------
+// SERVICES (SYNCED)
+// Home should highlight authority categories, not random old slugs.
+// -----------------------------
+const serviceCategoryCards = (siteData.serviceCategories || []).map((c) => ({
+  tag: "Category",
+  title: c.title,
+  desc: c.desc,
+  href: c.href, // already EN("/services/<category>/")
 }));
 
-// ✅ Canonical for EN home
-const canonical = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in/en/";
+// “Most requested” service detail pages (transactional intent)
+const popularServices = (siteData.servicePopular || []).map((x) => ({
+  ...x,
+  href: x.href,
+}));
 
-// ✅ One clean JSON-LD graph (avoid duplicates)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      name: siteData.brand.name,
-      legalName: siteData.brand.legalName,
-      telephone: siteData.brand.phoneE164,
-      url: canonical,
-      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
-    },
-    {
-      "@type": "InsuranceAgency",
-      name: siteData.brand.name,
-      telephone: siteData.brand.phoneE164,
-      url: canonical,
-      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
-      hasMap: siteData.brand.gbpUrl || undefined,
-      areaServed: siteData.brand.areaChips,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: siteData.brand.streetAddress || undefined,
-        addressLocality: siteData.brand.addressLocality,
-        addressRegion: siteData.brand.addressRegion,
-        postalCode: siteData.brand.postalCode || undefined,
-        addressCountry: siteData.brand.addressCountry,
-      },
-      geo: siteData.brand.geo
-        ? { "@type": "GeoCoordinates", latitude: siteData.brand.geo.lat, longitude: siteData.brand.geo.lng }
-        : undefined,
-      openingHoursSpecification: siteData.brand.hours?.is24x7
-        ? [{
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            opens: "00:00",
-            closes: "23:59",
-          }]
-        : undefined,
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: siteData.faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-    ...coreServices.map((s) => ({
-      "@type": "Service",
-      name: s.title,
-      serviceType: s.tag,
-      areaServed: siteData.brand.areaChips,
-      provider: { "@type": "Organization", name: siteData.brand.name },
-      description: s.desc,
-      url: `${canonical.replace(/\/$/, "")}${s.href}`, // optional
-    })),
-  ],
-};
+// -----------------------------
+// LOCATIONS (SYNCED)
+// Home should link to locations hub + few top location detail pages.
+// -----------------------------
+const topLocations =
+  siteData.locationsIndex?.groups?.flatMap((g) => g.locations || []).slice(0, 10) || [];
+
+const smallHomeFaq = [
+  {
+    q: "Do you support customers only in Sholavaram?",
+    a:
+      "Sholavaram is our primary base. We commonly support Chennai North and nearby corridors depending on the policy type and insurer requirements.",
+  },
+  {
+    q: "Can you help with insurance renewals and policy checks?",
+    a:
+      "Yes. We assist with renewal checks, add-on clarity and documentation discipline to reduce avoidable claim issues later.",
+  },
+  {
+    q: "Do you promise claim approval?",
+    a:
+      "No. Claim outcomes depend on policy terms, disclosures and insurer processes. We guide correct steps and documents to reduce avoidable delays.",
+  },
+];
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/");
+const meta = buildMeta({
+  title: `${siteData.pageFlow.heroH1} | ${siteData.brand.name}`,
+  description: siteData.brand.subtitle,
+  canonical,
+});
+const homeFaqPicks = [
+  { group: "claimsDocs", index: 0 },
+  { group: "claimsDocs", index: 1 },
+  { group: "claimsDocs", index: 2 },
+  { group: "locationsOffice", index: 0 },
+  { group: "locationsOffice", index: 3 },
+  { group: "locationsOffice", index: 4 },
+  { group: "experienceTrust", index: 0 },
+  { group: "experienceTrust", index: 2 },
+  { group: "transportFleet", index: 0 },
+]
+
+const homeFaqItems = (homeFaqPicks || [])
+  .map(({ group, index }) => siteData.faqsPage?.[group]?.items?.[index])
+  .filter(Boolean);
+
+
+const jsonLd = buildJsonLd({
+  pageType: "home",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  // Keep FAQPage small here, or omit faqs entirely
+  faqs: homeFaqItems || [],
+});
 ---
 
 <html lang="en">
   <head>
+
+    <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>{siteData.pageFlow.heroH1} | {siteData.brand.name}</title>
-    <meta name="description" content={siteData.brand.subtitle} />
-    <link rel="canonical" href={canonical} />
-
-    <meta property="og:title" content={`${siteData.pageFlow.heroH1} | ${siteData.brand.name}`} />
-    <meta property="og:description" content={siteData.brand.subtitle} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-
-    <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/styles/theme.css" />
-
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
@@ -172,10 +158,7 @@ const jsonLd = {
 
     <main id="main" class="app">
       <div class="container">
-
-        <!-- =========================
-             DESKTOP UI
-        ========================== -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -190,11 +173,9 @@ const jsonLd = {
           </header>
 
           <main>
-            <!-- ✅ SECTION 2: WHO we help (industry anchoring) -->
             <section class="section section-padding" aria-labelledby="who-title">
               <h2 id="who-title" class="section-title">{siteData.primaryIndustries.title}</h2>
               <p class="section-sub">{siteData.primaryIndustries.subtitle}</p>
-
               <div class="grid grid-2">
                 {siteData.primaryIndustries.items.map((it) => (
                   <article class="card" aria-label={it.title}>
@@ -205,71 +186,92 @@ const jsonLd = {
               </div>
             </section>
 
-            <!-- ✅ SECTION 3: Local risk intelligence -->
             <section class="section section-padding" aria-labelledby="risk-title">
               <h2 id="risk-title" class="section-title">{siteData.localRiskContext.title}</h2>
               <p class="section-sub">{siteData.localRiskContext.subtitle}</p>
-              <ul class="bullets">
-                {siteData.localRiskContext.points.map((p) => <li>{p}</li>)}
-              </ul>
+              <ul class="bullets">{siteData.localRiskContext.points.map((p) => <li>{p}</li>)}</ul>
             </section>
 
-            <!-- ✅ SECTION 4: Claim-side authority (non-generic) -->
             <section class="section section-padding" aria-labelledby="claimsxp-title">
               <h2 id="claimsxp-title" class="section-title">{siteData.claimExperience.title}</h2>
               <p class="section-sub">{siteData.claimExperience.subtitle}</p>
-              <ul class="bullets">
-                {siteData.claimExperience.points.map((p) => <li>{p}</li>)}
-              </ul>
+              <ul class="bullets">{siteData.claimExperience.points.map((p) => <li>{p}</li>)}</ul>
             </section>
 
-            <!-- ✅ SECTION 5: Services (clean) -->
-            <section aria-labelledby="core-services-title">
-              <h2 id="core-services-title" class="sr-only">Core services</h2>
-              <DesktopCoreServices services={coreServices} />
+            <!-- Services: category authority first -->
+            <section class="section section-padding" aria-labelledby="svc-cat-title">
+              <h2 id="svc-cat-title" class="section-title">Insurance categories we support</h2>
+              <p class="section-sub readable">
+                Start with a category. Then pick the exact service page for decision-level guidance.
+              </p>
+              <DesktopCoreServices services={serviceCategoryCards} />
             </section>
 
-            
+            <!-- Popular service detail pages (transactional) -->
+            <section class="section section-padding" aria-labelledby="svc-pop-title">
+              <h2 id="svc-pop-title" class="section-title">Most requested services</h2>
+              <div class="grid grid-2">
+                {popularServices.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row"><span class="chip">{x.tag}</span></div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc">Open guidance</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <!-- Locations entry-point -->
+            <section class="section section-padding" aria-labelledby="loc-title">
+              <h2 id="loc-title" class="section-title">Locations we commonly support</h2>
+              <p class="section-sub readable">
+                Local support anchored to Sholavaram office guidance. See location pages for local context (without duplicating service content).
+              </p>
+
+              <div class="grid grid-2">
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">View all locations</h3>
+                  <p class="card-desc">Sholavaram • Red Hills • Madhavaram • Ambattur and nearby belts</p>
+                </a>
+
+                {topLocations.slice(0, 5).map((l) => (
+                  <a class="card" href={EN(`/locations/${l.slug}/`)}>
+                    <h3 class="card-title">{l.name}</h3>
+                    <p class="card-desc">Open local guide</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
             <GooglePostsPhotosSection
-  title={siteData.media.googlePosts.title}
-  subtitle={siteData.media.googlePosts.subtitle}
-  images={siteData.media.googlePosts.images}
-  ctaLabel="Photos"
-  ctaHref={EN("photos/")}
-/>
+              title={siteData.media.googlePosts.title}
+              subtitle={siteData.media.googlePosts.subtitle}
+              images={siteData.media.googlePosts.images}
+              ctaLabel="Photos"
+              ctaHref={EN("/photos/")}
+            />
 
             <section class="section section-padding" aria-label="Quick links">
-  <div class="grid grid-2">
-    <a class="card" href={EN("/services/")}>
-      <h3 class="card-title">All Services</h3>
-      <p class="card-desc">Commercial, transport, industrial + claim support.</p>
-    </a>
-
-    <a class="card" href={EN("/commercial-authority/")}>
-      <h3 class="card-title">Commercial Authority</h3>
-      <p class="card-desc">Industry-focused guidance for NH + industrial belts.</p>
-    </a>
-
-    <a class="card" href={EN("/proof-experience/")}>
-      <h3 class="card-title">Proof & Experience</h3>
-      <p class="card-desc">Claim-side insights built from 30+ years.</p>
-    </a>
-
-    <a class="card" href={EN("/renewals/")}>
-      <h3 class="card-title">Renewals (Support)</h3>
-      <p class="card-desc">Car/lorry/LIC continuity checklists.</p>
-    </a>
-  </div>
-</section>
-
-
-            <!-- ✅ Local highlights -->
-            <section class="section section-padding" aria-labelledby="local-support-title">
-              <h2 id="local-support-title" class="sr-only">Local support highlights</h2>
-              <DesktopMarketplace cards={siteData.marketplaceCards} phone={siteData.brand.phone} />
+              <div class="grid grid-2">
+                <a class="card" href={EN("/services/")}>
+                  <h3 class="card-title">All Services</h3>
+                  <p class="card-desc">Service hub → categories → detail pages</p>
+                </a>
+                <a class="card" href={EN("/faqs/")}>
+                  <h3 class="card-title">FAQs</h3>
+                  <p class="card-desc">Claims, renewals, documents, office and locations</p>
+                </a>
+                <a class="card" href={EN("/commercial-authority/")}>
+                  <h3 class="card-title">Commercial Authority</h3>
+                  <p class="card-desc">NH + industrial belt guidance</p>
+                </a>
+                <a class="card" href={EN("/renewals/")}>
+                  <h3 class="card-title">Renewals</h3>
+                  <p class="card-desc">Car/lorry/LIC continuity checklists</p>
+                </a>
+              </div>
             </section>
 
-            <!-- ✅ Commercial authority BEFORE general insights -->
             <section class="section" aria-labelledby="authority-title">
               <h2 id="authority-title" class="sr-only">Industry-focused guidance</h2>
               <BlogSection
@@ -281,11 +283,8 @@ const jsonLd = {
               />
             </section>
 
-            <!-- <section class="section section-padding"> -->
-              <CoverageIndexSection data={siteData.coverageIndex} />
-            <!-- </section> -->
+            <CoverageIndexSection data={siteData.coverageIndex} />
 
-            <!-- ✅ Proof + Renewals (supporting) -->
             <section class="section" aria-labelledby="proof-title">
               <h2 id="proof-title" class="sr-only">Proof & experience</h2>
               <BlogSection
@@ -310,7 +309,6 @@ const jsonLd = {
               />
             </section>
 
-            <!-- ✅ Insights LAST (so intent stays commercial-first) -->
             <section class="section" aria-labelledby="insights-title">
               <h2 id="insights-title" class="sr-only">Insights</h2>
               <BlogSection
@@ -323,69 +321,24 @@ const jsonLd = {
               />
             </section>
 
-            <!-- ✅ How we help + contextual FAQs (kept tight) -->
             <section class="section section-padding" aria-labelledby="how-it-works-title">
               <h2 id="how-it-works-title" class="section-title">How you’ll get help</h2>
-              <div class="section-sub">
-                Coverage clarity → wording + documentation discipline → smoother claim workflows.
-              </div>
+              <div class="section-sub">Coverage clarity → documentation discipline → smoother workflows.</div>
 
               <MobileAccordion
                 sections={[
                   ...siteData.howWeHelp,
-                  {
-                    title: "FAQs",
-                    items: siteData.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                  },
+                  { title: "FAQs (quick)", items: smallHomeFaq.map((f) => ({ strong: f.q, text: f.a })) },
                 ]}
                 defaultOpen={true}
               />
             </section>
 
-            <!-- ✅ Trust -->
-            <section style="margin:16px auto 0" aria-labelledby="trust-title">
-              <h2 id="trust-title" class="sr-only">Trust</h2>
+            <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
+            <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
+            <LinksHubSection data={siteData.linksHub} />
+            <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-              <TestimonialsStrip
-                title={siteData.testimonials.title}
-                subtitle={siteData.testimonials.subtitle}
-                avgScore={siteData.testimonials.avgScore}
-                avgText={siteData.testimonials.avgText}
-                pillHref={siteData.testimonials.pillHref}
-                showControls={siteData.testimonials.showControls}
-                items={siteData.testimonials.items}
-              />
-
-              <div style="height:14px;"></div>
-
-              <StatsStrip title={siteData.statsStrip.title} stats={siteData.statsStrip.stats} />
-            </section>
-
-            <!-- ✅ Visit -->
-            <!-- <section aria-labelledby="visit-title" class="section section-padding" style="padding-top:22px;">
-              <h2 id="visit-title" class="section-title">Visit & Contact</h2>
-              <p class="section-sub">
-                Address: {siteData.brand.streetAddress}, {siteData.brand.addressLocality}, {siteData.brand.addressRegion} {siteData.brand.postalCode}.<br />
-                Hours: {siteData.brand.hours?.label}.
-              </p> -->
-
-              <!-- <div class="mapbox" role="group" aria-label="Google map">
-                <iframe
-                  src={siteData.brand.mapEmbedUrl}
-                  width="600"
-                  height="450"
-                  style="border:0;"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  allowfullscreen
-                  title={`${siteData.brand.name} location map`}
-                ></iframe>
-              </div> -->
-              <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
-            <!-- </section> -->
-<LinksHubSection data={siteData.linksHub} />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-            <!-- ✅ CTA -->
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="sr-only">Contact</h2>
               <FooterCtaBar
@@ -403,9 +356,7 @@ const jsonLd = {
           </main>
         </div>
 
-        <!-- =========================
-             MOBILE UI
-        ========================== -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero
@@ -414,18 +365,15 @@ const jsonLd = {
                 tagline: siteData.brand.tagline,
                 subtitle: siteData.pageFlow.heroP,
                 phone: siteData.brand.phone,
-                areaChips: []//siteData.brand.areaChips,
+                areaChips: [],
               }}
             />
           </header>
 
           <main>
-            <!-- ✅ Same sequence as desktop -->
-
-            <section class="section section-padding" aria-labelledby="m-who-title">
-              <h2 id="m-who-title" class="section-title">{siteData.primaryIndustries.title}</h2>
+            <section class="section section-padding">
+              <h2 class="section-title">{siteData.primaryIndustries.title}</h2>
               <p class="section-sub">{siteData.primaryIndustries.subtitle}</p>
-
               <div class="grid grid-1">
                 {siteData.primaryIndustries.items.map((it) => (
                   <article class="card" aria-label={it.title}>
@@ -436,194 +384,93 @@ const jsonLd = {
               </div>
             </section>
 
-            <section class="section section-padding" aria-labelledby="m-risk-title">
-              <h2 id="m-risk-title" class="section-title">{siteData.localRiskContext.title}</h2>
+            <section class="section section-padding">
+              <h2 class="section-title">{siteData.localRiskContext.title}</h2>
               <p class="section-sub">{siteData.localRiskContext.subtitle}</p>
-              <ul class="bullets">
-                {siteData.localRiskContext.points.map((p) => <li>{p}</li>)}
-              </ul>
+              <ul class="bullets">{siteData.localRiskContext.points.map((p) => <li>{p}</li>)}</ul>
             </section>
 
-            <section class="section section-padding" aria-labelledby="m-claimsxp-title">
-              <h2 id="m-claimsxp-title" class="section-title">{siteData.claimExperience.title}</h2>
+            <section class="section section-padding">
+              <h2 class="section-title">{siteData.claimExperience.title}</h2>
               <p class="section-sub">{siteData.claimExperience.subtitle}</p>
-              <ul class="bullets">
-                {siteData.claimExperience.points.map((p) => <li>{p}</li>)}
-              </ul>
+              <ul class="bullets">{siteData.claimExperience.points.map((p) => <li>{p}</li>)}</ul>
             </section>
 
-            <section aria-labelledby="m-core-services-title">
-              <h2 id="m-core-services-title" class="sr-only">Core services</h2>
-              <MobileCoreServices services={coreServices} />
-            </section>
-                        <GooglePostsPhotosSection
-  title={siteData.media.googlePosts.title}
-  subtitle={siteData.media.googlePosts.subtitle}
-  images={siteData.media.googlePosts.images}
-  ctaLabel="Photos"
-  ctaHref={EN("photos/")}
-/>
-
-            <section class="section section-padding" aria-label="Quick links">
-  <div class="grid grid-2">
-    <a class="card" href={EN("/services/")}>
-      <h3 class="card-title">All Services</h3>
-      <p class="card-desc">Commercial, transport, industrial + claim support.</p>
-    </a>
-
-    <a class="card" href={EN("/commercial-authority/")}>
-      <h3 class="card-title">Commercial Authority</h3>
-      <p class="card-desc">Industry-focused guidance for NH + industrial belts.</p>
-    </a>
-
-    <a class="card" href={EN("/proof-experience/")}>
-      <h3 class="card-title">Proof & Experience</h3>
-      <p class="card-desc">Claim-side insights built from 30+ years.</p>
-    </a>
-
-    <a class="card" href={EN("/renewals/")}>
-      <h3 class="card-title">Renewals (Support)</h3>
-      <p class="card-desc">Car/lorry/LIC continuity checklists.</p>
-    </a>
-  </div>
-</section>
-
-
-            <section class="section" aria-labelledby="m-authority-title">
-              <h2 id="m-authority-title" class="sr-only">Industry-focused guidance</h2>
-              <BlogSection
-                title={commercialAuthorityPosts.title}
-                subtitle={commercialAuthorityPosts.subtitle}
-                viewAllHref={commercialAuthorityPosts.viewAllHref}
-                viewMoreHref={commercialAuthorityPosts.viewMoreHref}
-                categories={commercialAuthorityPosts.categories}
-              />
+            <section class="section section-padding">
+              <h2 class="section-title">Insurance categories</h2>
+              <MobileCoreServices services={serviceCategoryCards} />
             </section>
 
-            <!-- <section class="section section-padding"> -->
-              <CoverageIndexSection data={siteData.coverageIndex} />
-            <!-- </section> -->
-
-            <section class="section" aria-labelledby="m-proof-title">
-              <h2 id="m-proof-title" class="sr-only">Proof & experience</h2>
-              <BlogSection
-                title={proofExperiencePosts.title}
-                subtitle={proofExperiencePosts.subtitle}
-                viewAllHref={proofExperiencePosts.viewAllHref}
-                viewMoreHref={proofExperiencePosts.viewMoreHref}
-                items={proofExperiencePosts.items}
-                showSaveButton={false}
-              />
+            <section class="section section-padding">
+              <h2 class="section-title">Most requested services</h2>
+              <div class="grid grid-1">
+                {popularServices.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row"><span class="chip">{x.tag}</span></div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc">Open</p>
+                  </a>
+                ))}
+              </div>
             </section>
 
-            <section class="section" aria-labelledby="m-renew-title">
-              <h2 id="m-renew-title" class="sr-only">Renewal support</h2>
-              <BlogSection
-                title={renewalLicPosts.title}
-                subtitle={renewalLicPosts.subtitle}
-                viewAllHref={renewalLicPosts.viewAllHref}
-                viewMoreHref={renewalLicPosts.viewMoreHref}
-                items={renewalLicPosts.items}
-                showSaveButton={false}
-              />
+            <section class="section section-padding">
+              <h2 class="section-title">Locations we support</h2>
+              <div class="grid grid-1">
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">View all locations</h3>
+                  <p class="card-desc">Local context pages</p>
+                </a>
+                {topLocations.slice(0, 6).map((l) => (
+                  <a class="card" href={EN(`/locations/${l.slug}/`)}>
+                    <h3 class="card-title">{l.name}</h3>
+                    <p class="card-desc">Open local guide</p>
+                  </a>
+                ))}
+              </div>
             </section>
 
-            <section class="section" aria-labelledby="m-insights-title">
-              <h2 id="m-insights-title" class="sr-only">Insights</h2>
-              <BlogSection
-                title={insights.title}
-                subtitle={insights.subtitle}
-                viewAllHref={insights.viewAllHref}
-                viewMoreHref={insights.viewMoreHref}
-                items={insights.items}
-                showSaveButton={false}
-              />
-            </section>
+            <GooglePostsPhotosSection
+              title={siteData.media.googlePosts.title}
+              subtitle={siteData.media.googlePosts.subtitle}
+              images={siteData.media.googlePosts.images}
+              ctaLabel="Photos"
+              ctaHref={EN("/photos/")}
+            />
 
-            <section class="section section-padding" aria-labelledby="m-help-title">
-              <h2 id="m-help-title" class="sr-only">How we help</h2>
+            <CoverageIndexSection data={siteData.coverageIndex} />
+
+            <section class="section section-padding">
               <MobileAccordion
                 sections={[
                   ...siteData.howWeHelp,
-                  {
-                    title: "FAQs",
-                    items: siteData.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                  },
+                  { title: "FAQs (quick)", items: smallHomeFaq.map((f) => ({ strong: f.q, text: f.a })) },
                 ]}
                 defaultOpen={true}
               />
             </section>
 
-            <section style="margin:16px auto 0" aria-labelledby="m-trust-title">
-              <h2 id="m-trust-title" class="sr-only">Trust</h2>
-
-              <TestimonialsStrip
-                title={siteData.testimonials.title}
-                subtitle={siteData.testimonials.subtitle}
-                avgScore={siteData.testimonials.avgScore}
-                avgText={siteData.testimonials.avgText}
-                pillHref={siteData.testimonials.pillHref}
-                showControls={siteData.testimonials.showControls}
-                items={siteData.testimonials.items}
-              />
-
-              <div style="height:14px;"></div>
-
-              <StatsStrip title={siteData.statsStrip.title} stats={siteData.statsStrip.stats} />
-            </section>
-
-            <!-- <section aria-labelledby="m-visit-title" class="section section-padding" style="padding-top: 22px;">
-              <h2 id="m-visit-title" class="section-title">Visit & Contact</h2>
-              <p class="section-sub">
-                Address: {siteData.brand.streetAddress}, {siteData.brand.addressLocality}, {siteData.brand.addressRegion} {siteData.brand.postalCode}.<br />
-                Hours: {siteData.brand.hours?.label}.
-              </p>
-
-              <div class="mapbox" role="group" aria-label="Google map">
-                <iframe
-                  src={siteData.brand.mapEmbedUrl}
-                  width="600"
-                  height="450"
-                  style="border:0;"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  allowfullscreen
-                  title={`${siteData.brand.name} location map`}
-                ></iframe>
-              </div>
-            </section> -->
             <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
-
+            <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-            <section aria-labelledby="m-contact-title">
-              <h2 id="m-contact-title" class="sr-only">Contact</h2>
 
-              <FooterCtaBar
-                title={siteData.footerCtas.title}
-                subtitle={siteData.footerCtas.subtitle}
-                whatsappNumber={siteData.brand.whatsappE164}
-                whatsappText={siteData.brand.whatsappPrefill}
-                callNumber={siteData.brand.phoneE164}
-                callLabel={siteData.footerCtas.callLabel}
-                brandName={siteData.footerCtas.brandName}
-                logoText={siteData.footerCtas.logoText}
-                copyright={siteData.footerCtas.copyright}
-              />
-            </section>
-
-            <!-- Optional sticky CTA (if you want later) -->
-            <!--
-            <nav class="mobile-sticky-cta" aria-label="Quick contact">
-              <a class="cta" href={telHref}>{siteData.pageFlow.primaryCtaLabel}</a>
-              <a class="cta cta-ghost" href={waHref} target="_blank" rel="noopener">WhatsApp</a>
-            </nav>
-            -->
-            <LocalIdentitySection brand={siteData.brand} pageTitle="Home" />
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={siteData.brand.whatsappE164}
+              whatsappText={siteData.brand.whatsappPrefill}
+              callNumber={siteData.brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
           </main>
         </div>
       </div>
     </main>
+
     <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
   </body>

@@ -8,215 +8,178 @@ import LocalIdentitySection from "../../../components/LocalIdentitySection.astro
 import BacklinksRow from "../../../components/BacklinksRow.astro";
 
 import { siteData, EN } from "../../../content/siteData";
+import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/locations/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
+const meta = buildMeta({
+  title: `Locations | ${siteData.brand.name}`,
+  description: siteData.locationsIndex.subtitle,
+  canonical,
+  ogType: "website",
+});
 
-const serviceBySlug = new Map(siteData.coreServices.map((s) => [s.slug, s]));
-
-const buildServiceLinks = (slugs = []) =>
-  slugs
-    .map((slug) => serviceBySlug.get(slug))
-    .filter(Boolean)
-    .map((s) => ({ title: s.title, desc: s.desc, href: EN(`services/${s.slug}`) }));
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+const jsonLd = buildJsonLd({
+  pageType: "locationsIndex",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Locations", href: canonical },
+  ],
+  extraNodes: [
     {
-      "@type": "WebPage",
-      name: "Locations We Serve",
+      "@type": "CollectionPage",
+      "@id": `${canonical}#collection`,
       url: canonical,
-      description: siteData.locationsPage.subtitle,
-    },
-    {
-      "@type": "InsuranceAgency",
-      name: siteData.brand.name,
-      url: canonicalBase,
-      telephone: siteData.brand.phoneE164,
-      areaServed: siteData.locationsPage.groups.flatMap((g) => g.areas.map((a) => a.name)),
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: siteData.brand.streetAddress || undefined,
-        addressLocality: siteData.brand.addressLocality,
-        addressRegion: siteData.brand.addressRegion,
-        postalCode: siteData.brand.postalCode || undefined,
-        addressCountry: siteData.brand.addressCountry,
-      },
+      name: siteData.locationsIndex.title,
+      description: siteData.locationsIndex.subtitle,
     },
   ],
-};
+});
 ---
 
 <html lang="en">
   <head>
+
+    <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Locations | {siteData.brand.name}</title>
-    <meta name="description" content={siteData.locationsPage.subtitle} />
-    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
 
+        <!-- DESKTOP -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.locationsPage.subtitle,
+                subtitle: siteData.locationsIndex.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: siteData.brand.areaChips,
               }}
             />
           </header>
 
-          <section class="section section-padding" aria-labelledby="loc1">
-            <h2 id="loc1" class="section-title">{siteData.locationsPage.title}</h2>
-            <p class="section-sub">{siteData.locationsPage.subtitle}</p>
+          <section class="section section-padding" aria-labelledby="loc-title">
+            <h1 id="loc-title" class="section-title">{siteData.locationsIndex.title}</h1>
+            <p class="section-sub readable">{siteData.locationsIndex.subtitle}</p>
             <ul class="bullets">
-              {siteData.locationsPage.intro.map((p) => <li>{p}</li>)}
+              {siteData.locationsIndex.intro.map((p) => <li>{p}</li>)}
             </ul>
           </section>
 
-          <section class="section section-padding" aria-labelledby="loc2">
-            <h2 id="loc2" class="section-title">{siteData.locationsPage.claimReadyPrinciples.title}</h2>
+          <section class="section section-padding" aria-labelledby="loc-principles">
+            <h2 id="loc-principles" class="section-title">{siteData.locationsIndex.claimReadyPrinciples.title}</h2>
             <ul class="bullets">
-              {siteData.locationsPage.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
+              {siteData.locationsIndex.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
             </ul>
           </section>
 
-          {siteData.locationsPage.groups.map((g) => (
+          {siteData.locationsIndex.groups.map((g) => (
             <section class="section section-padding" aria-labelledby={g.id}>
               <h2 id={g.id} class="section-title">{g.title}</h2>
-              <p class="section-sub">{g.subtitle}</p>
+              <p class="section-sub readable">{g.subtitle}</p>
 
-              <ul class="area-rows" role="list">
-                {g.areas.map((a) => {
-                  const links = buildServiceLinks(a.serviceSlugs);
-                  return (
-                    <li class="area-row">
-                      <div class="area-top">
-                        <h3 class="area-name">{a.name}</h3>
-                        <p class="area-notes">
-                          {a.notes?.join(" • ")}
-                        </p>
-                      </div>
-
-                      <ul class="service-links" role="list">
-                        {links.map((l) => (
-                          <li class="service-link">
-                            <a class="svc" href={l.href}>
-                              <span class="svc-title">{l.title}</span>
-                              <span class="svc-desc">{l.desc}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  );
-                })}
+              <ul class="loc-rows" role="list" aria-label={`${g.title} locations`}>
+                {(g.locations || []).map((x) => (
+                  <li class="loc-row">
+                    <a class="loc-link" href={EN(`/locations/${x.slug}/`)}>
+                      <span class="loc-name">{x.name}</span>
+                      <span class="loc-meta">Open local service guide</span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </section>
           ))}
 
-                  <!-- ✅ Up-front identity block (bots + LLMs + users) -->
-        <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
-
-          <!-- ✅ Links-only section -->
+          <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
+          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-          <FooterCtaBar {...{
-            title: siteData.footerCtas.title,
-            subtitle: siteData.footerCtas.subtitle,
-            whatsappNumber: siteData.brand.whatsappE164,
-            whatsappText: siteData.brand.whatsappPrefill,
-            callNumber: siteData.brand.phoneE164,
-            callLabel: siteData.footerCtas.callLabel,
-            brandName: siteData.footerCtas.brandName,
-            logoText: siteData.footerCtas.logoText,
-            copyright: siteData.footerCtas.copyright,
-          }} />
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
         </div>
 
+        <!-- MOBILE -->
         <div class="ui-mobile">
           <header>
             <MobileHero
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.locationsPage.subtitle,
+                subtitle: siteData.locationsIndex.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: [],
               }}
             />
           </header>
 
-          <section class="section section-padding" aria-labelledby="m-loc1">
-            <h2 id="m-loc1" class="section-title">{siteData.locationsPage.title}</h2>
-            <p class="section-sub">{siteData.locationsPage.subtitle}</p>
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.locationsIndex.title}</h1>
+            <p class="section-sub readable">{siteData.locationsIndex.subtitle}</p>
             <ul class="bullets">
-              {siteData.locationsPage.intro.map((p) => <li>{p}</li>)}
+              {siteData.locationsIndex.intro.map((p) => <li>{p}</li>)}
             </ul>
           </section>
 
-          <section class="section section-padding" aria-labelledby="m-loc2">
-            <h2 id="m-loc2" class="section-title">{siteData.locationsPage.claimReadyPrinciples.title}</h2>
-            <ul class="bullets">
-              {siteData.locationsPage.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          {siteData.locationsPage.groups.map((g) => (
+          {siteData.locationsIndex.groups.map((g) => (
             <section class="section section-padding" aria-labelledby={`m-${g.id}`}>
               <h2 id={`m-${g.id}`} class="section-title">{g.title}</h2>
-              <p class="section-sub">{g.subtitle}</p>
+              <p class="section-sub readable">{g.subtitle}</p>
 
-              <ul class="area-rows" role="list">
-                {g.areas.map((a) => {
-                  const links = buildServiceLinks(a.serviceSlugs);
-                  return (
-                    <li class="area-row">
-                      <div class="area-top">
-                        <h3 class="area-name">{a.name}</h3>
-                        <p class="area-notes">{a.notes?.join(" • ")}</p>
-                      </div>
-
-                      <ul class="service-links" role="list">
-                        {links.map((l) => (
-                          <li class="service-link">
-                            <a class="svc" href={l.href}>
-                              <span class="svc-title">{l.title}</span>
-                              <span class="svc-desc">{l.desc}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  );
-                })}
+              <ul class="loc-rows" role="list">
+                {(g.locations || []).map((x) => (
+                  <li class="loc-row">
+                    <a class="loc-link" href={EN(`/locations/${x.slug}/`)}>
+                      <span class="loc-name">{x.name}</span>
+                      <span class="loc-meta">Open</span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </section>
           ))}
 
+          <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
+          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-          <FooterCtaBar {...{
-            title: siteData.footerCtas.title,
-            subtitle: siteData.footerCtas.subtitle,
-            whatsappNumber: siteData.brand.whatsappE164,
-            whatsappText: siteData.brand.whatsappPrefill,
-            callNumber: siteData.brand.phoneE164,
-            callLabel: siteData.footerCtas.callLabel,
-            brandName: siteData.footerCtas.brandName,
-            logoText: siteData.footerCtas.logoText,
-            copyright: siteData.footerCtas.copyright,
-          }} />
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
         </div>
       </div>
     </main>
@@ -226,61 +189,36 @@ const jsonLd = {
   </body>
 </html>
 
-<style>
-  .area-rows{
+<style is:global>
+  .loc-rows{
     margin: 14px 0 0;
     padding: 0;
     list-style: none;
     display:flex;
     flex-direction:column;
-    gap: 12px;
-  }
-  .area-row{
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: var(--surface);
-    box-shadow: 0 2px 10px rgba(11,13,18,.05);
-    padding: 12px 14px;
-  }
-  .area-top{ margin-bottom: 10px; }
-  .area-name{
-    margin: 0;
-    font-size: 15px;
-    font-weight: 950;
-    letter-spacing: -0.01em;
-  }
-  .area-notes{
-    margin: 6px 0 0;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .service-links{
-    margin: 0;
-    padding: 0;
-    list-style:none;
-    display:flex;
-    flex-direction:column;
     gap: 10px;
   }
-  .svc{
-    display:block;
+  .loc-row{
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 10px 12px;
     background: var(--surface);
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
   }
-  .svc-title{
-    display:block;
+  .loc-link{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+  .loc-name{
     font-weight: 950;
-    font-size: 13.5px;
+    letter-spacing: -0.01em;
+    font-size: 14px;
   }
-  .svc-desc{
-    display:block;
-    margin-top: 6px;
+  .loc-meta{
     color: var(--muted);
-    font-size: 13px;
-    line-height: 1.35;
+    font-size: 12.5px;
+    white-space: nowrap;
   }
 </style>

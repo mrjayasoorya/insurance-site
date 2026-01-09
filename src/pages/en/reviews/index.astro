@@ -4,15 +4,14 @@ import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
-import { siteData } from "../../../content/siteData";
+import { siteData, EN } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
 const brand = siteData.brand;
 
-// ✅ Canonical
-const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/reviews/`;
 
 // ✅ Reviews dataset (you will add this shape into siteData)
 const reviews = siteData?.reviews?.items || [];
@@ -29,55 +28,29 @@ const reviewCount = stars.length;
 const avgRating = reviewCount ? stars.reduce((a, b) => a + b, 0) / reviewCount : null;
 const avgRatingStr = avgRating ? avgRating.toFixed(1) : null;
 
-// ✅ keep JSON-LD compact
-const schemaReviews = reviews.slice(0, 20).map((r) => ({
-  "@type": "Review",
-  reviewRating: {
-    "@type": "Rating",
-    ratingValue: String(r.stars || 5),
-    bestRating: "5",
-    worstRating: "1",
-  },
-  author: { "@type": "Person", name: r.name || "Google Reviewer" },
-  datePublished: r.createdAt ? String(r.createdAt).slice(0, 10) : undefined,
-  reviewBody: r.quote || "",
-}));
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "InsuranceAgency",
-      name: brand.name,
-      telephone: brand.phoneE164,
-      url: canonical,
-      sameAs: [brand.gbpUrl].filter(Boolean),
-      hasMap: brand.gbpUrl || undefined,
-      areaServed: brand.areaChips,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: brand.streetAddress || undefined,
-        addressLocality: brand.addressLocality,
-        addressRegion: brand.addressRegion,
-        postalCode: brand.postalCode || undefined,
-        addressCountry: brand.addressCountry,
-      },
-      geo: brand.geo
-        ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
-        : undefined,
-      aggregateRating: avgRatingStr
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: avgRatingStr,
-            reviewCount: String(reviewCount),
-            bestRating: "5",
-            worstRating: "1",
-          }
-        : undefined,
-      review: schemaReviews,
-    },
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/reviews/");
+const meta = buildMeta({
+  title: `Reviews | ${siteData.brand.name}`,
+  description:
+    "Google Business Profile reviews and customer feedback for M N Rajendrakumar Insurance Services (Sholavaram).",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "reviews",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Reviews", href: canonical },
   ],
-};
+  // Optional: add AggregateRating ONLY if you show an actual average + count derived from your data
+});
+
 
 // ✅ page copy
 const pageTitle = `Reviews | ${brand.name}`;
@@ -90,19 +63,12 @@ const pageDesc =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDesc} />
-    <link rel="canonical" href={canonical} />
-
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDesc} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-
+                          <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
@@ -234,6 +200,36 @@ const pageDesc =
           <section class="" aria-label="Local identity">
             <LocalIdentitySection brand={brand} pageTitle="Reviews" />
           </section>
+                    <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
+            </p>
+
+            <div class="grid grid-2">
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
+            </div>
+
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
+          </section>
+          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <!-- ✅ CTA -->
           <section aria-label="Footer CTA">
@@ -358,6 +354,36 @@ const pageDesc =
               <p class="section-sub">No reviews found in dataset yet.</p>
             )}
           </section>
+                    <section
+            class="section section-padding"
+            aria-label="Areas we commonly serve"
+          >
+            <h2 class="section-title">Areas We Commonly Serve</h2>
+            <p class="section-sub readable">
+              Browse location pages for local context and the services commonly
+              supported there.
+            </p>
+
+            <div class="grid grid-2">
+              {
+                siteData.locationsIndex?.groups
+                  ?.flatMap((g) => g.locations || [])
+                  .slice(0, 12)
+                  .map((loc) => (
+                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                      <h3 class="card-title">{loc.name}</h3>
+                      <p class="card-desc">Open local service guide</p>
+                    </a>
+                  ))
+              }
+            </div>
+
+            <p class="section-sub" style="margin-top:12px">
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a
+              >
+            </p>
+          </section>
+          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
 <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <section aria-label="Footer CTA">
             <FooterCtaBar

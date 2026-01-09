@@ -1,43 +1,52 @@
 ---
-const { brand, post } = Astro.props;
+import { siteData } from "src/content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = post?.canonical || "";
+const { brand, post, slug } = Astro.props;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/insights/${slug}/`);
+const meta = buildMeta({
+  title: `${post.seoTitle} | ${siteData.brand.name}`,
+  description: post.seoDesc,
+  canonical,
+  ogType: "article",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "post",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Insights", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/insights/") },
+    { name: post.h1 || slug, href: canonical },
+  ],
+  faqs: (post.faqs || []).slice(0, 10),
+  extraNodes: [
     {
       "@type": "Article",
-      headline: post.h1,
+      "@id": `${canonical}#article`,
+      headline: post.h1 || post.seoTitle,
       description: post.seoDesc,
-      author: { "@type": "Person", name: brand.legalName || brand.name },
-      publisher: { "@type": "Organization", name: brand.name },
-      mainEntityOfPage: canonical || undefined,
+      mainEntityOfPage: canonical,
+      author: { "@type": "Organization", name: siteData.brand.name },
+      publisher: { "@type": "Organization", name: siteData.brand.name },
     },
-    ...(post.faqs?.length
-      ? [
-          {
-            "@type": "FAQPage",
-            mainEntity: post.faqs.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          },
-        ]
-      : []),
   ],
-};
+});
 ---
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{post.seoTitle} | {brand.name}</title>
-  <meta name="description" content={post.seoDesc} />
-  {canonical ? <link rel="canonical" href={canonical} /> : null}
   <link rel="stylesheet" href="/styles/theme.css" />
+
+                  <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
 

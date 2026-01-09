@@ -7,18 +7,45 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/insights/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insights/");
+const meta = buildMeta({
+  title: `Insights | ${siteData.brand.name}`,
+  description:
+    "Practical insurance guidance: claims, documents, renewals and risk clarity for Chennai North & NH corridors.",
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "insightsIndex",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Insights", href: canonical },
+  ],
+  extraNodes: [
+    { "@type": "CollectionPage", "@id": `${canonical}#collection`, url: canonical, name: "Insights" },
+  ],
+});
+
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Insights | {siteData.brand.name}</title>
-    <meta name="description" content="Practical insurance, claims and risk insights—written for real situations in Chennai and Chennai outskirts (Sholavaram belts)." />
-    <link rel="canonical" href={canonical} />
+
+                <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 

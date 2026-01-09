@@ -1,0 +1,273 @@
+---
+import DesktopHero from "../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../components/MobileHero.astro";
+import MobileAccordion from "../../../../components/MobileAccordion.astro";
+import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "../../../../components/BacklinksRow.astro";
+import LocalIdentitySection from "../../../../components/LocalIdentitySection.astro";
+
+import { siteData } from "../../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../lib/seo";
+
+import LinkChipsSection from "src/components/LinkChipsSection.astro";
+
+export async function getStaticPaths() {
+  const all = siteData.locationsDetail || {};
+  return Object.keys(all).map((location) => ({ params: { location } }));
+}
+
+const { location } = Astro.params;
+const data = siteData.locationsDetail?.[location];
+if (!data) throw new Error(`Unknown location: ${location}`);
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/locations/${location}/`);
+
+const meta = buildMeta({
+  title: `${data.seoTitle} | ${siteData.brand.name}`,
+  description: data.seoDesc,
+  canonical,
+  ogType: "website",
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "locationDetail",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Locations", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/") },
+    { name: data.name, href: canonical },
+  ],
+  faqs: (data.faqs || []).slice(0, 10),
+  extraNodes: [
+    {
+      "@type": "Place",
+      "@id": `${canonical}#place`,
+      name: data.name,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: data.name,
+        addressRegion: siteData.brand.addressRegion || "Tamil Nadu",
+        addressCountry: siteData.brand.addressCountry || "IN",
+      },
+    },
+    // Optional: declare page as local guide collection
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: data.seoTitle,
+      description: data.seoDesc,
+    },
+  ],
+});
+
+---
+
+<html lang="en">
+  <head>
+    <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- DESKTOP -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: data.heroP,
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub readable">{data.heroP}</p>
+          </section>
+
+          <section class="section section-padding" aria-label="Local context">
+            <h2 class="section-title">Local context</h2>
+            <ul class="bullets">
+              {data.localContext?.map((x) => <li>{x}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding" aria-label="Services in this area">
+            <h2 class="section-title">Services commonly supported in {data.name}</h2>
+
+            <!-- Row-wise, semantic, crawlable -->
+            <ul class="link-rows" role="list">
+              {data.serviceLinks?.map((s) => (
+                <li class="link-row">
+                  <a class="rowlink" href={s.href}>{s.title}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {data.faqs?.length ? (
+            <section class="section section-padding" aria-label="FAQs">
+              <h2 class="section-title">FAQs for {data.name}</h2>
+              <MobileAccordion
+                sections={[{
+                  title: "Questions people ask",
+                  items: data.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+
+          {data.relatedLocations?.length ? (
+            <section class="section section-padding" aria-label="Nearby locations">
+              <h2 class="section-title">Nearby locations</h2>
+              <ul class="link-rows" role="list">
+                {data.relatedLocations.map((x) => (
+                  <li class="link-row">
+                    <a class="rowlink" href={x.href}>{x.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
+          <LinkChipsSection
+  title="Search signals (synonyms people use)"
+  items={data.serviceAreaSignals || []}
+  variant="chips"
+/>
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <!-- MOBILE -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: data.heroP,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub readable">{data.heroP}</p>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Local context</h2>
+            <ul class="bullets">
+              {data.localContext?.map((x) => <li>{x}</li>)}
+            </ul>
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Services in {data.name}</h2>
+            <ul class="link-rows" role="list">
+              {data.serviceLinks?.map((s) => (
+                <li class="link-row">
+                  <a class="rowlink" href={s.href}>{s.title}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {data.faqs?.length ? (
+            <section class="section section-padding">
+              <MobileAccordion
+                sections={[{
+                  title: "FAQs",
+                  items: data.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
+          <LinkChipsSection
+  title="Search signals (synonyms people use)"
+  items={data.serviceAreaSignals || []}
+  variant="chips"
+/>
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+      </div>
+    </main>
+
+    <FloatingMenu brand={siteData.brand} />
+    <FloatingContactCta brand={siteData.brand} />
+
+    <style>
+      .readable{ max-width: 78ch; }
+
+      /* Row-wise list (no columns) */
+      .link-rows{
+        list-style:none;
+        padding:0;
+        margin: 12px 0 0;
+        display:flex;
+        flex-direction:column;
+        gap: 10px;
+      }
+      .link-row{
+        border:1px solid var(--border);
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 10px 12px;
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+      }
+      .rowlink{
+        display:block;
+        font-weight: 900;
+      }
+    </style>
+  </body>
+</html>

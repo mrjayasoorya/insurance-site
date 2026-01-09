@@ -1,0 +1,71 @@
+---
+const {
+  title = "Links",
+  items = [],
+  variant = "links", // "links" | "chips"
+} = Astro.props;
+
+const safeItems = Array.isArray(items) ? items.filter(Boolean) : [];
+---
+
+{safeItems.length ? (
+  <section class="section section-padding" aria-label={title}>
+    <h2 class="section-title">{title}</h2>
+
+    {variant === "chips" ? (
+      <ul class="chips" role="list">
+        {safeItems.map((x) => (
+          <li class="chip">{x}</li>
+        ))}
+      </ul>
+    ) : (
+      <ul class="link-rows" role="list">
+        {safeItems.map((x) => (
+          <li class="link-row">
+            <a class="rowlink" href={x.href}>{x.label}</a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+) : null}
+
+<style is:global>
+  .link-rows{
+    list-style:none;
+    padding:0;
+    margin: 12px 0 0;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+  .link-row{
+    border:1px solid var(--border);
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 10px rgba(11,13,18,.05);
+  }
+  .rowlink{
+    display:block;
+    font-weight: 900;
+  }
+
+  .chips{
+    list-style:none;
+    padding:0;
+    margin: 12px 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
+  .chip{
+    border:1px solid var(--border);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+</style>

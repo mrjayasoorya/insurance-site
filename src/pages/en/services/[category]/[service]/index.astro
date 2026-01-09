@@ -7,6 +7,7 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import { siteData } from "../../../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../../lib/seo";
 
 export async function getStaticPaths() {
   const all = siteData?.servicesDetail || {};
@@ -21,85 +22,66 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { category, service: serviceSlug } = Astro.params;
 
+const { category, service: serviceSlug } = Astro.params;
 const data = siteData?.servicesDetail?.[category]?.[serviceSlug];
 if (!data) throw new Error(`Unknown service: ${category}/${serviceSlug}`);
 
-const canonicalBase = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/services/${category}/${serviceSlug}/`;
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/${serviceSlug}/`);
 
-const orgId = `${canonicalBase.replace(/\/$/, "")}/#organization`;
-const websiteId = `${canonicalBase.replace(/\/$/, "")}/#website`;
-const webPageId = `${canonical}#webpage`;
+const meta = buildMeta({
+  title: `${data.seoTitle} | ${siteData.brand.name}`,
+  description: data.seoDesc,
+  canonical,
+  ogType: "article", // optional; "website" is fine too
+});
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": orgId,
-      name: siteData.brand.name,
-      url: canonicalBase.replace(/\/$/, ""),
-      telephone: siteData.brand.phoneE164,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: siteData.brand.streetAddress,
-        addressLocality: siteData.brand.addressLocality,
-        addressRegion: siteData.brand.addressRegion,
-        postalCode: siteData.brand.postalCode,
-        addressCountry: "IN",
-      },
-      sameAs: [siteData.brand.gbpUrl].filter(Boolean),
-    },
-    { "@type": "WebSite", "@id": websiteId, url: canonicalBase.replace(/\/$/, ""), name: siteData.brand.name, publisher: { "@id": orgId } },
-    { "@type": "WebPage", "@id": webPageId, url: canonical, name: data.seoTitle, description: data.seoDesc, isPartOf: { "@id": websiteId } },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${canonicalBase.replace(/\/$/, "")}/en/` },
-        { "@type": "ListItem", position: 2, name: "Services", item: `${canonicalBase.replace(/\/$/, "")}/en/services/` },
-        { "@type": "ListItem", position: 3, name: category, item: `${canonicalBase.replace(/\/$/, "")}/en/services/${category}/` },
-        { "@type": "ListItem", position: 4, name: data.heroH1, item: canonical },
-      ],
-    },
+const jsonLd = buildJsonLd({
+  pageType: "serviceDetail",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
+    { name: category, href: canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/`) },
+    { name: data.heroH1, href: canonical },
+  ],
+  faqs: (data.faqs || []).slice(0, 10), // can include all service FAQs
+  extraNodes: [
     {
       "@type": "Service",
+      "@id": `${canonical}#service`,
       name: data.heroH1,
       description: data.heroP,
       url: canonical,
-      provider: { "@id": orgId },
+      provider: {
+        "@type": "Organization",
+        name: siteData.brand.name,
+        telephone: siteData.brand.phoneE164,
+        sameAs: [siteData.brand.gbpUrl].filter(Boolean),
+      },
       areaServed: (siteData.brand.areaChips || []).map((x) => ({ "@type": "Place", name: x })),
-      subjectOf: { "@id": webPageId },
     },
-    ...(data.faqs?.length
-      ? [
-          {
-            "@type": "FAQPage",
-            "@id": `${canonical}#faq`,
-            mainEntity: data.faqs.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          },
-        ]
-      : []),
   ],
-};
+});
+
 ---
 
 <html lang="en">
   <head>
+<title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{data.seoTitle} | {siteData.brand.name}</title>
-    <meta name="description" content={data.seoDesc} />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-    <link rel="canonical" href={canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
