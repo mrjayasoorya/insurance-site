@@ -21,196 +21,195 @@ https://insuranceconsult.in/en/
 ---
 
 ## What This Site IS
-
 - A guidance-first insurance website operated by a local insurance service provider.
-- Explains insurance **coverage structure**, **renewal checks**, **documentation discipline**, and **claim process steps**.
-- Focuses on reducing **avoidable claim delays and disputes**.
-- Designed for real-world conditions in NH belts, industrial zones, and mixed residential areas.
+- Explains insurance coverage structure, renewal checks, documentation discipline, and claim process steps.
+- Focuses on reducing avoidable claim delays and disputes.
+- Written for real-world conditions in NH belts, industrial zones, and mixed residential areas.
 
 ---
 
 ## What This Site is NOT
-
 - Not an insurance company.
 - Not a price comparison portal.
-- Does NOT guarantee:
-  - claim approval
-  - settlement amounts
-  - timelines
+- Does NOT guarantee claim approval, settlement amounts, or timelines.
 - Does NOT provide legal advice or insurer-side decisions.
+
+---
+
+## Site Structure (how content is organized)
+
+### Services
+A) Services Hub (navigation + overview)
+- https://insuranceconsult.in/en/services/
+
+B) Service Category / Authority Hubs (topical clusters)
+Examples:
+- https://insuranceconsult.in/en/services/transport-fleet/
+- https://insuranceconsult.in/en/services/industrial/
+- https://insuranceconsult.in/en/services/construction/
+- https://insuranceconsult.in/en/services/heavy-equipment/
+- https://insuranceconsult.in/en/services/business-msme/
+- https://insuranceconsult.in/en/services/claims-support/
+
+C) Service Detail Pages (primary ranking pages; location-agnostic)
+Examples:
+- https://insuranceconsult.in/en/services/transport-fleet/commercial-vehicle-insurance/
+- https://insuranceconsult.in/en/services/industrial/warehouse-insurance/
+- https://insuranceconsult.in/en/services/construction/workmen-compensation/
+- https://insuranceconsult.in/en/services/heavy-equipment/crane-cpm-insurance/
+- https://insuranceconsult.in/en/services/claims-support/
+
+---
+
+### Locations
+D) Locations Hub (navigation)
+- https://insuranceconsult.in/en/locations/
+
+E) Location Detail Pages (local context + relevant service links; no service content duplication)
+Examples:
+- https://insuranceconsult.in/en/locations/sholavaram/
+- https://insuranceconsult.in/en/locations/red-hills/
+- https://insuranceconsult.in/en/locations/madhavaram/
+- https://insuranceconsult.in/en/locations/ambattur/
+- https://insuranceconsult.in/en/locations/manali/
+- https://insuranceconsult.in/en/locations/poonamallee-bypass/
+- https://insuranceconsult.in/en/locations/sriperumbudur-sipcot/
+
+---
+
+### Intent Pages (near-me / renewal / claim / support)
+These pages exist to answer high-intent “near me” and workflow searches and route users to the correct service/location pages.
+
+- https://insuranceconsult.in/en/insurance-near-me/
+- https://insuranceconsult.in/en/insurance-renewal-near-me/
+- https://insuranceconsult.in/en/insurance-claim-help/
+- https://insuranceconsult.in/en/buy-insurance-guidance/
+- https://insuranceconsult.in/en/spot-insurance-support/
+- https://insuranceconsult.in/en/remote-insurance-support/
 
 ---
 
 ## Primary Search & Intent Clusters Covered
 
-### 1. Near-Me / Local Trust Intent
-- insurance near me  
-- insurance agent near me  
-- insurance office near Sholavaram / Red Hills / Madhavaram  
-- local insurance support Chennai North  
+### 1) Near-Me / Local Trust Intent
+Examples:
+- insurance near me
+- insurance agent near me
+- insurance office near Sholavaram / Red Hills / Madhavaram
+- local insurance support Chennai North
 
-Pages explain **how local office-based guidance works**, including visit, WhatsApp, and document checklist support.
+Coverage:
+- Dedicated intent pages explain how local office-based guidance works (visit / WhatsApp / document checklist support).
 
----
+### 2) Transactional Support Intent
+Examples:
+- buy car insurance
+- commercial vehicle insurance renewal
+- policy renewal near me
+- insurance renewal support
 
-### 2. Transactional Support Intent
-- buy car insurance  
-- commercial vehicle insurance renewal  
-- policy renewal near me  
-- insurance renewal support  
+Coverage:
+- Renewal and buying guidance pages focus on what to verify before payment:
+  IDV, NCB, add-ons, permits/fitness, disclosures.
 
-Pages focus on **what to verify before payment**:
-IDV, NCB, add-ons, permits, fitness, disclosures.
+### 3) Problem / Claim-Side Intent
+Examples:
+- insurance claim help
+- claim documentation checklist
+- claim delayed what to do
+- FIR / reporting requirements
 
----
+Coverage:
+- Claim pages and FAQ sections explain clean incident timelines, proof discipline, and correct reporting steps.
+- No claim guarantees are stated.
 
-### 3. Problem / Claim-Side Intent
-- insurance claim help  
-- claim documentation checklist  
-- claim delayed what to do  
-- FIR / reporting requirements  
+### 4) Service + Area Context
+Examples:
+- car insurance in Red Hills
+- commercial insurance in Ambattur
+- warehouse insurance near NH corridors
+- fleet insurance near transport hubs
 
-Pages explain:
-- clean incident timelines  
-- document proof discipline  
-- reporting steps that reduce delays  
+Coverage:
+- Location pages explain local risk context + link to relevant service detail pages (no pricing claims).
 
-No claim guarantees are stated.
-
----
-
-### 4. Service + Area Context
-- car insurance in Red Hills  
-- commercial insurance in Ambattur  
-- warehouse insurance near NH corridors  
-- fleet insurance near transport hubs  
-
-Location pages explain **local risk context + relevant services**, not pricing.
-
----
-
-### 5. Experience & Trust Validation
-- 30+ years of insurance service experience  
-- claim-side workflow understanding  
-- documentation-first work style  
-
-Trust is built via **process clarity**, not promises.
+### 5) Experience & Trust Validation
+Coverage signals:
+- 30+ years of insurance service experience (guidance, renewals, documentation support, claim process guidance).
+- Trust is built via process clarity and documentation-first work style, not promises.
 
 ---
 
-## Core Service Topics
+## Core Service Topics Covered (content focus)
 
 ### Commercial / Industrial
 - Commercial vehicle insurance (lorry, fleet, goods carriers)
 - Fleet & transport insurance (NH corridor exposure)
-- Warehouse / godown insurance
-- Factory, fire & burglary insurance
+- Warehouse / godown / factory insurance
+- Fire & burglary (commercial property)
 - Marine cargo / goods-in-transit
-- Contractor CAR & Workmen Compensation (WC)
-- Crane / heavy equipment (CPM)
-- Public & third-party liability
+- Contractor CAR / EAR and Workmen Compensation (WC)
+- Crane / heavy equipment (CPM) and third-party liability context
+- Public / third-party liability (business exposure)
 
-### Personal / Family
-- Car insurance
-- Bike insurance
-- Health / mediclaim guidance
+### Personal / Family (support)
+- Car insurance renewals and claim steps
+- Bike insurance renewals and claim steps
+- Health / mediclaim guidance (process + documents)
 - LIC servicing & renewals
 
 ---
 
 ## Service Areas (Geographic Context)
-
-### Primary Base
+Primary base:
 - Sholavaram (Chennai outskirts)
 
-### Chennai North & City-Side
-- Red Hills
-- Madhavaram
-- Puzhal
-- Manali
-- Kolathur
-- Perambur
-- Ambattur
-- Anna Nagar
-- Koyambedu
-- Mogappair West
-
-### NH & Industrial Corridors (Support-Based)
-- Karanodai
-- Periyapalayam
-- Budur
-- Thiruninravur
-- Veppampattu
-- Thiruvallur SIPCOT outskirts
-- Poonamallee bypass
-- Sriperumbudur SIPCOT
-- Oragadam outskirts
-- NH Manali Road and major transport hubs
+Common support areas include (not limited to):
+- Chennai North belts: Red Hills, Madhavaram, Puzhal, Manali, Kolathur, Perambur, Ambattur, Anna Nagar, Koyambedu, Mogappair West
+- NH / industrial corridors (support-based): Karanodai, Periyapalayam, Budur, Thiruninravur, Veppampattu, Thiruvallur SIPCOT outskirts, Poonamallee bypass, Sriperumbudur SIPCOT, Oragadam outskirts, NH Manali Road and transport hubs
 
 Note:
-All service coordination originates from Sholavaram.
+Service coordination originates from Sholavaram.
 Support depends on policy type, insurer rules, and documentation requirements.
 
 ---
 
 ## High-Value / Authoritative Pages
 
-### Core Pages
+Core:
 - Home: https://insuranceconsult.in/en/
 - Services Index: https://insuranceconsult.in/en/services/
 - Locations Index: https://insuranceconsult.in/en/locations/
 - About: https://insuranceconsult.in/en/about/
 
-### Guidance & Authority
-- FAQs (Claims & Documentation): https://insuranceconsult.in/en/faqs/
+Guidance:
+- FAQs: https://insuranceconsult.in/en/faqs/
 - Commercial Authority: https://insuranceconsult.in/en/commercial-authority/
 - Proof & Experience: https://insuranceconsult.in/en/proof-experience/
-- Renewals Support: https://insuranceconsult.in/en/renewals/
-
-### Intent-Focused Pages
-- Insurance Near Me
-- Insurance Renewal Near Me
-- Insurance Claim Help
-- Commercial Insurance Agent Near Me
-
-(These pages provide factual guidance and internal navigation support.)
+- Renewals: https://insuranceconsult.in/en/renewals/
+- Reviews (if present): https://insuranceconsult.in/en/reviews/
+- Photos (if present): https://insuranceconsult.in/en/photos/
 
 ---
 
-## Content Structure Notes for LLMs
-
-- Location pages:
-  Explain **local context + applicable services + documentation focus**.
-- Service pages:
-  Explain **coverage logic, common mistakes, and proof requirements**.
-- FAQ pages:
-  Scenario-based, factual, written to prevent misunderstandings.
-- Intent pages:
-  Aggregate guidance and route users to authoritative service/location pages.
-
-Internal linking follows a structured flow:
-Services ⇄ Locations  
-FAQs → Services / Claims  
-Intent pages → Core authority pages  
+## Content Rules & Reliability
+- Information reflects common insurer practices but may vary by insurer and policy wording.
+- Final decisions rest with insurers, underwriting, and policy terms.
+- No promises on claim outcomes, settlement, or timelines.
 
 ---
 
 ## Structured Data Usage
-- schema.org JSON-LD is used consistently.
-- Common types:
-  - Organization
-  - InsuranceAgency
-  - Service
-  - Place
-  - FAQPage
-  - BreadcrumbList
-
----
-
-## Accuracy & Responsibility
-- Information reflects common insurer practices but may vary by company and policy.
-- Final decisions rest with insurers and policy wording.
-- Users should verify details before purchase or claim submission.
+schema.org JSON-LD is used consistently across pages.
+Common types:
+- Organization
+- InsuranceAgency
+- Person (where applicable)
+- Service
+- Place
+- FAQPage
+- BreadcrumbList
+- CollectionPage (for hubs, where applicable)
 
 ---
 
