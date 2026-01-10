@@ -16,7 +16,7 @@ const jsonLd = {
       name: siteData.brand.name,
       telephone: siteData.brand.phoneE164,
       url: canonicalBase,
-      areaServed: siteData.brand.areaChips,
+      areaServed: siteData.areaServedStructData || undefined,
       address: {
         "@type": "PostalAddress",
         streetAddress: siteData.brand.streetAddress,
@@ -32,7 +32,7 @@ const jsonLd = {
       "@type": "Service",
       name: page.h1,
       serviceType: page.serviceType,
-      areaServed: page.areasServed,
+      areaServed: siteData.areaServedStructData || undefined,
       provider: { "@type": "Organization", name: siteData.brand.name },
       description: page.metaDesc,
       url,

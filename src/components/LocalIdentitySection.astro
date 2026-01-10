@@ -1,4 +1,6 @@
 ---
+import { siteData } from "src/content/siteData";
+
 const { brand, pageTitle } = Astro.props;
 
 const name = brand?.name || "Insurance Services";
@@ -35,7 +37,7 @@ const jsonLd = {
   "@type": "InsuranceAgency",
   name,
   legalName: legalName || undefined,
-  areaServed: brand?.areaChips || undefined,
+  areaServed: siteData.areaServedStructData || undefined,
   telephone: phoneE164 || undefined,
   url: brand?.websiteUrl || undefined,
   hasMap: mapLink || undefined,

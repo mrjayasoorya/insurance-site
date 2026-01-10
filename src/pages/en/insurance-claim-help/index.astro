@@ -31,6 +31,7 @@ const jsonLd = buildJsonLd({
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Insurance Claim Help", href: canonical },
   ],
+  serviceData: page,
   faqs: page.faqs || [],
 });
 ---

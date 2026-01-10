@@ -43,29 +43,14 @@ const jsonLd = buildJsonLd({
   canonical,
   title: meta.title,
   description: meta.description,
+  serviceData: data,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
     { name: category, href: canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/`) },
     { name: data.heroH1, href: canonical },
   ],
-  faqs: (data.faqs || []).slice(0, 10), // can include all service FAQs
-  extraNodes: [
-    {
-      "@type": "Service",
-      "@id": `${canonical}#service`,
-      name: data.heroH1,
-      description: data.heroP,
-      url: canonical,
-      provider: {
-        "@type": "Organization",
-        name: siteData.brand.name,
-        telephone: siteData.brand.phoneE164,
-        sameAs: [siteData.brand.gbpUrl].filter(Boolean),
-      },
-      areaServed: (siteData.brand.areaChips || []).map((x) => ({ "@type": "Place", name: x })),
-    },
-  ],
+  faqs: data.faqs || [],
 });
 
 ---

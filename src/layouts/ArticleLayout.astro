@@ -16,7 +16,7 @@ const jsonLd = {
       name: siteData.brand.name,
       telephone: siteData.brand.phoneE164,
       url: canonicalBase,
-      areaServed: siteData.brand.areaChips,
+      areaServed: siteData.areaServedStructData || undefined,
       sameAs: [siteData.brand.gbpUrl].filter(Boolean),
     },
     {

@@ -16,6 +16,7 @@ let gbpUrl = "https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Serv
 let phoneE164 = "+917448324068";
 let whatsappE164 = "917448324068";
 let whatsappPrefill = "Hi, I need guidance on the right insurance for my business / vehicle. Please help.";
+let geo = { lat: 13.2391084, lng: 80.1728337 }
 
 let locationsDetail = {
   // ====== PRIORITY BELT: Sholavaram ↔ Madhavaram corridor ======
@@ -1478,7 +1479,7 @@ export const siteData = {
     mapEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3883.7801632048363!2d80.1702587736598!3d13.239108387101373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a527d2b1e29b5ff%3A0xe9b9b0049f529b6b!2sM%20N%20Rajendrakumar%20Insurance%20Services%20%E2%80%93%20Commercial%2C%20Vehicle%20%26%20Industrial%20Insurance%20%7C%20Sholavaram%2C%20Karanodai%2C%20Redhills!5e0!3m2!1sen!2sin!4v1767543679104!5m2!1sen!2sin",
 
-    geo: { lat: 13.2391084, lng: 80.1728337 },
+    geo,
 
     hours: {
       is24x7: true,
@@ -5951,6 +5952,110 @@ intentPages: {
     ],
   },
 
+  "areaServedStructData": [
+  {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": geo.lat, 
+      "longitude": geo.lng
+    },
+    "geoRadius": 60000 
+  },
+
+  // 1. BROAD DISTRICTS & OFFICIAL BOUNDARIES
+  { "@type": "AdministrativeArea", "name": "Chennai" },
+  { "@type": "AdministrativeArea", "name": "Tiruvallur District" },
+  { "@type": "AdministrativeArea", "name": "Kancheepuram District" },
+  { "@type": "AdministrativeArea", "name": "Chengalpattu District" },
+  { "@type": "AdministrativeArea", "name": "Ranipet District" },
+
+  // 2. INDUSTRIAL HUB CATEGORIES (Kept as AdministrativeArea for Search Weight)
+  { "@type": "AdministrativeArea", "name": "Sriperumbudur Industrial Hub" },
+  { "@type": "AdministrativeArea", "name": "Oragadam Automobile Belt" },
+
+  // 3. LOCAL DOMINANCE (Sholavaram - Red Hills - Puzhal Belt)
+  { "@type": "Place", "name": "Red Hills Market Junction" },
+  { "@type": "Place", "name": "Padianallur Checkpost" },
+  { "@type": "Place", "name": "Karanodai Bridge & Bazaar" },
+  { "@type": "Place", "name": "Puzhal Camp (Jail Road Hub)" },
+  { "@type": "Place", "name": "Madhavaram Roundana" },
+  { "@type": "Place", "name": "Vilangadupakkam Rice Mill Hub" },
+  { "@type": "Place", "name": "Vadaperumbakkam Warehouse Zone" },
+  { "@type": "Place", "name": "Grand Lyon Industrial Estate" },
+  { "@type": "Place", "name": "Lyon Industrial Zone" },
+  { "@type": "Place", "name": "Alamathi Rice Mill Road" },
+  { "@type": "Place", "name": "Orakadu Industrial Road" },
+  { "@type": "Place", "name": "Naravarikuppam" },
+  { "@type": "Place", "name": "Theerthagiriyampattu" },
+  { "@type": "Place", "name": "Payasambakkam" },
+  { "@type": "Place", "name": "Sothupakkam" },
+
+  // 4. TRANSPORT & CARGO NODES (Lorry/Fleet Dominance)
+  { "@type": "Place", "name": "Madhavaram Truck Terminal" },
+  { "@type": "Place", "name": "Puzhal Kavangarai Lorry Stand" },
+  { "@type": "Place", "name": "Karanodai Toll Plaza Area" },
+  { "@type": "Place", "name": "GNT Road Warehouse Cluster" },
+  { "@type": "Place", "name": "Red Hills Bus Terminus" },
+  { "@type": "Place", "name": "Red Hills Warehouse Belt" },
+
+  // 5. EXPORT-IMPORT & MANUFACTURING (High Premium Commercial)
+  { "@type": "Place", "name": "Ennore Kamarajar Port" },
+  { "@type": "Place", "name": "Kattupalli Port & Shipyard" },
+  { "@type": "Place", "name": "Manali Industrial Estate" },
+  { "@type": "Place", "name": "Gummidipoondi SIPCOT" },
+  { "@type": "Place", "name": "Minjur Logistics Hub" },
+  { "@type": "Place", "name": "Ponneri Smart City Belt" },
+  { "@type": "Place", "name": "Ambattur Industrial Estate" },
+  { "@type": "Place", "name": "Padi Industrial Hub" },
+  { "@type": "Place", "name": "Arani Industrial Cluster" },
+  { "@type": "Place", "name": "Thirumazhisai SIDCO" },
+  { "@type": "Place", "name": "Thirumudivakkam SIDCO" },
+  { "@type": "Place", "name": "Mappedu Multimodal Logistics Park" },
+  { "@type": "Place", "name": "Sriperumbudur SIPCOT" },
+  { "@type": "Place", "name": "Irungattukottai Industrial Park" },
+  { "@type": "Place", "name": "Oragadam Automobile Hub" },
+  { "@type": "Place", "name": "Vallam Vadagal Industrial Park" },
+  { "@type": "Place", "name": "Pillaipakkam Industrial Hub" },
+
+  // 6. DOMESTIC RESIDENTIAL CLUSTERS (Car, Bike, Health Insurance)
+  { "@type": "Place", "name": "Anna Nagar" },
+  { "@type": "Place", "name": "Mogappair East" },
+  { "@type": "Place", "name": "Mogappair West" },
+  { "@type": "Place", "name": "Ambattur OT" },
+  { "@type": "Place", "name": "Avadi" },
+  { "@type": "Place", "name": "Pattabiram" },
+  { "@type": "Place", "name": "Kolathur" },
+  { "@type": "Place", "name": "Retteri Junction" },
+  { "@type": "Place", "name": "Perambur" },
+  { "@type": "Place", "name": "Jamalia" },
+  { "@type": "Place", "name": "Villivakkam" },
+  { "@type": "Place", "name": "Korattur" },
+  { "@type": "Place", "name": "Poonamallee Town" },
+  { "@type": "Place", "name": "Thiruvallur Town" },
+  { "@type": "Place", "name": "Thiruninravur" },
+  { "@type": "Place", "name": "Veppampattu" },
+  { "@type": "Place", "name": "Manali New Town" },
+  { "@type": "Place", "name": "Mathur MMDA" },
+  { "@type": "Place", "name": "Madhavaram Milk Colony" },
+  { "@type": "Place", "name": "Kodungaiyur" },
+  { "@type": "Place", "name": "Tiruvottiyur" },
+  { "@type": "Place", "name": "Porur" },
+  { "@type": "Place", "name": "Ramapuram" },
+  { "@type": "Place", "name": "Iyyapanthangal" },
+  { "@type": "Place", "name": "Kattupakkam" },
+  { "@type": "Place", "name": "Vanagaram" },
+  { "@type": "Place", "name": "Surapet" },
+  { "@type": "Place", "name": "Puthagaram" },
+
+  // 7. SME & TRADE BAZAARS (Business/Shop/Marine Insurance)
+  { "@type": "Place", "name": "Sowcarpet" },
+  { "@type": "Place", "name": "George Town" },
+  { "@type": "Place", "name": "Broadway" },
+  { "@type": "Place", "name": "Parrys Corner" },
+  { "@type": "Place", "name": "Red Hills Bazaar Road" },
+  { "@type": "Place", "name": "Koyambedu Market Area" }
+],
 
   gmbPosts: [],
 };

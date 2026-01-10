@@ -29,16 +29,7 @@ const jsonLd = buildJsonLd({
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Locations", href: canonical },
-  ],
-  extraNodes: [
-    {
-      "@type": "CollectionPage",
-      "@id": `${canonical}#collection`,
-      url: canonical,
-      name: siteData.locationsIndex.title,
-      description: siteData.locationsIndex.subtitle,
-    },
-  ],
+  ]
 });
 ---
 

@@ -37,17 +37,7 @@ const jsonLd = buildJsonLd({
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
     { name: cat.title, href: canonical },
-  ],
-  extraNodes: [
-    {
-      "@type": "CollectionPage",
-      "@id": `${canonical}#collection`,
-      url: canonical,
-      name: cat.title,
-      description: cat.desc,
-      isPartOf: { "@id": `${canonicalFromPath(siteData.brand.websiteUrl, "/en/").replace(/\/$/, "")}/#website` },
-    },
-  ],
+  ]
 });
 ---
 

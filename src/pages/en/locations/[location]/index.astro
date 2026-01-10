@@ -38,33 +38,13 @@ const jsonLd = buildJsonLd({
   canonical,
   title: meta.title,
   description: meta.description,
+  locationName: data.name,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Locations", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/") },
     { name: data.name, href: canonical },
   ],
-  faqs: (data.faqs || []).slice(0, 10),
-  extraNodes: [
-    {
-      "@type": "Place",
-      "@id": `${canonical}#place`,
-      name: data.name,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: data.name,
-        addressRegion: siteData.brand.addressRegion || "Tamil Nadu",
-        addressCountry: siteData.brand.addressCountry || "IN",
-      },
-    },
-    // Optional: declare page as local guide collection
-    {
-      "@type": "WebPage",
-      "@id": `${canonical}#webpage`,
-      url: canonical,
-      name: data.seoTitle,
-      description: data.seoDesc,
-    },
-  ],
+  faqs: (data.faqs || [])
 });
 
 ---

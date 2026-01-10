@@ -19,15 +19,16 @@ const meta = buildMeta({
 });
 
 const jsonLd = buildJsonLd({
-  pageType: "commercialAuthorityIndex",
+  pageType: "serviceCategory",
   siteData,
   canonical,
   title: meta.title,
   description: meta.description,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
+    { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
     { name: "Commercial Authority", href: canonical },
-  ],
+  ]
 });
 
 ---
