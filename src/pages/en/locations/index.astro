@@ -2,23 +2,45 @@
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "../../../components/FloatingContactCta.astro";
-import FloatingMenu from "../../../components/FloatingMenu.astro";
-import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
-import BacklinksRow from "../../../components/BacklinksRow.astro";
+import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import FloatingMenu from "src/components/FloatingMenu.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import LocalIdentitySection from "src/components/LocalIdentitySection.astro";
+import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
-import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../lib/seo";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
+
 const meta = buildMeta({
   title: `Locations | ${siteData.brand.name}`,
-  description: siteData.locationsIndex.subtitle,
+  description: siteData.locationsIndex?.subtitle || "Locations we serve.",
   canonical,
-  ogType: "website",
 });
+
+const zones = siteData.locationsIndex?.zones || [];
+const centralHub = siteData.locationsIndex?.centralHub || null;
+const intentRouter = siteData.locationsIndex?.intentRouter || null;
+const claimReady = siteData.locationsIndex?.claimReadyPrinciples || null;
+const searchLang = siteData.locationsIndex?.searchLanguage || null;
+
+// Optional hierarchical schema nodes (zones as AdministrativeArea)
+const extraNodes = zones.length
+  ? [{
+      "@type": "AdministrativeArea",
+      "@id": `${canonical}#corridors`,
+      name: "Chennai North + corridor belts (service areas)",
+      containsPlace: zones.flatMap((z) =>
+        (z.locations || []).slice(0, 12).map((l) => ({
+          "@type": "Place",
+          name: l.name,
+          url: canonicalFromPath(siteData.brand.websiteUrl, EN(`/locations/${l.slug}/`)),
+        }))
+      ),
+    }]
+  : [];
 
 const jsonLd = buildJsonLd({
   pageType: "locationsIndex",
@@ -27,20 +49,21 @@ const jsonLd = buildJsonLd({
   title: meta.title,
   description: meta.description,
   breadcrumbs: [
-    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
-    { name: "Locations", href: canonical },
-  ]
+    { name: "Home", href: "/en/" },
+    { name: "Locations", href: "/en/locations/" },
+  ],
+  extraNodes,
 });
 ---
 
 <html lang="en">
   <head>
-
     <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -53,14 +76,14 @@ const jsonLd = buildJsonLd({
     <main class="app">
       <div class="container">
 
-        <!-- DESKTOP -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.locationsIndex.subtitle,
+                subtitle: siteData.locationsIndex?.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: siteData.brand.areaChips,
               }}
@@ -68,42 +91,136 @@ const jsonLd = buildJsonLd({
           </header>
 
           <section class="section section-padding" aria-labelledby="loc-title">
-            <h1 id="loc-title" class="section-title">{siteData.locationsIndex.title}</h1>
-            <p class="section-sub readable">{siteData.locationsIndex.subtitle}</p>
-            <ul class="bullets">
-              {siteData.locationsIndex.intro.map((p) => <li>{p}</li>)}
-            </ul>
+            <h1 id="loc-title" class="section-title">{siteData.locationsIndex?.title}</h1>
+            <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
           </section>
 
-          <section class="section section-padding" aria-labelledby="loc-principles">
-            <h2 id="loc-principles" class="section-title">{siteData.locationsIndex.claimReadyPrinciples.title}</h2>
-            <ul class="bullets">
-              {siteData.locationsIndex.claimReadyPrinciples.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          {siteData.locationsIndex.groups.map((g) => (
-            <section class="section section-padding" aria-labelledby={g.id}>
-              <h2 id={g.id} class="section-title">{g.title}</h2>
-              <p class="section-sub readable">{g.subtitle}</p>
-
-              <ul class="loc-rows" role="list" aria-label={`${g.title} locations`}>
-                {(g.locations || []).map((x) => (
-                  <li class="loc-row">
-                    <a class="loc-link" href={EN(`/locations/${x.slug}/`)}>
-                      <span class="loc-name">{x.name}</span>
-                      <span class="loc-meta">Open local service guide</span>
-                    </a>
-                  </li>
+          <!-- Central hub (answers: office vs service area) -->
+          {centralHub?.title ? (
+            <section class="section section-padding" aria-label="Central support hub">
+              <h2 class="section-title">{centralHub.title}</h2>
+              <div class="stack">
+                {(centralHub.text || []).map((p) => (
+                  <p class="section-sub readable">{p}</p>
                 ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- Intent router (high-value) -->
+          {intentRouter?.cards?.length ? (
+            <section class="section section-padding" aria-label="Intent router">
+              <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
+              <div class="grid grid-2">
+                {intentRouter.cards.map((c) => (
+                  <a class="card" href={c.href}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- Claim-ready principles -->
+          {claimReady?.title ? (
+            <section class="section section-padding" aria-label="Claim-ready principles">
+              <h2 class="section-title">{claimReady.title}</h2>
+              <ul class="bullets">
+                {(claimReady.points || []).map((x) => <li>{x}</li>)}
               </ul>
             </section>
-          ))}
+          ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
-          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
+          <!-- Search language (safe chips, limited) -->
+          {searchLang?.chips?.length ? (
+            <section class="section section-padding" aria-label="Search language">
+              <h2 class="section-title">{searchLang.title || "Search language people use"}</h2>
+              {searchLang.note ? <p class="section-sub readable">{searchLang.note}</p> : null}
+              <div class="chips">
+                {searchLang.chips.map((x) => <span class="chip">{x}</span>)}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- Zones (the “traffic controller”) -->
+          {zones.length ? (
+            <section class="section section-padding" aria-label="Zones and corridors">
+              <h2 class="section-title">Economic zones & corridor belts</h2>
+              <p class="section-sub readable">
+                These groupings exist because insurance needs and claim friction points vary by belt: logistics movement, industrial property exposure, contractor worksites, or city-side renewal support.
+              </p>
+
+              <div class="zone-grid">
+                {zones.map((z) => (
+                  <article class="zone-card" aria-label={z.title}>
+                    <header class="zone-head">
+                      <h3 class="zone-title">{z.title}</h3>
+                      <p class="zone-sub readable">{z.subtitle}</p>
+                    </header>
+
+                    {z.whyThisZoneMatters ? (
+                      <p class="zone-why readable">{z.whyThisZoneMatters}</p>
+                    ) : null}
+
+                    {(z.commonNeeds || []).length ? (
+                      <div class="zone-block">
+                        <div class="zone-k">Common needs</div>
+                        <ul class="bullets">
+                          {z.commonNeeds.slice(0, 6).map((x) => <li>{x}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {(z.topServices || []).length ? (
+                      <div class="zone-block">
+                        <div class="zone-k">Services commonly used in this belt</div>
+                        <div class="grid grid-2">
+                          {z.topServices.slice(0, 6).map((s) => (
+                            <a class="card card-mini" href={s.href}>
+                              <h4 class="card-title">{s.label}</h4>
+                              <p class="card-desc readable">{s.desc}</p>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {(z.searchesPeopleUse || []).length ? (
+                      <div class="zone-block">
+                        <div class="zone-k">Common searches</div>
+                        <div class="chips">
+                          {z.searchesPeopleUse.slice(0, 8).map((q) => <span class="chip">{q}</span>)}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {(z.locations || []).length ? (
+                      <div class="zone-block">
+                        <div class="zone-k">Locations in this zone</div>
+                        <ul class="loc-rows" role="list" aria-label={`${z.title} locations`}>
+                          {z.locations.map((loc) => (
+                            <li class="loc-row">
+                              <a class="loc-link" href={EN(`/locations/${loc.slug}/`)}>
+                                <span class="loc-name">{loc.name}</span>
+                                <span class="loc-meta">Open local context</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
+          <NearMeTrustSection brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-<QuickHelpLinks pageType="locations" />
+          <QuickHelpLinks pageType="locations" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -117,14 +234,14 @@ const jsonLd = buildJsonLd({
           />
         </div>
 
-        <!-- MOBILE -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
-                subtitle: siteData.locationsIndex.subtitle,
+                subtitle: siteData.locationsIndex?.subtitle,
                 phone: siteData.brand.phone,
                 areaChips: [],
               }}
@@ -132,35 +249,79 @@ const jsonLd = buildJsonLd({
           </header>
 
           <section class="section section-padding">
-            <h1 class="section-title">{siteData.locationsIndex.title}</h1>
-            <p class="section-sub readable">{siteData.locationsIndex.subtitle}</p>
-            <ul class="bullets">
-              {siteData.locationsIndex.intro.map((p) => <li>{p}</li>)}
-            </ul>
+            <h1 class="section-title">{siteData.locationsIndex?.title}</h1>
+            <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
           </section>
 
-          {siteData.locationsIndex.groups.map((g) => (
-            <section class="section section-padding" aria-labelledby={`m-${g.id}`}>
-              <h2 id={`m-${g.id}`} class="section-title">{g.title}</h2>
-              <p class="section-sub readable">{g.subtitle}</p>
-
-              <ul class="loc-rows" role="list">
-                {(g.locations || []).map((x) => (
-                  <li class="loc-row">
-                    <a class="loc-link" href={EN(`/locations/${x.slug}/`)}>
-                      <span class="loc-name">{x.name}</span>
-                      <span class="loc-meta">Open</span>
-                    </a>
-                  </li>
+          {centralHub?.title ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{centralHub.title}</h2>
+              <div class="stack">
+                {(centralHub.text || []).map((p) => (
+                  <p class="section-sub readable">{p}</p>
                 ))}
-              </ul>
+              </div>
             </section>
-          ))}
+          ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Locations" />
-          <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
+          {intentRouter?.cards?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
+              <div class="grid grid-1">
+                {intentRouter.cards.map((c) => (
+                  <a class="card" href={c.href}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {zones.length ? (
+            <section class="section section-padding" aria-label="Zones and corridors">
+              <h2 class="section-title">Zones & corridor belts</h2>
+              <p class="section-sub readable">
+                Choose a belt to see relevant services and location pages.
+              </p>
+
+              <div class="grid grid-1">
+                {zones.map((z) => (
+                  <article class="card" aria-label={z.title}>
+                    <h3 class="card-title">{z.title}</h3>
+                    <p class="card-desc readable">{z.subtitle}</p>
+
+                    {(z.topServices || []).length ? (
+                      <div class="chips" style="margin-top:10px">
+                        {z.topServices.slice(0, 6).map((s) => (
+                          <a class="chiplink" href={s.href}>{s.label}</a>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {(z.locations || []).length ? (
+                      <ul class="loc-rows" role="list" aria-label={`${z.title} locations`} style="margin-top:12px">
+                        {z.locations.slice(0, 10).map((loc) => (
+                          <li class="loc-row">
+                            <a class="loc-link" href={EN(`/locations/${loc.slug}/`)}>
+                              <span class="loc-name">{loc.name}</span>
+                              <span class="loc-meta">Open</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
+          <NearMeTrustSection brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-<QuickHelpLinks pageType="locations" />
+          <QuickHelpLinks pageType="locations" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -176,41 +337,113 @@ const jsonLd = buildJsonLd({
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
+    <FloatingMenu />
     <FloatingContactCta brand={siteData.brand} />
+
+    <style>
+      .readable { max-width: 78ch; }
+      .stack { display:flex; flex-direction:column; gap:10px; }
+
+      .grid { display:grid; gap:12px; }
+      .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-1 { grid-template-columns: 1fr; }
+
+      .card{
+        display:block;
+        padding:14px;
+        border:1px solid var(--border);
+        border-radius:16px;
+        background: var(--surface);
+        text-decoration:none;
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+      }
+      .card-mini { padding: 12px; }
+      .card-title{ font-size:15px; margin: 0; font-weight: 950; letter-spacing: -0.01em; }
+      .card-desc{ margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+      .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+      .chiplink{
+        display:inline-flex;
+        align-items:center;
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.16);
+        text-decoration:none;
+      }
+      .chip{
+        display:inline-flex;
+        align-items:center;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.18);
+        opacity:.92;
+        font-size:12.5px;
+      }
+
+      .zone-grid{
+        display:grid;
+        gap:14px;
+      }
+      .zone-card{
+        border:1px solid var(--border);
+        border-radius:18px;
+        background: var(--surface);
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+        padding: 14px;
+      }
+      .zone-title{
+        margin: 0;
+        font-size: 16px;
+        font-weight: 950;
+        letter-spacing: -0.01em;
+      }
+      .zone-sub{ margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+      .zone-why{ margin: 10px 0 0; font-size: 13.5px; line-height: 1.45; }
+
+      .zone-block{ margin-top: 12px; }
+      .zone-k{
+        font-weight: 950;
+        font-size: 13px;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+      }
+
+      .loc-rows{
+        margin: 10px 0 0;
+        padding: 0;
+        list-style: none;
+        display:flex;
+        flex-direction:column;
+        gap: 10px;
+      }
+      .loc-row{
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+      }
+      .loc-link{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        text-decoration: none;
+      }
+      .loc-name{
+        font-weight: 950;
+        letter-spacing: -0.01em;
+        font-size: 14px;
+        color: var(--text);
+      }
+      .loc-meta{
+        color: var(--muted);
+        font-size: 12.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 980px){
+        .grid-2 { grid-template-columns: 1fr; }
+      }
+    </style>
   </body>
 </html>
-
-<style is:global>
-  .loc-rows{
-    margin: 14px 0 0;
-    padding: 0;
-    list-style: none;
-    display:flex;
-    flex-direction:column;
-    gap: 10px;
-  }
-  .loc-row{
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    background: var(--surface);
-    box-shadow: 0 2px 10px rgba(11,13,18,.05);
-  }
-  .loc-link{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 12px;
-    padding: 12px 14px;
-  }
-  .loc-name{
-    font-weight: 950;
-    letter-spacing: -0.01em;
-    font-size: 14px;
-  }
-  .loc-meta{
-    color: var(--muted);
-    font-size: 12.5px;
-    white-space: nowrap;
-  }
-</style>

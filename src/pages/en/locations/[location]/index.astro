@@ -8,8 +8,8 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "../../../../components/BacklinksRow.astro";
 import LocalIdentitySection from "../../../../components/LocalIdentitySection.astro";
 
-import { siteData } from "../../../../content/siteData";
-import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../lib/seo";
+import { siteData, EN } from "../../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../../lib/seo";
 
 import LinkChipsSection from "src/components/LinkChipsSection.astro";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
@@ -30,7 +30,59 @@ const meta = buildMeta({
   description: data.seoDesc,
   canonical,
   ogType: "website",
+  geo: geoMetaFromBrand(siteData),
 });
+
+// Intent router (prevents dead ends)
+const intentCards = data.intentCards?.length
+  ? data.intentCards
+  : [
+      {
+        title: "Insurance near me",
+        desc: "How local support works (visit vs WhatsApp/phone), what to share first, and when inspections apply.",
+        href: EN("/insurance-near-me/"),
+      },
+      {
+        title: "Insurance renewal help",
+        desc: "Renewal checks that prevent gaps: IDV/NCB/add-ons, permits/fitness where applicable.",
+        href: EN("/insurance-renewal-near-me/"),
+      },
+      {
+        title: "Insurance claim help",
+        desc: "What to do first, what proof matters, and how to keep a clean incident timeline.",
+        href: EN("/insurance-claim-help/"),
+      },
+      {
+        title: "Browse services",
+        desc: "Transport/fleet, industrial, contractor, MSME, and claim support guidance pages.",
+        href: EN("/services/"),
+      },
+      {
+        title: "All locations hub",
+        desc: "Zones and corridor belts—useful when you searched without an area name.",
+        href: EN("/locations/"),
+      },
+    ];
+
+// At-a-glance (high-weight content early)
+const atAGlance = [
+  { k: "Area type", v: data.locationType || "service area" },
+  { k: "Support model", v: "Sholavaram hub + location-specific guidance" },
+  { k: "Top intent", v: (data.commonRequests?.items || []).slice(0, 1).join("") },
+  { k: "Popular services", v: (data.serviceLinks || []).slice(0, 2).map((x) => x.title).join(" • ") },
+].filter((x) => x.v);
+
+// Service cards (fallback to serviceLinks)
+const serviceCards = (data.serviceCards?.length ? data.serviceCards : (data.serviceLinks || []).map((s) => ({
+  title: s.title,
+  href: s.href,
+  desc: s.desc || "Practical guidance: coverage logic, documents and common mistakes (claim-ready).",
+})));
+
+// Nearby areas (prefer nearbyAreas.items, else relatedLocations)
+const nearbyItems = data.nearbyAreas?.items?.length
+  ? data.nearbyAreas.items
+  : (data.relatedLocations || []).map((x) => ({ ...x, desc: x.desc || "Open nearby service-area guidance." }));
 
 const jsonLd = buildJsonLd({
   pageType: "locationDetail",
@@ -44,18 +96,18 @@ const jsonLd = buildJsonLd({
     { name: "Locations", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/") },
     { name: data.name, href: canonical },
   ],
-  faqs: (data.faqs || [])
+  faqs: (data.faqs || []),
 });
-
 ---
 
 <html lang="en">
   <head>
     <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -68,7 +120,7 @@ const jsonLd = buildJsonLd({
     <main class="app">
       <div class="container">
 
-        <!-- DESKTOP -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -80,29 +132,95 @@ const jsonLd = buildJsonLd({
             }} />
           </header>
 
-          <section class="section section-padding">
+          <section class="section section-padding" aria-label="Overview">
             <h1 class="section-title">{data.heroH1}</h1>
             <p class="section-sub readable">{data.heroP}</p>
           </section>
 
-          <section class="section section-padding" aria-label="Local context">
-            <h2 class="section-title">Local context</h2>
-            <ul class="bullets">
-              {data.localContext?.map((x) => <li>{x}</li>)}
-            </ul>
-          </section>
+          {atAGlance.length ? (
+            <section class="section section-padding" aria-label="At a glance">
+              <h2 class="section-title">At a glance</h2>
+              <div class="glance">
+                {atAGlance.map((x) => (
+                  <div class="glance-row">
+                    <div class="glance-k">{x.k}</div>
+                    <div class="glance-v">{x.v}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
-          <section class="section section-padding" aria-label="Services in this area">
-            <h2 class="section-title">Services commonly supported in {data.name}</h2>
+          {data.anchorAndCoordination?.title ? (
+            <section class="section section-padding" aria-label="How support works">
+              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
+              {data.anchorAndCoordination.intro ? (
+                <p class="section-sub readable">{data.anchorAndCoordination.intro}</p>
+              ) : null}
+              {data.anchorAndCoordination.bullets?.length ? (
+                <ul class="bullets">
+                  {data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}
+                </ul>
+              ) : null}
+            </section>
+          ) : null}
 
-            <!-- Row-wise, semantic, crawlable -->
-            <ul class="link-rows" role="list">
-              {data.serviceLinks?.map((s) => (
-                <li class="link-row">
-                  <a class="rowlink" href={s.href}>{s.title}</a>
-                </li>
+          {data.localContext?.length ? (
+            <section class="section section-padding" aria-label="Local context">
+              <h2 class="section-title">Local context</h2>
+              <ul class="bullets">{data.localContext.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {data.localLandmarks?.items?.length ? (
+            <section class="section section-padding" aria-label="Local reference points">
+              <h2 class="section-title">{data.localLandmarks.title || "Local reference points"}</h2>
+              {data.localLandmarks.note ? <p class="section-sub readable">{data.localLandmarks.note}</p> : null}
+              <ul class="bullets">{data.localLandmarks.items.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {data.commonRequests?.items?.length ? (
+            <section class="section section-padding" aria-label="Common requests">
+              <h2 class="section-title">{data.commonRequests.title || `Common requests from ${data.name}`}</h2>
+              <ul class="bullets">{data.commonRequests.items.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {serviceCards?.length ? (
+            <section class="section section-padding" aria-label="Services supported">
+              <h2 class="section-title">Services commonly supported in {data.name}</h2>
+              <p class="section-sub readable">
+                Open the exact service to see documents, common mistakes, and claim-ready guidance.
+              </p>
+              <div class="grid grid-2">
+                {serviceCards.map((s) => (
+                  <a class="card" href={s.href}>
+                    <h3 class="card-title">{s.title}</h3>
+                    <p class="card-desc readable">{s.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {data.nextSteps?.bullets?.length ? (
+            <section class="section section-padding" aria-label="Next steps">
+              <h2 class="section-title">{data.nextSteps.title || "What to do next"}</h2>
+              <ul class="bullets">{data.nextSteps.bullets.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <section class="section section-padding" aria-label="Quick actions">
+            <h2 class="section-title">Quick actions</h2>
+            <div class="grid grid-2">
+              {intentCards.map((c) => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
               ))}
-            </ul>
+            </div>
           </section>
 
           {data.faqs?.length ? (
@@ -118,13 +236,19 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
-          {data.relatedLocations?.length ? (
-            <section class="section section-padding" aria-label="Nearby locations">
-              <h2 class="section-title">Nearby locations</h2>
+          {nearbyItems?.length ? (
+            <section class="section section-padding" aria-label="Nearby areas">
+              <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas we also support"}</h2>
+              <p class="section-sub readable">
+                If your search used a landmark or adjacent neighborhood name, these pages help you land on the right local context.
+              </p>
               <ul class="link-rows" role="list">
-                {data.relatedLocations.map((x) => (
+                {nearbyItems.map((x) => (
                   <li class="link-row">
-                    <a class="rowlink" href={x.href}>{x.label}</a>
+                    <a class="rowlink" href={x.href}>
+                      <span class="rowtitle">{x.label}</span>
+                      <span class="rowdesc">{x.desc || "Open local context"}</span>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -132,13 +256,16 @@ const jsonLd = buildJsonLd({
           ) : null}
 
           <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
+
           <LinkChipsSection
-  title="Search signals (synonyms people use)"
-  items={data.serviceAreaSignals || []}
-  variant="chips"
-/>
+            title="Search signals (synonyms people use)"
+            items={[...(data.intentSearchSignals || []), ...(data.serviceAreaSignals || [])]}
+            variant="chips"
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-<QuickHelpLinks pageType="locationDetail" />
+          <QuickHelpLinks pageType="locationDetail" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -152,7 +279,7 @@ const jsonLd = buildJsonLd({
           />
         </div>
 
-        <!-- MOBILE -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{
@@ -169,23 +296,27 @@ const jsonLd = buildJsonLd({
             <p class="section-sub readable">{data.heroP}</p>
           </section>
 
-          <section class="section section-padding">
-            <h2 class="section-title">Local context</h2>
-            <ul class="bullets">
-              {data.localContext?.map((x) => <li>{x}</li>)}
-            </ul>
-          </section>
+          {data.anchorAndCoordination?.title ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
+              {data.anchorAndCoordination.intro ? <p class="section-sub readable">{data.anchorAndCoordination.intro}</p> : null}
+              {data.anchorAndCoordination.bullets?.length ? <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul> : null}
+            </section>
+          ) : null}
 
-          <section class="section section-padding">
-            <h2 class="section-title">Services in {data.name}</h2>
-            <ul class="link-rows" role="list">
-              {data.serviceLinks?.map((s) => (
-                <li class="link-row">
-                  <a class="rowlink" href={s.href}>{s.title}</a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {serviceCards?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Services in {data.name}</h2>
+              <div class="grid grid-1">
+                {serviceCards.map((s) => (
+                  <a class="card" href={s.href}>
+                    <h3 class="card-title">{s.title}</h3>
+                    <p class="card-desc readable">{s.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {data.faqs?.length ? (
             <section class="section section-padding">
@@ -199,14 +330,33 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          {nearbyItems?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas"}</h2>
+              <ul class="link-rows" role="list">
+                {nearbyItems.map((x) => (
+                  <li class="link-row">
+                    <a class="rowlink" href={x.href}>
+                      <span class="rowtitle">{x.label}</span>
+                      <span class="rowdesc">{x.desc || "Open local context"}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
+
           <LinkChipsSection
-  title="Search signals (synonyms people use)"
-  items={data.serviceAreaSignals || []}
-  variant="chips"
-/>
+            title="Search signals (synonyms people use)"
+            items={[...(data.intentSearchSignals || []), ...(data.serviceAreaSignals || [])]}
+            variant="chips"
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-<QuickHelpLinks pageType="locationDetail" />
+          <QuickHelpLinks pageType="locationDetail" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -226,10 +376,45 @@ const jsonLd = buildJsonLd({
     <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
 
-    <style>
+    <style is:global>
       .readable{ max-width: 78ch; }
 
-      /* Row-wise list (no columns) */
+      .grid{ display:grid; gap:12px; }
+      .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-1{ grid-template-columns: 1fr; }
+
+      .card{
+        display:block;
+        padding:14px;
+        border:1px solid var(--border);
+        border-radius:16px;
+        background: var(--surface);
+        text-decoration:none;
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+      }
+      .card-title{ font-size:15px; margin:0; font-weight:950; letter-spacing:-0.01em; }
+      .card-desc{ margin:8px 0 0; color: var(--muted); font-size:13px; line-height:1.35; }
+
+      .glance{
+        border:1px solid var(--border);
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 10px 12px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+      }
+      .glance-row{
+        display:grid;
+        grid-template-columns: 160px 1fr;
+        gap: 10px;
+        align-items:start;
+      }
+      .glance-k{ font-weight:950; opacity:.85; font-size:13px; }
+      .glance-v{ opacity:.9; font-size:13.5px; line-height:1.35; }
+      @media (max-width: 520px){ .glance-row{ grid-template-columns: 1fr; } }
+
       .link-rows{
         list-style:none;
         padding:0;
@@ -245,9 +430,12 @@ const jsonLd = buildJsonLd({
         padding: 10px 12px;
         box-shadow: 0 2px 10px rgba(11,13,18,.05);
       }
-      .rowlink{
-        display:block;
-        font-weight: 900;
+      .rowlink{ display:flex; flex-direction:column; gap:6px; text-decoration:none; }
+      .rowtitle{ font-weight: 950; }
+      .rowdesc{ color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+      @media (max-width: 980px){
+        .grid-2{ grid-template-columns: 1fr; }
       }
     </style>
   </body>

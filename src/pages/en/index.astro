@@ -3,14 +3,11 @@
 
 import DesktopHero from "../../components/DesktopHero.astro";
 import DesktopCoreServices from "../../components/DesktopCoreServices.astro";
-import DesktopMarketplace from "../../components/DesktopMarketplace.astro";
 
 import MobileHero from "../../components/MobileHero.astro";
 import MobileCoreServices from "../../components/MobileCoreServices.astro";
 import MobileAccordion from "../../components/MobileAccordion.astro";
 
-import TestimonialsStrip from "../../components/TestimonialsStrip.astro";
-import StatsStrip from "../../components/StatsStrip.astro";
 import FooterCtaBar from "../../components/FooterCtaBar.astro";
 import BlogSection from "../../components/BlogSection.astro";
 import CoverageIndexSection from "../../components/CoverageIndexSection.astro";
@@ -24,9 +21,8 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "../../components/BacklinksRow.astro";
 import GooglePostsPhotosSection from "../../components/GooglePostsPhotosSection.astro";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
-
 
 // -----------------------------
 // BLOG DATA NORMALIZATION
@@ -64,33 +60,117 @@ const insights = {
 
 // -----------------------------
 // SERVICES (SYNCED)
-// Home should highlight authority categories, not random old slugs.
 // -----------------------------
 const serviceCategoryCards = (siteData.serviceCategories || []).map((c) => ({
   tag: "Category",
   title: c.title,
   desc: c.desc,
-  href: c.href, // already EN("/services/<category>/")
+  href: c.href,
 }));
 
-// “Most requested” service detail pages (transactional intent)
-const popularServices = (siteData.servicePopular || []).map((x) => ({
-  ...x,
-  href: x.href,
-}));
+const popularServices = (siteData.servicePopular || []).map((x) => ({ ...x, href: x.href }));
 
 // -----------------------------
 // LOCATIONS (SYNCED)
-// Home should link to locations hub + few top location detail pages.
 // -----------------------------
-const topLocations =
-  siteData.locationsIndex?.groups?.flatMap((g) => g.locations || []).slice(0, 10) || [];
+const allLocations = siteData.locationsIndex?.groups?.flatMap((g) => g.locations || []) || [];
+const featuredLocations = allLocations.slice(0, 16);
 
+// -----------------------------
+// EARLY “AREA × SERVICE” CLUSTERS (high-weight links)
+// Keep this small (8–10 cards). It’s not a directory.
+// -----------------------------
+const areaServiceCombos = [
+  {
+    title: "Fleet / Lorry insurance near Red Hills",
+    desc:
+      "NH-facing transport belt: permit/fitness discipline, third-party exposure and claim-ready documentation.",
+    primary: { label: "Red Hills local guide", href: EN("/locations/red-hills/") },
+    secondary: [
+      { label: "Transport & Fleet services", href: EN("/services/transport-fleet/") },
+      { label: "Lorry / Heavy vehicle", href: EN("/services/transport-fleet/lorry-insurance/") },
+    ],
+  },
+  {
+    title: "Commercial vehicle support near Madhavaram Truck Terminal",
+    desc:
+      "Transport-heavy zone: renewal checks, document checklist and practical claim steps for operators.",
+    primary: { label: "Truck Terminal local guide", href: EN("/locations/madhavaram-truck-terminal/") },
+    secondary: [
+      { label: "Commercial vehicle insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      { label: "Fleet insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+    ],
+  },
+  {
+    title: "Warehouse / godown insurance around Red Hills belt",
+    desc:
+      "Proof-driven risks: valuation clarity, stock records/invoices and burglary/fire conditions (as applicable).",
+    primary: { label: "Red Hills local guide", href: EN("/locations/red-hills/") },
+    secondary: [
+      { label: "Warehouse insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { label: "Fire & burglary", href: EN("/services/industrial/fire-burglary-insurance/") },
+    ],
+  },
+  {
+    title: "Contractor CAR/WC guidance in industrial corridors",
+    desc:
+      "Worksite claims fail on classification/timelines. We keep documentation and reporting steps clean.",
+    primary: { label: "Poonamallee bypass belt", href: EN("/locations/poonamallee-bypass/") },
+    secondary: [
+      { label: "Contractor CAR/WC combined", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      { label: "Workmen compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+    ],
+  },
+  {
+    title: "Industrial / factory insurance near SIPCOT belts",
+    desc:
+      "Higher-value risks: valuation basis, safety conditions and proof trail discipline (as applicable).",
+    primary: { label: "Sriperumbudur SIPCOT guide", href: EN("/locations/sriperumbudur-sipcot/") },
+    secondary: [
+      { label: "Factory insurance", href: EN("/services/industrial/factory-insurance/") },
+      { label: "Stock declaration", href: EN("/services/industrial/stock-declaration-insurance/") },
+    ],
+  },
+  {
+    title: "Manali belt: transit + industrial documentation clarity",
+    desc:
+      "Industrial influence areas: transport movement, transit proof trail and claim-ready reporting steps.",
+    primary: { label: "Manali local guide", href: EN("/locations/manali/") },
+    secondary: [
+      { label: "Marine cargo / goods-in-transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+      { label: "Claims support", href: EN("/services/claims-support/") },
+    ],
+  },
+  {
+    title: "Car / bike renewals across Chennai city-side areas",
+    desc:
+      "Renewals are where costly assumptions happen: IDV/NCB/add-ons and clean claim steps.",
+    primary: { label: "Insurance renewal near me", href: EN("/insurance-renewal-near-me/") },
+    secondary: [
+      { label: "Car insurance support", href: EN("/services/personal/car-insurance-support/") },
+      { label: "Bike insurance support", href: EN("/services/personal/bike-insurance-support/") },
+    ],
+  },
+  {
+    title: "Claim help (documents + timeline) — start here",
+    desc:
+      "Late reporting and missing proof cause delays. We guide next steps and required documents (case-dependent).",
+    primary: { label: "Insurance claim help", href: EN("/insurance-claim-help/") },
+    secondary: [
+      { label: "Claims support service", href: EN("/services/claims-support/") },
+      { label: "FAQs (claims & docs)", href: EN("/faqs/") },
+    ],
+  },
+];
+
+// -----------------------------
+// Small FAQ for on-page accordion (tight)
+// -----------------------------
 const smallHomeFaq = [
   {
     q: "Do you support customers only in Sholavaram?",
     a:
-      "Sholavaram is our primary base. We commonly support Chennai North and nearby corridors depending on the policy type and insurer requirements.",
+      "Sholavaram is our primary base. We commonly support Chennai North and corridor-connected areas depending on the policy type and insurer requirements.",
   },
   {
     q: "Can you help with insurance renewals and policy checks?",
@@ -103,28 +183,30 @@ const smallHomeFaq = [
       "No. Claim outcomes depend on policy terms, disclosures and insurer processes. We guide correct steps and documents to reduce avoidable delays.",
   },
 ];
+
+// Build meta + canonical (consistent trailing slash)
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/");
 const meta = buildMeta({
   title: `${siteData.pageFlow.heroH1} | ${siteData.brand.name}`,
   description: siteData.brand.subtitle,
   canonical,
+  geo: geoMetaFromBrand(siteData),
 });
+
+// Home JSON-LD FAQ picks (small)
 const homeFaqPicks = [
   { group: "claimsDocs", index: 0 },
   { group: "claimsDocs", index: 1 },
   { group: "claimsDocs", index: 2 },
   { group: "locationsOffice", index: 0 },
   { group: "locationsOffice", index: 3 },
-  { group: "locationsOffice", index: 4 },
   { group: "experienceTrust", index: 0 },
-  { group: "experienceTrust", index: 2 },
-  { group: "transportFleet", index: 0 },
-]
+];
 
 const homeFaqItems = (homeFaqPicks || [])
   .map(({ group, index }) => siteData.faqsPage?.[group]?.items?.[index])
-  .filter(Boolean);
-
+  .filter(Boolean)
+  .slice(0, 6);
 
 const jsonLd = buildJsonLd({
   pageType: "home",
@@ -132,26 +214,29 @@ const jsonLd = buildJsonLd({
   canonical,
   title: meta.title,
   description: meta.description,
-  // Keep FAQPage small here, or omit faqs entirely
   faqs: homeFaqItems || [],
 });
 ---
 
 <html lang="en">
   <head>
-
-    <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
 
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/styles/theme.css" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
@@ -159,6 +244,7 @@ const jsonLd = buildJsonLd({
 
     <main id="main" class="app">
       <div class="container">
+
         <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
@@ -174,6 +260,74 @@ const jsonLd = buildJsonLd({
           </header>
 
           <main>
+            <!-- PAGE PURPOSE (H1): Who + What + Where -->
+            <section class="section section-padding" aria-labelledby="home-purpose">
+              <h1 id="home-purpose" class="section-title">
+                Insurance guidance for commercial, transport & industrial risks in Chennai North
+              </h1>
+              <p class="section-sub readable">
+                Support is coordinated from <strong>Sholavaram</strong>. We commonly assist customers across Chennai North belts and
+                corridor-connected areas—transport/fleet, warehouse/property, contractor and personal motor needs—depending on insurer rules and documentation requirements.
+              </p>
+            </section>
+
+            <!-- EARLY: NEAR-ME + GEO CONTEXT -->
+            <section class="section section-padding" aria-labelledby="near-me-home">
+              <h2 id="near-me-home" class="section-title">Finding insurance support near you (Chennai + NH corridors)</h2>
+              <p class="section-sub readable">
+                If you searched “insurance near me” around Chennai North, our support is anchored to Sholavaram and commonly extends across
+                Red Hills belt, Puzhal connector areas, Madhavaram logistics pockets, and industrial corridors—based on policy type and insurer requirements.
+              </p>
+
+              <div class="grid grid-2" style="margin-top:12px;">
+                <a class="card" href={EN("/insurance-near-me/")}>
+                  <h3 class="card-title">Insurance near me</h3>
+                  <p class="card-desc readable">How local support works + what documents to share first.</p>
+                </a>
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">Locations we serve</h3>
+                  <p class="card-desc readable">Belts and areas we commonly support from Sholavaram.</p>
+                </a>
+              </div>
+
+              <ul class="chiplist" role="list" aria-label="Common base areas" style="margin-top:12px;">
+                <li class="chipli"><a class="chiplink" href={EN("/locations/sholavaram/")}>Sholavaram</a></li>
+                <li class="chipli"><a class="chiplink" href={EN("/locations/red-hills/")}>Red Hills</a></li>
+                <li class="chipli"><a class="chiplink" href={EN("/locations/puzhal/")}>Puzhal</a></li>
+                <li class="chipli"><a class="chiplink" href={EN("/locations/madhavaram/")}>Madhavaram</a></li>
+              </ul>
+            </section>
+
+            <!-- EARLY: LOCATION × SERVICE COMBINATIONS (HIGH VALUE LINKS) -->
+            <section class="section section-padding" aria-labelledby="combo-title">
+              <h2 id="combo-title" class="section-title">Common searches (area + service)</h2>
+              <p class="section-sub readable">
+                These are the combinations people most often need in Chennai North belts and industrial corridors.
+                Each link opens either a local guide (area context) or the detailed service page (coverage + documents).
+              </p>
+
+              <div class="grid grid-2">
+                {areaServiceCombos.map((c) => (
+                  <article class="card" aria-label={c.title}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+
+                    <div class="card-row" style="margin-top:10px; flex-wrap:wrap;">
+                      <a class="chiplink" href={c.primary.href}>{c.primary.label}</a>
+                      {c.secondary.map((s) => (
+                        <a class="chiplink" href={s.href}>{s.label}</a>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <!-- QUICK HELP: keep early for conversions -->
+            <section class="section section-padding" aria-label="Quick help">
+              <QuickHelpLinks pageType="home" />
+            </section>
+
             <section class="section section-padding" aria-labelledby="who-title">
               <h2 id="who-title" class="section-title">{siteData.primaryIndustries.title}</h2>
               <p class="section-sub">{siteData.primaryIndustries.subtitle}</p>
@@ -203,12 +357,12 @@ const jsonLd = buildJsonLd({
             <section class="section section-padding" aria-labelledby="svc-cat-title">
               <h2 id="svc-cat-title" class="section-title">Insurance categories we support</h2>
               <p class="section-sub readable">
-                Start with a category. Then pick the exact service page for decision-level guidance.
+                Start with a category. Then open the specific service page for decision-level guidance.
               </p>
               <DesktopCoreServices services={serviceCategoryCards} />
             </section>
 
-            <!-- Popular service detail pages (transactional) -->
+            <!-- Popular service detail pages -->
             <section class="section section-padding" aria-labelledby="svc-pop-title">
               <h2 id="svc-pop-title" class="section-title">Most requested services</h2>
               <div class="grid grid-2">
@@ -216,29 +370,39 @@ const jsonLd = buildJsonLd({
                   <a class="card" href={x.href}>
                     <div class="card-row"><span class="chip">{x.tag}</span></div>
                     <h3 class="card-title">{x.title}</h3>
-                    <p class="card-desc">Open guidance</p>
+                    <p class="card-desc readable" title={x.desc || "Open guidance"}>{x.desc || "Open guidance"}</p>
                   </a>
                 ))}
               </div>
             </section>
 
-            <!-- Locations entry-point -->
+            <!-- Locations entry-point (do NOT list 16+ as cards; keep curated) -->
             <section class="section section-padding" aria-labelledby="loc-title">
-              <h2 id="loc-title" class="section-title">Locations we commonly support</h2>
+              <h2 id="loc-title" class="section-title">Coverage areas (Sholavaram base + Chennai-wide support)</h2>
               <p class="section-sub readable">
-                Local support anchored to Sholavaram office guidance. See location pages for local context (without duplicating service content).
+                Our local office support is anchored in <strong>Sholavaram</strong>. We commonly assist customers across
+                <strong>Chennai North, NH belts, and corridor-connected industrial zones</strong>—including Red Hills, Puzhal,
+                Madhavaram, Manali, Ambattur/Avadi side belts, Thiruvallur corridors, and nearby areas—based on the policy type,
+                insurer rules, and documentation requirements.
               </p>
 
-              <div class="grid grid-2">
+              <div class="grid grid-2" style="margin-top:12px;">
                 <a class="card" href={EN("/locations/")}>
                   <h3 class="card-title">View all locations</h3>
-                  <p class="card-desc">Sholavaram • Red Hills • Madhavaram • Ambattur and nearby belts</p>
+                  <p class="card-desc readable">NH belts, logistics hubs, industrial corridors, and city-side areas.</p>
                 </a>
 
-                {topLocations.slice(0, 5).map((l) => (
+                <a class="card" href={EN("/insurance-near-me/")}>
+                  <h3 class="card-title">Insurance near me</h3>
+                  <p class="card-desc readable">Visit vs WhatsApp/phone, document checklists, insurer inspection rules.</p>
+                </a>
+              </div>
+
+              <div class="grid grid-2" style="margin-top:12px;">
+                {featuredLocations.map((l) => (
                   <a class="card" href={EN(`/locations/${l.slug}/`)}>
                     <h3 class="card-title">{l.name}</h3>
-                    <p class="card-desc">Open local guide</p>
+                    <p class="card-desc readable">Local context + services commonly used here</p>
                   </a>
                 ))}
               </div>
@@ -339,7 +503,7 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-<QuickHelpLinks pageType="home" />
+
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="sr-only">Contact</h2>
               <FooterCtaBar
@@ -372,29 +536,53 @@ const jsonLd = buildJsonLd({
           </header>
 
           <main>
-            <section class="section section-padding">
-              <h2 class="section-title">{siteData.primaryIndustries.title}</h2>
-              <p class="section-sub">{siteData.primaryIndustries.subtitle}</p>
+            <section class="section section-padding" aria-labelledby="m-home-purpose">
+              <h1 id="m-home-purpose" class="section-title">
+                Insurance guidance for Chennai North commercial & personal needs
+              </h1>
+              <p class="section-sub readable">
+                Sholavaram office support for NH belts and industrial corridors—transport/fleet, warehouse/property,
+                contractors and heavy equipment, plus motor/health/LIC help when needed.
+              </p>
+            </section>
+
+            <section class="section section-padding" aria-labelledby="m-near-me-home">
+              <h2 id="m-near-me-home" class="section-title">Finding insurance support near you</h2>
+              <p class="section-sub readable">
+                Anchored to Sholavaram, commonly supporting Red Hills, Puzhal, Madhavaram belts and corridor-connected industrial zones—based on policy type and insurer requirements.
+              </p>
+              <div class="grid grid-2" style="margin-top:12px;">
+                <a class="card" href={EN("/insurance-near-me/")}>
+                  <h3 class="card-title">Insurance near me</h3>
+                  <p class="card-desc readable">How local support works + documents to share first.</p>
+                </a>
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">Locations</h3>
+                  <p class="card-desc readable">Belts and areas we commonly support.</p>
+                </a>
+              </div>
+            </section>
+
+            <section class="section section-padding" aria-label="Common searches">
+              <h2 class="section-title">Common searches (area + service)</h2>
               <div class="grid grid-1">
-                {siteData.primaryIndustries.items.map((it) => (
-                  <article class="card" aria-label={it.title}>
-                    <h3 class="card-title">{it.title}</h3>
-                    <p class="card-desc">{it.desc}</p>
+                {areaServiceCombos.map((c) => (
+                  <article class="card" aria-label={c.title}>
+                    <h3 class="card-title">{c.title}</h3>
+                    <p class="card-desc readable">{c.desc}</p>
+                    <div class="card-row" style="margin-top:10px; flex-wrap:wrap;">
+                      <a class="chiplink" href={c.primary.href}>{c.primary.label}</a>
+                      {c.secondary.map((s) => (
+                        <a class="chiplink" href={s.href}>{s.label}</a>
+                      ))}
+                    </div>
                   </article>
                 ))}
               </div>
             </section>
 
-            <section class="section section-padding">
-              <h2 class="section-title">{siteData.localRiskContext.title}</h2>
-              <p class="section-sub">{siteData.localRiskContext.subtitle}</p>
-              <ul class="bullets">{siteData.localRiskContext.points.map((p) => <li>{p}</li>)}</ul>
-            </section>
-
-            <section class="section section-padding">
-              <h2 class="section-title">{siteData.claimExperience.title}</h2>
-              <p class="section-sub">{siteData.claimExperience.subtitle}</p>
-              <ul class="bullets">{siteData.claimExperience.points.map((p) => <li>{p}</li>)}</ul>
+            <section class="section section-padding" aria-label="Quick help">
+              <QuickHelpLinks pageType="home" />
             </section>
 
             <section class="section section-padding">
@@ -409,35 +597,27 @@ const jsonLd = buildJsonLd({
                   <a class="card" href={x.href}>
                     <div class="card-row"><span class="chip">{x.tag}</span></div>
                     <h3 class="card-title">{x.title}</h3>
-                    <p class="card-desc">Open</p>
+                    <p class="card-desc readable" title={x.desc || "Open"}>{x.desc || "Open"}</p>
                   </a>
                 ))}
               </div>
             </section>
 
-            <section class="section section-padding">
-              <h2 class="section-title">Locations we support</h2>
+            <section class="section section-padding" aria-label="Locations">
+              <h2 class="section-title">Coverage areas</h2>
               <div class="grid grid-1">
                 <a class="card" href={EN("/locations/")}>
                   <h3 class="card-title">View all locations</h3>
-                  <p class="card-desc">Local context pages</p>
+                  <p class="card-desc readable">NH belts, logistics hubs, industrial corridors, city-side areas.</p>
                 </a>
-                {topLocations.slice(0, 6).map((l) => (
+                {featuredLocations.slice(0, 6).map((l) => (
                   <a class="card" href={EN(`/locations/${l.slug}/`)}>
                     <h3 class="card-title">{l.name}</h3>
-                    <p class="card-desc">Open local guide</p>
+                    <p class="card-desc readable">Open local guide</p>
                   </a>
                 ))}
               </div>
             </section>
-
-            <GooglePostsPhotosSection
-              title={siteData.media.googlePosts.title}
-              subtitle={siteData.media.googlePosts.subtitle}
-              images={siteData.media.googlePosts.images}
-              ctaLabel="Photos"
-              ctaHref={EN("/photos/")}
-            />
 
             <CoverageIndexSection data={siteData.coverageIndex} />
 
@@ -455,7 +635,7 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-            <QuickHelpLinks pageType="home" />
+
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}
@@ -469,10 +649,27 @@ const jsonLd = buildJsonLd({
             />
           </main>
         </div>
+
       </div>
     </main>
 
     <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
+
+    <style>
+              @media (min-width: 820px){
+   .readable { max-width: 100% !important; }
+  }
+      .chiplist{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px}
+      .chipli{margin:0;padding:0}
+      .chiplink{
+        display:inline-flex;
+        align-items:center;
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.16);
+        text-decoration:none;
+      }
+    </style>
   </body>
 </html>

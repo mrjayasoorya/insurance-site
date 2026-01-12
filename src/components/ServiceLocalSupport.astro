@@ -1,0 +1,59 @@
+---
+import { EN, siteData } from "../content/siteData";
+
+// Props
+const {
+  title = "Local support for this service",
+  subtitle = "Location pages explain local context + typical needs. Support is coordinated from Sholavaram.",
+  slugs = [],         // location slugs: ["madhavaram", "red-hills", ...]
+  max = 10,
+  showViewAll = true,
+} = Astro.props;
+
+// Safe filter (prevents 404)
+const safe = (slugs || [])
+  .filter((s) => !!siteData?.locationsDetail?.[s])
+  .slice(0, max)
+  .map((s) => ({
+    slug: s,
+    name: siteData.locationsDetail[s].name || s,
+    href: EN(`/locations/${s}/`),
+  }));
+---
+
+{safe.length ? (
+  <section class="section section-padding" aria-label="Local support">
+    <h2 class="section-title">{title}</h2>
+    <p class="section-sub readable">{subtitle}</p>
+
+    <ul class="loc-chips" role="list" aria-label="Local support locations">
+      {safe.map((x) => (
+        <li class="loc-chip">
+          <a class="loc-chiplink" href={x.href}>{x.name}</a>
+        </li>
+      ))}
+    </ul>
+
+    {showViewAll ? (
+      <p class="section-sub" style="margin-top:12px">
+        <a class="chiplink" href={EN("/locations/")}>View all locations</a>
+      </p>
+    ) : null}
+  </section>
+) : null}
+
+<style is:global>
+  .readable{ max-width: 78ch; }
+  .loc-chips{ list-style:none; padding:0; margin:12px 0 0; display:flex; flex-wrap:wrap; gap:10px; }
+  .loc-chip{ margin:0; }
+  .loc-chiplink{
+    display:inline-flex; align-items:center;
+    padding:8px 12px; border-radius:999px;
+    border:1px solid var(--border);
+    background: var(--surface);
+    text-decoration:none;
+    color: var(--text);
+    font-weight: 900;
+    font-size: 13px;
+  }
+</style>

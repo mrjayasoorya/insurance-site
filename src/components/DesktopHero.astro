@@ -2,7 +2,7 @@
 const { brand } = Astro.props;
 ---
 <div class="hero">
-  <h1>{brand.name}</h1>
+  <div>{brand.name}</div>
   <p>{brand.subtitle}</p>
   <div class="signup" style="justify-content:center;">
     <a class="btn" href={`tel:${brand.phone}`} aria-label={`Call Now ${brand.phone}`}>

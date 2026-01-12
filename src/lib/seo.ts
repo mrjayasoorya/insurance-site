@@ -111,7 +111,7 @@ export function normalizeFaqList(faqsMaybe) {
    META BUILDER
 ------------------------------------------------------------------ */
 
-/** @param {BuildMetaInput} input */
+/** @param {BuildMetaInput & { geo?: { region?: string; placename?: string; position?: string; icbm?: string } }} input */
 export function buildMeta(input) {
   const {
     title,
@@ -119,6 +119,7 @@ export function buildMeta(input) {
     canonical,
     ogType = "website",
     ogImage,
+    geo
   } = input;
 
   const tags = {
@@ -132,8 +133,38 @@ export function buildMeta(input) {
     ...(ogImage ? { "og:image": ogImage, "twitter:image": ogImage } : {}),
   };
 
-  return { title, description, canonical, tags };
+    const nameTags = {
+    ...(geo?.region ? { "geo.region": geo.region } : {}),
+    ...(geo?.placename ? { "geo.placename": geo.placename } : {}),
+    ...(geo?.position ? { "geo.position": geo.position } : {}),
+    ...(geo?.icbm ? { ICBM: geo.icbm } : {}),
+  };
+
+  return { title, description, canonical, tags, nameTags };
 }
+
+/** @param { placenameOverride?: string } input */
+export function geoMetaFromBrand(siteData, placenameOverride = "") {
+  const brand = siteData?.brand || {};
+  const geo = brand?.geo;
+
+  const lat = geo?.lat;
+  const lng = geo?.lng;
+
+  // Use Sholavaram base by default; override on location pages.
+  const placename =
+    placenameOverride ||
+    brand.addressLocality ||
+    "Sholavaram";
+
+  return prune({
+    region: "IN-TN",
+    placename,
+    position: (lat != null && lng != null) ? `${lat};${lng}` : undefined,
+    icbm: (lat != null && lng != null) ? `${lat}, ${lng}` : undefined,
+  });
+}
+
 
 /* ------------------------------------------------------------------
    JSON-LD BUILDER
@@ -278,6 +309,17 @@ export function buildJsonLd(input) {
 
     // Helpful for LLMs; not harmful for Google if kept factual
     knowsAbout: defaultKnowsAbout,
+    priceRange: "₹₹",
+    paymentAccepted: ["Cash", "UPI", "Online Transfer"],
+    currenciesAccepted: "INR",
+      contactPoint: prune({
+    "@type": "ContactPoint",
+    telephone: brand.phoneE164,
+    contactType: "customer service",
+    availableLanguage: ["English", "Tamil", "Malayalam"],
+    areaServed: "IN",
+  }),
+
   }));
 
   // Optional Person node (ties experience to the org without over-claiming)

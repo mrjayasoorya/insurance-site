@@ -39,7 +39,8 @@ const jsonLd = buildJsonLd({
                           <title>{meta.title}</title>
   <meta name="description" content={meta.description} />
   <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
+  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>

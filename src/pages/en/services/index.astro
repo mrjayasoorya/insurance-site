@@ -3,21 +3,26 @@ import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData, EN } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
+import { siteData, EN, LOCATION_BUCKETS } from "../../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
+
+// Canonical
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
+
+// Meta (with geo tags)
 const meta = buildMeta({
   title: `Services | ${siteData.brand.name}`,
   description:
-    "Insurance services for commercial, transport, industrial and claim support across Chennai and industrial corridors.",
+    "Insurance guidance for commercial, transport, industrial and personal needs—built around documentation clarity and claim-ready workflows across Chennai and corridor belts.",
   canonical,
-  // ogType: "website",
+  geo: geoMetaFromBrand(siteData), // Sholavaram base
 });
 
+// Schema (keep tight for hub)
 const jsonLd = buildJsonLd({
   pageType: "servicesHub",
   siteData,
@@ -25,36 +30,175 @@ const jsonLd = buildJsonLd({
   title: meta.title,
   description: meta.description,
   breadcrumbs: [
-    { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
-    { name: "Services", href: canonical },
+    { name: "Home", href: "/en/" },
+    { name: "Services", href: "/en/services/" },
   ],
-  // Keep schema tight here (optional)
-  faqs: siteData.faqsPage?.locationsOffice?.items?.slice(0, 4) || [],
+  faqs: siteData.faqsPage?.experienceTrust?.items?.slice(0, 4) || [],
 });
+
+// ---- Data shaping (avoid thin cards) ----
+
+// 1) Popular service cards: ensure desc exists and is meaningful
+const popularServices = (siteData.servicePopular || [])
+  .slice(0, 10)
+  .map((x) => ({
+    ...x,
+    href: x.href,
+    // Make sure every card has an informative “scent”
+    cardTitle: x.title,
+    cardDesc:
+      x.desc ||
+      "Coverage structure + document checklist + renewal/claim mistakes to avoid (practical guidance).",
+    badge: x.tag || "Service",
+  }));
+
+// 2) Category cards: keep as-is but ensure desc is present
+const categories = (siteData.serviceCategories || []).map((c) => ({
+  ...c,
+  href: c.href,
+  cardDesc: c.desc || "Open category guidance and service options.",
+}));
+
+// 3) Vehicle type chips: keep as-is
+const vehicleTypes = siteData.serviceVehicleTypes || [];
+
+// 4) Locations preview (cluster-first)
+const locGroups = siteData.locationsIndex?.groups || [];
+const allLocs = locGroups.flatMap((g) => g.locations || []);
+const featuredLocs = allLocs.slice(0, 10);
+
+let takeN = (arr, n) => arr.slice(0, n);
+
+// Helper: find a location slug safely
+const locHref = (slug) => EN(`/locations/${slug}/`);
+
+// -----------------------------
+// Helpers
+// -----------------------------
+
+const locLabel = (slug) => {
+  const n = siteData?.locationsDetail?.[slug]?.name;
+  // Fallback (should be rare): slug to Title Case
+  return n || slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+};
+
+
+const safeLocLinks = (slugs = []) =>
+  slugs
+    .filter((slug) => !!siteData?.locationsDetail?.[slug]) // prevents 404s
+    .map((slug) => ({ label: locLabel(slug), href: locHref(slug) }));
+
+// Optional: keep the cluster cards short (avoid huge link blocks)
+
+// -----------------------------
+// Dynamic beltClusters
+// -----------------------------
+const beltClusters = [
+  {
+    key: "primary-belt",
+    title: "Sholavaram → Red Hills → Madhavaram (Primary belt)",
+    desc:
+      "Transport operators, warehouses/godowns, truck owners, and mixed commercial pockets—lower competition and strong commercial activity.",
+    // Choose the most representative links (mix the two buckets)
+    links: //takeN(
+      safeLocLinks([
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+      ]),
+    //   6
+    // ),
+    buckets: [
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+    ],
+  },
+  {
+    key: "nh-industrial-expansion",
+    title: "NH + Industrial corridors (Expansion belts)",
+    desc:
+      "Fleet movement, contractor work, factories and corridor-connected risks where documentation discipline matters for claims.",
+    links: //takeN(
+      safeLocLinks([
+      ...LOCATION_BUCKETS.INDUSTRIAL_GOLD_CORRIDOR_WEST,
+      ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+      ...LOCATION_BUCKETS.THIRUVALLUR_OUTSKIRTS_BELT,
+      ]),
+    //   6
+    // ),
+    buckets: [
+      ...LOCATION_BUCKETS.INDUSTRIAL_GOLD_CORRIDOR_WEST,
+      ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+      ...LOCATION_BUCKETS.THIRUVALLUR_OUTSKIRTS_BELT,
+    ],
+  },
+  {
+    key: "city-side-support",
+    title: "City-side support (Motor + Health + SME)",
+    desc:
+      "Car/bike renewals, health guidance, LIC servicing and MSME packages—handled with clean renewals and claim-ready documentation habits.",
+    links: //takeN(
+      safeLocLinks([
+      ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
+      ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+      ]),
+    //   6
+    // ),
+    buckets: [
+      ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
+      ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+    ],
+  },
+];
+
+// Core principles (unique text; helps indexing)
+const claimReadyPrinciples = [
+  {
+    title: "Correct disclosures before purchase / renewal",
+    text:
+      "Most disputes begin with small mismatches: usage, route exposure, stored goods, workforce classification, declared value or sum insured. We align details to reduce avoidable claim friction later.",
+  },
+  {
+    title: "Document discipline (simple checklists)",
+    text:
+      "Invoices/valuation basis (as applicable), photos, permits/fitness where relevant, and clean policy copies/endorsements. A clean proof trail consistently reduces delays.",
+  },
+  {
+    title: "Clean incident timeline (when something happens)",
+    text:
+      "Early reporting and a clear sequence of events helps survey/claim teams assess facts faster. We guide what to capture and what to avoid (case-dependent).",
+  },
+  {
+    title: "Renewal checks that prevent gaps",
+    text:
+      "For motor: IDV/NCB/add-ons based on usage. For commercial: permit/fitness alignment (as applicable) and correct policy wording fit. Prevent coverage gaps and mismatch disputes.",
+  },
+];
 ---
 
 <html lang="en">
   <head>
-
-    <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k,v]) => <meta property={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="/styles/theme.css" />
 
-   
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
-        {/* DESKTOP */}
+
+        {/* ========================= DESKTOP ========================= */}
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -62,122 +206,166 @@ const jsonLd = buildJsonLd({
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
                 subtitle:
-                  "Insurance guidance for commercial, vehicle and industrial risks — built around documentation and claim readiness (not just premium).",
+                  "Commercial-first insurance guidance—built around documentation clarity and claim-ready workflows (not just premium).",
                 phone: siteData.brand.phone,
                 areaChips: siteData.brand.areaChips,
               }}
             />
           </header>
 
-          {/* SECTION 1: Overview */}
-          <section
-            class="section section-padding"
-            aria-label="Service overview"
-          >
-            <h1 class="section-title">
-              Insurance Services for Commercial, Vehicle & Industrial Risks
+          {/* H1 first (clear semantic context) */}
+          <section class="section section-padding" aria-labelledby="svc-h1">
+            <h1 id="svc-h1" class="section-title">
+              Insurance services (commercial, transport, industrial + personal support)
             </h1>
             <p class="section-sub readable">
-              For businesses, transport operators and families across
-              Sholavaram, Red Hills, Madhavaram and Chennai outskirts. We focus
-              on coverage clarity + documentation habits that prevent claim
-              delays later.
+              Support is coordinated from Sholavaram and commonly extends across Chennai North and corridor-connected belts.
+              This hub explains what each service is for, common mistakes, documentation sensitivity, and how to keep renewals and claims smoother.
             </p>
-          </section>
 
-          {/* SECTION 2: Popular services (area-driven) */}
-          <section
-            class="section section-padding"
-            aria-label="Most requested services"
-          >
-            <h2 class="section-title">
-              Most Requested Insurance Services Around Red Hills & Sholavaram
-            </h2>
-            <div class="grid grid-2">
-              {
-                siteData.servicePopular?.slice(0, 8).map((x) => (
-                  <a class="card" href={x.href}>
-                    <div class="card-row">
-                      <span class="chip">{x.tag}</span>
-                    </div>
-                    <h3 class="card-title">{x.title}</h3>
-                    <p class="card-desc">Open guidance</p>
-                  </a>
-                ))
-              }
+            {/* Intent-first actions (information scent + internal linking) */}
+            <div class="grid grid-2" style="margin-top:12px">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <div class="card-row"><span class="chip">Near-me</span></div>
+                <h2 class="card-title">Insurance near me (how local support works)</h2>
+                <p class="card-desc readable">
+                  Visit vs WhatsApp/phone support, document checklists, and when insurer inspections apply.
+                </p>
+              </a>
+
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <div class="card-row"><span class="chip">Claims</span></div>
+                <h2 class="card-title">Insurance claim help (documents + timeline)</h2>
+                <p class="card-desc readable">
+                  What to do first, what proof matters, and common delay reasons—without overpromises.
+                </p>
+              </a>
             </div>
           </section>
 
-          {/* SECTION 3: Categories (authority layer) */}
-          <section
-            class="section section-padding"
-            aria-label="Service categories"
-          >
-            <h2 class="section-title">Insurance Categories We Specialize In</h2>
-            <div class="grid grid-2">
-              {
-                siteData.serviceCategories?.map((c) => (
-                  <a class="card" href={c.href}>
-                    <h3 class="card-title">{c.title}</h3>
-                    <p class="card-desc readable">{c.desc}</p>
-                  </a>
-                ))
-              }
-            </div>
-          </section>
-
-          {/* SECTION 4: Vehicle type */}
-          <section
-            class="section section-padding"
-            aria-label="Vehicle based services"
-          >
-            <h2 class="section-title">Vehicle-Based Insurance Services</h2>
-            <div class="chips">
-              {
-                siteData.serviceVehicleTypes?.map((x) => (
-                  <a class="chiplink" href={x.href}>
-                    {x.label}
-                  </a>
-                ))
-              }
-            </div>
-          </section>
-
-          {/* SECTION 5: Areas (from Locations Index) */}
-          <section
-            class="section section-padding"
-            aria-label="Areas we commonly serve"
-          >
-            <h2 class="section-title">Areas We Commonly Serve</h2>
+          {/* Claim-ready principles (unique text to reduce “thin” signals) */}
+          <section class="section section-padding" aria-labelledby="claim-ready">
+            <h2 id="claim-ready" class="section-title">What improves outcomes (claim-ready principles)</h2>
             <p class="section-sub readable">
-              Browse location pages for local context and the services commonly
-              supported there.
+              These apply across lorry/fleet, warehouses, contractor risks and personal motor renewals. Simple discipline here reduces avoidable friction later.
             </p>
 
             <div class="grid grid-2">
-              {
-                siteData.locationsIndex?.groups
-                  ?.flatMap((g) => g.locations || [])
-                  .slice(0, 12)
-                  .map((loc) => (
-                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
-                      <h3 class="card-title">{loc.name}</h3>
-                      <p class="card-desc">Open local service guide</p>
-                    </a>
-                  ))
-              }
+              {claimReadyPrinciples.map((p) => (
+                <article class="card" aria-label={p.title}>
+                  <h3 class="card-title">{p.title}</h3>
+                  <p class="card-desc readable">{p.text}</p>
+                </article>
+              ))}
             </div>
-
-            <p class="section-sub" style="margin-top:12px">
-              <a class="chiplink" href={EN("/locations/")}>View all locations</a
-              >
-            </p>
           </section>
 
-          <BacklinksRow
-            title={siteData.backlinks.title}
-            links={siteData.backlinks.links}
-          />
+          {/* Popular services (improved card scent) */}
+          <section class="section section-padding" aria-labelledby="popular">
+            <h2 id="popular" class="section-title">Most requested services (what you get)</h2>
+            <p class="section-sub readable">
+              These pages focus on real workflows: what to disclose, what documents matter, and which renewal/claim mistakes to avoid.
+            </p>
+
+            <div class="grid grid-2">
+              {popularServices.slice(0, 8).map((x) => (
+                <a class="card" href={x.href}>
+                  <div class="card-row">
+                    <span class="chip">{x.badge}</span>
+                    <span class="chip chip-ghost">Claim-ready</span>
+                  </div>
+                  <h3 class="card-title">{x.cardTitle}</h3>
+                  <p class="card-desc readable">{x.cardDesc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* Categories (authority layer) */}
+          <section class="section section-padding" aria-labelledby="cats">
+            <h2 id="cats" class="section-title">Insurance categories (start here)</h2>
+            <p class="section-sub readable">
+              Choose your category based on real exposure: transport/fleet movement, property/stock risk, contractor workforce liability, or personal motor/health needs.
+            </p>
+
+            <div class="grid grid-2">
+              {categories.map((c) => (
+                <a class="card" href={c.href}>
+                  <div class="card-row">
+                    <span class="chip">Category</span>
+                    <span class="chip chip-ghost">Guidance</span>
+                  </div>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.cardDesc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          {/* Vehicle types (kept) */}
+          <section class="section section-padding" aria-labelledby="veh">
+            <h2 id="veh" class="section-title">Vehicle-based service entry points</h2>
+            <p class="section-sub readable">
+              If you’re starting from vehicle type (lorry, trailer, goods carrier, taxi/cab), use these shortcuts to reach the right guidance page.
+            </p>
+            <div class="chips">
+              {vehicleTypes.map((x) => (
+                <a class="chiplink" href={x.href}>{x.label}</a>
+              ))}
+            </div>
+          </section>
+
+          {/* Locations preview (cluster-first, avoids spam lists) */}
+          <section class="section section-padding" aria-labelledby="locs">
+            <h2 id="locs" class="section-title">Where these services are commonly used (belts + locations)</h2>
+            <p class="section-sub readable">
+              Location pages explain local context and the services commonly needed there. We do not claim offices in every area—support is coordinated from Sholavaram.
+            </p>
+
+            <div class="grid grid-2">
+              {beltClusters.map((b) => (
+                <article class="card" aria-label={b.title}>
+                  <h3 class="card-title">{b.title}</h3>
+                  <p class="card-desc readable">{b.desc}</p>
+                  <div class="chips" style="margin-top:10px">
+                    {b.links.map((l) => (
+                      <a class="chiplink" href={l.href}>{l.label}</a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div class="grid grid-2" style="margin-top:12px">
+              <a class="card" href={EN("/locations/")}>
+                <div class="card-row"><span class="chip">Locations</span></div>
+                <h3 class="card-title">Browse all locations we support</h3>
+                <p class="card-desc readable">
+                  Sholavaram base • NH belts • logistics hubs • industrial corridors • city-side support areas.
+                </p>
+              </a>
+              <a class="card" href={EN("/insurance-renewal-near-me/")}>
+                <div class="card-row"><span class="chip">Renewals</span></div>
+                <h3 class="card-title">Insurance renewal near me (avoid gaps)</h3>
+                <p class="card-desc readable">
+                  IDV/NCB/add-ons + compliance checks (as applicable) and a clean renewal workflow.
+                </p>
+              </a>
+            </div>
+
+            {/* Optional: few featured location cards (limited to 8–10) */}
+            <div class="grid grid-2" style="margin-top:12px">
+              {featuredLocs.slice(0, 8).map((loc) => (
+                <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                  <div class="card-row"><span class="chip">Location</span></div>
+                  <h3 class="card-title">{loc.name}</h3>
+                  <p class="card-desc readable">Local context + common services used here</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="services" />
 
           <section aria-label="Contact CTA">
@@ -195,7 +383,7 @@ const jsonLd = buildJsonLd({
           </section>
         </div>
 
-        {/* MOBILE */}
+        {/* ========================= MOBILE ========================= */}
         <div class="ui-mobile">
           <header>
             <MobileHero
@@ -203,101 +391,115 @@ const jsonLd = buildJsonLd({
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
                 subtitle:
-                  "Commercial, vehicle and industrial insurance guidance—built around documentation and claim readiness.",
+                  "Commercial-first insurance guidance—documentation clarity + claim-ready workflows.",
                 phone: siteData.brand.phone,
                 areaChips: [],
               }}
             />
           </header>
 
-          <section class="section section-padding">
-            <h1 class="section-title">Insurance Services</h1>
+          <section class="section section-padding" aria-labelledby="m-svc-h1">
+            <h1 id="m-svc-h1" class="section-title">Insurance services (guidance-first)</h1>
             <p class="section-sub readable">
-              Commercial-first guidance for NH + industrial belts (Sholavaram,
-              Red Hills, Madhavaram).
+              Sholavaram-based support for Chennai North and corridor belts—transport/fleet, warehouse/property, contractor risk,
+              plus personal motor/health/LIC support when needed.
             </p>
-          </section>
 
-          <section class="section section-padding">
-            <h2 class="section-title">Most Requested Services</h2>
-            <div class="grid grid-1">
-              {
-                siteData.servicePopular?.slice(0, 8).map((x) => (
-                  <a class="card" href={x.href}>
-                    <div class="card-row">
-                      <span class="chip">{x.tag}</span>
-                    </div>
-                    <h3 class="card-title">{x.title}</h3>
-                    <p class="card-desc">Open guidance</p>
-                  </a>
-                ))
-              }
+            <div class="grid grid-1" style="margin-top:12px">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <div class="card-row"><span class="chip">Near-me</span></div>
+                <h2 class="card-title">Insurance near me</h2>
+                <p class="card-desc readable">How local support works + what to share first.</p>
+              </a>
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <div class="card-row"><span class="chip">Claims</span></div>
+                <h2 class="card-title">Insurance claim help</h2>
+                <p class="card-desc readable">Documents + timeline discipline to reduce delays.</p>
+              </a>
             </div>
           </section>
 
-          <section class="section section-padding">
+          <section class="section section-padding" aria-label="Claim-ready principles">
+            <h2 class="section-title">Claim-ready principles</h2>
+            <div class="grid grid-1">
+              {claimReadyPrinciples.map((p) => (
+                <article class="card" aria-label={p.title}>
+                  <h3 class="card-title">{p.title}</h3>
+                  <p class="card-desc readable">{p.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-label="Most requested services">
+            <h2 class="section-title">Most requested services</h2>
+            <div class="grid grid-1">
+              {popularServices.slice(0, 8).map((x) => (
+                <a class="card" href={x.href}>
+                  <div class="card-row">
+                    <span class="chip">{x.badge}</span>
+                    <span class="chip chip-ghost">Claim-ready</span>
+                  </div>
+                  <h3 class="card-title">{x.cardTitle}</h3>
+                  <p class="card-desc readable">{x.cardDesc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-label="Categories">
             <h2 class="section-title">Categories</h2>
             <div class="grid grid-1">
-              {
-                siteData.serviceCategories?.map((c) => (
-                  <a class="card" href={c.href}>
-                    <h3 class="card-title">{c.title}</h3>
-                    <p class="card-desc readable">{c.desc}</p>
-                  </a>
-                ))
-              }
+              {categories.map((c) => (
+                <a class="card" href={c.href}>
+                  <div class="card-row">
+                    <span class="chip">Category</span>
+                    <span class="chip chip-ghost">Guidance</span>
+                  </div>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.cardDesc}</p>
+                </a>
+              ))}
             </div>
           </section>
 
-          <section class="section section-padding">
-            <h2 class="section-title">Vehicle Types</h2>
+          <section class="section section-padding" aria-label="Vehicle types">
+            <h2 class="section-title">Vehicle types</h2>
             <div class="chips">
-              {
-                siteData.serviceVehicleTypes?.map((x) => (
-                  <a class="chiplink" href={x.href}>
-                    {x.label}
-                  </a>
-                ))
-              }
+              {vehicleTypes.map((x) => (
+                <a class="chiplink" href={x.href}>{x.label}</a>
+              ))}
             </div>
           </section>
 
-          {/* SECTION 5: Areas (from Locations Index) */}
-          <section
-            class="section section-padding"
-            aria-label="Areas we commonly serve"
-          >
-            <h2 class="section-title">Areas We Commonly Serve</h2>
+          <section class="section section-padding" aria-label="Belts and locations">
+            <h2 class="section-title">Belts and locations we commonly support</h2>
             <p class="section-sub readable">
-              Browse location pages for local context and the services commonly
-              supported there.
+              Location pages provide local context and typical needs. Support is coordinated from Sholavaram.
             </p>
 
-            <div class="grid grid-2">
-              {
-                siteData.locationsIndex?.groups
-                  ?.flatMap((g) => g.locations || [])
-                  .slice(0, 12)
-                  .map((loc) => (
-                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
-                      <h3 class="card-title">{loc.name}</h3>
-                      <p class="card-desc">Open local service guide</p>
-                    </a>
-                  ))
-              }
+            <div class="grid grid-1">
+              {beltClusters.map((b) => (
+                <article class="card" aria-label={b.title}>
+                  <h3 class="card-title">{b.title}</h3>
+                  <p class="card-desc readable">{b.desc}</p>
+                  <div class="chips" style="margin-top:10px">
+                    {b.links.map((l) => (
+                      <a class="chiplink" href={l.href}>{l.label}</a>
+                    ))}
+                  </div>
+                </article>
+              ))}
             </div>
 
             <p class="section-sub" style="margin-top:12px">
-              <a class="chiplink" href={EN("/locations/")}>View all locations</a
-              >
+              <a class="chiplink" href={EN("/locations/")}>View all locations</a>
             </p>
           </section>
 
-          <BacklinksRow
-            title={siteData.backlinks.title}
-            links={siteData.backlinks.links}
-          />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="services" />
+
           <section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
@@ -315,68 +517,51 @@ const jsonLd = buildJsonLd({
       </div>
     </main>
 
-    <FloatingMenu />
+    <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
 
     <style>
-      .grid {
-        display: grid;
-        gap: 12px;
+      .grid { display:grid; gap:12px; }
+      .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-1 { grid-template-columns: 1fr; }
+
+      .card{
+        display:block;
+        padding:14px;
+        border:1px solid rgba(255,255,255,.12);
+        border-radius:14px;
+        text-decoration:none;
       }
-      .grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .card-title{ font-size:16px; margin:8px 0 6px; }
+      .card-desc{ margin:0; opacity:.88; }
+      .readable{ max-width:78ch; }
+
+      .chip{
+        display:inline-block;
+        padding:4px 10px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.18);
+        font-size:12px;
+        opacity:.92;
       }
-      .grid-1 {
-        grid-template-columns: 1fr;
+      .chip-ghost{ opacity:.72; }
+
+      .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+
+      .chiplink{
+        display:inline-flex;
+        align-items:center;
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.16);
+        text-decoration:none;
       }
-      .card {
-        display: block;
-        padding: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 14px;
-        text-decoration: none;
-      }
-      .card-title {
-        font-size: 16px;
-        margin: 8px 0 6px;
-      }
-      .card-desc {
-        margin: 0;
-        opacity: 0.85;
-      }
-      .readable {
-        max-width: 78ch;
-      }
-      .chip {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        font-size: 12px;
-        opacity: 0.9;
-      }
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .chiplink {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        text-decoration: none;
-      }
-      .card-row {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
-      @media (max-width: 980px) {
-        .grid-2 {
-          grid-template-columns: 1fr;
-        }
+
+      .card-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+
+      @media (max-width: 980px){
+        .grid-2{ grid-template-columns:1fr; }
       }
     </style>
   </body>

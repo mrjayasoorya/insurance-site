@@ -18,7 +18,2528 @@ let whatsappE164 = "917448324068";
 let whatsappPrefill = "Hi, I need guidance on the right insurance for my business / vehicle. Please help.";
 let geo = { lat: 13.2391084, lng: 80.1728337 }
 
-let locationsDetail = {
+let servicesDetail = {
+  // =====================================================
+  // TRANSPORT & FLEET
+  // /en/services/transport-fleet/{service}/
+  // =====================================================
+  "transport-fleet": {
+    "lorry-insurance": {
+      seoTitle: "Lorry / Heavy Vehicle Insurance Guidance – Red Hills Toll & NH Belts",
+      seoDesc:
+        "Claim-ready guidance for lorry owners and fleets in Sholavaram, Red Hills Toll belt, Madhavaram and NH corridors. Focus: permits, fitness, third-party exposure and documentation discipline.",
+      heroH1: "Lorry / Heavy Vehicle Insurance (NH-belt Reality)",
+      heroP:
+        "Highway-facing operations have higher third-party exposure and stricter scrutiny. We guide coverage clarity + documentation habits that protect claims later.",
+
+      coverageSummary: [
+        "Lorry insurance is not just a premium decision. Claim outcomes depend on disclosure accuracy (route/usage), endorsement fit, and whether your compliance documents are valid on the incident date (as applicable).",
+        "In NH-facing belts (Red Hills toll, GNT road, Madhavaram logistics), most disputes come from late reporting, weak incident timelines, and mismatch between real operations and wording (loading/unloading, attachment, route exposure)."
+      ],
+
+      whoFor: [
+        "Single lorry owners and fleet operators",
+        "Logistics businesses moving goods in NH corridors",
+        "Tipper/trailer attached operations (as applicable)",
+      ],
+
+      standardModules: {
+        title: "What lorry insurance typically covers (modules)",
+        bullets: [
+          "Third-party liability (mandatory) and owner/driver cover (as applicable)",
+          "Own damage (vehicle damage) subject to policy terms",
+          "IMT / endorsements based on operations (loading/unloading/site exposure as applicable)",
+          "Add-ons depending on vehicle age and insurer rules (case-dependent)",
+        ],
+      },
+
+      localFit:
+        "NH-facing belts see higher third-party incidents and documentation scrutiny. A clean paper trail (permit/fitness/driver basics) reduces avoidable delays.",
+
+      keyCoverFocus: [
+        "Third-party exposure clarity + accident reporting readiness",
+        "Permit/fitness/RC alignment (common underwriting checks)",
+        "Loading/unloading/worksite exposure (often missed)",
+        "Endorsements/IMT clarity aligned to usage",
+      ],
+
+      preBuyChecklist: {
+        title: "Before you buy or renew (simple checklist)",
+        bullets: [
+          "Confirm route/usage summary (local trips vs long-route, goods type as applicable)",
+          "Check permit + fitness expiry dates and keep copies ready (as applicable)",
+          "Ensure previous policy copy + endorsements are available",
+          "Maintain a “driver/vehicle document folder” (as applicable) to avoid last-minute gaps",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that prevent claim disputes",
+        bullets: [
+          "Permit/fitness validity around renewal period (avoid gaps)",
+          "Endorsements/IMT reflect real operations (loading/unloading, route exposure)",
+          "Avoid coverage gaps—expiry date discipline and break-in rules (case-dependent)",
+          "Fleet discipline: consistent disclosures across vehicles (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (why lorry claims get delayed)",
+        intro:
+          "For NH-belt vehicles, claims are timeline-and-document driven. A clean incident sequence + early reporting reduces disputes more than any add-on.",
+        bullets: [
+          "Early reporting and first-day photos/videos (as applicable) before repairs",
+          "Clear incident timeline (what happened first/second/third)",
+          "Keep permit/fitness/RC copies ready (as applicable)",
+          "Endorsements must match exposure (loading/unloading/site use) to avoid disputes",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium/acceptance (without prices)",
+        bullets: [
+          "Vehicle type, age, declared value/IDV, and claim history",
+          "Route exposure (NH corridors vs local routes) and usage disclosures",
+          "Permit/fitness status and compliance documentation (as applicable)",
+          "Add-ons/endorsements selected based on real operations",
+        ],
+      },
+
+      claimDocs: [
+        "RC, permit, fitness, pollution (as applicable)",
+        "Driver documents (as applicable)",
+        "Incident timeline + FIR/spot documents (when needed)",
+        "Repair estimate + photos + incident details",
+      ],
+
+      commonMistakes: [
+        "Fitness/permit lapse causing claim friction",
+        "Late reporting or incomplete incident timeline",
+        "Wording not aligned to loading/unloading exposure",
+        "Not maintaining a ready folder for vehicle/driver docs",
+      ],
+
+      alsoKnownAs: [
+        "Heavy vehicle insurance",
+        "Truck insurance",
+        "Goods vehicle insurance",
+        "Commercial transport insurance",
+      ],
+
+      whatCanGoWrong: [
+        "Fitness expired at the time of loss",
+        "Permit not valid for route / usage",
+        "Driver documentation mismatch (as applicable)",
+        "IMT / endorsements not aligned with usage",
+        "Overloading mentioned in FIR / records",
+      ],
+
+      areaRealityTitle: "Lorry insurance reality around Red Hills Toll belt",
+      areaRealityText:
+        "NH corridors see higher third-party exposure and stricter documentation checks. Early reporting, a clear incident timeline and valid permits/fitness reduce avoidable delays.",
+
+      localLanding: {
+        primaryLocations: ["red-hills", "sholavaram", "madhavaram", "madhavaram-truck-terminal", "nh-manali-road"],
+        phrases: [
+          "lorry insurance red hills",
+          "heavy vehicle insurance red hills toll",
+          "lorry insurance madhavaram truck terminal",
+          "nh belt lorry insurance consultant",
+          "sholavaram lorry insurance renewal support",
+        ],
+      },
+
+      areaSignals: [
+        "Red Hills Toll belt lorry insurance guidance",
+        "Sholavaram heavy vehicle insurance support",
+        "Madhavaram transport insurance consultant",
+        "Chennai outskirts NH belt lorry insurance",
+      ],
+
+      faqs: [
+        {
+          q: "Why do lorry claims get delayed most often?",
+          a:
+            "Late reporting, missing documents, and mismatch between real operations and policy wording (especially loading/unloading and endorsements).",
+        },
+        {
+          q: "What should I keep ready before renewal?",
+          a:
+            "RC, permit/fitness dates, driver details (as applicable), usual route/usage summary, and previous policy copy/endorsements if any.",
+        },
+      ],
+
+      internalLinks: [
+        { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), desc: "Pickup/goods-auto/goods carriers: permit/route discipline + claim-ready steps." },
+        { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), desc: "Business-use vehicle cover: usage clarity + endorsement fit." },
+        { label: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/"), desc: "Trailer exposure: attachment disclosures + third-party risk." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps, documents, timeline discipline to reduce delays." },
+        { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/"), desc: "Transit proof: invoice/packing/dispatch-receipt trail." },
+      ],
+    },
+
+    "commercial-vehicle-insurance": {
+      seoTitle: "Commercial Vehicle Insurance Guidance – Chennai Outskirts (NH + Industrial Belts)",
+      seoDesc:
+        "Commercial vehicle insurance guidance for business-use vehicles across Sholavaram, Red Hills, Madhavaram and Chennai outskirts. Focus: usage clarity, endorsements, third-party exposure and claims readiness.",
+      heroH1: "Commercial Vehicle Insurance (Usage + Wording Clarity)",
+      heroP:
+        "Commercial-use vehicles face higher liability exposure. We guide policy wording alignment to real usage and practical documentation discipline.",
+
+      coverageSummary: [
+        "Commercial motor is highly sensitive to usage disclosures and endorsements. Many disputes happen because the proposal wording does not match real operations.",
+        "This page helps you align usage, endorsements, and documentation discipline so renewals and claims don’t get stuck later."
+      ],
+
+      whoFor: [
+        "Businesses operating commercial-use vehicles",
+        "Owners renewing without verifying usage/endorsement fit",
+        "Operators needing claim-ready document discipline",
+      ],
+
+      standardModules: {
+        title: "What commercial vehicle insurance typically includes",
+        bullets: [
+          "Third-party liability + basic statutory compliance",
+          "Own damage cover (if applicable) based on policy type",
+          "Endorsements/IMT depending on business operations",
+          "Optional add-ons (case-dependent)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Write a one-line usage summary (what the vehicle does daily)",
+          "Keep previous policy + endorsement copies ready",
+          "Confirm whether special usage needs endorsements (as applicable)",
+          "Avoid gaps: keep expiry date discipline",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that prevent disputes",
+        bullets: [
+          "Usage and endorsements match real operations",
+          "No gaps between policies; follow insurer break-in rules (case-dependent)",
+          "Document readiness: policy copy + endorsement file maintained",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (what matters most)",
+        intro:
+          "Commercial claims are rarely about forms alone. They are about usage fit + evidence quality + reporting timeline.",
+        bullets: [
+          "Early reporting + clean incident timeline",
+          "Photos/videos before repairs (as applicable)",
+          "Keep endorsement record accessible",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle type, age, IDV, and claim history",
+          "Declared usage/operations and third-party exposure",
+          "Endorsements selected and compliance status (as applicable)",
+        ],
+      },
+
+      localFit:
+        "In NH + industrial belts, incidents often trigger third-party and documentation scrutiny. Usage mismatch is a common dispute driver.",
+
+      keyCoverFocus: [
+        "Usage clarity (what the vehicle actually does daily)",
+        "Endorsements/IMT clarity aligned to operations",
+        "Third-party exposure and reporting discipline",
+        "Basic proof folder discipline for claims",
+      ],
+
+      claimDocs: [
+        "RC + policy copy + endorsements",
+        "Incident timeline + photos/videos (as applicable)",
+        "FIR/spot documents (when needed)",
+        "Repair estimate + workshop documents (as applicable)",
+      ],
+
+      commonMistakes: [
+        "Usage mismatch vs proposal/policy wording",
+        "Not maintaining endorsements record",
+        "Late reporting or incomplete timeline",
+      ],
+
+      alsoKnownAs: ["Business vehicle insurance", "Commercial motor insurance", "Company vehicle insurance"],
+
+      whatCanGoWrong: [
+        "Usage mismatch causes disputes",
+        "Late reporting weakens the timeline",
+        "Missing endorsement/IMT clarity leads to gaps",
+      ],
+
+      localLanding: {
+        primaryLocations: ["red-hills", "sholavaram", "madhavaram", "ambattur", "manali"],
+        phrases: [
+          "commercial vehicle insurance red hills",
+          "company vehicle insurance madhavaram",
+          "business vehicle insurance sholavaram",
+          "commercial motor insurance chennai outskirts",
+        ],
+      },
+
+      areaRealityTitle: "Commercial vehicle claim reality in NH belts",
+      areaRealityText:
+        "Most friction comes from usage mismatch and weak incident timeline. Clean usage summary + early reporting improves outcomes.",
+
+      areaSignals: [
+        "Sholavaram commercial vehicle insurance",
+        "Red Hills vehicle insurance guidance",
+        "Madhavaram insurance support for vehicles",
+        "Chennai outskirts commercial motor insurance",
+      ],
+
+      internalLinks: [
+        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH-belt lorry exposures: permits/fitness/endorsements." },
+        { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), desc: "Permit/route discipline for goods carriers." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Documents + timeline steps that reduce delays." },
+      ],
+    },
+
+    "goods-carrying-vehicle-insurance": {
+      seoTitle: "Goods Carrying Vehicle Insurance Guidance – Chennai Outskirts Logistics Belts",
+      seoDesc:
+        "Claim-ready guidance for pickup/goods-auto/goods carrying vehicles in Sholavaram, Red Hills, Madhavaram and NH corridors. Focus: permit/route clarity, third-party exposure and documentation discipline.",
+      heroH1: "Goods Carrying Vehicle Insurance (Permit + Route Discipline)",
+      heroP:
+        "Goods vehicles face route/permit checks and third-party exposure. We guide coverage clarity and simple habits that protect claims later.",
+
+      coverageSummary: [
+        "Goods carriers are frequently scrutinized for permit/route validity and incident timeline quality.",
+        "This page focuses on route/usage discipline, proof readiness, and renewals without gaps."
+      ],
+
+      whoFor: [
+        "Pickup / goods-auto / small goods carriers",
+        "Local logistics and delivery operators",
+        "Owners renewing without route/permit clarity",
+      ],
+
+      standardModules: {
+        title: "What goods carrying vehicle policies typically include",
+        bullets: [
+          "Third-party liability + statutory elements",
+          "Own damage cover (if applicable) and operation-fit endorsements",
+          "Route/usage-related disclosures (case-dependent)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm route/usage and keep it consistent with policy wording",
+          "Keep permit/fitness copies ready (as applicable)",
+          "Maintain a simple incident reporting checklist for drivers (as applicable)",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that prevent friction",
+        bullets: [
+          "Permit/fitness validity around the renewal date (as applicable)",
+          "Disclosure fit: route/usage and endorsements aligned",
+          "Avoid gaps; follow break-in/inspection rules (case-dependent)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline for goods carriers",
+        intro:
+          "Goods carriers often lose time in claims due to route/permit questions and incomplete incident narratives.",
+        bullets: [
+          "Report early; keep a clean incident timeline",
+          "Capture first-day photos/videos (as applicable)",
+          "Keep permit/fitness copies accessible (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle type, age, IDV, route exposure and claim history",
+          "Compliance status (permit/fitness) where applicable",
+          "Endorsements/usage disclosures fit",
+        ],
+      },
+
+      localFit:
+        "Chennai outskirts logistics corridors see frequent checks and higher incident scrutiny. Permit/route clarity and clean reporting reduce disputes.",
+
+      keyCoverFocus: [
+        "Permit/route/usage clarity",
+        "Third-party exposure and reporting discipline",
+        "Loading/unloading and operational exposure alignment",
+        "Document folder discipline (vehicle + driver as applicable)",
+      ],
+
+      claimDocs: [
+        "RC, permit, fitness (as applicable)",
+        "Driver documents (as applicable)",
+        "Incident timeline + photos (as applicable)",
+        "Repair estimate + incident notes",
+      ],
+
+      commonMistakes: [
+        "Route/permit mismatch",
+        "Late reporting and weak incident narrative",
+        "Assuming basic cover matches real usage",
+      ],
+
+      alsoKnownAs: ["Pickup insurance", "Goods auto insurance", "Goods carrier insurance"],
+
+      whatCanGoWrong: [
+        "Permit/route mismatch causes disputes",
+        "Missing driver docs (as applicable)",
+        "Overloading mention triggers scrutiny",
+      ],
+
+      localLanding: {
+        primaryLocations: ["madhavaram", "madhavaram-truck-terminal", "red-hills", "sholavaram", "karanodai"],
+        phrases: [
+          "goods carrying vehicle insurance madhavaram",
+          "goods auto insurance red hills",
+          "pickup insurance sholavaram",
+          "logistics vehicle insurance madhavaram truck terminal",
+        ],
+      },
+
+      areaRealityTitle: "Goods vehicle reality around Madhavaram logistics corridor",
+      areaRealityText:
+        "Goods carriers get scrutinized on permit/route and incident timeline. Simple discipline improves claim momentum.",
+
+      areaSignals: [
+        "Madhavaram goods carrying vehicle insurance",
+        "Sholavaram pickup insurance guidance",
+        "Red Hills goods auto insurance support",
+        "Chennai outskirts logistics vehicle insurance",
+      ],
+
+      internalLinks: [
+        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "Lorry claims: permits/fitness/endorsement fit." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "First steps + documents checklist." },
+        { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/"), desc: "Transit proof and invoice/packing discipline." },
+      ],
+    },
+
+    "trailer-insurance": {
+      seoTitle: "Trailer Insurance Guidance – NH Corridors (Chennai Outskirts)",
+      seoDesc:
+        "Trailer insurance guidance for operators in NH belts around Sholavaram, Red Hills and Madhavaram. Focus: attachment usage clarity, third-party exposure, endorsements and claim-ready documentation.",
+      heroH1: "Trailer Insurance (Attachment + Exposure Clarity)",
+      heroP:
+        "Trailers increase exposure during turns, loading/unloading and public movement. We guide wording alignment and practical claim-ready documentation.",
+
+      coverageSummary: [
+        "Trailer incidents tend to become third-party heavy and are scrutinized for disclosures and endorsement fit.",
+        "This page focuses on attachment/usage clarity, evidence readiness and reporting discipline."
+      ],
+
+      whoFor: [
+        "Trailer owners/operators",
+        "Fleet operators using trailers across NH corridors",
+        "Operators renewing without attachment/endorsement clarity",
+      ],
+
+      standardModules: {
+        title: "What trailer insurance typically requires clarity on",
+        bullets: [
+          "Trailer + towing operations disclosure (as applicable)",
+          "Third-party liability exposure awareness",
+          "Endorsements/IMT alignment to real operations",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm trailer usage pattern (routes, loading/unloading points as applicable)",
+          "Keep endorsement record and policy copies organized",
+          "Ensure incident reporting discipline is clear to drivers/operators (as applicable)",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks for trailer operations",
+        bullets: [
+          "Endorsement/IMT fit for attachment operations",
+          "No coverage gaps; expiry date discipline",
+          "Incident reporting readiness for third-party heavy events",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline for trailer incidents",
+        intro:
+          "Trailer events often escalate due to third-party exposure. Evidence quality and early reporting matter immediately.",
+        bullets: [
+          "Capture photos/videos early (as applicable)",
+          "Maintain a clean incident timeline",
+          "Keep endorsement/wording copies ready for reference",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Trailer type, operations, route exposure and claim history",
+          "Endorsement/IMT fit for attachment/usage (as applicable)",
+          "Third-party risk environment (NH belts, loading bays, public access)",
+        ],
+      },
+
+      localFit:
+        "NH movement plus loading bays increase third-party exposure. Trailer incidents often trigger scrutiny on documentation and usage disclosures.",
+
+      keyCoverFocus: [
+        "Usage clarity for trailer operations and routes",
+        "Endorsements/IMT clarity aligned to operations",
+        "Third-party exposure and incident reporting discipline",
+        "Document folder discipline (vehicle/attachment papers as applicable)",
+      ],
+
+      claimDocs: [
+        "Policy copy + endorsements",
+        "RC/permit/fitness as applicable",
+        "Incident timeline + photos/videos (as applicable)",
+        "FIR/spot documents (when needed)",
+      ],
+
+      commonMistakes: [
+        "Attachment/usage not clearly aligned in wording",
+        "Late reporting and weak incident narrative",
+        "Missing endorsement clarity",
+      ],
+
+      alsoKnownAs: ["Trailer cover", "Trailer vehicle insurance", "Transport trailer insurance"],
+
+      whatCanGoWrong: [
+        "Usage mismatch vs policy wording",
+        "Late reporting causes timeline disputes",
+        "Missing endorsement clarity leads to coverage gaps",
+      ],
+
+      localLanding: {
+        primaryLocations: ["red-hills", "madhavaram-truck-terminal", "sholavaram", "nh-manali-road"],
+        phrases: [
+          "trailer insurance red hills",
+          "trailer policy madhavaram truck terminal",
+          "highway trailer insurance consultant",
+          "sholavaram trailer insurance renewal",
+        ],
+      },
+
+      areaRealityTitle: "Trailer claim reality in highway corridors",
+      areaRealityText:
+        "Trailer-related incidents escalate quickly due to third-party exposure. Clean reporting + correct disclosures reduce avoidable delays.",
+
+      areaSignals: [
+        "Red Hills trailer insurance guidance",
+        "Sholavaram trailer policy support",
+        "Chennai outskirts highway trailer insurance",
+      ],
+
+      internalLinks: [
+        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "Lorry + NH exposure discipline." },
+        { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/"), desc: "Fleet systems: expiry discipline, incident reporting SOP." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow guidance." },
+      ],
+    },
+
+    "fleet-insurance": {
+      seoTitle: "Fleet Insurance Guidance – Red Hills, Madhavaram & Chennai NH Belts",
+      seoDesc:
+        "Fleet insurance guidance for transport operators around Red Hills Toll belt, Madhavaram logistics, Sholavaram and NH corridors. Focus: renewal discipline, centralized documentation, incident SOP and claim workflow readiness.",
+      heroH1: "Fleet Insurance (Discipline + Claim Workflow Readiness)",
+      heroP:
+        "Fleet performance depends on process: document tracking, renewal discipline, driver reporting SOP and consistent disclosures across vehicles.",
+
+      // This is the most important upgrade for “fleet-insurance redhills”
+      coverageSummary: [
+        "Fleet insurance becomes valuable when your operational discipline is consistent: renewals on time, documents centralized, and incident reporting standardized across drivers.",
+        "In Red Hills / Madhavaram logistics belts, claims often involve third-party exposure and timeline scrutiny. A fleet SOP (documents + reporting) reduces repeated delays across vehicles."
+      ],
+
+      whoFor: [
+        "Fleet operators with multiple vehicles (2+ vehicles)",
+        "Logistics businesses running corridor routes (NH + industrial belts)",
+        "Owners needing predictable renewals + claim-ready documentation discipline",
+      ],
+
+      standardModules: {
+        title: "What fleet insurance typically needs (coverage + structure)",
+        bullets: [
+          "Policy structure may be individual policies or structured fleet arrangements (insurer-dependent)",
+          "Third-party liability across vehicles + own-damage where applicable",
+          "Endorsements/IMT fit across vehicle types and operations (as applicable)",
+          "Driver/vehicle compliance discipline (permit/fitness as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or restructure a fleet policy",
+        bullets: [
+          "Prepare vehicle list + usage summary per vehicle (route/operations)",
+          "Centralize policy copies + endorsement record in one folder",
+          "Create expiry tracker (permit/fitness/insurance dates as applicable)",
+          "Define incident SOP for drivers: who to call, what photos to take, what timeline to record",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Fleet renewal checks (the common failure points)",
+        bullets: [
+          "Expiry discipline: avoid gaps across multiple vehicles",
+          "Consistency: disclosures and endorsements match real usage per vehicle",
+          "Permit/fitness alignment for commercial units (as applicable)",
+          "NCB/claim history alignment and correction (case-dependent)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Fleet claim discipline (what improves outcomes)",
+        intro:
+          "Fleet claims fail due to inconsistency: different drivers report differently, documents are missing, and timelines become unclear. Standardizing the process is the real advantage.",
+        bullets: [
+          "Standard incident reporting checklist for all drivers (as applicable)",
+          "Centralized document folder per vehicle (policy + endorsements + RC etc.)",
+          "Early reporting + first-day photos/videos before repairs (as applicable)",
+          "Consistent usage disclosures across vehicles to avoid disputes",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance (without prices)",
+        bullets: [
+          "Fleet composition (vehicle types), route exposure, and claim history",
+          "Operational discipline and documentation readiness (insurer confidence factor)",
+          "Compliance status: permits/fitness and record quality (as applicable)",
+          "Endorsement fit across operations (loading/unloading/site exposure as applicable)",
+        ],
+      },
+
+      localFit:
+        "In Red Hills toll belt and Madhavaram logistics pockets, claims are often third-party heavy and timeline-sensitive. Fleet discipline reduces repeated friction points.",
+
+      keyCoverFocus: [
+        "Centralized fleet documentation + renewal discipline",
+        "Incident reporting SOP (drivers + office workflow)",
+        "Third-party exposure readiness in NH belts",
+        "Consistency in disclosures and endorsements across vehicles",
+      ],
+
+      claimDocs: [
+        "Vehicle list + policy copies + endorsements (centralized)",
+        "Expiry tracker (insurance/permit/fitness where applicable)",
+        "Driver reporting checklist + incident timeline template (as applicable)",
+        "Repair estimates + first-day photos/videos (as applicable)",
+      ],
+
+      commonMistakes: [
+        "No centralized document/expiry tracking",
+        "Drivers reporting differently → inconsistent incident narrative",
+        "Vehicles operating differently than declared in policy",
+        "Late reporting because no SOP exists",
+      ],
+
+      alsoKnownAs: ["Fleet policy", "Multiple vehicle insurance", "Transport fleet cover"],
+
+      whatCanGoWrong: [
+        "Inconsistent reporting across drivers creates timeline disputes",
+        "Expiry lapses create coverage gaps and claim friction",
+        "Operational mismatch vs declared usage triggers disputes",
+      ],
+
+      // Make the query match explicit
+      localLanding: {
+        primaryLocations: ["red-hills", "madhavaram", "madhavaram-truck-terminal", "sholavaram", "karanodai"],
+        phrases: [
+          "fleet insurance red hills",
+          "transport fleet insurance red hills toll",
+          "fleet insurance madhavaram truck terminal",
+          "fleet policy sholavaram",
+          "nh belt fleet insurance consultant",
+        ],
+      },
+
+      areaRealityTitle: "Fleet claims reality around Red Hills + Madhavaram belts",
+      areaRealityText:
+        "Fleets win on process: expiry discipline, incident SOP, and organized documents. Small gaps repeat across vehicles and become costly delays.",
+
+      areaSignals: [
+        "Red Hills fleet insurance guidance",
+        "Madhavaram fleet insurance support",
+        "Sholavaram fleet policy consultant",
+        "Chennai NH belt transport fleet insurance",
+      ],
+
+      internalLinks: [
+        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH-belt lorry exposures + compliance discipline." },
+        { label: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/"), desc: "Trailer third-party exposure + endorsement fit." },
+        { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), desc: "Usage + wording alignment for business vehicles." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow, documents checklist, timeline discipline." },
+      ],
+    },
+
+    "tip-truck-insurance": {
+      seoTitle: "Tip Truck / Tipper Insurance Guidance – Chennai Outskirts (Worksites + NH Belts)",
+      seoDesc:
+        "Tipper insurance guidance for operators working in worksites and NH belts around Sholavaram, Red Hills and Chennai outskirts. Focus: usage clarity, third-party exposure and claim-ready documentation.",
+      heroH1: "Tip Truck / Tipper Insurance (Worksite Exposure Clarity)",
+      heroP:
+        "Tipper operations involve worksite exposure and public movement. We guide coverage clarity and documentation discipline to reduce claim disputes.",
+
+      coverageSummary: [
+        "Tipper claims often involve site exposure (worksite conditions) plus public road movement. The common dispute is usage mismatch and weak incident records.",
+        "This page helps align site exposure disclosures and reporting discipline."
+      ],
+
+      whoFor: [
+        "Tip truck / tipper owners",
+        "Contractors using tippers for site movement (as applicable)",
+        "Operators renewing without worksite exposure clarity",
+      ],
+
+      standardModules: {
+        title: "Typical tipper risk exposures (what should be clarified)",
+        bullets: [
+          "Worksite exposure vs road movement (disclosure fit)",
+          "Third-party risk around sites and public zones",
+          "Endorsements/IMT alignment (case-dependent)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Define usage: site-only vs mixed route operations",
+          "Confirm endorsements align to real operations",
+          "Maintain a simple incident reporting discipline (photos + timeline)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline for worksite incidents",
+        intro:
+          "Worksite claims become evidence and disclosure discussions quickly. Clear records and early reporting reduce avoidable friction.",
+        bullets: [
+          "First-day photos/videos and clean incident timeline (as applicable)",
+          "Early reporting to avoid timeline disputes",
+          "Keep policy + endorsement copy easily accessible",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle type/age, usage disclosures, claim history",
+          "Worksite exposure and route environment",
+          "Endorsement fit (case-dependent)",
+        ],
+      },
+
+      localFit:
+        "Worksite + NH movement increases third-party exposure. Claims often become documentation and usage disclosure discussions.",
+
+      keyCoverFocus: [
+        "Usage clarity (route + worksite exposure)",
+        "Third-party exposure and reporting discipline",
+        "Endorsements/IMT alignment to real operations",
+      ],
+
+      claimDocs: [
+        "Policy copy + endorsements",
+        "Incident timeline + photos (as applicable)",
+        "FIR/spot documents (when needed)",
+      ],
+
+      commonMistakes: [
+        "Worksite usage not aligned in wording",
+        "Late reporting and weak timeline",
+      ],
+
+      alsoKnownAs: ["Tipper insurance", "Tipper truck policy", "Tip truck cover"],
+
+      whatCanGoWrong: [
+        "Usage mismatch vs policy",
+        "Missing endorsements for operational exposure",
+        "Late reporting causes timeline disputes",
+      ],
+
+      localLanding: {
+        primaryLocations: ["red-hills", "sholavaram", "thiruvallur-sipcot-outskirts", "thirumazhisai"],
+        phrases: [
+          "tipper insurance red hills",
+          "tip truck insurance sholavaram",
+          "worksite tipper insurance chennai outskirts",
+        ],
+      },
+
+      areaRealityTitle: "Tipper insurance reality near worksites",
+      areaRealityText:
+        "Worksite incidents need clean reporting and clear usage disclosure. Simple discipline reduces avoidable friction.",
+
+      areaSignals: [
+        "Sholavaram tipper insurance guidance",
+        "Red Hills tip truck insurance support",
+        "Chennai outskirts tipper policy consultant",
+      ],
+
+      internalLinks: [
+        { label: "Construction & Contractor Insurance", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "CAR/WC: worksite + workforce exposures." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow steps and evidence discipline." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // INDUSTRIAL & PROPERTY
+  // /en/services/industrial/{service}/
+  // =====================================================
+  "industrial": {
+    "warehouse-insurance": {
+      seoTitle: "Warehouse / Godown Insurance Guidance – Madhavaram, Manali & Chennai Industrial Belts",
+      seoDesc:
+        "Warehouse insurance guidance for Sholavaram, Madhavaram, Manali/Ennore and nearby industrial belts. Focus: fire load, stock proof discipline, valuation clarity and burglary conditions.",
+      heroH1: "Warehouse / Godown Insurance (Proof + Valuation Discipline)",
+      heroP:
+        "Warehouse claims succeed when valuation and stock proof are clean. We guide declarations, documentation habits and policy alignment to real storage risk.",
+
+      coverageSummary: [
+        "Warehouse insurance is proof-driven. When a loss happens, the settlement depends on valuation basis, invoice/register discipline, and whether the declared stock matches reality.",
+        "In Madhavaram/Manali belts, the most common claim friction points are underinsurance (average clause risk), missing stock proof trail, and unreported changes in storage pattern."
+      ],
+
+      whoFor: [
+        "Warehouse and godown owners",
+        "Businesses storing fluctuating stock",
+        "Operators in industrial belts with higher fire/burglary exposure",
+      ],
+
+      standardModules: {
+        title: "Warehouse coverage modules (typical structure)",
+        bullets: [
+          "Fire & allied perils (building/stock/contents as applicable)",
+          "Burglary/theft (subject to conditions and security requirements)",
+          "Optional: stock declaration policy for fluctuating stock (case-dependent)",
+          "Optional: business interruption / loss of profit (case-dependent)",
+          "Optional: public liability if visitors/vendor movement exists (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Prepare a simple stock/assets list + valuation basis (invoice/valuation logic)",
+          "Keep 3–6 invoice samples and register proof ready (as applicable)",
+          "Take premises photos: storage layout + safety setup (as applicable)",
+          "Confirm stored goods type and update changes (avoid mismatch disputes)",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that protect warehouse claims",
+        bullets: [
+          "Sum insured matches current reality (avoid underinsurance/average clause reduction)",
+          "Stock proof trail exists (invoice/register discipline) for expected claim scrutiny",
+          "Burglary/security conditions understood and maintained (as applicable)",
+          "Changes in layout/stock type are declared and updated",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Warehouse claim discipline (what prevents reductions)",
+        intro:
+          "Warehouse claims are valuation + evidence discussions. Clean stock proof trail and consistent declarations reduce disputes.",
+        bullets: [
+          "Maintain invoice/register proof and periodic records (as applicable)",
+          "Keep photo record of storage layout/safety setup (as applicable)",
+          "Report early; maintain clean incident timeline and preserve evidence",
+          "Avoid undervaluation to save premium (settlement reductions happen later)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Stock type, fire load, and sum insured/valuation basis",
+          "Location risk indicators (warehouse density, electrical load, public access)",
+          "Security and safety measures (as applicable)",
+          "Claim history and documentation readiness",
+        ],
+      },
+
+      localFit:
+        "Industrial belts increase electrical fire load and storage risk. Claim outcomes depend on stock proof, valuation basis, safety habits and clear declarations.",
+
+      keyCoverFocus: [
+        "Sum insured and valuation logic (avoid underinsurance)",
+        "Stock proof discipline (invoices/registers/photos as applicable)",
+        "Fire load + safety conditions awareness",
+        "Burglary conditions + security discipline",
+      ],
+
+      claimDocs: [
+        "Stock invoices/register + periodic proof trail",
+        "Premises photos + safety setup proof (as applicable)",
+        "Policy copy + endorsements + declarations (if any)",
+        "Incident timeline + reports (as applicable)",
+      ],
+
+      commonMistakes: [
+        "No consistent proof of stock value",
+        "Wrong sum insured / undervaluation",
+        "Layout/stock type changed but not updated",
+      ],
+
+      alsoKnownAs: ["Godown insurance", "Warehouse fire policy", "Industrial storage insurance"],
+
+      whatCanGoWrong: [
+        "Stock proof mismatch during claim",
+        "Undervaluation reduces settlement",
+        "Safety/security conditions not met (as applicable)",
+      ],
+
+      localLanding: {
+        primaryLocations: ["madhavaram", "manali-industrial-estate", "manali", "red-hills", "sholavaram"],
+        phrases: [
+          "warehouse insurance madhavaram",
+          "godown insurance manali industrial estate",
+          "warehouse insurance red hills",
+          "sholavaram godown insurance consultant",
+        ],
+      },
+
+      areaRealityTitle: "Warehouse claim reality around Madhavaram + Manali belts",
+      areaRealityText:
+        "Fire/burglary claims become valuation + proof discussions. Clean invoices/registers and clear declarations improve outcomes.",
+
+      areaSignals: [
+        "Madhavaram warehouse insurance guidance",
+        "Sholavaram godown insurance consultant",
+        "Manali Ennore industrial insurance support",
+        "Chennai outskirts warehouse insurance services",
+      ],
+
+      internalLinks: [
+        { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property fire/burglary: proof discipline + conditions awareness." },
+        { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/"), desc: "Fluctuating stock: declaration rhythm + evidence." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline + documents checklist for claim momentum." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Visitor/vendor movement and third-party exposure." },
+      ],
+    },
+
+    "factory-insurance": {
+      seoTitle: "Factory Insurance Guidance – Chennai Outskirts Industrial Belts",
+      seoDesc:
+        "Factory insurance guidance for small units and industrial belts around Sholavaram, Madhavaram, Manali/Ennore. Focus: fire load, machinery/stock valuation, and claim-ready proof discipline.",
+      heroH1: "Factory Insurance (Fire Load + Valuation Clarity)",
+      heroP:
+        "Factory risks combine electrical fire load, stock, and machinery exposure. We guide valuation and proof discipline so claims don’t get reduced later.",
+
+      coverageSummary: [
+        "Factory insurance must match your actual operations—machinery, stock, electrical load, and workflow changes.",
+        "Most claim reductions happen due to undervaluation and lack of proof trail for machinery/stock."
+      ],
+
+      standardModules: {
+        title: "Factory coverage modules (typical)",
+        bullets: [
+          "Fire & allied perils for building/stock/machinery (as applicable)",
+          "Optional: machinery breakdown (case-dependent)",
+          "Optional: business interruption / loss of profit (case-dependent)",
+          "Optional: liability if public/vendor movement exists (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Prepare asset/machinery list and valuation basis",
+          "Maintain stock proof (invoices/register) if stock exists",
+          "Photograph electrical panels/safety setup (as applicable)",
+          "Update policy if operations/layout change",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that prevent settlement reductions",
+        bullets: [
+          "Valuation is realistic (avoid underinsurance penalties)",
+          "Machinery list and major changes updated",
+          "Safety conditions understood (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Factory claim discipline",
+        intro:
+          "Factory claims become valuation + declaration discussions. Clean proof trail protects settlement.",
+        bullets: [
+          "Avoid undervaluation to save premium",
+          "Keep machinery/asset records and proof updated",
+          "Maintain incident timeline + first-day photo evidence (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Industry type, fire load, electrical risk indicators",
+          "Sum insured and valuation basis",
+          "Safety measures and loss history",
+        ],
+      },
+
+      whoFor: [
+        "Small factories and industrial units",
+        "Units with machinery + stock exposure",
+        "Businesses renewing without valuation clarity",
+      ],
+      localFit:
+        "Industrial belts increase fire load and storage risk. Clear declarations and proof discipline matter more than just premium.",
+      keyCoverFocus: [
+        "Valuation basis for building/stock/machinery",
+        "Fire load + safety conditions awareness",
+        "Stock proof discipline (as applicable)",
+        "Declaration updates when risk changes",
+      ],
+      claimDocs: [
+        "Asset/machinery list + valuation basis",
+        "Stock invoices/register (as applicable)",
+        "Safety setup proof (as applicable)",
+        "Incident timeline + reports (as applicable)",
+      ],
+      commonMistakes: [
+        "Undervaluation to save premium → reduced settlement later",
+        "No proof trail for assets/stock",
+        "Not updating changes in operations/layout",
+      ],
+      alsoKnownAs: ["Industrial unit insurance", "Factory package policy", "Industrial fire policy"],
+      whatCanGoWrong: [
+        "Undervaluation triggers settlement reduction",
+        "Mismatch between declared operations and actual activity",
+        "Safety conditions not met (as applicable)",
+      ],
+      localLanding: {
+        primaryLocations: ["manali-industrial-estate", "ambattur", "madhavaram", "sriperumbudur-sipcot"],
+        phrases: [
+          "factory insurance madhavaram",
+          "industrial unit insurance ambattur",
+          "factory insurance manali industrial estate",
+          "factory insurance sriperumbudur sipcot",
+        ],
+      },
+      areaRealityTitle: "Factory claim reality in industrial corridors",
+      areaRealityText:
+        "Most disputes come from valuation and declarations. Keeping clean asset/stock proof reduces avoidable delays.",
+      areaSignals: [
+        "Sholavaram factory insurance guidance",
+        "Madhavaram industrial unit insurance support",
+        "Chennai outskirts factory insurance consultant",
+      ],
+      internalLinks: [
+        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Storage risk: stock proof discipline + valuation." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow and document readiness." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for visitor/vendor movement." },
+      ],
+    },
+
+    "fire-burglary-insurance": {
+      seoTitle: "Fire & Burglary Insurance Guidance – Warehouses, Shops, Offices (Chennai Outskirts)",
+      seoDesc:
+        "Commercial property guidance for fire/burglary in Sholavaram, Red Hills and Madhavaram belts. Focus: sum insured, stock proof, safety/security conditions and claim-ready documentation.",
+      heroH1: "Fire & Burglary (Commercial Property) — Guidance",
+      heroP:
+        "Fire/burglary claims are proof-driven. We guide valuation, stock proof discipline and condition-awareness so claims don’t get stuck later.",
+
+      coverageSummary: [
+        "Fire and burglary policies fail at claim time when valuation/proof is weak or conditions are not met (as applicable).",
+        "This page explains sum insured logic, proof discipline, and condition awareness for better claim readiness."
+      ],
+
+      standardModules: {
+        title: "Typical modules (fire/burglary property)",
+        bullets: [
+          "Fire & allied perils for building/contents/stock (as applicable)",
+          "Burglary/theft subject to security conditions (as applicable)",
+          "Optional add-ons depending on business (case-dependent)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Choose realistic sum insured (avoid underinsurance/average clause risk)",
+          "Keep stock proof/invoice samples and register discipline (as applicable)",
+          "Understand burglary security conditions and maintain them (as applicable)",
+          "Photograph premises layout and safety setup (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Sum insured and valuation basis",
+          "Fire load indicators and electrical safety factors",
+          "Security measures for burglary cover (as applicable)",
+          "Claim history and proof readiness",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (property claims)",
+        intro:
+          "Property claims become valuation + proof discussions. Proof trail and condition compliance decide speed and settlement.",
+        bullets: [
+          "Maintain invoices/registers and periodic records (as applicable)",
+          "Keep premises photos (layout, safety/security setup as applicable)",
+          "Report early; preserve evidence and timeline clarity",
+        ],
+      },
+
+      whoFor: [
+        "Warehouses and godowns storing stock",
+        "Shops/offices with high-value goods",
+        "Units with electrical fire load exposure",
+      ],
+      localFit:
+        "Fire claims become valuation/proof discussions. Burglary claims fail when security conditions and proof trail aren’t aligned.",
+      keyCoverFocus: [
+        "Sum insured + underinsurance avoidance",
+        "Stock proof discipline (invoices/registers/photos as applicable)",
+        "Security/safety conditions that affect claims",
+        "Declaration clarity for stored goods",
+      ],
+      claimDocs: [
+        "Stock proof + invoices/register/photos",
+        "Premises photos + security proof (as applicable)",
+        "Incident timeline + police/fire documents (as applicable)",
+      ],
+      commonMistakes: [
+        "No consistent stock proof",
+        "Wrong valuation basis",
+        "Ignoring policy conditions about security/safety",
+      ],
+      alsoKnownAs: ["Commercial property insurance", "Shop fire policy", "Warehouse fire + burglary policy"],
+      whatCanGoWrong: [
+        "Underinsurance reduces settlement",
+        "Security conditions not met for burglary claims (as applicable)",
+        "Weak proof trail for stock/assets",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "madhavaram", "kolathur-commercial-pockets", "perambur", "sholavaram"],
+        phrases: [
+          "fire insurance red hills",
+          "burglary insurance madhavaram",
+          "shop fire burglary insurance kolathur",
+          "office fire insurance perambur",
+        ],
+      },
+      areaRealityTitle: "Fire/burglary claim reality in industrial belts",
+      areaRealityText:
+        "Most disputes come from valuation and proof. Keeping invoices/registers and basic premises photos (as applicable) improves claim acceptance.",
+      areaSignals: [
+        "Sholavaram fire insurance guidance",
+        "Madhavaram burglary insurance support",
+        "Red Hills godown fire insurance",
+      ],
+      internalLinks: [
+        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Warehouse proof discipline and valuation." },
+        { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "MSME modules + valuation discipline." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps + evidence discipline." },
+      ],
+    },
+
+    "stock-declaration-insurance": {
+      seoTitle: "Stock Declaration Policies Guidance – Warehouses & Businesses (Chennai Outskirts)",
+      seoDesc:
+        "Stock declaration policy guidance for warehouses and businesses in industrial belts. Focus: stock proof discipline, declaration habits, valuation logic and claim acceptance readiness.",
+      heroH1: "Stock Declaration Policies (Proof Discipline Matters)",
+      heroP:
+        "When stock fluctuates, declarations and proof discipline decide claim outcomes. We guide how to keep declarations clean and defensible.",
+
+      coverageSummary: [
+        "Stock declaration policies are evidence-driven: month-wise declarations must match proof trail (invoices/registers).",
+        "Most disputes come from mismatch between declared stock and actual evidence. This page explains the habit system that prevents that."
+      ],
+
+      standardModules: {
+        title: "What declaration policies require",
+        bullets: [
+          "Regular declaration rhythm (monthly/periodic as applicable)",
+          "Invoice/register proof discipline aligned to declarations",
+          "Clarity on inclusions/exclusions (goods type and valuation basis)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or adopt declaration structure",
+        bullets: [
+          "Confirm your month-wise stock tracking system exists (register/invoices)",
+          "Decide valuation method (invoice/market basis) consistently",
+          "Prepare photos/records to support storage reality (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Declaration claim discipline (the make-or-break factors)",
+        intro:
+          "A declaration policy is only as strong as its proof discipline. If records do not match, settlement disputes happen.",
+        bullets: [
+          "Maintain month-wise evidence trail",
+          "Avoid under-declaration to save premium (settlement reduction risk)",
+          "Keep declaration history accessible",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Stock volatility and maximum exposure levels",
+          "Quality of stock accounting/proof discipline",
+          "Goods type and storage risk indicators",
+        ],
+      },
+
+      whoFor: [
+        "Warehouses with fluctuating stock levels",
+        "Businesses where stock value changes month-to-month",
+        "Owners facing repeated underinsurance/proof issues",
+      ],
+      localFit:
+        "In industrial belts, stock claims get scrutinized for month-wise proof and declaration consistency. Clean habits reduce disputes.",
+      keyCoverFocus: [
+        "Declaration rhythm and documentation habit",
+        "Invoice/register proof discipline",
+        "Valuation logic and underinsurance prevention",
+        "Clarity on what stock is included/excluded",
+      ],
+      claimDocs: [
+        "Month-wise stock proof (invoices/registers)",
+        "Declaration history (if applicable)",
+        "Photos/records supporting storage reality (as applicable)",
+      ],
+      commonMistakes: [
+        "Declarations not matching proof trail",
+        "No clear register/invoice discipline",
+        "Under-declaring to save premium → reduced settlement later",
+      ],
+      alsoKnownAs: ["Declaration policy", "Floating stock policy", "Stock declaration insurance"],
+      whatCanGoWrong: [
+        "Mismatch between declared stock and actual proof",
+        "Under-declaration triggers settlement reduction",
+        "Incomplete month-wise evidence weakens claim",
+      ],
+      localLanding: {
+        primaryLocations: ["madhavaram", "manali", "red-hills", "sholavaram"],
+        phrases: [
+          "stock declaration policy madhavaram",
+          "floating stock policy manali",
+          "warehouse stock declaration red hills",
+        ],
+      },
+      areaRealityTitle: "Stock declaration reality in warehouse corridors",
+      areaRealityText:
+        "Stock claims are evidence-based. A clean month-wise proof trail and consistent declarations reduce settlement disputes.",
+      areaSignals: [
+        "Madhavaram stock declaration policy guidance",
+        "Chennai outskirts warehouse stock policy support",
+        "Sholavaram stock insurance consultant",
+      ],
+      internalLinks: [
+        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Warehouse stock proof discipline + valuation." },
+        { label: "Fire & Burglary", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property cover and condition awareness." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim process guidance for evidence readiness." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // CONSTRUCTION & CONTRACTOR
+  // /en/services/construction/{service}/
+  // =====================================================
+  "construction": {
+    "contractor-all-risk": {
+      seoTitle: "Contractor All Risk (CAR) Guidance – Chennai Outskirts Worksites",
+      seoDesc:
+        "CAR guidance for active worksites in Chennai outskirts. Focus: project period alignment, site exposure clarity, incident reporting timeline, and proof discipline.",
+      heroH1: "Contractor All Risk (CAR) — Worksite Reality)",
+      heroP:
+        "CAR works when site details, project period and reporting discipline are aligned. We guide practical clarity so claims don’t fail on avoidable gaps.",
+
+      coverageSummary: [
+        "CAR is highly sensitive to project period, scope, and documentation. Claims fail when project extensions and site exposures are not aligned with policy period.",
+        "This page clarifies what to disclose, what to record, and how to keep claims defensible."
+      ],
+
+      standardModules: {
+        title: "CAR policy modules (typical)",
+        bullets: [
+          "Project works cover during active period (subject to terms)",
+          "Third-party exposure awareness near public zones (case-dependent)",
+          "Extensions/endorsements when project timeline changes (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy / start the project",
+        bullets: [
+          "Project start/end dates and realistic timeline",
+          "Scope clarity: what work is included",
+          "Site photos + basic notes system for proof (as applicable)",
+          "Plan how incidents will be reported on day-1",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "CAR claim discipline",
+        intro:
+          "CAR claims are judged on timeline clarity and records. Late reporting and missing site notes are the most avoidable failure points.",
+        bullets: [
+          "Maintain site notes/photos and update on scope changes",
+          "Report early and keep clean incident sequence",
+          "Ensure project period extensions are updated (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Project value, duration, and site exposure factors",
+          "Scope complexity and third-party environment",
+          "Loss history and documentation discipline",
+        ],
+      },
+
+      whoFor: [
+        "Contractors and subcontractors running active worksites",
+        "Projects with timeline/scope changes",
+        "Teams needing claim-ready reporting discipline",
+      ],
+      localFit:
+        "Worksite claims often get disputed due to timeline/scope mismatch and late reporting. Clear site notes and early intimation reduce friction.",
+      keyCoverFocus: [
+        "Project period alignment (start/end/extension discipline)",
+        "Site exposure clarity (what work is actually happening)",
+        "Reporting timelines and incident sequence clarity",
+        "Basic records: site notes, photos, and supporting documents (as applicable)",
+      ],
+      claimDocs: [
+        "Work order / contract basics (as applicable)",
+        "Project timeline notes + extension proof (as applicable)",
+        "Site photos + incident timeline + reports",
+        "Policy copy + endorsements",
+      ],
+      commonMistakes: [
+        "Project timeline extensions not aligned to policy period",
+        "Late reporting after incident",
+        "Site exposure differs from disclosures",
+      ],
+      alsoKnownAs: ["CAR insurance", "Contractor all risk policy", "Construction risk insurance"],
+      whatCanGoWrong: [
+        "Timeline/scope mismatch vs policy period",
+        "Late reporting weakens the incident narrative",
+        "Missing site proof and incident sequence clarity",
+      ],
+      localLanding: {
+        primaryLocations: ["thirumazhisai", "sriperumbudur-sipcot", "oragadam-outskirts", "poonamallee-bypass"],
+        phrases: [
+          "contractor all risk insurance sriperumbudur",
+          "car insurance oragadam outskirts worksite",
+          "construction risk insurance poonamallee bypass",
+        ],
+      },
+      areaRealityTitle: "CAR claim reality in Chennai outskirts worksites",
+      areaRealityText:
+        "Site claims get judged on timeline clarity and records. Keeping basic site notes and early reporting prevents avoidable delays.",
+      areaSignals: [
+        "Chennai outskirts contractor all risk insurance",
+        "Sholavaram CAR guidance",
+        "Red Hills construction insurance support",
+      ],
+      internalLinks: [
+        { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/"), desc: "Workforce exposure: classification + payroll discipline." },
+        { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Worksite + workforce combined risk." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim-ready evidence discipline." },
+      ],
+    },
+
+    "workmen-compensation": {
+      seoTitle: "Workmen Compensation (WC) Guidance – Contractors & Businesses (Chennai Outskirts)",
+      seoDesc:
+        "Workmen compensation guidance for contractors and businesses. Focus: worker classification/payroll discipline, reporting timelines, and proof habits that reduce claim disputes.",
+      heroH1: "Workmen Compensation (WC) — Payroll + Classification Discipline",
+      heroP:
+        "WC claims often fail due to classification and payroll mismatches. We guide practical discipline that prevents avoidable disputes.",
+
+      coverageSummary: [
+        "WC is compliance-sensitive: worker classification and wage basis must match records.",
+        "Claims fail when payroll records are inconsistent or reporting is late."
+      ],
+
+      standardModules: {
+        title: "WC cover basics (typical)",
+        bullets: [
+          "Work injury compensation as per policy structure and statutory context (insurer terms apply)",
+          "Classification of worker categories (as applicable)",
+          "Wage/payroll record alignment (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm worker categories and nature of work",
+          "Maintain wage/payroll proof system (as applicable)",
+          "Define incident reporting workflow for supervisors",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "WC claim discipline (why disputes happen)",
+        intro:
+          "Most disputes come from classification mismatch and missing payroll proof, not from lack of coverage intent.",
+        bullets: [
+          "Maintain consistent classification and wage records",
+          "Report early; keep incident facts consistent",
+          "Preserve supporting documents (case-dependent)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Worker type/classification and payroll basis",
+          "Nature of site/work exposure",
+          "Loss history and documentation quality",
+        ],
+      },
+
+      whoFor: [
+        "Contractors and subcontractors with workforce exposure",
+        "Businesses employing workers with site/operational risk",
+        "Teams needing clean payroll/classification discipline",
+      ],
+      localFit:
+        "WC disputes commonly arise from payroll mismatch, wrong worker classification, and late reporting. Simple records reduce friction.",
+      keyCoverFocus: [
+        "Worker classification clarity (as applicable)",
+        "Payroll discipline and record consistency (as applicable)",
+        "Incident reporting timeline and documentation quality",
+        "Worksite exposure clarity when relevant",
+      ],
+      claimDocs: [
+        "Worker details + classification notes (as applicable)",
+        "Payroll/wage proof (as applicable)",
+        "Incident timeline + basic evidence (as applicable)",
+        "Policy copy + endorsements",
+      ],
+      commonMistakes: [
+        "Payroll / classification mismatch triggers disputes",
+        "Late reporting after incident",
+        "Weak incident narrative and missing documents",
+      ],
+      alsoKnownAs: ["WC policy", "Employee compensation cover", "Workmen compensation insurance"],
+      whatCanGoWrong: [
+        "Wrong classification/payroll mismatch causes disputes",
+        "Late intimation weakens timeline",
+        "Missing supporting records at the time of claim (as applicable)",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "thirumazhisai", "sriperumbudur-sipcot", "ambattur-industrial-estate"],
+        phrases: [
+          "workmen compensation red hills",
+          "wc insurance sriperumbudur sipcot",
+          "contractor wc insurance thirumazhisai",
+        ],
+      },
+      areaRealityTitle: "WC reality in contractor-heavy belts",
+      areaRealityText:
+        "WC outcomes depend on record discipline. Clean payroll/classification notes and early reporting reduce disputes.",
+      areaSignals: [
+        "Red Hills workmen compensation support",
+        "Sholavaram WC policy guidance",
+        "Chennai outskirts contractor WC insurance",
+      ],
+      internalLinks: [
+        { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/"), desc: "Worksite risk: period/scope alignment." },
+        { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Combined discipline for project + workforce." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim timeline and evidence readiness." },
+      ],
+    },
+
+    "contractor-car-wc-insurance": {
+      seoTitle: "Contractor Insurance (CAR/WC) Guidance – Chennai Outskirts",
+      seoDesc:
+        "Combined CAR/WC guidance for contractors in Chennai outskirts. Focus: worksite risk, workforce exposure, documentation discipline and claim timeline readiness.",
+      heroH1: "Contractor CAR/WC (Worksite + Workforce Reality)",
+      heroP:
+        "Contractor claims fail on avoidable gaps: timeline mismatch, payroll/classification issues, and late reporting. We guide claim-ready discipline.",
+
+      coverageSummary: [
+        "Contractors face two big risk buckets: worksite (CAR) + workforce (WC). Claims fail when these are managed separately without shared discipline.",
+        "This page connects project period/scope discipline with payroll/classification discipline for better outcomes."
+      ],
+
+      standardModules: {
+        title: "What the combined approach clarifies",
+        bullets: [
+          "CAR: project period/scope/site exposure clarity",
+          "WC: workforce classification and wage record discipline",
+          "Incident reporting workflow for both worksite and injury events",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Project dates + scope summary",
+          "Workforce list + classification approach (as applicable)",
+          "Basic reporting workflow: who reports what and when",
+          "Site photos/notes system (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (combined risks)",
+        intro:
+          "Contractor outcomes depend on early reporting and clear records—both for site losses and workforce events.",
+        bullets: [
+          "Update extensions and scope changes (CAR) promptly",
+          "Maintain payroll/classification discipline (WC) consistently",
+          "Capture evidence and keep clean timeline on day-1 (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Project value/duration and site exposure factors",
+          "Workforce classification and payroll basis (as applicable)",
+          "Loss history and documentation readiness",
+        ],
+      },
+
+      whoFor: [
+        "Contractors and subcontractors",
+        "Site-based teams with workforce exposure",
+        "Projects with equipment + public exposure near highways",
+      ],
+      localFit:
+        "Contractor claims often fail due to late reporting, payroll/classification mismatch, and unclear site exposure details.",
+      keyCoverFocus: [
+        "WC discipline (classification/payroll clarity)",
+        "CAR discipline (site exposure + project period alignment)",
+        "Third-party exposure awareness at active sites",
+        "Incident reporting timelines + proof trail discipline",
+      ],
+      claimDocs: [
+        "Work order / contract basics (as applicable)",
+        "Workforce classification/payroll proof (as applicable)",
+        "Site photos + incident timeline + reports",
+        "Policy copy + endorsements",
+      ],
+      commonMistakes: [
+        "Wrong worker classification/payroll mismatch",
+        "Project period/extension not aligned",
+        "Late reporting after incident",
+      ],
+      alsoKnownAs: ["Contractor insurance", "CAR policy", "WC policy", "Construction contractor cover"],
+      whatCanGoWrong: [
+        "Payroll/classification mismatch triggers disputes",
+        "Site timeline/scope mismatch vs policy period",
+        "Late reporting after incident",
+        "Missing site proof and incident sequence clarity",
+      ],
+      localLanding: {
+        primaryLocations: ["poonamallee-bypass", "thirumazhisai", "sriperumbudur-sipcot", "oragadam-outskirts"],
+        phrases: [
+          "contractor insurance sriperumbudur",
+          "car wc insurance oragadam outskirts",
+          "contractor car wc poonamallee bypass",
+        ],
+      },
+      areaRealityTitle: "Contractor insurance reality in Chennai outskirts worksites",
+      areaRealityText:
+        "Site claims get judged by timeline and records. Keeping basic site notes, workforce records (as applicable) and early reporting prevents delays.",
+      areaSignals: [
+        "Sholavaram contractor insurance guidance",
+        "Red Hills contractor CAR WC support",
+        "Chennai outskirts contractor policy consultant",
+      ],
+      internalLinks: [
+        { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/"), desc: "Worksite period and scope discipline." },
+        { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/"), desc: "Payroll/classification discipline for WC." },
+        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/"), desc: "High-value equipment exposure." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure at sites." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow guidance." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // BUSINESS & MSME
+  // /en/services/business-msme/{service}/
+  // =====================================================
+  "business-msme": {
+    "shop-msme-insurance": {
+      seoTitle: "Shop & MSME Package Insurance Guidance – Sholavaram, Red Hills & Chennai North",
+      seoDesc:
+        "Claim-first guidance for shops, offices and MSMEs across Sholavaram, Red Hills, Madhavaram and Chennai. Focus: wording, valuation and proof discipline to reduce claim delays.",
+      heroH1: "Shop & MSME Package Insurance (Claim-first Guidance)",
+      heroP:
+        "For shops, offices and MSMEs operating in NH-facing and industrial belts—coverage clarity that matches real operations, with documentation habits that protect claims later.",
+
+      coverageSummary: [
+        "MSME policies fail at claim time when sum insured is unrealistic, valuation basis is unclear, or proof trail is missing.",
+        "This page explains standard modules, renewal checks, and the documentation habits that reduce average-clause reductions and delays."
+      ],
+
+      whoFor: [
+        "Local shops, offices, showrooms and service businesses",
+        "Small units with stock + electrical fire load exposure",
+        "Owners renewing without clarity on sum insured and inclusions",
+      ],
+
+      standardModules: {
+        title: "Standard MSME coverage modules (typical structure)",
+        bullets: [
+          "Fire & allied perils (building/contents/stock as applicable)",
+          "Burglary/theft (subject to security conditions)",
+          "Money in transit / cash in safe (optional; business-dependent)",
+          "Public liability (optional but important for visitor-facing premises)",
+          "Fidelity / employee dishonesty (optional; case-dependent)",
+          "Plate glass / signboard and other add-ons (case-dependent)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew (simple checklist)",
+        bullets: [
+          "Confirm correct business activity description (avoid wording mismatch)",
+          "Create a basic stock/assets list with approximate values",
+          "Keep 3–6 invoices or proof samples (as applicable) for valuation support",
+          "Take a few photos of premises, storage layout and safety setup (as applicable)",
+          "Decide whether visitor/public exposure requires public liability add-on",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks that protect MSME claims",
+        bullets: [
+          "Sum insured reflects real stock/assets (avoid underinsurance/average clause reduction)",
+          "Stock proof discipline exists (invoices/registers/photos as applicable)",
+          "Security/safety conditions understood and maintained (as applicable)",
+          "Operations changed? Update policy wording (avoid activity mismatch disputes)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "MSME claim discipline (why small businesses lose claims)",
+        intro:
+          "MSME claims usually fail due to valuation/proof gaps, not because coverage is impossible. The most common settlement reduction is underinsurance (average clause risk) when sum insured is far below real value.",
+        bullets: [
+          "Align sum insured to current reality (avoid average clause reductions)",
+          "Keep basic proof trail: invoices/registers + periodic photos (as applicable)",
+          "Record changes in stored goods, layout or business activity (update policy when needed)",
+          "Maintain a simple incident timeline + early reporting discipline",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance (without prices)",
+        bullets: [
+          "Sum insured and valuation basis (stock/contents/equipment)",
+          "Business activity and disclosure accuracy (operations must match wording)",
+          "Location risk indicators (fire load, warehouse density, public access, loss history)",
+          "Security and safety measures (locks, shutters, extinguishers, wiring condition as applicable)",
+          "Claim history and documentation readiness",
+        ],
+      },
+
+      localFit:
+        "In Chennai outskirts, business risk often combines storage + public interaction + highway movement. Small wording gaps (stock declaration, theft conditions, electrical fire) are common claim friction points.",
+
+      keyCoverFocus: [
+        "Correct sum insured and valuation logic (avoid underinsurance)",
+        "Stock proof discipline (invoices, registers, photos, declarations)",
+        "Burglary/fire conditions that affect claim acceptance",
+        "Add-ons that matter when operations differ from standard retail",
+      ],
+
+      claimDocs: [
+        "Invoice / stock proof and valuation basis",
+        "Premises photos + safety setup proof (as applicable)",
+        "Policy copy + endorsements + declaration history (if any)",
+        "Incident timeline + supporting documents (when claim happens)",
+      ],
+
+      commonMistakes: [
+        "Sum insured selected randomly (settlement reduced later)",
+        "Stock declaration mismatch (major dispute trigger)",
+        "Not maintaining basic proof trail for goods / assets",
+        "Assuming online purchase wording covers real operations",
+      ],
+
+      alsoKnownAs: ["Shop insurance", "MSME package insurance", "Office insurance", "Commercial package policy"],
+
+      whatCanGoWrong: [
+        "Underinsurance reduces settlement (average clause risk)",
+        "No stock proof trail (invoice/register mismatch)",
+        "Security/safety conditions not met (as applicable)",
+        "Business activity mismatch vs policy wording",
+      ],
+
+      localLanding: {
+        primaryLocations: ["kolathur-commercial-pockets", "perambur", "ambattur", "red-hills", "sholavaram"],
+        phrases: [
+          "msme insurance red hills",
+          "shop insurance kolathur commercial pockets",
+          "office insurance ambattur",
+          "commercial package policy perambur",
+        ],
+      },
+
+      areaRealityTitle: "Shop/MSME insurance reality around Sholavaram + Red Hills belts",
+      areaRealityText:
+        "Warehouse-heavy corridors increase proof scrutiny. Clean invoices/stock records and a simple operations summary prevent avoidable disputes.",
+
+      areaSignals: [
+        "Sholavaram shop insurance guidance",
+        "Red Hills MSME insurance support",
+        "Madhavaram shop office package insurance",
+        "Chennai outskirts commercial insurance consultant",
+      ],
+
+      faqs: [
+        {
+          q: "Is this only for big companies?",
+          a:
+            "No. MSME and small businesses benefit most because claim issues usually happen due to missing proof or wrong valuation—not because coverage is impossible.",
+        },
+        {
+          q: "What should I keep ready before calling?",
+          a:
+            "Business type, exact location, approximate stock/assets value, and existing policy details (if any). If you store stock, keep basic proof (invoices/register/photos).",
+        },
+      ],
+
+      internalLinks: [
+        { label: "Fire & Burglary", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property cover and condition awareness." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for visitor-facing businesses." },
+        { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Warehouse valuation + proof discipline." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow, documents checklist, timelines." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // HEAVY EQUIPMENT
+  // /en/services/heavy-equipment/{service}/
+  // =====================================================
+  "heavy-equipment": {
+    "crane-cpm-insurance": {
+      seoTitle: "Crane & Heavy Equipment (CPM) Insurance Guidance – Sholavaram / Red Hills",
+      seoDesc:
+        "High-premium CPM insurance guidance for cranes and heavy equipment in NH and industrial worksites. Focus: declared value, third-party risk and claim documentation discipline.",
+      heroH1: "Crane / Heavy Equipment (CPM) — Declared Value Discipline",
+      heroP:
+        "High-premium equipment claims get scrutinized on value + usage + timeline. We guide declared value logic and proof discipline to reduce disputes.",
+
+      coverageSummary: [
+        "CPM claims are value-sensitive: declared value must be defensible with proof/valuation.",
+        "Worksite + NH movement increases third-party exposure; incident evidence and reporting speed matter."
+      ],
+
+      standardModules: {
+        title: "Typical CPM coverage factors to clarify",
+        bullets: [
+          "Declared value / valuation basis (critical)",
+          "Usage/site exposure disclosure (worksite vs public zones)",
+          "Optional third-party liability linkage (case-dependent)",
+          "Maintenance/inspection record discipline (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Keep purchase invoice/valuation proof ready",
+          "Write usage summary (where operated, typical site exposure)",
+          "Maintain basic maintenance/inspection file (as applicable)",
+          "Define incident reporting SOP (photos + timeline)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "CPM claim discipline (high-premium reality)",
+        intro:
+          "High premium does not guarantee smooth settlement. Proof and valuation discipline do.",
+        bullets: [
+          "Declared value must match proof/valuation",
+          "Evidence and timeline discipline on day-1",
+          "Clear usage disclosure reduces disputes",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Equipment value, type and age",
+          "Usage exposure (public zones, worksites, NH movement)",
+          "Maintenance record discipline and loss history (as applicable)",
+        ],
+      },
+
+      whoFor: [
+        "Crane owners and operators",
+        "Equipment rental businesses",
+        "Contractors using heavy equipment at worksites",
+      ],
+      localFit:
+        "NH belts and worksites increase third-party exposure. Wrong declared value and unclear usage details are common dispute triggers.",
+      keyCoverFocus: [
+        "Declared value logic (settlement depends on it)",
+        "Usage/site exposure alignment (avoid wording gaps)",
+        "Third-party exposure near highways and public zones",
+        "Maintenance/inspection discipline (as applicable)",
+      ],
+      claimDocs: [
+        "Purchase value / valuation basis",
+        "Equipment details + usage context",
+        "Photos + maintenance/inspection records (as applicable)",
+        "Incident timeline + supporting docs",
+      ],
+      commonMistakes: [
+        "Declared value chosen too low to save premium",
+        "Not clarifying how/where equipment is used",
+        "Missing proof trail when incident occurs",
+      ],
+      alsoKnownAs: ["CPM insurance", "Contractor’s plant & machinery insurance", "Crane insurance", "Heavy equipment insurance"],
+      whatCanGoWrong: [
+        "Declared value not supported by proof/valuation",
+        "Usage/site exposure mismatch vs proposal",
+        "Delay in intimation leading to timeline disputes",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "sholavaram", "thirumazhisai", "sriperumbudur-sipcot"],
+        phrases: [
+          "crane insurance red hills",
+          "cpm insurance sholavaram",
+          "heavy equipment insurance sriperumbudur",
+          "crane cpm insurance thirumazhisai",
+        ],
+      },
+      areaRealityTitle: "Crane / CPM reality around NH + industrial worksites",
+      areaRealityText:
+        "Equipment claims are proof-driven. Keeping valuation proof and basic records reduces dispute risk.",
+      areaSignals: [
+        "Sholavaram crane insurance support",
+        "Red Hills heavy equipment insurance",
+        "Chennai outskirts CPM insurance consultant",
+      ],
+      internalLinks: [
+        { label: "Crane Third-Party Liability Basics", href: EN("/services/heavy-equipment/crane-liability/"), desc: "Third-party risk near public zones." },
+        { label: "Construction (CAR/WC)", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Worksite + workforce combined risk." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure and notices discipline." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+
+    "crane-liability": {
+      seoTitle: "Crane Third-Party Liability Basics – NH + Worksite Exposure (Chennai Outskirts)",
+      seoDesc:
+        "Practical guidance on third-party liability exposure for cranes and heavy equipment operating near highways and worksites. Focus: incident reporting, evidence quality and coverage clarity.",
+      heroH1: "Crane Third-Party Liability (Exposure Basics)",
+      heroP:
+        "Third-party incidents escalate fast around public zones. We guide evidence discipline and coverage clarity to reduce disputes.",
+
+      coverageSummary: [
+        "Liability is evidence-driven: incident details, witnesses, and timely reporting matter as much as the policy wording.",
+        "This page explains what to record and how to avoid common liability disputes."
+      ],
+
+      standardModules: {
+        title: "Liability basics (what is usually evaluated)",
+        bullets: [
+          "Incident reporting timeline and evidence quality",
+          "Notices/letters handling discipline (as applicable)",
+          "Operational mismatch vs wording is the biggest dispute driver",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Define where equipment is used (public zone vs controlled worksite)",
+          "Set incident SOP: who reports, what evidence is captured",
+          "Maintain basic contract/authorization trail when relevant (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Liability claim discipline",
+        intro:
+          "Liability disputes grow when evidence is weak or reporting is late. Clean reporting reduces escalation risk.",
+        bullets: [
+          "Keep timeline, witnesses, photos/videos (as applicable)",
+          "Report early and preserve incident notes",
+          "Maintain notices/letters file if received (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Public exposure intensity and operating environment",
+          "Loss history and incident control discipline",
+          "Scope clarity: what work is performed and where",
+        ],
+      },
+
+      whoFor: [
+        "Crane operators working near highways/public movement",
+        "Equipment rental businesses handling public exposure",
+        "Contractors coordinating lifting operations (as applicable)",
+      ],
+      localFit:
+        "NH belts increase public interaction and third-party risk. Liability outcomes depend on incident detail quality and timely reporting.",
+      keyCoverFocus: [
+        "Understanding third-party exposure around public zones",
+        "Incident reporting timeline discipline",
+        "Evidence quality: photos, witnesses, notes (as applicable)",
+        "Clarity on what gets covered vs typical exclusions",
+      ],
+      claimDocs: [
+        "Incident timeline + witnesses (as applicable)",
+        "Photos/videos (as applicable)",
+        "Notices/letters received (as applicable)",
+        "Policy wording + endorsements",
+      ],
+      commonMistakes: [
+        "Late notice/reporting after incident",
+        "Poor incident details and weak evidence",
+        "Operations mismatch vs wording assumptions",
+      ],
+      alsoKnownAs: ["Third-party liability for crane", "Crane liability cover", "Equipment liability basics"],
+      whatCanGoWrong: [
+        "Late reporting weakens the timeline",
+        "Weak evidence creates disputes",
+        "Wording assumptions cause gaps",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "sholavaram", "nh-manali-road", "sriperumbudur-sipcot"],
+        phrases: [
+          "crane liability red hills",
+          "heavy equipment third party liability sholavaram",
+          "liability insurance nh manali road",
+        ],
+      },
+      areaRealityTitle: "Liability reality near highways and public zones",
+      areaRealityText:
+        "Small incidents become expensive disputes if reporting/evidence is weak. Clean documentation and timely notice reduce friction.",
+      areaSignals: [
+        "Chennai outskirts crane liability guidance",
+        "Sholavaram heavy equipment third party risk",
+        "Red Hills crane insurance liability support",
+      ],
+      internalLinks: [
+        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/"), desc: "Declared value + usage clarity discipline." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for businesses and sites." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Evidence and timeline discipline." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // LIABILITY
+  // /en/services/liability/{service}/
+  // =====================================================
+  "liability": {
+    "public-liability": {
+      seoTitle: "Public Liability Insurance Guidance – Chennai Outskirts Businesses",
+      seoDesc:
+        "Liability guidance for businesses with public interaction, site exposure and NH-facing risk. Practical focus: what gets covered, common exclusions, and evidence discipline.",
+      heroH1: "Public Liability (Third-Party Risk) — Guidance",
+      heroP:
+        "Third-party incidents become expensive fast. We guide liability coverage clarity for businesses operating near highways, storage and public interaction zones.",
+
+      coverageSummary: [
+        "Public liability is about third-party exposure. The biggest failures happen when business operations and visitor exposure are not properly disclosed, or incident evidence is weak.",
+        "This page helps businesses understand how liability claims work and what to record when an incident happens."
+      ],
+
+      standardModules: {
+        title: "Public liability basics (what is evaluated)",
+        bullets: [
+          "Nature of third-party exposure (visitors, vendors, public access)",
+          "Incident evidence quality (timeline, witnesses, photos as applicable)",
+          "Notices/letters handling discipline (as applicable)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "List visitor/public interaction points (entry, loading bays, waiting areas)",
+          "Maintain basic incident SOP for staff",
+          "Keep contract/vendor movement notes if relevant (as applicable)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Liability claim discipline",
+        intro:
+          "Liability disputes are evidence disputes. Clear incident facts, timely reporting, and records reduce escalation risk.",
+        bullets: [
+          "Collect witness details and photos/videos (as applicable)",
+          "Keep a clean incident timeline",
+          "Preserve notices/letters and respond correctly (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Public exposure intensity and business type",
+          "Past loss history and risk controls",
+          "Operational disclosure accuracy",
+        ],
+      },
+
+      whoFor: [
+        "Warehouses and factories with visitors/vendor movement",
+        "Contractors and site-based teams",
+        "Businesses near highways with higher public exposure",
+      ],
+      localFit:
+        "Highway/industrial belts see higher interaction risk. Liability claims depend on incident detail quality and timely reporting.",
+      keyCoverFocus: [
+        "What liability covers vs typical exclusions",
+        "Where wording gaps occur (site exposure, operations mismatch)",
+        "Incident reporting discipline and documentation quality",
+      ],
+      claimDocs: [
+        "Incident timeline + witnesses (as applicable)",
+        "Photos/videos (as applicable)",
+        "Any notices/letters received (as applicable)",
+        "Policy wording + endorsements",
+      ],
+      commonMistakes: [
+        "Buying liability without aligning operations",
+        "Late notice/reporting after incident",
+        "Not maintaining incident detail quality",
+      ],
+      alsoKnownAs: ["Third-party liability policy", "Public liability cover", "Liability insurance for businesses"],
+      whatCanGoWrong: [
+        "Operations mismatch vs wording causes disputes",
+        "Late reporting weakens the timeline",
+        "Weak evidence quality (as applicable)",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "madhavaram", "manali", "ambattur-industrial-estate", "kolathur-commercial-pockets"],
+        phrases: [
+          "public liability red hills",
+          "third party liability madhavaram warehouse",
+          "liability insurance manali industrial",
+          "public liability ambattur industrial estate",
+        ],
+      },
+      areaRealityTitle: "Liability reality around NH-facing businesses",
+      areaRealityText:
+        "Near highways and industrial zones, small incidents escalate quickly. Clean reporting, notices handling and evidence discipline reduce disputes.",
+      areaSignals: [
+        "Chennai outskirts public liability insurance",
+        "Red Hills third party liability support",
+        "Sholavaram liability insurance guidance",
+      ],
+      internalLinks: [
+        { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "Visitor-facing businesses often need liability add-ons." },
+        { label: "Construction (CAR/WC)", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Site and workforce exposures." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Incident timeline and proof discipline." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // CLAIMS SUPPORT
+  // /en/services/claims-support/{service}/
+  // =====================================================
+  "claims-support": {
+    "claim-support": {
+      seoTitle: "Claim Support & Documentation Guidance – Sholavaram (Chennai Outskirts)",
+      seoDesc:
+        "Claim-first guidance: reporting steps, document checklist, timeline discipline and practical clarity to reduce delays for commercial, transport and industrial claims.",
+      heroH1: "Claim Support (Documents + Timelines + Process)",
+      heroP:
+        "Claim success depends on documentation quality and timeline discipline. We guide practical steps to reduce avoidable delays and confusion.",
+
+      coverageSummary: [
+        "This is not a guarantee service. It is a guidance workflow: correct steps, correct documents, and clean timelines so claims don’t get delayed for avoidable reasons.",
+        "It helps most when incidents occur in NH belts, industrial corridors, or when stock/valuation proof is required (as applicable)."
+      ],
+
+      standardModules: {
+        title: "What claim support guidance typically includes",
+        bullets: [
+          "First steps checklist (what to do in first minutes/hours)",
+          "Document checklist by case type (as applicable)",
+          "Timeline discipline (incident sequence clarity)",
+          "Survey/inspection workflow awareness (insurer-controlled)",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before any incident happens (prepare now)",
+        bullets: [
+          "Keep policy copy + endorsements accessible",
+          "Maintain basic proof trail: invoices/registers/photos (as applicable)",
+          "Have a simple incident reporting template ready (who/what/when/where)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (what decides momentum)",
+        intro:
+          "The first timeline and first documents decide momentum. Most delays are avoidable with basic discipline.",
+        bullets: [
+          "Early intimation/reporting",
+          "First-day photos/videos (as applicable) before repairs",
+          "Clean incident sequence and supporting records",
+          "Survey/inspection steps followed where required",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects claim timelines (not pricing)",
+        bullets: [
+          "Evidence quality and reporting time",
+          "Policy wording fit and disclosure clarity",
+          "Survey/inspection scheduling (insurer controlled)",
+          "Proof trail quality for valuation/stock (as applicable)",
+        ],
+      },
+
+      whoFor: [
+        "Commercial/industrial businesses preparing for claims",
+        "Vehicle owners needing claim steps clarity",
+        "People stuck due to missing proof or late reporting",
+      ],
+      localFit:
+        "In NH/industrial belts, claims often involve third-party exposure, stock proof scrutiny and survey workflows. A clean proof trail improves outcomes.",
+      keyCoverFocus: [
+        "What to report and when (timeline discipline)",
+        "Which proofs matter (photos/invoices/registers)",
+        "How to avoid common settlement reductions",
+      ],
+      claimDocs: [
+        "Policy copy + endorsements",
+        "Incident timeline + photos/videos",
+        "Invoices/valuation/stock proof (as applicable)",
+        "Reports/letters/notices (as applicable)",
+      ],
+      commonMistakes: [
+        "Late intimation/reporting",
+        "No clear incident timeline",
+        "Missing valuation/stock proof",
+        "Assuming forms alone are enough",
+      ],
+      alsoKnownAs: ["Claim assistance", "Claim documentation support", "Claim guidance"],
+      whatCanGoWrong: [
+        "Late reporting changes the timeline narrative",
+        "Missing first-day photos/proof (as applicable)",
+        "Invoice/valuation gaps reduce settlement",
+        "Policy wording assumptions cause disputes",
+      ],
+      localLanding: {
+        primaryLocations: ["sholavaram", "red-hills", "madhavaram", "manali", "sriperumbudur-sipcot"],
+        phrases: [
+          "insurance claim help red hills",
+          "commercial claim documentation madhavaram",
+          "warehouse claim documents manali",
+          "claim support sholavaram",
+        ],
+      },
+      areaRealityTitle: "Claim reality in NH + industrial belts",
+      areaRealityText:
+        "The first timeline and first documents decide momentum. Clear reporting, organized proofs and correct disclosures reduce avoidable delays.",
+      areaSignals: [
+        "Sholavaram insurance claim support",
+        "Red Hills claim guidance",
+        "Madhavaram commercial claim documentation help",
+      ],
+      faqs: [
+        {
+          q: "Do you handle the claim or guide the process?",
+          a:
+            "We provide step-by-step guidance and document clarity so you can move correctly and avoid delays. Exact handling depends on insurer process and case type.",
+        },
+      ],
+      internalLinks: [
+        { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/"), desc: "Fleet SOP: renewals + incident reporting discipline." },
+        { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Stock proof and valuation discipline." },
+        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/"), desc: "Declared value and proof discipline." },
+        { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "MSME modules + valuation discipline." },
+        { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure and notices handling." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // MARINE
+  // /en/services/marine/{service}/
+  // =====================================================
+  "marine": {
+    "marine-cargo-goods-in-transit-insurance": {
+      seoTitle: "Marine Cargo / Goods-in-Transit Guidance – NH Belt Transport & Logistics",
+      seoDesc:
+        "Transit insurance guidance for cargo movement from Chennai outskirts/NH corridors. Focus: invoice proof, packaging clarity, route documentation and claim discipline.",
+      heroH1: "Marine Cargo / Goods-in-Transit (Transit Discipline)",
+      heroP:
+        "Transit claims succeed when invoice/packing/route proof is clean. We guide practical habits for NH movement and logistics operations.",
+
+      coverageSummary: [
+        "Transit claims succeed on documentation: invoice, packing, dispatch/receipt trail, and timely reporting.",
+        "This page explains what proof matters most and how to prevent common disputes."
+      ],
+
+      standardModules: {
+        title: "Transit cover modules (typical)",
+        bullets: [
+          "Declared goods and invoice value clarity",
+          "Packing condition and proof discipline (as applicable)",
+          "Dispatch/receipt and route documentation trail",
+        ],
+      },
+
+      preBuyChecklist: {
+        title: "Before you buy or renew transit cover",
+        bullets: [
+          "Maintain invoice + packing list discipline",
+          "Capture packing condition photos for fragile/high-value goods (as applicable)",
+          "Keep dispatch/receipt proof process consistent",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Transit claim discipline",
+        intro:
+          "Transit losses quickly become documentation disputes. Proof trail quality decides outcomes.",
+        bullets: [
+          "Report quickly and preserve packaging evidence (as applicable)",
+          "Maintain dispatch/receipt and route trail",
+          "Keep invoice and declared goods consistent",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Goods type/value, packing, route exposure",
+          "Loss history and proof discipline",
+          "Mode of transport and handling processes",
+        ],
+      },
+
+      whoFor: [
+        "Logistics operators moving goods on NH corridors",
+        "Businesses shipping high-value goods",
+        "Import/export-related movement (as applicable)",
+      ],
+      localFit:
+        "Transit losses often become documentation disputes. Invoice proof, packing condition and timely reporting decide outcomes.",
+      keyCoverFocus: [
+        "Invoice/packing proof discipline",
+        "Route/mode clarity (avoid claim disputes)",
+        "Incident reporting + survey workflow awareness",
+      ],
+      claimDocs: [
+        "Invoice + packing list + dispatch/receipt proof",
+        "Photos of packing condition (as applicable)",
+        "Transport documents + incident timeline",
+      ],
+      commonMistakes: [
+        "No packing proof for fragile/high-value goods",
+        "Late reporting after transit incident",
+        "Mismatch between declared goods and actual shipment",
+      ],
+      alsoKnownAs: ["Goods in transit insurance", "Transit insurance", "Marine cargo policy"],
+      whatCanGoWrong: [
+        "Missing packing proof for damage claims",
+        "Invoice / declared goods mismatch",
+        "Delay in reporting affects survey workflow",
+      ],
+      localLanding: {
+        primaryLocations: ["red-hills", "madhavaram", "manali", "sholavaram"],
+        phrases: [
+          "goods in transit insurance red hills",
+          "marine cargo insurance madhavaram",
+          "transit insurance manali logistics",
+        ],
+      },
+      areaRealityTitle: "Transit claim reality in NH corridors",
+      areaRealityText:
+        "Transit claims are proof-driven: invoice, packing, dispatch/receipt trail, and timely reporting. Clean documentation reduces avoidable delays.",
+      areaSignals: [
+        "Chennai marine cargo insurance support",
+        "NH belt goods in transit insurance guidance",
+        "Red Hills logistics transit insurance",
+      ],
+      internalLinks: [
+        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH movement exposure and claims readiness." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline and evidence discipline." },
+      ],
+    },
+  },
+
+  // =====================================================
+  // PERSONAL
+  // /en/services/personal/{service}/
+  // =====================================================
+  "personal": {
+    "taxi-cab-insurance": {
+      seoTitle: "Taxi / Cab Insurance Guidance – Chennai (Support)",
+      seoDesc:
+        "Practical taxi/cab insurance guidance: usage clarity, add-on fit, and basic claim-step discipline for operators across Chennai.",
+      heroH1: "Taxi / Cab Insurance (Usage Clarity)",
+      heroP:
+        "Taxi operations face frequent usage and claim workflow situations. We guide simple clarity and documentation habits.",
+
+      coverageSummary: [
+        "Cab/taxi policies are sensitive to usage disclosure. Many disputes happen when usage category does not match real operations.",
+        "This page helps with renewal checks and basic claim-step discipline."
+      ],
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm usage category and operating area disclosure",
+          "Keep previous policy copy and renewal dates ready",
+          "Know basic claim steps before an incident happens",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks",
+        bullets: [
+          "Usage category and wording fit",
+          "Avoid expiry gaps",
+          "Basic claim-step readiness (photos + reporting)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline",
+        intro:
+          "Most delays are avoidable: early reporting and basic photo evidence matters.",
+        bullets: [
+          "Report early and keep clean timeline",
+          "Capture photos before repairs (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle type, age, claim history",
+          "Usage disclosures and operating pattern",
+          "Add-ons selected (case-dependent)",
+        ],
+      },
+
+      whoFor: [
+        "Taxi/cab owners and operators",
+        "Drivers renewing without verifying usage fit",
+      ],
+      localFit:
+        "Taxi usage creates frequent exposure. Clean reporting and basic document discipline helps during claims.",
+      keyCoverFocus: [
+        "Usage clarity aligned to policy wording",
+        "Basic claim-step readiness and reporting discipline",
+      ],
+      claimDocs: [
+        "Policy copy",
+        "Incident timeline + photos (as applicable)",
+        "Repair estimate (as applicable)",
+      ],
+      commonMistakes: [
+        "Usage mismatch vs policy",
+        "Late reporting after incidents",
+      ],
+      alsoKnownAs: ["Cab insurance", "Taxi policy", "Commercial cab insurance"],
+      whatCanGoWrong: ["Usage mismatch disputes", "Late reporting weakens the timeline"],
+      localLanding: {
+        primaryLocations: ["anna-nagar", "ambattur", "koyambedu", "mogappair-west"],
+        phrases: [
+          "taxi insurance anna nagar",
+          "cab insurance ambattur",
+          "commercial cab insurance koyambedu",
+        ],
+      },
+      areaRealityTitle: "Taxi claim reality (city usage)",
+      areaRealityText:
+        "Most issues are workflow issues. Clean reporting and basic documentation prevents avoidable delays.",
+      areaSignals: ["Chennai taxi insurance support", "Cab insurance guidance Chennai"],
+      internalLinks: [
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+
+    "car-insurance-support": {
+      seoTitle: "Private Car Insurance Support – Chennai (Major Areas)",
+      seoDesc:
+        "Private car renewal support: IDV/NCB checks, add-on clarity and basic claim-step guidance across Chennai major areas.",
+      heroH1: "Private Car Insurance Support (Renewal Checks + Clarity)",
+      heroP:
+        "Renewals are where most mistakes happen. We help you verify IDV/NCB, add-on fit and basic claim steps.",
+
+      coverageSummary: [
+        "Car renewals fail when IDV/NCB/add-ons are chosen blindly. This page explains simple checks that prevent future surprises.",
+        "It is designed for renewals and claim-step clarity (no claim guarantees)."
+      ],
+
+      renewalChecks: {
+        title: "Renewal checks that matter most",
+        bullets: [
+          "IDV realism (especially for older vehicles)",
+          "NCB accuracy and claim history alignment",
+          "Add-ons chosen based on usage (not default)",
+          "Avoid coverage gaps around expiry date",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle age, IDV, claim history and NCB",
+          "Add-ons selected",
+          "Usage pattern and insurer rules (case-dependent)",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline (simple but important)",
+        intro:
+          "Most delays are avoidable: early reporting, photos before repair, and a clean timeline.",
+        bullets: [
+          "Report early; keep a clean incident narrative",
+          "Capture photos/videos before repairs (as applicable)",
+        ],
+      },
+
+      whoFor: [
+        "Private car owners renewing policies",
+        "Owners wanting clarity on add-ons and claim steps",
+      ],
+      localFit:
+        "Across city usage, renewal mistakes (IDV/NCB/add-ons) create surprises later. Quick checks prevent that.",
+      keyCoverFocus: [
+        "IDV and NCB checks",
+        "Add-on selection aligned to usage",
+        "Basic claim-step readiness",
+      ],
+      claimDocs: ["Policy copy", "Incident photos (as applicable)", "Repair estimate (as applicable)"],
+      commonMistakes: ["Wrong IDV/NCB assumptions", "Add-ons chosen without usage fit"],
+      alsoKnownAs: ["Car policy support", "Car insurance renewal help"],
+      whatCanGoWrong: ["Wrong IDV/NCB assumptions", "Delay in reporting (as applicable)"],
+      localLanding: {
+        primaryLocations: ["anna-nagar", "ambattur", "kolathur", "koyambedu", "mogappair-west"],
+        phrases: [
+          "car insurance renewal anna nagar",
+          "car insurance ambattur",
+          "private car insurance koyambedu",
+        ],
+      },
+      areaRealityTitle: "Car renewal reality",
+      areaRealityText:
+        "Small renewal mistakes create big claim surprises. Simple checks reduce that risk.",
+      areaSignals: ["Chennai car insurance renewal support", "Private car insurance guidance Chennai"],
+      internalLinks: [
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+
+    "bike-insurance-support": {
+      seoTitle: "Two-Wheeler Insurance Support – Chennai (Major Areas)",
+      seoDesc:
+        "Two-wheeler renewal support: add-on clarity and basic claim-step guidance across Chennai major areas.",
+      heroH1: "Two-Wheeler Insurance Support (Simple Clarity)",
+      heroP:
+        "Quick renewal checks and basic claim-step clarity help avoid surprises later.",
+
+      coverageSummary: [
+        "Two-wheeler renewals are often done fast and blindly. This page explains the minimal checks that prevent later confusion.",
+        "Focus is on renewal discipline and claim-step readiness."
+      ],
+
+      renewalChecks: {
+        title: "Renewal checks",
+        bullets: [
+          "Coverage gaps around expiry date avoided",
+          "Add-ons selected based on usage (case-dependent)",
+          "Basic claim-step readiness before incidents",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle type/age and claim history",
+          "Add-ons selected (case-dependent)",
+          "Insurer rules and policy type",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline",
+        intro:
+          "Two-wheeler claims get delayed when reporting is late or photos are missing. Keep it simple and early.",
+        bullets: [
+          "Report early and capture photos (as applicable)",
+          "Maintain clean incident timeline",
+        ],
+      },
+
+      whoFor: [
+        "Two-wheeler owners renewing policies",
+        "Owners wanting simple add-on clarity",
+      ],
+      localFit:
+        "Most problems are avoidable: renew with clarity, keep basic documents ready, and know reporting steps.",
+      keyCoverFocus: ["Add-on clarity", "Basic claim-step readiness"],
+      claimDocs: ["Policy copy", "Incident photos (as applicable)"],
+      commonMistakes: ["Ignoring claim steps until incident happens"],
+      alsoKnownAs: ["Bike insurance support", "Two-wheeler renewal help"],
+      whatCanGoWrong: ["Late reporting (as applicable)", "Add-on mismatch"],
+      localLanding: {
+        primaryLocations: ["kolathur", "perambur", "ambattur", "anna-nagar"],
+        phrases: [
+          "bike insurance renewal kolathur",
+          "two wheeler insurance ambattur",
+          "bike insurance perambur",
+        ],
+      },
+      areaRealityTitle: "Two-wheeler policy support reality",
+      areaRealityText:
+        "Small clarity now prevents big confusion later.",
+      areaSignals: ["Chennai bike insurance renewal support", "Two-wheeler insurance guidance Chennai"],
+      internalLinks: [
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+  },
+}
+
+let locationsDetails = {
   // ====== PRIORITY BELT: Sholavaram ↔ Madhavaram corridor ======
 sholavaram: {
     name: "Sholavaram",
@@ -1261,80 +3782,2056 @@ sholavaram: {
   },
 }
 
-// ✅ Single source of truth for index (no mismatch)
-export const buildLocationsIndexFromDetail = (locationsDetail) => {
-  const detail = locationsDetail || {};
-  const has = (slug) => !!detail[slug];
+// ✅ UNIQUE ENRICHMENT PER LOCATION (NO GENERIC TEMPLATE TEXT)
+//
+// These fields are intentionally unique for each slug.
+// Keep them truthful: no fake counts, no fake branches.
 
-  // Order = your business priority
-  const NH_PRIORITY = [
+const LOC_ENRICH = {
+  sholavaram: {
+    locationType: "hub-office",
+    anchorAndCoordination: {
+      title: "Sholavaram support hub (what happens here)",
+      intro:
+        "Sholavaram is our primary coordination point. This page exists to explain how policies, renewals and claim documentation are handled from one hub while supporting multiple nearby belts.",
+      bullets: [
+        "Policy servicing and document verification are handled from Sholavaram (central checklist + insurer workflow alignment).",
+        "Commercial cases often require stricter usage/disclosure alignment before renewal to prevent disputes later.",
+        "If an inspection/survey is required, we guide the exact sequence so the claim file doesn’t get delayed due to avoidable gaps.",
+      ],
+    },
+    localLandmarks: {
+      title: "Local reference points people search around",
+      note:
+        "These are reference points used in searches. Support is anchored to our Sholavaram office (not multiple branches).",
+      items: [
+        "Sholavaram town / junction references",
+        "NH-facing belts connecting towards Red Hills / Madhavaram side",
+        "Industrial-corridor connectors towards SIPCOT-side routes (as applicable)",
+      ],
+    },
+    commonRequests: {
+      title: "What people usually ask for in Sholavaram",
+      items: [
+        "Transport renewals: aligning RC/usage with policy wording and endorsements (as applicable).",
+        "Warehouse/property guidance: valuation basis + proof readiness (as applicable).",
+        "Claims: first reporting steps + document checklist discipline to reduce avoidable follow-ups.",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first (fast checklist)",
+      bullets: [
+        "Previous policy copy + expiry date.",
+        "For vehicles: RC details + usage summary; permit/fitness dates if applicable.",
+        "For claim help: incident time/location + photos + short sequence of events.",
+      ],
+    },
+    intentSearchSignals: [
+      "insurance office sholavaram",
+      "commercial insurance sholavaram",
+      "insurance renewal sholavaram",
+      "insurance claim help sholavaram",
+      "fleet insurance near sholavaram",
+    ],
+    nearbyAreas: {
+      title: "Closest service-area pages",
+      items: [
+        { label: "Red Hills", href: EN("/locations/red-hills/"), desc: "NH-facing movement + storage exposure guidance." },
+        { label: "Madhavaram", href: EN("/locations/madhavaram/"), desc: "City-edge corridor: motor + SME + commercial vehicle mix." },
+        { label: "Puzhal", href: EN("/locations/puzhal/"), desc: "Connector belt: renewals + claim steps + SME packages." },
+        { label: "Karanodai", href: EN("/locations/karanodai/"), desc: "NH belt: fleet/lorry discipline + claim timeline focus." },
+      ],
+    },
+  },
+
+  "red-hills": {
+    locationType: "nh-logistics",
+    anchorAndCoordination: {
+      title: "Red Hills (NH-facing belt) – why this page exists",
+      intro:
+        "Red Hills queries are frequently transport- and storage-linked. This page focuses on what actually changes outcomes in NH-facing belts: document discipline, incident timeline quality, and renewal alignment.",
+      bullets: [
+        "Fleet/commercial renewals: we help keep vehicle lists and expiry discipline clean; permit/fitness details matter where applicable.",
+        "Claims: NH-facing incidents often become timeline-heavy; clean reporting and clear event sequence reduces avoidable delays.",
+        "Where inspections/workshop steps apply, we guide the sequence so the file doesn’t get stuck for missing proofs.",
+      ],
+    },
+    localLandmarks: {
+      title: "Local reference points for Red Hills searches",
+      note: "Reference points only; support is coordinated from Sholavaram.",
+      items: [
+        "Red Hills junction / market-side references (general search cue)",
+        "NH-facing movement zones (logistics-side context)",
+        "Warehouse/storage belts (as applicable to operations)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Red Hills requests",
+      items: [
+        "Fleet insurance renewals + checklist discipline (RC/permit/fitness as applicable).",
+        "Lorry/trailer renewals where usage mismatch can create claim disputes later.",
+        "Warehouse/fire/burglary guidance where stock proof and valuation become claim-sensitive.",
+      ],
+    },
+    nextSteps: {
+      title: "If you searched fleet/lorry insurance in Red Hills",
+      bullets: [
+        "Share vehicle list + previous policy copy (fleet).",
+        "Share RC details; permit/fitness if applicable.",
+        "If claim: photos + time/location + short incident sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance red hills",
+      "lorry insurance red hills",
+      "trailer insurance red hills",
+      "warehouse insurance red hills",
+      "commercial insurance red hills",
+      "insurance claim help red hills",
+    ],
+    nearbyAreas: {
+      title: "Nearby belts people also mean when they say “Red Hills side”",
+      items: [
+        { label: "Sholavaram", href: EN("/locations/sholavaram/"), desc: "Central hub + document processing support." },
+        { label: "Madhavaram Truck Terminal", href: EN("/locations/madhavaram-truck-terminal/"), desc: "Transport-heavy: fleet renewals + claim workflow." },
+        { label: "Puzhal", href: EN("/locations/puzhal/"), desc: "Connector belt: renewals + claim steps." },
+        { label: "Karanodai", href: EN("/locations/karanodai/"), desc: "NH belt: document scrutiny and third-party exposure." },
+      ],
+    },
+  },
+
+  madhavaram: {
+    locationType: "city-edge-corridor",
+    anchorAndCoordination: {
+      title: "Madhavaram (city-edge corridor) – support pattern",
+      intro:
+        "Madhavaram sits at a city-edge corridor where personal motor, SME packages, and commercial vehicle queries overlap. This page prioritizes renewal accuracy and process discipline.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-on matching to real usage prevents renewal-time mistakes.",
+        "Commercial vehicles: document alignment (permit/fitness where applicable) reduces claim friction later.",
+        "SME packages: clarity on what’s insured + proof readiness reduces avoidable valuation disputes (as applicable).",
+      ],
+    },
+    localLandmarks: {
+      title: "How people refer to Madhavaram while searching",
+      note: "Reference cues; service coordination is via Sholavaram.",
+      items: [
+        "Madhavaram corridor-side references (city-edge movement zone)",
+        "Truck/transport references (when users mean terminal-side areas)",
+        "Residential pockets where renewals dominate searches",
+      ],
+    },
+    commonRequests: {
+      title: "Common Madhavaram requests",
+      items: [
+        "Car/bike renewals with add-on clarity and NCB checks.",
+        "Commercial vehicle renewals: avoiding mismatches in usage/classification (as applicable).",
+        "Claim help: clean timeline + correct first steps to avoid repeat queries.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist for Madhavaram customers",
+      bullets: [
+        "Share previous policy + expiry date (renewal).",
+        "For motor: RC + NCB status; for claim: photos + time/location.",
+        "If commercial: permit/fitness details if applicable + usage description.",
+      ],
+    },
+    intentSearchSignals: [
+      "insurance renewal madhavaram",
+      "car insurance madhavaram",
+      "commercial vehicle insurance madhavaram",
+      "insurance claim help madhavaram",
+    ],
+    nearbyAreas: {
+      title: "Nearby service-area pages",
+      items: [
+        { label: "Madhavaram Truck Terminal", href: EN("/locations/madhavaram-truck-terminal/"), desc: "Fleet/commercial focus and document-heavy claims." },
+        { label: "Puzhal", href: EN("/locations/puzhal/"), desc: "Connector belt: renewals + claim steps." },
+        { label: "Red Hills", href: EN("/locations/red-hills/"), desc: "NH-facing transport + warehouse exposure." },
+        { label: "Sholavaram", href: EN("/locations/sholavaram/"), desc: "Central coordination hub." },
+      ],
+    },
+  },
+
+  ambattur: {
+    locationType: "city-side-mixed",
+    anchorAndCoordination: {
+      title: "Ambattur – what makes support different here",
+      intro:
+        "Ambattur searches typically split into two buckets: personal motor renewals and SME package questions. This page focuses on preventing renewal errors and keeping claim documentation clean.",
+      bullets: [
+        "Motor: renewal accuracy (IDV/NCB/add-ons) and policy continuity checks.",
+        "SME/shop/office: sum insured clarity + proof discipline where applicable.",
+        "Claims: what to do first and what evidence matters so the file doesn’t bounce between requests.",
+      ],
+    },
+    localLandmarks: {
+      title: "Search cues people use for Ambattur",
+      note: "Reference points; coordination remains via Sholavaram.",
+      items: [
+        "Ambattur residential/commuter pockets (renewal-heavy intent)",
+        "Small-business stretches (SME package intent)",
+        "Industrial adjacency references (when users mean unit-side exposures)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Ambattur requests",
+      items: [
+        "Car/bike renewals and correcting NCB/IDV mistakes.",
+        "Health policy comparisons and renewal continuity guidance.",
+        "SME package alignment for small offices/shops (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first",
+      bullets: [
+        "Previous policy + RC details (motor).",
+        "For health: current plan + renewal date + age/coverage needs summary.",
+        "If claim: photos + incident sequence + time/location.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance ambattur",
+      "insurance renewal ambattur",
+      "health insurance ambattur",
+      "insurance claim help ambattur",
+    ],
+    nearbyAreas: {
+      title: "Nearby city-side pages",
+      items: [
+        { label: "Mogappair West", href: EN("/locations/mogappair-west/"), desc: "Renewals + health guidance pattern." },
+        { label: "Anna Nagar", href: EN("/locations/anna-nagar/"), desc: "Residential renewal + health guidance." },
+        { label: "Thiruninravur", href: EN("/locations/thiruninravur/"), desc: "Mixed residential + corridor-linked commercial vehicles." },
+      ],
+    },
+  },
+
+  puzhal: {
+    locationType: "connector-belt",
+    anchorAndCoordination: {
+      title: "Puzhal – connector belt support (renewals + claim steps)",
+      intro:
+        "Puzhal is often searched as a connector belt between city-side pockets and corridor movement. This page focuses on renewals, claim steps, and practical SME package clarity.",
+      bullets: [
+        "Motor renewals: add-ons only when they match usage; incorrect add-ons often create disputes later.",
+        "Claims: early steps + proof discipline (photos + incident timeline) to reduce repeat queries.",
+        "SME/shop: proof readiness (invoices/stock notes) where applicable to avoid valuation disputes.",
+      ],
+    },
+    localLandmarks: {
+      title: "How people refer to Puzhal while searching",
+      note: "Reference cues; service coordination remains via Sholavaram.",
+      items: [
+        "Connector-side references (city-outskirts transition)",
+        "Residential pockets where renewals dominate",
+        "Commercial pockets where SME/shop packages are common (as applicable)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Puzhal requests",
+      items: [
+        "Car/bike renewals: IDV/NCB/add-on clarity.",
+        "Claim help for accidents: photos + timeline + correct reporting sequence.",
+        "Shop/SME packages: sum insured clarity and basic proof readiness.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor renewal: previous policy + RC + NCB status.",
+        "Claim help: photos + time/location + event sequence.",
+        "SME/shop: brief asset/stock summary + any invoice/record pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance puzhal",
+      "insurance renewal puzhal",
+      "insurance claim help puzhal",
+      "shop insurance puzhal",
+    ],
+  },
+
+  kavangarai: {
+    locationType: "nh-corridor-mixed",
+    anchorAndCoordination: {
+      title: "Kavangarai – NH corridor behavior (where claims get stuck)",
+      intro:
+        "Kavangarai corridor queries are often transport-linked. This page exists to highlight the two biggest friction points: missing document alignment and unclear incident timeline during claims.",
+      bullets: [
+        "Commercial vehicles: RC + permit/fitness alignment where applicable; mismatches are a common delay trigger.",
+        "Claims: clean incident sequence + early intimation reduces avoidable back-and-forth.",
+        "SME packages: basic proof discipline (stock/assets) where applicable to prevent valuation disputes.",
+      ],
+    },
+    localLandmarks: {
+      title: "Reference points people use for Kavangarai-side searches",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "NH-facing travel references (movement belt intent)",
+        "Lorry/transport references (commercial intent)",
+        "Mixed residential pockets (renewal intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Kavangarai requests",
+      items: [
+        "Commercial vehicle renewals: usage clarity + document readiness (as applicable).",
+        "Claim help: timeline + evidence discipline.",
+        "SME packages where small businesses operate (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If claim: photos + time/location + short sequence.",
+        "If SME package: brief asset/stock summary (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "commercial vehicle insurance kavangarai",
+      "insurance renewal kavangarai",
+      "insurance agent near kavangarai",
+      "insurance claim help kavangarai",
+    ],
+  },
+
+  kosapaur: {
+    locationType: "residential-sme-pocket",
+    anchorAndCoordination: {
+      title: "Kosapaur – renewal-first support pattern",
+      intro:
+        "Kosapaur searches are typically renewal and claim-step driven. This page exists to provide practical guidance without generic filler—what to share, what matters, and how to avoid repeat queries.",
+      bullets: [
+        "Motor renewals: correcting IDV/NCB/add-on mistakes is the most common value add.",
+        "Claims: proof discipline (photos + incident timeline) prevents repeated insurer requests.",
+        "SME packages: clarity on what is insured and basic proof readiness where applicable.",
+      ],
+    },
+    localLandmarks: {
+      title: "Kosapaur search cues",
+      note: "Reference cues only; service is coordinated via Sholavaram.",
+      items: [
+        "Residential pockets (renewal-heavy intent)",
+        "Local shop/SME pockets (package policy intent)",
+        "Adjacent belt references towards Puzhal/Madhavaram side",
+      ],
+    },
+    commonRequests: {
+      title: "Common Kosapaur requests",
+      items: [
+        "Car/bike renewal checks.",
+        "Claim steps for minor/major accidents (as applicable).",
+        "SME package guidance for small shops/offices (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC + expiry date.",
+        "If claim: photos + time/location + short sequence.",
+        "If SME: brief asset/stock note + any invoice pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance kosapaur",
+      "insurance renewal kosapaur",
+      "insurance claim help kosapaur",
+      "business insurance kosapaur",
+    ],
+  },
+
+  surapet: {
+    locationType: "city-side-with-industrial-pockets",
+    anchorAndCoordination: {
+      title: "Surapet – mixed residential + industrial-pocket behavior",
+      intro:
+        "Surapet has mixed queries: personal motor renewals and occasional commercial/SME needs. This page separates what matters for each intent so users don’t end up at a dead end.",
+      bullets: [
+        "Personal motor: renewal accuracy and claim step clarity (common intent).",
+        "SME packages: proof and sum insured clarity where stock/assets are involved (as applicable).",
+        "Commercial vehicles (as applicable): document readiness and usage alignment to reduce claim friction.",
+      ],
+    },
+    localLandmarks: {
+      title: "Surapet search cues",
+      note: "Reference cues; coordination via Sholavaram remains constant.",
+      items: [
+        "Residential stretches (renewal-heavy intent)",
+        "Industrial pocket references (SME/commercial intent)",
+        "Connector references towards Kolathur / Puzhal side",
+      ],
+    },
+    commonRequests: {
+      title: "Common Surapet requests",
+      items: [
+        "Car/bike renewals with add-on clarity.",
+        "Claim help: correct first steps + timeline discipline.",
+        "SME package guidance when small units operate (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "What to do next",
+      bullets: [
+        "Renewal: previous policy + RC + expiry date.",
+        "Claim: photos + incident time/location + sequence.",
+        "SME: brief asset/stock list + proof pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "insurance renewal surapet",
+      "car insurance surapet",
+      "insurance claim help surapet",
+      "business insurance surapet",
+    ],
+  },
+
+  "madhavaram-milk-colony": {
+    locationType: "city-residential",
+    anchorAndCoordination: {
+      title: "Madhavaram Milk Colony – renewals + claim steps focus",
+      intro:
+        "This page exists for a renewal-first audience. Most searches here are motor renewal checks, health policy clarity, and claim-step guidance when something goes wrong.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-on alignment to avoid renewal surprises.",
+        "Health renewals: continuity and coverage clarity—avoid gaps and wrong assumptions.",
+        "Claims: clear incident timeline + photo discipline reduces repeat document demands.",
+      ],
+    },
+    localLandmarks: {
+      title: "Local search references",
+      note: "Reference cues only; service is coordinated via Sholavaram.",
+      items: [
+        "Residential references (renewal intent)",
+        "City-side connector references towards Madhavaram main",
+        "Nearby belt references towards Puzhal side",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Car/bike renewals and add-on clarity.",
+        "Health policy renewal and plan comparison basics.",
+        "Claim documentation help for accidents/hospitalization (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date.",
+        "Health: current policy + renewal date + age/coverage summary.",
+        "Claim: photos/records + time/location + short narrative.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance madhavaram milk colony",
+      "insurance renewal madhavaram milk colony",
+      "health insurance madhavaram milk colony",
+      "insurance claim help madhavaram",
+    ],
+  },
+
+  "madhavaram-truck-terminal": {
+    locationType: "transport-node",
+    anchorAndCoordination: {
+      title: "Madhavaram Truck Terminal – fleet/commercial workflow support",
+      intro:
+        "Transport-node pages exist because fleet and commercial vehicle policies fail on process discipline. This page focuses on document readiness, renewal structure, and claim workflow sequence.",
+      bullets: [
+        "Fleet renewals: vehicle list discipline + expiry tracking; endorsements and usage alignment reduce disputes later.",
+        "Claims: third-party exposure increases scrutiny; clean reporting and a tight timeline matters.",
+        "If inspection/survey/workshop steps apply, we guide the sequence so the file doesn’t stall on avoidable gaps.",
+      ],
+    },
+    localLandmarks: {
+      title: "Search cues around the terminal-side intent",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Truck terminal / transport references (fleet intent)",
+        "Commercial vehicle parking/route references (renewal intent)",
+        "NH-facing corridor references (movement belt intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common terminal-side requests",
+      items: [
+        "Fleet insurance renewals + document readiness discipline (RC/permit/fitness as applicable).",
+        "Goods carrying vehicle renewals with usage alignment.",
+        "Claim help where third-party involvement makes timeline discipline critical.",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first for fleet/terminal-side queries",
+      bullets: [
+        "Vehicle list + previous policy copies (fleet).",
+        "RC + permit/fitness dates if applicable.",
+        "Claim help: photos + incident time/location + short sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance madhavaram truck terminal",
+      "commercial vehicle insurance madhavaram truck terminal",
+      "goods carrying vehicle insurance madhavaram",
+      "insurance claim help truck terminal",
+    ],
+  },
+
+  budur: {
+    locationType: "outskirts-nh",
+    anchorAndCoordination: {
+      title: "Budur – outskirts corridor support (transport + SME mix)",
+      intro:
+        "Budur-side searches are often corridor-driven. This page focuses on renewals and documentation discipline that prevents delays when incidents or inspections occur.",
+      bullets: [
+        "Commercial vehicles: usage alignment and document readiness where applicable.",
+        "SME packages: sum insured clarity + proof discipline if stock/assets are involved (as applicable).",
+        "Claims: clean timeline + basic evidence discipline reduces repeat insurer requests.",
+      ],
+    },
+    localLandmarks: {
+      title: "How users describe Budur-side searches",
+      note: "Reference cues only; coordination via Sholavaram.",
+      items: [
+        "Outskirts corridor references (movement belt intent)",
+        "Transport/lorry references (commercial intent)",
+        "Small business pockets (package policy intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Budur requests",
+      items: [
+        "Lorry/commercial vehicle renewal discipline.",
+        "Goods carrier renewals and claim steps (as applicable).",
+        "MSME package guidance where operations require it (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If claim: incident time/location + photos + short sequence.",
+        "If MSME: brief asset/stock summary + proof pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "lorry insurance budur",
+      "commercial vehicle insurance budur",
+      "insurance renewal budur",
+      "insurance claim help budur",
+    ],
+  },
+
+  thiruninravur: {
+    locationType: "residential-industrial-adjacent",
+    anchorAndCoordination: {
+      title: "Thiruninravur – dual-intent (personal + corridor-linked commercial)",
+      intro:
+        "Thiruninravur pages matter because the intent splits: personal renewals and corridor-linked commercial vehicle needs. This page is structured to answer both without generic filler.",
+      bullets: [
+        "Personal motor: renewal accuracy and claim-step clarity.",
+        "Commercial vehicles (as applicable): permit/fitness/usage alignment and document readiness.",
+        "SME packages: sum insured clarity and proof discipline where applicable.",
+      ],
+    },
+    localLandmarks: {
+      title: "Thiruninravur search cues",
+      note: "Reference cues only; service is coordinated from Sholavaram.",
+      items: [
+        "Residential pockets (renewal intent)",
+        "Industrial adjacency references (SME/commercial intent)",
+        "Commute corridor references (mixed intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Car/bike renewals and NCB/IDV corrections.",
+        "Commercial vehicle renewals (as applicable) with document readiness checks.",
+        "Claim help: first steps and what proof matters.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date.",
+        "Commercial: permit/fitness dates if applicable + usage summary.",
+        "Claim: photos + time/location + short sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "insurance renewal thiruninravur",
+      "car insurance thiruninravur",
+      "commercial vehicle insurance thiruninravur",
+      "insurance claim help thiruninravur",
+    ],
+  },
+
+  veppampattu: {
+    locationType: "outskirts-mixed",
+    anchorAndCoordination: {
+      title: "Veppampattu – outskirts mix (fleet + SME + claim discipline)",
+      intro:
+        "Veppampattu-side queries can be transport-heavy or small-business oriented. This page is designed to reduce claim friction by guiding disclosures, document readiness and reporting discipline.",
+      bullets: [
+        "Fleet/commercial renewals: vehicle list discipline and document readiness where applicable.",
+        "SME packages: sum insured clarity and proof pointers where applicable.",
+        "Claims: clear timeline and early steps prevent avoidable delays.",
+      ],
+    },
+    localLandmarks: {
+      title: "Veppampattu search cues",
+      note: "Reference cues only; service is coordinated via Sholavaram hub.",
+      items: [
+        "Outskirts belt references (corridor intent)",
+        "Transport references (fleet intent)",
+        "Local SME pockets (package policy intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Goods carrier / fleet renewals and claim readiness discipline.",
+        "Renewal checks to avoid coverage gaps and wrong add-ons.",
+        "Claim documentation support for incidents outside city core (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Share previous policy + RC; permit/fitness if applicable.",
+        "If fleet: vehicle list + renewal dates.",
+        "If claim: photos + time/location + short narrative.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance veppampattu",
+      "commercial vehicle insurance veppampattu",
+      "insurance renewal veppampattu",
+      "insurance claim help veppampattu",
+    ],
+  },
+
+  "thiruvallur-sipcot-outskirts": {
+    locationType: "industrial-edge",
+    anchorAndCoordination: {
+      title: "Thiruvallur SIPCOT outskirts – industrial proof discipline focus",
+      intro:
+        "Industrial-edge pages exist because claims depend heavily on valuation and proof. This page focuses on what insurers ask for and how to keep documentation defensible.",
+      bullets: [
+        "Property/stock: valuation basis + proof trail discipline (invoices/records/photos as applicable).",
+        "Contractor/workforce exposure: classification and clean records matter (as applicable).",
+        "Claims: early reporting + clear incident notes prevent avoidable disputes.",
+      ],
+    },
+    localLandmarks: {
+      title: "SIPCOT-side search cues",
+      note: "Reference cues only; coordination remains via Sholavaram.",
+      items: [
+        "SIPCOT-side industrial references (industrial intent)",
+        "Factory/warehouse references (property intent)",
+        "Contractor/workforce references (CAR/WC intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common SIPCOT-side requests",
+      items: [
+        "Warehouse/factory cover basics with valuation clarity.",
+        "Contractor CAR/WC combined guidance where applicable.",
+        "Claim documentation discipline for property/stock incidents.",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first (industrial)",
+      bullets: [
+        "Brief activity summary + approximate values (stock/assets).",
+        "Previous policy copy + any endorsements/declarations.",
+        "If claim: incident notes + first-day photos + proof trail pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "industrial insurance thiruvallur sipcot outskirts",
+      "warehouse insurance thiruvallur sipcot",
+      "contractor insurance thiruvallur sipcot",
+      "insurance claim help sipcot thiruvallur",
+    ],
+  },
+
+  "poonamallee-bypass": {
+    locationType: "corridor-heavy",
+    anchorAndCoordination: {
+      title: "Poonamallee bypass – corridor risk alignment",
+      intro:
+        "Corridor pages exist because contractor activity, heavy vehicle movement and liability exposure overlap. This page focuses on aligning disclosures and keeping claim documentation sequence clean.",
+      bullets: [
+        "Fleet/commercial vehicles: usage alignment and renewal discipline.",
+        "Contractor exposures (as applicable): CAR/WC classification and timeline discipline.",
+        "Liability and property exposures: incident documentation discipline when third-party or asset loss occurs.",
+      ],
+    },
+    localLandmarks: {
+      title: "Bypass-side search cues",
+      note: "Reference cues only; coordination is via Sholavaram.",
+      items: [
+        "Bypass/industrial corridor references (movement intent)",
+        "Contractor activity references (CAR/WC intent)",
+        "Warehouse/property references (asset/stock intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common corridor requests",
+      items: [
+        "Fleet renewals with document readiness discipline.",
+        "Contractor CAR/WC questions where applicable.",
+        "Liability awareness for third-party exposure (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Vehicle list + previous policy copy (fleet) OR activity summary (contractor/industrial).",
+        "If contractor: project period + workforce classification notes (as applicable).",
+        "If claim: incident timeline + photos + proof pointers.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance poonamallee bypass",
+      "contractor insurance poonamallee bypass",
+      "commercial insurance poonamallee bypass",
+      "insurance claim help poonamallee bypass",
+    ],
+  },
+
+  kuthambakkam: {
+    locationType: "corridor-industrial",
+    anchorAndCoordination: {
+      title: "Kuthambakkam – industrial corridor support (transport + contractor mix)",
+      intro:
+        "Kuthambakkam pages are built for corridor-linked risk. The core value is aligning policy wording with actual operations and keeping proof discipline defensible.",
+      bullets: [
+        "Transport/fleet: renewal discipline + document readiness where applicable.",
+        "Contractor/workforce (as applicable): classification and clean records.",
+        "Property/warehouse: valuation and proof trail discipline where applicable.",
+      ],
+    },
+    localLandmarks: {
+      title: "Kuthambakkam search cues",
+      note: "Reference cues only; service is coordinated via Sholavaram hub.",
+      items: [
+        "Industrial corridor references (movement intent)",
+        "Contractor references (CAR/WC intent)",
+        "Warehouse/property references (asset intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Contractor CAR/WC questions where applicable.",
+        "Commercial vehicle renewals with correct disclosure alignment.",
+        "Warehouse/property guidance where storage/operations exist (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Activity summary + approximate values (assets/stock) if property exposure exists.",
+        "Vehicle RC + previous policy if transport exposure exists.",
+        "If claim: incident notes + photos + proof pointers.",
+      ],
+    },
+    intentSearchSignals: [
+      "contractor insurance kuthambakkam",
+      "warehouse insurance kuthambakkam",
+      "commercial vehicle insurance kuthambakkam",
+      "insurance claim help kuthambakkam",
+    ],
+  },
+
+  thirumazhisai: {
+    locationType: "industrial-adjacent",
+    anchorAndCoordination: {
+      title: "Thirumazhisai – industrial adjacency (transport + SME discipline)",
+      intro:
+        "Thirumazhisai queries often involve transport movement plus SME needs. This page exists to prevent claim friction by focusing on disclosures, proof trail discipline, and renewal checks.",
+      bullets: [
+        "Commercial vehicles: renewal discipline + document readiness where applicable.",
+        "SME packages: sum insured clarity + proof readiness where applicable.",
+        "Claims: clear incident sequence + timely steps reduce avoidable delays.",
+      ],
+    },
+    localLandmarks: {
+      title: "Thirumazhisai search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Industrial-adjacent references (SME/commercial intent)",
+        "Transport corridor references (movement intent)",
+        "Residential pockets (renewal intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Commercial vehicle renewals with document readiness checks (as applicable).",
+        "SME packages where stock/assets exist (as applicable).",
+        "Claim-step guidance for vehicle/property incidents (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If SME: brief asset/stock note + proof pointers (as applicable).",
+        "If claim: photos + time/location + sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "commercial insurance thirumazhisai",
+      "insurance renewal thirumazhisai",
+      "warehouse insurance thirumazhisai",
+      "insurance claim help thirumazhisai",
+    ],
+  },
+
+  chembarambakkam: {
+    locationType: "corridor-connector",
+    anchorAndCoordination: {
+      title: "Chembarambakkam – corridor connector (transport + SME overlap)",
+      intro:
+        "Chembarambakkam pages exist because transport movement and SME exposures overlap. This page focuses on avoiding the most common cause of delays: missing documents and unclear timelines.",
+      bullets: [
+        "Transport/fleet: renewal discipline + document readiness where applicable.",
+        "SME packages: proof discipline where stock/assets exist (as applicable).",
+        "Claims: clean incident narrative + early steps reduce avoidable follow-ups.",
+      ],
+    },
+    localLandmarks: {
+      title: "Chembarambakkam search cues",
+      note: "Reference cues only; service is coordinated from Sholavaram.",
+      items: [
+        "Corridor connector references (movement intent)",
+        "Fleet/transport references (commercial intent)",
+        "SME pockets (package policy intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Commercial vehicle renewals and fleet discipline.",
+        "Claim documentation support with clean timeline discipline.",
+        "SME package guidance where operations require it (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "Fleet: vehicle list + expiry schedule.",
+        "Claim: photos + time/location + sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance chembarambakkam",
+      "commercial vehicle insurance chembarambakkam",
+      "insurance renewal chembarambakkam",
+      "insurance claim help chembarambakkam",
+    ],
+  },
+
+  "sriperumbudur-sipcot": {
+    locationType: "industrial-hub",
+    anchorAndCoordination: {
+      title: "Sriperumbudur SIPCOT – industrial hub (valuation + proof trail)",
+      intro:
+        "Industrial hub pages exist because insurer scrutiny increases with value and operational complexity. This page focuses on valuation logic, proof trail discipline, and correct disclosures.",
+      bullets: [
+        "Factory/warehouse: valuation basis and proof trail discipline (invoices/records/photos as applicable).",
+        "Contractor/workforce exposures: classification and clean records where applicable.",
+        "Transit exposure (as applicable): invoice/dispatch trail discipline for smoother claims.",
+      ],
+    },
+    localLandmarks: {
+      title: "SIPCOT-side search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "SIPCOT industrial references (industrial intent)",
+        "Factory/warehouse references (property intent)",
+        "Transit/movement references (GIT/marine cargo intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common SIPCOT requests",
+      items: [
+        "Factory/warehouse cover basics with valuation clarity.",
+        "Contractor CAR/WC guidance where applicable.",
+        "Transit/GIT documentation discipline where movement risk exists.",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first (industrial)",
+      bullets: [
+        "Activity summary + approximate values for assets/stock.",
+        "Previous policy copy + declarations/endorsements if any.",
+        "If claim: incident notes + first-day photos + proof pointers (as applicable).",
+      ],
+    },
+    intentSearchSignals: [
+      "factory insurance sriperumbudur sipcot",
+      "warehouse insurance sriperumbudur sipcot",
+      "contractor insurance sriperumbudur sipcot",
+      "marine cargo insurance sriperumbudur",
+    ],
+  },
+
+  "oragadam-outskirts": {
+    locationType: "industrial-corridor",
+    anchorAndCoordination: {
+      title: "Oragadam outskirts – corridor rules (disclosures + discipline)",
+      intro:
+        "Oragadam outskirts pages exist because contractor and industrial exposures create claim sensitivity. This page emphasizes disclosures, records discipline and correct sequencing in claims.",
+      bullets: [
+        "Contractor/WC: classification and clean records where applicable.",
+        "Industrial/property: valuation basis + proof discipline where applicable.",
+        "Fleet/commercial vehicles (as applicable): usage alignment and document readiness.",
+      ],
+    },
+    localLandmarks: {
+      title: "Oragadam-side search cues",
+      note: "Reference cues only; coordination remains via Sholavaram.",
+      items: [
+        "Automobile/industrial belt references (industrial intent)",
+        "Contractor references (CAR/WC intent)",
+        "Corridor movement references (fleet intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Oragadam outskirts requests",
+      items: [
+        "CAR/WC guidance where contractor exposure exists.",
+        "Warehouse/property cover basics and proof discipline.",
+        "Commercial vehicle/fleet renewals where corridor movement exists.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Contractor: project period + workforce notes (as applicable).",
+        "Industrial: asset/stock values + proof pointers.",
+        "Claim: incident timeline + photos + initial document list.",
+      ],
+    },
+    intentSearchSignals: [
+      "contractor insurance oragadam outskirts",
+      "industrial insurance oragadam",
+      "fleet insurance oragadam",
+      "insurance claim help oragadam",
+    ],
+  },
+
+  "manali-new-town": {
+    locationType: "industrial-influence",
+    anchorAndCoordination: {
+      title: "Manali New Town – movement + industrial influence",
+      intro:
+        "Manali New Town queries can involve commercial vehicles and industrial-adjacent exposures. This page focuses on transit discipline and claim workflow readiness.",
+      bullets: [
+        "Commercial vehicles: renewal accuracy + document readiness where applicable.",
+        "Transit exposure (as applicable): invoice/dispatch trail discipline.",
+        "Claims: early intimation and clean narrative to avoid repeated document demands.",
+      ],
+    },
+    localLandmarks: {
+      title: "Manali New Town search cues",
+      note: "Reference cues only; coordination via Sholavaram hub.",
+      items: [
+        "Industrial influence references (commercial intent)",
+        "Transit/movement references (transport intent)",
+        "Adjacent estate/road references (belt intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Commercial vehicle renewals and claim readiness discipline.",
+        "Transit/goods movement documentation questions (as applicable).",
+        "Property/warehouse guidance when storage is involved (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "Transit: invoice/dispatch pointers if movement exposure exists (as applicable).",
+        "Claim: photos + time/location + narrative sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "commercial insurance manali new town",
+      "commercial vehicle insurance manali new town",
+      "insurance claim help manali new town",
+      "goods in transit insurance manali",
+    ],
+  },
+
+  "manali-industrial-estate": {
+    locationType: "industrial-estate",
+    anchorAndCoordination: {
+      title: "Manali Industrial Estate – industrial claim sensitivity",
+      intro:
+        "Industrial estate pages exist because valuation and proof trail discipline decide how smoothly claims move. This page focuses on proof readiness and disclosure alignment.",
+      bullets: [
+        "Property/stock: valuation basis + proof discipline (invoices/records/photos as applicable).",
+        "Liability exposure (as applicable): incident notes and notice-handling discipline.",
+        "Transit exposure (as applicable): dispatch/invoice trail discipline.",
+      ],
+    },
+    localLandmarks: {
+      title: "Industrial estate search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Estate-side industrial references (industrial intent)",
+        "Warehouse/storage references (property intent)",
+        "Transit/logistics references (movement intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common estate requests",
+      items: [
+        "Warehouse/factory cover basics with valuation clarity.",
+        "Public liability awareness where third-party exposure exists (as applicable).",
+        "Transit/GIT documentation discipline where movement risk exists (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first",
+      bullets: [
+        "Activity summary + asset/stock values + proof pointers.",
+        "Previous policy copy + endorsements/declarations if any.",
+        "If claim: incident notes + photos + proof trail pointers.",
+      ],
+    },
+    intentSearchSignals: [
+      "warehouse insurance manali industrial estate",
+      "industrial insurance manali industrial estate",
+      "public liability insurance manali",
+      "insurance claim help manali industrial estate",
+    ],
+  },
+
+  "nh-manali-road": {
+    locationType: "nh-logistics",
+    anchorAndCoordination: {
+      title: "NH Manali Road – logistics belt (timeline + documents)",
+      intro:
+        "NH belt pages exist because third-party exposure and document scrutiny are higher. This page is written to prevent avoidable claim delays by keeping the workflow clean.",
+      bullets: [
+        "Commercial vehicles: renewal discipline + document readiness where applicable.",
+        "Transit exposure (as applicable): invoice/dispatch trail discipline for claim defensibility.",
+        "Claims: clean incident timeline and early steps reduce avoidable friction.",
+      ],
+    },
+    localLandmarks: {
+      title: "NH Manali Road search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "NH-facing movement references (logistics intent)",
+        "Lorry/trailer references (commercial intent)",
+        "Transit references (GIT/marine cargo intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common NH belt requests",
+      items: [
+        "Fleet/commercial renewals with document readiness checks.",
+        "Trailer/lorry renewals where third-party exposure increases scrutiny.",
+        "Claim help: timeline discipline + evidence checklist.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If transit: invoice/dispatch pointers (as applicable).",
+        "If claim: photos + time/location + sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance nh manali road",
+      "lorry insurance nh manali road",
+      "commercial vehicle insurance nh manali road",
+      "insurance claim help nh manali road",
+    ],
+  },
+
+  "kolathur-commercial-pockets": {
+    locationType: "commercial-pocket",
+    anchorAndCoordination: {
+      title: "Kolathur commercial pockets – SME + motor overlap",
+      intro:
+        "Commercial pocket pages exist because the intent overlaps: small business packages and motor renewals. This page prevents dead ends by mapping users to the right service quickly.",
+      bullets: [
+        "SME/shop packages: sum insured clarity + proof pointers where applicable.",
+        "Motor renewals: add-on clarity and NCB/IDV correction to avoid renewal errors.",
+        "Claims: clean sequence and document checklist discipline to reduce delays.",
+      ],
+    },
+    localLandmarks: {
+      title: "Commercial pocket search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Shop/office stretches (SME intent)",
+        "Residential connector pockets (renewal intent)",
+        "Adjacency references towards Retteri/Villivakkam side",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "SME package renewals and correct stock/asset disclosure (as applicable).",
+        "Car/bike renewals with add-on clarity.",
+        "Claim help where missing documents cause repeat queries.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "SME: brief asset/stock note + proof pointers.",
+        "Motor: previous policy + RC + NCB status.",
+        "Claim: photos + time/location + narrative sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "shop insurance kolathur",
+      "msme insurance kolathur",
+      "car insurance kolathur commercial area",
+      "insurance claim help kolathur",
+    ],
+  },
+
+  retteri: {
+    locationType: "residential-renewal",
+    anchorAndCoordination: {
+      title: "Retteri – renewal-heavy support (practical checks)",
+      intro:
+        "Retteri searches are renewal-heavy. This page exists to reduce renewal mistakes and provide clear claim-step guidance without generic filler.",
+      bullets: [
+        "Car/bike renewals: IDV/NCB/add-on checks matched to usage.",
+        "Claims: what to do first and what photos/proofs matter (case-dependent).",
+        "Health renewals: continuity checks to prevent gaps and wrong assumptions.",
+      ],
+    },
+    localLandmarks: {
+      title: "Retteri search cues",
+      note: "Reference cues only; coordination remains via Sholavaram.",
+      items: [
+        "Residential stretches (renewal intent)",
+        "Nearby connector references towards Kolathur/Anna Nagar side",
+        "Common “near me” searches that still map to Sholavaram support",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Car renewal checks (IDV/NCB/add-ons).",
+        "Claim help for accidents: photos + timeline + reporting steps.",
+        "Health renewal guidance and plan clarity.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date + NCB status.",
+        "Claim: photos + time/location + short incident sequence.",
+        "Health: current policy + renewal date + age/coverage needs summary.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance retteri",
+      "insurance renewal retteri",
+      "insurance claim help retteri",
+      "health insurance retteri",
+    ],
+  },
+
+  "villivakkam-industrial-areas": {
+    locationType: "industrial-pocket-city",
+    anchorAndCoordination: {
+      title: "Villivakkam industrial areas – SME/property discipline",
+      intro:
+        "Industrial pocket pages exist because SME and property exposures require proof discipline. This page focuses on sum insured clarity and documentation readiness.",
+      bullets: [
+        "SME packages: sum insured clarity and proof pointers where applicable.",
+        "Property/fire/burglary (as applicable): valuation basis + record discipline.",
+        "Motor renewals: practical add-on and renewal checks for owners in the same belt.",
+      ],
+    },
+    localLandmarks: {
+      title: "Industrial pocket search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Industrial pocket references (SME/property intent)",
+        "Residential adjacency references (renewal intent)",
+        "Nearby belt references towards Perambur/Kolathur",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Shop/SME package guidance for small units (as applicable).",
+        "Fire/burglary basics when assets/stock exposure exists (as applicable).",
+        "Car renewals and claim-step clarity.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "SME: brief asset/stock summary + proof pointers.",
+        "Property: valuation basis notes + records pointers (as applicable).",
+        "Claim: incident notes + photos + timeline sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "business insurance villivakkam industrial",
+      "shop insurance villivakkam",
+      "fire insurance villivakkam",
+      "car insurance villivakkam",
+    ],
+  },
+
+  "mogappair-west": {
+    locationType: "residential-health-motor",
+    anchorAndCoordination: {
+      title: "Mogappair West – motor + health renewal clarity",
+      intro:
+        "Mogappair West searches are typically motor renewals and health policy guidance. This page is written to make decisions easier with practical checks and clear next steps.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-ons based on real usage, not generic suggestions.",
+        "Health renewals: continuity and coverage checks to prevent gaps and surprises.",
+        "Claims: what to do first and what documents matter so the file doesn’t get delayed.",
+      ],
+    },
+    localLandmarks: {
+      title: "Mogappair West search cues",
+      note: "Reference cues only; coordination remains via Sholavaram.",
+      items: [
+        "Residential references (renewal intent)",
+        "Hospital-network questions (health intent)",
+        "Nearby area references towards Anna Nagar / Koyambedu",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Car/bike renewals with add-on clarity.",
+        "Health policy comparisons and renewal continuity.",
+        "Claim help steps for motor/health (case-dependent).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date.",
+        "Health: current plan + renewal date + age/coverage needs summary.",
+        "Claim: photos/records + incident summary and dates.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance mogappair west",
+      "health insurance mogappair west",
+      "insurance renewal mogappair west",
+      "insurance claim help mogappair",
+    ],
+  },
+
+  manali: {
+    locationType: "industrial-influence",
+    anchorAndCoordination: {
+      title: "Manali – industrial + transport overlap support",
+      intro:
+        "Manali pages exist because transport movement, industrial property exposure, and transit discipline can overlap. This page focuses on aligning disclosures and keeping documentation defensible.",
+      bullets: [
+        "Commercial vehicles: renewal discipline and document readiness where applicable.",
+        "Property/warehouse exposures (as applicable): valuation basis + proof trail discipline.",
+        "Transit and liability awareness (as applicable): incident notes and dispatch/invoice trail discipline.",
+      ],
+    },
+    localLandmarks: {
+      title: "Manali search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Industrial influence references (industrial intent)",
+        "Transport corridor references (commercial intent)",
+        "Adjacent estate/road references (belt intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common Manali requests",
+      items: [
+        "Warehouse/property cover basics where storage exists (as applicable).",
+        "Commercial vehicle renewals with document readiness checks.",
+        "Transit/GIT questions where goods movement exposure exists (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "What to share first",
+      bullets: [
+        "Previous policy + asset/stock values (industrial) OR RC details (transport).",
+        "If transit: dispatch/invoice pointers (as applicable).",
+        "If claim: incident notes + photos + timeline sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "commercial insurance manali",
+      "warehouse insurance manali",
+      "commercial vehicle insurance manali",
+      "insurance claim help manali",
+    ],
+  },
+
+  karanodai: {
+    locationType: "nh-logistics",
+    anchorAndCoordination: {
+      title: "Karanodai – NH belt discipline (fleet/lorry focus)",
+      intro:
+        "Karanodai is treated as an NH belt in many workflows. This page exists to reduce claim delays by tightening renewal discipline, document readiness, and incident timeline quality.",
+      bullets: [
+        "Fleet/commercial renewals: vehicle list discipline + RC/permit/fitness readiness where applicable.",
+        "Claims: NH-facing incidents can be scrutiny-heavy; clean reporting and clear sequence matters.",
+        "Transit exposure (as applicable): invoice/dispatch trail discipline supports claim defensibility.",
+      ],
+    },
+    localLandmarks: {
+      title: "Karanodai search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "NH belt movement references (logistics intent)",
+        "Lorry/fleet references (commercial intent)",
+        "Corridor-side references towards Periyapalayam/Budur",
+      ],
+    },
+    commonRequests: {
+      title: "Common Karanodai requests",
+      items: [
+        "Fleet/lorry renewals with document readiness checks.",
+        "Trailer/goods carrying renewals where usage alignment matters.",
+        "Claim help: timeline discipline + evidence checklist.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Vehicle list + previous policy copies (fleet).",
+        "RC + permit/fitness dates if applicable.",
+        "Claim: photos + time/location + narrative sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "fleet insurance karanodai",
+      "lorry insurance karanodai",
+      "commercial vehicle insurance karanodai",
+      "insurance claim help karanodai",
+    ],
+  },
+
+  periyapalayam: {
+    locationType: "outskirts-corridor",
+    anchorAndCoordination: {
+      title: "Periyapalayam – outskirts corridor (transport + small business)",
+      intro:
+        "Outskirts corridor pages exist because users often search without precise area names. This page helps map transport and small-business intent into the correct service flow.",
+      bullets: [
+        "Commercial vehicles: renewal discipline + document readiness where applicable.",
+        "SME packages: sum insured clarity + proof pointers where applicable.",
+        "Claims: clean incident notes and early steps reduce avoidable delays.",
+      ],
+    },
+    localLandmarks: {
+      title: "Periyapalayam search cues",
+      note: "Reference cues only; coordination is via Sholavaram hub.",
+      items: [
+        "Outskirts corridor references (movement intent)",
+        "Transport references (commercial intent)",
+        "Small business pockets (package policy intent)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Commercial vehicle renewals and claim readiness discipline.",
+        "SME packages where local businesses operate (as applicable).",
+        "Claim help: first steps + document checklist discipline.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If SME: brief asset/stock summary + proof pointers (as applicable).",
+        "If claim: photos + time/location + sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "commercial insurance periyapalayam",
+      "lorry insurance periyapalayam",
+      "insurance renewal periyapalayam",
+      "insurance claim help periyapalayam",
+    ],
+  },
+
+  arani: {
+    locationType: "corridor-connected",
+    anchorAndCoordination: {
+      title: "Arani (corridor-connected) – transit discipline emphasis",
+      intro:
+        "Corridor-connected pages exist because goods movement and transit documentation can become the deciding factor in claim smoothness. This page focuses on proof trail discipline.",
+      bullets: [
+        "Transport renewals: usage clarity and document readiness where applicable.",
+        "Transit/GIT (as applicable): invoice/dispatch trail discipline improves defensibility.",
+        "Claims: early steps and clean narrative reduce avoidable insurer queries.",
+      ],
+    },
+    localLandmarks: {
+      title: "Arani search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Corridor-connected movement references (transport intent)",
+        "Transit references (goods movement intent)",
+        "Outskirts references (users searching without exact belt name)",
+      ],
+    },
+    commonRequests: {
+      title: "Common requests",
+      items: [
+        "Lorry/goods carrier renewals and discipline checks.",
+        "Transit/GIT documentation questions (as applicable).",
+        "Claim steps guidance when incidents happen outside city core (as applicable).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC; permit/fitness if applicable.",
+        "If transit: invoice/dispatch pointers (as applicable).",
+        "If claim: photos + time/location + short sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "lorry insurance arani",
+      "goods in transit insurance arani",
+      "commercial insurance arani",
+      "insurance claim help arani",
+    ],
+  },
+
+  perambur: {
+    locationType: "city-side",
+    anchorAndCoordination: {
+      title: "Perambur – city-side renewals + claim-step clarity",
+      intro:
+        "Perambur searches are usually renewal-first. This page exists to prevent renewal mistakes and to make claim steps clear so the process doesn’t stall on avoidable gaps.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-on checks matched to real usage.",
+        "Health renewals: continuity checks and plan clarity to prevent gaps.",
+        "SME packages (as applicable): sum insured clarity and proof pointers for stock/assets.",
+      ],
+    },
+    localLandmarks: {
+      title: "Perambur search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Residential/commercial pocket references (renewal intent)",
+        "SME pocket references (package policy intent)",
+        "Adjacent belt references towards Villivakkam / Kolathur",
+      ],
+    },
+    commonRequests: {
+      title: "Common Perambur requests",
+      items: [
+        "Car/bike renewals and add-on clarity.",
+        "Health policy renewal guidance and continuity checks.",
+        "Claim documentation steps for accidents/hospitalization (case-dependent).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date + NCB status.",
+        "Health: current policy + renewal date + basic coverage needs summary.",
+        "Claim: photos/records + timeline and short incident narrative.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance perambur",
+      "health insurance perambur",
+      "insurance renewal perambur",
+      "insurance claim help perambur",
+    ],
+  },
+
+  kolathur: {
+    locationType: "city-side-mixed",
+    anchorAndCoordination: {
+      title: "Kolathur – mixed residential + SME intent mapping",
+      intro:
+        "Kolathur pages exist because users search for both renewals and SME packages in the same area. This page is structured to route each intent to the correct service quickly.",
+      bullets: [
+        "Motor renewals: practical checks for IDV/NCB/add-ons to avoid renewal errors.",
+        "SME packages (as applicable): sum insured clarity and proof readiness for stock/assets.",
+        "Claims: first steps + document discipline to reduce avoidable delays.",
+      ],
+    },
+    localLandmarks: {
+      title: "Kolathur search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Residential pockets (renewal intent)",
+        "Commercial pockets (SME package intent)",
+        "Adjacent belt references towards Retteri / Villivakkam side",
+      ],
+    },
+    commonRequests: {
+      title: "Common Kolathur requests",
+      items: [
+        "Car/bike renewals and correcting add-on/NCB mistakes.",
+        "SME package guidance for shops/offices (as applicable).",
+        "Claim steps clarity to avoid repeat insurer queries.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date.",
+        "SME: asset/stock summary + proof pointers (as applicable).",
+        "Claim: photos + time/location + sequence.",
+      ],
+    },
+    intentSearchSignals: [
+      "insurance renewal kolathur",
+      "car insurance kolathur",
+      "shop insurance kolathur",
+      "insurance claim help kolathur",
+    ],
+  },
+
+  koyambedu: {
+    locationType: "city-connector",
+    anchorAndCoordination: {
+      title: "Koyambedu – city connector (fast renewal checks)",
+      intro:
+        "Koyambedu queries are usually “quick renewal” and “what to do now” oriented. This page exists to provide fast checks and correct next steps without generic explanations.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-on checks to avoid renewal mistakes.",
+        "Claims: first steps and the minimum proof discipline that prevents repeated requests.",
+        "When users search without an area name, we route them to the correct service page quickly.",
+      ],
+    },
+    localLandmarks: {
+      title: "Koyambedu search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Market/connector references (near-me intent)",
+        "Commute corridor references (fast renewal intent)",
+        "Adjacent area references towards Anna Nagar / Mogappair",
+      ],
+    },
+    commonRequests: {
+      title: "Common Koyambedu requests",
+      items: [
+        "Car renewals and add-on clarity.",
+        "Claim-step guidance for accidents (case-dependent).",
+        "Quick policy checks to avoid gaps and wrong assumptions.",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Previous policy + RC + expiry date + NCB status.",
+        "Claim: photos + time/location + narrative sequence.",
+        "If unsure: share your use-case and we route you to the correct policy type.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance koyambedu",
+      "insurance renewal koyambedu",
+      "insurance claim help koyambedu",
+      "insurance agent near koyambedu",
+    ],
+  },
+
+  "anna-nagar": {
+    locationType: "residential-premium",
+    anchorAndCoordination: {
+      title: "Anna Nagar – renewal accuracy + health policy clarity",
+      intro:
+        "Anna Nagar searches are typically motor renewals and health policy questions. This page is designed to improve decision quality: correct renewal checks, clear plan comparisons, and clean claim steps.",
+      bullets: [
+        "Motor renewals: IDV/NCB/add-ons matched to real usage—not generic bundles.",
+        "Health policies: renewal continuity, coverage assumptions, and claim-step clarity.",
+        "Claims: what to do first and what documents matter so the file doesn’t get delayed.",
+      ],
+    },
+    localLandmarks: {
+      title: "Anna Nagar search cues",
+      note: "Reference cues only; coordination remains via Sholavaram hub.",
+      items: [
+        "Residential references (renewal intent)",
+        "Hospital-network questions (health intent)",
+        "Adjacent area references towards Koyambedu / Mogappair",
+      ],
+    },
+    commonRequests: {
+      title: "Common Anna Nagar requests",
+      items: [
+        "Car/bike renewals with add-on clarity.",
+        "Health renewal comparisons and continuity checks.",
+        "Claim help for motor/health (case-dependent).",
+      ],
+    },
+    nextSteps: {
+      title: "Fast checklist",
+      bullets: [
+        "Motor: previous policy + RC + expiry date + NCB status.",
+        "Health: current plan + renewal date + age/coverage summary.",
+        "Claim: photos/records + timeline + short narrative.",
+      ],
+    },
+    intentSearchSignals: [
+      "car insurance anna nagar",
+      "health insurance anna nagar",
+      "insurance renewal anna nagar",
+      "insurance claim help anna nagar",
+    ],
+  },
+};
+
+// ✅ Merge: preserves your existing content, adds rich unique sections
+export const locationsDetail = Object.fromEntries(
+  Object.entries(locationsDetails).map(([slug, base]) => {
+    const add = LOC_ENRICH[slug] || {};
+    return [
+      slug,
+      {
+        ...base,
+        ...add,
+        anchorAndCoordination: { ...(base.anchorAndCoordination || {}), ...(add.anchorAndCoordination || {}) },
+        localLandmarks: { ...(base.localLandmarks || {}), ...(add.localLandmarks || {}) },
+        commonRequests: { ...(base.commonRequests || {}), ...(add.commonRequests || {}) },
+        nextSteps: { ...(base.nextSteps || {}), ...(add.nextSteps || {}) },
+        nearbyAreas: { ...(base.nearbyAreas || {}), ...(add.nearbyAreas || {}) },
+        intentSearchSignals: [...(base.intentSearchSignals || []), ...(add.intentSearchSignals || [])],
+      },
+    ];
+  })
+);
+
+
+export const LOCATION_BUCKETS = {
+  // 1) Core home belt (highest relevance to your “base advantage”)
+  PRIMARY_SHOLAVARAM_REDHILLS_BELT: [
     "sholavaram",
     "red-hills",
     "puzhal",
     "kavangarai",
     "kosapaur",
-    "surapet",
+    "karanodai",
+  ],
+
+  // 2) Madhavaram logistics + truck / warehouse cluster
+  MADHAVARAM_LOGISTICS_BELT: [
     "madhavaram",
     "madhavaram-milk-colony",
     "madhavaram-truck-terminal",
+  ],
+
+  // 3) Manali / Ennore influence (industrial + transit-heavy vibe)
+  MANALI_INDUSTRIAL_TRANSIT_BELT: [
     "manali",
     "manali-new-town",
     "manali-industrial-estate",
     "nh-manali-road",
-    "karanodai",
-    "periyapalayam",
+  ],
+
+  // 4) Thiruvallur / outskirts belt (corridor + contractor + mixed)
+  THIRUVALLUR_OUTSKIRTS_BELT: [
     "budur",
+    "periyapalayam",
     "thiruninravur",
     "veppampattu",
     "thiruvallur-sipcot-outskirts",
+  ],
+
+  // 5) Poonamallee → Sriperumbudur → Oragadam (industrial gold corridor)
+  INDUSTRIAL_GOLD_CORRIDOR_WEST: [
     "poonamallee-bypass",
     "kuthambakkam",
     "thirumazhisai",
     "chembarambakkam",
     "sriperumbudur-sipcot",
     "oragadam-outskirts",
-    "arani",
-  ].filter(has);
+  ],
 
-  const CITY_SIDE = [
-    "perambur",
-    "ambattur",
+  // 6) Inner North / mixed-use “connector” pockets (useful for motor + SME)
+  NORTH_CONNECTOR_POCKETS: [
+    "surapet",
+    "villivakkam-industrial-areas",
     "kolathur",
     "kolathur-commercial-pockets",
     "retteri",
-    "villivakkam-industrial-areas",
+    "perambur",
+  ],
+
+  // 7) City-side / residential + SME support
+  CITY_SIDE_RESIDENTIAL_SME: [
+    "ambattur",
     "mogappair-west",
     "koyambedu",
     "anna-nagar",
-  ].filter(has);
+  ],
 
-  const mk = (slug) => ({ slug, name: detail[slug].name });
+  // 8) “Outside-Chennai” corridor-connected (keep separate if you want tighter targeting)
+  OUTSIDE_CITY_CORRIDOR_CONNECTED: [
+    "arani",
+  ],
+};
+
+export const SERVICE_LOCAL_SUPPORT = {
+  "transport-fleet": {
+    "lorry-insurance": [
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+      ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+    ],
+    "trailer-insurance": [
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+      ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+    ],
+    "fleet-insurance": [
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+      ...LOCATION_BUCKETS.INDUSTRIAL_GOLD_CORRIDOR_WEST,
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+    ],
+  },
+
+  "industrial": {
+    "warehouse-insurance": [
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+      ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+      ...LOCATION_BUCKETS.INDUSTRIAL_GOLD_CORRIDOR_WEST,
+    ],
+    "fire-burglary-insurance": [
+      ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+      ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+      ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
+    ],
+  },
+
+  "business-msme": {
+    "shop-msme-insurance": [
+      ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+      ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
+      ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+    ],
+  },
+};
+
+
+
+const NH_PRIORITY = [
+   ...LOCATION_BUCKETS.PRIMARY_SHOLAVARAM_REDHILLS_BELT,
+    ...LOCATION_BUCKETS.MADHAVARAM_LOGISTICS_BELT,
+    ...LOCATION_BUCKETS.MANALI_INDUSTRIAL_TRANSIT_BELT,
+    ...LOCATION_BUCKETS.THIRUVALLUR_OUTSKIRTS_BELT,
+    ...LOCATION_BUCKETS.INDUSTRIAL_GOLD_CORRIDOR_WEST,
+    // keep pockets that behave like NH-facing demand
+    ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+    ...LOCATION_BUCKETS.OUTSIDE_CITY_CORRIDOR_CONNECTED,
+  ]
+
+  const CITY_SIDE = [
+    ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+    ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
+  ]
+
+
+  export const buildLocationsIndexFromDetail = (locationsDetail, EN, servicesDetail) => {
+  const detail = locationsDetail || {};
+  const has = (slug) => !!detail[slug];
+
+  const mk = (slug) => ({
+    slug,
+    name: detail[slug]?.name || slug,
+  });
+
+  // Utility: safe list (existing slugs only)
+  const pick = (slugs = []) => slugs.filter(has);
+
+  // Utility: build service links safely (must exist)
+  // Input is list of [category, serviceSlug, label?, desc?]
+  const svc = (category, serviceSlug, label, desc) => {
+    const ok = !!servicesDetail?.[category]?.[serviceSlug];
+    if (!ok) return null;
+    const d = servicesDetail[category][serviceSlug];
+    return {
+      href: EN(`/services/${category}/${serviceSlug}/`),
+      label: label || d.heroH1 || d.seoTitle || serviceSlug,
+      desc:
+        desc ||
+        d.seoDesc ||
+        "Coverage logic + documents + common mistakes (claim-ready guidance).",
+      category,
+      serviceSlug,
+    };
+  };
+
+  const buildServiceList = (items = []) =>
+    items.map((x) => svc(...x)).filter(Boolean);
+
+  // -----------------------------
+  // ZONES (economic clusters)
+  // -----------------------------
+  const ZONES = [
+    {
+      id: "nh16-gnt-logistics",
+      title: "GNT Road / NH belt (Logistics + fleet movement)",
+      subtitle:
+        "Frequent heavy-vehicle movement, warehouses/godowns, and incident scrutiny (documents + timeline).",
+      whyThisZoneMatters:
+        "This belt behaves like a logistics corridor: underwriting checks and claim workflows are often documentation-driven (permits/fitness/usage alignment, incident reporting quality).",
+      commonNeeds: [
+        "Lorry / heavy vehicle insurance + renewals for NH movement",
+        "Fleet discipline: centralized documents + expiry tracking",
+        "Warehouse / godown fire & burglary proof discipline (stock valuation + records)",
+      ],
+      topServices: buildServiceList([
+        ["transport-fleet", "fleet-insurance", "Fleet insurance (process + discipline)"],
+        ["transport-fleet", "lorry-insurance", "Lorry / heavy vehicle insurance"],
+        ["industrial", "warehouse-insurance", "Warehouse / godown insurance"],
+        ["claims-support", "claim-support", "Claim support (documents + timeline)"],
+        ["marine", "marine-cargo-goods-in-transit-insurance", "Marine cargo / goods-in-transit"],
+      ]),
+      searchesPeopleUse: [
+        "fleet insurance red hills",
+        "lorry insurance red hills",
+        "lorry insurance sholavaram",
+        "warehouse insurance madhavaram",
+        "insurance claim help near me",
+      ],
+      locations: pick([
+        "sholavaram",
+        "red-hills",
+        "puzhal",
+        "kavangarai",
+        "kosapaur",
+        "karanodai",
+        "madhavaram",
+        "madhavaram-truck-terminal",
+        "madhavaram-milk-colony",
+      ]).map(mk),
+
+      // Used to generate “local value” lines without faking stats
+      zoneSignals: [
+        "Fleet and lorry renewals often depend on permits/fitness + usage clarity.",
+        "Warehouse claims depend on valuation + stock proof discipline.",
+      ],
+    },
+
+    {
+      id: "manali-ennore-port-industrial",
+      title: "Manali / Ennore influence (Industrial + transit-heavy)",
+      subtitle:
+        "Industrial exposure plus movement risk: liability awareness + evidence quality for incidents.",
+      whyThisZoneMatters:
+        "This belt tends to carry higher public/third-party exposure and industrial risk. Practical coverage alignment and evidence discipline affect claim momentum.",
+      commonNeeds: [
+        "Commercial motor + third-party exposure clarity",
+        "Public liability awareness for visitor/vendor movement",
+        "Industrial property proof discipline (fire load + stock/asset records)",
+      ],
+      topServices: buildServiceList([
+        ["transport-fleet", "commercial-vehicle-insurance", "Commercial vehicle insurance"],
+        ["liability", "public-liability", "Public liability (third-party risk)"],
+        ["industrial", "fire-burglary-insurance", "Fire & burglary (commercial property)"],
+        ["industrial", "warehouse-insurance", "Warehouse / godown insurance"],
+        ["claims-support", "claim-support", "Claim support (documents + timeline)"],
+      ]),
+      searchesPeopleUse: [
+        "public liability manali",
+        "warehouse insurance manali",
+        "commercial insurance manali",
+        "insurance agent near me",
+      ],
+      locations: pick([
+        "manali",
+        "manali-new-town",
+        "manali-industrial-estate",
+        "nh-manali-road",
+      ]).map(mk),
+      zoneSignals: [
+        "Third-party incidents escalate when incident notes/evidence are weak.",
+        "Property and stock claims become proof + valuation discussions.",
+      ],
+    },
+
+    {
+      id: "west-industrial-corridors",
+      title: "West industrial corridor (SIDCO / SIPCOT / corridor-linked belts)",
+      subtitle:
+        "Contractor work, factories, and corridor risks where declarations + documentation drive claim outcomes.",
+      whyThisZoneMatters:
+        "Corridor-connected belts often involve contractor/worksite exposure and commercial property risks. Timeline alignment and records (work orders, payroll classification, asset/stock valuation) frequently decide outcomes.",
+      commonNeeds: [
+        "Contractor CAR/WC discipline (timeline + payroll/classification)",
+        "Factory/warehouse valuation + proof discipline",
+        "Transport linkages (trailers/goods carriers) depending on movement",
+      ],
+      topServices: buildServiceList([
+        ["construction", "contractor-car-wc-insurance", "Contractor CAR/WC combined guidance"],
+        ["construction", "workmen-compensation", "Workmen compensation (WC)"],
+        ["industrial", "factory-insurance", "Factory insurance (valuation + proof)"],
+        ["industrial", "stock-declaration-insurance", "Stock declaration policies"],
+        ["transport-fleet", "trailer-insurance", "Trailer insurance"],
+      ]),
+      searchesPeopleUse: [
+        "contractor insurance near me",
+        "workmen compensation insurance",
+        "factory insurance sriperumbudur",
+        "stock declaration policy warehouse",
+      ],
+      locations: pick([
+        "poonamallee-bypass",
+        "kuthambakkam",
+        "thirumazhisai",
+        "chembarambakkam",
+        "sriperumbudur-sipcot",
+        "oragadam-outskirts",
+      ]).map(mk),
+      zoneSignals: [
+        "Contractor claims often fail due to timeline + payroll/classification mismatches.",
+        "Factory/warehouse outcomes depend on valuation basis and proof trail discipline.",
+      ],
+    },
+
+    {
+      id: "thiruvallur-outskirts",
+      title: "Outer belts (Thiruvallur-side + outskirts support)",
+      subtitle:
+        "Mixed risk pockets: transport movement + SME + contractor exposures depending on operations.",
+      whyThisZoneMatters:
+        "Outskirts belts tend to have mixed exposures. The ‘right’ policy depends on what you actually do (routes, workforce, stored goods, equipment use) rather than generic purchase.",
+      commonNeeds: [
+        "Transport renewals + document tracker discipline",
+        "SME/shop packages for smaller businesses",
+        "WC discipline when workforce exposure exists",
+      ],
+      topServices: buildServiceList([
+        ["transport-fleet", "fleet-insurance", "Fleet insurance (process + discipline)"],
+        ["business-msme", "shop-msme-insurance", "Shop & MSME package insurance"],
+        ["construction", "workmen-compensation", "Workmen compensation (WC)"],
+        ["claims-support", "claim-support", "Claim support (documents + timeline)"],
+      ]),
+      searchesPeopleUse: [
+        "fleet insurance near me",
+        "msme insurance near me",
+        "workmen compensation near me",
+      ],
+      locations: pick([
+        "thiruvallur-sipcot-outskirts",
+        "budur",
+        "periyapalayam",
+        "thiruninravur",
+        "veppampattu",
+      ]).map(mk),
+      zoneSignals: [
+        "Mixed operations make ‘usage clarity’ the biggest factor in underwriting and claim acceptance.",
+      ],
+    },
+
+    {
+      id: "city-side-support",
+      title: "Chennai city-side support (Motor + Health + SME)",
+      subtitle:
+        "Personal motor renewals, health/LIC support, and SME office/shop packages with documentation clarity.",
+      whyThisZoneMatters:
+        "City-side queries are often ‘near me’ and renewal-driven. The value is clean renewal checks, correct add-ons, and claim-step clarity—without overpromises.",
+      commonNeeds: [
+        "Car/bike renewals: IDV/NCB/add-ons sanity checks",
+        "SME packages for offices/shops (valuation + proof discipline)",
+        "Claim-step readiness for motor incidents",
+      ],
+      topServices: buildServiceList([
+        ["personal", "car-insurance-support", "Private car insurance support"],
+        ["personal", "bike-insurance-support", "Two-wheeler insurance support"],
+        ["business-msme", "shop-msme-insurance", "Shop & MSME package insurance"],
+        ["claims-support", "claim-support", "Claim support (documents + timeline)"],
+      ]),
+      searchesPeopleUse: [
+        "insurance agent near me",
+        "car insurance renewal near me",
+        "bike insurance renewal near me",
+        "shop insurance near me",
+      ],
+      locations: pick([
+        "perambur",
+        "ambattur",
+        "kolathur",
+        "kolathur-commercial-pockets",
+        "retteri",
+        "villivakkam-industrial-areas",
+        "mogappair-west",
+        "koyambedu",
+        "anna-nagar",
+      ]).map(mk),
+      zoneSignals: [
+        "Renewal mistakes (IDV/NCB/add-ons) are common—simple checks prevent surprises.",
+      ],
+    },
+  ];
+
+  // Fallback “all locations” (for View All / search)
+  const allSlugs = Object.keys(detail);
+  const allLocations = allSlugs.map(mk);
 
   return {
-    title: "Locations We Serve (Chennai North + NH Corridors)",
+    title: "Locations we serve (Chennai North + corridor belts)",
     subtitle:
-      "Service guidance anchored to Sholavaram office support—focused on NH-facing belts (transport, warehouses, contractors, heavy equipment) and city-side areas for motor/health/LIC and SME needs.",
-    intro: [
-      "Primary base: Sholavaram (Chennai outskirts).",
-      "Commercial focus: NH belts and industrial movement zones (fleets, warehouses/godowns, factories, contractors, cranes/heavy equipment).",
-      "City-side support: car/bike, health, LIC and SME shops/offices—renewals + claim documentation guidance.",
-    ],
-    groups: [
-      {
-        id: "nh-industrial-belts",
-        title: "NH & industrial belts (commercial-first)",
-        subtitle:
-          "Areas with high commercial movement where policy wording + documentation discipline matters most for claims.",
-        locations: NH_PRIORITY.map(mk),
-      },
-      {
-        id: "city-areas",
-        title: "Chennai city-side areas (domestic + SME support)",
-        subtitle:
-          "Motor, health, LIC and small office/shop support—kept practical and claim-ready.",
-        locations: CITY_SIDE.map(mk),
-      },
-    ],
+      "Service guidance anchored to Sholavaram office support—organized by logistics/industrial belts and city-side support areas.",
+    centralHub: {
+      title: "Central support hub: Sholavaram",
+      text: [
+        "This is not a branch-directory page. Support is coordinated from Sholavaram, and location pages explain local context and common insurance needs.",
+        "Commercial-first focus: NH-facing belts and industrial movement zones (transport/fleets, warehouses/godowns, factories, contractors, heavy equipment).",
+        "City-side support: renewals and policy servicing for motor, health, LIC and SME shops/offices—guided with claim-ready documentation habits.",
+      ],
+    },
+
+    // Intent routing (high-value links)
+    intentRouter: {
+      title: "Not sure which location page to open?",
+      cards: [
+        {
+          title: "Insurance near me",
+          desc: "How local support works, what to share first, and when insurer inspections apply.",
+          href: EN("/insurance-near-me/"),
+        },
+        {
+          title: "Insurance renewal near me",
+          desc: "Renewal checks that prevent gaps: IDV/NCB/add-ons, permits/fitness where applicable.",
+          href: EN("/insurance-renewal-near-me/"),
+        },
+        {
+          title: "Insurance claim help",
+          desc: "What to do first, which proofs matter, and how to keep a clean incident timeline.",
+          href: EN("/insurance-claim-help/"),
+        },
+        {
+          title: "Services hub",
+          desc: "Browse transport/fleet, industrial property, contractor, MSME and claim support services.",
+          href: EN("/services/"),
+        },
+      ],
+    },
+
+    // Claim-ready principles (keep; already strong)
     claimReadyPrinciples: {
       title: "What improves outcomes (simple, practical)",
       points: [
@@ -1344,8 +5841,85 @@ export const buildLocationsIndexFromDetail = (locationsDetail) => {
         "Renewal checks: prevent coverage gaps and mismatched add-ons.",
       ],
     },
+
+    // Zones (the real upgrade)
+    zones: ZONES,
+
+    // For “View all” list (optional)
+    allLocations: allLocations,
+
+    // Small “search language” section (safe)
+    searchLanguage: {
+      title: "Search language people use",
+      note:
+        "These are common phrases people type to find local support. This page exists to route you to the right location and service guidance.",
+      chips: takeUnique([
+        "fleet insurance red hills",
+        "lorry insurance red hills",
+        "warehouse insurance madhavaram",
+        "insurance agent near me",
+        "insurance office near me",
+        "commercial insurance near me",
+        "insurance renewal near me",
+        "insurance claim help near me",
+      ], 14),
+    },
   };
 };
+
+// helper used in builder (keep outside export if you prefer)
+function takeUnique(list = [], n = 12) {
+  return Array.from(new Set((list || []).filter(Boolean))).slice(0, n);
+}
+
+// ✅ Single source of truth for index (no mismatch)
+// export const buildLocationsIndexFromDetail = (locationsDetail) => {
+//   const detail = locationsDetail || {};
+//   const has = (slug) => !!detail[slug];
+
+//   // Order = your business priority
+//   NH_PRIORITY.filter(has);
+
+//   CITY_SIDE.filter(has);
+
+//   const mk = (slug) => ({ slug, name: detail[slug].name });
+
+//   return {
+//     title: "Locations We Serve (Chennai North + NH Corridors)",
+//     subtitle:
+//       "Service guidance anchored to Sholavaram office support—focused on NH-facing belts (transport, warehouses, contractors, heavy equipment) and city-side areas for motor/health/LIC and SME needs.",
+//     intro: [
+//       "Primary base: Sholavaram (Chennai outskirts).",
+//       "Commercial focus: NH belts and industrial movement zones (fleets, warehouses/godowns, factories, contractors, cranes/heavy equipment).",
+//       "City-side support: car/bike, health, LIC and SME shops/offices—renewals + claim documentation guidance.",
+//     ],
+//     groups: [
+//       {
+//         id: "nh-industrial-belts",
+//         title: "NH & industrial belts (commercial-first)",
+//         subtitle:
+//           "Areas with high commercial movement where policy wording + documentation discipline matters most for claims.",
+//         locations: NH_PRIORITY.map(mk),
+//       },
+//       {
+//         id: "city-areas",
+//         title: "Chennai city-side areas (domestic + SME support)",
+//         subtitle:
+//           "Motor, health, LIC and small office/shop support—kept practical and claim-ready.",
+//         locations: CITY_SIDE.map(mk),
+//       },
+//     ],
+//     claimReadyPrinciples: {
+//       title: "What improves outcomes (simple, practical)",
+//       points: [
+//         "Correct disclosures + policy wording clarity before purchase/renewal—reduces disputes later.",
+//         "Documentation discipline: invoices, valuation proofs, photos, permits/fitness, worker records (where applicable).",
+//         "Timely reporting and clean incident timeline—done correctly to reduce avoidable delays.",
+//         "Renewal checks: prevent coverage gaps and mismatched add-ons.",
+//       ],
+//     },
+//   };
+// };
 
 // Also add normalized fields for easy UI use.
 const gmbReviewsRaw = {
@@ -2443,1191 +7017,8 @@ export const siteData = {
 // Example URL:
 // EN(`/services/transport-fleet/${serviceSlug}/`)
 
-servicesDetail: {
-  // =====================================================
-  // TRANSPORT & FLEET
-  // /en/services/transport-fleet/{service}/
-  // =====================================================
-  "transport-fleet": {
-    "lorry-insurance": {
-      seoTitle: "Lorry / Heavy Vehicle Insurance Guidance – Red Hills Toll & NH Belts",
-      seoDesc:
-        "Claim-ready guidance for lorry owners and fleets in Sholavaram, Red Hills Toll belt, Madhavaram and NH corridors. Focus: permits, fitness, third-party exposure and documentation discipline.",
-      heroH1: "Lorry / Heavy Vehicle Insurance (NH-belt Reality)",
-      heroP:
-        "Highway-facing operations have higher third-party exposure and stricter scrutiny. We guide coverage clarity + documentation habits that protect claims later.",
-      whoFor: [
-        "Single lorry owners and fleet operators",
-        "Logistics businesses moving goods in NH corridors",
-        "Tipper/trailer attached operations (as applicable)",
-      ],
-      localFit:
-        "NH-facing belts see higher third-party incidents and documentation scrutiny. A clean paper trail (permit/fitness/driver basics) reduces avoidable delays.",
-      keyCoverFocus: [
-        "Third-party exposure clarity + accident reporting readiness",
-        "Permit/fitness/RC alignment (common underwriting checks)",
-        "Loading/unloading/worksite exposure (often missed)",
-        "Endorsements/IMT clarity aligned to usage",
-      ],
-      claimDocs: [
-        "RC, permit, fitness, pollution (as applicable)",
-        "Driver documents (as applicable)",
-        "Incident timeline + FIR/spot documents (when needed)",
-        "Repair estimate + photos + incident details",
-      ],
-      commonMistakes: [
-        "Fitness/permit lapse causing claim friction",
-        "Late reporting or incomplete incident timeline",
-        "Wording not aligned to loading/unloading exposure",
-        "Not maintaining a ready folder for vehicle/driver docs",
-      ],
-      alsoKnownAs: [
-        "Heavy vehicle insurance",
-        "Truck insurance",
-        "Goods vehicle insurance",
-        "Commercial transport insurance",
-      ],
-      whatCanGoWrong: [
-        "Fitness expired at the time of loss",
-        "Permit not valid for route / usage",
-        "Driver documentation mismatch (as applicable)",
-        "IMT / endorsements not aligned with usage",
-        "Overloading mentioned in FIR / records",
-      ],
-      areaRealityTitle: "Lorry insurance reality around Red Hills Toll belt",
-      areaRealityText:
-        "NH corridors see higher third-party exposure and stricter documentation checks. Early reporting, a clear incident timeline and valid permits/fitness reduce avoidable delays.",
-      areaSignals: [
-        "Red Hills Toll belt lorry insurance guidance",
-        "Sholavaram heavy vehicle insurance support",
-        "Madhavaram transport insurance consultant",
-        "Chennai outskirts NH belt lorry insurance",
-      ],
-      faqs: [
-        {
-          q: "Why do lorry claims get delayed most often?",
-          a:
-            "Late reporting, missing documents, and mismatch between real operations and policy wording (especially loading/unloading and endorsements).",
-        },
-        {
-          q: "What should I keep ready before renewal?",
-          a:
-            "RC, permit/fitness dates, driver details (as applicable), usual route/usage summary, and previous policy copy/endorsements if any.",
-        },
-      ],
-      internalLinks: [
-        { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
-        { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
-        { label: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-        { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
-      ],
-    },
+servicesDetail,
 
-    "commercial-vehicle-insurance": {
-      seoTitle: "Commercial Vehicle Insurance Guidance – Chennai Outskirts (NH + Industrial Belts)",
-      seoDesc:
-        "Commercial vehicle insurance guidance for business-use vehicles across Sholavaram, Red Hills, Madhavaram and Chennai outskirts. Focus: usage clarity, endorsements, third-party exposure and claims readiness.",
-      heroH1: "Commercial Vehicle Insurance (Usage + Wording Clarity)",
-      heroP:
-        "Commercial-use vehicles face higher liability exposure. We guide policy wording alignment to real usage and practical documentation discipline.",
-      whoFor: [
-        "Businesses operating commercial-use vehicles",
-        "Owners renewing without verifying usage/endorsement fit",
-        "Operators needing claim-ready document discipline",
-      ],
-      localFit:
-        "In NH + industrial belts, incidents often trigger third-party and documentation scrutiny. Usage mismatch is a common dispute driver.",
-      keyCoverFocus: [
-        "Usage clarity (what the vehicle actually does daily)",
-        "Endorsements/IMT clarity aligned to operations",
-        "Third-party exposure and reporting discipline",
-        "Basic proof folder discipline for claims",
-      ],
-      claimDocs: [
-        "RC + policy copy + endorsements",
-        "Incident timeline + photos/videos (as applicable)",
-        "FIR/spot documents (when needed)",
-        "Repair estimate + workshop documents (as applicable)",
-      ],
-      commonMistakes: [
-        "Usage mismatch vs proposal/policy wording",
-        "Not maintaining endorsements record",
-        "Late reporting or incomplete timeline",
-      ],
-      alsoKnownAs: ["Business vehicle insurance", "Commercial motor insurance", "Company vehicle insurance"],
-      whatCanGoWrong: [
-        "Usage mismatch causes disputes",
-        "Late reporting weakens the timeline",
-        "Missing endorsement/IMT clarity leads to gaps",
-      ],
-      areaRealityTitle: "Commercial vehicle claim reality in NH belts",
-      areaRealityText:
-        "Most friction comes from usage mismatch and weak incident timeline. Clean usage summary + early reporting improves outcomes.",
-      areaSignals: [
-        "Sholavaram commercial vehicle insurance",
-        "Red Hills vehicle insurance guidance",
-        "Madhavaram insurance support for vehicles",
-        "Chennai outskirts commercial motor insurance",
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "goods-carrying-vehicle-insurance": {
-      seoTitle: "Goods Carrying Vehicle Insurance Guidance – Chennai Outskirts Logistics Belts",
-      seoDesc:
-        "Claim-ready guidance for pickup/goods-auto/goods carrying vehicles in Sholavaram, Red Hills, Madhavaram and NH corridors. Focus: permit/route clarity, third-party exposure and documentation discipline.",
-      heroH1: "Goods Carrying Vehicle Insurance (Permit + Route Discipline)",
-      heroP:
-        "Goods vehicles face route/permit checks and third-party exposure. We guide coverage clarity and simple habits that protect claims later.",
-      whoFor: [
-        "Pickup / goods-auto / small goods carriers",
-        "Local logistics and delivery operators",
-        "Owners renewing without route/permit clarity",
-      ],
-      localFit:
-        "Chennai outskirts logistics corridors see frequent checks and higher incident scrutiny. Permit/route clarity and clean reporting reduce disputes.",
-      keyCoverFocus: [
-        "Permit/route/usage clarity",
-        "Third-party exposure and reporting discipline",
-        "Loading/unloading and operational exposure alignment",
-        "Document folder discipline (vehicle + driver as applicable)",
-      ],
-      claimDocs: [
-        "RC, permit, fitness (as applicable)",
-        "Driver documents (as applicable)",
-        "Incident timeline + photos (as applicable)",
-        "Repair estimate + incident notes",
-      ],
-      commonMistakes: [
-        "Route/permit mismatch",
-        "Late reporting and weak incident narrative",
-        "Assuming basic cover matches real usage",
-      ],
-      alsoKnownAs: ["Pickup insurance", "Goods auto insurance", "Goods carrier insurance"],
-      whatCanGoWrong: [
-        "Permit/route mismatch causes disputes",
-        "Missing driver docs (as applicable)",
-        "Overloading mention triggers scrutiny",
-      ],
-      areaRealityTitle: "Goods vehicle reality around Madhavaram logistics corridor",
-      areaRealityText:
-        "Goods carriers get scrutinized on permit/route and incident timeline. Simple discipline improves claim momentum.",
-      areaSignals: [
-        "Madhavaram goods carrying vehicle insurance",
-        "Sholavaram pickup insurance guidance",
-        "Red Hills goods auto insurance support",
-        "Chennai outskirts logistics vehicle insurance",
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-        { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
-      ],
-    },
-
-    "trailer-insurance": {
-      seoTitle: "Trailer Insurance Guidance – NH Corridors (Chennai Outskirts)",
-      seoDesc:
-        "Trailer insurance guidance for operators in NH belts around Sholavaram, Red Hills and Madhavaram. Focus: attachment usage clarity, third-party exposure, endorsements and claim-ready documentation.",
-      heroH1: "Trailer Insurance (Attachment + Exposure Clarity)",
-      heroP:
-        "Trailers increase exposure during turns, loading/unloading and public movement. We guide wording alignment and practical claim-ready documentation.",
-      whoFor: [
-        "Trailer owners/operators",
-        "Fleet operators using trailers across NH corridors",
-        "Operators renewing without attachment/endorsement clarity",
-      ],
-      localFit:
-        "NH movement plus loading bays increase third-party exposure. Trailer incidents often trigger scrutiny on documentation and usage disclosures.",
-      keyCoverFocus: [
-        "Usage clarity for trailer operations and routes",
-        "Endorsements/IMT clarity aligned to operations",
-        "Third-party exposure and incident reporting discipline",
-        "Document folder discipline (vehicle/attachment papers as applicable)",
-      ],
-      claimDocs: [
-        "Policy copy + endorsements",
-        "RC/permit/fitness as applicable",
-        "Incident timeline + photos/videos (as applicable)",
-        "FIR/spot documents (when needed)",
-      ],
-      commonMistakes: [
-        "Attachment/usage not clearly aligned in wording",
-        "Late reporting and weak incident narrative",
-        "Missing endorsement clarity",
-      ],
-      alsoKnownAs: ["Trailer cover", "Trailer vehicle insurance", "Transport trailer insurance"],
-      whatCanGoWrong: [
-        "Usage mismatch vs policy wording",
-        "Late reporting causes timeline disputes",
-        "Missing endorsement clarity leads to coverage gaps",
-      ],
-      areaRealityTitle: "Trailer claim reality in highway corridors",
-      areaRealityText:
-        "Trailer-related incidents escalate quickly due to third-party exposure. Clean reporting + correct disclosures reduce avoidable delays.",
-      areaSignals: [
-        "Red Hills trailer insurance guidance",
-        "Sholavaram trailer policy support",
-        "Chennai outskirts highway trailer insurance",
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "fleet-insurance": {
-      seoTitle: "Fleet Insurance Guidance – Chennai Outskirts (Transport Operators)",
-      seoDesc:
-        "Fleet insurance guidance for transport operators across Sholavaram, Red Hills Toll belt, Madhavaram and NH corridors. Focus: fleet discipline, documentation, renewals and claim workflow readiness.",
-      heroH1: "Fleet Insurance (Discipline + Claim Workflow Readiness)",
-      heroP:
-        "Fleet success depends on discipline: documents, renewals, driver basics and incident reporting. We help align coverage to real operations.",
-      whoFor: [
-        "Fleet operators with multiple vehicles",
-        "Logistics businesses running routes across NH corridors",
-        "Owners wanting predictable renewal + claim readiness",
-      ],
-      localFit:
-        "In NH-facing belts, claims get judged on timeline and documentation quality. Fleet discipline reduces repeated friction points.",
-      keyCoverFocus: [
-        "Fleet documentation and renewal discipline",
-        "Third-party exposure management basics",
-        "Driver/vehicle records organization (as applicable)",
-        "Clear incident reporting process for teams",
-      ],
-      claimDocs: [
-        "Vehicle list + policy copies + endorsements",
-        "Basic document tracker (permit/fitness/expiry)",
-        "Incident reporting checklist for drivers (as applicable)",
-        "Repair estimates + photos + incident notes",
-      ],
-      commonMistakes: [
-        "No centralized document/expiry tracking",
-        "Late reporting and inconsistent incident details",
-        "Different vehicles operating differently than declared",
-      ],
-      alsoKnownAs: ["Fleet policy", "Multiple vehicle insurance", "Transport fleet cover"],
-      whatCanGoWrong: [
-        "Inconsistent reporting across drivers",
-        "Expiry lapses create friction",
-        "Operational mismatch vs declared usage",
-      ],
-      areaRealityTitle: "Fleet claims reality around NH belts",
-      areaRealityText:
-        "Fleets win on process: expiry discipline, incident reporting clarity, and organized documents. Small gaps compound across vehicles.",
-      areaSignals: [
-        "Madhavaram fleet insurance support",
-        "Red Hills transport fleet insurance guidance",
-        "Sholavaram fleet policy consultant",
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "tip-truck-insurance": {
-      seoTitle: "Tip Truck / Tipper Insurance Guidance – Chennai Outskirts (Worksites + NH Belts)",
-      seoDesc:
-        "Tipper insurance guidance for operators working in worksites and NH belts around Sholavaram, Red Hills and Chennai outskirts. Focus: usage clarity, third-party exposure and claim-ready documentation.",
-      heroH1: "Tip Truck / Tipper Insurance (Worksite Exposure Clarity)",
-      heroP:
-        "Tipper operations involve worksite exposure and public movement. We guide coverage clarity and documentation discipline to reduce claim disputes.",
-      whoFor: [
-        "Tip truck / tipper owners",
-        "Contractors using tippers for site movement (as applicable)",
-        "Operators renewing without worksite exposure clarity",
-      ],
-      localFit:
-        "Worksite + NH movement increases third-party exposure. Claims often become documentation and usage disclosure discussions.",
-      keyCoverFocus: [
-        "Usage clarity (route + worksite exposure)",
-        "Third-party exposure and reporting discipline",
-        "Endorsements/IMT alignment to real operations",
-      ],
-      claimDocs: [
-        "Policy copy + endorsements",
-        "Incident timeline + photos (as applicable)",
-        "FIR/spot documents (when needed)",
-      ],
-      commonMistakes: [
-        "Worksite usage not aligned in wording",
-        "Late reporting and weak timeline",
-      ],
-      alsoKnownAs: ["Tipper insurance", "Tipper truck policy", "Tip truck cover"],
-      whatCanGoWrong: [
-        "Usage mismatch vs policy",
-        "Missing endorsements for operational exposure",
-        "Late reporting causes timeline disputes",
-      ],
-      areaRealityTitle: "Tipper insurance reality near worksites",
-      areaRealityText:
-        "Worksite incidents need clean reporting and clear usage disclosure. Simple discipline reduces avoidable friction.",
-      areaSignals: [
-        "Sholavaram tipper insurance guidance",
-        "Red Hills tip truck insurance support",
-        "Chennai outskirts tipper policy consultant",
-      ],
-      internalLinks: [
-        { label: "Construction & Contractor Insurance", href: EN("/services/construction/contractor-car-wc-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // INDUSTRIAL & PROPERTY
-  // /en/services/industrial/{service}/
-  // =====================================================
-  "industrial": {
-    "warehouse-insurance": {
-      seoTitle: "Warehouse / Godown Insurance Guidance – Chennai Outskirts Industrial Belts",
-      seoDesc:
-        "Warehouse insurance guidance for Sholavaram, Madhavaram, Manali/Ennore and nearby industrial belts. Focus: fire load, stock proof discipline, valuation clarity and burglary conditions.",
-      heroH1: "Warehouse / Godown Insurance (Proof + Valuation Discipline)",
-      heroP:
-        "Warehouse claims succeed when valuation and stock proof are clean. We guide declarations, documentation habits and policy alignment to real storage risk.",
-      whoFor: [
-        "Warehouse and godown owners",
-        "Businesses storing fluctuating stock",
-        "Operators in industrial belts with higher fire/burglary exposure",
-      ],
-      localFit:
-        "Industrial belts increase electrical fire load and storage risk. Claim outcomes depend on stock proof, valuation basis, safety habits and clear declarations.",
-      keyCoverFocus: [
-        "Sum insured and valuation logic (avoid underinsurance)",
-        "Stock proof discipline (invoices/registers/photos as applicable)",
-        "Fire load + safety conditions awareness",
-        "Burglary conditions + security discipline",
-      ],
-      claimDocs: [
-        "Stock invoices/register + periodic proof trail",
-        "Premises photos + safety setup proof (as applicable)",
-        "Policy copy + endorsements + declarations (if any)",
-        "Incident timeline + reports (as applicable)",
-      ],
-      commonMistakes: [
-        "No consistent proof of stock value",
-        "Wrong sum insured / undervaluation",
-        "Layout/stock type changed but not updated",
-      ],
-      alsoKnownAs: ["Godown insurance", "Warehouse fire policy", "Industrial storage insurance"],
-      whatCanGoWrong: [
-        "Stock proof mismatch during claim",
-        "Undervaluation reduces settlement",
-        "Safety/security conditions not met (as applicable)",
-      ],
-      areaRealityTitle: "Warehouse claim reality around Madhavaram + Manali belts",
-      areaRealityText:
-        "Fire/burglary claims become valuation + proof discussions. Clean invoices/registers and clear declarations improve outcomes.",
-      areaSignals: [
-        "Madhavaram warehouse insurance guidance",
-        "Sholavaram godown insurance consultant",
-        "Manali Ennore industrial insurance support",
-        "Chennai outskirts warehouse insurance services",
-      ],
-      internalLinks: [
-        { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
-        { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-      ],
-    },
-
-    "factory-insurance": {
-      seoTitle: "Factory Insurance Guidance – Chennai Outskirts Industrial Belts",
-      seoDesc:
-        "Factory insurance guidance for small units and industrial belts around Sholavaram, Madhavaram, Manali/Ennore. Focus: fire load, machinery/stock valuation, and claim-ready proof discipline.",
-      heroH1: "Factory Insurance (Fire Load + Valuation Clarity)",
-      heroP:
-        "Factory risks combine electrical fire load, stock, and machinery exposure. We guide valuation and proof discipline so claims don’t get reduced later.",
-      whoFor: [
-        "Small factories and industrial units",
-        "Units with machinery + stock exposure",
-        "Businesses renewing without valuation clarity",
-      ],
-      localFit:
-        "Industrial belts increase fire load and storage risk. Clear declarations and proof discipline matter more than just premium.",
-      keyCoverFocus: [
-        "Valuation basis for building/stock/machinery",
-        "Fire load + safety conditions awareness",
-        "Stock proof discipline (as applicable)",
-        "Declaration updates when risk changes",
-      ],
-      claimDocs: [
-        "Asset/machinery list + valuation basis",
-        "Stock invoices/register (as applicable)",
-        "Safety setup proof (as applicable)",
-        "Incident timeline + reports (as applicable)",
-      ],
-      commonMistakes: [
-        "Undervaluation to save premium → reduced settlement later",
-        "No proof trail for assets/stock",
-        "Not updating changes in operations/layout",
-      ],
-      alsoKnownAs: ["Industrial unit insurance", "Factory package policy", "Industrial fire policy"],
-      whatCanGoWrong: [
-        "Undervaluation triggers settlement reduction",
-        "Mismatch between declared operations and actual activity",
-        "Safety conditions not met (as applicable)",
-      ],
-      areaRealityTitle: "Factory claim reality in industrial corridors",
-      areaRealityText:
-        "Most disputes come from valuation and declarations. Keeping clean asset/stock proof reduces avoidable delays.",
-      areaSignals: [
-        "Sholavaram factory insurance guidance",
-        "Madhavaram industrial unit insurance support",
-        "Chennai outskirts factory insurance consultant",
-      ],
-      internalLinks: [
-        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-      ],
-    },
-
-    "fire-burglary-insurance": {
-      seoTitle: "Fire & Burglary Insurance Guidance – Warehouses, Shops, Offices (Chennai Outskirts)",
-      seoDesc:
-        "Commercial property guidance for fire/burglary in Sholavaram, Red Hills and Madhavaram belts. Focus: sum insured, stock proof, safety/security conditions and claim-ready documentation.",
-      heroH1: "Fire & Burglary (Commercial Property) — Guidance",
-      heroP:
-        "Fire/burglary claims are proof-driven. We guide valuation, stock proof discipline and condition-awareness so claims don’t get stuck later.",
-      whoFor: [
-        "Warehouses and godowns storing stock",
-        "Shops/offices with high-value goods",
-        "Units with electrical fire load exposure",
-      ],
-      localFit:
-        "Fire claims become valuation/proof discussions. Burglary claims fail when security conditions and proof trail aren’t aligned.",
-      keyCoverFocus: [
-        "Sum insured + underinsurance avoidance",
-        "Stock proof discipline (invoices/registers/photos as applicable)",
-        "Security/safety conditions that affect claims",
-        "Declaration clarity for stored goods",
-      ],
-      claimDocs: [
-        "Stock proof + invoices/register/photos",
-        "Premises photos + security proof (as applicable)",
-        "Incident timeline + police/fire documents (as applicable)",
-      ],
-      commonMistakes: [
-        "No consistent stock proof",
-        "Wrong valuation basis",
-        "Ignoring policy conditions about security/safety",
-      ],
-      alsoKnownAs: ["Commercial property insurance", "Shop fire policy", "Warehouse fire + burglary policy"],
-      whatCanGoWrong: [
-        "Underinsurance reduces settlement",
-        "Security conditions not met for burglary claims (as applicable)",
-        "Weak proof trail for stock/assets",
-      ],
-      areaRealityTitle: "Fire/burglary claim reality in industrial belts",
-      areaRealityText:
-        "Most disputes come from valuation and proof. Keeping invoices/registers and basic premises photos (as applicable) improves claim acceptance.",
-      areaSignals: [
-        "Sholavaram fire insurance guidance",
-        "Madhavaram burglary insurance support",
-        "Red Hills godown fire insurance",
-      ],
-      internalLinks: [
-        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
-        { label: "Business & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "stock-declaration-insurance": {
-      seoTitle: "Stock Declaration Policies Guidance – Warehouses & Businesses (Chennai Outskirts)",
-      seoDesc:
-        "Stock declaration policy guidance for warehouses and businesses in industrial belts. Focus: stock proof discipline, declaration habits, valuation logic and claim acceptance readiness.",
-      heroH1: "Stock Declaration Policies (Proof Discipline Matters)",
-      heroP:
-        "When stock fluctuates, declarations and proof discipline decide claim outcomes. We guide how to keep declarations clean and defensible.",
-      whoFor: [
-        "Warehouses with fluctuating stock levels",
-        "Businesses where stock value changes month-to-month",
-        "Owners facing repeated underinsurance/proof issues",
-      ],
-      localFit:
-        "In industrial belts, stock claims get scrutinized for month-wise proof and declaration consistency. Clean habits reduce disputes.",
-      keyCoverFocus: [
-        "Declaration rhythm and documentation habit",
-        "Invoice/register proof discipline",
-        "Valuation logic and underinsurance prevention",
-        "Clarity on what stock is included/excluded",
-      ],
-      claimDocs: [
-        "Month-wise stock proof (invoices/registers)",
-        "Declaration history (if applicable)",
-        "Photos/records supporting storage reality (as applicable)",
-      ],
-      commonMistakes: [
-        "Declarations not matching proof trail",
-        "No clear register/invoice discipline",
-        "Under-declaring to save premium → reduced settlement later",
-      ],
-      alsoKnownAs: ["Declaration policy", "Floating stock policy", "Stock declaration insurance"],
-      whatCanGoWrong: [
-        "Mismatch between declared stock and actual proof",
-        "Under-declaration triggers settlement reduction",
-        "Incomplete month-wise evidence weakens claim",
-      ],
-      areaRealityTitle: "Stock declaration reality in warehouse corridors",
-      areaRealityText:
-        "Stock claims are evidence-based. A clean month-wise proof trail and consistent declarations reduce settlement disputes.",
-      areaSignals: [
-        "Madhavaram stock declaration policy guidance",
-        "Chennai outskirts warehouse stock policy support",
-        "Sholavaram stock insurance consultant",
-      ],
-      internalLinks: [
-        { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
-        { label: "Fire & Burglary", href: EN("/services/industrial/fire-burglary-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // CONSTRUCTION & CONTRACTOR
-  // /en/services/construction/{service}/
-  // =====================================================
-  "construction": {
-    "contractor-all-risk": {
-      seoTitle: "Contractor All Risk (CAR) Guidance – Chennai Outskirts Worksites",
-      seoDesc:
-        "CAR guidance for active worksites in Chennai outskirts. Focus: project period alignment, site exposure clarity, incident reporting timeline, and proof discipline.",
-      heroH1: "Contractor All Risk (CAR) — Worksite Reality",
-      heroP:
-        "CAR works when site details, project period and reporting discipline are aligned. We guide practical clarity so claims don’t fail on avoidable gaps.",
-      whoFor: [
-        "Contractors and subcontractors running active worksites",
-        "Projects with timeline/scope changes",
-        "Teams needing claim-ready reporting discipline",
-      ],
-      localFit:
-        "Worksite claims often get disputed due to timeline/scope mismatch and late reporting. Clear site notes and early intimation reduce friction.",
-      keyCoverFocus: [
-        "Project period alignment (start/end/extension discipline)",
-        "Site exposure clarity (what work is actually happening)",
-        "Reporting timelines and incident sequence clarity",
-        "Basic records: site notes, photos, and supporting documents (as applicable)",
-      ],
-      claimDocs: [
-        "Work order / contract basics (as applicable)",
-        "Project timeline notes + extension proof (as applicable)",
-        "Site photos + incident timeline + reports",
-        "Policy copy + endorsements",
-      ],
-      commonMistakes: [
-        "Project timeline extensions not aligned to policy period",
-        "Late reporting after incident",
-        "Site exposure differs from disclosures",
-      ],
-      alsoKnownAs: ["CAR insurance", "Contractor all risk policy", "Construction risk insurance"],
-      whatCanGoWrong: [
-        "Timeline/scope mismatch vs policy period",
-        "Late reporting weakens the incident narrative",
-        "Missing site proof and incident sequence clarity",
-      ],
-      areaRealityTitle: "CAR claim reality in Chennai outskirts worksites",
-      areaRealityText:
-        "Site claims get judged on timeline clarity and records. Keeping basic site notes and early reporting prevents avoidable delays.",
-      areaSignals: [
-        "Chennai outskirts contractor all risk insurance",
-        "Sholavaram CAR guidance",
-        "Red Hills construction insurance support",
-      ],
-      internalLinks: [
-        { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
-        { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "workmen-compensation": {
-      seoTitle: "Workmen Compensation (WC) Guidance – Contractors & Businesses (Chennai Outskirts)",
-      seoDesc:
-        "Workmen compensation guidance for contractors and businesses. Focus: worker classification/payroll discipline, reporting timelines, and proof habits that reduce claim disputes.",
-      heroH1: "Workmen Compensation (WC) — Payroll + Classification Discipline",
-      heroP:
-        "WC claims often fail due to classification and payroll mismatches. We guide practical discipline that prevents avoidable disputes.",
-      whoFor: [
-        "Contractors and subcontractors with workforce exposure",
-        "Businesses employing workers with site/operational risk",
-        "Teams needing clean payroll/classification discipline",
-      ],
-      localFit:
-        "WC disputes commonly arise from payroll mismatch, wrong worker classification, and late reporting. Simple records reduce friction.",
-      keyCoverFocus: [
-        "Worker classification clarity (as applicable)",
-        "Payroll discipline and record consistency (as applicable)",
-        "Incident reporting timeline and documentation quality",
-        "Worksite exposure clarity when relevant",
-      ],
-      claimDocs: [
-        "Worker details + classification notes (as applicable)",
-        "Payroll/wage proof (as applicable)",
-        "Incident timeline + basic evidence (as applicable)",
-        "Policy copy + endorsements",
-      ],
-      commonMistakes: [
-        "Payroll / classification mismatch triggers disputes",
-        "Late reporting after incident",
-        "Weak incident narrative and missing documents",
-      ],
-      alsoKnownAs: ["WC policy", "Employee compensation cover", "Workmen compensation insurance"],
-      whatCanGoWrong: [
-        "Wrong classification/payroll mismatch causes disputes",
-        "Late intimation weakens timeline",
-        "Missing supporting records at the time of claim (as applicable)",
-      ],
-      areaRealityTitle: "WC reality in contractor-heavy belts",
-      areaRealityText:
-        "WC outcomes depend on record discipline. Clean payroll/classification notes and early reporting reduce disputes.",
-      areaSignals: [
-        "Red Hills workmen compensation support",
-        "Sholavaram WC policy guidance",
-        "Chennai outskirts contractor WC insurance",
-      ],
-      internalLinks: [
-        { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/") },
-        { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "contractor-car-wc-insurance": {
-      seoTitle: "Contractor Insurance (CAR/WC) Guidance – Chennai Outskirts",
-      seoDesc:
-        "Combined CAR/WC guidance for contractors in Chennai outskirts. Focus: worksite risk, workforce exposure, documentation discipline and claim timeline readiness.",
-      heroH1: "Contractor CAR/WC (Worksite + Workforce Reality)",
-      heroP:
-        "Contractor claims fail on avoidable gaps: timeline mismatch, payroll/classification issues, and late reporting. We guide claim-ready discipline.",
-      whoFor: [
-        "Contractors and subcontractors",
-        "Site-based teams with workforce exposure",
-        "Projects with equipment + public exposure near highways",
-      ],
-      localFit:
-        "Contractor claims often fail due to late reporting, payroll/classification mismatch, and unclear site exposure details.",
-      keyCoverFocus: [
-        "WC discipline (classification/payroll clarity)",
-        "CAR discipline (site exposure + project period alignment)",
-        "Third-party exposure awareness at active sites",
-        "Incident reporting timelines + proof trail discipline",
-      ],
-      claimDocs: [
-        "Work order / contract basics (as applicable)",
-        "Workforce classification/payroll proof (as applicable)",
-        "Site photos + incident timeline + reports",
-        "Policy copy + endorsements",
-      ],
-      commonMistakes: [
-        "Wrong worker classification/payroll mismatch",
-        "Project period/extension not aligned",
-        "Late reporting after incident",
-      ],
-      alsoKnownAs: ["Contractor insurance", "CAR policy", "WC policy", "Construction contractor cover"],
-      whatCanGoWrong: [
-        "Payroll/classification mismatch triggers disputes",
-        "Site timeline/scope mismatch vs policy period",
-        "Late reporting after incident",
-        "Missing site proof and incident sequence clarity",
-      ],
-      areaRealityTitle: "Contractor insurance reality in Chennai outskirts worksites",
-      areaRealityText:
-        "Site claims get judged by timeline and records. Keeping basic site notes, workforce records (as applicable) and early reporting prevents delays.",
-      areaSignals: [
-        "Sholavaram contractor insurance guidance",
-        "Red Hills contractor CAR WC support",
-        "Chennai outskirts contractor policy consultant",
-      ],
-      internalLinks: [
-        { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/") },
-        { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
-        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // BUSINESS & MSME
-  // /en/services/business-msme/{service}/
-  // =====================================================
-  "business-msme": {
-    "shop-msme-insurance": {
-      seoTitle: "Shop & MSME Package Insurance Guidance – Sholavaram (Chennai Outskirts)",
-      seoDesc:
-        "Claim-first guidance for shops, offices and MSMEs across Sholavaram, Red Hills Toll belt, Madhavaram and Chennai outskirts. Focus: wording, valuation and proof discipline.",
-      heroH1: "Shop & MSME Package Insurance (Claim-first Guidance)",
-      heroP:
-        "For shops, offices and MSMEs operating in NH-facing and industrial belts—coverage clarity that matches real operations, with documentation habits that protect claims later.",
-      whoFor: [
-        "Local shops, offices, showrooms and service businesses",
-        "Small units with stock + electrical fire load exposure",
-        "Owners renewing without clarity on sum insured and inclusions",
-      ],
-      localFit:
-        "In Chennai outskirts, business risk often combines storage + public interaction + highway movement. Small wording gaps (stock declaration, theft conditions, electrical fire) are common claim friction points.",
-      keyCoverFocus: [
-        "Correct sum insured and valuation logic (avoid underinsurance)",
-        "Stock proof discipline (invoices, registers, photos, declarations)",
-        "Burglary/fire conditions that affect claim acceptance",
-        "Add-ons that matter when operations differ from standard retail",
-      ],
-      claimDocs: [
-        "Invoice / stock proof and valuation basis",
-        "Premises photos + safety setup proof (as applicable)",
-        "Policy copy + endorsements + declaration history (if any)",
-        "Incident timeline + supporting documents (when claim happens)",
-      ],
-      commonMistakes: [
-        "Sum insured selected randomly (settlement reduced later)",
-        "Stock declaration mismatch (major dispute trigger)",
-        "Not maintaining basic proof trail for goods / assets",
-        "Assuming online purchase wording covers real operations",
-      ],
-      alsoKnownAs: ["Shop insurance", "MSME package insurance", "Office insurance", "Commercial package policy"],
-      whatCanGoWrong: [
-        "Underinsurance reduces settlement (average clause risk)",
-        "No stock proof trail (invoice/register mismatch)",
-        "Security/safety conditions not met (as applicable)",
-        "Business activity mismatch vs policy wording",
-      ],
-      areaRealityTitle: "Shop/MSME insurance reality around Sholavaram + Red Hills belts",
-      areaRealityText:
-        "Warehouse-heavy corridors increase proof scrutiny. Clean invoices/stock records and a simple operations summary prevent avoidable disputes.",
-      areaSignals: [
-        "Sholavaram shop insurance guidance",
-        "Red Hills MSME insurance support",
-        "Madhavaram shop office package insurance",
-        "Chennai outskirts commercial insurance consultant",
-      ],
-      faqs: [
-        {
-          q: "Is this only for big companies?",
-          a:
-            "No. MSME and small businesses benefit most because claim issues usually happen due to missing proof or wrong valuation—not because coverage is impossible.",
-        },
-        {
-          q: "What should I keep ready before calling?",
-          a:
-            "Business type, exact location, approximate stock/assets value, and existing policy details (if any). If you store stock, keep basic proof (invoices/register/photos).",
-        },
-      ],
-      internalLinks: [
-        { label: "Fire & Burglary", href: EN("/services/industrial/fire-burglary-insurance/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-        { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // HEAVY EQUIPMENT
-  // /en/services/heavy-equipment/{service}/
-  // =====================================================
-  "heavy-equipment": {
-    "crane-cpm-insurance": {
-      seoTitle: "Crane & Heavy Equipment (CPM) Insurance Guidance – Sholavaram / Red Hills",
-      seoDesc:
-        "High-premium CPM insurance guidance for cranes and heavy equipment in NH and industrial worksites. Focus: declared value, third-party risk and claim documentation discipline.",
-      heroH1: "Crane / Heavy Equipment (CPM) — Declared Value Discipline",
-      heroP:
-        "High-premium equipment claims get scrutinized on value + usage + timeline. We guide declared value logic and proof discipline to reduce disputes.",
-      whoFor: [
-        "Crane owners and operators",
-        "Equipment rental businesses",
-        "Contractors using heavy equipment at worksites",
-      ],
-      localFit:
-        "NH belts and worksites increase third-party exposure. Wrong declared value and unclear usage details are common dispute triggers.",
-      keyCoverFocus: [
-        "Declared value logic (settlement depends on it)",
-        "Usage/site exposure alignment (avoid wording gaps)",
-        "Third-party exposure near highways and public zones",
-        "Maintenance/inspection discipline (as applicable)",
-      ],
-      claimDocs: [
-        "Purchase value / valuation basis",
-        "Equipment details + usage context",
-        "Photos + maintenance/inspection records (as applicable)",
-        "Incident timeline + supporting docs",
-      ],
-      commonMistakes: [
-        "Declared value chosen too low to save premium",
-        "Not clarifying how/where equipment is used",
-        "Missing proof trail when incident occurs",
-      ],
-      alsoKnownAs: ["CPM insurance", "Contractor’s plant & machinery insurance", "Crane insurance", "Heavy equipment insurance"],
-      whatCanGoWrong: [
-        "Declared value not supported by proof/valuation",
-        "Usage/site exposure mismatch vs proposal",
-        "Delay in intimation leading to timeline disputes",
-      ],
-      areaRealityTitle: "Crane / CPM reality around NH + industrial worksites",
-      areaRealityText:
-        "Equipment claims are proof-driven. Keeping valuation proof and basic records reduces dispute risk.",
-      areaSignals: [
-        "Sholavaram crane insurance support",
-        "Red Hills heavy equipment insurance",
-        "Chennai outskirts CPM insurance consultant",
-      ],
-      internalLinks: [
-        { label: "Crane Third-Party Liability Basics", href: EN("/services/heavy-equipment/crane-liability/") },
-        { label: "Construction (CAR/WC)", href: EN("/services/construction/contractor-car-wc-insurance/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "crane-liability": {
-      seoTitle: "Crane Third-Party Liability Basics – NH + Worksite Exposure (Chennai Outskirts)",
-      seoDesc:
-        "Practical guidance on third-party liability exposure for cranes and heavy equipment operating near highways and worksites. Focus: incident reporting, evidence quality and coverage clarity.",
-      heroH1: "Crane Third-Party Liability (Exposure Basics)",
-      heroP:
-        "Third-party incidents escalate fast around public zones. We guide evidence discipline and coverage clarity to reduce disputes.",
-      whoFor: [
-        "Crane operators working near highways/public movement",
-        "Equipment rental businesses handling public exposure",
-        "Contractors coordinating lifting operations (as applicable)",
-      ],
-      localFit:
-        "NH belts increase public interaction and third-party risk. Liability outcomes depend on incident detail quality and timely reporting.",
-      keyCoverFocus: [
-        "Understanding third-party exposure around public zones",
-        "Incident reporting timeline discipline",
-        "Evidence quality: photos, witnesses, notes (as applicable)",
-        "Clarity on what gets covered vs typical exclusions",
-      ],
-      claimDocs: [
-        "Incident timeline + witnesses (as applicable)",
-        "Photos/videos (as applicable)",
-        "Notices/letters received (as applicable)",
-        "Policy wording + endorsements",
-      ],
-      commonMistakes: [
-        "Late notice/reporting after incident",
-        "Poor incident details and weak evidence",
-        "Operations mismatch vs wording assumptions",
-      ],
-      alsoKnownAs: ["Third-party liability for crane", "Crane liability cover", "Equipment liability basics"],
-      whatCanGoWrong: [
-        "Late reporting weakens the timeline",
-        "Weak evidence creates disputes",
-        "Wording assumptions cause gaps",
-      ],
-      areaRealityTitle: "Liability reality near highways and public zones",
-      areaRealityText:
-        "Small incidents become expensive disputes if reporting/evidence is weak. Clean documentation and timely notice reduce friction.",
-      areaSignals: [
-        "Chennai outskirts crane liability guidance",
-        "Sholavaram heavy equipment third party risk",
-        "Red Hills crane insurance liability support",
-      ],
-      internalLinks: [
-        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // LIABILITY
-  // /en/services/liability/{service}/
-  // =====================================================
-  "liability": {
-    "public-liability": {
-      seoTitle: "Public Liability Insurance Guidance – Chennai Outskirts Businesses",
-      seoDesc:
-        "Liability guidance for businesses with public interaction, site exposure and NH-facing risk. Practical focus: what gets covered, common exclusions, and evidence discipline.",
-      heroH1: "Public Liability (Third-Party Risk) — Guidance",
-      heroP:
-        "Third-party incidents become expensive fast. We guide liability coverage clarity for businesses operating near highways, storage and public interaction zones.",
-      whoFor: [
-        "Warehouses and factories with visitors/vendor movement",
-        "Contractors and site-based teams",
-        "Businesses near highways with higher public exposure",
-      ],
-      localFit:
-        "Highway/industrial belts see higher interaction risk. Liability claims depend on incident detail quality and timely reporting.",
-      keyCoverFocus: [
-        "What liability covers vs typical exclusions",
-        "Where wording gaps occur (site exposure, operations mismatch)",
-        "Incident reporting discipline and documentation quality",
-      ],
-      claimDocs: [
-        "Incident timeline + witnesses (as applicable)",
-        "Photos/videos (as applicable)",
-        "Any notices/letters received (as applicable)",
-        "Policy wording + endorsements",
-      ],
-      commonMistakes: [
-        "Buying liability without aligning operations",
-        "Late notice/reporting after incident",
-        "Not maintaining incident detail quality",
-      ],
-      alsoKnownAs: ["Third-party liability policy", "Public liability cover", "Liability insurance for businesses"],
-      whatCanGoWrong: [
-        "Operations mismatch vs wording causes disputes",
-        "Late reporting weakens the timeline",
-        "Weak evidence quality (as applicable)",
-      ],
-      areaRealityTitle: "Liability reality around NH-facing businesses",
-      areaRealityText:
-        "Near highways and industrial zones, small incidents escalate quickly. Clean reporting, notices handling and evidence discipline reduce disputes.",
-      areaSignals: [
-        "Chennai outskirts public liability insurance",
-        "Red Hills third party liability support",
-        "Sholavaram liability insurance guidance",
-      ],
-      internalLinks: [
-        { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/") },
-        { label: "Construction (CAR/WC)", href: EN("/services/construction/contractor-car-wc-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // CLAIMS SUPPORT
-  // /en/services/claims-support/{service}/
-  // =====================================================
-  "claims-support": {
-    "claim-support": {
-      seoTitle: "Claim Support & Documentation Guidance – Sholavaram (Chennai Outskirts)",
-      seoDesc:
-        "Claim-first guidance: reporting steps, document checklist, timeline discipline and practical clarity to reduce delays for commercial, transport and industrial claims.",
-      heroH1: "Claim Support (Documents + Timelines + Process)",
-      heroP:
-        "Claim success depends on documentation quality and timeline discipline. We guide practical steps to reduce avoidable delays and confusion.",
-      whoFor: [
-        "Commercial/industrial businesses preparing for claims",
-        "Vehicle owners needing claim steps clarity",
-        "People stuck due to missing proof or late reporting",
-      ],
-      localFit:
-        "In NH/industrial belts, claims often involve third-party exposure, stock proof scrutiny and survey workflows. A clean proof trail improves outcomes.",
-      keyCoverFocus: [
-        "What to report and when (timeline discipline)",
-        "Which proofs matter (photos/invoices/registers)",
-        "How to avoid common settlement reductions",
-      ],
-      claimDocs: [
-        "Policy copy + endorsements",
-        "Incident timeline + photos/videos",
-        "Invoices/valuation/stock proof (as applicable)",
-        "Reports/letters/notices (as applicable)",
-      ],
-      commonMistakes: [
-        "Late intimation/reporting",
-        "No clear incident timeline",
-        "Missing valuation/stock proof",
-        "Assuming forms alone are enough",
-      ],
-      alsoKnownAs: ["Claim assistance", "Claim documentation support", "Claim guidance"],
-      whatCanGoWrong: [
-        "Late reporting changes the timeline narrative",
-        "Missing first-day photos/proof (as applicable)",
-        "Invoice/valuation gaps reduce settlement",
-        "Policy wording assumptions cause disputes",
-      ],
-      areaRealityTitle: "Claim reality in NH + industrial belts",
-      areaRealityText:
-        "The first timeline and first documents decide momentum. Clear reporting, organized proofs and correct disclosures reduce avoidable delays.",
-      areaSignals: [
-        "Sholavaram insurance claim support",
-        "Red Hills claim guidance",
-        "Madhavaram commercial claim documentation help",
-      ],
-      faqs: [
-        {
-          q: "Do you handle the claim or guide the process?",
-          a:
-            "We provide step-by-step guidance and document clarity so you can move correctly and avoid delays. Exact handling depends on insurer process and case type.",
-        },
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
-        { label: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
-        { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/") },
-        { label: "Public Liability", href: EN("/services/liability/public-liability/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // MARINE (for your internal links)
-  // /en/services/marine/{service}/
-  // =====================================================
-  "marine": {
-    "marine-cargo-goods-in-transit-insurance": {
-      seoTitle: "Marine Cargo / Goods-in-Transit Guidance – NH Belt Transport & Logistics",
-      seoDesc:
-        "Transit insurance guidance for cargo movement from Chennai outskirts/NH corridors. Focus: invoice proof, packaging clarity, route documentation and claim discipline.",
-      heroH1: "Marine Cargo / Goods-in-Transit (Transit Discipline)",
-      heroP:
-        "Transit claims succeed when invoice/packing/route proof is clean. We guide practical habits for NH movement and logistics operations.",
-      whoFor: [
-        "Logistics operators moving goods on NH corridors",
-        "Businesses shipping high-value goods",
-        "Import/export-related movement (as applicable)",
-      ],
-      localFit:
-        "Transit losses often become documentation disputes. Invoice proof, packing condition and timely reporting decide outcomes.",
-      keyCoverFocus: [
-        "Invoice/packing proof discipline",
-        "Route/mode clarity (avoid claim disputes)",
-        "Incident reporting + survey workflow awareness",
-      ],
-      claimDocs: [
-        "Invoice + packing list + dispatch/receipt proof",
-        "Photos of packing condition (as applicable)",
-        "Transport documents + incident timeline",
-      ],
-      commonMistakes: [
-        "No packing proof for fragile/high-value goods",
-        "Late reporting after transit incident",
-        "Mismatch between declared goods and actual shipment",
-      ],
-      alsoKnownAs: ["Goods in transit insurance", "Transit insurance", "Marine cargo policy"],
-      whatCanGoWrong: [
-        "Missing packing proof for damage claims",
-        "Invoice / declared goods mismatch",
-        "Delay in reporting affects survey workflow",
-      ],
-      areaRealityTitle: "Transit claim reality in NH corridors",
-      areaRealityText:
-        "Transit claims are proof-driven: invoice, packing, dispatch/receipt trail, and timely reporting. Clean documentation reduces avoidable delays.",
-      areaSignals: [
-        "Chennai marine cargo insurance support",
-        "NH belt goods in transit insurance guidance",
-        "Red Hills logistics transit insurance",
-      ],
-      internalLinks: [
-        { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-
-  // =====================================================
-  // PERSONAL (for your serviceVehicleTypes links)
-  // /en/services/personal/{service}/
-  // =====================================================
-  "personal": {
-    "taxi-cab-insurance": {
-      seoTitle: "Taxi / Cab Insurance Guidance – Chennai (Support)",
-      seoDesc:
-        "Practical taxi/cab insurance guidance: usage clarity, add-on fit, and basic claim-step discipline for operators across Chennai.",
-      heroH1: "Taxi / Cab Insurance (Usage Clarity)",
-      heroP:
-        "Taxi operations face frequent usage and claim workflow situations. We guide simple clarity and documentation habits.",
-      whoFor: [
-        "Taxi/cab owners and operators",
-        "Drivers renewing without verifying usage fit",
-      ],
-      localFit:
-        "Taxi usage creates frequent exposure. Clean reporting and basic document discipline helps during claims.",
-      keyCoverFocus: [
-        "Usage clarity aligned to policy wording",
-        "Basic claim-step readiness and reporting discipline",
-      ],
-      claimDocs: [
-        "Policy copy",
-        "Incident timeline + photos (as applicable)",
-        "Repair estimate (as applicable)",
-      ],
-      commonMistakes: [
-        "Usage mismatch vs policy",
-        "Late reporting after incidents",
-      ],
-      alsoKnownAs: ["Cab insurance", "Taxi policy", "Commercial cab insurance"],
-      whatCanGoWrong: ["Usage mismatch disputes", "Late reporting weakens the timeline"],
-      areaRealityTitle: "Taxi claim reality (city usage)",
-      areaRealityText:
-        "Most issues are workflow issues. Clean reporting and basic documentation prevents avoidable delays.",
-      areaSignals: ["Chennai taxi insurance support", "Cab insurance guidance Chennai"],
-      internalLinks: [
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "car-insurance-support": {
-      seoTitle: "Private Car Insurance Support – Chennai (Major Areas)",
-      seoDesc:
-        "Private car renewal support: IDV/NCB checks, add-on clarity and basic claim-step guidance across Chennai major areas.",
-      heroH1: "Private Car Insurance Support (Renewal Checks + Clarity)",
-      heroP:
-        "Renewals are where most mistakes happen. We help you verify IDV/NCB, add-on fit and basic claim steps.",
-      whoFor: [
-        "Private car owners renewing policies",
-        "Owners wanting clarity on add-ons and claim steps",
-      ],
-      localFit:
-        "Across city usage, renewal mistakes (IDV/NCB/add-ons) create surprises later. Quick checks prevent that.",
-      keyCoverFocus: [
-        "IDV and NCB checks",
-        "Add-on selection aligned to usage",
-        "Basic claim-step readiness",
-      ],
-      claimDocs: ["Policy copy", "Incident photos (as applicable)", "Repair estimate (as applicable)"],
-      commonMistakes: ["Wrong IDV/NCB assumptions", "Add-ons chosen without usage fit"],
-      alsoKnownAs: ["Car policy support", "Car insurance renewal help"],
-      whatCanGoWrong: ["Wrong IDV/NCB assumptions", "Delay in reporting (as applicable)"],
-      areaRealityTitle: "Car renewal reality",
-      areaRealityText:
-        "Small renewal mistakes create big claim surprises. Simple checks reduce that risk.",
-      areaSignals: ["Chennai car insurance renewal support", "Private car insurance guidance Chennai"],
-      internalLinks: [
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-
-    "bike-insurance-support": {
-      seoTitle: "Two-Wheeler Insurance Support – Chennai (Major Areas)",
-      seoDesc:
-        "Two-wheeler renewal support: add-on clarity and basic claim-step guidance across Chennai major areas.",
-      heroH1: "Two-Wheeler Insurance Support (Simple Clarity)",
-      heroP:
-        "Quick renewal checks and basic claim-step clarity help avoid surprises later.",
-      whoFor: [
-        "Two-wheeler owners renewing policies",
-        "Owners wanting simple add-on clarity",
-      ],
-      localFit:
-        "Most problems are avoidable: renew with clarity, keep basic documents ready, and know reporting steps.",
-      keyCoverFocus: ["Add-on clarity", "Basic claim-step readiness"],
-      claimDocs: ["Policy copy", "Incident photos (as applicable)"],
-      commonMistakes: ["Ignoring claim steps until incident happens"],
-      alsoKnownAs: ["Bike insurance support", "Two-wheeler renewal help"],
-      whatCanGoWrong: ["Late reporting (as applicable)", "Add-on mismatch"],
-      areaRealityTitle: "Two-wheeler policy support reality",
-      areaRealityText:
-        "Small clarity now prevents big confusion later.",
-      areaSignals: ["Chennai bike insurance renewal support", "Two-wheeler insurance guidance Chennai"],
-      internalLinks: [
-        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
-      ],
-    },
-  },
-},
 
 
   postDetails: {
@@ -4681,7 +8072,7 @@ servicesDetail: {
   linksHub: {
     title: "Important Links",
     subtitle:
-      "Quick access to our key service pages, industry guidance, and location-focused insurance support across Chennai outskirts.",
+      "We serve commercial insurance needs across Sholavaram (our base), Red Hills Toll belt, Madhavaram industrial area, and nearby Chennai North locations. Our focus includes transport fleets, warehouses, factories, and contractor operations.",
 
     sections: [
       {
@@ -4906,16 +8297,56 @@ servicesDetail: {
     ],
   },
 
-  servicePopular: [
-    { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), tag: "Transport" },
-    { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), tag: "Transport" },
-    { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), tag: "Transport" },
-    { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/"), tag: "Industrial" },
-    { title: "Shop & MSME Insurance", href: EN("/services/business-msme/shop-msme-insurance/"), tag: "Commercial" },
-    { title: "Contractor / Construction Insurance", href: EN("/services/construction/contractor-car-wc-insurance/"), tag: "Construction" },
-    { title: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/"), tag: "Heavy Equipment" },
-    { title: "Claim Support & Documentation", href: EN("/services/claims-support/"), tag: "Claims" },
-  ],
+servicePopular: [
+  { 
+    title: "Lorry / Heavy Vehicle Insurance", 
+    href: EN("/services/transport-fleet/lorry-insurance/"), 
+    tag: "Transport",
+    desc: "Comprehensive coverage for goods carriers with permit compliance, third-party liability protection, and 24/7 claim support for NH corridor operations."
+  },
+  { 
+    title: "Commercial Vehicle Insurance", 
+    href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), 
+    tag: "Transport",
+    desc: "Fleet coverage for multi-axle vehicles, tippers, and transport operators—permit/fitness discipline, accident exposure, and claim documentation support."
+  },
+  { 
+    title: "Goods Carrying Vehicle Insurance", 
+    href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), 
+    tag: "Transport",
+    desc: "Specialized policies for cargo vehicles with loading-unloading risk coverage, transit exposure, and regulatory compliance guidance for highway operations."
+  },
+  { 
+    title: "Warehouse Insurance", 
+    href: EN("/services/industrial/warehouse-insurance/"), 
+    tag: "Industrial",
+    desc: "Fire, stock, and burglary coverage for godowns and storage facilities—includes stock declaration support and valuation alignment for claim readiness."
+  },
+  { 
+    title: "Shop & MSME Insurance", 
+    href: EN("/services/business-msme/shop-msme-insurance/"), 
+    tag: "Commercial",
+    desc: "Package policies for retail shops, offices, and small businesses—covers property, stock, liability, and provides wording clarity to prevent claim disputes."
+  },
+  { 
+    title: "Contractor / Construction Insurance", 
+    href: EN("/services/construction/contractor-car-wc-insurance/"), 
+    tag: "Construction",
+    desc: "CAR/WC policies for active worksites—workforce risk, equipment coverage, site liability, and timeline-driven claim documentation for project-based operations."
+  },
+  { 
+    title: "Crane / Heavy Equipment (CPM)", 
+    href: EN("/services/heavy-equipment/crane-cpm-insurance/"), 
+    tag: "Heavy Equipment",
+    desc: "Contractors Plant & Machinery insurance for cranes, excavators, and heavy equipment—declared value clarity, third-party exposure, and breakdown coverage."
+  },
+  { 
+    title: "Claim Support & Documentation", 
+    href: EN("/services/claims-support/"), 
+    tag: "Claims",
+    desc: "Step-by-step guidance on claim documentation, timeline management, and reporting workflows—built to reduce delays and improve settlement outcomes."
+  },
+],
 
   serviceCategories: [
     {
@@ -5472,7 +8903,11 @@ servicesDetail: {
 // --------------------------------------------
 // LOCATIONS (hub + detail pages)
 // --------------------------------------------
-locationsIndex: buildLocationsIndexFromDetail(locationsDetail),
+locationsIndex: buildLocationsIndexFromDetail(
+  locationsDetail,
+  EN,
+  servicesDetail
+),
 
 
 // Location detail pages (each one links to service detail pages)
