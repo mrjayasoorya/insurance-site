@@ -2,7 +2,265 @@
 .local-id__wrap{margin-top:10px}.local-id__row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:14px}.local-id__item{display:flex;align-items:baseline;gap:10px}.local-id__k{opacity:.72;min-width:74px;margin:0 0 12px;font-size:12.8px;color:#5b616e;font-weight:750;line-height:.4}.local-id__v{font-size:.95rem}.local-id__v a,.local-id__item a{text-decoration:none}.local-id__item a:hover{text-decoration:underline}.local-id__map{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}.local-id__map iframe{width:100%;height:220px}@media(max-width:520px){.local-id__k{min-width:64px}.local-id__row{gap:8px 14px}.local-id__map iframe{height:180px}}
 .rowlink{display:block;font-weight:900}.chips{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px}.chip{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:8px 12px;font-size:12.5px;color:var(--muted);white-space:nowrap}.readable{max-width:78ch}.grid{display:grid;gap:12px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-1{grid-template-columns:1fr}.card{display:block;padding:14px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-decoration:none;box-shadow:0 2px 10px #0b0d120d}.card-title{font-size:15px;margin:0;font-weight:950;letter-spacing:-.01em}.card-desc{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.35}.glance{border:1px solid var(--border);background:var(--surface);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 10px #0b0d120d}.glance-row{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:start}.glance-k{font-weight:950;opacity:.85;font-size:13px}.glance-v{opacity:.9;font-size:13.5px;line-height:1.35}@media(max-width:520px){.glance-row{grid-template-columns:1fr}}.link-rows{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:10px}.link-row{border:1px solid var(--border);background:var(--surface);border-radius:16px;padding:10px 12px;box-shadow:0 2px 10px #0b0d120d}.rowlink{display:flex;flex-direction:column;gap:6px;text-decoration:none}.rowtitle{font-weight:950}.rowdesc{color:var(--muted);font-size:13px;line-height:1.35}@media(max-width:980px){.grid-2{grid-template-columns:1fr}}
 .qh-grid{margin-top:12px;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}.qh-card{display:block;padding:12px 14px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-decoration:none;box-shadow:0 2px 10px #0b0d120d}.qh-title{display:block;font-weight:950;letter-spacing:-.01em;font-size:14px}.qh-desc{display:block;margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}@media(max-width:980px){.qh-grid{grid-template-columns:1fr}}
-</style></head> <body> <main class="app"> <div class="container"> <!-- ========================= DESKTOP ========================= --> <div class="ui-desktop"> <header> <div class="hero"> <div style="font-weight: bold;font-size: 44px;">M N Rajendrakumar Insurance Services</div> <p>Support for Retteri customers via Sholavaram office—renewals, claim documentation help and practical coverage guidance.</p> <div class="signup" style="justify-content:center;"> <a class="btn" href="tel:7448324068" aria-label="Call Now 7448324068">
+</style><script>
+(function () {
+  "use strict";
+
+  // Absolute fail-safe: never throw out of this block
+  try {
+    // Prevent double-init
+    if (window.__ga4_inited__) return;
+    window.__ga4_inited__ = true;
+
+    // ---- ultra-safe helpers ----
+    function safeStr(v, max) {
+      try {
+        v = (v === undefined || v === null) ? "" : String(v);
+        v = v.trim();
+        if (max && v.length > max) v = v.slice(0, max);
+        return v;
+      } catch (_) { return ""; }
+    }
+
+    function safeBool(v) {
+      try { return !!v; } catch (_) { return false; }
+    }
+
+    function nowIso() {
+      try { return new Date().toISOString(); } catch (_) { return ""; }
+    }
+
+    function getTZ() {
+      try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) { return ""; }
+    }
+
+    function deviceType() {
+      try {
+        var w = window.innerWidth || 0;
+        if (w && w <= 767) return "mobile";
+        if (w && w <= 1024) return "tablet";
+        return "desktop";
+      } catch (_) { return "unknown"; }
+    }
+
+    function getNetType() {
+      try {
+        var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        return (c && c.effectiveType) ? safeStr(c.effectiveType, 20) : "";
+      } catch (_) { return ""; }
+    }
+
+    // Conservative bot heuristic (best-effort only)
+    function isProbablyBot() {
+      try {
+        var ua = safeStr(navigator.userAgent, 300).toLowerCase();
+        if (!ua) return 0;
+        if (/bot|spider|crawl|slurp|bingpreview|headless|lighthouse|pagespeed|prerender/.test(ua)) return 1;
+        if (navigator.webdriver === true) return 1;
+        return 0;
+      } catch (_) { return 0; }
+    }
+
+    function getContext(extra) {
+      extra = extra || {};
+      var ctx = {};
+      try {
+        ctx.page_location = safeStr(location.href, 500);
+        ctx.page_path = safeStr(location.pathname, 200);
+        ctx.page_title = safeStr(document.title, 120);
+        ctx.page_referrer = safeStr(document.referrer, 300);
+      } catch (_) {}
+
+      try {
+        ctx.device_type = deviceType();
+        ctx.viewport_w = (window.innerWidth || 0);
+        ctx.viewport_h = (window.innerHeight || 0);
+      } catch (_) {}
+
+      try {
+        ctx.language = safeStr(navigator.language, 20);
+        ctx.timezone = safeStr(getTZ(), 60);
+        ctx.client_time_iso = safeStr(nowIso(), 40);
+      } catch (_) {}
+
+      try {
+        ctx.cookies_enabled = safeBool(navigator.cookieEnabled);
+        ctx.net_effective_type = safeStr(getNetType(), 20);
+        ctx.dnt = safeStr(navigator.doNotTrack || window.doNotTrack || "", 10);
+      } catch (_) {}
+
+      try {
+        ctx.is_probably_bot = isProbablyBot();
+      } catch (_) {
+        ctx.is_probably_bot = 0;
+      }
+
+      // Merge extras last (but keep safe strings)
+      try {
+        for (var k in extra) {
+          if (!Object.prototype.hasOwnProperty.call(extra, k)) continue;
+          var val = extra[k];
+          // Only allow primitive-ish values
+          if (typeof val === "string") ctx[k] = safeStr(val, 300);
+          else if (typeof val === "number") ctx[k] = isFinite(val) ? val : 0;
+          else if (typeof val === "boolean") ctx[k] = val;
+          else ctx[k] = safeStr(val, 300);
+        }
+      } catch (_) {}
+
+      return ctx;
+    }
+
+    // Safe queue + gtag shim (never throws)
+    try {
+      window.dataLayer = window.dataLayer || [];
+    } catch (_) {
+      // if even this fails, stop quietly
+      return;
+    }
+
+    function gtagSafe() {
+      try {
+        // push arguments into dataLayer
+        window.dataLayer.push(arguments);
+      } catch (_) {}
+    }
+
+    // Expose gtag if not present
+    try {
+      window.gtag = window.gtag || gtagSafe;
+    } catch (_) {}
+
+    function fire(eventName, extra) {
+      try {
+        if (!eventName) return;
+        window.gtag("event", eventName, getContext(extra));
+      } catch (_) {}
+    }
+
+    // Load GA library async (never blocks render)
+    try {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-1ED70JSV2W";
+      // If DOM not ready, append when possible
+      var head = document.head || document.getElementsByTagName("head")[0];
+      if (head && head.appendChild) head.appendChild(s);
+    } catch (_) {}
+
+    function normalizeUrl(href) {
+      try { return new URL(href, location.href); } catch (_) { return null; }
+    }
+
+    function closestA(target) {
+      try {
+        if (!target) return null;
+        if (target.closest) return target.closest("a");
+      } catch (_) {}
+      return null;
+    }
+
+    function attachListeners() {
+      // Click delegation
+      try {
+        document.addEventListener("click", function (e) {
+          try {
+            var a = closestA(e.target);
+            if (!a) return;
+
+            var href = safeStr(a.getAttribute("href") || "", 500);
+            if (!href) return;
+
+            var url = normalizeUrl(href);
+            if (!url || !url.href) return;
+
+            var full = safeStr(url.href, 500).toLowerCase();
+            var host = safeStr(url.host, 120);
+            var path = safeStr(url.pathname, 200);
+            var text = safeStr(a.textContent || a.getAttribute("aria-label") || "", 80);
+
+            // tel: (privacy: do NOT send number)
+            if (full.indexOf("tel:") === 0) {
+              fire("click_call", { link_text: text });
+              return;
+            }
+
+            // WhatsApp
+            if (full.indexOf("wa.me/") !== -1 || full.indexOf("api.whatsapp.com/") !== -1 || full.indexOf("whatsapp.com/") !== -1) {
+              fire("click_whatsapp", { link_host: host, link_path: path, link_text: text });
+              return;
+            }
+
+            // Maps
+            if (full.indexOf("google.com/maps") !== -1 || full.indexOf("maps.google.com") !== -1 || full.indexOf("maps.app.goo.gl") !== -1 || full.indexOf("goo.gl/maps") !== -1) {
+              fire("click_maps", { link_host: host, link_path: path, link_text: text });
+              return;
+            }
+
+            // mailto: (privacy: do NOT send email)
+            if (full.indexOf("mailto:") === 0) {
+              fire("click_email", { link_text: text });
+              return;
+            }
+
+            // Outbound
+            try {
+              if (url.origin && location.origin && url.origin !== location.origin) {
+                fire("click_outbound", { link_host: host, link_path: path, link_text: text });
+                return;
+              }
+            } catch (_) {}
+          } catch (_) {}
+        }, { capture: true, passive: true });
+      } catch (_) {}
+
+      // Form submit (do not collect field values)
+      try {
+        document.addEventListener("submit", function (e) {
+          try {
+            var form = e.target;
+            if (!form || !form.getAttribute) return;
+
+            var action = safeStr(form.getAttribute("action") || "", 200);
+            var method = safeStr((form.getAttribute("method") || "GET").toUpperCase(), 10);
+            var formId = safeStr(form.getAttribute("id") || "", 60);
+            var formName = safeStr(form.getAttribute("name") || "", 60);
+
+            fire("form_submit", {
+              form_action: action,
+              form_method: method,
+              form_id: formId,
+              form_name: formName
+            });
+          } catch (_) {}
+        }, { capture: true, passive: true });
+      } catch (_) {}
+    }
+
+    // Init + listeners when idle (or ASAP fallback)
+    function init() {
+      try {
+        window.gtag("js", new Date());
+        window.gtag("config", "G-1ED70JSV2W", { send_page_view: true });
+      } catch (_) {}
+      attachListeners();
+    }
+
+    try {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(init, { timeout: 2000 });
+      } else {
+        setTimeout(init, 1);
+      }
+    } catch (_) {
+      // Last resort: try immediate init
+      try { init(); } catch (_) {}
+    }
+  } catch (_) {
+    // Swallow all errors: never affect page rendering
+  }
+})();
+          </script></head> <body> <main class="app"> <div class="container"> <!-- ========================= DESKTOP ========================= --> <div class="ui-desktop"> <header> <div class="hero"> <div style="font-weight: bold;font-size: 44px;">M N Rajendrakumar Insurance Services</div> <p>Support for Retteri customers via Sholavaram office—renewals, claim documentation help and practical coverage guidance.</p> <div class="signup" style="justify-content:center;"> <a class="btn" href="tel:7448324068" aria-label="Call Now 7448324068">
 Call Now 7448324068 </a> </div> </div> </header> <section class="section section-padding" aria-label="Overview"> <h1 class="section-title">Insurance services in Retteri</h1> <p class="section-sub readable">Support for Retteri customers via Sholavaram office—renewals, claim documentation help and practical coverage guidance.</p> </section> <section class="section section-padding" aria-label="At a glance"> <h2 class="section-title">At a glance</h2> <div class="glance"> <div class="glance-row"> <div class="glance-k">Area type</div> <div class="glance-v">residential-renewal</div> </div><div class="glance-row"> <div class="glance-k">Support model</div> <div class="glance-v">Sholavaram hub + location-specific guidance</div> </div><div class="glance-row"> <div class="glance-k">Top intent</div> <div class="glance-v">Car renewal checks (IDV/NCB/add-ons).</div> </div><div class="glance-row"> <div class="glance-k">Popular services</div> <div class="glance-v">Car Insurance Support • Bike Insurance Support</div> </div> </div> </section> <section class="section section-padding" aria-label="How support works"> <h2 class="section-title">Retteri – renewal-heavy support (practical checks)</h2> <p class="section-sub readable">Retteri searches are renewal-heavy. This page exists to reduce renewal mistakes and provide clear claim-step guidance without generic filler.</p> <ul class="bullets"> <li>Car/bike renewals: IDV/NCB/add-on checks matched to usage.</li><li>Claims: what to do first and what photos/proofs matter (case-dependent).</li><li>Health renewals: continuity checks to prevent gaps and wrong assumptions.</li> </ul> </section> <section class="section section-padding" aria-label="Local context"> <h2 class="section-title">Local context</h2> <ul class="bullets"><li>Residential-heavy demand: motor renewals and claim guidance.</li><li>Simple discipline—policy copies, photos after incidents (as applicable), and timely reporting—prevents delays.</li></ul> </section> <section class="section section-padding" aria-label="Local reference points"> <h2 class="section-title">Retteri search cues</h2> <p class="section-sub readable">Reference cues only; coordination remains via Sholavaram.</p> <ul class="bullets"><li>Residential stretches (renewal intent)</li><li>Nearby connector references towards Kolathur/Anna Nagar side</li><li>Common “near me” searches that still map to Sholavaram support</li></ul> </section> <section class="section section-padding" aria-label="Common requests"> <h2 class="section-title">Common requests</h2> <ul class="bullets"><li>Car renewal checks (IDV/NCB/add-ons).</li><li>Claim help for accidents: photos + timeline + reporting steps.</li><li>Health renewal guidance and plan clarity.</li></ul> </section> <section class="section section-padding" aria-label="Services supported"> <h2 class="section-title">Services commonly supported in Retteri</h2> <p class="section-sub readable">
 Open the exact service to see documents, common mistakes, and claim-ready guidance.
 </p> <div class="grid grid-2"> <a class="card" href="/en/services/personal/car-insurance-support/"> <h3 class="card-title">Car Insurance Support</h3> <p class="card-desc readable">Practical guidance: coverage logic, documents and common mistakes (claim-ready).</p> </a><a class="card" href="/en/services/personal/bike-insurance-support/"> <h3 class="card-title">Bike Insurance Support</h3> <p class="card-desc readable">Practical guidance: coverage logic, documents and common mistakes (claim-ready).</p> </a><a class="card" href="/en/services/personal/health-insurance-support/"> <h3 class="card-title">Health Insurance Support</h3> <p class="card-desc readable">Practical guidance: coverage logic, documents and common mistakes (claim-ready).</p> </a><a class="card" href="/en/services/claims-support/"> <h3 class="card-title">Claim Support &amp; Documentation</h3> <p class="card-desc readable">Practical guidance: coverage logic, documents and common mistakes (claim-ready).</p> </a> </div> </section> <section class="section section-padding" aria-label="Next steps"> <h2 class="section-title">Fast checklist</h2> <ul class="bullets"><li>Motor: previous policy + RC + expiry date + NCB status.</li><li>Claim: photos + time/location + short incident sequence.</li><li>Health: current policy + renewal date + age/coverage needs summary.</li></ul> </section> <section class="section section-padding" aria-label="Quick actions"> <h2 class="section-title">Quick actions</h2> <div class="grid grid-2"> <a class="card" href="/en/insurance-near-me/"> <h3 class="card-title">Insurance near me</h3> <p class="card-desc readable">How local support works (visit vs WhatsApp/phone), what to share first, and when inspections apply.</p> </a><a class="card" href="/en/insurance-renewal-near-me/"> <h3 class="card-title">Insurance renewal help</h3> <p class="card-desc readable">Renewal checks that prevent gaps: IDV/NCB/add-ons, permits/fitness where applicable.</p> </a><a class="card" href="/en/insurance-claim-help/"> <h3 class="card-title">Insurance claim help</h3> <p class="card-desc readable">What to do first, what proof matters, and how to keep a clean incident timeline.</p> </a><a class="card" href="/en/services/"> <h3 class="card-title">Browse services</h3> <p class="card-desc readable">Transport/fleet, industrial, contractor, MSME, and claim support guidance pages.</p> </a><a class="card" href="/en/locations/"> <h3 class="card-title">All locations hub</h3> <p class="card-desc readable">Zones and corridor belts—useful when you searched without an area name.</p> </a> </div> </section> <section class="section section-padding" aria-label="FAQs"> <h2 class="section-title">FAQs for Retteri</h2> <section class="accordion" aria-label="Information sections"> <details class="acc" open> <summary> <span class="acc-title">Questions people ask</span> <span class="chev" aria-hidden="true">›</span> </summary> <div class="acc-body"> <article class="proj"> <div> <strong>Do you support claim documentation for small motor accidents?</strong> <span>Yes. We guide photos/timeline/reporting steps depending on case type.</span> </div>  </article> </div> </details> </section> </section> <section class="section section-padding" aria-label="Nearby areas"> <h2 class="section-title">Nearby areas we also support</h2> <p class="section-sub readable">
