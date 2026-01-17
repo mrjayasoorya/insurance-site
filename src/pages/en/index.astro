@@ -184,6 +184,60 @@ const smallHomeFaq = [
   },
 ];
 
+// src/pages/en/index.astro
+// ✅ Add this block near your other consts (after popularServices/featuredLocations is fine)
+
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
+const wa = (text) => `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+
+// Put your 6 images inside /public/images/home-banners/ (recommended)
+// Example filenames below — rename to match what you upload.
+const promoBanners = [
+  {
+    key: "car",
+    title: "Car insurance",
+    img: "/assets/home-banners/car-insurance-whatsapp-sholavaram-chennai.png",
+    alt: "Car insurance guidance in Chennai and Chennai outskirts",
+    href: wa("Hi, I need Car Insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+  {
+    key: "lorry",
+    title: "Lorry insurance",
+    img: "/assets/home-banners/lorry-insurance-nh-belt-red-hills.png",
+    alt: "Lorry insurance guidance in Chennai and Chennai outskirts",
+    href: wa("Hi, I need Lorry Insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+  {
+    key: "fleet",
+    title: "Fleet / transport operators",
+    img: "/assets/home-banners/fleet-insurance-transport-operators-chennai-north.png",
+    alt: "Fleet insurance guidance for transport operators in Chennai and outskirts",
+    href: wa("Hi, I need Fleet/Transport Operators insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+  {
+    key: "warehouse",
+    title: "Warehouse & factory",
+    img: "/assets/home-banners/warehouse-factory-insurance-madhavaram-industrial.png",
+    alt: "Warehouse and factory insurance guidance in Chennai and outskirts",
+    href: wa("Hi, I need Warehouse/Factory insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+  {
+    key: "crane",
+    title: "Crane / contractor",
+    img: "/assets/home-banners/crane-contractor-insurance-nh-corridor.png",
+    alt: "Crane and contractor insurance guidance in Chennai and outskirts",
+    href: wa("Hi, I need Crane/Contractor insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+  {
+    key: "sme",
+    title: "Shop / SME",
+    img: "/assets/home-banners/shop-sme-insurance-chennai-north.png",
+    alt: "Shop and SME insurance guidance in Chennai and outskirts",
+    href: wa("Hi, I need Shop/SME insurance guidance (Chennai & Chennai outskirts). Please help."),
+  },
+];
+
+
 // Build meta + canonical (consistent trailing slash)
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/");
 const meta = buildMeta({
@@ -270,6 +324,30 @@ const jsonLd = buildJsonLd({
                 corridor-connected areas—transport/fleet, warehouse/property, contractor and personal motor needs—depending on insurer rules and documentation requirements.
               </p>
             </section>
+
+<!-- ✅ NEW: Promo banners (desktop = 3 per row) -->
+<section class="section section-padding" aria-labelledby="promo-title">
+  <h2 id="promo-title" class="section-title">Quick help by category</h2>
+  <p class="section-sub readable">
+    Pick a category and open WhatsApp. We’ll reply with the right document checklist + next steps.
+    <strong> Chennai & Chennai Outskirts.</strong>
+  </p>
+
+  <div class="promo-grid" role="list" aria-label="Category banners">
+    {promoBanners.map((b) => (
+      <a class="promo-card" role="listitem" href={b.href} target="_blank" rel="noopener" aria-label={b.title}>
+        <img class="promo-img" src={b.img} alt={b.alt} loading="lazy" width="300" height="300" />
+      </a>
+    ))}
+  </div>
+
+  <!-- <div class="promo-actions">
+    <a class="chiplink" href={promoBanners?.[0]?.href} target="_blank" rel="noopener">WhatsApp for guidance</a>
+    <a class="chiplink" href={`tel:${siteData.brand.phoneE164 || ""}`}>Call now</a>
+  </div> -->
+</section>
+
+
 
             <!-- EARLY: NEAR-ME + GEO CONTEXT -->
             <section class="section section-padding" aria-labelledby="near-me-home">
@@ -546,6 +624,24 @@ const jsonLd = buildJsonLd({
               </p>
             </section>
 
+<!-- ✅ NEW: Promo banners (mobile = horizontal scroll) -->
+<section class="section section-padding" aria-labelledby="m-promo-title">
+  <h2 id="m-promo-title" class="section-title">Quick help by category</h2>
+  <p class="section-sub readable">
+    Swipe and tap a banner to open WhatsApp. <strong>Chennai & Chennai Outskirts.</strong>
+  </p>
+
+  <div class="promo-swipe" role="list" aria-label="Swipe category banners">
+    {promoBanners.map((b) => (
+      <a class="promo-swipe-card" role="listitem" href={b.href} target="_blank" rel="noopener" aria-label={b.title}>
+        <img class="promo-img" src={b.img} alt={b.alt} loading="lazy" width="300" height="300" />
+      </a>
+    ))}
+  </div>
+</section>
+
+
+
             <section class="section section-padding" aria-labelledby="m-near-me-home">
               <h2 id="m-near-me-home" class="section-title">Finding insurance support near you</h2>
               <p class="section-sub readable">
@@ -670,6 +766,115 @@ const jsonLd = buildJsonLd({
         border:1px solid rgba(255,255,255,.16);
         text-decoration:none;
       }
+        /* =========================
+   PROMO BANNERS (HOME)
+   ========================= */
+
+.promo-head .promo-subnote{
+  display:inline-block;
+  margin-left: 6px;
+  opacity: .85;
+  font-weight: 850;
+}
+
+/* =========================
+   PROMO BANNERS – CRISP 250×250
+   ========================= */
+
+.promo-card,
+.promo-swipe-card{
+  width:300px;
+  height:300px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#000;
+  flex-shrink:0;
+}
+
+/* Image MUST NOT scale */
+.promo-img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+}
+
+/* =========================
+   DESKTOP GRID
+   ========================= */
+
+@media (min-width:821px){
+  .promo-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 300px);
+    gap:16px;
+    justify-content:space-evenly;
+  }
+}
+
+/* =========================
+   MOBILE HORIZONTAL SCROLL
+   ========================= */
+
+@media (max-width:820px){
+  .promo-grid{ display:none; }
+
+  /* IMPORTANT: allow full card width even inside container padding */
+  .promo-swipe{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+
+    /* This prevents children from shrinking */
+    flex-wrap: nowrap;
+
+    /* Make sure scroll area can extend wider than container */
+    width: calc(100% + 24px);
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+
+    scroll-snap-type: x mandatory;
+  }
+
+  .promo-swipe::-webkit-scrollbar{ display:none; }
+
+  /* Card must never shrink */
+  .promo-swipe-card{
+    width:300px;
+    height:300px;
+    flex: 0 0 300px;   /* ✅ key */
+    scroll-snap-align: start;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:#000;
+  }
+
+  .promo-img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+.promo-card,
+.promo-swipe-card{
+  flex-shrink:0; /* ✅ do not allow shrink */
+}
+
+
+/* Hide mobile swipe on desktop */
+@media (min-width:821px){
+  .promo-swipe{ display:none; }
+}
     </style>
   </body>
 </html>
