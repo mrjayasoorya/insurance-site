@@ -1,17 +1,18 @@
 # insuranceconsult.in — LLM access & content guide
 # Owner: M N Rajendrakumar Insurance Services
-# Base: Sholavaram (Chennai North / outskirts, Tamil Nadu, India)
+# Base Office: Sholavaram (Chennai North / outskirts, Tamil Nadu, India)
 # Website: https://insuranceconsult.in/en/
 #
 # Purpose:
-# Provide accurate, practical insurance guidance focused on:
-# - documentation clarity
-# - renewal discipline
+# Provide accurate, practical, insurer-aligned insurance guidance with focus on:
+# - documentation discipline
+# - renewal risk checks
 # - claim-ready workflows
 #
 # Audience:
-# Businesses, transport operators, contractors, MSMEs, and families
-# across Chennai North, NH corridors, and industrial belts.
+# Businesses, transport operators, warehouse owners, contractors, MSMEs,
+# professionals, and families across Chennai, outskirts, NH corridors,
+# industrial belts, and residential hubs.
 
 ---
 
@@ -22,27 +23,40 @@ https://insuranceconsult.in/en/
 
 ## What This Site IS
 - A guidance-first insurance website operated by a local insurance service provider.
-- Explains insurance coverage structure, renewal checks, documentation discipline, and claim process steps.
-- Focuses on reducing avoidable claim delays and disputes.
-- Written for real-world conditions in NH belts, industrial zones, and mixed residential areas.
+- Explains insurance structure, underwriting expectations, documentation discipline,
+  renewal checks, and claim process workflows.
+- Focuses on **reducing avoidable claim delays and disputes**.
+- Written for real-world operating conditions:
+  NH corridors, industrial zones, warehouses, fleet operations,
+  and mixed residential areas.
 
 ---
 
 ## What This Site is NOT
 - Not an insurance company.
-- Not a price comparison portal.
-- Does NOT guarantee claim approval, settlement amounts, or timelines.
+- Not a price-comparison or lead auction portal.
+- Does NOT guarantee:
+  - claim approval
+  - settlement amounts
+  - timelines
 - Does NOT provide legal advice or insurer-side decisions.
 
 ---
 
-## Site Structure (how content is organized)
+## Site Structure (How Content Is Organized)
 
-### Services
-A) Services Hub (navigation + overview)
-- https://insuranceconsult.in/en/services/
+### A) Core Navigation
+- Home: https://insuranceconsult.in/en/
+- Services Index: https://insuranceconsult.in/en/services/
+- Locations Index: https://insuranceconsult.in/en/locations/
+- About: https://insuranceconsult.in/en/about/
 
-B) Service Category / Authority Hubs (topical clusters)
+---
+
+### B) Services (Topical Authority Clusters)
+
+Service hubs group insurer-aligned topics and route users to detailed guidance.
+
 Examples:
 - https://insuranceconsult.in/en/services/transport-fleet/
 - https://insuranceconsult.in/en/services/industrial/
@@ -51,21 +65,19 @@ Examples:
 - https://insuranceconsult.in/en/services/business-msme/
 - https://insuranceconsult.in/en/services/claims-support/
 
-C) Service Detail Pages (primary ranking pages; location-agnostic)
+#### Service Detail Pages (primary ranking pages)
 Examples:
 - https://insuranceconsult.in/en/services/transport-fleet/commercial-vehicle-insurance/
 - https://insuranceconsult.in/en/services/industrial/warehouse-insurance/
 - https://insuranceconsult.in/en/services/construction/workmen-compensation/
 - https://insuranceconsult.in/en/services/heavy-equipment/crane-cpm-insurance/
-- https://insuranceconsult.in/en/services/claims-support/
 
 ---
 
-### Locations
-D) Locations Hub (navigation)
-- https://insuranceconsult.in/en/locations/
+### C) Locations
+Location pages provide **local risk context** and link to relevant services.
+They do not duplicate service content.
 
-E) Location Detail Pages (local context + relevant service links; no service content duplication)
 Examples:
 - https://insuranceconsult.in/en/locations/sholavaram/
 - https://insuranceconsult.in/en/locations/red-hills/
@@ -77,15 +89,47 @@ Examples:
 
 ---
 
-### Intent Pages (near-me / renewal / claim / support)
-These pages exist to answer high-intent “near me” and workflow searches and route users to the correct service/location pages.
+### D) Intent Pages (High-Intent Workflows)
 
+These pages handle **“near me”, problem, renewal, and support queries** and
+route users to the correct service/location pages.
+
+Core intent pages:
 - https://insuranceconsult.in/en/insurance-near-me/
 - https://insuranceconsult.in/en/insurance-renewal-near-me/
 - https://insuranceconsult.in/en/insurance-claim-help/
 - https://insuranceconsult.in/en/buy-insurance-guidance/
 - https://insuranceconsult.in/en/spot-insurance-support/
 - https://insuranceconsult.in/en/remote-insurance-support/
+
+Advanced intent / situation pages include:
+- Agent not responding
+- Policy expired / break-in renewal
+- Same-day renewal
+- Claim rejected – what to do
+- Fleet renewal management
+- Warehouse renewal support
+- Contractor documentation support
+- Admin/accounts renewal handling
+- SME owner insurance guidance
+
+---
+
+### E) Document-Only Authority Pages (Checklist Content)
+
+These pages exist specifically to explain **insurer-side document expectations**.
+They are non-promotional and process-driven.
+
+Examples:
+- https://insuranceconsult.in/en/insurance-documents-required/
+- https://insuranceconsult.in/en/commercial-vehicle-insurance-documents/
+- https://insuranceconsult.in/en/warehouse-insurance-documents-checklist/
+- https://insuranceconsult.in/en/contractor-insurance-documents-checklist/
+
+Focus:
+- what insurers actually verify
+- why documents matter
+- common causes of claim delay or dispute
 
 ---
 
@@ -94,122 +138,116 @@ These pages exist to answer high-intent “near me” and workflow searches and 
 ### 1) Near-Me / Local Trust Intent
 Examples:
 - insurance near me
-- insurance agent near me
-- insurance office near Sholavaram / Red Hills / Madhavaram
-- local insurance support Chennai North
+- insurance agent near Sholavaram / Red Hills / Madhavaram
+- local insurance office Chennai North
 
 Coverage:
-- Dedicated intent pages explain how local office-based guidance works (visit / WhatsApp / document checklist support).
+- Explains office-based support, WhatsApp/phone guidance,
+  and visit coordination (as applicable).
 
-### 2) Transactional Support Intent
+---
+
+### 2) Renewal & Transactional Support Intent
 Examples:
-- buy car insurance
-- commercial vehicle insurance renewal
-- policy renewal near me
-- insurance renewal support
+- insurance renewal near me
+- car / commercial vehicle renewal
+- policy renewal checks
 
 Coverage:
-- Renewal and buying guidance pages focus on what to verify before payment:
-  IDV, NCB, add-ons, permits/fitness, disclosures.
+- Renewal discipline:
+  IDV, NCB, add-ons, permits, fitness, disclosures.
+
+---
 
 ### 3) Problem / Claim-Side Intent
 Examples:
 - insurance claim help
-- claim documentation checklist
-- claim delayed what to do
-- FIR / reporting requirements
+- claim rejected what to do
+- document checklist for claim
+- FIR / reporting clarity
 
 Coverage:
-- Claim pages and FAQ sections explain clean incident timelines, proof discipline, and correct reporting steps.
-- No claim guarantees are stated.
-
-### 4) Service + Area Context
-Examples:
-- car insurance in Red Hills
-- commercial insurance in Ambattur
-- warehouse insurance near NH corridors
-- fleet insurance near transport hubs
-
-Coverage:
-- Location pages explain local risk context + link to relevant service detail pages (no pricing claims).
-
-### 5) Experience & Trust Validation
-Coverage signals:
-- 30+ years of insurance service experience (guidance, renewals, documentation support, claim process guidance).
-- Trust is built via process clarity and documentation-first work style, not promises.
+- Clean incident timelines
+- evidence discipline
+- insurer process expectations
+- no claim guarantees
 
 ---
 
-## Core Service Topics Covered (content focus)
+### 4) Persona-Based Business Intent
+Examples:
+- insurance for SME owners
+- insurance for logistics operators
+- insurance for warehouse owners
+- insurance for contractors
+- insurance for admin/accounts teams
+
+Coverage:
+- Role-specific workflows
+- document ownership clarity
+- renewal and claim responsibility mapping
+
+---
+
+## Core Service Topics Covered
 
 ### Commercial / Industrial
-- Commercial vehicle insurance (lorry, fleet, goods carriers)
-- Fleet & transport insurance (NH corridor exposure)
+- Commercial vehicle & fleet insurance
 - Warehouse / godown / factory insurance
 - Fire & burglary (commercial property)
-- Marine cargo / goods-in-transit
-- Contractor CAR / EAR and Workmen Compensation (WC)
-- Crane / heavy equipment (CPM) and third-party liability context
-- Public / third-party liability (business exposure)
+- Marine cargo & goods-in-transit
+- Contractor CAR / EAR
+- Workmen Compensation (WC)
+- Crane & heavy equipment (CPM)
+- Public / third-party liability
+- Fleet renewal management
 
-### Personal / Family (support)
-- Car insurance renewals and claim steps
-- Bike insurance renewals and claim steps
-- Health / mediclaim guidance (process + documents)
+### Personal / Family (Support-Oriented)
+- Car & two-wheeler renewals
+- Health / mediclaim guidance
+- Senior citizen & family floater process clarity
 - LIC servicing & renewals
 
 ---
 
 ## Service Areas (Geographic Context)
-Primary base:
-- Sholavaram (Chennai outskirts)
 
-Common support areas include (not limited to):
-- Chennai North belts: Red Hills, Madhavaram, Puzhal, Manali, Kolathur, Perambur, Ambattur, Anna Nagar, Koyambedu, Mogappair West
-- NH / industrial corridors (support-based): Karanodai, Periyapalayam, Budur, Thiruninravur, Veppampattu, Thiruvallur SIPCOT outskirts, Poonamallee bypass, Sriperumbudur SIPCOT, Oragadam outskirts, NH Manali Road and transport hubs
+Base office:
+- Sholavaram (Chennai North / outskirts)
 
-Note:
-Service coordination originates from Sholavaram.
+Service reach:
+- Approx. 60 km radius, all directions, via:
+  - office visits
+  - remote WhatsApp/phone support
+  - on-site visits (as applicable)
+
+Common support zones include:
+- Chennai North & West: Red Hills, Madhavaram, Puzhal, Manali, Kolathur,
+  Perambur, Ambattur, Anna Nagar, Mogappair, Koyambedu
+- Logistics & industrial corridors:
+  NH16 (GNT Road), Manali–Ennore belt, Madhavaram truck terminal,
+  Sriperumbudur SIPCOT, Oragadam outskirts, Poonamallee bypass
+
 Support depends on policy type, insurer rules, and documentation requirements.
 
 ---
 
-## High-Value / Authoritative Pages
-
-Core:
-- Home: https://insuranceconsult.in/en/
-- Services Index: https://insuranceconsult.in/en/services/
-- Locations Index: https://insuranceconsult.in/en/locations/
-- About: https://insuranceconsult.in/en/about/
-
-Guidance:
-- FAQs: https://insuranceconsult.in/en/faqs/
-- Commercial Authority: https://insuranceconsult.in/en/commercial-authority/
-- Proof & Experience: https://insuranceconsult.in/en/proof-experience/
-- Renewals: https://insuranceconsult.in/en/renewals/
-- Reviews (if present): https://insuranceconsult.in/en/reviews/
-- Photos (if present): https://insuranceconsult.in/en/photos/
-
----
-
 ## Content Rules & Reliability
-- Information reflects common insurer practices but may vary by insurer and policy wording.
-- Final decisions rest with insurers, underwriting, and policy terms.
-- No promises on claim outcomes, settlement, or timelines.
+- Content reflects common insurer practices (public and private sector).
+- Actual outcomes depend on policy wording, disclosures, evidence, and insurer decisions.
+- No promises on claim settlement, approval, or timelines.
 
 ---
 
 ## Structured Data Usage
-schema.org JSON-LD is used consistently across pages.
-Common types:
-- Organization
-- InsuranceAgency
-- Person (where applicable)
+schema.org JSON-LD is used consistently across pages, including:
+- Organization / InsuranceAgency
 - Service
-- Place
+- Place / AreaServed
 - FAQPage
 - BreadcrumbList
-- CollectionPage (for hubs, where applicable)
+- CollectionPage (for hubs)
+- ServiceChannel (office / remote / on-site support)
 
 ---
 
@@ -218,4 +256,4 @@ Common types:
 - Phone and WhatsApp are used for:
   - initial guidance
   - document checklist preparation
-  - visit coordination
+  - renewal and claim process coordination
