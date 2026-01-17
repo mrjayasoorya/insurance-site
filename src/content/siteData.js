@@ -10183,6 +10183,26 @@ intentPages: {
     { title: "Step 2 — Renewal & wording checks", text: "We identify underinsurance risks, missing endorsements and disclosure gaps." },
     { title: "Step 3 — Claim readiness habits", text: "Simple document and evidence discipline to reduce disputes later." },
   ],
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start on WhatsApp/phone so we can share the correct checklist (as applicable).",
+      "If an in-person step is needed, we’ll tell you what to bring (as applicable).",
+      "We commonly support Chennai and nearby belts within reach (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null, // or siteData.brand.gbpUrl if available at this point
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
+    { label: "About", href: EN("/about/") },
+  ],
 
   recommendedServices: [
     { label: "Shop & MSME Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
@@ -10238,6 +10258,26 @@ intentPages: {
     { title: "Step 2 — Renewal & risk flags", text: "We identify repeated friction points in renewals and claims." },
     { title: "Step 3 — Repeatable system", text: "Simple SOPs that reduce delays across vehicles." },
   ],
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start on WhatsApp/phone so we can share the correct checklist (as applicable).",
+      "If an in-person step is needed, we’ll tell you what to bring (as applicable).",
+      "We commonly support Chennai and nearby belts within reach (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null, // or siteData.brand.gbpUrl if available at this point
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
+    { label: "About", href: EN("/about/") },
+  ],
 
   recommendedServices: [
     { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
@@ -10292,7 +10332,26 @@ intentPages: {
     { title: "Step 2 — Renewal alignment", text: "Check declared values and documentation gaps." },
     { title: "Step 3 — Claim readiness", text: "Guide simple proof and record-keeping discipline." },
   ],
+office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start on WhatsApp/phone so we can share the correct checklist (as applicable).",
+      "If an in-person step is needed, we’ll tell you what to bring (as applicable).",
+      "We commonly support Chennai and nearby belts within reach (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null, // or siteData.brand.gbpUrl if available at this point
+  },
 
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
+    { label: "About", href: EN("/about/") },
+  ],
   recommendedServices: [
     { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
     { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
@@ -10345,7 +10404,26 @@ intentPages: {
     { title: "Step 2 — Policy alignment", text: "Check CAR/WC coverage against real operations." },
     { title: "Step 3 — Documentation routine", text: "Guide repeatable record-keeping habits." },
   ],
+office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start on WhatsApp/phone so we can share the correct checklist (as applicable).",
+      "If an in-person step is needed, we’ll tell you what to bring (as applicable).",
+      "We commonly support Chennai and nearby belts within reach (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null, // or siteData.brand.gbpUrl if available at this point
+  },
 
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
+    { label: "About", href: EN("/about/") },
+  ],
   recommendedServices: [
     { label: "Contractor CAR Insurance", href: EN("/services/construction/contractor-all-risk/") },
     { label: "Workmen Compensation Insurance", href: EN("/services/construction/workmen-compensation/") },
@@ -10373,7 +10451,7 @@ intentPages: {
 
   heroH1: "Insurance documents required (what insurers actually check)",
   heroP:
-    "Most insurance delays are document-driven, not intent-driven. Across insurers—especially public-sector insurers—claims and renewals are evaluated based on document consistency, timelines and proof quality. This page explains the practical checklists.",
+    "Most insurance delays are document-driven, not intent-driven. Across insurers—especially public-sector insurers—claims and renewals are evaluated based on document consistency, timelines and proof quality.",
 
   intentSignals: [
     "insurance documents required",
@@ -10388,7 +10466,7 @@ intentPages: {
       bullets: [
         "Policy copy and endorsements (latest version).",
         "Identity and ownership proof (RC / business ownership documents as applicable).",
-        "Incident or risk timeline notes (when something happened and how).",
+        "Incident or risk timeline notes.",
         "Invoices, valuation basis or registers for assets/stock (as applicable).",
       ],
     },
@@ -10396,18 +10474,39 @@ intentPages: {
       title: "Why public-sector insurers are strict about documents",
       bullets: [
         "Claims are audit-driven and evidence-led.",
-        "Surveyor reports are matched against documents, not assumptions.",
-        "Inconsistent or post-event documents raise red flags.",
+        "Surveyor reports are matched against documents.",
+        "Post-event document creation raises red flags.",
       ],
     },
     {
       title: "Common document mistakes that cause delays",
       bullets: [
-        "Sharing documents late or partially.",
-        "Mismatch between declared values and proof.",
-        "Missing endorsements for changed usage or extensions.",
+        "Late or partial document submission.",
+        "Declared values not matching proof.",
+        "Missing endorsements for changed usage.",
       ],
     },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "WhatsApp/phone checklist guidance first (as applicable).",
+      "In-person visit only if required (case-dependent).",
+      "Support across Chennai and nearby belts.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
+    { label: "About", href: EN("/about/") },
   ],
 
   recommendedLinks: [
@@ -10416,11 +10515,25 @@ intentPages: {
     { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
   ],
 
+  // 🔑 REQUIRED BY TEMPLATE
+  recommendedServices: [
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Claim Rejected – What To Do", href: EN("/claim-rejected-what-to-do/") },
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+  ],
+
   faqs: [
-    { q: "Are document requirements same for all insurers?", a: "Core documents are similar, but scrutiny level and evidence expectations vary by insurer and case type (case-dependent)." },
-    { q: "Do WhatsApp photos work?", a: "They help for initial guidance, but final insurer requirements may need clearer copies or originals (case-dependent)." },
+    {
+      q: "Are document requirements same for all insurers?",
+      a: "Core documents are similar, but scrutiny varies by insurer and case type.",
+    },
+    {
+      q: "Do WhatsApp photos work?",
+      a: "They help initially; final submission may require clearer copies or originals.",
+    },
   ],
 },
+
 "commercial-vehicle-insurance-documents": {
   slug: "commercial-vehicle-insurance-documents",
 
@@ -10433,11 +10546,11 @@ intentPages: {
 
   seoTitle: "Commercial Vehicle Insurance Documents – RC, Permit, Fitness & Claim Checklists",
   seoDesc:
-    "Commercial vehicle insurance delays usually happen due to document mismatch. This page explains RC, permit, fitness and claim document discipline for lorries and fleets (as applicable).",
+    "Commercial vehicle insurance delays usually happen due to document mismatch. This page explains RC, permit, fitness and claim document discipline (as applicable).",
 
   heroH1: "Commercial vehicle insurance documents (what really matters)",
   heroP:
-    "For commercial vehicles, insurance validity is closely tied to compliance documents. Insurers—especially public-sector insurers—verify alignment between RC, permit, fitness and policy details during claims.",
+    "Commercial vehicle insurance validity depends on compliance alignment between RC, permit, fitness and policy details.",
 
   intentSignals: [
     "commercial vehicle insurance documents",
@@ -10449,20 +10562,40 @@ intentPages: {
     {
       title: "Core documents insurers verify",
       bullets: [
-        "RC with correct ownership and vehicle class.",
-        "Permit validity and route alignment (as applicable).",
-        "Fitness certificate validity on date of incident.",
-        "Policy copy with correct vehicle description.",
+        "RC with correct vehicle class.",
+        "Permit validity and route alignment.",
+        "Fitness certificate validity.",
+        "Policy copy with matching description.",
       ],
     },
     {
-      title: "Why claims get delayed for commercial vehicles",
+      title: "Why claims get delayed",
       bullets: [
-        "Expired or mismatched permit/fitness.",
-        "Vehicle usage not matching policy declaration.",
-        "Late intimation or inconsistent incident timeline.",
+        "Expired permit or fitness.",
+        "Usage mismatch vs policy.",
+        "Late intimation or weak timeline.",
       ],
     },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "WhatsApp checklist review available.",
+      "Physical visit only if required.",
+      "Fleet and single-vehicle support.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
+    { label: "FAQs", href: EN("/faqs/") },
   ],
 
   recommendedLinks: [
@@ -10471,10 +10604,21 @@ intentPages: {
     { label: "Lorry Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
   ],
 
+  // 🔑 REQUIRED
+  recommendedServices: [
+    { label: "Fleet Renewal Management", href: EN("/fleet-renewal-management-support/") },
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Lorry Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+  ],
+
   faqs: [
-    { q: "Is permit expiry relevant for insurance?", a: "Yes. Compliance documents are reviewed during claims and can affect outcomes (case-dependent)." },
+    {
+      q: "Is permit expiry relevant for insurance?",
+      a: "Yes. Compliance documents are reviewed during claims.",
+    },
   ],
 },
+
 "warehouse-insurance-documents-checklist": {
   slug: "warehouse-insurance-documents-checklist",
 
@@ -10487,11 +10631,11 @@ intentPages: {
 
   seoTitle: "Warehouse Insurance Documents Checklist – Stock Proof, Valuation & Claim Readiness",
   seoDesc:
-    "Warehouse claims fail due to underinsurance and weak stock proof. This checklist explains documents insurers expect during warehouse insurance renewals and claims (as applicable).",
+    "Warehouse claims fail due to underinsurance and weak stock proof. This checklist explains insurer expectations.",
 
   heroH1: "Warehouse insurance documents checklist",
   heroP:
-    "Warehouse insurance claims are evidence-driven. Insurers focus on stock valuation logic, proof trail and consistency between declared values and records—especially during fire or burglary claims.",
+    "Warehouse claims are evidence-driven. Insurers focus on valuation logic and stock proof consistency.",
 
   intentSignals: [
     "warehouse insurance documents",
@@ -10501,28 +10645,39 @@ intentPages: {
 
   sections: [
     {
-      title: "Stock proof and valuation documents",
+      title: "Stock proof documents",
       bullets: [
         "Purchase invoices or stock registers.",
-        "Valuation basis (cost price / market value as declared).",
-        "Periodic stock statements if applicable.",
+        "Declared valuation basis.",
+        "Periodic stock statements.",
       ],
     },
     {
-      title: "Policy and condition-related documents",
+      title: "Policy & safety documents",
       bullets: [
         "Policy copy and endorsements.",
-        "Security and safety compliance records (as applicable).",
-        "Photographic records of storage conditions.",
+        "Safety and security compliance records.",
+        "Photographic storage evidence.",
       ],
     },
-    {
-      title: "Why underinsurance causes claim reduction",
-      bullets: [
-        "Average clause application when declared value is lower than actual.",
-        "Mismatch between insured value and real exposure.",
-      ],
-    },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Remote checklist guidance available.",
+      "On-site support if required.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
   ],
 
   recommendedLinks: [
@@ -10531,10 +10686,21 @@ intentPages: {
     { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
   ],
 
+  // 🔑 REQUIRED
+  recommendedServices: [
+    { label: "Warehouse Renewal Support", href: EN("/warehouse-insurance-renewal-support/") },
+    { label: "Claim Rejected – What To Do", href: EN("/claim-rejected-what-to-do/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+  ],
+
   faqs: [
-    { q: "Do insurers accept estimated stock values?", a: "They may at proposal stage, but claims rely on documentary proof and valuation logic (case-dependent)." },
+    {
+      q: "Do insurers accept estimated stock values?",
+      a: "Claims rely on documentary proof and valuation logic.",
+    },
   ],
 },
+
 "contractor-insurance-documents-checklist": {
   slug: "contractor-insurance-documents-checklist",
 
@@ -10547,11 +10713,11 @@ intentPages: {
 
   seoTitle: "Contractor Insurance Documents – CAR & WC Claim-Ready Checklists",
   seoDesc:
-    "Contractor insurance disputes usually come from missing documents. This checklist explains CAR and WC documents insurers expect during renewals and claims (as applicable).",
+    "CAR and WC disputes usually arise from missing documents. This checklist explains insurer expectations.",
 
   heroH1: "Contractor insurance documents checklist (CAR / WC)",
   heroP:
-    "CAR and WC claims are paperwork-driven. Insurers verify project period, extensions, workforce classification and payroll records before considering liability.",
+    "CAR and WC claims are paperwork-driven. Insurers verify project period and workforce records.",
 
   intentSignals: [
     "contractor insurance documents",
@@ -10561,21 +10727,39 @@ intentPages: {
 
   sections: [
     {
-      title: "CAR policy documentation",
+      title: "CAR policy documents",
       bullets: [
         "Project start and end dates.",
-        "Extension records and endorsements.",
-        "Basic site progress records or photos.",
+        "Extension endorsements.",
+        "Site progress records.",
       ],
     },
     {
-      title: "WC policy documentation",
+      title: "WC policy documents",
       bullets: [
-        "Worker classification and role details.",
-        "Payroll or wage registers.",
-        "Attendance or deployment records (as applicable).",
+        "Worker classification.",
+        "Payroll registers.",
+        "Attendance records.",
       ],
     },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "WhatsApp document review available.",
+      "On-site visit if required.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Services", href: EN("/services/") },
+    { label: "Locations", href: EN("/locations/") },
   ],
 
   recommendedLinks: [
@@ -10583,10 +10767,20 @@ intentPages: {
     { label: "Claim Help", href: EN("/insurance-claim-help/") },
   ],
 
+  // 🔑 REQUIRED
+  recommendedServices: [
+    { label: "Contractor Insurance Support", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+
   faqs: [
-    { q: "Why are contractor claims disputed?", a: "Documentation mismatch between policy records and actual project/workforce details." },
+    {
+      q: "Why are contractor claims disputed?",
+      a: "Documentation mismatch between policy records and site/workforce details.",
+    },
   ],
 },
+
 "commercial-insurance-agent-near-me": {
   slug: "commercial-insurance-agent-near-me",
 

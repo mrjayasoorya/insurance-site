@@ -93,18 +93,18 @@ const jsonLd = buildJsonLd({
 
           <section class="section section-padding" aria-label="Who this helps">
             <h2 class="section-title">Who this helps</h2>
-            <ul class="bullets">{page.whoThisHelps.map((x) => <li>{x}</li>)}</ul>
+            <ul class="bullets">{page.whoThisHelps?.map((x) => <li>{x}</li>)}</ul>
           </section>
 
           <section class="section section-padding" aria-label="What you get">
             <h2 class="section-title">What you get</h2>
-            <ul class="bullets">{page.whatYouGet.map((x) => <li>{x}</li>)}</ul>
+            <ul class="bullets">{page.whatYouGet?.map((x) => <li>{x}</li>)}</ul>
           </section>
 
           <section class="section section-padding" aria-label="How support works">
             <h2 class="section-title">How support works</h2>
             <ul class="area-rows" role="list">
-              {page.howSupportWorks.map((s) => (
+              {page.howSupportWorks?.map((s) => (
                 <li class="area-row">
                   <h3 class="area-name">{s.title}</h3>
                   <p class="area-notes">{s.text}</p>
@@ -115,7 +115,7 @@ const jsonLd = buildJsonLd({
 
           <section class="section section-padding" aria-label="Office support">
             <h2 class="section-title">{page.office.title}</h2>
-            <ul class="bullets">{page.office.bullets.map((x) => <li>{x}</li>)}</ul>
+            <ul class="bullets">{page.office.bullets?.map((x) => <li>{x}</li>)}</ul>
 
             {siteData.brand.gbpUrl ? (
               <p class="section-sub" style="margin-top:10px">
@@ -139,7 +139,7 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding" aria-label="Recommended pages">
             <h2 class="section-title">Recommended pages</h2>
             <div class="grid grid-2">
-              {page.recommendedServices.map((x) => (
+              {page.recommendedServices?.map((x) => (
                 <a class="card" href={x.href}>
                   <h3 class="card-title">{x.label}</h3>
                   <p class="card-desc">Open</p>
@@ -154,7 +154,7 @@ const jsonLd = buildJsonLd({
               <MobileAccordion
                 sections={[{
                   title: "Questions people ask",
-                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                  items: page.faqs?.map((f) => ({ strong: f.q, text: f.a })),
                 }]}
                 defaultOpen={true}
               />
@@ -196,13 +196,13 @@ const jsonLd = buildJsonLd({
 
           <section class="section section-padding">
             <h2 class="section-title">Who this helps</h2>
-            <ul class="bullets">{page.whoThisHelps.map((x) => <li>{x}</li>)}</ul>
+            <ul class="bullets">{page.whoThisHelps?.map((x) => <li>{x}</li>)}</ul>
           </section>
 
           <section class="section section-padding">
             <h2 class="section-title">How support works</h2>
             <ul class="area-rows" role="list">
-              {page.howSupportWorks.map((s) => (
+              {page.howSupportWorks?.map((s) => (
                 <li class="area-row">
                   <h3 class="area-name">{s.title}</h3>
                   <p class="area-notes">{s.text}</p>
@@ -214,7 +214,7 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding">
             <h2 class="section-title">Recommended pages</h2>
             <div class="grid grid-1">
-              {page.recommendedServices.map((x) => (
+              {page.recommendedServices?.map((x) => (
                 <a class="card" href={x.href}>
                   <h3 class="card-title">{x.label}</h3>
                   <p class="card-desc">Open</p>
@@ -228,7 +228,7 @@ const jsonLd = buildJsonLd({
               <MobileAccordion
                 sections={[{
                   title: "FAQs",
-                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                  items: page.faqs?.map((f) => ({ strong: f.q, text: f.a })),
                 }]}
                 defaultOpen={true}
               />
