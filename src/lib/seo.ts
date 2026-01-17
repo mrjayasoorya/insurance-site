@@ -118,7 +118,7 @@ export function buildMeta(input) {
     description,
     canonical,
     ogType = "website",
-    ogImage,
+    ogImage = "/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png",
     geo
   } = input;
 
@@ -201,48 +201,128 @@ export function buildJsonLd(input) {
   const areaServedStruct = siteData?.areaServedStructData || undefined;
 
   // Keep these conservative: truthful, not “spammy”
-  const defaultKnowsAbout = [
-  // --- High-Premium Commercial & Industrial ---
-  "Industrial All Risk (IAR) & Standard Fire Insurance",
-  "Stock Declaration Policy for Large Warehouses",
-  "Machinery Breakdown (MBD) & Business Interruption Cover",
-  "Marine Cargo Open Policy (Import-Export & Coastal)",
-  "Marine Hull & Transit Insurance (CIF/FOB/Inland)",
-  "Contractor's Plant and Machinery (CPM) for Heavy Equipment",
-  "Crane and Excavator Third-Party Liability",
-  "Contractor's All Risk (CAR) & Erection All Risk (EAR)",
-  "Public Liability (Industrial & Non-Industrial) Coverage",
-  "Professional Indemnity and Director & Officer (D&O) Liability",
-  
-  // --- Transport, Lorry & Fleet ---
-  "Commercial Lorry and Multi-axle Trailer Insurance",
-  "Fleet Insurance Management and Renewal Automation",
-  "Hazardous Goods (Tanker/Chemical) Carrying Vehicle Cover",
-  "Tipper and Earthmover Package Policies",
-  "Goods-in-Transit (GIT) and Carrier’s Legal Liability",
-  
-  // --- Statutory & SME (Business) ---
-  "Workmen's Compensation (WC) Act Insurance Compliance",
-  "Employer's Liability & Group Personal Accident",
-  "SME Shopkeeper Package and MSME Asset Protection",
-  "Money-in-Transit and Fidelity Guarantee Insurance",
-  
-  // --- Domestic & Retail (Personal Lines) ---
-  "Private Car Insurance (Zero Depreciation & Add-on Specialist)",
-  "Two-Wheeler Insurance (Long-term & Comprehensive)",
-  "Used Vehicle Insurance Transfer and NCB Protection",
-  "Comprehensive Health Insurance (Family Floater & Senior Citizen)",
-  "Critical Illness and Super Top-up Plan Evaluation",
-  "Cashless Hospital Network Coordination and Guidance",
-  "Home Structure and Household Content Insurance",
-  
-  // --- Life & Specialist Servicing ---
-  "LIC Policy Servicing, Premium Continuity & Revivals",
-  "Term Insurance with High Sum Assured Analysis",
-  "Insurance Claim Documentation and Advocacy",
-  "Spot Claim Assistance and Surveyor Coordination",
-  "Insurance Underwriting and Risk Gap Analysis"
+const defaultKnowsAbout = [
+  // ==========================
+  // Claims & Evidence Discipline (insurer-side logic)
+  // ==========================
+  "Claim intimation timelines and incident narrative consistency",
+  "Surveyor reports and document matching",
+  "Claim repudiation / rejection reasons (late intimation, mismatch, weak proof)",
+  "Evidence discipline: photos, invoices, valuation basis and proof trail",
+  "Endorsements and disclosures (what changes must be declared)",
+  "Policy wording interpretation and common mismatch patterns",
+  "Underinsurance and Average Clause impact (property/stock claims)",
+  "Salvage handling and loss minimization principles (as applicable)",
+
+  // ==========================
+  // Motor (Retail + Commercial) — renewal/claim mechanics
+  // ==========================
+  "No Claim Bonus (NCB) verification and claim history alignment",
+  "Insured Declared Value (IDV) realism and depreciation factors",
+  "Add-ons selection based on usage (Zero Dep, RSA, Engine Protect as applicable)",
+  "Break-in renewal / inspection requirements (case-dependent)",
+  "Third-party liability exposure (highway and city usage differences)",
+  "Commercial vehicle compliance alignment (permit/fitness/route usage as applicable)",
+
+  // ==========================
+  // Transport / Fleet (high premium)
+  // ==========================
+  "Fleet renewal management (expiry discipline, document control, incident SOP)",
+  "Goods carriers and logistics operational disclosures",
+  "Goods-in-Transit (GIT) documentation discipline (invoice/dispatch trail)",
+  "Carrier’s Legal Liability and liability documentation basics",
+  "Hazardous goods/tanker exposure framing (as applicable)",
+
+  // ==========================
+  // Industrial / Warehouse / Property (high premium)
+  // ==========================
+  "Standard Fire and Special Perils (SFSP) and industrial risk disclosure basics",
+  "Industrial All Risk (IAR) coverage interpretation basics",
+  "Warehouse / godown stock proof and valuation trail (as applicable)",
+  "Stock Declaration policies and monthly declaration discipline (as applicable)",
+  "Fire and Burglary conditions and security compliance awareness (as applicable)",
+  "Machinery Breakdown (MBD) and proof of maintenance/usage (as applicable)",
+  "Business interruption / loss of profit basics (as applicable)",
+
+  // ==========================
+  // Construction / Contractor (high dispute risk)
+  // ==========================
+  "Contractor’s All Risk (CAR) and project period/extension alignment",
+  "Erection All Risk (EAR) and scope clarity (as applicable)",
+  "Workmen Compensation (WC) documentation: classification and payroll proof",
+  "Employer’s Liability basics and notice discipline (as applicable)",
+  "Site incident reporting discipline and evidence capture routines",
+
+  // ==========================
+  // Liability / Professional (premium segments)
+  // ==========================
+  "Public Liability (industrial/non-industrial) exposure framing",
+  "Professional Indemnity basics (scope, exclusions, reporting discipline)",
+  "Directors & Officers (D&O) coverage basics (as applicable)",
+
+  // ==========================
+  // Marine / Transit (premium segments)
+  // ==========================
+  "Marine cargo insurance basics (inland transit/import-export as applicable)",
+  "Transit risk proof trail: invoice, packing list, dispatch records (as applicable)",
+
+  // ==========================
+  // Personal lines support (keep lean; you’re commercial-first)
+  // ==========================
+  "Private car insurance renewals and claim-ready documentation",
+  "Two-wheeler renewals and evidence discipline after accidents (as applicable)",
+  "Health insurance claim documentation basics (cashless vs reimbursement as applicable)",
+  "Home structure and contents insurance basics (as applicable)",
+
+  // ==========================
+  // Servicing / Policy management (your differentiator)
+  // ==========================
+  "Policy servicing and continuity (renewal discipline and document control)",
+  "Insurance risk gap analysis (disclosure and proof-readiness focus)",
 ];
+
+function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
+  const base = siteData?.brand?.knowsAbout || defaultKnowsAbout;
+
+  const tags = new Set([
+    ...(serviceData?.autoLink?.tags || []),
+    ...(serviceData?.tags || []),
+  ]);
+
+  const add = (items: string[]) => items.forEach((x) => x && tags.add(x));
+
+  // page-type boosts
+  if (pageType === "intent") {
+    // if it looks like a claim intent page
+    if ((serviceData?.slug || "").includes("claim")) {
+      add([
+        "Claim intimation timelines and incident narrative consistency",
+        "Surveyor reports and document matching",
+        "Claim repudiation / rejection reasons (late intimation, mismatch, weak proof)",
+        "Evidence discipline: photos, invoices, valuation basis and proof trail",
+      ]);
+    }
+    // if it looks like renewal intent
+    if ((serviceData?.slug || "").includes("renewal") || (serviceData?.slug || "").includes("expired")) {
+      add([
+        "No Claim Bonus (NCB) verification and claim history alignment",
+        "Insured Declared Value (IDV) realism and depreciation factors",
+        "Break-in renewal / inspection requirements (case-dependent)",
+      ]);
+    }
+  }
+
+  // tag boosts (works well with your existing autoLink.tags)
+  if (tags.has("fleet")) add(["Fleet renewal management (expiry discipline, document control, incident SOP)"]);
+  if (tags.has("warehouse")) add(["Warehouse / godown stock proof and valuation trail (as applicable)", "Underinsurance and Average Clause impact (property/stock claims)"]);
+  if (tags.has("contractor")) add(["Contractor’s All Risk (CAR) and project period/extension alignment", "Workmen Compensation (WC) documentation: classification and payroll proof"]);
+
+  // Return a capped list: stable, not spammy
+  const unique = Array.from(new Set(base));
+  return unique.slice(0, 22);
+}
+
+
 
   const graph = [];
 
@@ -308,7 +388,7 @@ export function buildJsonLd(input) {
     areaServed: areaServedStruct,
 
     // Helpful for LLMs; not harmful for Google if kept factual
-    knowsAbout: defaultKnowsAbout,
+    knowsAbout: pickKnowsAbout({ pageType, serviceData, siteData }),
     priceRange: "₹₹",
     paymentAccepted: ["Cash", "UPI", "Online Transfer"],
     currenciesAccepted: "INR",

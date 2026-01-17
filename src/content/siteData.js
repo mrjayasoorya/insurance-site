@@ -9071,6 +9071,12 @@ intentPages: {
           "Business type, exact location, a simple stock/assets list and invoices/valuation basis where available. Photos help in some cases (as applicable).",
       },
     ],
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "locations", "locationDetail", "services", "serviceDetail", "generic"],
+  priority: 30,
+  tags: ["local", "near-me", "office", "entry"],
+},
   },
 
   // 2) insurance-renewal-near-me
@@ -9127,7 +9133,14 @@ intentPages: {
           "Yes. Coverage gaps, wrong disclosures, and mismatched details can create avoidable disputes later.",
       },
     ],
-  },
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "faqs", "services", "serviceDetail", "serviceCategory", "locations", "locationDetail", "generic"],
+  priority: 25,
+  tags: ["renewal", "urgent", "high-intent"],
+},
+
+  }, 
 
   // 3) insurance-claim-help
   "insurance-claim-help": {
@@ -9191,6 +9204,13 @@ intentPages: {
           "Policy copy + endorsements, incident timeline, first-day photos/videos (as applicable), and required reports when applicable.",
       },
     ],
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "faqs", "services", "serviceDetail", "serviceCategory", "locations", "locationDetail", "generic"],
+  priority: 22,
+  tags: ["claim", "urgent", "high-intent"],
+},
+
   },
 
   // 4) buy-insurance-guidance
@@ -9240,6 +9260,13 @@ intentPages: {
           "Yes—especially transport, warehouse/property and contractor workflows where documentation and disclosures decide outcomes later.",
       },
     ],
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "services", "serviceCategory", "generic"],
+  priority: 45,
+  tags: ["buyer", "guidance", "comparison"],
+},
+
   },
 
   // 5) spot-insurance-support
@@ -9283,6 +9310,13 @@ intentPages: {
           "No. Many renewals and guidance steps can be handled remotely. Some cases require physical verification depending on insurer rules.",
       },
     ],
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "locations", "locationDetail", "services", "generic"],
+  priority: 55,
+  tags: ["spot", "visit", "on-site"],
+},
+
   },
 
   // 6) remote-insurance-support
@@ -9333,7 +9367,1321 @@ intentPages: {
           "Often, yes for renewals and documentation guidance. Insurer inspections and compliance checks depend on case type and insurer rules.",
       },
     ],
+    autoLink: {
+  enabled: true,
+  contexts: ["home", "services", "serviceDetail", "generic"],
+  priority: 35,
+  tags: ["remote", "whatsapp", "convenience", "hni"],
+},
+
   },
+  // ===========================
+// NEW INTENT PAGES (high CTR + high conversion)
+// ===========================
+
+"insurance-agent-not-responding": {
+  slug: "insurance-agent-not-responding",
+  seoTitle: "Insurance Agent Not Responding? We Help Manage Renewal, Claims & Policy Updates",
+  seoDesc:
+    "If your insurance agent is not responding or unavailable, we help you take control: renewal checks, claim documentation guidance, and policy clarity via WhatsApp/phone (Sholavaram / Chennai North support).",
+  heroH1: "Insurance agent not responding (what to do next)",
+  heroP:
+    "If your agent stopped responding, moved away, or you don’t know whom to contact, you don’t need to restart from zero. This page shows how to verify your current policy status, renew safely, and get claim/document guidance—without overpromises.",
+
+  intentSignals: [
+    "insurance agent not responding",
+    "insurance agent not available",
+    "agent not picking call insurance",
+    "my insurance agent changed",
+    "who will manage my policy",
+  ],
+
+  whoThisHelps: [
+    "People whose agent is not responding / stopped service / moved away.",
+    "Customers holding an existing policy but unsure about renewal dates, NCB/IDV/add-ons, or endorsements.",
+    "Commercial operators who need document clarity (permit/fitness/stock proof etc. as applicable).",
+  ],
+
+  whatYouGet: [
+    "Policy status check: expiry date, insurer name, basic coverage sanity checks (from your documents).",
+    "Renewal guidance to avoid gaps and mismatch issues (NCB/IDV/add-ons; commercial docs as applicable).",
+    "Claim documentation guidance and timeline discipline (case-dependent).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share what you have", text: "WhatsApp policy copy / previous schedule / RC or basic business details (as applicable)." },
+    { title: "Step 2 — Quick checks", text: "We check expiry, obvious mismatch risks, and what documents are typically needed next (as applicable)." },
+    { title: "Step 3 — Action path", text: "Renewal/switch/claim next steps with a clean checklist. Insurer rules apply (case-dependent)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "WhatsApp/phone support first to avoid unnecessary visits.",
+      "If in-person is needed, we’ll tell you what documents to carry (as applicable).",
+      "We commonly support Chennai North and nearby corridor belts.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Remote Insurance Support", href: EN("/remote-insurance-support/") },
+    { label: "Transport & Fleet", href: EN("/services/transport-fleet/") },
+    { label: "Industrial & Property", href: EN("/services/industrial/") },
+  ],
+
+  faqs: [
+    { q: "Do I need to cancel my old policy to switch agents?", a: "Not necessarily. First we verify the policy status, renewal date and what you want (renew/switch/claim). The correct approach depends on insurer process and your case." },
+    { q: "Can you help if I only have WhatsApp photos of documents?", a: "Yes. Photos help for initial checks and guidance. Final insurer requirements can vary by policy and case type." },
+    { q: "Do you guarantee claim approval?", a: "No. Claim outcomes depend on policy terms, disclosures, evidence and insurer process. We guide correct steps to reduce avoidable delays." },
+  ],
+  autoLink: {
+  enabled: true,
+  contexts: ["home", "faqs", "services", "generic"],
+  priority: 18,
+  tags: ["agent", "unavailable", "switch", "high-intent"],
+},
+
+},
+
+"manage-existing-insurance-policy": {
+  slug: "manage-existing-insurance-policy",
+  seoTitle: "Manage My Existing Insurance Policy – Renewal Tracking, Endorsements & Claim-Ready Checks",
+  seoDesc:
+    "Have an existing policy but no proper follow-up? We help manage basics: renewal tracking, IDV/NCB/add-on checks, endorsements, and documentation discipline (vehicle/business cases as applicable).",
+  heroH1: "Manage my existing policy (renewal + clarity + documentation)",
+  heroP:
+    "Many people already have policies but lose money during renewal or claim time due to missing documents, coverage gaps, wrong declared values, or endorsements not matching reality. This page shows a simple management workflow.",
+
+  intentSignals: [
+    "manage my insurance policy",
+    "existing policy support",
+    "insurance policy follow up",
+    "insurance endorsement help",
+    "policy document missing",
+  ],
+
+  whoThisHelps: [
+    "Policy holders who want renewal reminders/checks and clean documentation discipline.",
+    "Businesses with recurring renewals across vehicles, assets or property (as applicable).",
+    "Anyone who wants clarity before switching insurers or changing agent.",
+  ],
+
+  whatYouGet: [
+    "Renewal check checklist (IDV/NCB/add-ons; commercial docs as applicable).",
+    "Endorsement clarity: when policy wording must be updated (case-dependent).",
+    "Claim readiness habits: evidence/timeline discipline to reduce friction later.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Inventory", text: "Share policy copies / list of policies (vehicle/business/property as applicable)." },
+    { title: "Step 2 — Risk checks", text: "We flag common mismatch risks (usage/valuation/endorsement/document gaps)." },
+    { title: "Step 3 — Maintain", text: "You keep a simple folder + renewal discipline; we guide checklists when needed." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Remote support works for most policy checks and guidance.",
+      "For inspections/physical steps, insurer rules apply (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Buy Insurance Guidance", href: EN("/buy-insurance-guidance/") },
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Remote Support", href: EN("/remote-insurance-support/") },
+  ],
+
+  faqs: [
+    { q: "Is this only for business policies?", a: "No. This helps vehicle, business and property policy holders. The checklist differs by policy type (as applicable)." },
+    { q: "Can you help if my policy is close to expiry?", a: "Yes. Start with the expiry date and documents you have. We guide next steps to avoid gaps and mismatch issues." },
+  ],
+  autoLink: {
+  enabled: true,
+  contexts: ["home", "services", "generic"],
+  priority: 60,
+  tags: ["existing-policy", "management", "renewal"],
+},
+
+},
+
+"switch-insurance-company": {
+  slug: "switch-insurance-company",
+  seoTitle: "Switch Insurance Company – Smooth Transition Without Missing Renewal / Claim-Readiness",
+  seoDesc:
+    "Planning to switch insurers due to poor service or high premium? We help you switch safely: renewal timing, NCB/claim history alignment, and documentation clarity (vehicle/business cases as applicable).",
+  heroH1: "Switch insurance company (how to do it safely)",
+  heroP:
+    "Switching is easy when you time it correctly and keep disclosures clean. Most problems happen when people switch blindly—NCB mismatches, coverage gaps, or missing endorsements. This page explains a safe switching workflow.",
+
+  intentSignals: [
+    "switch insurance company",
+    "change insurance provider",
+    "change insurer renewal",
+    "better insurance alternative",
+    "switch car insurance",
+  ],
+
+  whoThisHelps: [
+    "People switching due to poor claim service, poor agent support, or confusing policy terms.",
+    "Vehicle owners who want clean renewal without NCB/IDV issues.",
+    "Businesses switching policies after operational changes (as applicable).",
+  ],
+
+  whatYouGet: [
+    "Switch timing guidance (avoid gaps and break-in rules where applicable).",
+    "NCB/claim history alignment checks (common mismatch issue).",
+    "Disclosure/endorsement clarity so the new policy matches real usage/operations (as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Current policy snapshot", text: "Share current policy + expiry date + what changed (usage/route/stock/assets as applicable)." },
+    { title: "Step 2 — Switch safety checks", text: "We check NCB/IDV/add-ons and common mismatch risks before switching." },
+    { title: "Step 3 — Execute cleanly", text: "We guide the checklist and next steps. Final acceptance depends on insurer rules." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Most switching checks can start on WhatsApp/phone.",
+      "Commercial/industrial cases may need extra documents (as applicable).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Buy Insurance Guidance", href: EN("/buy-insurance-guidance/") },
+    { label: "Remote Support", href: EN("/remote-insurance-support/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    { q: "Can I switch anytime?", a: "You can, but timing matters. Avoid coverage gaps and follow insurer rules (case-dependent). Most people switch at renewal for simplicity." },
+    { q: "Will switching affect claims?", a: "Claims depend on policy terms and evidence. The key is clean disclosures and no coverage gaps." },
+  ],
+  autoLink: {
+  enabled: true,
+  contexts: ["home", "faqs", "services", "generic"],
+  priority: 28,
+  tags: ["switch", "compare", "renewal"],
+},
+
+},
+
+"policy-expired-what-to-do": {
+  slug: "policy-expired-what-to-do",
+  seoTitle: "Policy Expired? What To Do Next – Avoid Gaps, Break-in Rules & Costly Mistakes",
+  seoDesc:
+    "If your insurance policy expired or is about to expire, act fast. We guide renewal steps, gap risks, and case-dependent insurer rules (Sholavaram / Chennai support).",
+  heroH1: "Policy expired (what to do now)",
+  heroP:
+    "Expired policies can trigger gaps and extra rules (case-dependent). This page explains the fastest safe path: what to check first, what documents you’ll need, and how to avoid costly mistakes.",
+
+  intentSignals: [
+    "policy expired what to do",
+    "insurance expired renewal",
+    "car insurance expired",
+    "commercial policy expired",
+    "renew after expiry",
+  ],
+
+  whoThisHelps: [
+    "Vehicle owners whose policy expired or is expiring today/this week.",
+    "Commercial operators needing renewal without document mismatch (as applicable).",
+    "Anyone who wants the fastest safe path via WhatsApp/phone.",
+  ],
+
+  whatYouGet: [
+    "Immediate checklist: what to share first (policy copy/RC/basic details).",
+    "Gap-risk guidance: what changes when expiry passes (case-dependent).",
+    "Renewal sanity checks (IDV/NCB/add-ons; commercial docs as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Send expiry + document photo", text: "WhatsApp the policy/RC (or basic business details as applicable) and expiry date." },
+    { title: "Step 2 — Quick risk check", text: "We tell you the safest next step based on gap length and insurer rules (case-dependent)." },
+    { title: "Step 3 — Renew cleanly", text: "We guide the checklist and sequence to avoid avoidable disputes later." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start remote first. Many cases don’t require a visit.",
+      "If physical steps apply, insurer rules decide (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Remote Support", href: EN("/remote-insurance-support/") },
+    { label: "Insurance Near Me", href: EN("/insurance-near-me/") },
+  ],
+
+  faqs: [
+    { q: "Is it okay if my policy expired yesterday?", a: "Act immediately. What changes depends on policy type and insurer rules (case-dependent). We guide the safest next step." },
+    { q: "Do you guarantee renewal acceptance?", a: "No. Acceptance depends on insurer rules and case details. We help reduce avoidable mistakes and delays." },
+  ],
+  autoLink: {
+  enabled: true,
+  contexts: ["home", "faqs", "services", "locations", "locationDetail", "generic"],
+  priority: 12,
+  tags: ["expired", "urgent", "renewal"],
+},
+
+},
+
+"insurance-renewal-for-admin-teams": {
+  slug: "insurance-renewal-for-admin-teams",
+  seoTitle: "Insurance Renewal for Admin/Accounts Teams – Document Checklists & Renewal Discipline",
+  seoDesc:
+    "Admin or accounts handling renewals? We help with structured checklists: policy copies, endorsements, permit/fitness (as applicable), asset/stock proof, and renewal timing for smoother claims later.",
+  heroH1: "Renewal support for admin / accounts teams",
+  heroP:
+    "In SMEs, renewals are usually handled by admin/accounts—not the owner. This page gives a practical workflow to keep renewals clean: documents, checklists, and a simple discipline that prevents claim disputes later.",
+
+  intentSignals: [
+    "insurance renewal company",
+    "policy renewal admin",
+    "insurance documents missing",
+    "commercial insurance renewal help",
+    "fleet renewal support",
+  ],
+
+  whoThisHelps: [
+    "Admin/accounts teams managing renewals for vehicles, warehouses, MSMEs (as applicable).",
+    "Teams needing document checklists and a simple renewal calendar discipline.",
+    "Businesses facing recurring renewal confusion across multiple policies.",
+  ],
+
+  whatYouGet: [
+    "A renewal checklist template (what to keep in one folder).",
+    "Mismatch prevention checks (NCB/IDV/add-ons; commercial compliance docs as applicable).",
+    "Claim-readiness discipline: how to keep evidence/timelines clean if incidents happen.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Policy list", text: "Share a list of policies (vehicle/property/liability as applicable) and expiry dates." },
+    { title: "Step 2 — Checklist + risk flags", text: "We send checklist items and flag common risk areas (documents, endorsements, valuation proof as applicable)." },
+    { title: "Step 3 — Renewal execution", text: "Renew cleanly, avoid gaps, keep copies organized for future claims." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "WhatsApp-first support works well for admin teams.",
+      "Commercial/industrial renewals may need additional proof (as applicable).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/") },
+    { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { label: "Transport & Fleet", href: EN("/services/transport-fleet/") },
+    { label: "Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    { q: "Do you work with admin/accounts directly?", a: "Yes. Many renewals are handled by admin/accounts. WhatsApp checklists reduce confusion and rework." },
+    { q: "Do you handle fleet renewals?", a: "We guide checklists and renewal discipline. Exact insurer process depends on policy type and case details." },
+  ],
+  autoLink: {
+  enabled: true,
+  contexts: ["home", "services", "serviceCategory", "serviceDetail", "generic"],
+  priority: 40,
+  tags: ["admin", "accounts", "b2b", "renewal", "high-premium"],
+},
+
+},
+
+// 1) Same-day renewal (urgent / high conversion)
+"same-day-insurance-renewal": {
+  slug: "same-day-insurance-renewal",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "faqs", "services", "locations", "locationDetail", "generic"],
+    priority: 14,
+    tags: ["renewal", "same-day", "urgent", "high-intent"],
+  },
+
+  seoTitle: "Same-Day Insurance Renewal – Fast Checklist for Car/Commercial Renewals (Chennai Support)",
+  seoDesc:
+    "Need renewal today? Get a practical same-day renewal checklist: what to share on WhatsApp, what slows renewals, and when insurer rules may require extra steps (case-dependent).",
+  heroH1: "Same-day insurance renewal (what we can do today)",
+  heroP:
+    "If your renewal is urgent, the goal is simple: avoid a coverage gap and avoid renewal mistakes that create claim disputes later. Same-day renewals are possible in many cases, but timing and insurer rules matter (case-dependent). This page explains the fastest safe path.",
+
+  intentSignals: [
+    "same day insurance renewal",
+    "renew insurance today",
+    "car insurance renewal today",
+    "commercial vehicle renewal today",
+    "urgent insurance renewal",
+  ],
+
+  whoThisHelps: [
+    "Vehicle owners whose policy expires today / within 1–2 days.",
+    "Commercial operators needing renewal without document mismatch (RC/permit/fitness as applicable).",
+    "Busy customers who want WhatsApp-first processing and clear checklists.",
+  ],
+
+  whatYouGet: [
+    "Same-day checklist: what to share first to avoid back-and-forth (policy copy + RC + expiry date; permits/fitness as applicable).",
+    "Renewal checks that prevent later disputes: NCB, IDV realism, add-on selection based on real usage (not defaults).",
+    "Clarity on what can slow renewals: missing documents, mismatch in usage/disclosures, break-in rules if expiry has passed (case-dependent).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Send basics now", text: "WhatsApp previous policy + RC + expiry date. For commercial, share permit/fitness status (as applicable)." },
+    { title: "Step 2 — Quick verification checks", text: "We check NCB/claim history alignment, IDV sanity, and obvious mismatch risks before proceeding." },
+    { title: "Step 3 — Renew safely", text: "We guide the cleanest next step. Final acceptance depends on insurer process and timing (case-dependent)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Start on WhatsApp/phone for fastest response.",
+      "If physical steps are required, it depends on insurer rules and case type (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Policy Expired – What to do", href: EN("/policy-expired-what-to-do/") },
+    { label: "Remote Insurance Support", href: EN("/remote-insurance-support/") },
+    { label: "Transport & Fleet", href: EN("/services/transport-fleet/") },
+  ],
+
+  faqs: [
+    { q: "Can renewal be done the same day?", a: "Often yes for many cases, but it depends on document readiness and insurer process. If expiry has passed, break-in/inspection rules can apply (case-dependent)." },
+    { q: "What slows down urgent renewals most?", a: "Missing documents, mismatch in NCB/claim history, unclear usage disclosures, and expired compliance documents for commercial vehicles (as applicable)." },
+    { q: "Do you guarantee same-day completion?", a: "No. We can move fast with correct inputs, but insurer rules and case type decide timelines (case-dependent)." },
+  ],
+},
+
+// 2) Break-in renewal / inspection rules (high-intent confusion)
+"break-in-insurance-renewal": {
+  slug: "break-in-insurance-renewal",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "faqs", "services", "generic"],
+    priority: 16,
+    tags: ["renewal", "break-in", "inspection", "high-intent"],
+  },
+
+  seoTitle: "Break-in Renewal / Inspection Renewal – What Changes After Policy Expiry (Practical Guide)",
+  seoDesc:
+    "If your policy has expired, break-in renewal rules may apply (inspection, timelines, documentation). This page explains what to do first and how to avoid mistakes that delay renewal (case-dependent).",
+  heroH1: "Break-in renewal (renewing after expiry — what changes)",
+  heroP:
+    "When a policy expires, renewal is not always the same as renewing on time. Some insurers require additional steps such as inspection/verification and specific timelines (case-dependent). This page gives a practical workflow so you don’t waste days doing the wrong thing.",
+
+  intentSignals: [
+    "break in renewal",
+    "break-in insurance renewal",
+    "renew insurance after expiry",
+    "inspection required for renewal",
+    "lapsed policy renewal",
+  ],
+
+  whoThisHelps: [
+    "Customers whose motor policy already expired (car/bike/commercial).",
+    "Anyone told “inspection is required” and unsure how to proceed.",
+    "Commercial operators where compliance documents matter (permit/fitness as applicable).",
+  ],
+
+  whatYouGet: [
+    "A simple decision tree: expired today vs expired many days (case-dependent) and what typically changes.",
+    "Document checklist to speed up the process (policy copy/RC; permits/fitness as applicable).",
+    "Common mistakes that delay break-in renewals: starting repairs, hiding changes, wrong disclosures, missing compliance documents (as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Confirm expiry + policy type", text: "WhatsApp the previous policy copy and tell us when it expired." },
+    { title: "Step 2 — Identify the safest path", text: "We tell you what usually changes post-expiry and what insurers commonly require (case-dependent)." },
+    { title: "Step 3 — Execute with clean disclosures", text: "We guide the checklist and sequence. Final rules depend on insurer/product (case-dependent)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Break-in renewals often start remotely with documents.",
+      "Any inspection/verification is insurer-controlled (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Policy Expired – What to do", href: EN("/policy-expired-what-to-do/") },
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+    { label: "Remote Insurance Support", href: EN("/remote-insurance-support/") },
+  ],
+
+  faqs: [
+    { q: "Is inspection always required for break-in renewal?", a: "Not always. It depends on insurer rules, how long the policy has lapsed, and the policy type (case-dependent)." },
+    { q: "What should I avoid during break-in renewal?", a: "Avoid assumptions. Share accurate details, keep documents ready, and follow the correct sequence. For commercial vehicles, expired permits/fitness can cause friction (as applicable)." },
+  ],
+},
+
+// 3) Claim rejected / repudiation help (separate from general claim help)
+"claim-rejected-what-to-do": {
+  slug: "claim-rejected-what-to-do",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "faqs", "services", "generic"],
+    priority: 15,
+    tags: ["claim", "rejected", "repudiation", "urgent", "high-intent"],
+  },
+
+  seoTitle: "Claim Rejected? What To Do – Next Steps, Documents & Common Rejection Reasons (Guidance)",
+  seoDesc:
+    "If your insurance claim was rejected/repudiated, don’t panic. This page explains the typical reasons, what documents matter, and how to build a clean timeline and escalation file (case-dependent).",
+  heroH1: "Claim rejected (what to do next — practical steps)",
+  heroP:
+    "Claim rejection usually happens due to timeline gaps, missing evidence, disclosure mismatch, or documentation issues—not because insurance is ‘impossible’. This page explains how to整理 your evidence and what to check first so you can take the next step intelligently (case-dependent).",
+
+  intentSignals: [
+    "claim rejected what to do",
+    "insurance claim repudiated",
+    "claim rejected reasons",
+    "how to reopen insurance claim",
+    "claim escalation help",
+  ],
+
+  whoThisHelps: [
+    "Vehicle owners whose claim was rejected due to reporting/evidence/document gaps (case-dependent).",
+    "Businesses with property/warehouse claims where proof/valuation trail is questioned (as applicable).",
+    "Customers unsure whether the rejection is final or a documentation/process issue (case-dependent).",
+  ],
+
+  whatYouGet: [
+    "A rejection triage: what to read first (repudiation letter / survey notes / communications timeline).",
+    "Evidence file checklist: photos, first report, repair estimates, invoices/register proof for stock/assets (as applicable).",
+    "Common rejection triggers explained in plain language: late intimation, inconsistent timeline, missing endorsements, usage mismatch, proof trail gaps (case-dependent).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share rejection details", text: "WhatsApp the repudiation/rejection note, surveyor notes (if any), and your incident timeline." },
+    { title: "Step 2 — Identify the gap", text: "We identify which part is missing/unclear: timeline, evidence, documents, or policy wording mismatch (case-dependent)." },
+    { title: "Step 3 — Build a clean file", text: "We guide a structured checklist for your next step. Outcomes depend on insurer process and facts (case-dependent)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Rejection analysis is easiest when documents are shared on WhatsApp first.",
+      "We don’t promise outcomes; we focus on correct process and clean evidence discipline.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Areas we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    { label: "Buy Insurance Guidance", href: EN("/buy-insurance-guidance/") }, // if you prefer, replace with EN("/buy-insurance-guidance/")
+  ],
+
+  faqs: [
+    { q: "Is claim rejection always final?", a: "Not always. Some cases fail due to missing proof or process errors; others depend on policy terms and facts. Start by organizing documents and a clean timeline (case-dependent)." },
+    { q: "Do you guarantee claim approval?", a: "No. We guide correct steps and evidence discipline to reduce avoidable delays/disputes." },
+  ],
+},
+
+// 4) Fleet renewal management (high premium)
+"fleet-renewal-management-support": {
+  slug: "fleet-renewal-management-support",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "serviceDetail", "generic"],
+    priority: 32,
+    tags: ["fleet", "b2b", "renewal", "high-premium"],
+  },
+
+  seoTitle: "Fleet Renewal Management Support – Expiry Tracker, Document Control & Claim-Ready Discipline",
+  seoDesc:
+    "Managing multiple vehicles? Fleet renewals fail due to gaps, missing documents, and inconsistent disclosures. This page explains a practical system: expiry tracking, document folders, and a driver incident SOP (as applicable).",
+  heroH1: "Fleet renewal management (reduce gaps + reduce claim friction)",
+  heroP:
+    "Fleet insurance becomes expensive when renewals are late, documents are scattered, and drivers report incidents inconsistently. This page shows a simple fleet management workflow that reduces repeated delays across vehicles and keeps claim files cleaner (as applicable).",
+
+  intentSignals: [
+    "fleet insurance renewal",
+    "manage fleet insurance",
+    "multiple vehicle renewal",
+    "fleet policy support",
+    "transport fleet renewal help",
+  ],
+
+  whoThisHelps: [
+    "Fleet owners/operators with 2+ vehicles (goods carriers, lorries, trailers as applicable).",
+    "Admin/accounts teams managing multiple renewal dates and compliance documents.",
+    "Businesses that want fewer disputes by standardizing reporting and document control.",
+  ],
+
+  whatYouGet: [
+    "Fleet expiry tracker checklist (insurance + permit/fitness/pollution as applicable).",
+    "Centralized document folder structure per vehicle (policy + endorsements + RC etc.).",
+    "A simple driver incident SOP: who to call, what photos to take, how to note timeline (as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share fleet list", text: "Send your vehicle list + current policy copies + expiry dates (WhatsApp is fine)." },
+    { title: "Step 2 — Renewal discipline setup", text: "We help you create an expiry tracker and identify repeated friction points (documents/endorsements/usage clarity)." },
+    { title: "Step 3 — Repeatable workflow", text: "Use the same checklist every month/quarter so renewals and claims are predictable (as applicable)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Fleet support works best with WhatsApp-first document review.",
+      "Commercial compliance needs depend on vehicle type and insurer rules (as applicable).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Chennai North + NH corridor fleet support areas",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Fleet Insurance (Service)", href: EN("/services/transport-fleet/fleet-insurance/") },
+    { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+    { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+    { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    { label: "Renewal Support", href: EN("/insurance-renewal-near-me/") },
+  ],
+
+  faqs: [
+    { q: "Why do fleets face repeated claim delays?", a: "Inconsistent reporting, missing documents, and mismatch between real operations and policy wording. Standardizing SOP + document control helps (as applicable)." },
+    { q: "Do you handle 2–5 vehicles or only big fleets?", a: "Even 2–5 vehicles benefit from a simple expiry tracker and document folder discipline." },
+  ],
+},
+
+// 5) Warehouse renewal support (very high premium)
+"warehouse-insurance-renewal-support": {
+  slug: "warehouse-insurance-renewal-support",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "serviceDetail", "generic"],
+    priority: 34,
+    tags: ["warehouse", "renewal", "stock-proof", "high-premium"],
+  },
+
+  seoTitle: "Warehouse Insurance Renewal Support – Sum Insured, Stock Proof & Underinsurance Checks",
+  seoDesc:
+    "Warehouse renewals fail at claim time due to undervaluation and weak stock proof. This page explains renewal checks: sum insured realism, stock/invoice trail, and security conditions (as applicable).",
+  heroH1: "Warehouse renewal support (sum insured + stock proof discipline)",
+  heroP:
+    "Warehouse insurance renewals are not about paying premium and forgetting. Most settlement reductions happen due to underinsurance (sum insured far below reality) and missing stock proof trail when a loss happens. This page explains renewal checks that protect claims later (as applicable).",
+
+  intentSignals: [
+    "warehouse insurance renewal",
+    "godown insurance renewal",
+    "renew warehouse insurance",
+    "warehouse fire policy renewal",
+    "stock proof for insurance claim",
+  ],
+
+  whoThisHelps: [
+    "Warehouse/godown owners renewing annually without re-checking current stock/values.",
+    "Businesses with fluctuating stock where invoices/register proof matters.",
+    "Admin/accounts teams who manage renewals and documents for warehouses (as applicable).",
+  ],
+
+  whatYouGet: [
+    "Renewal checks: sum insured realism and underinsurance risk awareness (average clause risk).",
+    "Stock proof discipline checklist: invoices/registers/valuation basis and simple photo records (as applicable).",
+    "Burglary/security condition awareness: what must be maintained to avoid disputes (as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share basics", text: "WhatsApp last policy + warehouse location + broad stock type and value range (as applicable)." },
+    { title: "Step 2 — Proof/valuation checklist", text: "We guide what evidence trail is typically needed for your stock/valuation basis (as applicable)." },
+    { title: "Step 3 — Renewal alignment", text: "We align renewal declarations to reality to reduce avoidable claim friction later (as applicable)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Remote review works for most renewal checks; photos and sample invoices help (as applicable).",
+      "Insurer inspection rules can apply depending on risk and case type (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Industrial/warehouse belts we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Warehouse / Godown Insurance (Service)", href: EN("/services/industrial/warehouse-insurance/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+    { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+
+  faqs: [
+    { q: "Why do warehouse claims get reduced?", a: "Commonly due to undervaluation/underinsurance and weak proof trail for stock/assets. Renewal checks should prevent these issues (as applicable)." },
+    { q: "Do I need invoices/register proof?", a: "Usually yes for stock-related claims. The exact proof depends on stock type and valuation basis (as applicable)." },
+  ],
+},
+
+// 6) Contractor documentation support (CAR/WC focus — high premium)
+"contractor-insurance-documentation-support": {
+  slug: "contractor-insurance-documentation-support",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "serviceDetail", "generic"],
+    priority: 36,
+    tags: ["contractor", "car", "wc", "documentation", "high-premium"],
+  },
+
+  seoTitle: "Contractor Insurance Documentation Support – CAR/WC Checklists, Extensions & Claim-Ready Records",
+  seoDesc:
+    "Contractor insurance failures happen due to missing records: project extensions not updated (CAR), worker classification/payroll mismatch (WC), late reporting and weak site notes. This page explains practical checklists (as applicable).",
+  heroH1: "Contractor documentation support (CAR/WC checklists + renewal discipline)",
+  heroP:
+    "Contractor policies fail on paperwork gaps, not intent. CAR disputes happen when project period/extensions aren’t aligned. WC disputes happen when payroll/classification records don’t match. This page gives practical checklists and reporting discipline for cleaner outcomes (as applicable).",
+
+  intentSignals: [
+    "contractor insurance documents",
+    "car insurance documents for contractor",
+    "workmen compensation documents",
+    "wc insurance renewal documents",
+    "contractor policy renewal support",
+  ],
+
+  whoThisHelps: [
+    "Contractors/subcontractors handling CAR/WC renewals and endorsements (as applicable).",
+    "Admin/accounts teams managing project paperwork and workforce records.",
+    "Teams who want fewer claim disputes by improving day-1 reporting and site record discipline (as applicable).",
+  ],
+
+  whatYouGet: [
+    "CAR checklist: project start/end dates, extension discipline, scope clarity, basic site photo/notes system (as applicable).",
+    "WC checklist: worker classification logic + payroll proof discipline (as applicable).",
+    "Incident reporting discipline: who reports, what evidence to capture, timeline consistency (as applicable).",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share project + workforce basics", text: "WhatsApp policy copy + project period + workforce classification approach (as applicable)." },
+    { title: "Step 2 — Identify documentation gaps", text: "We flag common failure points: extension mismatch (CAR), payroll/classification mismatch (WC), late reporting habits." },
+    { title: "Step 3 — Build a clean routine", text: "We guide checklists you can repeat for renewals and claims readiness (as applicable)." },
+  ],
+
+  office: {
+    title: "Support base (Sholavaram)",
+    bullets: [
+      "Contractor documentation review works well on WhatsApp first.",
+      "Final insurer requirements vary by project type and policy structure (case-dependent).",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null,
+  },
+
+  commonAreasTitle: "Worksite/industrial belts we commonly support",
+  commonAreasCta: { label: "See locations page", href: EN("/locations/") },
+
+  recommendedServices: [
+    { label: "Contractor CAR/WC Combined", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/") },
+    { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+    { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+
+  faqs: [
+    { q: "What is the #1 CAR mistake?", a: "Project extensions/scope changes not aligned to policy period/endorsements. This causes disputes later (as applicable)." },
+    { q: "What is the #1 WC mistake?", a: "Classification/payroll mismatch. Claims become record-driven, so payroll discipline matters (as applicable)." },
+  ],
+},
+"insurance-for-sme-owners": {
+  slug: "insurance-for-sme-owners",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "generic"],
+    priority: 42,
+    tags: ["sme", "owner", "business", "high-premium"],
+  },
+
+  seoTitle: "Insurance for SME Owners – Renewal, Claims & Risk Checks That Actually Matter",
+  seoDesc:
+    "SME owners often lose claims due to underinsurance, wrong disclosures, or missing documents. This page explains practical insurance checks for shops, factories, warehouses and service businesses (as applicable).",
+
+  heroH1: "Insurance for SME owners (what usually goes wrong)",
+  heroP:
+    "Most SME insurance problems don’t happen while buying. They happen during renewal and claims—when declared values don’t match reality or documents are missing. This page explains what SME owners should check to avoid those issues.",
+
+  intentSignals: [
+    "insurance for sme owners",
+    "business insurance owner",
+    "shop insurance renewal",
+    "msme insurance guidance",
+  ],
+
+  whoThisHelps: [
+    "Owners of shops, small factories, warehouses and service businesses.",
+    "SMEs where insurance is handled casually and reviewed only at renewal time.",
+    "Business owners who want fewer claim disputes, not just lower premium.",
+  ],
+
+  whatYouGet: [
+    "Renewal sanity checks: sum insured realism, asset/stock valuation approach (as applicable).",
+    "Disclosure clarity: what insurers actually compare during claims.",
+    "Document discipline basics that reduce claim friction later.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Understand your risk", text: "We discuss your business type, location, assets and stock exposure (as applicable)." },
+    { title: "Step 2 — Renewal & wording checks", text: "We identify underinsurance risks, missing endorsements and disclosure gaps." },
+    { title: "Step 3 — Claim readiness habits", text: "Simple document and evidence discipline to reduce disputes later." },
+  ],
+
+  recommendedServices: [
+    { label: "Shop & MSME Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+    { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { label: "Claim Support", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    { q: "Is cheaper insurance risky for SMEs?", a: "It can be if declared values or disclosures don’t match reality. Most claim reductions come from underinsurance, not fraud." },
+    { q: "Should SME insurance be reviewed every year?", a: "Yes. Stock levels, asset values and operations change. Renewal without review causes problems later." },
+  ],
+},
+"insurance-for-logistics-owners": {
+  slug: "insurance-for-logistics-owners",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "generic"],
+    priority: 38,
+    tags: ["logistics", "transport", "fleet", "high-premium"],
+  },
+
+  seoTitle: "Insurance for Logistics & Transport Owners – Fleet, Compliance & Claim Discipline",
+  seoDesc:
+    "Transport and logistics insurance fails due to late reporting, document mismatch, and inconsistent driver reporting. This page explains practical insurance discipline for fleet owners (as applicable).",
+
+  heroH1: "Insurance for logistics & transport owners",
+  heroP:
+    "For logistics businesses, insurance problems usually start with operational gaps—permit/fitness lapses, late reporting by drivers, and scattered documents. This page explains how to reduce those risks.",
+
+  intentSignals: [
+    "insurance for logistics company",
+    "transport business insurance",
+    "fleet insurance owner",
+    "lorry insurance guidance",
+  ],
+
+  whoThisHelps: [
+    "Owners of transport and logistics companies with owned or hired vehicles.",
+    "Fleet operators struggling with renewals, permits and claim delays.",
+    "Businesses operating on highways, ports or industrial corridors.",
+  ],
+
+  whatYouGet: [
+    "Fleet renewal discipline: expiry tracking beyond just insurance.",
+    "Permit/fitness/document alignment guidance (as applicable).",
+    "Driver incident reporting SOP to avoid claim disputes.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Fleet overview", text: "Share vehicle list, policy copies and compliance status (as applicable)." },
+    { title: "Step 2 — Renewal & risk flags", text: "We identify repeated friction points in renewals and claims." },
+    { title: "Step 3 — Repeatable system", text: "Simple SOPs that reduce delays across vehicles." },
+  ],
+
+  recommendedServices: [
+    { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+    { label: "Lorry Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+    { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+    { label: "Claim Support", href: EN("/services/claims-support/") },
+  ],
+
+  faqs: [
+    { q: "Why do fleet claims get delayed?", a: "Late reporting, missing documents and inconsistent incident details from drivers." },
+    { q: "Is insurance enough for fleet risk?", a: "Insurance works only when compliance and reporting discipline is maintained." },
+  ],
+},
+"insurance-for-warehouse-owners": {
+  slug: "insurance-for-warehouse-owners",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "generic"],
+    priority: 40,
+    tags: ["warehouse", "owner", "stock", "high-premium"],
+  },
+
+  seoTitle: "Insurance for Warehouse Owners – Renewal, Stock Proof & Underinsurance Risks",
+  seoDesc:
+    "Warehouse insurance claims fail due to undervaluation and weak stock proof. This page explains what warehouse owners should check during renewal (as applicable).",
+
+  heroH1: "Insurance for warehouse owners",
+  heroP:
+    "Warehouse insurance problems usually appear only after a loss—when stock values or proof don’t align with policy declarations. This page explains renewal and documentation checks that matter.",
+
+  intentSignals: [
+    "insurance for warehouse owners",
+    "godown insurance owner",
+    "warehouse fire insurance guidance",
+  ],
+
+  whoThisHelps: [
+    "Owners of warehouses and godowns with fluctuating stock.",
+    "Businesses storing third-party or high-value goods.",
+    "Owners who want predictable claim outcomes, not surprises.",
+  ],
+
+  whatYouGet: [
+    "Sum insured realism and average clause awareness.",
+    "Stock proof discipline: invoices, registers and valuation approach.",
+    "Security and condition awareness that affects claims.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Stock overview", text: "Discuss stock type, value range and storage conditions (as applicable)." },
+    { title: "Step 2 — Renewal alignment", text: "Check declared values and documentation gaps." },
+    { title: "Step 3 — Claim readiness", text: "Guide simple proof and record-keeping discipline." },
+  ],
+
+  recommendedServices: [
+    { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { label: "Claim Support", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    { q: "Why are warehouse claims reduced?", a: "Underinsurance and weak stock proof are the most common reasons." },
+    { q: "Should sum insured change every year?", a: "Yes, if stock levels or values change materially." },
+  ],
+},
+"insurance-for-contractors": {
+  slug: "insurance-for-contractors",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "serviceCategory", "generic"],
+    priority: 44,
+    tags: ["contractor", "car", "wc", "high-premium"],
+  },
+
+  seoTitle: "Insurance for Contractors – CAR, WC & Documentation That Prevent Disputes",
+  seoDesc:
+    "Contractor insurance disputes happen due to project extensions, worker classification mismatch and weak site records. This page explains practical insurance discipline (as applicable).",
+
+  heroH1: "Insurance for contractors (CAR / WC explained practically)",
+  heroP:
+    "Most contractor insurance issues come from paperwork gaps—not intent. This page explains what contractors should track for CAR and WC policies to avoid claim disputes.",
+
+  intentSignals: [
+    "insurance for contractors",
+    "contractor car insurance",
+    "workmen compensation contractor",
+  ],
+
+  whoThisHelps: [
+    "Contractors handling construction, installation or infrastructure projects.",
+    "Businesses managing temporary labour and subcontractors.",
+    "Owners responsible for compliance and worker safety insurance.",
+  ],
+
+  whatYouGet: [
+    "CAR policy discipline: project period, extensions and scope clarity.",
+    "WC policy discipline: worker classification and payroll proof.",
+    "Incident reporting habits that matter during claims.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Project basics", text: "Discuss project scope, duration and workforce structure (as applicable)." },
+    { title: "Step 2 — Policy alignment", text: "Check CAR/WC coverage against real operations." },
+    { title: "Step 3 — Documentation routine", text: "Guide repeatable record-keeping habits." },
+  ],
+
+  recommendedServices: [
+    { label: "Contractor CAR Insurance", href: EN("/services/construction/contractor-all-risk/") },
+    { label: "Workmen Compensation Insurance", href: EN("/services/construction/workmen-compensation/") },
+    { label: "Claim Support", href: EN("/services/claims-support/") },
+  ],
+
+  faqs: [
+    { q: "Why do contractor claims get disputed?", a: "Project extensions and workforce details not matching policy records." },
+    { q: "Is WC mandatory?", a: "In many cases, yes. Exact requirements depend on workforce and contract terms." },
+  ],
+},
+"insurance-documents-required": {
+  slug: "insurance-documents-required",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "faqs", "generic"],
+    priority: 48,
+    tags: ["documents", "checklist", "authority"],
+  },
+
+  seoTitle: "Insurance Documents Required – Practical Checklists for Claims & Renewals",
+  seoDesc:
+    "Insurance claims and renewals fail due to missing or weak documents. This page explains the common documents insurers expect, why they matter, and how to keep a clean record (case-dependent).",
+
+  heroH1: "Insurance documents required (what insurers actually check)",
+  heroP:
+    "Most insurance delays are document-driven, not intent-driven. Across insurers—especially public-sector insurers—claims and renewals are evaluated based on document consistency, timelines and proof quality. This page explains the practical checklists.",
+
+  intentSignals: [
+    "insurance documents required",
+    "documents needed for insurance",
+    "insurance claim documents",
+    "insurance renewal documents",
+  ],
+
+  sections: [
+    {
+      title: "Common documents insurers expect",
+      bullets: [
+        "Policy copy and endorsements (latest version).",
+        "Identity and ownership proof (RC / business ownership documents as applicable).",
+        "Incident or risk timeline notes (when something happened and how).",
+        "Invoices, valuation basis or registers for assets/stock (as applicable).",
+      ],
+    },
+    {
+      title: "Why public-sector insurers are strict about documents",
+      bullets: [
+        "Claims are audit-driven and evidence-led.",
+        "Surveyor reports are matched against documents, not assumptions.",
+        "Inconsistent or post-event documents raise red flags.",
+      ],
+    },
+    {
+      title: "Common document mistakes that cause delays",
+      bullets: [
+        "Sharing documents late or partially.",
+        "Mismatch between declared values and proof.",
+        "Missing endorsements for changed usage or extensions.",
+      ],
+    },
+  ],
+
+  recommendedLinks: [
+    { label: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Claim Rejected – What To Do", href: EN("/claim-rejected-what-to-do/") },
+    { label: "Insurance Renewal Support", href: EN("/insurance-renewal-near-me/") },
+  ],
+
+  faqs: [
+    { q: "Are document requirements same for all insurers?", a: "Core documents are similar, but scrutiny level and evidence expectations vary by insurer and case type (case-dependent)." },
+    { q: "Do WhatsApp photos work?", a: "They help for initial guidance, but final insurer requirements may need clearer copies or originals (case-dependent)." },
+  ],
+},
+"commercial-vehicle-insurance-documents": {
+  slug: "commercial-vehicle-insurance-documents",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["services", "faqs", "generic"],
+    priority: 46,
+    tags: ["commercial-vehicle", "documents", "fleet"],
+  },
+
+  seoTitle: "Commercial Vehicle Insurance Documents – RC, Permit, Fitness & Claim Checklists",
+  seoDesc:
+    "Commercial vehicle insurance delays usually happen due to document mismatch. This page explains RC, permit, fitness and claim document discipline for lorries and fleets (as applicable).",
+
+  heroH1: "Commercial vehicle insurance documents (what really matters)",
+  heroP:
+    "For commercial vehicles, insurance validity is closely tied to compliance documents. Insurers—especially public-sector insurers—verify alignment between RC, permit, fitness and policy details during claims.",
+
+  intentSignals: [
+    "commercial vehicle insurance documents",
+    "lorry insurance documents",
+    "permit fitness insurance claim",
+  ],
+
+  sections: [
+    {
+      title: "Core documents insurers verify",
+      bullets: [
+        "RC with correct ownership and vehicle class.",
+        "Permit validity and route alignment (as applicable).",
+        "Fitness certificate validity on date of incident.",
+        "Policy copy with correct vehicle description.",
+      ],
+    },
+    {
+      title: "Why claims get delayed for commercial vehicles",
+      bullets: [
+        "Expired or mismatched permit/fitness.",
+        "Vehicle usage not matching policy declaration.",
+        "Late intimation or inconsistent incident timeline.",
+      ],
+    },
+  ],
+
+  recommendedLinks: [
+    { label: "Fleet Renewal Management", href: EN("/fleet-renewal-management-support/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+    { label: "Lorry Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+  ],
+
+  faqs: [
+    { q: "Is permit expiry relevant for insurance?", a: "Yes. Compliance documents are reviewed during claims and can affect outcomes (case-dependent)." },
+  ],
+},
+"warehouse-insurance-documents-checklist": {
+  slug: "warehouse-insurance-documents-checklist",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["services", "generic"],
+    priority: 47,
+    tags: ["warehouse", "documents", "stock-proof"],
+  },
+
+  seoTitle: "Warehouse Insurance Documents Checklist – Stock Proof, Valuation & Claim Readiness",
+  seoDesc:
+    "Warehouse claims fail due to underinsurance and weak stock proof. This checklist explains documents insurers expect during warehouse insurance renewals and claims (as applicable).",
+
+  heroH1: "Warehouse insurance documents checklist",
+  heroP:
+    "Warehouse insurance claims are evidence-driven. Insurers focus on stock valuation logic, proof trail and consistency between declared values and records—especially during fire or burglary claims.",
+
+  intentSignals: [
+    "warehouse insurance documents",
+    "godown insurance documents",
+    "stock proof for insurance claim",
+  ],
+
+  sections: [
+    {
+      title: "Stock proof and valuation documents",
+      bullets: [
+        "Purchase invoices or stock registers.",
+        "Valuation basis (cost price / market value as declared).",
+        "Periodic stock statements if applicable.",
+      ],
+    },
+    {
+      title: "Policy and condition-related documents",
+      bullets: [
+        "Policy copy and endorsements.",
+        "Security and safety compliance records (as applicable).",
+        "Photographic records of storage conditions.",
+      ],
+    },
+    {
+      title: "Why underinsurance causes claim reduction",
+      bullets: [
+        "Average clause application when declared value is lower than actual.",
+        "Mismatch between insured value and real exposure.",
+      ],
+    },
+  ],
+
+  recommendedLinks: [
+    { label: "Warehouse Renewal Support", href: EN("/warehouse-insurance-renewal-support/") },
+    { label: "Claim Rejected – What To Do", href: EN("/claim-rejected-what-to-do/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+  ],
+
+  faqs: [
+    { q: "Do insurers accept estimated stock values?", a: "They may at proposal stage, but claims rely on documentary proof and valuation logic (case-dependent)." },
+  ],
+},
+"contractor-insurance-documents-checklist": {
+  slug: "contractor-insurance-documents-checklist",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["services", "generic"],
+    priority: 49,
+    tags: ["contractor", "documents", "car", "wc"],
+  },
+
+  seoTitle: "Contractor Insurance Documents – CAR & WC Claim-Ready Checklists",
+  seoDesc:
+    "Contractor insurance disputes usually come from missing documents. This checklist explains CAR and WC documents insurers expect during renewals and claims (as applicable).",
+
+  heroH1: "Contractor insurance documents checklist (CAR / WC)",
+  heroP:
+    "CAR and WC claims are paperwork-driven. Insurers verify project period, extensions, workforce classification and payroll records before considering liability.",
+
+  intentSignals: [
+    "contractor insurance documents",
+    "car insurance documents",
+    "workmen compensation documents",
+  ],
+
+  sections: [
+    {
+      title: "CAR policy documentation",
+      bullets: [
+        "Project start and end dates.",
+        "Extension records and endorsements.",
+        "Basic site progress records or photos.",
+      ],
+    },
+    {
+      title: "WC policy documentation",
+      bullets: [
+        "Worker classification and role details.",
+        "Payroll or wage registers.",
+        "Attendance or deployment records (as applicable).",
+      ],
+    },
+  ],
+
+  recommendedLinks: [
+    { label: "Contractor Insurance Support", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    { q: "Why are contractor claims disputed?", a: "Documentation mismatch between policy records and actual project/workforce details." },
+  ],
+},
+"commercial-insurance-agent-near-me": {
+  slug: "commercial-insurance-agent-near-me",
+
+  autoLink: {
+    enabled: true,
+    contexts: ["home", "services", "locations", "locationDetail", "serviceCategory", "serviceDetail", "generic"],
+    priority: 20,
+    tags: ["commercial", "b2b", "fleet", "warehouse", "contractor", "high-premium"],
+  },
+
+  seoTitle: "Commercial Insurance Agent Near Me – Fleet, Warehouse, Contractor & Industrial Support",
+  seoDesc:
+    "Commercial-first insurance guidance from Sholavaram (Chennai North/outskirts): fleet/lorry, warehouse/godown, contractor CAR/WC, industrial property. Focus: documentation discipline and claim-ready clarity (as applicable).",
+
+  heroH1: "Commercial insurance agent near me (commercial-first support)",
+  heroP:
+    "If you searched “commercial insurance agent near me”, you’re usually trying to avoid claim disputes later—wrong disclosures, missing endorsements, weak stock proof, permit/fitness mismatch, or poor incident reporting discipline. This page explains what commercial-first support means and how we work.",
+
+  intentSignals: [
+    "commercial insurance agent near me",
+    "business insurance agent near me",
+    "commercial insurance consultant near me",
+    "industrial insurance agent near me",
+    "warehouse insurance agent near me",
+    "fleet insurance agent near me",
+    "contractor insurance agent near me",
+  ],
+
+  whoThisHelps: [
+    "Fleet and logistics operators (lorry, goods carriers, trailers) needing renewal discipline and compliance alignment (as applicable).",
+    "Warehouse/godown and industrial units needing valuation + stock proof discipline to avoid underinsurance disputes (as applicable).",
+    "Contractors needing CAR/WC documentation and extension/classification discipline (as applicable).",
+  ],
+
+  whatYouGet: [
+    "A commercial checklist approach (documents + disclosures + renewal checks) instead of generic ‘quote-first’ selling.",
+    "Guidance on what commonly delays commercial claims: weak timeline, missing proof, mismatch between operations and wording (as applicable).",
+    "Clear routing to the right category pages (fleet/warehouse/contractor/industrial) without stuffing everything into one page.",
+  ],
+
+  howSupportWorks: [
+    { title: "Step 1 — Share basics", text: "WhatsApp/call with business type, location, and whether it’s renewal/new/claim support." },
+    { title: "Step 2 — Checklist & risk flags", text: "We share the typical checklist and flag common mismatch risks (valuation, stock proof, permits/fitness, endorsements as applicable)." },
+    { title: "Step 3 — Next steps", text: "We guide the cleanest next step based on insurer rules and your case (case-dependent)." },
+  ],
+
+  office: {
+    title: "Commercial support base (Sholavaram)",
+    bullets: [
+      "Start remotely via WhatsApp/phone for faster document review.",
+      "In-person visits are only when needed; insurer inspections follow insurer rules (case-dependent).",
+      "Common coverage: Chennai North + outskirts + industrial/logistics corridors within reach.",
+    ],
+    mapCtaLabel: "Open Google Maps listing",
+    mapCtaHref: null, // can set to siteData.brand.gbpUrl
+  },
+
+  commonAreasTitle: "Commercial belts we commonly support",
+  commonAreasCta: { label: "See locations", href: EN("/locations/") },
+
+  quickLinks: [
+    { label: "Transport & Fleet", href: EN("/services/transport-fleet/") },
+    { label: "Industrial & Property", href: EN("/services/industrial/") },
+    { label: "Construction / Contractor", href: EN("/services/construction/") },
+    { label: "Claim Support", href: EN("/services/claims-support/") },
+  ],
+
+  recommendedServices: [
+    { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+    { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+    { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { label: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { label: "Contractor CAR/WC", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { label: "Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+
+  faqs: [
+    {
+      q: "Do you only handle commercial insurance?",
+      a:
+        "Commercial-first is our focus (fleet/warehouse/contractor/industrial), but we also support motor and other personal lines depending on the requirement.",
+    },
+    {
+      q: "Do you guarantee claim approval?",
+      a:
+        "No. Claim outcomes depend on policy terms, disclosures, evidence and insurer process. Our role is to guide correct steps and reduce avoidable delays.",
+    },
+    {
+      q: "Can commercial work start on WhatsApp?",
+      a:
+        "Yes. Most commercial guidance starts with document review and checklists on WhatsApp/phone. Insurer inspections are case-dependent.",
+    },
+  ],
+},
+
 },
 
 
@@ -9387,110 +10735,83 @@ intentPages: {
     ],
   },
 
-  "areaServedStructData": [
+areaServedStructData: [
+  // Primary truth: you serve a 60 km radius in all directions from Sholavaram
   {
     "@type": "GeoCircle",
     "geoMidpoint": {
       "@type": "GeoCoordinates",
-      "latitude": geo.lat, 
+      "latitude": geo.lat,
       "longitude": geo.lng
     },
-    "geoRadius": 60000 
+    "geoRadius": 60000
   },
 
-  // 1. BROAD DISTRICTS & OFFICIAL BOUNDARIES
+  // Official admin areas (high trust)
   { "@type": "AdministrativeArea", "name": "Chennai" },
   { "@type": "AdministrativeArea", "name": "Tiruvallur District" },
   { "@type": "AdministrativeArea", "name": "Kancheepuram District" },
   { "@type": "AdministrativeArea", "name": "Chengalpattu District" },
-  { "@type": "AdministrativeArea", "name": "Ranipet District" },
 
-  // 2. INDUSTRIAL HUB CATEGORIES (Kept as AdministrativeArea for Search Weight)
-  { "@type": "AdministrativeArea", "name": "Sriperumbudur Industrial Hub" },
-  { "@type": "AdministrativeArea", "name": "Oragadam Automobile Belt" },
-
-  // 3. LOCAL DOMINANCE (Sholavaram - Red Hills - Puzhal Belt)
-  { "@type": "Place", "name": "Red Hills Market Junction" },
-  { "@type": "Place", "name": "Padianallur Checkpost" },
-  { "@type": "Place", "name": "Karanodai Bridge & Bazaar" },
-  { "@type": "Place", "name": "Puzhal Camp (Jail Road Hub)" },
-  { "@type": "Place", "name": "Madhavaram Roundana" },
-  { "@type": "Place", "name": "Vilangadupakkam Rice Mill Hub" },
-  { "@type": "Place", "name": "Vadaperumbakkam Warehouse Zone" },
-  { "@type": "Place", "name": "Grand Lyon Industrial Estate" },
-  { "@type": "Place", "name": "Lyon Industrial Zone" },
-  { "@type": "Place", "name": "Alamathi Rice Mill Road" },
-  { "@type": "Place", "name": "Orakadu Industrial Road" },
-  { "@type": "Place", "name": "Naravarikuppam" },
-  { "@type": "Place", "name": "Theerthagiriyampattu" },
-  { "@type": "Place", "name": "Payasambakkam" },
-  { "@type": "Place", "name": "Sothupakkam" },
-
-  // 4. TRANSPORT & CARGO NODES (Lorry/Fleet Dominance)
-  { "@type": "Place", "name": "Madhavaram Truck Terminal" },
-  { "@type": "Place", "name": "Puzhal Kavangarai Lorry Stand" },
-  { "@type": "Place", "name": "Karanodai Toll Plaza Area" },
-  { "@type": "Place", "name": "GNT Road Warehouse Cluster" },
-  { "@type": "Place", "name": "Red Hills Bus Terminus" },
-  { "@type": "Place", "name": "Red Hills Warehouse Belt" },
-
-  // 5. EXPORT-IMPORT & MANUFACTURING (High Premium Commercial)
-  { "@type": "Place", "name": "Ennore Kamarajar Port" },
-  { "@type": "Place", "name": "Kattupalli Port & Shipyard" },
-  { "@type": "Place", "name": "Manali Industrial Estate" },
-  { "@type": "Place", "name": "Gummidipoondi SIPCOT" },
-  { "@type": "Place", "name": "Minjur Logistics Hub" },
-  { "@type": "Place", "name": "Ponneri Smart City Belt" },
-  { "@type": "Place", "name": "Ambattur Industrial Estate" },
-  { "@type": "Place", "name": "Padi Industrial Hub" },
-  { "@type": "Place", "name": "Arani Industrial Cluster" },
-  { "@type": "Place", "name": "Thirumazhisai SIDCO" },
-  { "@type": "Place", "name": "Thirumudivakkam SIDCO" },
-  { "@type": "Place", "name": "Mappedu Multimodal Logistics Park" },
-  { "@type": "Place", "name": "Sriperumbudur SIPCOT" },
-  { "@type": "Place", "name": "Irungattukottai Industrial Park" },
-  { "@type": "Place", "name": "Oragadam Automobile Hub" },
-  { "@type": "Place", "name": "Vallam Vadagal Industrial Park" },
-  { "@type": "Place", "name": "Pillaipakkam Industrial Hub" },
-
-  // 6. DOMESTIC RESIDENTIAL CLUSTERS (Car, Bike, Health Insurance)
-  { "@type": "Place", "name": "Anna Nagar" },
-  { "@type": "Place", "name": "Mogappair East" },
-  { "@type": "Place", "name": "Mogappair West" },
-  { "@type": "Place", "name": "Ambattur OT" },
-  { "@type": "Place", "name": "Avadi" },
-  { "@type": "Place", "name": "Pattabiram" },
-  { "@type": "Place", "name": "Kolathur" },
-  { "@type": "Place", "name": "Retteri Junction" },
+  // Core belt from your office (recognizable towns/areas; not micro-junctions)
+  { "@type": "Place", "name": "Sholavaram" },
+  { "@type": "Place", "name": "Red Hills" },
+  { "@type": "Place", "name": "Puzhal" },
+  { "@type": "Place", "name": "Madhavaram" },
   { "@type": "Place", "name": "Perambur" },
-  { "@type": "Place", "name": "Jamalia" },
-  { "@type": "Place", "name": "Villivakkam" },
-  { "@type": "Place", "name": "Korattur" },
-  { "@type": "Place", "name": "Poonamallee Town" },
-  { "@type": "Place", "name": "Thiruvallur Town" },
-  { "@type": "Place", "name": "Thiruninravur" },
-  { "@type": "Place", "name": "Veppampattu" },
-  { "@type": "Place", "name": "Manali New Town" },
-  { "@type": "Place", "name": "Mathur MMDA" },
-  { "@type": "Place", "name": "Madhavaram Milk Colony" },
-  { "@type": "Place", "name": "Kodungaiyur" },
-  { "@type": "Place", "name": "Tiruvottiyur" },
-  { "@type": "Place", "name": "Porur" },
-  { "@type": "Place", "name": "Ramapuram" },
-  { "@type": "Place", "name": "Iyyapanthangal" },
-  { "@type": "Place", "name": "Kattupakkam" },
-  { "@type": "Place", "name": "Vanagaram" },
-  { "@type": "Place", "name": "Surapet" },
-  { "@type": "Place", "name": "Puthagaram" },
+  { "@type": "Place", "name": "Manali" },
+  { "@type": "Place", "name": "Gummidipoondi" },
+  { "@type": "Place", "name": "Ambattur" },
+  { "@type": "Place", "name": "Avadi" },
+  { "@type": "Place", "name": "Poonamallee" },
 
-  // 7. SME & TRADE BAZAARS (Business/Shop/Marine Insurance)
-  { "@type": "Place", "name": "Sowcarpet" },
-  { "@type": "Place", "name": "George Town" },
-  { "@type": "Place", "name": "Broadway" },
-  { "@type": "Place", "name": "Parrys Corner" },
-  { "@type": "Place", "name": "Red Hills Bazaar Road" },
-  { "@type": "Place", "name": "Koyambedu Market Area" }
+  // Logistics / transport nodes (high premium relevance)
+  { "@type": "Place", "name": "Madhavaram Truck Terminal" },
+  { "@type": "Place", "name": "GNT Road (NH16) Logistics Corridor" },
+
+  // Import-export / marine nodes (high premium relevance)
+  { "@type": "Place", "name": "Kamarajar Port (Ennore Port)" },
+  { "@type": "Place", "name": "Kattupalli Port" },
+
+  // Industrial belts (high premium relevance)
+  { "@type": "Place", "name": "Manali Industrial Estate" },
+  { "@type": "Place", "name": "Ambattur Industrial Estate" },
+  { "@type": "Place", "name": "Sriperumbudur SIPCOT" },
+  { "@type": "Place", "name": "Oragadam Industrial Belt" },
+  { "@type": "Place", "name": "Irungattukottai Industrial Park" },
+
+  // Domestic hubs (keep limited but recognizable)
+  { "@type": "Place", "name": "Anna Nagar" },
+  { "@type": "Place", "name": "Mogappair" },
+  { "@type": "Place", "name": "Porur" },
+  { "@type": "Place", "name": "Vanagaram" },
+
+  // 9) Central Chennai trade & wholesale anchors (high commercial intent)
+{ "@type": "Place", "name": "Chennai Central" },
+{ "@type": "Place", "name": "Parrys Corner (George Town)" },
+{ "@type": "Place", "name": "Broadway Chennai" },
+{ "@type": "Place", "name": "Koyambedu Wholesale Market" },
+
+// 10) Affluent residential hubs (health + high-value car insurance signals)
+{ "@type": "Place", "name": "Anna Nagar East & West" },
+{ "@type": "Place", "name": "Nungambakkam" },
+{ "@type": "Place", "name": "RA Puram" },
+{ "@type": "Place", "name": "Adyar" },
+{ "@type": "Place", "name": "Besant Nagar" },
+  { "@type": "Place", "name": "Velachery"},
+  // 11) Logistics highways & industrial corridors (loading, godowns, fleet, EXIM)
+{ "@type": "Place", "name": "NH16 (Chennai–Kolkata Highway) Logistics Belt" },
+{ "@type": "Place", "name": "NH48 (Chennai–Bengaluru Highway) Industrial Corridor" },
+{ "@type": "Place", "name": "Outer Ring Road (ORR) – Chennai Logistics Belt" },
+{ "@type": "Place", "name": "Chennai Peripheral Ring Road (CPRR) Corridor" },
+
+// 12) Dedicated logistics & warehousing zones
+{ "@type": "Place", "name": "GNT Road Warehouse & Logistics Cluster" },
+{ "@type": "Place", "name": "Red Hills–Madhavaram Warehouse Belt" },
+{ "@type": "Place", "name": "Manali–Ennore Industrial & Port Logistics Zone" }
+
 ],
+
 
   gmbPosts: [],
 };

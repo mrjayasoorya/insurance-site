@@ -3,6 +3,7 @@
 // Small “Quick help” section used across pages (Home / Services / FAQs / Locations / Service pages).
 
 import { EN, siteData } from "../content/siteData";
+import { getIntentLinks } from "../lib/getIntentLinks";
 
 type PageType =
   | "home"
@@ -27,8 +28,10 @@ const {
   max?: number;
 };
 
-const all = siteData.intentPagesURLs || {}; // you will add this in siteData
-const group = all[pageType] || all.generic || [];
+// const all = siteData.intentPagesURLs || {}; // you will add this in siteData
+// const group = all[pageType] || all.generic || [];
+const group = getIntentLinks(pageType);
+console.log({group});
 
 const items = (group || [])
   .slice(0, max)

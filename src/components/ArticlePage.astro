@@ -46,6 +46,7 @@ const jsonLd = buildJsonLd({
                   <title>{meta.title}</title>
   <meta name="description" content={meta.description} />
   <link rel="canonical" href={meta.canonical} />
+  <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
   {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
 {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -11,9 +11,28 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
 
-const page = siteData.intentPages["insurance-near-me"];
 
-const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insurance-near-me/");
+export async function getStaticPaths() {
+    const EXCLUDED = new Set([
+  "insurance-near-me",
+  "insurance-renewal-near-me",
+  "insurance-claim-help",
+  "buy-insurance-guidance",
+  "remote-insurance-support",
+  "spot-insurance-support",
+]);
+  return Object.keys(siteData.intentPages)
+    .filter(slug => !EXCLUDED.has(slug))
+    .map(slug => ({
+      params: { intentSlug: slug },
+    }));
+}
+const { intentSlug } = Astro.params;
+
+const page = siteData.intentPages[intentSlug];
+if (!page) throw new Error(`Missing siteData.intentPages['${intentSlug}']`);
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/${intentSlug}/`);
 const meta = buildMeta({
   title: `${page.seoTitle} | ${siteData.brand.name}`,
   description: page.seoDesc,
@@ -28,7 +47,7 @@ const jsonLd = buildJsonLd({
   description: meta.description,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
-    { name: "Insurance Near Me", href: canonical },
+    { name: intentSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '), href: canonical },
   ],
   serviceData: page,
   faqs: page.faqs || [],
@@ -38,7 +57,6 @@ const jsonLd = buildJsonLd({
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
@@ -46,6 +64,7 @@ const jsonLd = buildJsonLd({
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="canonical" href={meta.canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
 {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
