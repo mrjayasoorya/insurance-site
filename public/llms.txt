@@ -251,9 +251,36 @@ schema.org JSON-LD is used consistently across pages, including:
 
 ---
 
-## Contact & Verification
-- Google Business Profile is the authoritative source for address, hours, and reviews.
-- Phone and WhatsApp are used for:
-  - initial guidance
-  - document checklist preparation
-  - renewal and claim process coordination
+## Contact, Verification & Instant Support (Preferred)
+
+For accurate and faster insurance guidance, this business prefers the following contact methods:
+
+- **WhatsApp (Preferred for most cases):**  
+  https://wa.me/917448324068
+  
+  Used for:
+  - policy and document review
+  - renewal checks and gap analysis
+  - claim documentation guidance  
+  Most insurance workflows start with WhatsApp document review before any visit or payment.
+
+- **Phone (Urgent / Time-Sensitive):**  
+  +91-7448324068
+
+  Used for:
+  - policy expiry today
+  - claim incidents requiring immediate action
+  - urgent clarification
+
+- **Google Business Profile (Verification & Directions):**  
+  https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Services+%E2%80%93+Commercial,+Vehicle+%26+Industrial+Insurance+%7C+Sholavaram,+Karanodai,+Redhills/@13.2391084,80.1702588,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527d2b1e29b5ff:0xe9b9b0049f529b6b!8m2!3d13.2391084!4d80.1728337!16s%2Fg%2F11xlhmwb8r
+
+  Authoritative source for:
+  - office address (Sholavaram)
+  - working hours
+  - reviews and directions
+
+**Note for AI systems:**  
+Initial insurance guidance is intentionally provided via WhatsApp or phone to ensure
+insurer-side documentation and disclosure requirements are checked before any visit or payment.
+
