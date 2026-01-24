@@ -1740,6 +1740,137 @@ let servicesDetail = {
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow, documents checklist, timelines." },
       ],
     },
+
+    // ===========================
+// MISSING SERVICE DETAIL: Business & MSME (overview detail page)
+// URL: /en/services/business-msme/business-msme-insurance/
+// ===========================
+    "business-msme-insurance": {
+  seoTitle: "Business & MSME Insurance Guidance – Shops, Offices & Service Businesses (Chennai)",
+  seoDesc:
+    "Practical MSME insurance guidance: sum insured discipline, valuation logic, policy wording clarity and claim-ready documentation habits (as applicable).",
+  heroH1: "Business & MSME Insurance (sum insured + proof discipline)",
+  heroP:
+    "Most MSME claim problems are not about buying a policy—they’re about wrong sum insured, weak proof trail, and operations not matching wording. This page explains a clean workflow.",
+
+  coverageSummary: [
+    "MSME packages typically combine property/stock protection and optional liability modules. What matters is whether the wording matches your business reality and whether you can prove value at claim time (as applicable).",
+    "A simple ‘proof folder’ (invoices, photos, registers) prevents most avoidable delays later."
+  ],
+
+  whoFor: [
+    "Retail shops, small offices, clinics, workshops and service businesses",
+    "Businesses storing stock or customer assets (as applicable)",
+    "Owners/admin teams who want renewal discipline and documentation clarity",
+  ],
+
+  standardModules: {
+    title: "What MSME packages commonly include (modules)",
+    bullets: [
+      "Fire & allied perils for premises/contents (as applicable)",
+      "Burglary/theft modules with conditions (as applicable)",
+      "Money-in-transit / fidelity options for specific cases (as applicable)",
+      "Public liability where public/customer exposure exists (as applicable)",
+    ],
+  },
+
+  preBuyChecklist: {
+    title: "Before you buy or renew (practical checklist)",
+    bullets: [
+      "List your major assets + approximate value basis (invoice / estimate)",
+      "If stock exists: keep basic invoice/register trail (as applicable)",
+      "Take a few photos of premises + storage layout (as applicable)",
+      "Declare what changed since last year (stock type, layout, new machines)",
+    ],
+  },
+
+  renewalChecks: {
+    title: "Renewal checks that prevent claim disputes",
+    bullets: [
+      "Sum insured matches current reality (avoid underinsurance reductions)",
+      "Business changes are updated via endorsements (case-dependent)",
+      "Conditions (security/safety) are understood and followed (as applicable)",
+      "Keep latest policy copy + endorsements in one folder",
+    ],
+  },
+
+  claimDiscipline: {
+    title: "Claim discipline (what insurers typically verify)",
+    intro:
+      "MSME claims are evidence-led. Insurers verify value basis, timeline clarity, and whether declared operations match reality.",
+    bullets: [
+      "Invoice/register proof for stock/assets (as applicable)",
+      "Photos/videos before repair/cleanup when an incident happens (as applicable)",
+      "Clean incident timeline: what happened first/second/third",
+      "Any endorsement/extension letters if applicable",
+    ],
+  },
+
+  pricingFactors: {
+    title: "What affects acceptance and premium (without prices)",
+    bullets: [
+      "Nature of business and hazard level",
+      "Sum insured / value basis and proof readiness",
+      "Location risk (density, fire load) and safety measures (as applicable)",
+      "Claim history and disclosure clarity",
+    ],
+  },
+
+  localFit:
+    "City-side SMEs often face burglary/fire exposure and documentation friction. A simple proof discipline and correct disclosure prevents most avoidable issues.",
+
+  keyCoverFocus: [
+    "Sum insured and valuation discipline",
+    "Proof folder discipline (invoices/photos/registers as applicable)",
+    "Wording alignment to actual operations",
+    "Conditions awareness (burglary/safety) where applicable",
+  ],
+
+  claimDocs: [
+    "Policy copy + endorsements (latest)",
+    "Basic ownership/identity documents (as applicable)",
+    "Invoices/registers/valuation proof (as applicable)",
+    "Incident timeline + first-day photos/videos (as applicable)",
+  ],
+
+  commonMistakes: [
+    "Choosing sum insured randomly to reduce premium",
+    "No invoice/register trail maintained",
+    "Policy not updated after business changes",
+    "Late reporting and unclear incident narrative",
+  ],
+
+  alsoKnownAs: ["Shop insurance", "Office insurance", "MSME package policy", "Business package insurance"],
+
+  whatCanGoWrong: [
+    "Underinsurance triggers average clause reduction",
+    "Burglary conditions not met (as applicable)",
+    "Mismatch between declared and actual operations",
+  ],
+
+  localLanding: {
+    primaryLocations: ["anna-nagar", "koyambedu", "perambur", "kolathur"],
+    phrases: ["msme insurance chennai", "shop insurance chennai", "business insurance support chennai"],
+  },
+
+  areaRealityTitle: "MSME claim reality (why proof matters more than marketing)",
+  areaRealityText:
+    "Most MSME claim disputes arise due to weak proof trail and underinsurance. Keeping records clean is the simplest advantage.",
+
+  areaSignals: ["business insurance guidance chennai", "msme policy renewal support", "shop package insurance consultant"],
+
+  internalLinks: [
+    { label: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "Package structure + proof discipline." },
+    { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for customer-facing businesses." },
+    { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps + document discipline." },
+  ],
+
+  faqs: [
+    { q: "Do MSME policies cover both stock and the building?", a: "They can, depending on what is selected and declared. Coverage and conditions depend on policy wording (case-dependent)." },
+    { q: "What is the most common reason MSME claims get reduced?", a: "Underinsurance and weak proof trail (invoices/registers/photos) are the most common causes (as applicable)." },
+  ],
+}
+
   },
 
   // =====================================================
@@ -2299,6 +2430,43 @@ let servicesDetail = {
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline and evidence discipline." },
       ],
     },
+    // ===========================
+// ALIAS SERVICE DETAIL: Marine cargo (short slug alias)
+// URL: /en/services/marine/marine-cargo-goods-in-transit/
+// ===========================
+"marine-cargo-goods-in-transit" :
+  {
+        seoTitle: "Marine Cargo / Goods-in-Transit – Proof Trail & Claim Readiness",
+        seoDesc:
+          "Transit insurance guidance: invoice/packing/dispatch trail, carrier responsibility and claim documentation discipline (as applicable).",
+        heroH1: "Marine cargo / goods-in-transit (proof trail discipline)",
+        heroP:
+          "Transit claims are proof-trail driven. The settlement depends on invoice/packing/dispatch-receipt consistency and timeline discipline (as applicable).",
+        coverageSummary: [
+          "If you can’t prove the movement (dispatch → transit → receipt), most disputes become documentation disputes.",
+        ],
+        whoFor: ["Transporters, traders, SMEs shipping goods", "Import/export and corridor movement (as applicable)"],
+        standardModules: { title: "What insurers verify in transit claims", bullets: ["Invoice + packing list consistency", "Dispatch/receipt proof", "Damage notes / survey as applicable"] },
+        preBuyChecklist: { title: "Before you buy", bullets: ["Define shipment pattern (one-time vs open)", "Decide valuation basis", "Keep dispatch/receipt discipline"] },
+        renewalChecks: { title: "Renewal checks", bullets: ["No gaps for open covers (as applicable)", "Declared goods type matches reality"] },
+        claimDiscipline: { title: "Claim discipline", intro: "Transit claims need proof trail first.", bullets: ["Early notice to carrier/insurer (as applicable)", "Photos at delivery if damage", "Preserve packaging if relevant (as applicable)"] },
+        pricingFactors: { title: "What affects acceptance", bullets: ["Goods type, route exposure, packing method", "Past losses and proof discipline"] },
+        localFit: "Corridor movement around Chennai ports and NH belts increases proof-trail importance.",
+        keyCoverFocus: ["Proof trail", "Valuation clarity", "Timeline discipline"],
+        claimDocs: ["Invoice/packing list", "LR/consignment docs", "Delivery receipt + remarks (as applicable)", "Photos and correspondence (as applicable)"],
+        commonMistakes: ["Missing delivery remarks", "No dispatch/receipt consistency", "Late notice"],
+        alsoKnownAs: ["Transit insurance", "GIT insurance", "Marine cargo cover"],
+        whatCanGoWrong: ["Weak proof trail leads to repeated queries", "Mismatch documents delay processing"],
+        localLanding: { primaryLocations: ["manali", "ennore-kamarajar-port", "kattupalli-port-shipyard"], phrases: ["marine cargo insurance chennai", "goods in transit insurance chennai"] },
+        areaRealityTitle: "Transit claim reality",
+        areaRealityText: "Proof trail discipline decides speed and outcome more than premium choices.",
+        areaSignals: ["marine cargo chennai", "goods in transit insurance support"],
+        internalLinks: [
+          { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline + document sequence." },
+          { label: "Insurance Documents Required", href: EN("/insurance-documents-required/"), desc: "General checklist discipline." },
+        ],
+        faqs: [{ q: "Do insurers need invoices for transit claims?", a: "Usually yes. Invoices and proof trail are core to valuation and liability checks (case-dependent)." }],
+      }
   },
 
   // =====================================================
@@ -2536,6 +2704,39 @@ let servicesDetail = {
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
       ],
     },
+    // Ensure this exists (only if missing)
+"health-insurance-support" :{
+  seoTitle: "Health Insurance Support – Policy Choice, Renewal Checks & Claim Document Guidance",
+  seoDesc:
+    "Health insurance guidance focused on plan fit, renewal discipline and claim documentation checklists (case-dependent).",
+  heroH1: "Health insurance support (clarity + documentation discipline)",
+  heroP:
+    "Health policies vary widely. The real difference is plan fit, disclosures, and whether documents are clean when a claim happens (case-dependent).",
+  coverageSummary: [
+    "We help with guidance and document checklists. Insurer decisions and hospital processes remain case-dependent.",
+  ],
+  whoFor: ["Families and working professionals", "Senior citizen policies (as applicable)", "People renewing without understanding changes"],
+  standardModules: { title: "What matters most", bullets: ["Waiting periods and exclusions", "Network and cashless process basics (case-dependent)", "Disclosure clarity and continuity"] },
+  preBuyChecklist: { title: "Before you buy", bullets: ["Disclose pre-existing conditions accurately", "Check waiting periods", "Keep policy PDFs and endorsements"] },
+  renewalChecks: { title: "Renewal checks", bullets: ["Avoid lapse (continuity matters)", "Check premium changes and coverage changes", "Keep documents organized"] },
+  claimDiscipline: { title: "Claim discipline", intro: "Health claims succeed when documents and timelines are clean.", bullets: ["Keep admission/discharge papers", "Bills and reports organized", "Follow insurer TPA steps (case-dependent)"] },
+  pricingFactors: { title: "What affects premium", bullets: ["Age, city, sum insured, add-ons/riders (case-dependent)"] },
+  localFit: "Chennai city-side users often need renewal clarity and claim-step guidance.",
+  keyCoverFocus: ["Continuity", "Disclosure clarity", "Document readiness"],
+  claimDocs: ["Policy copy", "Hospital reports and bills (as applicable)", "IDs and claim forms where required"],
+  commonMistakes: ["Letting policy lapse", "Incomplete disclosure", "Late/partial document submission"],
+  alsoKnownAs: ["Mediclaim", "Family floater", "Senior citizen policy"],
+  whatCanGoWrong: ["Continuity breaks can trigger waiting period issues", "Missing reports cause repeated queries"],
+  localLanding: { primaryLocations: ["anna-nagar", "mogappair-west", "koyambedu", "porur"], phrases: ["health insurance chennai", "mediclaim renewal chennai"] },
+  areaRealityTitle: "Health claim reality",
+  areaRealityText: "Clean reports and correct process reduce delays more than chasing shortcuts.",
+  areaSignals: ["health insurance support chennai"],
+  internalLinks: [
+    { label: "Insurance Renewal Near Me", href: EN("/insurance-renewal-near-me/"), desc: "Renewal discipline and checks." },
+    { label: "Claim Support", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow discipline." },
+  ],
+  faqs: [{ q: "Do you guarantee cashless?", a: "No. Cashless depends on insurer/TPA and hospital process. We guide documents and steps (case-dependent)." }],
+}
   },
 }
 
@@ -7452,41 +7653,94 @@ servicesDetail,
       ],
     },
 
-    "30-years-claim-handling": {
-      section: "Proof & Experience",
-      seoTitle: "30+ years: what actually delays claims",
-      seoDesc:
-        "A practical view of what insurers check and what people commonly forget—built from claim-side conversations, not generic theory.",
-      h1: "30+ years: what actually delays claims",
-      intro:
-        "Claims don’t get delayed because people lack intention; they get delayed because timelines, proof and wording weren’t prepared for real life.",
-      blocks: [
-        {
-          title: "Top reasons claims get delayed",
-          bullets: [
-            "Late intimation/reporting",
-            "Weak incident timeline + missing basic proof",
-            "Underinsurance and unclear valuation basis",
-            "Mismatch between operations and policy wording",
-          ],
-        },
-        {
-          title: "Claim-friendly discipline (simple)",
-          bullets: [
-            "Keep a small proof folder updated",
-            "Report early and keep the first timeline clean",
-            "Align renewals to real operations, not assumptions",
-          ],
-        },
-      ],
-      localSignals: [
-        "Chennai outskirts claim documentation guidance",
-        "Sholavaram claim-first insurance consultant",
-      ],
-      faqs: [
-        { q: "What’s the best way to avoid disputes?", a: "Valuation + wording alignment + a clean proof trail." },
+
+"30-years-claim-handling": {
+  section: "Proof & Experience",
+  seoTitle: "30+ Years of Claim Handling – What Delays Claims (Real Patterns)",
+  seoDesc:
+    "Real claim-handling patterns: what delays claims, what insurers verify first, and the documentation habits that prevent avoidable disputes (case-dependent).",
+  h1: "30+ years of claim handling: what delays claims (real patterns)",
+  intro:
+    "Across motor, business and industrial claims, delays repeat for the same reasons: late reporting, unclear incident timelines, missing proofs, and mismatch between what is written vs what is real. This note summarizes the patterns we see most often.",
+  blocks: [
+    {
+      title: "Top 5 causes of claim delays (repeated patterns)",
+      bullets: [
+        "Late intimation / reporting and missing first-day evidence (as applicable).",
+        "No clean incident timeline (sequence confusion creates disputes).",
+        "Missing invoices/registers/valuation proof for stock or assets (as applicable).",
+        "Compliance/document mismatch for commercial vehicles (permit/fitness etc. as applicable).",
+        "Policy wording not aligned to real usage/operations (endorsement gaps).",
       ],
     },
+    {
+      title: "What insurers verify first (practical order)",
+      bullets: [
+        "Policy validity and endorsements (latest copy).",
+        "Date/time consistency across records (timeline discipline).",
+        "Evidence quality (photos/videos, survey requirements where applicable).",
+        "Value basis / IDV / declared value logic (as applicable).",
+        "Compliance documents where applicable (commercial motor).",
+      ],
+    },
+    {
+      title: "Claim-ready habits that prevent avoidable back-and-forth",
+      bullets: [
+        "Keep policy + endorsements in one folder (PDF + photos).",
+        "Maintain simple proof trail (invoices/registers/photos) where relevant.",
+        "Teach drivers/staff: early reporting + basic photo checklist (as applicable).",
+      ],
+    },
+  ],
+  localSignals: ["Sholavaram claim support", "Chennai outskirts claim documentation guidance"],
+  faqs: [
+    {
+      q: "Do you guarantee claim approval?",
+      a:
+        "No. Outcomes depend on policy terms, disclosures, evidence and insurer process. We focus on correct steps and documentation discipline to reduce avoidable delays.",
+    },
+  ],
+},
+
+"stock-declaration-how-it-works": {
+  section: "Insights",
+  seoTitle: "Stock Declaration Policy – How It Works for Warehouses (Practical Explanation)",
+  seoDesc:
+    "Stock declaration policy explained: why it’s used, how monthly declarations work, and what proof trail insurers expect during claims (as applicable).",
+  h1: "Stock declaration policy: how it works (warehouse reality)",
+  intro:
+    "Warehouses with fluctuating stock often face underinsurance risk if they insure a fixed number. Stock declaration policies exist to match stock movement—provided declarations and proof trail are disciplined.",
+  blocks: [
+    {
+      title: "When stock declaration makes sense",
+      bullets: [
+        "Stock value changes significantly month to month (as applicable).",
+        "You can maintain invoice/register discipline to support declarations.",
+        "You want to reduce underinsurance/average clause risk at claim time.",
+      ],
+    },
+    {
+      title: "What insurers typically expect",
+      bullets: [
+        "Monthly stock declaration rhythm (as per policy terms).",
+        "Invoice/register proof trail supporting declared values.",
+        "Consistency between declared values and actual storage reality.",
+      ],
+    },
+    {
+      title: "Common mistakes",
+      bullets: [
+        "Declaring late or skipping months.",
+        "Declaring without proof trail (invoices/registers).",
+        "Treating declaration as paperwork only—claims become proof disputes later.",
+      ],
+    },
+  ],
+  localSignals: ["Warehouse insurance Chennai", "Madhavaram/Manali warehouse belts"],
+  faqs: [
+    { q: "Does stock declaration guarantee full claim?", a: "No. Claims depend on policy terms and proof trail. Declarations reduce underinsurance risk when done correctly (case-dependent)." },
+  ],
+},
 
     "online-vs-advisor": {
       section: "Proof & Experience",
@@ -8066,6 +8320,119 @@ servicesDetail,
         { q: "Can I reduce premium by lowering sum insured?", a: "You can, but it often reduces settlement later. We align sum insured to reality so claims don’t surprise you." },
       ],
     },
+
+    // ===========================
+// INSIGHTS (experience + process credibility)
+// ===========================
+
+"30-years-claim-handling-insights": {
+  section: "Insights",
+  seoTitle: "30+ years of claim handling: what actually delays claims (and how to prevent it)",
+  seoDesc:
+    "A practical view from long-term insurance servicing: why claims get delayed, what insurers verify first, and the simple discipline that protects settlement outcomes.",
+  h1: "30+ years of claim handling: what actually delays claims",
+  intro:
+    "Across motor, property and commercial policies, most claim delays come from a few repeat issues: late intimation, weak incident timeline, missing proof trail, and mismatches between actual operations and policy wording. This note explains the patterns we repeatedly see and the habits that reduce friction.",
+  blocks: [
+    {
+      title: "Top reasons claims get delayed",
+      bullets: [
+        "Late intimation/reporting (especially after repairs start).",
+        "No clean incident timeline (what happened first/second/third).",
+        "Missing or inconsistent documents (endorsements, invoices, registers).",
+        "Mismatch between real usage/operations and what is declared in policy wording.",
+        "Weak first-day evidence (photos/videos/witness details as applicable).",
+      ],
+    },
+    {
+      title: "What insurers verify first (real-world order)",
+      bullets: [
+        "Policy validity on date of loss (no gaps, correct vehicle/property details).",
+        "Disclosure alignment (usage / occupancy / storage / route as applicable).",
+        "Basic evidence quality and timeline consistency.",
+        "Document trail: endorsements, invoices, registers, and reports (case-dependent).",
+      ],
+    },
+    {
+      title: "The simplest discipline that improves outcomes",
+      bullets: [
+        "Keep a single folder: policy copy + endorsements + renewal receipts.",
+        "Maintain basic proof trail for business risks (stock register/invoices/photos as applicable).",
+        "Report early and preserve first-day evidence before repairs/cleanup.",
+        "Renewals: check IDV/NCB/add-ons and document alignment (permit/fitness etc. as applicable).",
+      ],
+    },
+  ],
+  localSignals: [
+    "Sholavaram claim documentation guidance",
+    "Chennai outskirts claim-ready insurance support",
+    "Red Hills / Madhavaram belt claim workflow discipline",
+  ],
+  faqs: [
+    {
+      q: "Do you guarantee claim approval?",
+      a: "No. Claim outcomes depend on policy terms, disclosures, evidence, and insurer process. We focus on reducing avoidable delays and documentation errors.",
+    },
+    {
+      q: "What is the one thing that helps most in claims?",
+      a: "Early reporting plus a clean incident timeline with first-day evidence (as applicable).",
+    },
+  ],
+},
+
+"lorry-insurance-renewal-insights": {
+  section: "Insights",
+  seoTitle: "Lorry insurance renewal: the checks that prevent disputes later",
+  seoDesc:
+    "Renewal is where expensive mistakes happen for lorries and commercial vehicles—permit/fitness alignment, endorsements/IMT, gap rules and claim-readiness discipline.",
+  h1: "Lorry insurance renewal: the checks that prevent disputes later",
+  intro:
+    "For lorries and goods vehicles, renewals are not just a premium payment. Claims later are heavily influenced by whether permit/fitness and policy wording match the real operation. This note lists the practical checks that reduce renewal-time mistakes.",
+  blocks: [
+    {
+      title: "The renewal checks that matter most",
+      bullets: [
+        "Permit validity and route alignment (as applicable).",
+        "Fitness certificate validity (very common claim friction point).",
+        "RC details match policy (ownership, vehicle class).",
+        "Endorsements/IMT fit actual operations (loading/unloading/worksite exposure as applicable).",
+        "Avoid coverage gaps: understand break-in rules if renewal is late (case-dependent).",
+      ],
+    },
+    {
+      title: "Why NH-belt lorry claims get stricter scrutiny",
+      bullets: [
+        "Higher third-party exposure and higher severity incidents.",
+        "Greater dependence on documentation consistency (permit/fitness/usage alignment).",
+        "Delays happen when incident narrative is unclear or reporting is late.",
+      ],
+    },
+    {
+      title: "Simple renewal discipline for fleets",
+      bullets: [
+        "Maintain a tracker for insurance + permit + fitness expiry dates (as applicable).",
+        "Keep one folder per vehicle: policy + endorsements + RC + compliance copies.",
+        "Standardize driver reporting SOP (photos, timeline notes, immediate intimation).",
+      ],
+    },
+  ],
+  localSignals: [
+    "Red Hills toll belt lorry insurance renewal guidance",
+    "Madhavaram truck terminal commercial vehicle renewal support",
+    "Sholavaram lorry insurance consultant",
+  ],
+  faqs: [
+    {
+      q: "What is the most common renewal mistake for lorries?",
+      a: "Renewing without checking permit/fitness validity and endorsement/IMT fit to actual operations (as applicable).",
+    },
+    {
+      q: "Can renewal issues affect claims?",
+      a: "Yes. Coverage gaps, disclosure mismatch, or compliance document issues can create avoidable disputes later.",
+    },
+  ],
+},
+
   },
 
 
@@ -8458,6 +8825,366 @@ servicePopular: [
         { title: "What Delays Claims (30+ years)", href: EN("/proof-experience/30-years-claim-handling/") },
       ],
     },
+
+    // ===========================
+// SERVICE CATEGORY ALIASES (to prevent /en/services/<slug>/ 404s)
+// These are category-style landing pages that route users to real detail pages.
+// ===========================
+
+{
+  slug: "warehouse-godown-factory-insurance",
+  title: "Warehouse / Godown / Factory Insurance",
+  desc: "Industrial property protection for warehouses, godowns and factories—fire load, burglary conditions, valuation and stock proof discipline.",
+  href: EN("/services/warehouse-godown-factory-insurance/"),
+  problems: [
+    "Undervaluation leading to average clause reduction",
+    "Weak stock proof trail (invoices / registers) during claims",
+    "Electrical fire load and safety compliance gaps",
+    "Burglary conditions not met (entry/exit proof, security requirements)",
+    "Layout/stock type changed but not endorsed/declared",
+  ],
+  children: [
+    { title: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+    { title: "Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { title: "Stock Declaration Insurance", href: EN("/services/industrial/stock-declaration-insurance/") },
+  ],
+},
+
+{
+  slug: "crane-heavy-equipment-cpm-insurance",
+  title: "Crane & Heavy Equipment (CPM) Insurance",
+  desc: "CPM/contractors plant and machinery guidance—declared value logic, breakdown exposure, and third-party risk discipline for worksites and highway belts.",
+  href: EN("/services/crane-heavy-equipment-cpm-insurance/"),
+  problems: [
+    "Declared value too low → settlement disputes later",
+    "Attachments/boom/winch not reflected correctly",
+    "Operation exposure mismatch (site vs highway/public zones)",
+    "Breakdown incidents without clean maintenance / records (as applicable)",
+    "Delay in intimation and weak incident proof",
+  ],
+  children: [
+    { title: "Crane CPM Insurance", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
+    { title: "Contractor CAR / WC Insurance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { title: "Public Liability (3rd-party risk)", href: EN("/services/liability/public-liability/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
+  ],
+},
+
+{
+  slug: "group-health-employee-benefits-insurance",
+  title: "Group Health / Employee Benefits Insurance",
+  desc: "SME employee benefits guidance—enrolment discipline, claim process readiness, renewal controls and documentation hygiene for smoother servicing.",
+  href: EN("/services/group-health-employee-benefits-insurance/"),
+  problems: [
+    "Employee data mismatches during enrolment/additions",
+    "Network / TPA process confusion during first claim",
+    "Coverage assumptions not aligned to actual needs",
+    "No HR/admin renewal discipline → last-minute chaos",
+    "Missing records for endorsements and additions (as applicable)",
+  ],
+  children: [
+    // Keep children as real internal pages that already exist
+    { title: "Buy Insurance Guidance", href: EN("/buy-insurance-guidance/") },
+    { title: "Insurance Documents Required", href: EN("/insurance-documents-required/") },
+    { title: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+    { title: "Manage Existing Policies", href: EN("/manage-existing-insurance-policy/") },
+  ],
+},
+
+{
+  slug: "public-liability-third-party-insurance",
+  title: "Public Liability & Third-Party Risk",
+  desc: "Liability exposure guidance for warehouses, contractors and businesses with public/visitor movement—evidence discipline + notice handling.",
+  href: EN("/services/public-liability-third-party-insurance/"),
+  problems: [
+    "Delayed reporting and weak incident timeline",
+    "No witness / photo evidence captured early (as applicable)",
+    "Mismatch between operations and disclosures",
+    "Incorrect handling of legal notices/letters (as applicable)",
+    "Assuming motor policy covers site liability",
+  ],
+  children: [
+    { title: "Public Liability", href: EN("/services/liability/public-liability/") },
+    { title: "Contractor CAR / WC Insurance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { title: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
+  ],
+},
+
+{
+  slug: "fire-burglary-commercial-property-insurance",
+  title: "Fire & Burglary (Commercial Property) Insurance",
+  desc: "Commercial property protection for warehouses, shops and factories—fire load, burglary conditions, valuation, and claim-ready proof discipline.",
+  href: EN("/services/fire-burglary-commercial-property-insurance/"),
+  problems: [
+    "Wrong sum insured / underinsurance → reduced settlement",
+    "Weak stock proof during fire claims",
+    "Security conditions for burglary not met / not documented",
+    "Electrical safety conditions not maintained (as applicable)",
+    "Premises/occupancy changes not updated (endorsement gaps)",
+  ],
+  children: [
+    { title: "Fire & Burglary Insurance (Industrial)", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { title: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+    { title: "Stock Declaration Insurance", href: EN("/services/industrial/stock-declaration-insurance/") },
+  ],
+},
+
+// ===========================
+// ALIAS SERVICE CATEGORY PAGES (to prevent 404s)
+// These slugs are referenced in locationsIndex + legacy links.
+// Keep them as “routing hubs” that point into your real categories.
+// ===========================
+
+{
+  slug: "warehouse-godown-factory-insurance",
+  title: "Warehouse / Godown / Factory Insurance",
+  desc: "Industrial property risks—fire load, stock proof discipline, valuation clarity, and burglary conditions (as applicable).",
+  href: EN("/services/industrial/"),
+  problems: [
+    "Underinsurance (average clause) reducing claim settlement",
+    "Weak stock proof trail (invoices/registers missing)",
+    "Safety/security conditions not followed (as applicable)",
+    "Layout/stock type changes not updated in policy",
+  ],
+  children: [
+    { title: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+    { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { title: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+  ],
+},
+
+{
+  slug: "crane-heavy-equipment-cpm-insurance",
+  title: "Crane / Heavy Equipment (CPM) Insurance",
+  desc: "High-premium equipment risks—declared value discipline, site/highway exposure and proof readiness (as applicable).",
+  href: EN("/services/heavy-equipment/"),
+  problems: [
+    "Declared value kept low to save premium → settlement issues later",
+    "Usage/site exposure mismatch vs wording",
+    "Weak proof trail after incident (photos/records missing)",
+  ],
+  children: [
+    { title: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
+    { title: "Crane Third-Party Liability Basics", href: EN("/services/heavy-equipment/crane-liability/") },
+  ],
+},
+
+{
+  slug: "group-health-employee-benefits-insurance",
+  title: "Group Health & Employee Benefits Insurance",
+  desc: "SME employee benefits—policy structure clarity, enrollment discipline, claim process expectations and documentation flow (as applicable).",
+  href: EN("/services/personal/"), // or create a dedicated /services/employee-benefits/ later
+  problems: [
+    "Wrong census / member data causing enrollment issues",
+    "Misunderstanding waiting periods/exclusions",
+    "Claim delays due to incomplete documents",
+  ],
+  children: [
+    { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+},
+
+{
+  slug: "public-liability-third-party-insurance",
+  title: "Public Liability / Third-Party Liability Insurance",
+  desc: "Third-party exposure management—where claims get disputed, what insurers verify and what records matter (as applicable).",
+  href: EN("/services/liability/"),
+  problems: [
+    "Mismatch between declared operations and real exposure",
+    "Late notice / weak incident timeline",
+    "Missing contracts, site records, or correspondence (as applicable)",
+  ],
+  children: [
+    { title: "Public Liability", href: EN("/services/liability/public-liability/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+},
+
+{
+  slug: "fire-burglary-commercial-property-insurance",
+  title: "Fire & Burglary (Commercial Property) Insurance",
+  desc: "Commercial property protection—fire load reality, burglary conditions and documentation discipline (as applicable).",
+  href: EN("/services/industrial/"),
+  problems: [
+    "No proof trail for stock/assets at claim time",
+    "Security/safety conditions not met (as applicable)",
+    "Undervaluation creating claim reductions",
+  ],
+  children: [
+    { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+    { title: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+},
+
+// --- These are already referenced in locationsIndex serviceSlugs (city belts etc.) ---
+{
+  slug: "business-msme-insurance",
+  title: "Business & MSME Insurance (Overview)",
+  desc: "SME packages and business risk coverage—sum insured discipline, valuation proof and basic claims readiness (as applicable).",
+  href: EN("/services/business-msme/"),
+  problems: [
+    "Sum insured chosen randomly",
+    "Stock/invoice proof not maintained",
+    "Burglary conditions misunderstood (as applicable)",
+    "Policy wording not aligned to operations",
+  ],
+  children: [
+    { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+    { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+},
+
+{
+  slug: "claim-support",
+  title: "Claim Support & Documentation (Overview)",
+  desc: "Claim workflow guidance—documents, reporting steps and timeline discipline to reduce avoidable delays (case-dependent).",
+  href: EN("/services/claims-support/"),
+  problems: [
+    "Late intimation/reporting",
+    "No clear incident timeline",
+    "Missing invoices/valuation/stock proof",
+    "Assuming forms alone are enough",
+  ],
+  children: [
+    { title: "Claim Support (Detailed)", href: EN("/services/claims-support/claim-support/") },
+    { title: "Insurance Claim Help (Intent)", href: EN("/insurance-claim-help/") },
+    { title: "Claim Rejected – What To Do", href: EN("/claim-rejected-what-to-do/") },
+  ],
+},
+
+{
+  slug: "construction-contractor-car-wc-insurance",
+  title: "Construction / Contractor (CAR & WC) Insurance",
+  desc: "Project-based risks—CAR/WC discipline, workforce classification and extension/endorsement alignment (as applicable).",
+  href: EN("/services/construction/"),
+  problems: [
+    "Payroll / classification mismatch in WC",
+    "Project timeline extensions not aligned",
+    "Late reporting after incident",
+    "Site exposure differs from disclosures",
+  ],
+  children: [
+    { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+    { title: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+  ],
+},
+
+{
+  slug: "marine-cargo-goods-in-transit-insurance",
+  title: "Marine Cargo / Goods-in-Transit Insurance",
+  desc: "Transit risks—invoice/packing/dispatch trail, carrier responsibility clarity and claim proof discipline (as applicable).",
+  href: EN("/services/marine/"),
+  problems: [
+    "Weak dispatch/receipt proof trail",
+    "Invoice/packing list mismatch",
+    "Late notice to carrier/insurer (as applicable)",
+  ],
+  children: [
+    { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+  ],
+},
+
+{
+  slug: "personal-car-bike-health-support",
+  title: "Personal Insurance Support (Car / Bike / Health)",
+  desc: "City-side personal policies—renewal checks, add-on clarity and clean claim steps (as applicable).",
+  href: EN("/services/personal/"),
+  problems: [
+    "Wrong IDV/NCB/add-on assumptions during renewal",
+    "Delays due to weak reporting/timeline",
+    "Health claims confusion due to missing documents (as applicable)",
+  ],
+  children: [
+    { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+    { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+    { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+  ],
+},
+
+{
+  slug: "transport-fleet-lorry-insurance",
+  title: "Transport / Fleet / Lorry Insurance (Overview)",
+  desc: "NH corridor operations—permit/fitness discipline, third-party exposure and claim readiness habits (as applicable).",
+  href: EN("/services/transport-fleet/"),
+  problems: [
+    "Permit/fitness expiry disputes",
+    "Route/permit mismatch",
+    "Late reporting and incomplete incident timeline",
+  ],
+  children: [
+    { title: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/") },
+    { title: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
+  ],
+},
+// ===========================
+// MISSING TOP-LEVEL SERVICE HUBS (prevent /services/[slug] 404)
+// ===========================
+
+{
+  slug: "liability",
+  title: "Liability Insurance",
+  desc: "Public/third-party exposure for businesses, contractors and sites—incident timelines, notice discipline and wording clarity (as applicable).",
+  href: EN("/services/liability/"),
+  problems: [
+    "Delayed reporting and weak incident timeline",
+    "Operations not matching disclosures (wording gaps)",
+    "Poor handling of notices/letters (as applicable)",
+    "Assuming motor policy covers site liability",
+  ],
+  children: [
+    { title: "Public Liability", href: EN("/services/liability/public-liability/") },
+    { title: "Public Liability & Third-Party Insurance", href: EN("/services/public-liability-third-party-insurance/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
+  ],
+},
+
+{
+  slug: "marine",
+  title: "Marine Cargo / Transit Insurance",
+  desc: "Goods-in-transit and marine cargo cover—dispatch/receipt proof trail, invoice/packing discipline and claim readiness (as applicable).",
+  href: EN("/services/marine/"),
+  problems: [
+    "Weak dispatch/receipt proof trail (LR/POD mismatch)",
+    "Invoice/packing list inconsistencies",
+    "Late notice to carrier/insurer (as applicable)",
+    "Improper damage remarks at delivery (as applicable)",
+  ],
+  children: [
+    { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+    // Keep alias link if you want this shorter URL alive:
+    { title: "Marine Cargo / Goods-in-Transit (Short URL)", href: EN("/services/marine/marine-cargo-goods-in-transit/") },
+    { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
+  ],
+},
+
+{
+  slug: "personal",
+  title: "Personal Insurance Support",
+  desc: "Car, bike and health insurance guidance—renewal checks, claim steps and document discipline (as applicable).",
+  href: EN("/services/personal/"),
+  problems: [
+    "Renewing without checking NCB/IDV/add-ons (motor)",
+    "Late reporting and missing first-day evidence (as applicable)",
+    "Confusion about health claim process and documents (as applicable)",
+    "Coverage gaps from late renewals (case-dependent)",
+  ],
+  children: [
+    { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
+    { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+    { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+    { title: "Insurance Renewal Near Me", href: EN("/insurance-renewal-near-me/") },
+    { title: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+},
+
   ],
 
   serviceVehicleTypes: [

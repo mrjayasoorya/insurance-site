@@ -10,7 +10,14 @@ import BacklinksRow from "src/components/BacklinksRow.astro";
 
 export async function getStaticPaths() {
   const posts = siteData.postDetails || {};
-  const slugs = Object.keys(posts).filter((k) => posts[k].section === "Insights");
+  const slugs = Object.keys(posts).filter((k) => {
+    if(posts[k].section === "Insights") {
+      return true;
+    } else if (k.includes("insights")) {
+      return true;
+    }
+    return false;
+  });
   return slugs.map((slug) => ({ params: { slug } }));
 }
 

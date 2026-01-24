@@ -31,7 +31,7 @@ const {
 // const all = siteData.intentPagesURLs || {}; // you will add this in siteData
 // const group = all[pageType] || all.generic || [];
 const group = getIntentLinks(pageType);
-console.log({group});
+// console.log({group});
 
 const items = (group || [])
   .slice(0, max)
