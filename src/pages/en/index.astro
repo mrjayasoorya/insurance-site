@@ -24,7 +24,7 @@ import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 import ConversionBlock from "src/components/ConversionBlock.astro";
-import AssistPopup from "src/components/AssistPopup.astro";
+// import AssistPopup from "src/components/AssistPopup.astro";
 
 // -----------------------------
 // BLOG DATA NORMALIZATION
@@ -777,12 +777,12 @@ siteData={siteData}
 
       </div>
     </main>
-    <AssistPopup
+    <!-- <AssistPopup
   popup={siteData.assistPopups.exit}
   scrollPopup={siteData.assistPopups.scroll}
   brand={siteData.brand}
   pageType="home"
-/>
+/> -->
     <FloatingMenu brand={siteData.brand} />
     <FloatingContactCta brand={siteData.brand} />
 
