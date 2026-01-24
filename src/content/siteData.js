@@ -11811,5 +11811,71 @@ conversionBlocks: {
   },
 },
 
+assistPopups: {
+  exit: {
+    enabled: true,
+    cooldownHours: 8,
+
+    title: "Before you go — quick policy check?",
+
+    message: [
+      "Many insurance issues happen because of small document or renewal gaps that aren’t obvious upfront.",
+      "If you want, you can share your policy once and get a clear, honest check."
+    ],
+
+    bullets: [
+      "Is your renewal or claim process actually safe?",
+      "Are any documents missing, weak, or outdated?",
+      "Will inspection or extra steps be required later?"
+    ],
+
+    primaryCTA: {
+      label: "Send policy on WhatsApp",
+      type: "whatsapp"
+    },
+
+    secondaryCTA: {
+      label: "Skip for now",
+      type: "dismiss"
+    },
+
+    trustNote:
+      "Document-based guidance only. No sales pressure. No commitments."
+  },
+
+  scroll: {
+    enabled: true,
+
+    // percentage of page scroll
+    triggerPercent: 85,
+
+    title: "Want a quick sanity check before you decide?",
+
+    message: [
+      "If this page matches your situation, a quick document check can prevent mistakes later.",
+    ],
+
+    bullets: [
+      "Renewal safety and coverage gaps",
+      "Missing or mismatched documents",
+      "Whether insurer inspection applies"
+    ],
+
+    primaryCTA: {
+      label: "WhatsApp policy for check",
+      type: "whatsapp"
+    },
+
+    secondaryCTA: {
+      label: "Continue reading",
+      type: "dismiss"
+    },
+
+    trustNote:
+      "We only review documents and explain insurer-side risks."
+  }
+},
+
+
   gmbPosts: [],
 };
