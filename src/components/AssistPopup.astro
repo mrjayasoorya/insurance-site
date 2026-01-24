@@ -9,7 +9,7 @@
  * - pageType?: string (optional, for analytics)
  */
 
-const { popup, scrollPopup, brand, pageType = "unknown" } = Astro.props;
+const { popup, brand, pageType = "unknown" } = Astro.props;
 
 if (!popup?.enabled) return null;
 
@@ -52,7 +52,7 @@ const trustNote =
   "Document-based guidance only. No sales pressure. No commitments.";
 ---
 
-<style is:global>
+<style is:inline>
   /* Overlay */
   .apx-overlay {
     position: fixed;
