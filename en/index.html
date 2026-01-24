@@ -364,12 +364,500 @@ Open Google Maps listing
 Fast reply during business hours. No spam. No commitments.
 </p> <div class="lc__divider" role="separator" aria-hidden="true"></div> <p class="lc__altTitle">Prefer calling?</p> <a href="tel:+917448324068" class="lc__btn lc__btn--secondary" aria-label="Call if urgent"> Call if urgent <span class="lc__arrow" aria-hidden="true">→</span> </a> <p class="lc__altMicro">If it’s urgent or you can’t send documents.</p> </div> <p class="lc__trust"> Initial guidance is document-based. No commitments or guarantees. </p> </aside> </div> </section>  <footer class="fbar" aria-label="Footer actions"> <div class="fbar-inner"> <div class="fbar-left"> <div class="fbar-title">Need clarity before buying or renewing a policy?</div> <div class="fbar-sub">Talk to us before you commit—especially for commercial, transport and industrial risks in Chennai outskirts.</div> </div> <div class="fbar-right" aria-label="Footer CTAs"> <a class="fbtn fbtn-ghost" href="https://wa.me/917448324068?text=Hi%2C%20I%20need%20guidance%20on%20the%20right%20insurance%20for%20my%20business%20%2F%20vehicle.%20Please%20help." target="_blank" rel="noopener"> <span class="ficon" aria-hidden="true">WA</span>
 WhatsApp Us
-</a> <a class="fbtn fbtn-solid" href="tel:+917448324068"> <span class="ficon ficon-invert" aria-hidden="true">TEL</span> Call for Guidance </a> </div> </div> <div class="fbar-bottom"> <div class="fbrand"> <span class="flogo" aria-hidden="true">NIA</span> <span class="fname">M N Rajendrakumar • New India Assurance</span> </div> <div class="fcopy">Copyright 2026 © Sholavaram</div> </div> </footer> </main> </div> </div> </main> <!-- <AssistPopup
-  popup={siteData.assistPopups.exit}
-  scrollPopup={siteData.assistPopups.scroll}
-  brand={siteData.brand}
-  pageType="home"
-/> --> <!-- ONE floating trigger for both desktop + mobile --><div class="fm" data-fm-root> <button class="fm-btn" type="button" aria-haspopup="dialog" aria-controls="fm-dialog" aria-expanded="false" data-fm-open> <span class="fm-ico" aria-hidden="true">≡</span> <span class="fm-text">Menu</span> </button> <dialog class="fm-dialog" id="fm-dialog" data-fm-dialog aria-label="Menu"> <div class="fm-panel" role="document"> <header class="fm-head"> <div class="fm-headtxt"> <div class="fm-title">M N Rajendrakumar Insurance Services</div> <div class="fm-sub">Sholavaram (Chennai Outskirts)</div> </div> <button class="fm-x" type="button" aria-label="Close menu" data-fm-close>×</button> </header> <nav aria-label="Menu links" style="overflow: auto;"> <ul class="fm-list"> <li class="fm-item"> <a class="fm-a" href="/en/" data-fm-navlink>Home</a> </li><li class="fm-item"> <a class="fm-a" href="/en/services/" data-fm-navlink>Services</a> </li><li class="fm-item"> <a class="fm-a" href="/en/reviews/" data-fm-navlink>Reviews</a> </li><li class="fm-item"> <a class="fm-a" href="/en/insights/" data-fm-navlink>Insights</a> </li><li class="fm-item"> <a class="fm-a" href="/en/locations/" data-fm-navlink>Locations</a> </li><li class="fm-item"> <a class="fm-a" href="/en/about/" data-fm-navlink>About Us</a> </li><li class="fm-item"> <a class="fm-a" href="/en/faqs/" data-fm-navlink>FAQs</a> </li><li class="fm-item"> <a class="fm-a" href="/en/photos/" data-fm-navlink>Photos</a> </li><li class="fm-item"> <a class="fm-a" href="/en/contact/" data-fm-navlink>Contact</a> </li> </ul> </nav> </div> </dialog> </div>  <script>
+</a> <a class="fbtn fbtn-solid" href="tel:+917448324068"> <span class="ficon ficon-invert" aria-hidden="true">TEL</span> Call for Guidance </a> </div> </div> <div class="fbar-bottom"> <div class="fbrand"> <span class="flogo" aria-hidden="true">NIA</span> <span class="fname">M N Rajendrakumar • New India Assurance</span> </div> <div class="fcopy">Copyright 2026 © Sholavaram</div> </div> </footer> </main> </div> </div> </main> <style>
+  /* Overlay */
+  .apx-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 9998;
+    display: none;
+  }
+  .apx-overlay.active {
+    display: block;
+  }
+
+  /* Centered dialog (both desktop + mobile) */
+  .apx-dialog {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(520px, calc(100% - 32px));
+    max-height: calc(100vh - 32px); /* fallback for small screens */
+    overflow: auto; /* only scrolls if absolutely necessary */
+
+    z-index: 9999;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #0b0f19;
+  }
+
+  /* Header */
+  .apx-head {
+    padding: 16px 18px 10px;
+    border-bottom: 1px solid #eef2f7;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+    position: relative;
+  }
+
+  .apx-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #0f172a;
+
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+  .apx-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+  }
+
+  .apx-title {
+    margin: 10px 0 6px;
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 900;
+  }
+
+  .apx-subtitle {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #374151;
+  }
+
+  /* Close button */
+  .apx-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #111827;
+
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    line-height: 1;
+    transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+  }
+  .apx-close:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+  }
+  .apx-close:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.25);
+    outline-offset: 2px;
+  }
+
+  /* Body */
+  .apx-body {
+    padding: 12px 18px 12px;
+  }
+
+  .apx-detail {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #374151;
+  }
+
+  /* Checklist block: compact but high contrast */
+  .apx-box {
+    background: #0b0f19;
+    border-radius: 16px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 6px 18px rgba(2, 6, 23, 0.16),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .apx-boxTitle {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: rgba(255,255,255,0.92);
+  }
+
+  .apx-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 6px;
+  }
+
+  .apx-li {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    align-items: start;
+
+    color: rgba(255,255,255,0.92);
+    font-size: 13.5px;
+    line-height: 1.35;
+  }
+
+  .apx-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    background: rgba(34, 197, 94, 0.14);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    display: grid;
+    place-items: center;
+    color: #22c55e;
+    font-weight: 900;
+    font-size: 13px;
+    margin-top: 1px;
+  }
+
+  /* Actions */
+  .apx-actions {
+    padding: 12px 18px 16px;
+    display: grid;
+    gap: 10px;
+    border-top: 1px solid #eef2f7;
+    background: #ffffff;
+  }
+
+  .apx-primary {
+    width: 100%;
+    text-decoration: none;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    padding: 12px 14px;
+    border-radius: 14px;
+
+    background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+    color: #ffffff;
+
+    font-weight: 900;
+    letter-spacing: -0.01em;
+
+    box-shadow:
+      0 6px 16px rgba(34, 197, 94, 0.28),
+      inset 0 1px 0 rgba(255,255,255,0.22);
+
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .apx-primary:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 10px 22px rgba(34, 197, 94, 0.36),
+      inset 0 1px 0 rgba(255,255,255,0.30);
+  }
+  .apx-primary:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.25);
+    outline-offset: 2px;
+  }
+
+  .apx-primaryMain {
+    font-size: 14.5px;
+    line-height: 1.1;
+  }
+
+  .apx-primarySub {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.92;
+  }
+
+  .apx-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .apx-call,
+  .apx-skip {
+    width: 100%;
+    border-radius: 14px;
+    padding: 11px 12px;
+
+    font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: -0.01em;
+
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+  }
+
+  .apx-call {
+    background: #0b0f19;
+    color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.20);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .apx-call:hover {
+    transform: translateY(-1px);
+    background: #0f172a;
+  }
+
+  .apx-skip {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+  .apx-skip:hover {
+    transform: translateY(-1px);
+    background: #f1f5f9;
+    border-color: #d1d5db;
+  }
+
+  .apx-call:focus-visible,
+  .apx-skip:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.20);
+    outline-offset: 2px;
+  }
+
+  .apx-trust {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: #6b7280;
+    text-align: center;
+  }
+
+  /* ---------------------------
+     MOBILE: smaller + minimal
+     (keeps centered modal, no bottom sheet)
+  ---------------------------- */
+  @media (max-width: 520px) {
+    .apx-dialog {
+      width: calc(100% - 24px);
+      border-radius: 16px;
+    }
+
+    .apx-head {
+      padding: 14px 14px 8px;
+    }
+
+    .apx-title {
+      font-size: 17px;
+      margin-top: 8px;
+    }
+
+    .apx-subtitle {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* Keep content minimal on mobile:
+       Hide the second message line (detail) to reduce height */
+    .apx-detail {
+      display: none;
+    }
+
+    .apx-body {
+      padding: 10px 14px 10px;
+    }
+
+    .apx-box {
+      padding: 10px;
+      border-radius: 14px;
+    }
+
+    .apx-boxTitle {
+      font-size: 12.5px;
+      margin-bottom: 6px;
+    }
+
+    .apx-li {
+      font-size: 12.8px;
+      gap: 9px;
+    }
+
+    .apx-actions {
+      padding: 10px 14px 14px;
+      gap: 9px;
+    }
+
+    .apx-primary {
+      padding: 11px 12px;
+      border-radius: 14px;
+    }
+
+    /* Hide subline inside primary button on mobile (less height) */
+    .apx-primarySub {
+      display: none;
+    }
+
+    .apx-row {
+      gap: 9px;
+    }
+
+    .apx-call,
+    .apx-skip {
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+    }
+
+    .apx-trust {
+      margin-top: 8px;
+      font-size: 11.5px;
+    }
+
+    .apx-close {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apx-close,
+    .apx-primary,
+    .apx-call,
+    .apx-skip {
+      transition: none;
+    }
+    .apx-close:hover,
+    .apx-primary:hover,
+    .apx-call:hover,
+    .apx-skip:hover {
+      transform: none;
+    }
+  }
+</style><div id="assistOverlay" class="apx-overlay" aria-hidden="true"> <div class="apx-dialog" role="dialog" aria-modal="true" aria-label="Quick policy check"> <div class="apx-head"> <span class="apx-badge"> <span class="apx-dot" aria-hidden="true"></span>
+Quick document check
+</span> <button class="apx-close" type="button" aria-label="Close" data-action="dismiss">
+×
+</button> <div class="apx-title">Before you go — quick policy check?</div> <p class="apx-subtitle">Many insurance issues happen because of small document or renewal gaps that aren’t obvious upfront.</p> </div> <div class="apx-body"> <p class="apx-detail">If you want, you can share your policy once and get a clear, honest check.</p> <div class="apx-box"> <p class="apx-boxTitle">We’ll quickly check:</p> <ul class="apx-list"> <li class="apx-li"> <span class="apx-check" aria-hidden="true">✓</span> <span>Is your renewal or claim process actually safe?</span> </li><li class="apx-li"> <span class="apx-check" aria-hidden="true">✓</span> <span>Are any documents missing, weak, or outdated?</span> </li><li class="apx-li"> <span class="apx-check" aria-hidden="true">✓</span> <span>Will inspection or extra steps be required later?</span> </li> </ul> </div> </div> <div class="apx-actions"> <a href="https://wa.me/917448324068?text=Hi%2C%20I%20need%20guidance%20on%20the%20right%20insurance%20for%20my%20business%20%2F%20vehicle.%20Please%20help." target="_blank" rel="noopener noreferrer" class="apx-primary" data-action="whatsapp" aria-label="Send policy on WhatsApp"> <span class="apx-primaryMain">Send policy on WhatsApp</span> <span class="apx-primarySub">Takes ~30 seconds • Fast reply</span> </a> <div class="apx-row"> <a href="tel:+917448324068" class="apx-call" data-action="call" aria-label="Call now">
+Call now
+</a> <button type="button" class="apx-skip" data-action="dismiss" aria-label="Skip for now"> Skip for now </button> </div> <div class="apx-trust">Document-based guidance only. No sales pressure. No commitments.</div> </div> </div> </div> <script>(function(){const cooldownHoursValue = 8;
+const pageType = "service";
+
+  (() => {
+    if (typeof window === "undefined") return;
+
+    const overlay = document.getElementById("assistOverlay");
+    if (!overlay) return;
+
+    const STORAGE_KEY = "assistPopupLastSeen";
+    const cooldownHours = cooldownHoursValue;
+    const pageTypeStr = pageType;
+
+    // Avoid showing on some paths (optional; add your exclusions here)
+    const path = window.location.pathname || "";
+    const excluded = ["/llms.txt", "/llms-full.txt"];
+    if (excluded.some((x) => path.endsWith(x))) return;
+
+    let shownThisSession = false;
+
+    function canShow() {
+      if (shownThisSession) return false;
+
+      const lastSeen = localStorage.getItem(STORAGE_KEY);
+      if (!lastSeen) return true;
+
+      const last = Number(lastSeen);
+      if (!Number.isFinite(last)) return true;
+
+      const diff = Date.now() - last;
+      return diff > cooldownHours * 60 * 60 * 1000;
+    }
+
+    function gaEvent(name) {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", name, {
+        page_type: pageTypeStr,
+        page_path: window.location.pathname,
+      });
+    }
+
+    function showPopup() {
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+      shownThisSession = true;
+      gaEvent("assist_popup_viewed");
+      // Hide floating elements and prevent scrolling
+      document.querySelectorAll('.fm, .fc2-btn').forEach(el => el.style.display = 'none');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hidePopup() {
+      overlay.classList.remove("active");
+      overlay.setAttribute("aria-hidden", "true");
+      // Show floating elements and restore scrolling
+      document.querySelectorAll('.fm, .fc2-btn').forEach(el => el.style.display = '');
+      document.body.style.overflow = '';
+    }
+
+    // Exit intent for desktop
+    function onMouseOut(e) {
+      if (e && typeof e.clientY === "number" && e.clientY <= 0) {
+        if (canShow()) {
+          document.removeEventListener("mouseout", onMouseOut);
+          showPopup();
+        }
+      }
+    }
+
+    // Click handling
+    overlay.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+
+      const actionEl = target.closest("[data-action]");
+      const action = actionEl ? actionEl.getAttribute("data-action") : null;
+
+      if (!action) return;
+
+      if (action === "whatsapp") gaEvent("assist_popup_whatsapp_click");
+      if (action === "call") gaEvent("assist_popup_call_click");
+      if (action === "dismiss") {gaEvent("assist_popup_dismissed"); hidePopup(); }
+
+    });
+
+    // Escape closes
+    // Removed to prevent accidental closes
+
+    document.addEventListener("mouseout", onMouseOut);
+  })();
+})();</script> <!-- ONE floating trigger for both desktop + mobile --><div class="fm" data-fm-root> <button class="fm-btn" type="button" aria-haspopup="dialog" aria-controls="fm-dialog" aria-expanded="false" data-fm-open> <span class="fm-ico" aria-hidden="true">≡</span> <span class="fm-text">Menu</span> </button> <dialog class="fm-dialog" id="fm-dialog" data-fm-dialog aria-label="Menu"> <div class="fm-panel" role="document"> <header class="fm-head"> <div class="fm-headtxt"> <div class="fm-title">M N Rajendrakumar Insurance Services</div> <div class="fm-sub">Sholavaram (Chennai Outskirts)</div> </div> <button class="fm-x" type="button" aria-label="Close menu" data-fm-close>×</button> </header> <nav aria-label="Menu links" style="overflow: auto;"> <ul class="fm-list"> <li class="fm-item"> <a class="fm-a" href="/en/" data-fm-navlink>Home</a> </li><li class="fm-item"> <a class="fm-a" href="/en/services/" data-fm-navlink>Services</a> </li><li class="fm-item"> <a class="fm-a" href="/en/reviews/" data-fm-navlink>Reviews</a> </li><li class="fm-item"> <a class="fm-a" href="/en/insights/" data-fm-navlink>Insights</a> </li><li class="fm-item"> <a class="fm-a" href="/en/locations/" data-fm-navlink>Locations</a> </li><li class="fm-item"> <a class="fm-a" href="/en/about/" data-fm-navlink>About Us</a> </li><li class="fm-item"> <a class="fm-a" href="/en/faqs/" data-fm-navlink>FAQs</a> </li><li class="fm-item"> <a class="fm-a" href="/en/photos/" data-fm-navlink>Photos</a> </li><li class="fm-item"> <a class="fm-a" href="/en/contact/" data-fm-navlink>Contact</a> </li> </ul> </nav> </div> </dialog> </div>  <script>
   (function () {
     const root = document.querySelector("[data-fm-root]");
     if (!root) return;
