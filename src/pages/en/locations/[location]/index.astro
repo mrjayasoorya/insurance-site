@@ -13,6 +13,7 @@ import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../
 
 import LinkChipsSection from "src/components/LinkChipsSection.astro";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 export async function getStaticPaths() {
   const all = siteData.locationsDetail || {};
@@ -223,7 +224,11 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           {data.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
               <h2 class="section-title">FAQs for {data.name}</h2>
@@ -318,7 +323,11 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           {data.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion

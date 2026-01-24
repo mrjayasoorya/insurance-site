@@ -10,6 +10,7 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 
 import { siteData } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const page = siteData.intentPages["spot-insurance-support"];
 if (!page) throw new Error("Missing siteData.intentPages['spot-insurance-support']");
@@ -94,7 +95,11 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.default}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
               <h2 class="section-title">FAQs</h2>
@@ -149,7 +154,11 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.default}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion

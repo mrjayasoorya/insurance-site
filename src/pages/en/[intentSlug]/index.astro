@@ -10,6 +10,7 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 
 export async function getStaticPaths() {
@@ -147,7 +148,10 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+<ConversionBlock 
+siteData={siteData}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
               <h2 class="section-title">FAQs</h2>
@@ -222,7 +226,10 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+          <ConversionBlock 
+siteData={siteData}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion

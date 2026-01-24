@@ -8,6 +8,7 @@ import { siteData } from "../../../content/siteData";
 import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/commercial-authority/");
 const meta = buildMeta({
@@ -70,6 +71,10 @@ const jsonLd = buildJsonLd({
             viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
             categories={siteData.commercialAuthorityPosts.categories}
           />
+            <ConversionBlock 
+siteData={siteData}
+    brand={siteData.brand}
+  />
 <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -104,6 +109,11 @@ const jsonLd = buildJsonLd({
             viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
             categories={siteData.commercialAuthorityPosts.categories}
           />
+
+            <ConversionBlock 
+siteData={siteData}
+    brand={siteData.brand}
+  />
 
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 

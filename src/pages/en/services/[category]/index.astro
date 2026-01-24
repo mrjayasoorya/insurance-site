@@ -8,6 +8,7 @@ import BacklinksRow from "../../../../components/BacklinksRow.astro";
 import { siteData } from "../../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../../lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 export async function getStaticPaths() {
   return (siteData.serviceCategories || []).map((c) => ({ params: { category: c.slug } }));
@@ -109,7 +110,10 @@ const jsonLd = buildJsonLd({
               We help prevent that by aligning operations, valuation and proof trail early.
             </p>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    brand={siteData.brand}
+  />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="serviceCategory" />
           <FooterCtaBar
@@ -159,7 +163,10 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    brand={siteData.brand}
+  />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="serviceCategory" />
           <FooterCtaBar

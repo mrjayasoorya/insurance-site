@@ -10,6 +10,7 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 
 import { siteData } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const page = siteData.intentPages["insurance-renewal-near-me"];
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insurance-renewal-near-me/");
@@ -63,7 +64,11 @@ const jsonLd = buildJsonLd({
             <h2 class="section-title">{page.renewalChecks.title}</h2>
             <ul class="bullets">{page.renewalChecks.bullets.map((x) => <li>{x}</li>)}</ul>
           </section>
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.expired}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">FAQs</h2>
@@ -100,7 +105,11 @@ const jsonLd = buildJsonLd({
             <h2 class="section-title">{page.renewalChecks.title}</h2>
             <ul class="bullets">{page.renewalChecks.bullets.map((x) => <li>{x}</li>)}</ul>
           </section>
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.expired}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion sections={[{ title: "FAQs", items: page.faqs.map((f) => ({ strong: f.q, text: f.a })) }]} defaultOpen={true} />

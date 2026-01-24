@@ -16,6 +16,7 @@ let gbpUrl = "https://www.google.com/maps/place/M+N+Rajendrakumar+Insurance+Serv
 let phoneE164 = "+917448324068";
 let whatsappE164 = "917448324068";
 let whatsappPrefill = "Hi, I need guidance on the right insurance for my business / vehicle. Please help.";
+let whatsappUrl = `https://wa.me/${whatsappE164}` + `?text=${encodeURIComponent(whatsappPrefill)}`;
 let geo = { lat: 13.2391084, lng: 80.1728337 }
 
 let servicesDetail = {
@@ -6238,6 +6239,7 @@ export const siteData = {
     phoneE164,
     whatsappE164,
     whatsappPrefill,
+    whatsappUrl,
 
     primaryArea: "Sholavaram (Chennai Outskirts)",
     areaChips: ["Sholavaram", "Red Hills Toll", "Madhavaram", "Chennai Outskirts"],
@@ -9671,9 +9673,7 @@ nearMeIntent: {
     { label: "Call now", href: `tel:${phoneE164}` },
     {
       label: "WhatsApp",
-      href:
-        `https://wa.me/${whatsappE164}` +
-        `?text=${encodeURIComponent(whatsappPrefill)}`,
+      href:whatsappUrl,
     },
     { label: "View location on Google Maps", href: gbpUrl },
   ],
@@ -11733,6 +11733,83 @@ areaServedStructData: [
 
 ],
 
+// ===========================
+// CONVERSION BLOCKS (HIGH-INTENT ACTION)
+// ===========================
+conversionBlocks: {
+  default: {
+    title: "What should you do right now?",
+    steps: [
+      "WhatsApp your current policy copy (or document photos)",
+      "Mention your location and policy type",
+      "We review and tell you:",
+    ],
+    outcomes: [
+      "Whether renewal is safe",
+      "If documents are missing or weak",
+      "If insurer inspection or extra steps apply",
+    ],
+    primaryCTA: {
+      label: "Send policy on WhatsApp ",
+      type: "whatsapp",
+    },
+    secondaryCTA: {
+      label: "Call if urgent",
+      type: "call",
+    },
+    trustNote:
+      "Initial guidance is document-based. No commitments or guarantees.",
+  },
+
+  // High-risk / high-premium variant
+  commercial: {
+    title: "Before you pay or renew — do this first",
+    steps: [
+      "Send policy copy / RC / stock details on WhatsApp",
+      "Share location and nature of operations",
+      "We check insurer-side risks:",
+    ],
+    outcomes: [
+      "Underinsurance / valuation gaps",
+      "Disclosure or endorsement mismatch",
+      "Claim-readiness and inspection risk",
+    ],
+    primaryCTA: {
+      label: "WhatsApp documents for risk check",
+      type: "whatsapp",
+    },
+    secondaryCTA: {
+      label: "Talk to us",
+      type: "call",
+    },
+    trustNote:
+      "We explain risks and insurer rules. Final decisions depend on policy terms.",
+  },
+
+  expired: {
+    title: "Policy expired or expiring today?",
+    steps: [
+      "Send expiry date + policy copy immediately",
+      "Tell us vehicle / business type",
+      "We guide the safest next step",
+    ],
+    outcomes: [
+      "Avoid coverage gaps",
+      "Understand break-in rules",
+      "Prevent future claim disputes",
+    ],
+    primaryCTA: {
+      label: "WhatsApp expiry details now",
+      type: "whatsapp",
+    },
+    secondaryCTA: {
+      label: "Urgent call",
+      type: "call",
+    },
+    trustNote:
+      "Action depends on insurer rules and gap duration.",
+  },
+},
 
   gmbPosts: [],
 };

@@ -11,6 +11,7 @@ import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
 
@@ -215,7 +216,11 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
           <NearMeTrustSection brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
@@ -316,7 +321,11 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
           <NearMeTrustSection brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />

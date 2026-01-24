@@ -9,6 +9,7 @@ import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const brand = siteData.brand;
 
@@ -198,6 +199,11 @@ const pageDesc =
               <p class="section-sub">No reviews found in dataset yet.</p>
             )}
           </section>
+            <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <!-- ✅ Up-front identity section (bots + LLMs) -->
           <section class="" aria-label="Local identity">
             <LocalIdentitySection brand={brand} pageTitle="Reviews" />
@@ -356,6 +362,11 @@ const pageDesc =
               <p class="section-sub">No reviews found in dataset yet.</p>
             )}
           </section>
+            <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
                     <section
             class="section section-padding"
             aria-label="Areas we commonly serve"

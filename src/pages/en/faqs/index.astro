@@ -11,6 +11,7 @@ import FAQSection from "../../../components/FAQSection.astro";
 import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 // ✅ Service links (internal linking)
 const services = (siteData.coreServices || []).map((s) => ({
@@ -104,6 +105,11 @@ const jsonLd = buildJsonLd({
               ) : null;
             })
           }
+            <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <!-- <FAQSection
             title={siteData.faqsPage.claimsDocs.title}
             intro={siteData.faqsPage.claimsDocs.intro}
@@ -251,7 +257,11 @@ const jsonLd = buildJsonLd({
               ) : null;
             })
           }
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <LocalIdentitySection brand={brand} pageTitle="FAQs" />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 

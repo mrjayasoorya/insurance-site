@@ -9,6 +9,7 @@ import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 
 import { siteData, EN, LOCATION_BUCKETS } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 // Canonical
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
@@ -365,7 +366,11 @@ const claimReadyPrinciples = [
               ))}
             </div>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.expired}
+    brand={siteData.brand}
+  />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="services" />
 
@@ -497,7 +502,11 @@ const claimReadyPrinciples = [
               <a class="chiplink" href={EN("/locations/")}>View all locations</a>
             </p>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.expired}
+    brand={siteData.brand}
+  />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
           <QuickHelpLinks pageType="services" />
 

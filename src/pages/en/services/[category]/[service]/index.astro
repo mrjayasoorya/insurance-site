@@ -13,6 +13,7 @@ import ServiceLocalSupport from "src/components/ServiceLocalSupport.astro";
 
 import { siteData, EN, SERVICE_LOCAL_SUPPORT } from "../../../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 export async function getStaticPaths() {
   const all = siteData?.servicesDetail || {};
@@ -291,7 +292,11 @@ const intentCards = [
               ))}
             </div>
           </section>
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           <!-- Visible FAQ (important) -->
           {data.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
@@ -444,7 +449,11 @@ const intentCards = [
               <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
-
+  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
           {data.faqs?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">FAQs</h2>

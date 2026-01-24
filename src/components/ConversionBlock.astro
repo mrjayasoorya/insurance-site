@@ -1,0 +1,428 @@
+---
+const { block, variant, brand, siteData } = Astro.props;
+
+// Get pathname at build/runtime
+const pathname = Astro.url?.pathname || "";
+
+// Resolve brand (prefer prop, fall back to siteData.brand)
+const resolvedBrand = brand || siteData?.brand || {};
+const whatsappLink = resolvedBrand?.whatsappUrl || null;
+const phoneLink = resolvedBrand?.phoneE164 ? `tel:${resolvedBrand.phoneE164}` : null;
+
+// Resolve conversion blocks (from siteData)
+const blocks = siteData?.conversionBlocks || {};
+
+// Auto-pick variant if not explicitly passed
+function pickVariant(path) {
+  const p = (path || "").toLowerCase();
+
+  // Expiry / urgent renewal intent
+  if (
+    p.includes("policy-expired") ||
+    p.includes("same-day") ||
+    p.includes("break-in")
+  ) return "expired";
+
+  // Commercial / high-premium cues (services + known b2b slugs)
+  if (
+    p.startsWith("/en/services/") ||
+    p.includes("fleet") ||
+    p.includes("warehouse") ||
+    p.includes("godown") ||
+    p.includes("factory") ||
+    p.includes("contractor") ||
+    p.includes("marine") ||
+    p.includes("liability") ||
+    p.includes("crane") ||
+    p.includes("heavy-equipment")
+  ) return "commercial";
+
+  return "default";
+}
+
+const resolvedVariant = variant || pickVariant(pathname);
+const resolvedBlock = block || blocks?.[resolvedVariant] || blocks?.default || {};
+console.log("ConversionBlock: resolved variant =", resolvedVariant, ", block =", resolvedBlock);
+// Headline/subhead fallbacks
+const headline = resolvedBlock?.title ?? "What should you do right now?";
+const subhead =
+  resolvedBlock?.subhead ??
+  "In 5–10 minutes we’ll tell you what’s safe, what’s missing, and what to do next — based on your documents.";
+
+// Outcomes fallback
+const outcomes =
+  resolvedBlock?.outcomes ?? [
+    "Whether renewal is safe",
+    "If documents are missing or weak",
+    "If insurer inspection or extra steps apply",
+  ];
+
+// CTA labels fallback
+const primaryLabel = resolvedBlock?.primaryCTA?.label ?? "Send policy on WhatsApp";
+const secondaryLabel = resolvedBlock?.secondaryCTA?.label ?? "Call if urgent";
+const trustNote = resolvedBlock?.trustNote ?? "Initial guidance is document-based. No commitments or guarantees.";
+---
+
+
+<section class="lc" aria-labelledby="lc-title">
+  <div class="lc__wrap">
+    <div class="lc__left">
+      <p class="lc__eyebrow">Quick document review</p>
+      <h2 id="lc-title" class="lc__title">{headline}</h2>
+      <p class="lc__subhead">{subhead}</p>
+
+      <div class="lc__steps" role="list">
+        <div class="lc__step" role="listitem">
+          <div class="lc__badge" aria-hidden="true">1</div>
+          <div class="lc__stepBody">
+            <p class="lc__stepTitle">WhatsApp your policy copy</p>
+            <p class="lc__stepDesc">PDF or photos are fine.</p>
+          </div>
+        </div>
+
+        <div class="lc__step" role="listitem">
+          <div class="lc__badge" aria-hidden="true">2</div>
+          <div class="lc__stepBody">
+            <p class="lc__stepTitle">Share location + policy type</p>
+            <p class="lc__stepDesc">So we apply the right rules.</p>
+          </div>
+        </div>
+
+        <div class="lc__step" role="listitem">
+          <div class="lc__badge" aria-hidden="true">3</div>
+          <div class="lc__stepBody">
+            <p class="lc__stepTitle">Get a straight answer</p>
+            <ul class="lc__outcomes">
+              {(block?.outcomes ?? [
+                "Whether renewal is safe",
+                "If documents are missing or weak",
+                "If insurer inspection or extra steps apply"
+              ]).map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="lc__proof">
+        <div class="lc__proofItem">
+          <span class="lc__dot" aria-hidden="true"></span>
+          <span>Document-based guidance</span>
+        </div>
+        <div class="lc__proofItem">
+          <span class="lc__dot" aria-hidden="true"></span>
+          <span>Privacy-first: no unnecessary storage</span>
+        </div>
+        <div class="lc__proofItem">
+          <span class="lc__dot" aria-hidden="true"></span>
+          <span>Clear next steps, no pressure</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="lc__right" aria-label="Contact options">
+      <div class="lc__ctaCard">
+        <p class="lc__ctaTitle">Start with WhatsApp (recommended)</p>
+        <p class="lc__ctaDesc">Fastest way to check your documents accurately.</p>
+
+        <a
+          href={whatsappLink}
+          class="lc__btn lc__btn--primary"
+          aria-label="WhatsApp your policy for a quick check"
+        >
+          {block?.primaryCTA?.label ?? "WhatsApp policy for quick check"}
+          <span class="lc__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <p class="lc__micro">
+          Fast reply during business hours. No spam. No commitments.
+        </p>
+
+        <div class="lc__divider" role="separator" aria-hidden="true"></div>
+
+        <p class="lc__altTitle">Prefer calling?</p>
+        <a
+          href={phoneLink}
+          class="lc__btn lc__btn--secondary"
+          aria-label="Call if urgent"
+        >
+          {block?.secondaryCTA?.label ?? "Call if urgent"}
+          <span class="lc__arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="lc__altMicro">If it’s urgent or you can’t send documents.</p>
+      </div>
+
+      <p class="lc__trust">
+        {block?.trustNote ?? "Initial guidance is document-based. No commitments or guarantees."}
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style is:global>
+/* Component-local reset to resist global overrides */
+.lc, .lc * { box-sizing: border-box; }
+.lc p, .lc h2, .lc ul { margin: 0; }
+.lc ul { padding-left: 1.1rem; }
+.lc a { text-decoration: none; }
+
+/* Card wrapper */
+.lc {
+  margin: 3.5rem 0;
+}
+
+.lc__wrap {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 1.25rem;
+
+  padding: 1.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* Left */
+.lc__eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111827;
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+
+.lc__title {
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0b0f19;
+  margin-bottom: 0.55rem;
+}
+
+.lc__subhead {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #374151;
+  max-width: 62ch;
+  margin-bottom: 1.15rem;
+}
+
+/* Steps */
+.lc__steps {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.lc__step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0.9rem;
+
+  padding: 0.95rem;
+  border: 1px solid #eef2f7;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+.lc__badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.lc__stepTitle {
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: #111827;
+}
+
+.lc__stepDesc {
+  margin-top: 0.2rem;
+  font-size: 0.92rem;
+  color: #4b5563;
+}
+
+.lc__outcomes {
+  margin-top: 0.45rem;
+  color: #374151;
+  font-size: 0.92rem;
+}
+
+.lc__outcomes li { margin: 0.25rem 0; }
+
+/* Proof */
+.lc__proof {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.lc__proofItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.lc__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #111827;
+  opacity: 0.55;
+}
+
+/* Right CTA card */
+.lc__right { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.lc__ctaCard {
+  padding: 1.15rem;
+  border-radius: 16px;
+
+  /* your black/white brand */
+background: linear-gradient(
+    180deg,
+    #0f172a 0%,
+    #020617 100%
+  );
+
+  color: #f9fafb;
+  box-shadow:
+    0 6px 18px rgba(2, 6, 23, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+
+
+.lc__ctaTitle {
+  font-weight: 900;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;y
+  color: #ffffff;
+
+}
+
+.lc__ctaDesc {
+  margin-top: 0.35rem;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.lc__btn {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+
+  font-weight: 900;
+  letter-spacing: -0.01em;
+
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+  user-select: none;
+  margin-top: 0.9rem;
+}
+
+.lc__btn:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.35);
+  outline-offset: 2px;
+}
+
+/* Primary: WhatsApp green (good to keep as the only strong accent) */
+.lc__btn--primary {
+  background: linear-gradient(
+    180deg,
+    #22c55e 0%,
+    #16a34a 100%
+  );
+  color: #ffffff;
+  box-shadow:
+    0 6px 16px rgba(34, 197, 94, 0.38),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+  border: none;
+}
+
+.lc__btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 22px rgba(34, 197, 94, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+.lc__arrow { font-size: 1.05rem; opacity: 0.95; }
+
+/* Secondary: white outline button */
+.lc__btn--secondary {
+  background: rgba(255,255,255,0.06);
+  color: #f9fafb;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.lc__btn--secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.55);
+  transform: translateY(-1px);
+}
+
+
+/* Microcopy */
+.lc__micro {
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.35;
+}
+
+.lc__divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 0.95rem 0;
+}
+
+.lc__altTitle {
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-top: 0.1rem;
+}
+
+.lc__altMicro {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.lc__trust {
+  font-size: 0.88rem;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .lc__wrap {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lc__btn { transition: none; }
+  .lc__btn--primary:hover, .lc__btn--secondary:hover { transform: none; }
+}
+</style>

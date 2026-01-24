@@ -1,6 +1,7 @@
 ---
 import { siteData } from "src/content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import ConversionBlock from "./ConversionBlock.astro";
 
 const { brand, post, slug } = Astro.props;
 
@@ -75,7 +76,12 @@ const jsonLd = buildJsonLd({
     <p class="muted readable">{post.localSignals.join(" • ")}</p>
   </section>
 ) : null}
-
+<section class="" style="margin:16px auto 0;max-width: 1120px;" aria-label="conversion block">
+  <ConversionBlock 
+siteData={siteData}
+    brand={siteData.brand}
+  />
+</section>
 {post.faqs?.length ? (
   <section class="section section-padding" aria-label="FAQs">
     <h2 class="section-title">FAQs</h2>

@@ -23,6 +23,7 @@ import GooglePostsPhotosSection from "../../components/GooglePostsPhotosSection.
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 // -----------------------------
 // BLOG DATA NORMALIZATION
@@ -324,6 +325,11 @@ const jsonLd = buildJsonLd({
                 corridor-connected areas—transport/fleet, warehouse/property, contractor and personal motor needs—depending on insurer rules and documentation requirements.
               </p>
             </section>
+                              <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
 
 <!-- ✅ NEW: Promo banners (desktop = 3 per row) -->
 <section class="section section-padding" aria-labelledby="promo-title">
@@ -400,6 +406,10 @@ const jsonLd = buildJsonLd({
                 ))}
               </div>
             </section>
+                  <ConversionBlock 
+                  siteData={siteData}
+    variant="commercial"
+  />            
 
             <!-- QUICK HELP: keep early for conversions -->
             <section class="section section-padding" aria-label="Quick help">
@@ -581,7 +591,11 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+                  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="sr-only">Contact</h2>
               <FooterCtaBar
@@ -623,6 +637,11 @@ const jsonLd = buildJsonLd({
                 contractors and heavy equipment, plus motor/health/LIC help when needed.
               </p>
             </section>
+                              <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
 
 <!-- ✅ NEW: Promo banners (mobile = horizontal scroll) -->
 <section class="section section-padding" aria-labelledby="m-promo-title">
@@ -676,6 +695,11 @@ const jsonLd = buildJsonLd({
                 ))}
               </div>
             </section>
+
+                              <ConversionBlock 
+                              siteData={siteData}
+    variant="commercial"
+  />
 
             <section class="section section-padding" aria-label="Quick help">
               <QuickHelpLinks pageType="home" />
@@ -731,7 +755,11 @@ const jsonLd = buildJsonLd({
             <NearMeTrustSection data={{ nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation }} />
             <LinksHubSection data={siteData.linksHub} />
             <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
+                  <ConversionBlock 
+siteData={siteData}
+    block={siteData.conversionBlocks.default}
+    brand={siteData.brand}
+  />
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}

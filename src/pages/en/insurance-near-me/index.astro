@@ -10,6 +10,7 @@ import FloatingContactCta from "src/components/FloatingContactCta.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const page = siteData.intentPages["insurance-near-me"];
 
@@ -128,7 +129,11 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.default}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
               <h2 class="section-title">FAQs</h2>
@@ -203,7 +208,11 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
+<ConversionBlock 
+siteData={siteData}
+  block={siteData.conversionBlocks.default}
+  brand={siteData.brand}
+/>
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
