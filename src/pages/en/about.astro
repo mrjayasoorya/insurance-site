@@ -123,10 +123,10 @@ const langsCsv = langs.join(", ");
               <p class="cta-sub">{ctas.primary?.subtitle || "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam."}</p>
 
               <!-- Microdata (stage 1) -->
-              <meta itemprop="name" content={brand.name} />
+              <!-- <meta itemprop="name" content={brand.name} />
               <meta itemprop="url" content={brand.websiteUrl} />
               <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
-              <meta itemprop="knowsLanguage" content={langsCsv} />
+              <meta itemprop="knowsLanguage" content={langsCsv} /> -->
 
               <div class="cta-actions" aria-label="Primary contact actions">
                 <a class="btn btn-primary" href={callHref}>{ctas.primary?.callLabel || "Call Now"}</a>
@@ -138,12 +138,12 @@ const langsCsv = langs.join(", ");
               </p>
 
               <!-- ContactPoint microdata -->
-              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
                 <meta itemprop="contactType" content={ctas.primary?.microdataName || "Primary Contact"} />
                 <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
                 <meta itemprop="availableLanguage" content={langsCsv} />
                 <meta itemprop="url" content={canonical} />
-              </div>
+              </div> -->
             </div>
           </section>
 
@@ -191,12 +191,12 @@ const langsCsv = langs.join(", ");
               ) : null}
 
               <!-- ContactPoint microdata (stage 2) -->
-              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
                 <meta itemprop="contactType" content={ctas.noPressureQuote?.microdataName || "Quotes"} />
                 <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
                 <meta itemprop="availableLanguage" content={langsCsv} />
                 <meta itemprop="url" content={canonical} />
-              </div>
+              </div> -->
 
               <div class="cta-actions">
                 <a class="btn btn-primary" href={callHref}>{ctas.noPressureQuote?.callLabel || "Call for Quote"}</a>
@@ -259,12 +259,12 @@ const langsCsv = langs.join(", ");
               ) : null}
 
               <!-- ContactPoint microdata (stage 3) -->
-              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
                 <meta itemprop="contactType" content={ctas.renewalAudit?.microdataName || "Renewal Support"} />
                 <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
                 <meta itemprop="availableLanguage" content={langsCsv} />
                 <meta itemprop="url" content={canonical} />
-              </div>
+              </div> -->
 
               <div class="cta-actions">
                 <a class="btn btn-primary" href={callHref}>{ctas.renewalAudit?.callLabel || "Call for Renewal Audit"}</a>
@@ -304,12 +304,12 @@ const langsCsv = langs.join(", ");
               ) : null}
 
               <!-- ContactPoint microdata (stage 4) -->
-              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
                 <meta itemprop="contactType" content={ctas.claimSOS?.microdataName || "Claims Help"} />
                 <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
                 <meta itemprop="availableLanguage" content={langsCsv} />
                 <meta itemprop="url" content={canonical} />
-              </div>
+              </div> -->
 
               <div class="cta-actions">
                 <a class="btn btn-primary" href={callHref}>{ctas.claimSOS?.callLabel || "Call for Claim Guidance"}</a>
@@ -374,12 +374,12 @@ const langsCsv = langs.join(", ");
               ) : null}
 
               <!-- ContactPoint microdata (stage 5) -->
-              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
                 <meta itemprop="contactType" content={ctas.proofChecklist?.microdataName || "Documentation Support"} />
                 <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
                 <meta itemprop="availableLanguage" content={langsCsv} />
                 <meta itemprop="url" content={canonical} />
-              </div>
+              </div> -->
 
               <div class="cta-actions">
                 <a class="btn btn-primary" href={callHref}>{ctas.proofChecklist?.callLabel || "Call for Checklist"}</a>
