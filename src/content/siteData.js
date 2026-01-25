@@ -6265,7 +6265,251 @@ export const siteData = {
 
     websiteUrl: "https://insuranceconsult.in/", // set later
     logoUrl: "", // optional later
+
+    knowsLanguages: ["Tamil", "English", "Malayalam"],
+
+serviceCoverage: {
+  primaryBase: "Red Hills / Sholavaram (Chennai North)",
+  onSpotService: true,
+  serviceArea: [
+    "All Chennai (on-spot service)",
+    "Red Hills",
+    "Sholavaram",
+    "Koyambedu",
+    "Nungambakkam",
+    "Chennai North",
+    "Chennai",
+  ],
+},
+
+founder: {
+  name: "M. N. Rajendrakumar",
+  title: "Licensed Insurance Consultant",
+  yearsExperience: 30,
+  bioShort:
+    "30+ years of insurance consulting experience. Direct, documentation-first guidance with on-spot service across Chennai.",
+  affiliations: [
+    {
+      org: "The New India Assurance Company Limited",
+      role: "Agent / Consultant",
+      branch: "Nungambakkam (Chennai)",
+    },
+    {
+      org: "Life Insurance Corporation of India (LIC)",
+      role: "Agent / Consultant",
+      branch: "Chennai (servicing support)",
+    },
+  ],
+},
+
+// Regulatory proof (fill real values)
+regulatory: {
+  authorityName: "IRDAI",
+  authorityFullName: "Insurance Regulatory and Development Authority of India",
+  licenseType: "Insurance Intermediary / Agency (as applicable)",
+  licenseNumber: "1427274",
+  // licenseValidThrough: "PASTE_EXPIRY_DATE_IF_AVAILABLE",
+  iso6523Code: "", // optional; only if you have a valid code
+},
+
   },
+
+  // 2) Add at ROOT of siteData (same level as footerCtas, testimonials, etc.)
+aboutPage: {
+  heroSubtitle:
+    "Licensed, local, claim-first guidance — no lead-selling, no spam, and direct accountability.",
+
+  // High-intent positioning blocks
+  valuePillars: [
+    {
+      title: "Claim-Ready Documentation",
+      desc: "Correct disclosures and proof discipline before purchase. Fewer disputes during claims.",
+    },
+    {
+      title: "Direct Licensed Expert",
+      desc: "One advisor accountable end-to-end. No call center handoff.",
+    },
+    {
+      title: "On-Spot Service Across Chennai",
+      desc: "When the situation needs it, we visit on-site and guide the next steps.",
+    },
+    {
+      title: "Tamil • English • Malayalam",
+      desc: "No policy detail lost in translation—especially exclusions and claim steps.",
+    },
+  ],
+
+  antiAggregator: {
+    title: "We are not a lead-generation site",
+    bullets: [
+      "We do not sell your number or enquiry to third parties.",
+      "When you call, you speak directly to our licensed team — not a call center.",
+      "No spam. No multiple calls from strangers. One advisor, one file trail.",
+    ],
+  },
+
+  whatWeDo: {
+    title: "What we do",
+    bullets: [
+      "We assess risk, match insurer terms to the real situation, and document it correctly.",
+      "We manage renewals and servicing with a clean policy trail.",
+      "We guide claim documentation and timelines to reduce avoidable rejections.",
+      "We support commercial and personal policies with a compliance-first workflow.",
+    ],
+  },
+
+  howWeWork: {
+    title: "How our process works",
+    steps: [
+      {
+        title: "1) Fact capture (real usage, exposure, values)",
+        desc: "We collect the facts that underwriting and claims check later: usage, location risks, declared values, endorsements.",
+      },
+      {
+        title: "2) Coverage selection (terms that match the risk)",
+        desc: "We select coverage and add-ons that align with real operational exposure and policy wording.",
+      },
+      {
+        title: "3) Claim-ready file (proof discipline)",
+        desc: "We maintain a documentation checklist: invoices, photos, registers, declarations, timelines (as applicable).",
+      },
+      {
+        title: "4) Servicing + renewals (no last-minute chaos)",
+        desc: "We maintain continuity so the policy file stays clean over time.",
+      },
+    ],
+  },
+
+  claimReady: {
+    title: "How we prevent claim rejection: Claim-Ready Documentation",
+    bullets: [
+      "We eliminate mismatch between declared details and actual usage.",
+      "We enforce proof discipline: documents, photos, invoices/registers, and timelines (as applicable).",
+      "We reduce avoidable disputes caused by incomplete or incorrect paperwork.",
+    ],
+  },
+
+  whyLocal: {
+    title: "Why choose a local consultant over an online portal?",
+    bullets: [
+      "Online portals collect leads. We take accountability and maintain one advisor per case.",
+      "Local context matters: transport belts, industrial storage, and commercial movement demand correct wording and proofs.",
+      "Claims are documentation problems first. We design the file to survive scrutiny.",
+    ],
+  },
+
+  trustProof: {
+    title: "Legitimacy you can verify",
+    bullets: [
+      "Physical office and local operating base (Red Hills / Sholavaram belt).",
+      "Google Business Profile listing (map, reviews, directions).",
+      "IRDAI license details published on this page (once entered).",
+      "30+ years of consulting experience under a single lead advisor.",
+    ],
+  },
+
+  // Expanded FAQs (LLM + near-me)
+  faqs: [
+    {
+      q: "Do you provide on-spot insurance support anywhere in Chennai?",
+      a: "Yes. We provide on-spot support across Chennai when the situation requires it—especially for commercial cases and claim documentation steps.",
+    },
+    {
+      q: "Do you help with claims, or only sell policies?",
+      a: "We handle claim-ready documentation guidance and servicing. Documentation and timelines decide outcomes; we run a claim-first workflow from day one.",
+    },
+    {
+      q: "Will I get multiple calls after I contact you?",
+      a: "No. We are not a lead-generation site. We do not sell your data. Your enquiry stays with our licensed team.",
+    },
+    {
+      q: "What is Claim-Ready Documentation?",
+      a: "A structured file that matches real risk to policy wording: correct disclosures, clean proofs, and clear timelines so claims face fewer avoidable objections.",
+    },
+    {
+      q: "Why should I choose a local consultant instead of buying online?",
+      a: "Accountability and documentation discipline. Online purchase is easy; claim scrutiny is hard. We build the file for scrutiny.",
+    },
+    {
+      q: "Can you explain policy details in Tamil / English / Malayalam?",
+      a: "Yes. We consult in Tamil, English, and Malayalam so exclusions, endorsements, waiting periods, and claim steps remain unambiguous.",
+    },
+    {
+      q: "Which insurers do you support—New India and LIC?",
+      a: "Yes. The lead consultant works with New India Assurance (Nungambakkam branch) and supports LIC servicing as well, depending on policy requirements.",
+    },
+    {
+      q: "Do you support commercial policies like fleet, warehouse, contractor risks in Chennai?",
+      a: "Yes. Commercial and industrial policies are a primary focus where documentation scrutiny is high and claim outcomes depend on clean records.",
+    },
+  ],
+  ctas: {
+    primary: {
+      title: "Talk to a licensed expert (no spam, no call center)",
+      subtitle:
+        "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam.",
+      callLabel: "Call Now",
+      whatsappLabel: "WhatsApp Now",
+      microdataName: "Primary Contact",
+    },
+
+    renewalAudit: {
+      title: "Renewal coming up? Get a Renewal Audit before you pay",
+      subtitle:
+        "We check IDV/declared value, add-ons, exclusions, claim history impact, and coverage gaps. No pressure to buy.",
+      bullets: [
+        "Renewal reminders and clean continuity (no last-minute chaos).",
+        "Coverage gap check: what changed in your risk since last year?",
+        "Add-ons and exclusions explained in plain language.",
+      ],
+      callLabel: "Call for Renewal Audit",
+      whatsappLabel: "WhatsApp Renewal Details",
+      microdataName: "Renewal Support",
+    },
+
+    claimSOS: {
+      title: "Claim support: what to do in the first 60 minutes",
+      subtitle:
+        "Most claim mistakes happen early: late intimation, missing proofs, and wrong statements. We guide the steps and documentation.",
+      bullets: [
+        "What to document (photos, invoices, registers, timeline).",
+        "How to report and what not to delay.",
+        "How survey and paperwork typically works (as applicable).",
+      ],
+      callLabel: "Call for Claim Guidance",
+      whatsappLabel: "WhatsApp Claim Help",
+      microdataName: "Claims Help",
+    },
+
+    noPressureQuote: {
+      title: "Need a quote? We quote without forcing a policy",
+      subtitle:
+        "We explain terms, exclusions, and claim conditions first. You decide. We do not push or trap you into buying.",
+      bullets: [
+        "Transparent comparison based on wording, not marketing.",
+        "Clear explanation of exclusions and claim process.",
+        "No lead resale. No follow-up spam.",
+      ],
+      callLabel: "Call for Quote",
+      whatsappLabel: "WhatsApp for Quote",
+      microdataName: "Quotes",
+    },
+
+    proofChecklist: {
+      title: "Get your Claim-Ready Checklist (free)",
+      subtitle:
+        "A simple checklist for documents and proof discipline. Useful for fleet, warehouse, contractor, and personal policies.",
+      bullets: [
+        "What proofs to maintain year-round.",
+        "What insurers usually ask during claims (as applicable).",
+        "How to prevent mismatch and timeline errors.",
+      ],
+      callLabel: "Call for Checklist",
+      whatsappLabel: "WhatsApp “CHECKLIST”",
+      microdataName: "Documentation Support",
+    },
+  },
+},
 
   // ✅ Above-the-fold intent (Identity + relevance)
   pageFlow: {

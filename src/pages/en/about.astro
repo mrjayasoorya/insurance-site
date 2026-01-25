@@ -11,117 +11,24 @@ import { siteData, EN } from "../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 
-// ✅ Service links (for internal linking + crawl)
 const services = (siteData.coreServices || []).map((s) => ({
   ...s,
   href: EN(`services/${s.slug}`),
 }));
 
-
-const title = `About | ${siteData.brand.name}`;
-const description =
-  "About M N Rajendrakumar Insurance Services — commercial-first guidance for Chennai North & NH corridors (Sholavaram, Red Hills, Madhavaram and nearby). Claim-ready documentation mindset, renewals and support.";
-
 const brand = siteData.brand;
-
-// ✅ Minimal safe facts (no over-claim)
-// - Do NOT say “official agent of X” unless you truly are and can prove.
-// - Use “Policies issued via …” / “Support for …” phrasing.
-const about = {
-  h1: "About",
-  intro: [
-    "M N Rajendrakumar Insurance Services provides practical insurance guidance for businesses and families in Chennai North and Chennai outskirts—especially NH-facing belts where fleets, warehouses, and contractor activity is high.",
-    "We focus on clarity before purchase (policy wording + declared values + add-ons) and discipline during claims (documents, timelines, reporting steps).",
-  ],
-  experience: {
-    title: "Experience & local understanding",
-    points: [
-      "30+ years of insurance service experience (policy guidance, renewals, and claim support).",
-      "Local-first coverage knowledge for Sholavaram, Red Hills, Madhavaram, Manali, Puzhal, Karanodai, Periyapalayam, and corridor-connected belts.",
-      "Commercial intent: fleets/lorry operators, warehouses/godowns, small factories, contractors, cranes/JCB/heavy equipment, and SMEs.",
-    ],
-  },
-  whyTrust: {
-    title: "How we work (claim-ready mindset)",
-    points: [
-      "We explain coverage in plain language and help match it to real operations—stock movement, workforce exposure, site risks, third-party exposure.",
-      "We highlight what insurers typically need for claims: proof of value, invoices, photos, incident reporting steps, permits/fitness discipline (where applicable).",
-      "We avoid confusing overpromises—our goal is to reduce avoidable delays by preparing you correctly.",
-    ],
-  },
-  providers: {
-    title: "Policy issuance support (provider context)",
-    items: [
-      {
-        name: "The New India Assurance Company Limited",
-        desc:
-          "A leading public sector general insurance company in India, owned by the Government of India. We support customers with policy selection, issuance assistance and claim-side guidance for applicable general insurance needs.",
-      },
-      {
-        name: "Life Insurance Corporation of India (LIC)",
-        desc:
-          "LIC is an Indian state-owned insurance group and investment company. We assist customers with LIC policy guidance, servicing and renewal support.",
-      },
-    ],
-    note:
-      "Note: Insurer terms, underwriting and final acceptance depend on the respective insurance company’s rules and policy conditions.",
-  },
-  whoWeHelp: {
-    title: "Who we serve",
-    groups: [
-      {
-        label: "Commercial (primary focus)",
-        points: [
-          "Transport / Fleet / Lorry operators (NH belts, permits/fitness discipline, third-party exposure).",
-          "Warehouses / Godowns / Factories (fire, burglary, stock-risk guidance; valuation + proof habits).",
-          "Contractors / Construction sites (CAR / WC workflows; documentation discipline).",
-          "Cranes / Heavy equipment (CPM; declared value + third-party alignment).",
-          "Public liability and third-party risk guidance for customer-facing operations.",
-          "Marine cargo / goods-in-transit (invoice + packing proof + route clarity habits).",
-        ],
-      },
-      {
-        label: "Personal & SME support",
-        points: [
-          "Car / Bike insurance support (renewals, add-ons, claim steps).",
-          "Health insurance support (basic guidance + claim paperwork readiness).",
-          "LIC policies (guidance + servicing).",
-          "Small business / office packages for MSMEs.",
-        ],
-      },
-    ],
-  },
-  coverageAreas: {
-    title: "Primary coverage areas (Chennai North + corridors)",
-    subtitle:
-      "We focus on locations where commercial movement, industrial activity, and city connectivity overlap.",
-    points: [
-      "Chennai outskirts / NH belts: Sholavaram, Red Hills, Karanodai, Periyapalayam, Arani corridor support (as applicable), and nearby movement zones.",
-      "Chennai city support: Madhavaram, Puzhal, Manali, Perambur, Kolathur, Koyambedu, Anna Nagar and nearby areas.",
-    ],
-    cta: { label: "See locations page", href: EN("locations") },
-  },
-  faqs: [
-    {
-      q: "Do you handle only commercial insurance?",
-      a: "Commercial and industrial needs are our primary focus, especially transport/fleet and warehouse/property risks. We also support personal motor, health, and LIC policies.",
-    },
-    {
-      q: "What makes claims smoother?",
-      a: "Correct policy selection (wording + declared value), right add-ons, and disciplined documentation—photos, invoices, incident reporting steps, and timelines.",
-    },
-    {
-      q: "Do you provide support after policy issuance?",
-      a: "Yes. We assist with renewals, documentation clarity, and claim process guidance depending on the policy and insurer requirements.",
-    },
-  ],
-};
+const aboutPage = siteData.aboutPage || {};
+const regulatory = brand.regulatory || {};
+const founder = brand.founder || {};
+const coverage = brand.serviceCoverage || {};
+const ctas = aboutPage.ctas || {};
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/about/");
+
 const meta = buildMeta({
-  title: `About | ${siteData.brand.name}`,
+  title: `About | ${brand.name}`,
   description:
-    "About M N Rajendrakumar Insurance Services — claim-first guidance for Chennai North & NH corridors with a documentation discipline mindset.",
+    `Licensed insurance agency in Chennai (Red Hills / Sholavaram base). Direct expert support, claim-ready documentation, multilingual consultation, on-spot service across Chennai, and no lead-selling.`,
   canonical,
   ogType: "website",
 });
@@ -136,28 +43,45 @@ const jsonLd = buildJsonLd({
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "About", href: canonical },
   ],
-  faqs: (siteData.about?.faqs || []).slice(0, 10),
+  faqs: (aboutPage.faqs || siteData.about?.faqs || []).slice(0, 12),
 });
 
+// InsuranceAgency JSON-LD (authority + AEO/GEO)
+const areaServed = [
+  { "@type": "Place", name: "Redhills, Chennai" },
+  { "@type": "Place", name: "Koyambedu, Chennai" },
+  { "@type": "Place", name: "Nungambakkam, Chennai" },
+  { "@type": "Place", name: "Chennai" },
+  { "@type": "Place", name: "Chennai North" },
+];
+
+
+
+// Helpers for CTA links
+const callHref = `tel:${brand.phoneE164 || brand.phone}`;
+const waHref = `https://wa.me/${(brand.whatsappE164 || "").replace("+","")}?text=${encodeURIComponent(brand.whatsappPrefill || "Hi")}`;
+
+const langs = brand.knowsLanguages || ["Tamil", "English", "Malayalam"];
+const langsCsv = langs.join(", ");
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
 
-            <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-<link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 
   <body>
-    <main class="app">
+    <main class="app about-us-page">
       <div class="container">
 
         <!-- =========================
@@ -169,92 +93,328 @@ const jsonLd = buildJsonLd({
               brand={{
                 name: brand.name,
                 tagline: brand.tagline,
-                subtitle: "Commercial-first insurance guidance with claim-ready documentation discipline.",
+                subtitle: aboutPage.heroSubtitle || "Licensed, claim-first guidance — no lead-selling, no spam.",
                 phone: brand.phone,
                 areaChips: brand.areaChips,
               }}
             />
           </header>
 
+          <!-- H1 -->
           <section class="section section-padding" aria-labelledby="about-title">
-            <h1 id="about-title" class="section-title">{about.h1}</h1>
-            <div class="section-sub">
-              {about.intro.map((p) => <p style="margin:0 0 10px">{p}</p>)}
+            <h1 id="about-title" class="section-title">
+              About {brand.name} — Licensed Insurance Agency in Chennai (Red Hills / Sholavaram Base)
+            </h1>
+
+            <div class="section-sub" itemprop="description">
+              <p style="margin:0 0 10px">
+                We secure insurance coverage with one priority: a policy file that survives claim scrutiny. Documentation discipline starts before you pay.
+              </p>
+              <p style="margin:0">
+                We provide direct expert access, multilingual consultation ({langsCsv}), and on-spot support across Chennai when the case needs it.
+              </p>
             </div>
           </section>
 
-          <section class="section section-padding" aria-labelledby="exp-title">
-            <h2 id="exp-title" class="section-title">{about.experience.title}</h2>
-            <ul class="bullets">
-              {about.experience.points.map((p) => <li>{p}</li>)}
-            </ul>
+          <!-- CTA #1 (top-stage) -->
+          <section class="section section-padding" aria-labelledby="cta-top-title">
+            <div class="cta-card" itemscope itemtype="https://schema.org/InsuranceAgency">
+              <h2 id="cta-top-title" class="cta-title">{ctas.primary?.title || "Talk to a licensed expert (no spam, no call center)"}</h2>
+              <p class="cta-sub">{ctas.primary?.subtitle || "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam."}</p>
+
+              <!-- Microdata (stage 1) -->
+              <meta itemprop="name" content={brand.name} />
+              <meta itemprop="url" content={brand.websiteUrl} />
+              <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+              <meta itemprop="knowsLanguage" content={langsCsv} />
+
+              <div class="cta-actions" aria-label="Primary contact actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.primary?.callLabel || "Call Now"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.primary?.whatsappLabel || "WhatsApp Now"}</a>
+              </div>
+
+              <p class="cta-note">
+                No lead resale. No spam. You speak directly to a licensed expert.
+              </p>
+
+              <!-- ContactPoint microdata -->
+              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+                <meta itemprop="contactType" content={ctas.primary?.microdataName || "Primary Contact"} />
+                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+                <meta itemprop="availableLanguage" content={langsCsv} />
+                <meta itemprop="url" content={canonical} />
+              </div>
+            </div>
           </section>
 
-          <section class="section section-padding" aria-labelledby="trust-title">
-            <h2 id="trust-title" class="section-title">{about.whyTrust.title}</h2>
-            <ul class="bullets">
-              {about.whyTrust.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          <section class="section section-padding" aria-labelledby="providers-title">
-            <h2 id="providers-title" class="section-title">{about.providers.title}</h2>
-
-            <ul class="area-rows" role="list" aria-label="Provider context list">
-              {about.providers.items.map((it) => (
+          <!-- Pillars -->
+          <section class="section section-padding" aria-labelledby="pillars-title">
+            <h2 id="pillars-title" class="section-title">What you get from us (clear and practical)</h2>
+            <ul class="area-rows" role="list" aria-label="Value pillars">
+              {(aboutPage.valuePillars || []).map((p) => (
                 <li class="area-row">
-                  <h3 class="area-name">{it.name}</h3>
-                  <p class="area-notes">{it.desc}</p>
+                  <h3 class="area-name">{p.title}</h3>
+                  <p class="area-notes">{p.desc}</p>
                 </li>
               ))}
             </ul>
+          </section>
 
-            <p class="section-sub" style="margin-top:12px">{about.providers.note}</p>
-
-            {brand.gbpUrl ? (
-              <p class="section-sub" style="margin-top:10px">
-                <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
-                  View our Google Business Profile
-                </a>
+          <!-- Anti-aggregator -->
+          <section class="section section-padding" aria-labelledby="anti-agg-title">
+            <h2 id="anti-agg-title" class="section-title">Are you Justdial / PolicyBazaar? No.</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                <strong>We are not a lead-generation site.</strong> We don’t sell your number. When you call, you speak directly to our licensed experts — not a call center.
               </p>
+              <p style="margin:0">
+                No spam. No multiple calls from strangers. One advisor accountable end-to-end.
+              </p>
+            </div>
+            {aboutPage.antiAggregator?.bullets?.length ? (
+              <ul class="bullets">
+                {aboutPage.antiAggregator.bullets.map((b) => <li>{b}</li>)}
+              </ul>
             ) : null}
           </section>
 
-          <section class="section section-padding" aria-labelledby="serve-title">
-            <h2 id="serve-title" class="section-title">{about.whoWeHelp.title}</h2>
+          <!-- CTA #2 (No-pressure quote) -->
+          <section class="section section-padding" aria-labelledby="cta-quote-title">
+            <div class="cta-card cta-soft" itemscope itemtype="https://schema.org/InsuranceAgency">
+              <h2 id="cta-quote-title" class="cta-title">{ctas.noPressureQuote?.title || "Need a quote? We quote without forcing a policy"}</h2>
+              <p class="cta-sub">{ctas.noPressureQuote?.subtitle || "We explain terms first. You decide. No push, no trap."}</p>
 
-            <ul class="area-rows" role="list" aria-label="Who we serve">
-              {about.whoWeHelp.groups.map((g) => (
-                <li class="area-row">
-                  <h3 class="area-name">{g.label}</h3>
-                  <ul class="bullets" style="margin-top:10px">
-                    {g.points.map((p) => <li>{p}</li>)}
-                  </ul>
-                </li>
-              ))}
+              {ctas.noPressureQuote?.bullets?.length ? (
+                <ul class="bullets">
+                  {ctas.noPressureQuote.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              ) : null}
+
+              <!-- ContactPoint microdata (stage 2) -->
+              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+                <meta itemprop="contactType" content={ctas.noPressureQuote?.microdataName || "Quotes"} />
+                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+                <meta itemprop="availableLanguage" content={langsCsv} />
+                <meta itemprop="url" content={canonical} />
+              </div>
+
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.noPressureQuote?.callLabel || "Call for Quote"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.noPressureQuote?.whatsappLabel || "WhatsApp for Quote"}</a>
+              </div>
+
+              <p class="cta-note">We explain exclusions, add-ons, and claim conditions before you spend money.</p>
+            </div>
+          </section>
+
+          <!-- What we do -->
+          <section class="section section-padding" aria-labelledby="what-we-do-title">
+            <h2 id="what-we-do-title" class="section-title">What do you do for customers?</h2>
+            <p class="section-sub">
+              We do the work that decides outcomes later: correct disclosures, clean documentation, and claim-ready servicing.
+            </p>
+            <ul class="bullets">
+              {(aboutPage.whatWeDo?.bullets || []).map((b) => <li>{b}</li>)}
             </ul>
           </section>
 
-          <section class="section section-padding" aria-labelledby="areas-title">
-            <h2 id="areas-title" class="section-title">{about.coverageAreas.title}</h2>
-            <p class="section-sub">{about.coverageAreas.subtitle}</p>
+          <!-- Renewal section (pain-point + process) -->
+          <section class="section section-padding" aria-labelledby="renewal-title">
+            <h2 id="renewal-title" class="section-title">Renewals: what we do differently (and why it matters)</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                Most renewal mistakes happen because people renew blindly. Risk changes over a year: mileage, usage, storage, drivers, assets, value, and business exposure.
+              </p>
+              <p style="margin:0">
+                We audit the renewal file and remove surprises before policy issuance.
+              </p>
+            </div>
 
-            <ul class="bullets">
-              {about.coverageAreas.points.map((p) => <li>{p}</li>)}
+            <ul class="area-rows" role="list" aria-label="Renewal process">
+              <li class="area-row">
+                <h3 class="area-name">Renewal check</h3>
+                <p class="area-notes">Declared value, add-ons, exclusions, endorsements, and changes in usage/exposure.</p>
+              </li>
+              <li class="area-row">
+                <h3 class="area-name">Continuity discipline</h3>
+                <p class="area-notes">We prevent gaps that create claim disputes later.</p>
+              </li>
+              <li class="area-row">
+                <h3 class="area-name">Documentation refresh</h3>
+                <p class="area-notes">We update proofs and declarations so the file stays clean year-to-year.</p>
+              </li>
             </ul>
+          </section>
 
-            <p class="section-sub" style="margin-top:10px">
-              <a class="inline-link" href={about.coverageAreas.cta.href}>{about.coverageAreas.cta.label}</a>
+          <!-- CTA #3 (Renewal audit) -->
+          <section class="section section-padding" aria-labelledby="cta-renewal-title">
+            <div class="cta-card" itemscope itemtype="https://schema.org/InsuranceAgency">
+              <h2 id="cta-renewal-title" class="cta-title">{ctas.renewalAudit?.title || "Renewal coming up? Get a Renewal Audit before you pay"}</h2>
+              <p class="cta-sub">{ctas.renewalAudit?.subtitle || "No pressure to buy. We check gaps, add-ons, and risk changes first."}</p>
+
+              {ctas.renewalAudit?.bullets?.length ? (
+                <ul class="bullets">
+                  {ctas.renewalAudit.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              ) : null}
+
+              <!-- ContactPoint microdata (stage 3) -->
+              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+                <meta itemprop="contactType" content={ctas.renewalAudit?.microdataName || "Renewal Support"} />
+                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+                <meta itemprop="availableLanguage" content={langsCsv} />
+                <meta itemprop="url" content={canonical} />
+              </div>
+
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.renewalAudit?.callLabel || "Call for Renewal Audit"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.renewalAudit?.whatsappLabel || "WhatsApp Renewal Details"}</a>
+              </div>
+
+              <p class="cta-note">Renewal guidance without forcing a policy. You decide after clarity.</p>
+            </div>
+          </section>
+
+          <!-- Claim rejection + claim-ready -->
+          <section class="section section-padding" aria-labelledby="claim-ready-title">
+            <h2 id="claim-ready-title" class="section-title">How we reduce claim rejection risk</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                Claim rejection fear is rational. Most claim friction is predictable: mismatch in declared details, missing proofs, or timeline errors.
+              </p>
+              <p style="margin:0">
+                We prevent avoidable disputes with Claim-Ready Documentation discipline before the loss happens.
+              </p>
+            </div>
+            <ul class="bullets">
+              {(aboutPage.claimReady?.bullets || []).map((b) => <li>{b}</li>)}
+            </ul>
+          </section>
+
+          <!-- CTA #4 (Claim SOS) -->
+          <section class="section section-padding" aria-labelledby="cta-claim-title">
+            <div class="cta-card cta-urgent" itemscope itemtype="https://schema.org/InsuranceAgency">
+              <h2 id="cta-claim-title" class="cta-title">{ctas.claimSOS?.title || "Claim support: what to do in the first 60 minutes"}</h2>
+              <p class="cta-sub">{ctas.claimSOS?.subtitle || "Early mistakes create avoidable rejections. We guide the steps and documentation."}</p>
+
+              {ctas.claimSOS?.bullets?.length ? (
+                <ul class="bullets">
+                  {ctas.claimSOS.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              ) : null}
+
+              <!-- ContactPoint microdata (stage 4) -->
+              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+                <meta itemprop="contactType" content={ctas.claimSOS?.microdataName || "Claims Help"} />
+                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+                <meta itemprop="availableLanguage" content={langsCsv} />
+                <meta itemprop="url" content={canonical} />
+              </div>
+
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.claimSOS?.callLabel || "Call for Claim Guidance"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.claimSOS?.whatsappLabel || "WhatsApp Claim Help"}</a>
+              </div>
+
+              <p class="cta-note">We guide reporting steps and proof discipline. Insurer decisions follow policy terms and insurer process.</p>
+            </div>
+          </section>
+
+          <!-- Why local vs portal -->
+          <section class="section section-padding" aria-labelledby="why-local-title">
+            <h2 id="why-local-title" class="section-title">Why choose a local consultant over an online portal?</h2>
+            <ul class="bullets">
+              {(aboutPage.whyLocal?.bullets || []).map((b) => <li>{b}</li>)}
+            </ul>
+          </section>
+
+          <!-- Founder + on-spot support -->
+          <section class="section section-padding" aria-labelledby="founder-title">
+            <h2 id="founder-title" class="section-title">Who leads this agency?</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                This agency is led by <strong>{founder.name || "our senior consultant"}</strong>
+                {founder.yearsExperience ? <> with <strong>{founder.yearsExperience}+ years</strong> of insurance consulting experience.</> : null}
+              </p>
+              <p style="margin:0">
+                You speak to the decision-maker, not a rotating call-center queue.
+              </p>
+            </div>
+
+            {(founder.affiliations?.length) ? (
+              <ul class="area-rows" role="list" aria-label="Founder affiliations">
+                {founder.affiliations.map((a) => (
+                  <li class="area-row">
+                    <h3 class="area-name">{a.org}</h3>
+                    <p class="area-notes">{a.role}{a.branch ? ` — Branch: ${a.branch}` : ""}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+
+          <section class="section section-padding" aria-labelledby="onsite-title">
+            <h2 id="onsite-title" class="section-title">On-spot support across Chennai</h2>
+            <p class="section-sub">
+              Yes. Base: <strong>{coverage.primaryBase || "Red Hills / Sholavaram"}</strong>. Coverage: <strong>All Chennai</strong>.
+              When the case needs physical presence—especially for commercial documentation or claim steps—we provide on-spot support.
             </p>
           </section>
 
-          <!-- ✅ Internal linking to services (crawl boost) -->
+          <!-- CTA #5 (Checklist / soft lead magnet) -->
+          <section class="section section-padding" aria-labelledby="cta-checklist-title">
+            <div class="cta-card cta-soft" itemscope itemtype="https://schema.org/InsuranceAgency">
+              <h2 id="cta-checklist-title" class="cta-title">{ctas.proofChecklist?.title || "Get your Claim-Ready Checklist (free)"}</h2>
+              <p class="cta-sub">{ctas.proofChecklist?.subtitle || "A simple checklist for documents and proof discipline."}</p>
+
+              {ctas.proofChecklist?.bullets?.length ? (
+                <ul class="bullets">
+                  {ctas.proofChecklist.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              ) : null}
+
+              <!-- ContactPoint microdata (stage 5) -->
+              <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
+                <meta itemprop="contactType" content={ctas.proofChecklist?.microdataName || "Documentation Support"} />
+                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
+                <meta itemprop="availableLanguage" content={langsCsv} />
+                <meta itemprop="url" content={canonical} />
+              </div>
+
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.proofChecklist?.callLabel || "Call for Checklist"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.proofChecklist?.whatsappLabel || "WhatsApp “CHECKLIST”"}</a>
+              </div>
+
+              <p class="cta-note">Useful even if you do not buy a policy today. Clarity first.</p>
+            </div>
+          </section>
+
+          <!-- Language -->
+          <section class="section section-padding" aria-labelledby="lang-title">
+            <h2 id="lang-title" class="section-title">Tamil • English • Malayalam — policy clarity without translation loss</h2>
+            <p class="section-sub">
+              We consult in <strong>{langsCsv}</strong>. We explain exclusions, endorsements, waiting periods, and claim steps without ambiguity.
+            </p>
+          </section>
+
+          <!-- IRDAI -->
+          <section class="section section-padding" aria-labelledby="reg-title">
+            <h2 id="reg-title" class="section-title">IRDAI license and legitimacy (verifiable)</h2>
+            <ul class="bullets">
+              <li>Regulator: <strong>{regulatory.authorityFullName || "Insurance Regulatory and Development Authority of India (IRDAI)"}</strong></li>
+              <li>License type: <strong>{regulatory.licenseType || "Insurance intermediary / agency (as applicable)"}</strong></li>
+              <li>License number: <strong>{regulatory.licenseNumber || "Add license number in siteData.brand.regulatory.licenseNumber"}</strong></li>
+              {regulatory.licenseValidThrough ? (
+                <li>Valid through: <strong>{regulatory.licenseValidThrough}</strong></li>
+              ) : null}
+            </ul>
+          </section>
+
+          <!-- Services -->
           <section class="section section-padding" aria-labelledby="services-title">
             <h2 id="services-title" class="section-title">Services we support</h2>
-            <p class="section-sub">
-              Explore commercial-first services and support flows. Each page is written to be clear for users and crawlers.
-            </p>
-
+            <p class="section-sub">These pages explain coverage and documentation in plain language.</p>
             <ul class="service-links" role="list" aria-label="Service links">
               {services.map((s) => (
                 <li class="service-link">
@@ -267,11 +427,11 @@ const jsonLd = buildJsonLd({
             </ul>
           </section>
 
-          <!-- ✅ FAQs -->
+          <!-- FAQ -->
           <section class="section section-padding" aria-labelledby="faq-title">
-            <h2 id="faq-title" class="section-title">FAQs</h2>
+            <h2 id="faq-title" class="section-title">FAQs (Chennai “near me” + claims + renewals)</h2>
             <ul class="area-rows" role="list" aria-label="FAQ list">
-              {about.faqs.map((f) => (
+              {(aboutPage.faqs || []).map((f) => (
                 <li class="area-row">
                   <h3 class="area-name">{f.q}</h3>
                   <p class="area-notes">{f.a}</p>
@@ -279,13 +439,9 @@ const jsonLd = buildJsonLd({
               ))}
             </ul>
           </section>
-            <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-        <!-- ✅ Up-front identity (bots + LLMs) -->
-        <LocalIdentitySection brand={brand} pageTitle="About" />
+
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
+          <LocalIdentitySection brand={brand} pageTitle="About" />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -312,7 +468,7 @@ siteData={siteData}
               brand={{
                 name: brand.name,
                 tagline: brand.tagline,
-                subtitle: "Commercial-first insurance guidance with claim-ready documentation discipline.",
+                subtitle: aboutPage.heroSubtitle || "Licensed, claim-first guidance — no lead-selling, no spam.",
                 phone: brand.phone,
                 areaChips: [],
               }}
@@ -320,77 +476,145 @@ siteData={siteData}
           </header>
 
           <section class="section section-padding" aria-labelledby="m-about-title">
-            <h1 id="m-about-title" class="section-title">{about.h1}</h1>
-            <div class="section-sub">
-              {about.intro.map((p) => <p style="margin:0 0 10px">{p}</p>)}
+            <h1 id="m-about-title" class="section-title">About {brand.name} — Licensed Insurance Agency in Chennai</h1>
+            <p class="section-sub">
+              Documentation-first, claim-first insurance guidance. Direct expert access and on-spot support across Chennai.
+            </p>
+          </section>
+
+          <!-- Mobile CTA #1 -->
+          <section class="section section-padding" aria-labelledby="m-cta-top-title">
+            <div class="cta-card">
+              <h2 id="m-cta-top-title" class="cta-title">{ctas.primary?.title || "Talk to a licensed expert (no spam, no call center)"}</h2>
+              <p class="cta-sub">{ctas.primary?.subtitle || "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.primary?.callLabel || "Call Now"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.primary?.whatsappLabel || "WhatsApp Now"}</a>
+              </div>
+              <p class="cta-note">No lead resale. No spam.</p>
             </div>
           </section>
 
-          <section class="section section-padding" aria-labelledby="m-exp-title">
-            <h2 id="m-exp-title" class="section-title">{about.experience.title}</h2>
-            <ul class="bullets">
-              {about.experience.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          <section class="section section-padding" aria-labelledby="m-trust-title">
-            <h2 id="m-trust-title" class="section-title">{about.whyTrust.title}</h2>
-            <ul class="bullets">
-              {about.whyTrust.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          <section class="section section-padding" aria-labelledby="m-providers-title">
-            <h2 id="m-providers-title" class="section-title">{about.providers.title}</h2>
-            <ul class="area-rows" role="list">
-              {about.providers.items.map((it) => (
+                    <!-- Pillars -->
+          <section class="section section-padding" aria-labelledby="pillars-title">
+            <h2 id="pillars-title" class="section-title">What you get from us (clear and practical)</h2>
+            <ul class="area-rows" role="list" aria-label="Value pillars">
+              {(aboutPage.valuePillars || []).map((p) => (
                 <li class="area-row">
-                  <h3 class="area-name">{it.name}</h3>
-                  <p class="area-notes">{it.desc}</p>
-                </li>
-              ))}
-            </ul>
-            <p class="section-sub" style="margin-top:12px">{about.providers.note}</p>
-
-            {brand.gbpUrl ? (
-              <p class="section-sub" style="margin-top:10px">
-                <a class="inline-link" href={brand.gbpUrl} target="_blank" rel="noopener">
-                  View our Google Business Profile
-                </a>
-              </p>
-            ) : null}
-          </section>
-
-          <section class="section section-padding" aria-labelledby="m-serve-title">
-            <h2 id="m-serve-title" class="section-title">{about.whoWeHelp.title}</h2>
-
-            <ul class="area-rows" role="list">
-              {about.whoWeHelp.groups.map((g) => (
-                <li class="area-row">
-                  <h3 class="area-name">{g.label}</h3>
-                  <ul class="bullets" style="margin-top:10px">
-                    {g.points.map((p) => <li>{p}</li>)}
-                  </ul>
+                  <h3 class="area-name">{p.title}</h3>
+                  <p class="area-notes">{p.desc}</p>
                 </li>
               ))}
             </ul>
           </section>
 
-          <section class="section section-padding" aria-labelledby="m-areas-title">
-            <h2 id="m-areas-title" class="section-title">{about.coverageAreas.title}</h2>
-            <p class="section-sub">{about.coverageAreas.subtitle}</p>
-            <ul class="bullets">
-              {about.coverageAreas.points.map((p) => <li>{p}</li>)}
-            </ul>
-            <p class="section-sub" style="margin-top:10px">
-              <a class="inline-link" href={about.coverageAreas.cta.href}>{about.coverageAreas.cta.label}</a>
+          <section class="section section-padding" aria-labelledby="m-anti-agg-title">
+            <h2 id="m-anti-agg-title" class="section-title">Are you Justdial / PolicyBazaar? No.</h2>
+            <p class="section-sub">
+              <strong>We are not a lead-generation site.</strong> We don’t sell your data. You speak to licensed experts, not a call center. No spam. No multiple calls.
             </p>
+          </section>
+
+          <!-- Mobile CTA #2 (Renewal) -->
+          <section class="section section-padding" aria-labelledby="m-cta-renewal-title">
+            <div class="cta-card cta-soft">
+              <h2 id="m-cta-renewal-title" class="cta-title">{ctas.renewalAudit?.title || "Renewal Audit before you pay"}</h2>
+              <p class="cta-sub">{ctas.renewalAudit?.subtitle || "No pressure to buy. We check gaps first."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.renewalAudit?.callLabel || "Call for Renewal Audit"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.renewalAudit?.whatsappLabel || "WhatsApp Renewal Details"}</a>
+              </div>
+              <p class="cta-note">Renewal clarity first. You decide after.</p>
+            </div>
+          </section>
+                    <!-- What we do -->
+          <section class="section section-padding" aria-labelledby="what-we-do-title">
+            <h2 id="what-we-do-title" class="section-title">What do you do for customers?</h2>
+            <p class="section-sub">
+              We do the work that decides outcomes later: correct disclosures, clean documentation, and claim-ready servicing.
+            </p>
+            <ul class="bullets">
+              {(aboutPage.whatWeDo?.bullets || []).map((b) => <li>{b}</li>)}
+            </ul>
+          </section>
+
+          <!-- Renewal section (pain-point + process) -->
+          <section class="section section-padding" aria-labelledby="renewal-title">
+            <h2 id="renewal-title" class="section-title">Renewals: what we do differently (and why it matters)</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                Most renewal mistakes happen because people renew blindly. Risk changes over a year: mileage, usage, storage, drivers, assets, value, and business exposure.
+              </p>
+              <p style="margin:0">
+                We audit the renewal file and remove surprises before policy issuance.
+              </p>
+            </div>
+
+            <ul class="area-rows" role="list" aria-label="Renewal process">
+              <li class="area-row">
+                <h3 class="area-name">Renewal check</h3>
+                <p class="area-notes">Declared value, add-ons, exclusions, endorsements, and changes in usage/exposure.</p>
+              </li>
+              <li class="area-row">
+                <h3 class="area-name">Continuity discipline</h3>
+                <p class="area-notes">We prevent gaps that create claim disputes later.</p>
+              </li>
+              <li class="area-row">
+                <h3 class="area-name">Documentation refresh</h3>
+                <p class="area-notes">We update proofs and declarations so the file stays clean year-to-year.</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Mobile CTA #3 (Claim SOS) -->
+          <section class="section section-padding" aria-labelledby="m-cta-claim-title">
+            <div class="cta-card cta-urgent">
+              <h2 id="m-cta-claim-title" class="cta-title">{ctas.claimSOS?.title || "Claim support: first 60 minutes"}</h2>
+              <p class="cta-sub">{ctas.claimSOS?.subtitle || "We guide steps and documentation."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.claimSOS?.callLabel || "Call for Claim Guidance"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.claimSOS?.whatsappLabel || "WhatsApp Claim Help"}</a>
+              </div>
+              <p class="cta-note">Early mistakes create avoidable rejection risk.</p>
+            </div>
+          </section>
+
+                    <!-- Claim rejection + claim-ready -->
+          <section class="section section-padding" aria-labelledby="claim-ready-title">
+            <h2 id="claim-ready-title" class="section-title">How we reduce claim rejection risk</h2>
+            <div class="section-sub">
+              <p style="margin:0 0 10px">
+                Claim rejection fear is rational. Most claim friction is predictable: mismatch in declared details, missing proofs, or timeline errors.
+              </p>
+              <p style="margin:0">
+                We prevent avoidable disputes with Claim-Ready Documentation discipline before the loss happens.
+              </p>
+            </div>
+            <ul class="bullets">
+              {(aboutPage.claimReady?.bullets || []).map((b) => <li>{b}</li>)}
+            </ul>
+          </section>
+
+          <!-- Mobile CTA #4 (No-pressure quote) -->
+          <section class="section section-padding" aria-labelledby="m-cta-quote-title">
+            <div class="cta-card cta-soft">
+              <h2 id="m-cta-quote-title" class="cta-title">{ctas.noPressureQuote?.title || "No-pressure quote"}</h2>
+              <p class="cta-sub">{ctas.noPressureQuote?.subtitle || "We explain terms first. You decide."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.noPressureQuote?.callLabel || "Call for Quote"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.noPressureQuote?.whatsappLabel || "WhatsApp for Quote"}</a>
+              </div>
+              <p class="cta-note">No forcing. No spam.</p>
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-labelledby="m-lang-title">
+            <h2 id="m-lang-title" class="section-title">Tamil • English • Malayalam</h2>
+            <p class="section-sub">We consult in <strong>{langsCsv}</strong>.</p>
           </section>
 
           <section class="section section-padding" aria-labelledby="m-services-title">
             <h2 id="m-services-title" class="section-title">Services we support</h2>
-            <p class="section-sub">Explore service pages for clear, structured guidance.</p>
-
             <ul class="service-links" role="list">
               {services.map((s) => (
                 <li class="service-link">
@@ -406,7 +630,7 @@ siteData={siteData}
           <section class="section section-padding" aria-labelledby="m-faq-title">
             <h2 id="m-faq-title" class="section-title">FAQs</h2>
             <ul class="area-rows" role="list">
-              {about.faqs.map((f) => (
+              {(aboutPage.faqs || []).map((f) => (
                 <li class="area-row">
                   <h3 class="area-name">{f.q}</h3>
                   <p class="area-notes">{f.a}</p>
@@ -414,13 +638,9 @@ siteData={siteData}
               ))}
             </ul>
           </section>
-                      <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-        <!-- ✅ Up-front identity (bots + LLMs) -->
-        <LocalIdentitySection brand={brand} pageTitle="About" />
+
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
+          <LocalIdentitySection brand={brand} pageTitle="About" />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -437,6 +657,7 @@ siteData={siteData}
             />
           </section>
         </div>
+
       </div>
     </main>
 
@@ -446,8 +667,7 @@ siteData={siteData}
 </html>
 
 <style is:global>
-  /* keep consistent card UI */
-  .area-rows{
+  .about-us-page .area-rows{
     margin: 14px 0 0;
     padding: 0;
     list-style: none;
@@ -455,27 +675,27 @@ siteData={siteData}
     flex-direction:column;
     gap: 12px;
   }
-  .area-row{
+  .about-us-page .area-row{
     border: 1px solid var(--border);
     border-radius: 18px;
     background: var(--surface);
     box-shadow: 0 2px 10px rgba(11,13,18,.05);
     padding: 12px 14px;
   }
-  .area-name{
+  .about-us-page .area-name{
     margin: 0;
     font-size: 15px;
     font-weight: 950;
     letter-spacing: -0.01em;
   }
-  .area-notes{
+  .about-us-page .area-notes{
     margin: 8px 0 0;
     color: var(--muted);
     font-size: 13px;
     line-height: 1.4;
   }
 
-  .service-links{
+  .about-us-page .service-links{
     margin: 12px 0 0;
     padding: 0;
     list-style:none;
@@ -483,19 +703,19 @@ siteData={siteData}
     flex-direction:column;
     gap: 10px;
   }
-  .svc{
+  .about-us-page .svc{
     display:block;
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 10px 12px;
     background: var(--surface);
   }
-  .svc-title{
+  .about-us-page .svc-title{
     display:block;
     font-weight: 950;
     font-size: 13.5px;
   }
-  .svc-desc{
+  .about-us-page .svc-desc{
     display:block;
     margin-top: 6px;
     color: var(--muted);
@@ -503,9 +723,83 @@ siteData={siteData}
     line-height: 1.35;
   }
 
-  .inline-link{
-    font-weight: 900;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .about-us-page .bullets{
+    margin: 10px 0 0;
+    padding-left: 18px;
+  }
+  .about-us-page .bullets li{
+    margin: 6px 0;
+    line-height: 1.4;
+  }
+
+  /* CTA cards */
+  .about-us-page .cta-card{
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: 0 6px 18px rgba(11,13,18,.06);
+    padding: 14px 14px 12px;
+  }
+  .about-us-page .cta-soft{
+    box-shadow: 0 6px 18px rgba(11,13,18,.05);
+  }
+  .about-us-page .cta-urgent{
+    box-shadow: 0 10px 26px rgba(11,13,18,.10);
+  }
+  .about-us-page .cta-title{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 980;
+    letter-spacing: -0.01em;
+  }
+  .about-us-page .cta-sub{
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .about-us-page .cta-actions{
+    margin-top: 12px;
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .about-us-page .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-weight: 950;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--text) !important;
+  }
+  .about-us-page .btn-primary{
+    border-color: transparent !important;
+    border: 1px solid var(--text);
+  }
+  .about-us-page .btn-ghost{
+    background: transparent !important;
+    border: 1px solid var(--text);
+    color: var(--text) !important;
+  }
+  .about-us-page .cta-note{
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+
+  .about-us-page .sr-only{
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    padding:0 !important;
+    margin:-1px !important;
+    overflow:hidden !important;
+    clip:rect(0,0,0,0) !important;
+    white-space:nowrap !important;
+    border:0 !important;
   }
 </style>

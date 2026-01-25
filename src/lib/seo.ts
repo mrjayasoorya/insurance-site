@@ -325,6 +325,8 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
 
 
   const graph = [];
+  const regulatory = brand.regulatory || {};
+  const founder = brand.founder || {};6
 
   // WebSite
   graph.push(prune({
@@ -399,7 +401,21 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
     availableLanguage: ["English", "Tamil", "Malayalam"],
     areaServed: "IN",
   }),
-
+    hasCredential: (regulatory?.licenseNumber || regulatory?.authorityName) ? prune([{
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: regulatory.licenseType || "License",
+    recognizedBy: {
+      "@type": "Organization",
+      name: regulatory.authorityFullName || regulatory.authorityName || "IRDAI",
+    },
+    identifier: regulatory.licenseNumber ? {
+      "@type": "PropertyValue",
+      name: "IRDAI License Number",
+      value: regulatory.licenseNumber,
+    } : undefined,
+    validUntil: regulatory.licenseValidThrough || undefined,
+  }]) : undefined,
+  knowsLanguage: brand.knowsLanguages || ["Tamil", "English", "Malayalam"],
   }));
 
   // Optional Person node (ties experience to the org without over-claiming)
@@ -409,7 +425,9 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
     "@id": `${base}/#person`,
     name: brand.legalName || "M N Rajendrakumar",
     worksFor: { "@id": orgId },
-    jobTitle: "Insurance Services",
+    jobTitle: founder.title || "Insurance Consultant",
+    knowsLanguage: brand.knowsLanguages || ["Tamil", "English", "Malayalam"],
+    description: founder.bioShort || undefined,
   }));
 
   // WebPage
