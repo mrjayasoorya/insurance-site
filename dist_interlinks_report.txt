@@ -1,0 +1,6 @@
+Scanning: dist/en
+Mode: internal interlink validation (filesystem)
+
+Summary
+  links_checked : 7074
+  broken_links  : 0

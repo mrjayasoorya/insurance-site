@@ -1,0 +1,22 @@
+# Segregated Links by Pattern
+
+## /services/[slug]
+/en/services/liability
+/en/services/marine
+/en/services/personal
+
+data referring for the page: siteData.serviceCategories
+
+## /services/[slug]/[slug]
+
+data referring for the page: siteData?.servicesDetail?.[category]?.[serviceSlug]
+
+## /proof-experience/[slug]
+/en/proof-experience/30-years-claim-handling
+
+data referring for the page: siteData.postDetails?.[slug]
+
+## /renewals/[slug]
+/en/renewals/lorry-insurance-renewal
+
+data referring for the page: siteData.postDetails?.[slug]
