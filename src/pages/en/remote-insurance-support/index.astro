@@ -1,18 +1,27 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, howWeWork, dual CTA, removed LocalIdentitySection
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import MobileAccordion from "../../../components/MobileAccordion.astro";
-import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
 import BacklinksRow from "../../../components/BacklinksRow.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 
-import { siteData } from "../../../content/siteData";
+import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 const page = siteData.intentPages["remote-insurance-support"];
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 if (!page) throw new Error("Missing siteData.intentPages['remote-insurance-support']");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/remote-insurance-support/");
@@ -25,7 +34,7 @@ const meta = buildMeta({
 const jsonLd = buildJsonLd({
   pageType: "intent",
   canonical,
-    siteData,
+  siteData,
   title: meta.title,
   description: meta.description,
   breadcrumbs: [
@@ -49,14 +58,14 @@ const jsonLd = buildJsonLd({
     <link rel="canonical" href={meta.canonical} />
     <link rel="stylesheet" href="/styles/theme.css" />
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
-        <!-- DESKTOP -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -68,11 +77,19 @@ const jsonLd = buildJsonLd({
             }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: page.heroH1 },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- 2. What remote support works for -->
           {page.whatRemoteWorksFor ? (
             <section class="section section-padding" aria-label="What remote support works for">
               <h2 class="section-title">{page.whatRemoteWorksFor.title}</h2>
@@ -82,6 +99,7 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- 3. What may need physical steps -->
           {page.whatMayNeedPhysical ? (
             <section class="section section-padding" aria-label="What may need physical steps">
               <h2 class="section-title">{page.whatMayNeedPhysical.title}</h2>
@@ -91,6 +109,32 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS: area, language, scope -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — remote support capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Need remote support? Send us your situation"
+            subheading="Pick your scenario — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Remote support: real situations we handled"
+            subtitle="Everything done via WhatsApp, phone and email — no office visit needed."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- 5. Recommended pages -->
           {page.recommendedLinks?.length ? (
             <section class="section section-padding" aria-label="Recommended pages">
               <h2 class="section-title">Recommended pages</h2>
@@ -104,14 +148,25 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-<ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still have questions about remote support?"
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText="Hi, I need remote insurance support. Can you guide me?"
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why our remote support works"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 6. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
-              <h2 class="section-title">FAQs</h2>
+              <h2 class="section-title">Frequently asked questions</h2>
               <MobileAccordion
                 sections={[{
                   title: "Questions people ask",
@@ -122,7 +177,8 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Remote insurance support" />
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -138,7 +194,7 @@ siteData={siteData}
           />
         </div>
 
-        <!-- MOBILE -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{
@@ -150,11 +206,14 @@ siteData={siteData}
             }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- 2. What remote support works for -->
           {page.whatRemoteWorksFor ? (
             <section class="section section-padding">
               <h2 class="section-title">{page.whatRemoteWorksFor.title}</h2>
@@ -164,6 +223,7 @@ siteData={siteData}
             </section>
           ) : null}
 
+          <!-- 3. What may need physical steps -->
           {page.whatMayNeedPhysical ? (
             <section class="section section-padding">
               <h2 class="section-title">{page.whatMayNeedPhysical.title}</h2>
@@ -172,11 +232,46 @@ siteData={siteData}
               </ul>
             </section>
           ) : null}
-<ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — remote support capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Need remote support? Send us your situation"
+            subheading="Pick your scenario — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS -->
+          <ScenariosWeHandle
+            title="Remote support: real situations we handled"
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still have questions about remote support?"
+            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            waNumber={waNumber}
+            waText="Hi, I need remote insurance support. Can you guide me?"
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why our remote support works"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 4. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
@@ -189,7 +284,8 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Remote insurance support" />
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -207,8 +303,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style is:global>
       .readable { max-width: 78ch; }

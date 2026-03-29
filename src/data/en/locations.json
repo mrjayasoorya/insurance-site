@@ -47,5 +47,96 @@
     "type": "city",
     "notes": "City coverage reference for personal + SME needs.",
     "commercialSignals": ["sme", "marine-cargo", "fleet"]
+  },
+  {
+    "slug": "tiruvottiyur",
+    "name": "Tiruvottiyur",
+    "type": "industrial",
+    "notes": "North Chennai port & industrial estate. High marine-cargo, fleet, and factory insurance intent.",
+    "commercialSignals": ["marine-cargo", "fleet", "warehouse", "factory"]
+  },
+  {
+    "slug": "ennore",
+    "name": "Ennore (Kamarajar Port Belt)",
+    "type": "industrial",
+    "notes": "Ennore port area — very high marine-cargo, import/export transit and industrial insurance demand.",
+    "commercialSignals": ["marine-cargo", "warehouse", "fleet", "liability"]
+  },
+  {
+    "slug": "gummidipoondi",
+    "name": "Gummidipoondi (SIPCOT)",
+    "type": "industrial",
+    "notes": "SIPCOT industrial estate. Medium/heavy industry — factory, contractor, fleet coverage demand.",
+    "commercialSignals": ["factory", "fleet", "heavy-equipment", "contractor"]
+  },
+  {
+    "slug": "ponneri",
+    "name": "Ponneri",
+    "type": "outer",
+    "notes": "District town with large rural-commercial catchment. Fleet, lorry and SME needs.",
+    "commercialSignals": ["fleet", "sme", "lorry"]
+  },
+  {
+    "slug": "minjur",
+    "name": "Minjur",
+    "type": "outer",
+    "notes": "North Chennai near SIPCOT outskirts. Fleet and commercial vehicle insurance demand.",
+    "commercialSignals": ["fleet", "lorry", "heavy-equipment"]
+  },
+  {
+    "slug": "thirumullaivoyal",
+    "name": "Thirumullaivoyal",
+    "type": "nearby",
+    "notes": "Near airport belt. Industrial + logistics corridor. Fleet, heavy equipment, SME demand.",
+    "commercialSignals": ["fleet", "sme", "heavy-equipment", "warehouse"]
+  },
+  {
+    "slug": "tondiarpet",
+    "name": "Tondiarpet",
+    "type": "city",
+    "notes": "North Chennai industrial / logistics hub. High lorry, fleet, marine and warehouse intent.",
+    "commercialSignals": ["fleet", "lorry", "marine-cargo", "warehouse"]
+  },
+  {
+    "slug": "kodungaiyur",
+    "name": "Kodungaiyur",
+    "type": "city",
+    "notes": "North Chennai logistics belt. Commercial vehicle and fleet insurance demand.",
+    "commercialSignals": ["fleet", "lorry", "sme"]
+  },
+  {
+    "slug": "erukkanchery",
+    "name": "Erukkanchery",
+    "type": "city",
+    "notes": "North Chennai. SME and transport corridor insurance demand.",
+    "commercialSignals": ["sme", "fleet"]
+  },
+  {
+    "slug": "pattabiram",
+    "name": "Pattabiram",
+    "type": "outer",
+    "notes": "Western corridor, near Avadi/defence belt. Fleet, contractor, and personal motor needs.",
+    "commercialSignals": ["fleet", "contractor", "heavy-equipment"]
+  },
+  {
+    "slug": "velappanchavadi",
+    "name": "Velappanchavadi",
+    "type": "nearby",
+    "notes": "North Chennai suburb near Thirumullaivoyal. SME, personal motor and fleet demand.",
+    "commercialSignals": ["sme", "fleet"]
+  },
+  {
+    "slug": "naravarikuppam",
+    "name": "Naravarikuppam",
+    "type": "outer",
+    "notes": "Peri-urban North Chennai. Lorry owners, small transport operators.",
+    "commercialSignals": ["lorry", "fleet"]
+  },
+  {
+    "slug": "kancheepuram",
+    "name": "Kancheepuram",
+    "type": "outer",
+    "notes": "District town with industrial outskirts. SME, contractor and fleet insurance demand.",
+    "commercialSignals": ["sme", "contractor", "fleet", "factory"]
   }
 ]

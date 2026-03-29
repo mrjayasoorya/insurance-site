@@ -604,5 +604,33 @@ const trustNote =
     // Removed to prevent accidental closes
 
     document.addEventListener("mouseout", onMouseOut);
+
+    // ── Time trigger: show after 30s if not shown yet ──
+    const timeoutId = setTimeout(() => {
+      if (canShow()) {
+        document.removeEventListener("mouseout", onMouseOut);
+        showPopup();
+      }
+    }, 60000);
+
+    // ── Scroll trigger: show when user scrolls 60% down ──
+    let scrollTriggered = false;
+    function onScroll() {
+      if (scrollTriggered || shownThisSession) return;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      const pct = scrollTop / docHeight;
+      if (pct >= 0.80) {
+        scrollTriggered = true;
+        window.removeEventListener("scroll", onScroll, { passive: true });
+        if (canShow()) {
+          clearTimeout(timeoutId);
+          document.removeEventListener("mouseout", onMouseOut);
+          showPopup();
+        }
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
   })();
 </script>

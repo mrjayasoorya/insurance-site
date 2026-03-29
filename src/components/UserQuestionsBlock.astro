@@ -1,0 +1,78 @@
+---
+/**
+ * UserQuestionsBlock.astro
+ * Answers the most common "before I contact" user concerns in a compact, reassuring card layout.
+ * These are NOT product FAQs — they are trust/practical questions:
+ *   "Will you serve 25km away?", "Do you speak Tamil?", "Do you handle import/export?"
+ * Props:
+ *   items – array of { icon, q, a }
+ *   title – optional section heading
+ */
+const { items = [], title = "Quick answers to common concerns" } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="uqb section section-padding" aria-labelledby="uqb-title">
+    <h2 id="uqb-title" class="section-title">{title}</h2>
+    <div class="uqb-grid">
+      {items.map((item) => (
+        <div class="uqb-card">
+          <div class="uqb-top">
+            <span class="uqb-icon">{item.icon}</span>
+            <p class="uqb-q">{item.q}</p>
+          </div>
+          <p class="uqb-a">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .uqb-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+    margin-top:16px;
+  }
+  .uqb-card{
+    padding:16px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--surface);
+    box-shadow:0 1px 6px rgba(11,13,18,.04);
+  }
+  .uqb-top{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    margin-bottom:8px;
+  }
+  .uqb-icon{
+    font-size:18px;
+    flex:0 0 auto;
+    line-height:1.2;
+  }
+  .uqb-q{
+    margin:0;
+    font-size:13.5px;
+    font-weight:800;
+    line-height:1.35;
+    color:var(--text);
+  }
+  .uqb-a{
+    margin:0;
+    font-size:13px;
+    line-height:1.5;
+    color:var(--muted);
+    padding-left:27px;
+  }
+
+  @media(max-width:820px){
+    .uqb-grid{
+      grid-template-columns:1fr;
+    }
+    .uqb-q{ font-size:13px; }
+    .uqb-a{ font-size:12.5px; }
+  }
+</style>

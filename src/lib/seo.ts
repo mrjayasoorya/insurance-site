@@ -388,7 +388,14 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
 
     // THIS IS WHERE YOUR “40–60km + districts + hubs” lives
     areaServed: areaServedStruct,
-
+    // AggregateRating from GMB — improves local pack and AI citation
+    aggregateRating: (brand?.ratingValue && brand?.reviewCount) ? prune({
+      "@type": "AggregateRating",
+      ratingValue: String(brand.ratingValue),
+      bestRating: "5",
+      worstRating: "1",
+      reviewCount: String(brand.reviewCount),
+    }) : undefined,
     // Helpful for LLMs; not harmful for Google if kept factual
     knowsAbout: pickKnowsAbout({ pageType, serviceData, siteData }),
     priceRange: "₹₹",

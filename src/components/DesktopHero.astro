@@ -1,12 +1,186 @@
 ---
-const { brand } = Astro.props;
+const { brand, heroH1 } = Astro.props;
+
+const telHref = brand?.phoneE164 ? `tel:${brand.phoneE164}` : `tel:${brand?.phone}`;
+const waHref = brand?.whatsappE164
+  ? `https://wa.me/${brand.whatsappE164}?text=${encodeURIComponent(brand?.whatsappPrefill || "Hi, I need insurance guidance. Please help.")}`
+  : "#";
+const phone = brand?.phone || "7448324068";
+const areaChips = brand?.areaChips || ["Sholavaram", "Red Hills", "Madhavaram", "Manali"];
 ---
+
 <div class="hero">
-  <div style="font-weight: bold;font-size: 44px;">{brand.name}</div>
-  <p>{brand.subtitle}</p>
-  <div class="signup" style="justify-content:center;">
-    <a class="btn" href={`tel:${brand.phone}`} aria-label={`Call Now ${brand.phone}`}>
-      Call Now {brand.phone}
+  <!-- Trust bar above headline -->
+  <div class="hero-trust-bar">
+    <span class="htb-item">
+      <span class="htb-dot" aria-hidden="true"></span>
+      30+ Years Experience
+    </span>
+    <span class="htb-sep" aria-hidden="true">·</span>
+    <span class="htb-item">4.9★ Google Reviews</span>
+    <span class="htb-sep" aria-hidden="true">·</span>
+    <span class="htb-item">LIC &amp; General Insurance</span>
+    <span class="htb-sep" aria-hidden="true">·</span>
+    <span class="htb-item">Sholavaram, Chennai</span>
+    <span class="htb-sep" aria-hidden="true">·</span>
+    <span class="htb-item">Claims &amp; Renewals Support</span>
+  </div>
+
+  <h1 class="hero-h1">{heroH1 || brand.name}</h1>
+
+  {brand.tagline && (
+    <p class="hero-tagline">{brand.tagline}</p>
+  )}
+
+  <p class="hero-sub">
+    {brand.subtitle || "Commercial & personal insurance guidance — lorry, fleet, factory, warehouse, health & motor. Sholavaram base. Chennai-wide support."}
+  </p>
+
+  <!-- Dual CTA -->
+  <div class="hero-cta-row">
+    <a class="hero-btn hero-btn-wa" href={waHref} target="_blank" rel="noopener" aria-label="WhatsApp us for insurance guidance">
+      <svg class="hero-btn-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+      </svg>
+      <span>WhatsApp for Guidance</span>
+    </a>
+    <a class="hero-btn hero-btn-call" href={telHref} aria-label={`Call ${phone}`}>
+      <svg class="hero-btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" width="20" height="20">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.91.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span>Call {phone}</span>
     </a>
   </div>
+
+  <!-- Service chips -->
+  {areaChips.length > 0 && (
+    <div class="hero-chips" role="list" aria-label="Coverage areas">
+      {areaChips.map((chip) => (
+        <span class="hero-chip" role="listitem">{chip}</span>
+      ))}
+    </div>
+  )}
 </div>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 28px 0 20px;
+  }
+
+  .hero-trust-bar {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 10px;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    background: #f6f7f9;
+    border: 1px solid #e7e9ee;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    letter-spacing: 0.01em;
+  }
+  .htb-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .htb-sep { opacity: 0.35; font-weight: 400; }
+
+  .hero-h1 {
+    margin: 0 auto 10px;
+    max-width: 780px;
+    font-size: clamp(30px, 3.2vw, 50px);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    color: #0b0d12;
+  }
+
+  .hero-tagline {
+    margin: 0 auto 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #374151;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-sub {
+    margin: 0 auto 22px;
+    max-width: 580px;
+    color: #5b616e;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 0 auto 18px;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: transform 80ms ease, box-shadow 120ms ease;
+    white-space: nowrap;
+  }
+  .hero-btn:active { transform: translateY(1px); }
+
+  .hero-btn-wa {
+    background: #22c55e;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(34,197,94,0.30);
+  }
+  .hero-btn-wa:hover { box-shadow: 0 6px 22px rgba(34,197,94,0.40); }
+
+  .hero-btn-call {
+    background: #0b0f19;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(11,15,25,0.18);
+  }
+  .hero-btn-call:hover { box-shadow: 0 6px 20px rgba(11,15,25,0.28); }
+
+  .hero-btn-ico { flex-shrink: 0; }
+
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+    max-width: 560px;
+  }
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid #e7e9ee;
+    background: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    color: #374151;
+    box-shadow: 0 1px 0 rgba(11,13,18,0.04);
+  }
+</style>

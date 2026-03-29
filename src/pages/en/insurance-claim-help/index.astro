@@ -1,18 +1,27 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, howWeWork, mid-page CTA, removed LocalIdentitySection
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import MobileAccordion from "../../../components/MobileAccordion.astro";
-import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
 import BacklinksRow from "../../../components/BacklinksRow.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 
-import { siteData } from "../../../content/siteData";
+import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 const page = siteData.intentPages["insurance-claim-help"];
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 if (!page) throw new Error("Missing siteData.intentPages['insurance-claim-help']");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insurance-claim-help/");
@@ -49,32 +58,38 @@ const jsonLd = buildJsonLd({
     <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <link rel="stylesheet" href="/styles/theme.css" />
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
-        <!-- DESKTOP -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
-            <DesktopHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: page.heroP,
-                phone: siteData.brand.phone,
-                areaChips: siteData.brand.areaChips,
-              }}
-            />
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: page.heroP,
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: page.heroH1 },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- 2. Claim workflow -->
           {page.claimWorkflow ? (
             <section class="section section-padding" aria-label="Claim workflow">
               <h2 class="section-title">{page.claimWorkflow.title}</h2>
@@ -86,6 +101,7 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- 3. What often delays claims -->
           {page.whatOftenDelays ? (
             <section class="section section-padding" aria-label="What delays claims">
               <h2 class="section-title">{page.whatOftenDelays.title}</h2>
@@ -95,6 +111,32 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS: area, language, scope -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — claim help capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Need claim help? Tell us your situation"
+            subheading="Pick your scenario — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Real situations we handled"
+            subtitle="Claim rejections, delays, disputes — these are the kinds of cases we help with."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- 5. Recommended links -->
           {page.recommendedLinks?.length ? (
             <section class="section section-padding" aria-label="Recommended links">
               <h2 class="section-title">Recommended links</h2>
@@ -108,27 +150,37 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-<ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still wondering about the claim process?"
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText="Hi, I need help with an insurance claim. Can you guide me?"
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why clients trust us for claims"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 6. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
-              <h2 class="section-title">FAQs</h2>
+              <h2 class="section-title">Frequently asked questions</h2>
               <MobileAccordion
-                sections={[
-                  {
-                    title: "Questions people ask",
-                    items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                  },
-                ]}
+                sections={[{
+                  title: "Questions people ask",
+                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
                 defaultOpen={true}
               />
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Insurance claim help" />
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -144,25 +196,26 @@ siteData={siteData}
           />
         </div>
 
-        <!-- MOBILE -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
-            <MobileHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: page.heroP,
-                phone: siteData.brand.phone,
-                areaChips: [],
-              }}
-            />
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: page.heroP,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- 2. Claim workflow -->
           {page.claimWorkflow ? (
             <section class="section section-padding">
               <h2 class="section-title">{page.claimWorkflow.title}</h2>
@@ -174,6 +227,7 @@ siteData={siteData}
             </section>
           ) : null}
 
+          <!-- 3. What often delays claims -->
           {page.whatOftenDelays ? (
             <section class="section section-padding">
               <h2 class="section-title">{page.whatOftenDelays.title}</h2>
@@ -182,26 +236,60 @@ siteData={siteData}
               </ul>
             </section>
           ) : null}
-<ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — claim help capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Need claim help? Tell us your situation"
+            subheading="Pick your scenario — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS -->
+          <ScenariosWeHandle
+            title="Real situations we handled"
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- 4. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
-                sections={[
-                  {
-                    title: "FAQs",
-                    items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                  },
-                ]}
+                sections={[{
+                  title: "FAQs",
+                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
                 defaultOpen={true}
               />
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Insurance claim help" />
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still wondering about the claim process?"
+            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            waNumber={waNumber}
+            waText="Hi, I need help with an insurance claim. Can you guide me?"
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why clients trust us for claims"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -219,8 +307,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style is:global>
       .readable { max-width: 78ch; }
@@ -229,13 +316,9 @@ siteData={siteData}
       .card { display: block; padding: 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; text-decoration: none; }
       .card-title { font-size: 16px; margin: 8px 0 6px; }
       .card-desc { margin: 0; opacity: .85; }
-
       .steps { margin: 10px 0 0; padding-left: 18px; }
       .step { margin: 8px 0; }
-
-      @media (max-width: 980px) {
-        .grid-2 { grid-template-columns: 1fr; }
-      }
+      @media (max-width: 980px) { .grid-2 { grid-template-columns: 1fr; } }
     </style>
   </body>
 </html>

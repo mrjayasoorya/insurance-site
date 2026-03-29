@@ -2,14 +2,18 @@
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 
 import { siteData, EN, LOCATION_BUCKETS } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+
+const cc = siteData.confidenceContent || {};
 
 // Canonical
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
@@ -174,6 +178,7 @@ const claimReadyPrinciples = [
       "For motor: IDV/NCB/add-ons based on usage. For commercial: permit/fitness alignment (as applicable) and correct policy wording fit. Prevent coverage gaps and mismatch disputes.",
   },
 ];
+const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
 ---
 
 <html lang="en">
@@ -215,6 +220,11 @@ const claimReadyPrinciples = [
             />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: "/en/" },
+            { label: "Services" },
+          ]} />
+
           {/* H1 first (clear semantic context) */}
           <section class="section section-padding" aria-labelledby="svc-h1">
             <h1 id="svc-h1" class="section-title">
@@ -224,6 +234,7 @@ const claimReadyPrinciples = [
               Support is coordinated from Sholavaram and commonly extends across Chennai North and corridor-connected belts.
               This hub explains what each service is for, common mistakes, documentation sensitivity, and how to keep renewals and claims smoother.
             </p>
+            <PageActionBar brand={siteData.brand} context="Services" />
 
             {/* Intent-first actions (information scent + internal linking) */}
             <div class="grid grid-2" style="margin-top:12px">
@@ -371,8 +382,38 @@ siteData={siteData}
     block={siteData.conversionBlocks.expired}
     brand={siteData.brand}
   />
+          {howWeWork.length > 0 && (
+            <section class="section section-padding" aria-label="How we work">
+              <h2 class="section-title">How We Work</h2>
+              <ol class="steps-list">
+                {howWeWork.map((step, i) => (
+                  <li class="step-item">
+                    <span class="step-num">{i + 1}</span>
+                    <div>
+                      <strong>{step.title}</strong>
+                      <p class="step-desc">{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="What you want to know before you call"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why choose us for insurance"
+            points={(cc.whyUs || [])}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="services" />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -410,6 +451,7 @@ siteData={siteData}
               Sholavaram-based support for Chennai North and corridor belts—transport/fleet, warehouse/property, contractor risk,
               plus personal motor/health/LIC support when needed.
             </p>
+            <PageActionBar brand={siteData.brand} context="Services" />
 
             <div class="grid grid-1" style="margin-top:12px">
               <a class="card" href={EN("/insurance-near-me/")}>
@@ -507,8 +549,25 @@ siteData={siteData}
     block={siteData.conversionBlocks.expired}
     brand={siteData.brand}
   />
+          {howWeWork.length > 0 && (
+            <section class="section section-padding" aria-label="How we work">
+              <h2 class="section-title">How We Work</h2>
+              <ol class="steps-list">
+                {howWeWork.map((step, i) => (
+                  <li class="step-item">
+                    <span class="step-num">{i + 1}</span>
+                    <div>
+                      <strong>{step.title}</strong>
+                      <p class="step-desc">{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="services" />
 
           <section aria-label="Contact CTA">
             <FooterCtaBar
@@ -527,8 +586,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style>
       .grid { display:grid; gap:12px; }
@@ -556,6 +614,11 @@ siteData={siteData}
         opacity:.92;
       }
       .chip-ghost{ opacity:.72; }
+
+      .steps-list{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:12px}
+      .step-item{display:flex;gap:14px;align-items:flex-start}
+      .step-num{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+      .step-desc{margin:4px 0 0;opacity:.85}
 
       .chips{ display:flex; flex-wrap:wrap; gap:10px; }
 

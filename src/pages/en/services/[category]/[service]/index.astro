@@ -1,19 +1,24 @@
 ---
 // src/pages/en/services/[category]/[service]/index.astro
+// RESTRUCTURED: Section order based on user search intent + conversion data
 
 import DesktopHero from "../../../../../components/DesktopHero.astro";
 import MobileHero from "../../../../../components/MobileHero.astro";
 import MobileAccordion from "../../../../../components/MobileAccordion.astro";
 import FooterCtaBar from "../../../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 import ServiceLocalSupport from "src/components/ServiceLocalSupport.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
 
 import { siteData, EN, SERVICE_LOCAL_SUPPORT } from "../../../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 export async function getStaticPaths() {
   const all = siteData?.servicesDetail || {};
@@ -56,45 +61,31 @@ const jsonLd = buildJsonLd({
   faqs: data.faqs || [],
 });
 
-// ---- Local Support (service-specific mapping; avoids templated lists) ----
-const localSupportSlugs =
-  SERVICE_LOCAL_SUPPORT?.[category]?.[serviceSlug] || [];
+const localSupportSlugs = SERVICE_LOCAL_SUPPORT?.[category]?.[serviceSlug] || [];
 
-// ---- At-a-glance fields (high-weight content early) ----
-// Keep these short and factual; bots read this well.
 const atAGlance = [
-  { k: "Best for", v: (data.whoFor || []).slice(0, 2).join(" • ") },
-  { k: "Core focus", v: (data.keyCoverFocus || []).slice(0, 2).join(" • ") },
-  { k: "Claim sensitivity", v: (data.whatCanGoWrong || []).slice(0, 2).join(" • ") },
-  { k: "Documents", v: (data.claimDocs || []).slice(0, 2).join(" • ") },
+  { k: "Best for", v: (data.whoFor || []).slice(0, 2).join(" · ") },
+  { k: "Key coverage", v: (data.keyCoverFocus || []).slice(0, 2).join(" · ") },
+  { k: "Watch out for", v: (data.whatCanGoWrong || []).slice(0, 1).join("") },
+  { k: "Documents", v: (data.claimDocs || []).slice(0, 2).join(" · ") },
 ].filter((x) => x.v);
 
-// ---- Helper to build interlink cards with better descriptions ----
 const linkCards = (data.internalLinks || []).map((l) => ({
   ...l,
-  desc:
-    l.desc ||
-    "Related guidance page for coverage logic, documents and common mistakes (claim-ready).",
+  desc: l.desc || "Coverage details, documents and claim guidance.",
 }));
 
-// Optional: intent links (use existing intent pages)
 const intentCards = [
-  {
-    title: "Insurance near me",
-    desc: "How local support works (visit vs WhatsApp/phone), document checklist, and when insurer inspections apply.",
-    href: EN("/insurance-near-me/"),
-  },
-  {
-    title: "Insurance renewal near me",
-    desc: "Renewal checks (IDV/NCB/add-ons; permits/fitness as applicable) to avoid gaps and disputes.",
-    href: EN("/insurance-renewal-near-me/"),
-  },
-  {
-    title: "Insurance claim help",
-    desc: "What to do first, what proof matters, and how to keep a clean incident timeline.",
-    href: EN("/insurance-claim-help/"),
-  },
+  { title: "Insurance near me", desc: "How local support works, document checklist, insurer inspections.", href: EN("/insurance-near-me/") },
+  { title: "Insurance renewal help", desc: "Renewal checks: IDV/NCB/add-ons, permits/fitness as applicable.", href: EN("/insurance-renewal-near-me/") },
+  { title: "Insurance claim help", desc: "First steps, proof that matters, incident timeline guidance.", href: EN("/insurance-claim-help/") },
 ];
+
+// Confidence content — scenarios and gap-fillers specific to this service
+const cc = siteData.confidenceContent || {};
+const svcScenarios = cc.serviceScenarios?.[category]?.[serviceSlug] || cc.homeScenarios?.slice(0, 2) || [];
+const svcGapQs = cc.serviceGapQuestions?.[category] || cc.homeGapQuestions?.slice(0, 3) || [];
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 ---
 
 <html lang="en">
@@ -105,7 +96,7 @@ const intentCards = [
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
     {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-<link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -126,18 +117,29 @@ const intentCards = [
                 tagline: siteData.brand.tagline,
                 subtitle: data.heroP,
                 phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
                 areaChips: siteData.brand.areaChips,
               }}
             />
           </header>
 
-          <!-- H1 + clear positioning -->
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Services", href: EN("/services/") },
+            { label: category.replace(/-/g, " "), href: EN(`/services/${category}/`) },
+            { label: data.heroH1 },
+          ]} />
+
+          <!-- 1. H1 + CTA (immediate action) -->
           <section class="section section-padding" aria-label="Service overview">
             <h1 class="section-title">{data.heroH1}</h1>
             <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
           </section>
 
-          <!-- At a glance (high-weight, reduces “thin” perception) -->
+          <!-- 2. At a glance (quick facts) -->
           {atAGlance.length ? (
             <section class="section section-padding" aria-label="At a glance">
               <h2 class="section-title">At a glance</h2>
@@ -152,43 +154,21 @@ const intentCards = [
             </section>
           ) : null}
 
-          <!-- Claim-first positioning (your USP) -->
-          {data.claimDiscipline?.title ? (
-            <section class="section section-padding" aria-label="Claim-first guidance">
-              <h2 class="section-title">{data.claimDiscipline.title}</h2>
-              {data.claimDiscipline.intro ? (
-                <p class="section-sub readable">{data.claimDiscipline.intro}</p>
-              ) : null}
-              {data.claimDiscipline.bullets?.length ? (
-                <ul class="bullets">
-                  {data.claimDiscipline.bullets.map((x) => <li>{x}</li>)}
-                </ul>
+          <!-- 3. What this covers (PRIMARY user search intent) -->
+          {data.keyCoverFocus?.length ? (
+            <section class="section section-padding" aria-label="What this covers">
+              <h2 class="section-title">What this covers</h2>
+              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
+              {data.standardModules?.bullets?.length ? (
+                <details class="expand-block" style="margin-top:14px">
+                  <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
+                  <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
+                </details>
               ) : null}
             </section>
           ) : null}
 
-          <!-- Local Support (Service -> Location silo) -->
-          <ServiceLocalSupport
-            title={`Local support for ${data.heroH1 || "this service"}`}
-            subtitle="These location pages explain local context + typical needs. Support is coordinated from Sholavaram (no fake branch offices)."
-            slugs={localSupportSlugs}
-            max={10}
-          />
-
-          <!-- Standard modules (very important for MSME/warehouse/fire) -->
-          {data.standardModules?.bullets?.length ? (
-            <section class="section section-padding" aria-label="Coverage modules">
-              <h2 class="section-title">{data.standardModules.title || "Standard coverage modules"}</h2>
-              <p class="section-sub readable">
-                Modules and add-ons vary by insurer and business type. The goal is to match wording to real operations and keep proof discipline defensible.
-              </p>
-              <ul class="bullets">
-                {data.standardModules.bullets.map((x) => <li>{x}</li>)}
-              </ul>
-            </section>
-          ) : null}
-
-          <!-- Who for -->
+          <!-- 4. Who this is for (user identification) -->
           {data.whoFor?.length ? (
             <section class="section section-padding" aria-label="Who this is for">
               <h2 class="section-title">Who this is for</h2>
@@ -196,43 +176,45 @@ const intentCards = [
             </section>
           ) : null}
 
-          <!-- What can go wrong -->
-          {data.whatCanGoWrong?.length ? (
-            <section class="section section-padding" aria-label="What can go wrong">
-              <h2 class="section-title">What commonly causes claim disputes or delays</h2>
-              <p class="section-sub readable">
-                This is not fear content—these are the avoidable reasons claims get stuck: mismatched disclosures, weak timelines, missing proofs, and condition gaps.
-              </p>
-              <ul class="bullets">{data.whatCanGoWrong.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- Focus + docs + mistakes (your existing structure, but framed better) -->
-          {data.keyCoverFocus?.length ? (
-            <section class="section section-padding" aria-label="What we focus on">
-              <h2 class="section-title">What we focus on (claim-first)</h2>
-              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
+          <!-- 5. Documents you'll need (actionable) -->
           {data.claimDocs?.length ? (
             <section class="section section-padding" aria-label="Documents checklist">
-              <h2 class="section-title">Documents that protect claim momentum</h2>
-              <p class="section-sub readable">
-                These documents are not always mandatory in every case—but missing them is a frequent reason for delays and valuation disputes.
-              </p>
+              <h2 class="section-title">Documents you'll need</h2>
               <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
 
-          {data.commonMistakes?.length ? (
-            <section class="section section-padding" aria-label="Common mistakes">
-              <h2 class="section-title">Common mistakes we help prevent</h2>
-              <ul class="bullets">{data.commonMistakes.map((x) => <li>{x}</li>)}</ul>
+          <!-- 6. What affects pricing (high search demand) -->
+          {data.pricingFactors?.bullets?.length ? (
+            <section class="section section-padding" aria-label="Pricing factors">
+              <h2 class="section-title">{data.pricingFactors.title || "What affects your premium"}</h2>
+              <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
 
-          <!-- Pre-buy / renewal checklist (optional) -->
+          <!-- SCENARIOS WE HANDLE — service-specific confidence -->
+          <ScenariosWeHandle
+            title={`Real situations we've handled — ${data.heroH1.split('(')[0].trim()}`}
+            subtitle="If your situation is similar, we can help. Send a WhatsApp message to get started."
+            scenarios={svcScenarios}
+            waNumber={waNumber}
+          />
+
+          <!-- MID-PAGE CTA (user has core info → capture now) -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 8. Mistakes to avoid (trust-building) -->
+          {(data.commonMistakes?.length || data.whatCanGoWrong?.length) ? (
+            <section class="section section-padding" aria-label="Mistakes to avoid">
+              <h2 class="section-title">Mistakes that delay or reduce claims</h2>
+              <ul class="bullets">
+                {(data.commonMistakes || []).map((x) => <li>{x}</li>)}
+                {(data.whatCanGoWrong || []).map((x) => <li>{x}</li>)}
+              </ul>
+            </section>
+          ) : null}
+
+          <!-- 9. Before you buy / renew -->
           {data.preBuyChecklist?.bullets?.length ? (
             <section class="section section-padding" aria-label="Before you buy or renew">
               <h2 class="section-title">{data.preBuyChecklist.title || "Before you buy or renew"}</h2>
@@ -240,67 +222,33 @@ const intentCards = [
             </section>
           ) : null}
 
-          <!-- Pricing/acceptance factors (optional but strong for indexing) -->
-          {data.pricingFactors?.bullets?.length ? (
-            <section class="section section-padding" aria-label="Pricing factors">
-              <h2 class="section-title">{data.pricingFactors.title || "What affects premium and acceptance"}</h2>
-              <p class="section-sub readable">
-                We do not publish pricing because it depends on insurer rules and disclosures. This section explains the variables that change pricing and claim outcomes.
-              </p>
-              <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
+          <!-- GAP-FILLER — what users wonder before contacting -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            subtitle="Common questions people have before reaching out about this type of insurance."
+            items={svcGapQs}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${data.heroH1.split('(')[0].trim()}. Can you guide me?`}
+          />
 
-          <!-- Local context + synonyms -->
-          {data.localFit ? (
-            <section class="section section-padding" aria-label="Local context">
-              <h2 class="section-title">Local context</h2>
-              <p class="section-sub readable">{data.localFit}</p>
-            </section>
-          ) : null}
+          <!-- SMART ASSIST — service detail capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Have a question about this service? Pre-fill your WhatsApp"
+            subheading="Pick your situation — we build the message, you just send."
+          />
 
-          {data.alsoKnownAs?.length ? (
-            <section class="section section-padding" aria-label="Also known as">
-              <h2 class="section-title">Also known as</h2>
-              <p class="section-sub readable">{data.alsoKnownAs.join(" • ")}</p>
-            </section>
-          ) : null}
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us for this"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
 
-          {data.areaRealityTitle && data.areaRealityText ? (
-            <section class="section section-padding" aria-label="Area reality">
-              <h2 class="section-title">{data.areaRealityTitle}</h2>
-              <p class="section-sub readable">{data.areaRealityText}</p>
-            </section>
-          ) : null}
-
-          {data.areaSignals?.length ? (
-            <section class="section section-padding" aria-label="Local signals">
-              <h2 class="section-title">Search signals people use</h2>
-              <p class="section-sub readable">{data.areaSignals.join(" • ")}</p>
-            </section>
-          ) : null}
-
-          <!-- Intent links (semantic + conversion) -->
-          <section class="section section-padding" aria-label="Quick actions">
-            <h2 class="section-title">Quick actions</h2>
-            <div class="grid grid-2">
-              {intentCards.map((c) => (
-                <a class="card" href={c.href}>
-                  <h3 class="card-title">{c.title}</h3>
-                  <p class="card-desc readable">{c.desc}</p>
-                </a>
-              ))}
-            </div>
-          </section>
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-          <!-- Visible FAQ (important) -->
+          <!-- 10. FAQs (catches remaining questions) -->
           {data.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
-              <h2 class="section-title">FAQs</h2>
+              <h2 class="section-title">Frequently asked questions</h2>
               <MobileAccordion
                 sections={[{
                   title: "Questions people ask",
@@ -311,13 +259,13 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <!-- Complementary protection (semantic web / “related risks”) -->
+          <!-- FINAL CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 11. Related services -->
           {linkCards.length ? (
-            <section class="section section-padding" aria-label="Complementary business protection">
-              <h2 class="section-title">Complementary protection (related risks)</h2>
-              <p class="section-sub readable">
-                Businesses rarely have only one risk. These pages cover adjacent exposures that commonly affect renewals and claims.
-              </p>
+            <section class="section section-padding" aria-label="Related services">
+              <h2 class="section-title">Related services</h2>
               <div class="grid grid-2">
                 {linkCards.map((l) => (
                   <a class="card" href={l.href}>
@@ -329,8 +277,28 @@ siteData={siteData}
             </section>
           ) : null}
 
+          <!-- 12. Quick actions -->
+          <section class="section section-padding" aria-label="Quick actions">
+            <h2 class="section-title">Quick actions</h2>
+            <div class="grid grid-2">
+              {intentCards.map((c) => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <!-- 13. Local support (internal links to service areas) -->
+          <ServiceLocalSupport
+            title={`Local support for ${data.heroH1 || "this service"}`}
+            subtitle="Support is coordinated from Sholavaram. Location pages provide area-specific context."
+            slugs={localSupportSlugs}
+            max={10}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="serviceDetail" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -354,16 +322,22 @@ siteData={siteData}
                 tagline: siteData.brand.tagline,
                 subtitle: data.heroP,
                 phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
                 areaChips: [],
               }}
             />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{data.heroH1}</h1>
             <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
           </section>
 
+          <!-- 2. At a glance -->
           {atAGlance.length ? (
             <section class="section section-padding">
               <h2 class="section-title">At a glance</h2>
@@ -378,43 +352,21 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <!-- {data.claimDiscipline?.title ? (
+          <!-- 3. What this covers -->
+          {data.keyCoverFocus?.length ? (
             <section class="section section-padding">
-              <h2 class="section-title">{data.claimDiscipline.title}</h2>
-              {data.claimDiscipline.intro ? <p class="section-sub readable">{data.claimDiscipline.intro}</p> : null}
-              {data.claimDiscipline.bullets?.length ? <ul class="bullets">{data.claimDiscipline.bullets.map((x) => <li>{x}</li>)}</ul> : null}
-            </section>
-          ) : null} -->
-
-                    <!-- Claim-first positioning (your USP) -->
-          {data.claimDiscipline?.title ? (
-            <section class="section section-padding" aria-label="Claim-first guidance">
-              <h2 class="section-title">{data.claimDiscipline.title}</h2>
-              {data.claimDiscipline.intro ? (
-                <p class="section-sub readable">{data.claimDiscipline.intro}</p>
-              ) : null}
-              {data.claimDiscipline.bullets?.length ? (
-                <ul class="bullets">
-                  {data.claimDiscipline.bullets.map((x) => <li>{x}</li>)}
-                </ul>
+              <h2 class="section-title">What this covers</h2>
+              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
+              {data.standardModules?.bullets?.length ? (
+                <details class="expand-block" style="margin-top:14px">
+                  <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
+                  <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
+                </details>
               ) : null}
             </section>
           ) : null}
 
-          <ServiceLocalSupport
-            title={`Local support for ${data.heroH1 || "this service"}`}
-            subtitle="Support is coordinated from Sholavaram; location pages provide local context + common needs."
-            slugs={localSupportSlugs}
-            max={10}
-          />
-
-          {data.standardModules?.bullets?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.standardModules.title || "Standard coverage modules"}</h2>
-              <ul class="bullets">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
+          <!-- 4. Who this is for -->
           {data.whoFor?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Who this is for</h2>
@@ -422,48 +374,80 @@ siteData={siteData}
             </section>
           ) : null}
 
-          
-
-          {data.whatCanGoWrong?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">What commonly goes wrong</h2>
-              <ul class="bullets">{data.whatCanGoWrong.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-
-          <!-- Focus + docs + mistakes (your existing structure, but framed better) -->
-          {data.keyCoverFocus?.length ? (
-            <section class="section section-padding" aria-label="What we focus on">
-              <h2 class="section-title">What we focus on (claim-first)</h2>
-              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
+          <!-- 5. Documents -->
           {data.claimDocs?.length ? (
-            <section class="section section-padding" aria-label="Documents checklist">
-              <h2 class="section-title">Documents that protect claim momentum</h2>
-              <p class="section-sub readable">
-                These documents are not always mandatory in every case—but missing them is a frequent reason for delays and valuation disputes.
-              </p>
+            <section class="section section-padding">
+              <h2 class="section-title">Documents you'll need</h2>
               <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
+
+          <!-- 6. Pricing -->
+          {data.pricingFactors?.bullets?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.pricingFactors.title || "What affects your premium"}</h2>
+              <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- SCENARIOS WE HANDLE (mobile) -->
+          <ScenariosWeHandle
+            title="Real situations we've handled"
+            scenarios={svcScenarios.slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 8. Mistakes to avoid -->
+          {(data.commonMistakes?.length || data.whatCanGoWrong?.length) ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Mistakes that delay or reduce claims</h2>
+              <ul class="bullets">
+                {(data.commonMistakes || []).map((x) => <li>{x}</li>)}
+                {(data.whatCanGoWrong || []).map((x) => <li>{x}</li>)}
+              </ul>
+            </section>
+          ) : null}
+
+          <!-- GAP-FILLER (mobile) -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={svcGapQs.slice(0, 3)}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${data.heroH1.split('(')[0].trim()}. Can you guide me?`}
+          />
+
+          <!-- SMART ASSIST — service detail capture (mobile) -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Have a question about this service? Pre-fill your WhatsApp"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us for this"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 9. FAQs -->
           {data.faqs?.length ? (
             <section class="section section-padding">
-              <h2 class="section-title">FAQs</h2>
+              <h2 class="section-title">Frequently asked questions</h2>
               <MobileAccordion sections={[{ title: "Questions people ask", items: data.faqs.map((f) => ({ strong: f.q, text: f.a })) }]} defaultOpen={true} />
             </section>
           ) : null}
 
+          <!-- FINAL CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 10. Related services -->
           {linkCards.length ? (
             <section class="section section-padding">
-              <h2 class="section-title">Related risks</h2>
+              <h2 class="section-title">Related services</h2>
               <div class="grid grid-1">
                 {linkCards.map((l) => (
                   <a class="card" href={l.href}>
@@ -476,7 +460,6 @@ siteData={siteData}
           ) : null}
 
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="serviceDetail" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -494,8 +477,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style>
       .readable { max-width: 78ch; }
@@ -525,6 +507,16 @@ siteData={siteData}
         opacity: .9;
         font-size: 13.5px;
         line-height: 1.35;
+      }
+      .expand-block{
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:10px 14px;
+      }
+      .expand-trigger{
+        cursor:pointer;
+        font-weight:900;
+        font-size:14px;
       }
 
       @media (max-width: 520px){

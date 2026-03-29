@@ -1,6 +1,7 @@
 ---
 import PageLayout from "./PageLayout.astro";
 import FooterCtaBar from "../components/FooterCtaBar.astro";
+import SmartAssistForm from "../components/SmartAssistForm.astro";
 import { siteData } from "../content/siteData";
 
 const { page, breadcrumbItems } = Astro.props;
@@ -54,6 +55,16 @@ const jsonLd = {
   jsonLdGraph={jsonLd}
 >
   <slot />
+
+  <section class="section section-padding" aria-label="Get guidance">
+    <SmartAssistForm
+      brand={siteData.brand}
+      mode="inline"
+      id="sa-art"
+      heading="Have questions about this?"
+      subheading="Tell us what you need — we'll prepare a WhatsApp message for you."
+    />
+  </section>
 
   <section aria-label="Contact" class="section">
     <FooterCtaBar

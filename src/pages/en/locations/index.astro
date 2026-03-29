@@ -2,16 +2,17 @@
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
-import LocalIdentitySection from "src/components/LocalIdentitySection.astro";
-import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
 
@@ -26,6 +27,11 @@ const centralHub = siteData.locationsIndex?.centralHub || null;
 const intentRouter = siteData.locationsIndex?.intentRouter || null;
 const claimReady = siteData.locationsIndex?.claimReadyPrinciples || null;
 const searchLang = siteData.locationsIndex?.searchLanguage || null;
+const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
+
+// Confidence content
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 // Optional hierarchical schema nodes (zones as AdministrativeArea)
 const extraNodes = zones.length
@@ -91,9 +97,15 @@ const jsonLd = buildJsonLd({
             />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: "/en/" },
+            { label: "Locations" },
+          ]} />
+
           <section class="section section-padding" aria-labelledby="loc-title">
             <h1 id="loc-title" class="section-title">{siteData.locationsIndex?.title}</h1>
             <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Locations" />
           </section>
 
           <!-- Central hub (answers: office vs service area) -->
@@ -221,10 +233,45 @@ siteData={siteData}
     block={siteData.conversionBlocks.default}
     brand={siteData.brand}
   />
-          <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
-          <NearMeTrustSection brand={siteData.brand} />
+          {howWeWork.length > 0 && (
+            <section class="section section-padding" aria-label="How we work">
+              <h2 class="section-title">How We Work</h2>
+              <ol class="steps-list">
+                {howWeWork.map((step, i) => (
+                  <li class="step-item">
+                    <span class="step-num">{i + 1}</span>
+                    <div>
+                      <strong>{step.title}</strong>
+                      <p class="step-desc">{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <ScenariosWeHandle
+            title="Real situations we handle across these areas"
+            subtitle="People from these belts reach us with exactly these kinds of situations."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText="Hi, I need insurance guidance for my area. Can you help?"
+          />
+
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="locations" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -256,6 +303,7 @@ siteData={siteData}
           <section class="section section-padding">
             <h1 class="section-title">{siteData.locationsIndex?.title}</h1>
             <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Locations" />
           </section>
 
           {centralHub?.title ? (
@@ -326,10 +374,40 @@ siteData={siteData}
     block={siteData.conversionBlocks.default}
     brand={siteData.brand}
   />
-          <LocalIdentitySection brand={siteData.brand} contextLabel="Locations" />
-          <NearMeTrustSection brand={siteData.brand} />
+
+          {howWeWork.length > 0 && (
+            <section class="section section-padding" aria-label="How we work">
+              <h2 class="section-title">How We Work</h2>
+              <ol class="steps-list">
+                {howWeWork.map((step, i) => (
+                  <li class="step-item">
+                    <span class="step-num">{i + 1}</span>
+                    <div>
+                      <strong>{step.title}</strong>
+                      <p class="step-desc">{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <ScenariosWeHandle
+            title="Real situations we handle"
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            waNumber={waNumber}
+            waText="Hi, I need insurance guidance for my area. Can you help?"
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="locations" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -346,8 +424,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style>
       .readable { max-width: 78ch; }
@@ -449,6 +526,11 @@ siteData={siteData}
         font-size: 12.5px;
         white-space: nowrap;
       }
+
+      .steps-list{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:12px}
+      .step-item{display:flex;gap:14px;align-items:flex-start}
+      .step-num{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+      .step-desc{margin:4px 0 0;opacity:.85}
 
       @media (max-width: 980px){
         .grid-2 { grid-template-columns: 1fr; }

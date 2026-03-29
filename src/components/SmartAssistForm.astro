@@ -1,0 +1,473 @@
+---
+/**
+ * SmartAssistForm.astro — v5
+ * Pre-filled WhatsApp message builder.
+ *
+ * Desktop: 2-column — questions left, message+send right (sticky in viewport).
+ * Mobile:  single column — questions upfront, message+send sticky at bottom
+ *          while user is within the section, normal scroll otherwise.
+ * Overlay: slide-up panel (exit intent / scroll / timer) — single column always.
+ */
+
+const {
+  brand = {},
+  mode = "inline",
+  heading = "Send us a message on WhatsApp",
+  subheading = "Pre-filled for you — answer questions to customise, or send directly.",
+  cooldownHours = 24,
+  id = "sa",
+} = Astro.props;
+
+const isOverlay = mode === "overlay";
+const waNumber = (brand.whatsappE164 || "917448324068").replace("+", "");
+const phoneE164 = brand.phoneE164 || "+917448324068";
+const phone = brand.phone || "7448324068";
+const cooldownHoursValue = Number(cooldownHours);
+const uid = id;
+---
+
+{isOverlay && <div id={`${uid}-backdrop`} class="sa-backdrop" aria-hidden="true"></div>}
+
+<div
+  id={`${uid}-root`}
+  class:list={[isOverlay ? "sa-panel" : "section section-padding"]}
+  role={isOverlay ? "dialog" : undefined}
+  aria-modal={isOverlay ? "true" : undefined}
+  aria-label="Send insurance query on WhatsApp"
+  aria-hidden={isOverlay ? "true" : undefined}
+  data-sa-mode={mode}
+  data-sa-uid={uid}
+  data-sa-wa={waNumber}
+  data-sa-phone={phoneE164}
+  data-sa-phone-display={phone}
+  data-sa-cooldown={cooldownHoursValue}
+>
+  {isOverlay && <div class="sa-handle" aria-hidden="true"><span class="sa-hbar"></span></div>}
+  {isOverlay && (
+    <div class="sa-head">
+      <div class="sa-headL">
+        <div class="sa-ava"><img src="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png" alt="" width="28" height="28" class="sa-avaImg" /><span class="sa-dot"></span></div>
+        <div><p class="sa-hName">Insurance Assist</p><p class="sa-hSub"><span class="sa-dotSm"></span>Online · Free guidance</p></div>
+      </div>
+      <button class="sa-x" type="button" data-sa-close aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg></button>
+    </div>
+  )}
+
+  <div class="sa-inner" data-sa-body>
+    {/* Heading — spans full width above the 2-col grid */}
+    <div class="sa-title">
+      <h2 class="sa-h">{heading}</h2>
+      <p class="sa-sub">{subheading}</p>
+    </div>
+
+    {/* === 2-COLUMN GRID (desktop) / stacked (mobile+overlay) === */}
+    <div class="sa-grid">
+
+      {/* LEFT: Questions — all visible upfront */}
+      <div class="sa-left">
+        <p class="sa-qlabel">Optional — pick to customise your message</p>
+
+        {/* Q1: Category */}
+        <div class="sa-q" data-sa-q="1">
+          <p class="sa-qt"><span class="sa-qn">1.</span> What type of insurance?</p>
+          <div class="sa-opts">
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Car / Bike" type="button">🚗 Car / Bike</button>
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Lorry / Fleet" type="button">🚛 Lorry / Fleet</button>
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Warehouse / Factory" type="button">🏭 Warehouse</button>
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Construction" type="button">🏗️ Construction</button>
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Health / LIC" type="button">🏥 Health / LIC</button>
+            <button class="sa-opt" data-sa-pick="cat" data-sa-val="Not sure" type="button">💬 Not sure</button>
+          </div>
+        </div>
+
+        {/* Q2: Need */}
+        <div class="sa-q" data-sa-q="2">
+          <p class="sa-qt"><span class="sa-qn">2.</span> What do you need?</p>
+          <div class="sa-opts">
+            <button class="sa-opt" data-sa-pick="need" data-sa-val="New policy" type="button">New policy</button>
+            <button class="sa-opt" data-sa-pick="need" data-sa-val="Renewal" type="button">Renewal</button>
+            <button class="sa-opt" data-sa-pick="need" data-sa-val="Claim help" type="button">Claim help</button>
+            <button class="sa-opt" data-sa-pick="need" data-sa-val="Policy check" type="button">Policy check</button>
+            <button class="sa-opt" data-sa-pick="need" data-sa-val="Just exploring" type="button">Just exploring</button>
+          </div>
+        </div>
+
+        {/* Q3: Urgency */}
+        <div class="sa-q" data-sa-q="3">
+          <p class="sa-qt"><span class="sa-qn">3.</span> How urgent?</p>
+          <div class="sa-opts">
+            <button class="sa-opt" data-sa-pick="urgency" data-sa-val="Today" type="button">Today</button>
+            <button class="sa-opt" data-sa-pick="urgency" data-sa-val="This week" type="button">This week</button>
+            <button class="sa-opt" data-sa-pick="urgency" data-sa-val="Planning ahead" type="button">Planning ahead</button>
+          </div>
+        </div>
+
+        {/* Q4: Common doubts */}
+        <div class="sa-q" data-sa-q="4">
+          <p class="sa-qt"><span class="sa-qn">4.</span> Any questions to include?</p>
+          <div class="sa-opts">
+            <button class="sa-opt sa-opt--toggle" data-sa-pick="doubt" data-sa-val="Is there any charge for guidance?" type="button">Any charges?</button>
+            <button class="sa-opt sa-opt--toggle" data-sa-pick="doubt" data-sa-val="Can you help if my policy expired?" type="button">Expired policy?</button>
+            <button class="sa-opt sa-opt--toggle" data-sa-pick="doubt" data-sa-val="Do I need to visit?" type="button">Visit needed?</button>
+            <button class="sa-opt sa-opt--toggle" data-sa-pick="doubt" data-sa-val="How are you different from online portals?" type="button">How different?</button>
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT: Message box + Send — sticky on desktop */}
+      <div class="sa-right">
+        <p class="sa-directHint">👉 You can send directly — no questions needed</p>
+        <label class="sa-msglabel" for={`${uid}-msg`}>Your WhatsApp message</label>
+        <textarea class="sa-msg" data-sa-msg id={`${uid}-msg`} rows="5">Hi, I need insurance guidance.
+
+(via insuranceconsult.in)</textarea>
+
+        <a class="sa-wa" data-sa-wa-btn href="#" target="_blank" rel="noopener noreferrer">
+          <svg class="sa-waIco" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Send on WhatsApp
+        </a>
+
+        <a class="sa-call" href={`tel:${phoneE164}`}>📞 Prefer to call? {phone}</a>
+        <p class="sa-tip">📎 Attach documents directly in WhatsApp after opening.</p>
+        <p class="sa-trust">Free guidance · No sales pressure · No commitments</p>
+      </div>
+
+    </div>{/* /sa-grid */}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-sa-uid]').forEach(root => {
+    const uid = root.dataset.saUid;
+    const mode = root.dataset.saMode;
+    const waNumber = root.dataset.saWa;
+    const cooldownMs = Number(root.dataset.saCooldown) * 3600000;
+    const isOverlay = mode === 'overlay';
+    const backdrop = document.getElementById(uid + '-backdrop');
+    const msgBox = root.querySelector('[data-sa-msg]');
+    const waBtn = root.querySelector('[data-sa-wa-btn]');
+
+
+    const STORAGE_KEY = 'saLastSeen';
+    let shown = false, open = false;
+    const state = { cat: '', need: '', urgency: '', doubts: [] };
+
+    function ga(n) { if (typeof window.gtag === 'function') window.gtag('event', n, { page_path: location.pathname }); }
+
+    // Build message from state
+    function buildMsg() {
+      const p = ['Hi, I need insurance guidance.'];
+      if (state.cat) p.push('Category: ' + state.cat);
+      if (state.need) p.push('Need: ' + state.need);
+      if (state.urgency) p.push('Urgency: ' + state.urgency);
+      if (state.doubts.length) { p.push(''); p.push('Questions:'); state.doubts.forEach(d => p.push('• ' + d)); }
+      p.push(''); p.push('(via insuranceconsult.in)');
+      return p.join('\n');
+    }
+
+    function syncMsg() {
+      if (msgBox && !msgBox._edited) msgBox.value = buildMsg();
+      updateWaLink();
+      autoGrow();
+    }
+
+    function updateWaLink() {
+      if (waBtn) waBtn.href = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msgBox ? msgBox.value : buildMsg());
+    }
+
+    updateWaLink();
+
+    if (msgBox) msgBox.addEventListener('input', function() { this._edited = true; updateWaLink(); });
+
+    // Handle option picks
+    root.querySelectorAll('[data-sa-pick]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const field = this.dataset.saPick;
+        const val = this.dataset.saVal;
+
+        if (field === 'doubt') {
+          const idx = state.doubts.indexOf(val);
+          if (idx >= 0) { state.doubts.splice(idx, 1); this.classList.remove('sa-opt--on'); }
+          else { state.doubts.push(val); this.classList.add('sa-opt--on'); }
+        } else {
+          state[field] = val;
+          this.closest('.sa-opts').querySelectorAll('[data-sa-pick]').forEach(b => b.classList.remove('sa-opt--on'));
+          this.classList.add('sa-opt--on');
+          if (field === 'cat') ga('sa_cat_' + val);
+        }
+
+        if (msgBox) msgBox._edited = false;
+        syncMsg();
+      });
+    });
+
+    if (waBtn) waBtn.addEventListener('click', () => ga('sa_wa_click'));
+
+    // Auto-grow textarea as content changes
+    function autoGrow() {
+      if (!msgBox) return;
+      msgBox.style.height = 'auto';
+      msgBox.style.height = msgBox.scrollHeight + 'px';
+    }
+    if (msgBox) {
+      msgBox.addEventListener('input', autoGrow);
+      autoGrow();
+    }
+
+    // === Overlay logic ===
+    if (!isOverlay) return;
+
+    const path = location.pathname;
+    if (['/llms.txt', '/llms-full.txt'].some(x => path.endsWith(x))) return;
+
+    function openPanel() {
+      root.classList.add('sa-panel--open'); root.setAttribute('aria-hidden', 'false');
+      if (backdrop) { backdrop.classList.add('sa-backdrop--on'); backdrop.setAttribute('aria-hidden', 'false'); }
+      document.body.style.overflow = 'hidden';
+      document.querySelectorAll('.fm, .fc2-btn').forEach(el => el.style.display = 'none');
+      open = true; shown = true;
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+      ga('sa_opened');
+    }
+    function closePanel() {
+      root.classList.remove('sa-panel--open'); root.setAttribute('aria-hidden', 'true');
+      if (backdrop) { backdrop.classList.remove('sa-backdrop--on'); backdrop.setAttribute('aria-hidden', 'true'); }
+      document.body.style.overflow = '';
+      document.querySelectorAll('.fm, .fc2-btn').forEach(el => el.style.display = '');
+      open = false;
+    }
+    function canShow() {
+      if (shown) return false;
+      const last = localStorage.getItem(STORAGE_KEY);
+      if (!last) return true;
+      const n = Number(last);
+      return !Number.isFinite(n) || (Date.now() - n > cooldownMs);
+    }
+
+    function onMouseOut(e) { if (e && typeof e.clientY === 'number' && e.clientY <= 0 && canShow()) { document.removeEventListener('mouseout', onMouseOut); openPanel(); } }
+    document.addEventListener('mouseout', onMouseOut);
+    const tid = setTimeout(() => { if (canShow()) { document.removeEventListener('mouseout', onMouseOut); openPanel(); } }, 45000);
+    let scrollDone = false;
+    function onScroll() {
+      if (scrollDone || shown) return;
+      const pct = (window.scrollY || 0) / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      if (pct >= 0.55) { scrollDone = true; window.removeEventListener('scroll', onScroll); if (canShow()) { clearTimeout(tid); document.removeEventListener('mouseout', onMouseOut); openPanel(); } }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    root.querySelector('[data-sa-close]')?.addEventListener('click', () => { ga('sa_dismissed'); closePanel(); });
+    if (backdrop) backdrop.addEventListener('click', () => { if (open) { ga('sa_dismissed'); closePanel(); } });
+  });
+});
+</script>
+
+<style is:inline>
+  /* ===========================
+     SHARED BASE
+  =========================== */
+  .sa-sec, .sa-panel .sa-inner { font-family: system-ui, -apple-system, sans-serif; }
+
+  /* Inline mode: match .section card look */
+  .sa-sec {
+    background: #fff;
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: var(--r-22, 18px);
+    box-shadow: var(--sh-mid, 0 1px 6px rgba(0,0,0,.06));
+    padding: 18px;
+    margin: 16px 0;
+  }
+
+  .sa-title { margin: 0 0 12px; }
+  .sa-h { font-size: 17px; font-weight: 900; margin: 0 0 3px; color: #0f172a; letter-spacing: -.01em; }
+  .sa-sub { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.4; }
+
+  /* === 2-col grid === */
+  .sa-grid { display: flex; flex-direction: column; gap: 0; }
+
+  /* LEFT: Questions */
+  .sa-left { }
+  .sa-qlabel { margin: 0 0 14px; font-size: 11.5px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+
+  .sa-q { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9; }
+  .sa-q:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .sa-qt { margin: 0 0 8px; font-size: 13.5px; font-weight: 800; color: #1e293b; line-height: 1.3; }
+  .sa-qn { color: #22c55e; font-weight: 900; margin-right: 4px; }
+
+  .sa-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sa-opt {
+    padding: 8px 14px;
+    border: 1.5px solid #e2e8f0; border-radius: 10px;
+    background: #fff; color: #334155;
+    font: inherit; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: border-color 80ms, background 80ms;
+    white-space: nowrap;
+  }
+  .sa-opt:hover { border-color: #94a3b8; background: #f8fafc; }
+  .sa-opt--on { border-color: #22c55e !important; background: #f0fdf4 !important; color: #166534 !important; }
+
+  /* RIGHT: Message + Send */
+  .sa-right { margin-top: 16px; }
+  .sa-directHint {
+    margin: 0 0 10px; padding: 8px 12px;
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+    font-size: 12.5px; font-weight: 700; color: #166534;
+    text-align: center; line-height: 1.4;
+  }
+  .sa-msglabel { display: block; font-size: 11.5px; font-weight: 700; color: #64748b; margin: 0 0 4px; }
+
+  .sa-msg {
+    display: block; width: 100%; box-sizing: border-box;
+    padding: 10px 12px; margin: 0 0 8px;
+    border: 1.5px solid #e2e8f0; border-radius: 10px;
+    background: #f8fafc; color: #334155;
+    font: inherit; font-size: 12.5px; line-height: 1.5;
+    resize: vertical; min-height: 80px;
+    outline: none;
+  }
+  .sa-msg:focus { border-color: #22c55e; box-shadow: 0 0 0 2px rgba(34,197,94,.08); }
+
+  .sa-wa {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 11px 14px; margin: 0 0 6px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #22c55e, #16a34a);
+    color: #fff; font-weight: 900; font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(34,197,94,.25);
+    transition: transform 100ms, box-shadow 100ms;
+  }
+  .sa-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(34,197,94,.32); }
+  .sa-waIco { flex-shrink: 0; }
+
+  .sa-call {
+    display: block; text-align: center; margin: 0 0 4px;
+    padding: 7px 10px; border-radius: 8px;
+    background: #f8fafc; border: 1px solid #e2e8f0;
+    color: #334155; font-weight: 800; font-size: 12px;
+    text-decoration: none; transition: background 80ms;
+  }
+  .sa-call:hover { background: #f1f5f9; }
+
+  .sa-tip { margin: 4px 0 0; font-size: 10.5px; color: #94a3b8; line-height: 1.4; text-align: center; }
+  .sa-trust { margin: 2px 0 0; font-size: 10px; color: #b0b8c4; text-align: center; }
+
+  /* === INLINE SECTION === */
+  .sa-sec {
+    border: 1px solid #eef0f3;
+    border-radius: 14px;
+    background: #fff;
+    padding: 16px 16px 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ===========================
+     DESKTOP: 2-COLUMN (>700px)
+  =========================== */
+  @media (min-width: 701px) {
+    .sa-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+    .sa-right {
+      position: sticky; top: 90px;
+      margin-top: 0;
+      background: #fafbfc;
+      border: 1px solid #eef0f3;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .sa-sec { max-width: 820px; }
+    .sa-h { font-size: 18px; }
+    .sa-msg { min-height: 160px; font-size: 13.5px; }
+  }
+
+  /* ===========================
+     MOBILE: sticky bottom bar (<= 700px)
+  =========================== */
+  @media (max-width: 700px) {
+    .sa-sec { padding: 14px 12px 14px; max-width: 100%; border-radius: 0; border: none; border-top: 1px solid #eef0f3; }
+    .sa-h { font-size: 15px; }
+    .sa-msg { font-size: 12px; min-height: 60px; }
+    .sa-wa { font-size: 13px; padding: 10px 12px; }
+    .sa-opt { padding: 7px 11px; font-size: 12px; }
+    .sa-qt { font-size: 13px; }
+    .sa-q { margin-bottom: 14px; padding-bottom: 14px; }
+    .sa-directHint { font-size: 12px; padding: 7px 10px; }
+  }
+
+  /* ===========================
+     OVERLAY
+  =========================== */
+  .sa-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(2,6,23,.45);
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    z-index: 9998;
+    opacity: 0; pointer-events: none; transition: opacity 250ms;
+  }
+  .sa-backdrop--on { opacity: 1; pointer-events: auto; }
+
+  .sa-panel {
+    position: fixed; bottom: 0; left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: min(420px, 100%); max-height: 88vh;
+    z-index: 9999; background: #fff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -6px 32px rgba(0,0,0,.16);
+    display: flex; flex-direction: column; overflow: hidden;
+    transition: transform 300ms cubic-bezier(.22,.68,0,1.02);
+  }
+  .sa-panel--open { transform: translateX(-50%) translateY(0); }
+
+  .sa-panel .sa-inner {
+    flex: 1 1 auto; overflow-y: auto;
+    padding: 12px 14px 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Overlay always single column */
+  .sa-panel .sa-grid { display: flex; flex-direction: column; gap: 0; }
+  .sa-panel .sa-right { position: static; border: none; padding: 0; margin-top: 12px; }
+
+  .sa-handle { display: flex; justify-content: center; padding: 6px 0 0; }
+  .sa-hbar { width: 32px; height: 3.5px; border-radius: 3px; background: #d1d5db; }
+  @media (min-width: 521px) { .sa-handle { display: none; } }
+
+  .sa-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 12px; border-bottom: 1px solid #f1f5f9;
+    background: #fafbfc; flex-shrink: 0;
+  }
+  .sa-headL { display: flex; align-items: center; gap: 7px; }
+  .sa-ava {
+    position: relative; width: 28px; height: 28px;
+    border-radius: 50%; overflow: hidden;
+    border: 2px solid #e2e8f0; flex-shrink: 0;
+  }
+  .sa-avaImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sa-dot { position: absolute; bottom: 0; right: 0; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; border: 2px solid #fafbfc; }
+  .sa-hName { margin: 0; font-size: 13px; font-weight: 800; color: #0f172a; }
+  .sa-hSub { margin: 0; font-size: 10.5px; color: #64748b; display: flex; align-items: center; gap: 3px; }
+  .sa-dotSm { width: 5px; height: 5px; border-radius: 50%; background: #22c55e; }
+
+  .sa-x {
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 1px solid #e5e7eb; background: #fff;
+    color: #64748b; cursor: pointer;
+    display: grid; place-items: center; flex-shrink: 0;
+    transition: background 80ms;
+  }
+  .sa-x:hover { background: #f1f5f9; color: #0f172a; }
+
+  @media (max-width: 520px) {
+    .sa-panel { width: 100%; max-height: 85vh; border-radius: 14px 14px 0 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sa-panel, .sa-backdrop { transition: none; }
+    .sa-wa:hover, .sa-opt:hover { transform: none; }
+  }
+</style>

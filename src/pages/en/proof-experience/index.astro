@@ -1,12 +1,15 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, H1, PageActionBar, "what to do next" guidance, howWeWork, dual CTA
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import BlogSection from "../../../components/BlogSection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData } from "../../../content/siteData";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 
@@ -30,31 +33,67 @@ const jsonLd = buildJsonLd({
     { name: "Proof & Experience", href: canonical },
   ],
 });
-
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-                          <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.proofExperiencePosts.subtitle, phone: siteData.brand.phone, areaChips: siteData.brand.areaChips }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Proof & Experience" },
+          ]} />
+
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.proofExperiencePosts.title}</h1>
+            <p class="section-sub readable">{siteData.proofExperiencePosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Proof and experience" />
+          </section>
+
+          <!-- Not sure where to start? -->
+          <section class="section section-padding" aria-label="Not sure where to start">
+            <h2 class="section-title">Not sure where to start?</h2>
+            <p class="section-sub readable">If you need specific help rather than articles, pick the option that fits:</p>
+            <div class="grid grid-2">
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <h3 class="card-title">I need help with a claim</h3>
+                <p class="card-desc">Documents, timeline, and common delay reasons.</p>
+              </a>
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works — visit vs WhatsApp/phone.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction, business & personal insurance.</p>
+              </a>
+              <a class="card" href={EN("/faqs/")}>
+                <h3 class="card-title">Read FAQs</h3>
+                <p class="card-desc">Common questions about renewals, claims, documents & coverage.</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- Blog posts -->
           <BlogSection
             title={siteData.proofExperiencePosts.title}
             subtitle={siteData.proofExperiencePosts.subtitle}
@@ -64,12 +103,26 @@ const jsonLd = buildJsonLd({
             showSaveButton={false}
             hideViewAll={true}
           />
-            <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          {siteData.aboutPage?.howWeWork?.steps?.length ? (
+            <section class="section section-padding" aria-label="How our process works">
+              <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
+              <div class="grid grid-2">
+                {siteData.aboutPage.howWeWork.steps.map((step) => (
+                  <article class="card">
+                    <h3 class="card-title">{step.title}</h3>
+                    <p class="card-desc readable">{step.desc}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -83,10 +136,31 @@ siteData={siteData}
           }} />
         </div>
 
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.proofExperiencePosts.subtitle, phone: siteData.brand.phone, areaChips: [] }} />
           </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.proofExperiencePosts.title}</h1>
+            <p class="section-sub readable">{siteData.proofExperiencePosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Proof and experience" />
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">Not sure where to start?</h2>
+            <div class="grid grid-1">
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <h3 class="card-title">I need help with a claim</h3>
+                <p class="card-desc">Documents, timeline, delay reasons.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
+              </a>
+            </div>
+          </section>
 
           <BlogSection
             title={siteData.proofExperiencePosts.title}
@@ -97,12 +171,10 @@ siteData={siteData}
             showSaveButton={false}
             hideViewAll={true}
           />
-            <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -117,7 +189,18 @@ siteData={siteData}
         </div>
       </div>
     </main>
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+
+    <GlobalOverlays />
+
+    <style is:global>
+      .readable{max-width:78ch}
+      .grid{display:grid;gap:12px}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-1{grid-template-columns:1fr}
+      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+      .card-title{font-size:16px;margin:8px 0 6px}
+      .card-desc{margin:0;opacity:.85}
+      @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
+    </style>
   </body>
 </html>

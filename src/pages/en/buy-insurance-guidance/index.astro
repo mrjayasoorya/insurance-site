@@ -1,18 +1,27 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, howWeWork, dual CTA, removed LocalIdentitySection
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import MobileAccordion from "../../../components/MobileAccordion.astro";
-import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
 import BacklinksRow from "../../../components/BacklinksRow.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 
-import { siteData } from "../../../content/siteData";
+import { siteData, EN } from "../../../content/siteData";
 import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 const page = siteData.intentPages["buy-insurance-guidance"];
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 if (!page) throw new Error("Missing siteData.intentPages['buy-insurance-guidance']");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/buy-insurance-guidance/");
@@ -25,7 +34,7 @@ const meta = buildMeta({
 const jsonLd = buildJsonLd({
   pageType: "intent",
   canonical,
-    siteData,
+  siteData,
   title: meta.title,
   description: meta.description,
   breadcrumbs: [
@@ -49,14 +58,14 @@ const jsonLd = buildJsonLd({
     <link rel="stylesheet" href="/styles/theme.css" />
     <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
-        <!-- DESKTOP -->
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -68,11 +77,27 @@ const jsonLd = buildJsonLd({
             }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: page.heroH1 },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- SMART ASSIST — unclear intent capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Not sure which policy to pick? Tell us first"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- 2. Decision framework -->
           {page.decisionFramework ? (
             <section class="section section-padding" aria-label="Decision framework">
               <h2 class="section-title">{page.decisionFramework.title}</h2>
@@ -82,6 +107,24 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS: area, language, scope -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Real buying decisions we guided"
+            subtitle="Not sure which policy to pick? These are the exact situations people come to us with."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- 4. Recommended links -->
           {page.recommendedLinks?.length ? (
             <section class="section section-padding" aria-label="Recommended links">
               <h2 class="section-title">Recommended links</h2>
@@ -96,15 +139,24 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
-          <ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still not sure what to buy?"
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText="Hi, I need guidance on buying the right insurance. Can you help?"
+          />
 
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why get guided by us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 5. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
-              <h2 class="section-title">FAQs</h2>
+              <h2 class="section-title">Frequently asked questions</h2>
               <MobileAccordion
                 sections={[{
                   title: "Questions people ask",
@@ -115,7 +167,8 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Buy insurance guidance" />
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -131,7 +184,7 @@ siteData={siteData}
           />
         </div>
 
-        <!-- MOBILE -->
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{
@@ -143,11 +196,22 @@ siteData={siteData}
             }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
+          <!-- SMART ASSIST — unclear intent capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Not sure which policy to pick? Tell us first"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- 2. Decision framework -->
           {page.decisionFramework ? (
             <section class="section section-padding">
               <h2 class="section-title">{page.decisionFramework.title}</h2>
@@ -157,12 +221,37 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <ConversionBlock 
-siteData={siteData}
-  block={siteData.conversionBlocks.default}
-  brand={siteData.brand}
-/>
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
 
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SCENARIOS -->
+          <ScenariosWeHandle
+            title="Real buying decisions we guided"
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still not sure what to buy?"
+            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            waNumber={waNumber}
+            waText="Hi, I need guidance on buying the right insurance. Can you help?"
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why get guided by us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 3. FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
@@ -175,7 +264,8 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle="Buy insurance guidance" />
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -193,8 +283,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style is:global>
       .readable { max-width: 78ch; }

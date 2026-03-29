@@ -1,0 +1,54 @@
+---
+/**
+ * GlobalOverlays.astro
+ * Single drop-in component for ALL pages.
+ * Replaces the separate FloatingMenu + FloatingContactCta pattern
+ * and adds AssistPopup, MobileStickyCTA, DesktopStickyCTA to every page.
+ *
+ * Usage (at end of <body>, no props needed):
+ *   <GlobalOverlays />
+ */
+import SmartAssistForm from "./SmartAssistForm.astro";
+import FloatingMenu from "./FloatingMenu.astro";
+import FloatingContactCta from "./FloatingContactCta.astro";
+import MobileStickyCTA from "./MobileStickyCTA.astro";
+import DesktopStickyCTA from "./DesktopStickyCTA.astro";
+import { siteData } from "../content/siteData";
+
+const brand = siteData.brand;
+---
+
+<!-- Inline guidance section (appears in page flow, before footer-area overlays) -->
+<!-- <section class="sa-global-inline section section-padding" aria-label="Quick insurance guidance">
+  <SmartAssistForm
+    brand={brand}
+    mode="inline"
+    id="sa-global"
+    heading="Need quick guidance?"
+    subheading="Tell us what you need — we'll build a ready WhatsApp message."
+  />
+</section> -->
+
+<SmartAssistForm
+  brand={brand}
+  mode="overlay"
+  id="sa-overlay"
+  cooldownHours={siteData.assistPopups?.exit?.cooldownHours ?? 24}
+/>
+<FloatingMenu brand={brand} />
+<FloatingContactCta brand={brand} />
+<MobileStickyCTA
+  phone={brand.phone}
+  phoneE164={brand.phoneE164}
+  whatsappE164={brand.whatsappE164}
+  whatsappPrefill={brand.whatsappPrefill}
+  trustLine="30 yrs experience · Sholavaram · Free guidance"
+/>
+<DesktopStickyCTA brand={brand} />
+
+<!-- Body padding so content isn't obscured by fixed mobile bar -->
+<style is:global>
+  @media (max-width: 820px) {
+    body { padding-bottom: 84px; }
+  }
+</style>

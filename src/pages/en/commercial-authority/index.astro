@@ -1,12 +1,15 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, H1, PageActionBar, "what to do next" guidance, howWeWork, dual CTA
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import BlogSection from "../../../components/BlogSection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData } from "../../../content/siteData";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 
@@ -27,43 +30,77 @@ const jsonLd = buildJsonLd({
   description: meta.description,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
-    { name: "Services", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/services/") },
     { name: "Commercial Authority", href: canonical },
-  ]
+  ],
 });
-
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-                          <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
-            <DesktopHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: siteData.commercialAuthorityPosts.subtitle,
-                phone: siteData.brand.phone,
-                areaChips: siteData.brand.areaChips,
-              }}
-            />
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: siteData.commercialAuthorityPosts.subtitle,
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Commercial Authority" },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.commercialAuthorityPosts.title}</h1>
+            <p class="section-sub readable">{siteData.commercialAuthorityPosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Commercial authority guidance" />
+          </section>
+
+          <!-- 2. Not sure where to start? -->
+          <section class="section section-padding" aria-label="Not sure where to start">
+            <h2 class="section-title">Not sure where to start?</h2>
+            <p class="section-sub readable">If you're not sure what you need, pick the option that fits your situation:</p>
+            <div class="grid grid-2">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">Find how local support works — visit vs WhatsApp/phone, what to share first.</p>
+              </a>
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <h3 class="card-title">I need help with a claim</h3>
+                <p class="card-desc">Documents needed, timeline discipline, and common delay reasons.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction, business & personal insurance guidance.</p>
+              </a>
+              <a class="card" href={EN("/insurance-renewal-near-me/")}>
+                <h3 class="card-title">I need to renew a policy</h3>
+                <p class="card-desc">IDV, NCB, add-ons, compliance checks — avoid coverage gaps.</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- 3. Blog posts -->
           <BlogSection
             title={siteData.commercialAuthorityPosts.title}
             subtitle={siteData.commercialAuthorityPosts.subtitle}
@@ -71,11 +108,28 @@ const jsonLd = buildJsonLd({
             viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
             categories={siteData.commercialAuthorityPosts.categories}
           />
-            <ConversionBlock 
-siteData={siteData}
-    brand={siteData.brand}
-  />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- 4. How our process works -->
+          {siteData.aboutPage?.howWeWork?.steps?.length ? (
+            <section class="section section-padding" aria-label="How our process works">
+              <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
+              <div class="grid grid-2">
+                {siteData.aboutPage.howWeWork.steps.map((step) => (
+                  <article class="card">
+                    <h3 class="card-title">{step.title}</h3>
+                    <p class="card-desc readable">{step.desc}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -89,19 +143,41 @@ siteData={siteData}
           />
         </div>
 
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
-            <MobileHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: siteData.commercialAuthorityPosts.subtitle,
-                phone: siteData.brand.phone,
-                areaChips: [],
-              }}
-            />
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: siteData.commercialAuthorityPosts.subtitle,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.commercialAuthorityPosts.title}</h1>
+            <p class="section-sub readable">{siteData.commercialAuthorityPosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Commercial authority guidance" />
+          </section>
+
+          <!-- 2. Not sure where to start? -->
+          <section class="section section-padding">
+            <h2 class="section-title">Not sure where to start?</h2>
+            <div class="grid grid-1">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- 3. Blog posts -->
           <BlogSection
             title={siteData.commercialAuthorityPosts.title}
             subtitle={siteData.commercialAuthorityPosts.subtitle}
@@ -110,11 +186,7 @@ siteData={siteData}
             categories={siteData.commercialAuthorityPosts.categories}
           />
 
-            <ConversionBlock 
-siteData={siteData}
-    brand={siteData.brand}
-  />
-
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <FooterCtaBar
@@ -131,7 +203,18 @@ siteData={siteData}
         </div>
       </div>
     </main>
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+
+    <GlobalOverlays />
+
+    <style is:global>
+      .readable{max-width:78ch}
+      .grid{display:grid;gap:12px}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-1{grid-template-columns:1fr}
+      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+      .card-title{font-size:16px;margin:8px 0 6px}
+      .card-desc{margin:0;opacity:.85}
+      @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
+    </style>
   </body>
 </html>

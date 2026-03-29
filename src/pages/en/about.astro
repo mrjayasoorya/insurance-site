@@ -2,14 +2,17 @@
 import DesktopHero from "../../components/DesktopHero.astro";
 import MobileHero from "../../components/MobileHero.astro";
 import FooterCtaBar from "../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 const services = (siteData.coreServices || []).map((s) => ({
   ...s,
@@ -63,6 +66,8 @@ const waHref = `https://wa.me/${(brand.whatsappE164 || "").replace("+","")}?text
 
 const langs = brand.knowsLanguages || ["Tamil", "English", "Malayalam"];
 const langsCsv = langs.join(", ");
+const cc = siteData.confidenceContent || {};
+const waNumber = (brand.whatsappE164 || "").replace("+", "");
 ---
 
 <html lang="en">
@@ -320,14 +325,6 @@ const langsCsv = langs.join(", ");
             </div>
           </section>
 
-          <!-- Why local vs portal -->
-          <section class="section section-padding" aria-labelledby="why-local-title">
-            <h2 id="why-local-title" class="section-title">Why choose a local consultant over an online portal?</h2>
-            <ul class="bullets">
-              {(aboutPage.whyLocal?.bullets || []).map((b) => <li>{b}</li>)}
-            </ul>
-          </section>
-
           <!-- Founder + on-spot support -->
           <section class="section section-padding" aria-labelledby="founder-title">
             <h2 id="founder-title" class="section-title">Who leads this agency?</h2>
@@ -353,62 +350,12 @@ const langsCsv = langs.join(", ");
             ) : null}
           </section>
 
-          <section class="section section-padding" aria-labelledby="onsite-title">
-            <h2 id="onsite-title" class="section-title">On-spot support across Chennai</h2>
-            <p class="section-sub">
-              Yes. Base: <strong>{coverage.primaryBase || "Red Hills / Sholavaram"}</strong>. Coverage: <strong>All Chennai</strong>.
-              When the case needs physical presence—especially for commercial documentation or claim steps—we provide on-spot support.
-            </p>
-          </section>
-
-          <!-- CTA #5 (Checklist / soft lead magnet) -->
-          <section class="section section-padding" aria-labelledby="cta-checklist-title">
-            <div class="cta-card cta-soft" >
-              <h2 id="cta-checklist-title" class="cta-title">{ctas.proofChecklist?.title || "Get your Claim-Ready Checklist (free)"}</h2>
-              <p class="cta-sub">{ctas.proofChecklist?.subtitle || "A simple checklist for documents and proof discipline."}</p>
-
-              {ctas.proofChecklist?.bullets?.length ? (
-                <ul class="bullets">
-                  {ctas.proofChecklist.bullets.map((b) => <li>{b}</li>)}
-                </ul>
-              ) : null}
-
-              <!-- ContactPoint microdata (stage 5) -->
-              <!-- <div itemscope itemtype="https://schema.org/ContactPoint" class="sr-only">
-                <meta itemprop="contactType" content={ctas.proofChecklist?.microdataName || "Documentation Support"} />
-                <meta itemprop="telephone" content={brand.phoneE164 || brand.phone} />
-                <meta itemprop="availableLanguage" content={langsCsv} />
-                <meta itemprop="url" content={canonical} />
-              </div> -->
-
-              <div class="cta-actions">
-                <a class="btn btn-primary" href={callHref}>{ctas.proofChecklist?.callLabel || "Call for Checklist"}</a>
-                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.proofChecklist?.whatsappLabel || "WhatsApp “CHECKLIST”"}</a>
-              </div>
-
-              <p class="cta-note">Useful even if you do not buy a policy today. Clarity first.</p>
-            </div>
-          </section>
-
           <!-- Language -->
           <section class="section section-padding" aria-labelledby="lang-title">
             <h2 id="lang-title" class="section-title">Tamil • English • Malayalam — policy clarity without translation loss</h2>
             <p class="section-sub">
               We consult in <strong>{langsCsv}</strong>. We explain exclusions, endorsements, waiting periods, and claim steps without ambiguity.
             </p>
-          </section>
-
-          <!-- IRDAI -->
-          <section class="section section-padding" aria-labelledby="reg-title">
-            <h2 id="reg-title" class="section-title">IRDAI license and legitimacy (verifiable)</h2>
-            <ul class="bullets">
-              <li>Regulator: <strong>{regulatory.authorityFullName || "Insurance Regulatory and Development Authority of India (IRDAI)"}</strong></li>
-              <li>License type: <strong>{regulatory.licenseType || "Insurance intermediary / agency (as applicable)"}</strong></li>
-              <li>License number: <strong>{regulatory.licenseNumber || "Add license number in siteData.brand.regulatory.licenseNumber"}</strong></li>
-              {regulatory.licenseValidThrough ? (
-                <li>Valid through: <strong>{regulatory.licenseValidThrough}</strong></li>
-              ) : null}
-            </ul>
           </section>
 
           <!-- Services -->
@@ -439,6 +386,34 @@ const langsCsv = langs.join(", ");
               ))}
             </ul>
           </section>
+
+          <!-- USER QUESTIONS: Quick reassurance block -->
+          <UserQuestionsBlock
+            title="Quick answers — before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Real situations we've handled"
+            subtitle="Commercial, vehicle, health, industrial — these are the exact kinds of cases we see."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why clients choose us"
+            points={(cc.whyUs || [])}
+          />
+
+          <!-- SMART ASSIST — about page conversion -->
+          <SmartAssistForm
+            brand={brand}
+            id="sa-desk"
+            heading="Ready to connect? Build your WhatsApp message"
+            subheading="Pick your situation — we pre-fill the message, you just send."
+          />
 
           <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
           <LocalIdentitySection brand={brand} pageTitle="About" />
@@ -613,6 +588,26 @@ const langsCsv = langs.join(", ");
             <p class="section-sub">We consult in <strong>{langsCsv}</strong>.</p>
           </section>
 
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Real situations we’ve handled"
+            subtitle="Commercial, vehicle, health, industrial — these are the exact kinds of cases we see."
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+          <!-- SMART ASSIST — about page conversion (mobile) -->
+          <SmartAssistForm
+            brand={brand}
+            id="sa-mob"
+            heading="Ready to connect? Build your WhatsApp message"
+            subheading="Pick your situation — we pre-fill the message, you just send."
+          />
           <section class="section section-padding" aria-labelledby="m-services-title">
             <h2 id="m-services-title" class="section-title">Services we support</h2>
             <ul class="service-links" role="list">
@@ -639,6 +634,12 @@ const langsCsv = langs.join(", ");
             </ul>
           </section>
 
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why clients choose us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
           <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
           <LocalIdentitySection brand={brand} pageTitle="About" />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
@@ -661,8 +662,7 @@ const langsCsv = langs.join(", ");
       </div>
     </main>
 
-    <FloatingMenu brand={brand} />
-    <FloatingContactCta brand={brand} />
+    <GlobalOverlays />
   </body>
 </html>
 

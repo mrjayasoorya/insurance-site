@@ -1,8 +1,111 @@
 ---
-const { phone } = Astro.props;
+const {
+  phone,
+  phoneE164,
+  whatsappE164,
+  whatsappPrefill = "Hi, I need insurance guidance. Please help.",
+  trustLine = "30 yrs experience · Sholavaram · Free guidance",
+} = Astro.props;
+
+const telHref = phoneE164 ? `tel:${phoneE164}` : `tel:${phone}`;
+const waHref = whatsappE164
+  ? `https://wa.me/${whatsappE164}?text=${encodeURIComponent(whatsappPrefill)}`
+  : "#";
 ---
-<div class="stickybar">
-  <a class="cta" href={`tel:${phone}`} aria-label={`Call Now ${phone}`}>
-    Call Now {phone}
-  </a>
+
+<div class="mscta-bar" role="navigation" aria-label="Contact actions">
+  <p class="mscta-trust">{trustLine}</p>
+  <div class="mscta-row">
+    <a class="mscta-btn mscta-call" href={telHref} aria-label={`Call ${phone}`}>
+      <span class="mscta-icon" aria-hidden="true">📞</span>
+      <span class="mscta-label">Call Now</span>
+      <span class="mscta-num">{phone}</span>
+    </a>
+    <a class="mscta-btn mscta-wa" href={waHref} target="_blank" rel="noopener" aria-label="WhatsApp us">
+      <span class="mscta-icon" aria-hidden="true">💬</span>
+      <span class="mscta-label">WhatsApp</span>
+      <span class="mscta-num">Free reply</span>
+    </a>
+  </div>
 </div>
+
+<style>
+  .mscta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9990;
+    background: #0b0f19;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)) 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.30);
+  }
+
+  .mscta-trust {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mscta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .mscta-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 10px 8px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-family: inherit;
+    transition: transform 80ms ease, opacity 80ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mscta-btn:active { transform: scale(0.96); opacity: 0.88; }
+
+  .mscta-call {
+    background: #ffffff;
+    color: #0b0f19;
+  }
+
+  .mscta-wa {
+    background: #22c55e;
+    color: #ffffff;
+  }
+
+  .mscta-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .mscta-label {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  .mscta-num {
+    font-size: 10.5px;
+    font-weight: 600;
+    opacity: 0.75;
+    line-height: 1;
+  }
+
+  /* Only show on mobile */
+  @media (min-width: 821px) {
+    .mscta-bar { display: none; }
+  }
+</style>

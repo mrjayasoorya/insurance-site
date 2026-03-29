@@ -2,10 +2,9 @@
 import DesktopHero from "../../../../components/DesktopHero.astro";
 import MobileHero from "../../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import ArticlePage from "../../../../components/ArticlePage.astro";
 import { siteData } from "../../../../content/siteData";
-import FloatingMenu from "src/components/FloatingMenu.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 
 export async function getStaticPaths() {
@@ -81,7 +80,6 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/${
         </div>
       </div>
     </main>
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
   </body>
 </html>

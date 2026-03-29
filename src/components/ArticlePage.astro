@@ -2,6 +2,7 @@
 import { siteData } from "src/content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
 import ConversionBlock from "./ConversionBlock.astro";
+import PageActionBar from "./PageActionBar.astro";
 
 const { brand, post, slug } = Astro.props;
 
@@ -57,17 +58,26 @@ const jsonLd = buildJsonLd({
   <header>
     <p class="muted readable">{post.section}</p>
     <h1 class="section-title">{post.h1}</h1>
+    <PageActionBar brand={brand} context={post.section || "insurance"} />
     <p class="section-sub">{post.intro}</p>
   </header>
 </section>
 
-{post.blocks?.map((b) => (
+{post.blocks?.map((b, i) => (
+  <>
   <section class="section section-padding" aria-label={b.title}>
     <h2 class="section-title">{b.title}</h2>
     <ul class="bullets">
       {b.bullets.map((x) => <li>{x}</li>)}
     </ul>
   </section>
+  {(i + 1) % 2 === 0 && i < (post.blocks.length - 1) ? (
+    <div style="margin: 0 auto; max-width: 720px; padding: 0 16px 8px;">
+      <p style="font-size:0.95rem;color:var(--text-muted,#555);margin:0 0 8px;">Need help with this? We can guide you.</p>
+      <PageActionBar brand={brand} context={post.section || "insurance"} />
+    </div>
+  ) : null}
+  </>
 ))}
 
 {post.localSignals?.length ? (

@@ -1,0 +1,458 @@
+---
+// src/pages/en/index.astro
+// RESTRUCTURED: Focused homepage — hero → services → testimonials → locations → CTA → footer
+// Removed: 4 blog sections, area×service combos, coverage index, links hub, near-me trust,
+//          local identity, duplicate CTAs, quick help links (all still accessible via their own pages)
+
+import DesktopHero from "../../components/DesktopHero.astro";
+import DesktopCoreServices from "../../components/DesktopCoreServices.astro";
+import MobileHero from "../../components/MobileHero.astro";
+import MobileCoreServices from "../../components/MobileCoreServices.astro";
+import MobileAccordion from "../../components/MobileAccordion.astro";
+import TestimonialsStrip from "../../components/TestimonialsStrip.astro";
+import FooterCtaBar from "../../components/FooterCtaBar.astro";
+import GlobalOverlays from "../../components/GlobalOverlays.astro";
+import BacklinksRow from "../../components/BacklinksRow.astro";
+
+import { siteData, EN } from "../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
+
+// Services
+const serviceCategoryCards = (siteData.serviceCategories || []).map((c) => ({
+  tag: "Category",
+  title: c.title,
+  desc: c.desc,
+  href: c.href,
+}));
+
+const popularServices = (siteData.servicePopular || []).map((x) => ({ ...x, href: x.href }));
+
+// Locations (curated, not 16+)
+const allLocations = siteData.locationsIndex?.groups?.flatMap((g) => g.locations || []) || [];
+const featuredLocations = allLocations.slice(0, 6);
+
+// WhatsApp helper
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
+const wa = (text) => `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+
+// Promo banners
+const promoBanners = [
+  { key: "car", title: "Car insurance", img: "/assets/home-banners/car-insurance-whatsapp-sholavaram-chennai.png", alt: "Car insurance guidance in Chennai and Chennai outskirts", href: wa("Hi, I need Car Insurance guidance (Chennai & Chennai outskirts). Please help.") },
+  { key: "lorry", title: "Lorry insurance", img: "/assets/home-banners/lorry-insurance-nh-belt-red-hills.png", alt: "Lorry insurance guidance in Chennai and Chennai outskirts", href: wa("Hi, I need Lorry Insurance guidance (Chennai & Chennai outskirts). Please help.") },
+  { key: "fleet", title: "Fleet / transport operators", img: "/assets/home-banners/fleet-insurance-transport-operators-chennai-north.png", alt: "Fleet insurance guidance for transport operators in Chennai and outskirts", href: wa("Hi, I need Fleet/Transport Operators insurance guidance (Chennai & Chennai outskirts). Please help.") },
+  { key: "warehouse", title: "Warehouse & factory", img: "/assets/home-banners/warehouse-factory-insurance-madhavaram-industrial.png", alt: "Warehouse and factory insurance guidance in Chennai and outskirts", href: wa("Hi, I need Warehouse/Factory insurance guidance (Chennai & Chennai outskirts). Please help.") },
+  { key: "crane", title: "Crane / contractor", img: "/assets/home-banners/crane-contractor-insurance-nh-corridor.png", alt: "Crane and contractor insurance guidance in Chennai and outskirts", href: wa("Hi, I need Crane/Contractor insurance guidance (Chennai & Chennai outskirts). Please help.") },
+  { key: "sme", title: "Shop / SME", img: "/assets/home-banners/shop-sme-insurance-chennai-north.png", alt: "Shop and SME insurance guidance in Chennai and outskirts", href: wa("Hi, I need Shop/SME insurance guidance (Chennai & Chennai outskirts). Please help.") },
+];
+
+// FAQ
+const smallHomeFaq = [
+  { q: "Do you support customers only in Sholavaram?", a: "Sholavaram is our primary base. We commonly support Chennai North and corridor-connected areas depending on the policy type and insurer requirements." },
+  { q: "Can you help with insurance renewals and policy checks?", a: "Yes. We assist with renewal checks, add-on clarity and documentation discipline to reduce avoidable claim issues later." },
+  { q: "Do you promise claim approval?", a: "No. Claim outcomes depend on policy terms, disclosures and insurer processes. We guide correct steps and documents to reduce avoidable delays." },
+];
+
+// SEO
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/");
+const meta = buildMeta({
+  title: `${siteData.pageFlow.heroH1} | ${siteData.brand.name}`,
+  description: siteData.brand.subtitle,
+  canonical,
+  geo: geoMetaFromBrand(siteData),
+});
+
+const homeFaqPicks = [
+  { group: "claimsDocs", index: 0 },
+  { group: "claimsDocs", index: 1 },
+  { group: "claimsDocs", index: 2 },
+  { group: "locationsOffice", index: 0 },
+  { group: "locationsOffice", index: 3 },
+  { group: "experienceTrust", index: 0 },
+];
+const homeFaqItems = (homeFaqPicks || [])
+  .map(({ group, index }) => siteData.faqsPage?.[group]?.items?.[index])
+  .filter(Boolean)
+  .slice(0, 6);
+
+const jsonLd = buildJsonLd({
+  pageType: "home",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  faqs: homeFaqItems || [],
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main id="main" class="app">
+      <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              heroH1={siteData.pageFlow.heroH1}
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.pageFlow.heroP,
+                phone: siteData.brand.phone,
+                areaChips: siteData.brand.areaChips,
+              }}
+            />
+          </header>
+
+          <main>
+            <!-- 1. Purpose + CTA -->
+            <section class="section section-padding" aria-labelledby="home-purpose">
+              <h2 id="home-purpose" class="section-title">
+                Insurance agent in Sholavaram, Chennai — car, lorry, fire, warehouse & more
+              </h2>
+              <p class="section-sub readable">
+                30+ years experience. LIC + General Insurance. Sholavaram office supporting Chennai North, Red Hills, Madhavaram,
+                NH corridors and industrial belts. Call <strong>7448324068</strong> or WhatsApp for document checklist and next steps.
+              </p>
+            </section>
+
+            <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+            <!-- 2. Promo banners (WhatsApp category CTAs) -->
+            <section class="section section-padding" aria-labelledby="promo-title">
+              <h2 id="promo-title" class="section-title">Quick help by category</h2>
+              <p class="section-sub readable">
+                Pick a category and open WhatsApp. We'll reply with the right document checklist + next steps.
+                <strong>Chennai & Chennai Outskirts.</strong>
+              </p>
+              <div class="promo-grid" role="list" aria-label="Category banners">
+                {promoBanners.map((b) => (
+                  <a class="promo-card" role="listitem" href={b.href} target="_blank" rel="noopener" aria-label={b.title}>
+                    <img class="promo-img" src={b.img} alt={b.alt} loading="lazy" width="300" height="300" />
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <!-- 3. Testimonials (social proof early) -->
+            <section class="section section-padding" aria-labelledby="reviews-title">
+              <TestimonialsStrip
+                title="What clients say about us"
+                subtitle="Real feedback from lorry owners, factory managers & families in Chennai North belts."
+                avgScore="4.9"
+                avgText="Average rating · Google reviews"
+                pillHref={EN("/reviews/")}
+                testimonials={[
+                  { name: "Ramesh Kumar", role: "Fleet Owner, Madhavaram", quote: "30 years of experience really shows. He guided us through the lorry claim without any confusion. Documents were correct, claim settled fast.", rating: 5, avatarText: "R" },
+                  { name: "Priya Logistics", role: "Warehouse Owner, Manali", quote: "Warehouse fire insurance sorted in one day. He explained sum insured properly so we didn't underinsure. Highly recommend for industrial belts.", rating: 5, avatarText: "P" },
+                  { name: "Selvam", role: "Contractor, Poonamallee belt", quote: "CAR + WC insurance for our construction site. No surprises in claim. He calls you back, answers properly. Not just selling and forgetting.", rating: 5, avatarText: "S" },
+                ]}
+                showControls={false}
+              />
+            </section>
+
+            <!-- 4. Most requested services (what users click) -->
+            <section class="section section-padding" aria-labelledby="svc-pop-title">
+              <h2 id="svc-pop-title" class="section-title">Most requested services</h2>
+              <div class="grid grid-2">
+                {popularServices.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row"><span class="chip">{x.tag}</span></div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc readable" title={x.desc || "Open guidance"}>{x.desc || "Open guidance"}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <!-- 5. Insurance categories -->
+            <section class="section section-padding" aria-labelledby="svc-cat-title">
+              <h2 id="svc-cat-title" class="section-title">Insurance categories we support</h2>
+              <DesktopCoreServices services={serviceCategoryCards} />
+            </section>
+
+            <!-- 6. Coverage areas (focused) -->
+            <section class="section section-padding" aria-labelledby="loc-title">
+              <h2 id="loc-title" class="section-title">Areas we serve from Sholavaram</h2>
+              <p class="section-sub readable">
+                Sholavaram office + Chennai North, Red Hills, Puzhal, Madhavaram, NH belts and industrial corridors.
+                Support depends on policy type and insurer requirements.
+              </p>
+
+              <div class="grid grid-2" style="margin-top:12px;">
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">All locations</h3>
+                  <p class="card-desc readable">NH belts, logistics hubs, industrial corridors, city-side areas.</p>
+                </a>
+                <a class="card" href={EN("/insurance-near-me/")}>
+                  <h3 class="card-title">Insurance near me</h3>
+                  <p class="card-desc readable">How local support works, document checklists, insurer inspections.</p>
+                </a>
+                {featuredLocations.map((l) => (
+                  <a class="card" href={EN(`/locations/${l.slug}/`)}>
+                    <h3 class="card-title">{l.name}</h3>
+                    <p class="card-desc readable">Local context + services commonly used here</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+            <!-- 7. How we help + FAQs -->
+            <section class="section section-padding" aria-labelledby="how-it-works-title">
+              <h2 id="how-it-works-title" class="section-title">How you'll get help</h2>
+              <div class="section-sub">Coverage clarity → documentation discipline → smoother claims.</div>
+              <MobileAccordion
+                sections={[
+                  ...siteData.howWeHelp,
+                  { title: "FAQs (quick)", items: smallHomeFaq.map((f) => ({ strong: f.q, text: f.a })) },
+                ]}
+                defaultOpen={true}
+              />
+            </section>
+
+            <!-- 8. Quick links to key pages -->
+            <section class="section section-padding" aria-label="Quick links">
+              <div class="grid grid-2">
+                <a class="card" href={EN("/services/")}><h3 class="card-title">All Services</h3><p class="card-desc">Categories → detail pages</p></a>
+                <a class="card" href={EN("/faqs/")}><h3 class="card-title">FAQs</h3><p class="card-desc">Claims, renewals, documents</p></a>
+                <a class="card" href={EN("/insurance-claim-help/")}><h3 class="card-title">Claim Help</h3><p class="card-desc">First steps and proof checklist</p></a>
+                <a class="card" href={EN("/insurance-renewal-near-me/")}><h3 class="card-title">Renewals</h3><p class="card-desc">IDV/NCB checks, continuity</p></a>
+              </div>
+            </section>
+
+            <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+            <section aria-labelledby="contact-title">
+              <h2 id="contact-title" class="sr-only">Contact</h2>
+              <FooterCtaBar
+                title={siteData.footerCtas.title}
+                subtitle={siteData.footerCtas.subtitle}
+                whatsappNumber={siteData.brand.whatsappE164}
+                whatsappText={siteData.brand.whatsappPrefill}
+                callNumber={siteData.brand.phoneE164}
+                callLabel={siteData.footerCtas.callLabel}
+                brandName={siteData.footerCtas.brandName}
+                logoText={siteData.footerCtas.logoText}
+                copyright={siteData.footerCtas.copyright}
+              />
+            </section>
+          </main>
+        </div>
+
+        <!-- ========================= MOBILE ========================= -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              heroH1={siteData.pageFlow.heroH1}
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.pageFlow.heroP,
+                phone: siteData.brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <main>
+            <!-- 1. Purpose -->
+            <section class="section section-padding" aria-labelledby="m-home-purpose">
+              <h2 id="m-home-purpose" class="section-title">
+                Insurance agent in Sholavaram — car, lorry, fire, warehouse & more
+              </h2>
+              <p class="section-sub readable">
+                30+ years experience. Sholavaram office supporting Chennai North, Red Hills, Madhavaram and NH corridors.
+                Call <strong>7448324068</strong> or WhatsApp for next steps.
+              </p>
+            </section>
+
+            <!-- 2. Promo banners (swipe) -->
+            <section class="section section-padding" aria-labelledby="m-promo-title">
+              <h2 id="m-promo-title" class="section-title">Quick help by category</h2>
+              <p class="section-sub readable">
+                Swipe and tap a banner to open WhatsApp. <strong>Chennai & Chennai Outskirts.</strong>
+              </p>
+              <div class="promo-swipe" role="list" aria-label="Swipe category banners">
+                {promoBanners.map((b) => (
+                  <a class="promo-swipe-card" role="listitem" href={b.href} target="_blank" rel="noopener" aria-label={b.title}>
+                    <img class="promo-img" src={b.img} alt={b.alt} loading="lazy" width="300" height="300" />
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+            <!-- 3. Testimonials -->
+            <section class="section section-padding" aria-labelledby="m-reviews-title">
+              <TestimonialsStrip
+                title="What clients say"
+                subtitle="Lorry owners, factories & families in Chennai North."
+                avgScore="4.9"
+                avgText="Google reviews"
+                pillHref={EN("/reviews/")}
+                testimonials={[
+                  { name: "Ramesh Kumar", role: "Fleet Owner, Madhavaram", quote: "Lorry claim settled fast. Documents sorted, no confusion. 30 years experience really shows.", rating: 5, avatarText: "R" },
+                  { name: "Priya Logistics", role: "Warehouse, Manali", quote: "Warehouse fire insurance done in one day. Explained sum insured properly. Recommend for industrial belt.", rating: 5, avatarText: "P" },
+                  { name: "Selvam", role: "Contractor, Poonamallee", quote: "CAR + WC insurance for construction site. No surprises in claim. Calls back and answers properly.", rating: 5, avatarText: "S" },
+                ]}
+                showControls={false}
+              />
+            </section>
+
+            <!-- 4. Most requested services -->
+            <section class="section section-padding">
+              <h2 class="section-title">Most requested services</h2>
+              <div class="grid grid-1">
+                {popularServices.slice(0, 8).map((x) => (
+                  <a class="card" href={x.href}>
+                    <div class="card-row"><span class="chip">{x.tag}</span></div>
+                    <h3 class="card-title">{x.title}</h3>
+                    <p class="card-desc readable" title={x.desc || "Open"}>{x.desc || "Open"}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <!-- 5. Insurance categories -->
+            <section class="section section-padding">
+              <h2 class="section-title">Insurance categories</h2>
+              <MobileCoreServices services={serviceCategoryCards} />
+            </section>
+
+            <!-- 6. Coverage areas -->
+            <section class="section section-padding" aria-label="Locations">
+              <h2 class="section-title">Areas we serve</h2>
+              <div class="grid grid-1">
+                <a class="card" href={EN("/locations/")}>
+                  <h3 class="card-title">All locations</h3>
+                  <p class="card-desc readable">NH belts, logistics hubs, industrial corridors, city-side areas.</p>
+                </a>
+                <a class="card" href={EN("/insurance-near-me/")}>
+                  <h3 class="card-title">Insurance near me</h3>
+                  <p class="card-desc readable">How local support works + documents to share first.</p>
+                </a>
+                {featuredLocations.map((l) => (
+                  <a class="card" href={EN(`/locations/${l.slug}/`)}>
+                    <h3 class="card-title">{l.name}</h3>
+                    <p class="card-desc readable">Open local guide</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+            <!-- 7. How we help + FAQs -->
+            <section class="section section-padding">
+              <MobileAccordion
+                sections={[
+                  ...siteData.howWeHelp,
+                  { title: "FAQs (quick)", items: smallHomeFaq.map((f) => ({ strong: f.q, text: f.a })) },
+                ]}
+                defaultOpen={true}
+              />
+            </section>
+
+            <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+            <div style="height:90px" aria-hidden="true"></div>
+
+            <FooterCtaBar
+              title={siteData.footerCtas.title}
+              subtitle={siteData.footerCtas.subtitle}
+              whatsappNumber={siteData.brand.whatsappE164}
+              whatsappText={siteData.brand.whatsappPrefill}
+              callNumber={siteData.brand.phoneE164}
+              callLabel={siteData.footerCtas.callLabel}
+              brandName={siteData.footerCtas.brandName}
+              logoText={siteData.footerCtas.logoText}
+              copyright={siteData.footerCtas.copyright}
+            />
+          </main>
+        </div>
+
+      </div>
+    </main>
+    <GlobalOverlays />
+
+    <style>
+      @media (min-width: 820px){
+        .readable { max-width: 100% !important; }
+      }
+      .chiplist{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px}
+      .chipli{margin:0;padding:0}
+      .chiplink{
+        display:inline-flex;
+        align-items:center;
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.16);
+        text-decoration:none;
+      }
+
+      .promo-card, .promo-swipe-card{
+        width:300px; height:300px;
+        border-radius:18px; overflow:hidden;
+        border:1px solid var(--border);
+        background:#000; flex-shrink:0;
+      }
+      .promo-img{
+        width:100%; height:100%; display:block;
+        object-fit: contain; object-position: center;
+        image-rendering: auto;
+      }
+
+      @media (min-width:821px){
+        .promo-grid{
+          display:grid;
+          grid-template-columns: repeat(3, 300px);
+          gap:16px;
+          justify-content:space-evenly;
+        }
+        .promo-swipe{ display:none; }
+      }
+
+      @media (max-width:820px){
+        .promo-grid{ display:none; }
+        .promo-swipe{
+          display:flex; gap:14px;
+          overflow-x:auto; -webkit-overflow-scrolling:touch;
+          flex-wrap: nowrap;
+          width: calc(100% + 24px);
+          margin-left: -12px; margin-right: -12px;
+          padding-left: 12px; padding-right: 12px; padding-bottom: 10px;
+          scroll-snap-type: x mandatory;
+        }
+        .promo-swipe::-webkit-scrollbar{ display:none; }
+        .promo-swipe-card{
+          width:300px; height:300px; flex: 0 0 300px;
+          scroll-snap-align: start;
+          border-radius:18px; overflow:hidden;
+          border:1px solid var(--border); background:#000;
+        }
+      }
+    </style>
+  </body>
+</html>

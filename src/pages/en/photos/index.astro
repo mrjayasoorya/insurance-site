@@ -1,28 +1,24 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, PageActionBar, "what to do next" guidance, CTA. Removed LocalIdentitySection.
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "../../../components/FloatingContactCta.astro";
-import FloatingMenu from "../../../components/FloatingMenu.astro";
+import GlobalOverlays from "../../../components/GlobalOverlays.astro";
 import BacklinksRow from "../../../components/BacklinksRow.astro";
-import LocalIdentitySection from "../../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
-
-// ✅ service links
-const services = (siteData.coreServices || []).map((s) => ({
-  ...s,
-  href: EN(`services/${s.slug}`),
-}));
+import ConversionBlock from "src/components/ConversionBlock.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
 
 const brand = siteData.brand;
-
+const cc = siteData.confidenceContent || {};
 const page = siteData.media?.photosPage || {};
-const title = `${page.title || "Photos"} | ${brand.name}`;
 const description = page.subtitle || "Photos and visuals from our guidance posts and service explainers.";
-
-// ✅ Images
 const images = (page.images || []).filter((i) => i?.src);
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/photos/");
@@ -45,7 +41,6 @@ const jsonLd = buildJsonLd({
     { name: "Photos", href: canonical },
   ],
 });
-
 ---
 
 <html lang="en">
@@ -53,13 +48,13 @@ const jsonLd = buildJsonLd({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="/styles/theme.css" />
-<link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
-                      <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
 
   <body>
@@ -69,21 +64,53 @@ const jsonLd = buildJsonLd({
         <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
-            <DesktopHero
-              brand={{
-                name: brand.name,
-                tagline: brand.tagline,
-                subtitle: brand.subtitle,
-                phone: brand.phone,
-                areaChips: brand.areaChips,
-              }}
-            />
+            <DesktopHero brand={{
+              name: brand.name,
+              tagline: brand.tagline,
+              subtitle: brand.subtitle,
+              phone: brand.phone,
+              areaChips: brand.areaChips,
+            }} />
           </header>
+
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Photos" },
+          ]} />
 
           <section class="section section-padding" aria-labelledby="photos-title">
             <h1 id="photos-title" class="section-title">{page.title || "Photos"}</h1>
-            <p class="section-sub">{description}</p>
+            <p class="section-sub readable">{description}</p>
+            <PageActionBar brand={brand} context="Photos" />
+          </section>
 
+          <!-- Not sure what you need? -->
+          <section class="section section-padding" aria-label="Not sure what you need">
+            <h2 class="section-title">Looking for something specific?</h2>
+            <p class="section-sub readable">These photos are from our Google Business Profile posts. If you need insurance help, try one of these:</p>
+            <div class="grid grid-2">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works — visit vs WhatsApp/phone.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction, business & personal insurance.</p>
+              </a>
+              <a class="card" href={EN("/reviews/")}>
+                <h3 class="card-title">Read customer reviews</h3>
+                <p class="card-desc">Verified Google Business Profile reviews.</p>
+              </a>
+              <a class="card" href={EN("/faqs/")}>
+                <h3 class="card-title">Read FAQs</h3>
+                <p class="card-desc">Common questions about renewals, claims, documents & coverage.</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- Photo gallery -->
+          <section class="section section-padding" aria-label="Photo gallery">
+            <h2 class="section-title">Photo gallery</h2>
             <ul class="photo-grid" role="list" aria-label="Photo gallery">
               {images.map((img) => {
                 const shape = img.shape || "landscape";
@@ -98,24 +125,20 @@ const jsonLd = buildJsonLd({
             </ul>
           </section>
 
-          <!-- ✅ Services we support -->
-          <section class="section section-padding" aria-labelledby="services-title">
-            <h2 id="services-title" class="section-title">Services we support</h2>
-            <p class="section-sub">Explore service pages for clear, structured guidance.</p>
+          <ConversionBlock siteData={siteData} brand={brand} />
 
-            <ul class="service-links" role="list">
-              {services.map((s) => (
-                <li class="service-link">
-                  <a class="svc" href={s.href}>
-                    <span class="svc-title">{s.title}</span>
-                    <span class="svc-desc">{s.desc}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Quick answers before you contact us"
+            items={cc.userQuestions || []}
+          />
 
-          <LocalIdentitySection brand={brand} pageTitle="Photos" />
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -136,21 +159,37 @@ const jsonLd = buildJsonLd({
         <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
-            <MobileHero
-              brand={{
-                name: brand.name,
-                tagline: brand.tagline,
-                subtitle: brand.subtitle,
-                phone: brand.phone,
-                areaChips: [],
-              }}
-            />
+            <MobileHero brand={{
+              name: brand.name,
+              tagline: brand.tagline,
+              subtitle: brand.subtitle,
+              phone: brand.phone,
+              areaChips: [],
+            }} />
           </header>
 
           <section class="section section-padding" aria-labelledby="m-photos-title">
             <h1 id="m-photos-title" class="section-title">{page.title || "Photos"}</h1>
-            <p class="section-sub">{description}</p>
+            <p class="section-sub readable">{description}</p>
+            <PageActionBar brand={brand} context="Photos" />
+          </section>
 
+          <section class="section section-padding">
+            <h2 class="section-title">Looking for something specific?</h2>
+            <div class="grid grid-1">
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
+              </a>
+            </div>
+          </section>
+
+          <section class="section section-padding" aria-label="Photo gallery">
+            <h2 class="section-title">Photo gallery</h2>
             <ul class="photo-grid" role="list" aria-label="Photo gallery">
               {images.map((img) => {
                 const shape = img.shape || "landscape";
@@ -165,21 +204,7 @@ const jsonLd = buildJsonLd({
             </ul>
           </section>
 
-          <section class="section section-padding" aria-labelledby="m-services-title">
-            <h2 id="m-services-title" class="section-title">Services we support</h2>
-            <ul class="service-links" role="list">
-              {services.map((s) => (
-                <li class="service-link">
-                  <a class="svc" href={s.href}>
-                    <span class="svc-title">{s.title}</span>
-                    <span class="svc-desc">{s.desc}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <LocalIdentitySection brand={brand} pageTitle="Photos" />
+          <ConversionBlock siteData={siteData} brand={brand} />
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -199,12 +224,19 @@ const jsonLd = buildJsonLd({
       </div>
     </main>
 
-    <FloatingMenu brand={brand} />
-    <FloatingContactCta brand={brand} />
+    <GlobalOverlays />
   </body>
 </html>
 
 <style is:global>
+  .readable{max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-1{grid-template-columns:1fr}
+  .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+  .card-title{font-size:16px;margin:8px 0 6px}
+  .card-desc{margin:0;opacity:.85}
+
   .photo-grid{
     margin: 12px 0 0;
     padding: 0;
@@ -213,7 +245,6 @@ const jsonLd = buildJsonLd({
     grid-template-columns: repeat(12, 1fr);
     gap: 10px;
   }
-
   .ph{
     grid-column: span 12;
     border: 1px solid var(--border);
@@ -222,27 +253,16 @@ const jsonLd = buildJsonLd({
     box-shadow: 0 2px 10px rgba(11,13,18,.05);
     overflow: hidden;
   }
-
-  @media (min-width: 720px){
-    .ph{ grid-column: span 6; }
-  }
-  @media (min-width: 1024px){
-    .ph{ grid-column: span 4; }
-  }
-
-  .ph-link{
-    display:block;
-    padding: 10px;
-  }
-
-  /* ✅ FULL image visible, no cropping */
+  @media (min-width: 720px){ .ph{ grid-column: span 6; } }
+  @media (min-width: 1024px){ .ph{ grid-column: span 4; } }
+  .ph-link{ display:block; padding: 10px; }
   .ph img{
     width: 100%;
     height: auto;
     display:block;
-    object-fit: contain; /* safe even though height auto */
+    object-fit: contain;
     background: transparent;
     border-radius: 12px;
   }
+  @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
 </style>
-

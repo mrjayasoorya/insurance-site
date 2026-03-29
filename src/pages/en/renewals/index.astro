@@ -1,13 +1,23 @@
 ---
+// RESTRUCTURED: Added Breadcrumbs, H1, PageActionBar, "what to do next" guidance, howWeWork, CTA
+
 import DesktopHero from "../../../components/DesktopHero.astro";
 import MobileHero from "../../../components/MobileHero.astro";
 import BlogSection from "../../../components/BlogSection.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
 import FooterCtaBar from "../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import { siteData } from "../../../content/siteData";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
+import { siteData, EN } from "../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/renewals/");
 const meta = buildMeta({
@@ -29,7 +39,6 @@ const jsonLd = buildJsonLd({
     { name: "Renewals", href: canonical },
   ],
 });
-
 ---
 
 <html lang="en">
@@ -37,23 +46,64 @@ const jsonLd = buildJsonLd({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
-                          <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="/styles/theme.css" />
   </head>
 
   <body>
     <main class="app">
       <div class="container">
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.renewalLicPosts.subtitle, phone: siteData.brand.phone, areaChips: siteData.brand.areaChips }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Renewals" },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.renewalLicPosts.title}</h1>
+            <p class="section-sub readable">{siteData.renewalLicPosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Insurance renewals" />
+          </section>
+
+          <!-- 2. What to do next -->
+          <section class="section section-padding" aria-label="What to do next">
+            <h2 class="section-title">What to do next</h2>
+            <p class="section-sub readable">Choose the option that matches your situation:</p>
+            <div class="grid grid-2">
+              <a class="card" href={EN("/insurance-renewal-near-me/")}>
+                <h3 class="card-title">Renew my policy now</h3>
+                <p class="card-desc">IDV, NCB, add-ons, compliance checks — avoid coverage gaps.</p>
+              </a>
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works — visit vs WhatsApp/phone.</p>
+              </a>
+              <a class="card" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction, business & personal insurance.</p>
+              </a>
+              <a class="card" href={EN("/insurance-claim-help/")}>
+                <h3 class="card-title">I need help with a claim</h3>
+                <p class="card-desc">Documents, timeline, and common delay reasons.</p>
+              </a>
+            </div>
+          </section>
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
+
+          <!-- 3. Renewal posts -->
           <BlogSection
             title={siteData.renewalLicPosts.title}
             subtitle={siteData.renewalLicPosts.subtitle}
@@ -63,7 +113,46 @@ const jsonLd = buildJsonLd({
             showSaveButton={false}
             hideViewAll={true}
           />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <!-- 4. How our process works -->
+          {siteData.aboutPage?.howWeWork?.steps?.length ? (
+            <section class="section section-padding" aria-label="How our process works">
+              <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
+              <div class="grid grid-2">
+                {siteData.aboutPage.howWeWork.steps.map((step) => (
+                  <article class="card">
+                    <h3 class="card-title">{step.title}</h3>
+                    <p class="card-desc readable">{step.desc}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Questions about renewal"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Renewal doubts? We answer them."
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText="Hi, I need help with my insurance renewal."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why renew through us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -77,10 +166,33 @@ const jsonLd = buildJsonLd({
           }} />
         </div>
 
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{ name: siteData.brand.name, tagline: siteData.brand.tagline, subtitle: siteData.renewalLicPosts.subtitle, phone: siteData.brand.phone, areaChips: [] }} />
           </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">{siteData.renewalLicPosts.title}</h1>
+            <p class="section-sub readable">{siteData.renewalLicPosts.subtitle}</p>
+            <PageActionBar brand={siteData.brand} context="Insurance renewals" />
+          </section>
+
+          <section class="section section-padding">
+            <h2 class="section-title">What to do next</h2>
+            <div class="grid grid-1">
+              <a class="card" href={EN("/insurance-renewal-near-me/")}>
+                <h3 class="card-title">Renew my policy now</h3>
+                <p class="card-desc">IDV, NCB, add-ons — avoid coverage gaps.</p>
+              </a>
+              <a class="card" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">I need insurance help nearby</h3>
+                <p class="card-desc">How local support works.</p>
+              </a>
+            </div>
+          </section>
+
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
 
           <BlogSection
             title={siteData.renewalLicPosts.title}
@@ -91,7 +203,10 @@ const jsonLd = buildJsonLd({
             showSaveButton={false}
             hideViewAll={true}
           />
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
           <FooterCtaBar {...{
             title: siteData.footerCtas.title,
             subtitle: siteData.footerCtas.subtitle,
@@ -106,7 +221,18 @@ const jsonLd = buildJsonLd({
         </div>
       </div>
     </main>
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+
+    <GlobalOverlays />
+
+    <style is:global>
+      .readable{max-width:78ch}
+      .grid{display:grid;gap:12px}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-1{grid-template-columns:1fr}
+      .card{display:block;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;text-decoration:none}
+      .card-title{font-size:16px;margin:8px 0 6px}
+      .card-desc{margin:0;opacity:.85}
+      @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
+    </style>
   </body>
 </html>

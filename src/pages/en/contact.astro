@@ -2,15 +2,18 @@
 import DesktopHero from "../../components/DesktopHero.astro";
 import MobileHero from "../../components/MobileHero.astro";
 import FooterCtaBar from "../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 // import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../content/siteData";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 const brand = siteData.brand;
+const cc = siteData.confidenceContent || {};
 
 const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
 const canonical = `${canonicalBase.replace(/\/$/, "")}/en/contact/`;
@@ -259,6 +262,27 @@ const jsonLd = {
             </p>
           </section>
 <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
+
+          <!-- USER QUESTIONS: area, language, scope -->
+          <UserQuestionsBlock
+            title="Common questions — before you reach out"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — contact page WhatsApp builder -->
+          <SmartAssistForm
+            brand={brand}
+            id="sa-desk"
+            heading="Pre-fill your WhatsApp message"
+            subheading="Pick your situation below — we build the message, you just send."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="What makes us different"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -394,6 +418,27 @@ const jsonLd = {
             </p>
           </section>
 <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions — before you reach out"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — contact page WhatsApp builder (mobile) -->
+          <SmartAssistForm
+            brand={brand}
+            id="sa-mob"
+            heading="Pre-fill your WhatsApp message"
+            subheading="Pick your situation below — we build the message, you just send."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="What makes us different"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
           <section aria-label="Contact CTA">
@@ -413,8 +458,7 @@ const jsonLd = {
       </div>
     </main>
 
-    <FloatingMenu brand={brand} />
-    <FloatingContactCta brand={brand} />
+    <GlobalOverlays />
   </body>
 </html>
 

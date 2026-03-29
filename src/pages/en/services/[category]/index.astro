@@ -1,23 +1,36 @@
 ---
+// src/pages/en/services/[category]/index.astro
+// RESTRUCTURED: Added Breadcrumbs, PageActionBar, howWeWork, tightened sections
+
 import DesktopHero from "../../../../components/DesktopHero.astro";
 import MobileHero from "../../../../components/MobileHero.astro";
 import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "../../../../components/FloatingContactCta.astro";
-import FloatingMenu from "../../../../components/FloatingMenu.astro";
+import GlobalOverlays from "../../../../components/GlobalOverlays.astro";
 import BacklinksRow from "../../../../components/BacklinksRow.astro";
-import { siteData } from "../../../../content/siteData";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
+import { siteData, EN } from "../../../../content/siteData";
 import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../../lib/seo";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 export async function getStaticPaths() {
   return (siteData.serviceCategories || []).map((c) => ({ params: { category: c.slug } }));
 }
 
-
 const { category } = Astro.params;
 const cat = (siteData.serviceCategories || []).find((x) => x.slug === category);
 if (!cat) throw new Error(`Unknown category: ${category}`);
+
+// Confidence content
+const cc = siteData.confidenceContent || {};
+const catScenarios = cc.serviceScenarios?.[category] ? Object.values(cc.serviceScenarios[category]).flat().slice(0, 3) : (cc.homeScenarios || []).slice(0, 2);
+const catGapQs = cc.serviceGapQuestions?.[category] || (cc.homeGapQuestions || []).slice(0, 3);
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/`);
 
@@ -44,14 +57,13 @@ const jsonLd = buildJsonLd({
 
 <html lang="en">
   <head>
-
-        <title>{meta.title}</title>
-  <meta name="description" content={meta.description} />
-  <link rel="canonical" href={meta.canonical} />
-  {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
-{Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-<link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="/styles/theme.css" />
@@ -60,6 +72,8 @@ const jsonLd = buildJsonLd({
   <body>
     <main class="app">
       <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -71,51 +85,81 @@ const jsonLd = buildJsonLd({
             }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Services", href: EN("/services/") },
+            { label: cat.title },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{cat.title}</h1>
             <p class="section-sub readable">{cat.desc}</p>
+            <PageActionBar brand={siteData.brand} context={cat.title} />
           </section>
 
-          <section class="section section-padding" aria-label="What this category covers">
-            <h2 class="section-title">What this category covers</h2>
-            <p class="readable">
-              This category groups related insurance problems so you can choose the correct service page without confusion.
-              We focus on accurate disclosures, policy wording clarity and documentation habits that protect claims.
-            </p>
-          </section>
-
-          <section class="section section-padding" aria-label="Common problems">
-            <h2 class="section-title">Common real-world problems (what causes claim friction)</h2>
-            <ul class="bullets">
-              {cat.problems?.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
-          <section class="section section-padding" aria-label="Popular services in this category">
-            <h2 class="section-title">Popular services under this category</h2>
+          <!-- 2. Services in this category (PRIMARY intent) -->
+          <section class="section section-padding" aria-label="Services in this category">
+            <h2 class="section-title">Services under {cat.title}</h2>
             <div class="grid grid-2">
               {cat.children?.map((x) => (
                 <a class="card" href={x.href}>
                   <h3 class="card-title">{x.title}</h3>
-                  <p class="card-desc">Open decision guide</p>
+                  <p class="card-desc">Coverage, documents & claim guidance</p>
                 </a>
               ))}
             </div>
           </section>
 
-          <section class="section section-padding" aria-label="Why risk sensitive">
-            <h2 class="section-title">Why this category is risk-sensitive</h2>
-            <p class="readable">
-              In high-risk categories, small disclosure or document gaps can lead to delays or settlement reduction.
-              We help prevent that by aligning operations, valuation and proof trail early.
-            </p>
-          </section>
-  <ConversionBlock 
-siteData={siteData}
-    brand={siteData.brand}
-  />
+          <!-- 3. Common problems -->
+          {cat.problems?.length ? (
+            <section class="section section-padding" aria-label="Common problems">
+              <h2 class="section-title">Common problems in this category</h2>
+              <ul class="bullets">{cat.problems.map((p) => <li>{p}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- SMART ASSIST — service category capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Have a question about this? Send us a message"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title="Real situations we handle"
+            scenarios={catScenarios.slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={catGapQs.slice(0, 4)}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${cat.title}. Can you guide me?`}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="serviceCategory" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -129,6 +173,7 @@ siteData={siteData}
           />
         </div>
 
+        <!-- ========================= MOBILE ========================= -->
         <div class="ui-mobile">
           <header>
             <MobileHero brand={{
@@ -140,35 +185,67 @@ siteData={siteData}
             }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{cat.title}</h1>
             <p class="section-sub readable">{cat.desc}</p>
+            <PageActionBar brand={siteData.brand} context={cat.title} />
           </section>
 
-          <section class="section section-padding">
-            <h2 class="section-title">Common problems</h2>
-            <ul class="bullets">
-              {cat.problems?.map((p) => <li>{p}</li>)}
-            </ul>
-          </section>
-
+          <!-- 2. Services -->
           <section class="section section-padding">
             <h2 class="section-title">Services</h2>
             <div class="grid grid-1">
               {cat.children?.map((x) => (
                 <a class="card" href={x.href}>
                   <h3 class="card-title">{x.title}</h3>
-                  <p class="card-desc">Open</p>
+                  <p class="card-desc">Coverage, documents & claim guidance</p>
                 </a>
               ))}
             </div>
           </section>
-  <ConversionBlock 
-siteData={siteData}
-    brand={siteData.brand}
-  />
+
+          <!-- 3. Common problems -->
+          {cat.problems?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Common problems</h2>
+              <ul class="bullets">{cat.problems.map((p) => <li>{p}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- SMART ASSIST — service category capture (mobile) -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Have a question about this? Send us a message"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- SCENARIOS (mobile) -->
+          <ScenariosWeHandle
+            title="Real situations we handle"
+            scenarios={catScenarios.slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING (mobile) -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={catGapQs.slice(0, 3)}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${cat.title}. Can you guide me?`}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="serviceCategory" />
+
           <FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
@@ -184,8 +261,7 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style>
       .grid{display:grid;gap:12px}

@@ -1,6 +1,9 @@
 ---
 import FooterCtaBar from "../components/FooterCtaBar.astro";
 import FloatingContactCta from "../components/FloatingContactCta.astro";
+import MobileStickyCTA from "../components/MobileStickyCTA.astro";
+import DesktopStickyCTA from "../components/DesktopStickyCTA.astro";
+import SmartAssistForm from "../components/SmartAssistForm.astro";
 import { siteData } from "../content/siteData";
 
 const { title, description, jsonLdGraph = null } = Astro.props;
@@ -30,7 +33,21 @@ const canonical = siteData.brand.websiteUrl || "https://rajendrakumarinsurance.i
       </div>
     </main>
 
+    <SmartAssistForm
+      brand={siteData.brand}
+      mode="overlay"
+      id="sa-page-overlay"
+      cooldownHours={siteData.assistPopups?.exit?.cooldownHours ?? 24}
+    />
     <FloatingContactCta brand={siteData.brand} />
+    <DesktopStickyCTA brand={siteData.brand} />
+    <MobileStickyCTA
+      phone={siteData.brand.phone}
+      phoneE164={siteData.brand.phoneE164}
+      whatsappE164={siteData.brand.whatsappE164}
+      whatsappPrefill={siteData.brand.whatsappPrefill}
+      trustLine="30 yrs experience · Sholavaram · Free guidance"
+    />
 
     <!-- Keep global CTA bar only if the page doesn't include one -->
     <!-- Or remove this block if you always include FooterCtaBar per page -->

@@ -1,19 +1,24 @@
 ---
+// src/pages/en/locations/[location]/index.astro
+// RESTRUCTURED: Services moved up, low-value sections trimmed
+
 import DesktopHero from "../../../../components/DesktopHero.astro";
 import MobileHero from "../../../../components/MobileHero.astro";
 import MobileAccordion from "../../../../components/MobileAccordion.astro";
 import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
-import FloatingContactCta from "src/components/FloatingContactCta.astro";
-import FloatingMenu from "src/components/FloatingMenu.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "../../../../components/BacklinksRow.astro";
-import LocalIdentitySection from "../../../../components/LocalIdentitySection.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
 
 import { siteData, EN } from "../../../../content/siteData";
 import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../../lib/seo";
-
-import LinkChipsSection from "src/components/LinkChipsSection.astro";
-import QuickHelpLinks from "src/components/QuickHelpLinks.astro";
 import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
 
 export async function getStaticPaths() {
   const all = siteData.locationsDetail || {};
@@ -23,6 +28,10 @@ export async function getStaticPaths() {
 const { location } = Astro.params;
 const data = siteData.locationsDetail?.[location];
 if (!data) throw new Error(`Unknown location: ${location}`);
+
+// Confidence content
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/locations/${location}/`);
 
@@ -34,56 +43,27 @@ const meta = buildMeta({
   geo: geoMetaFromBrand(siteData),
 });
 
-// Intent router (prevents dead ends)
+// Intent router
 const intentCards = data.intentCards?.length
   ? data.intentCards
   : [
-      {
-        title: "Insurance near me",
-        desc: "How local support works (visit vs WhatsApp/phone), what to share first, and when inspections apply.",
-        href: EN("/insurance-near-me/"),
-      },
-      {
-        title: "Insurance renewal help",
-        desc: "Renewal checks that prevent gaps: IDV/NCB/add-ons, permits/fitness where applicable.",
-        href: EN("/insurance-renewal-near-me/"),
-      },
-      {
-        title: "Insurance claim help",
-        desc: "What to do first, what proof matters, and how to keep a clean incident timeline.",
-        href: EN("/insurance-claim-help/"),
-      },
-      {
-        title: "Browse services",
-        desc: "Transport/fleet, industrial, contractor, MSME, and claim support guidance pages.",
-        href: EN("/services/"),
-      },
-      {
-        title: "All locations hub",
-        desc: "Zones and corridor belts—useful when you searched without an area name.",
-        href: EN("/locations/"),
-      },
+      { title: "Insurance near me", desc: "How local support works, documents to share first.", href: EN("/insurance-near-me/") },
+      { title: "Insurance renewal help", desc: "Renewal checks: IDV/NCB/add-ons, permits/fitness.", href: EN("/insurance-renewal-near-me/") },
+      { title: "Insurance claim help", desc: "First steps, proof that matters, incident timeline.", href: EN("/insurance-claim-help/") },
+      { title: "All services", desc: "Transport, industrial, contractor, MSME and claim support.", href: EN("/services/") },
     ];
 
-// At-a-glance (high-weight content early)
-const atAGlance = [
-  { k: "Area type", v: data.locationType || "service area" },
-  { k: "Support model", v: "Sholavaram hub + location-specific guidance" },
-  { k: "Top intent", v: (data.commonRequests?.items || []).slice(0, 1).join("") },
-  { k: "Popular services", v: (data.serviceLinks || []).slice(0, 2).map((x) => x.title).join(" • ") },
-].filter((x) => x.v);
-
-// Service cards (fallback to serviceLinks)
+// Service cards
 const serviceCards = (data.serviceCards?.length ? data.serviceCards : (data.serviceLinks || []).map((s) => ({
   title: s.title,
   href: s.href,
-  desc: s.desc || "Practical guidance: coverage logic, documents and common mistakes (claim-ready).",
+  desc: s.desc || "Coverage details, documents and claim guidance.",
 })));
 
-// Nearby areas (prefer nearbyAreas.items, else relatedLocations)
+// Nearby areas
 const nearbyItems = data.nearbyAreas?.items?.length
   ? data.nearbyAreas.items
-  : (data.relatedLocations || []).map((x) => ({ ...x, desc: x.desc || "Open nearby service-area guidance." }));
+  : (data.relatedLocations || []).map((x) => ({ ...x, desc: x.desc || "Open nearby area guide." }));
 
 const jsonLd = buildJsonLd({
   pageType: "locationDetail",
@@ -109,7 +89,6 @@ const jsonLd = buildJsonLd({
     {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
     {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -134,67 +113,23 @@ const jsonLd = buildJsonLd({
             }} />
           </header>
 
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Locations", href: EN("/locations/") },
+            { label: data.heroH1 || data.name },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding" aria-label="Overview">
             <h1 class="section-title">{data.heroH1}</h1>
             <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.name || location} />
           </section>
 
-          {atAGlance.length ? (
-            <section class="section section-padding" aria-label="At a glance">
-              <h2 class="section-title">At a glance</h2>
-              <div class="glance">
-                {atAGlance.map((x) => (
-                  <div class="glance-row">
-                    <div class="glance-k">{x.k}</div>
-                    <div class="glance-v">{x.v}</div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          {data.anchorAndCoordination?.title ? (
-            <section class="section section-padding" aria-label="How support works">
-              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
-              {data.anchorAndCoordination.intro ? (
-                <p class="section-sub readable">{data.anchorAndCoordination.intro}</p>
-              ) : null}
-              {data.anchorAndCoordination.bullets?.length ? (
-                <ul class="bullets">
-                  {data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}
-                </ul>
-              ) : null}
-            </section>
-          ) : null}
-
-          {data.localContext?.length ? (
-            <section class="section section-padding" aria-label="Local context">
-              <h2 class="section-title">Local context</h2>
-              <ul class="bullets">{data.localContext.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          {data.localLandmarks?.items?.length ? (
-            <section class="section section-padding" aria-label="Local reference points">
-              <h2 class="section-title">{data.localLandmarks.title || "Local reference points"}</h2>
-              {data.localLandmarks.note ? <p class="section-sub readable">{data.localLandmarks.note}</p> : null}
-              <ul class="bullets">{data.localLandmarks.items.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          {data.commonRequests?.items?.length ? (
-            <section class="section section-padding" aria-label="Common requests">
-              <h2 class="section-title">{data.commonRequests.title || `Common requests from ${data.name}`}</h2>
-              <ul class="bullets">{data.commonRequests.items.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
+          <!-- 2. Services available here (PRIMARY user intent) -->
           {serviceCards?.length ? (
             <section class="section section-padding" aria-label="Services supported">
-              <h2 class="section-title">Services commonly supported in {data.name}</h2>
-              <p class="section-sub readable">
-                Open the exact service to see documents, common mistakes, and claim-ready guidance.
-              </p>
+              <h2 class="section-title">Services available in {data.name}</h2>
               <div class="grid grid-2">
                 {serviceCards.map((s) => (
                   <a class="card" href={s.href}>
@@ -206,6 +141,61 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- 3. How support works from here -->
+          {data.anchorAndCoordination?.title ? (
+            <section class="section section-padding" aria-label="How support works">
+              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
+              {data.anchorAndCoordination.intro ? (
+                <p class="section-sub readable">{data.anchorAndCoordination.intro}</p>
+              ) : null}
+              {data.anchorAndCoordination.bullets?.length ? (
+                <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 4. Common requests -->
+          {data.commonRequests?.items?.length ? (
+            <section class="section section-padding" aria-label="Common requests">
+              <h2 class="section-title">{data.commonRequests.title || `Common requests from ${data.name}`}</h2>
+              <ul class="bullets">{data.commonRequests.items.map((x) => <li>{x}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title={`Real situations we handle in ${data.name}`}
+            subtitle="People from this area reach us with exactly these kinds of situations."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
+            waNumber={waNumber}
+            waText={`Hi, I'm from ${data.name} area and need insurance guidance. Can you help?`}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- SMART ASSIST — location page capture -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Need insurance support here? Send a quick message"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- 5. Next steps -->
           {data.nextSteps?.bullets?.length ? (
             <section class="section section-padding" aria-label="Next steps">
               <h2 class="section-title">{data.nextSteps.title || "What to do next"}</h2>
@@ -213,22 +203,7 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
-          <section class="section section-padding" aria-label="Quick actions">
-            <h2 class="section-title">Quick actions</h2>
-            <div class="grid grid-2">
-              {intentCards.map((c) => (
-                <a class="card" href={c.href}>
-                  <h3 class="card-title">{c.title}</h3>
-                  <p class="card-desc readable">{c.desc}</p>
-                </a>
-              ))}
-            </div>
-          </section>
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
+          <!-- 6. FAQs -->
           {data.faqs?.length ? (
             <section class="section section-padding" aria-label="FAQs">
               <h2 class="section-title">FAQs for {data.name}</h2>
@@ -242,12 +217,23 @@ siteData={siteData}
             </section>
           ) : null}
 
+          <!-- 7. Quick actions -->
+          <section class="section section-padding" aria-label="Quick actions">
+            <h2 class="section-title">Quick actions</h2>
+            <div class="grid grid-2">
+              {intentCards.map((c) => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <!-- 8. Nearby areas -->
           {nearbyItems?.length ? (
             <section class="section section-padding" aria-label="Nearby areas">
               <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas we also support"}</h2>
-              <p class="section-sub readable">
-                If your search used a landmark or adjacent neighborhood name, these pages help you land on the right local context.
-              </p>
               <ul class="link-rows" role="list">
                 {nearbyItems.map((x) => (
                   <li class="link-row">
@@ -261,16 +247,7 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
-
-          <LinkChipsSection
-            title="Search signals (synonyms people use)"
-            items={[...(data.intentSearchSignals || []), ...(data.serviceAreaSignals || [])]}
-            variant="chips"
-          />
-
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="locationDetail" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -297,19 +274,14 @@ siteData={siteData}
             }} />
           </header>
 
+          <!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{data.heroH1}</h1>
             <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.name || location} />
           </section>
 
-          {data.anchorAndCoordination?.title ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
-              {data.anchorAndCoordination.intro ? <p class="section-sub readable">{data.anchorAndCoordination.intro}</p> : null}
-              {data.anchorAndCoordination.bullets?.length ? <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul> : null}
-            </section>
-          ) : null}
-
+          <!-- 2. Services available -->
           {serviceCards?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Services in {data.name}</h2>
@@ -323,11 +295,55 @@ siteData={siteData}
               </div>
             </section>
           ) : null}
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
+
+          <!-- 3. How support works -->
+          {data.anchorAndCoordination?.title ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
+              {data.anchorAndCoordination.intro ? <p class="section-sub readable">{data.anchorAndCoordination.intro}</p> : null}
+              {data.anchorAndCoordination.bullets?.length ? <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul> : null}
+            </section>
+          ) : null}
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- SCENARIOS (mobile) -->
+          <ScenariosWeHandle
+            title="Real situations we handle"
+            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- STILL WONDERING (mobile) -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            waNumber={waNumber}
+            waText={`Hi, I'm from ${data.name} area and need insurance guidance. Can you help?`}
+          />
+
+          <!-- USER QUESTIONS -->
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- SMART ASSIST — location page capture (mobile) -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Need insurance support here? Send a quick message"
+            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+          />
+
+          <!-- 4. FAQs -->
           {data.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
@@ -340,6 +356,7 @@ siteData={siteData}
             </section>
           ) : null}
 
+          <!-- 5. Nearby areas -->
           {nearbyItems?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas"}</h2>
@@ -356,16 +373,7 @@ siteData={siteData}
             </section>
           ) : null}
 
-          <LocalIdentitySection brand={siteData.brand} pageTitle={`Location: ${data.name}`} />
-
-          <LinkChipsSection
-            title="Search signals (synonyms people use)"
-            items={[...(data.intentSearchSignals || []), ...(data.serviceAreaSignals || [])]}
-            variant="chips"
-          />
-
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <QuickHelpLinks pageType="locationDetail" />
 
           <FooterCtaBar
             title={siteData.footerCtas.title}
@@ -383,70 +391,44 @@ siteData={siteData}
       </div>
     </main>
 
-    <FloatingMenu brand={siteData.brand} />
-    <FloatingContactCta brand={siteData.brand} />
+    <GlobalOverlays />
 
     <style is:global>
       .readable{ max-width: 78ch; }
-
       .grid{ display:grid; gap:12px; }
       .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid-1{ grid-template-columns: 1fr; }
-
       .card{
-        display:block;
-        padding:14px;
-        border:1px solid var(--border);
-        border-radius:16px;
-        background: var(--surface);
-        text-decoration:none;
+        display:block; padding:14px;
+        border:1px solid var(--border); border-radius:16px;
+        background: var(--surface); text-decoration:none;
         box-shadow: 0 2px 10px rgba(11,13,18,.05);
       }
       .card-title{ font-size:15px; margin:0; font-weight:950; letter-spacing:-0.01em; }
       .card-desc{ margin:8px 0 0; color: var(--muted); font-size:13px; line-height:1.35; }
-
       .glance{
-        border:1px solid var(--border);
-        background: var(--surface);
-        border-radius: 16px;
-        padding: 10px 12px;
-        display:flex;
-        flex-direction:column;
-        gap:10px;
+        border:1px solid var(--border); background: var(--surface);
+        border-radius: 16px; padding: 10px 12px;
+        display:flex; flex-direction:column; gap:10px;
         box-shadow: 0 2px 10px rgba(11,13,18,.05);
       }
-      .glance-row{
-        display:grid;
-        grid-template-columns: 160px 1fr;
-        gap: 10px;
-        align-items:start;
-      }
+      .glance-row{ display:grid; grid-template-columns: 160px 1fr; gap: 10px; align-items:start; }
       .glance-k{ font-weight:950; opacity:.85; font-size:13px; }
       .glance-v{ opacity:.9; font-size:13.5px; line-height:1.35; }
       @media (max-width: 520px){ .glance-row{ grid-template-columns: 1fr; } }
-
       .link-rows{
-        list-style:none;
-        padding:0;
-        margin: 12px 0 0;
-        display:flex;
-        flex-direction:column;
-        gap: 10px;
+        list-style:none; padding:0; margin: 12px 0 0;
+        display:flex; flex-direction:column; gap: 10px;
       }
       .link-row{
-        border:1px solid var(--border);
-        background: var(--surface);
-        border-radius: 16px;
-        padding: 10px 12px;
+        border:1px solid var(--border); background: var(--surface);
+        border-radius: 16px; padding: 10px 12px;
         box-shadow: 0 2px 10px rgba(11,13,18,.05);
       }
       .rowlink{ display:flex; flex-direction:column; gap:6px; text-decoration:none; }
       .rowtitle{ font-weight: 950; }
       .rowdesc{ color: var(--muted); font-size: 13px; line-height: 1.35; }
-
-      @media (max-width: 980px){
-        .grid-2{ grid-template-columns: 1fr; }
-      }
+      @media (max-width: 980px){ .grid-2{ grid-template-columns: 1fr; } }
     </style>
   </body>
 </html>
