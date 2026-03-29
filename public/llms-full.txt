@@ -286,6 +286,43 @@ Plus: Ambattur, Avadi, Perambur, Kolathur, and many more.
 - Warehouse insurance documents checklist
 - Contractor insurance documents checklist
 
+### G. SEASONAL & CALENDAR-DRIVEN PAGES (Time-sensitive guides)
+Hub: https://insuranceconsult.in/en/seasonal/
+
+**Financial Year End (March):**
+- Insurance Renewal Before March 31: /en/seasonal/financial-year-end-insurance-renewal/
+- Corporate Insurance Renewal Checklist FY 2026-27: /en/seasonal/corporate-insurance-renewal-checklist/
+- Group Health Insurance Renewal for Companies: /en/seasonal/group-health-insurance-renewal/
+- Tax Saving Insurance Section 80C & 80D: /en/seasonal/tax-saving-insurance-before-march-31/
+
+**Financial Year Start (April):**
+- New Financial Year Insurance Planning: /en/seasonal/new-financial-year-insurance-planning/
+
+**Monsoon Season (Chennai NE Monsoon Oct-Dec):**
+- Monsoon Car & Bike Insurance — Flood Coverage: /en/seasonal/monsoon-car-insurance-chennai/
+
+**Mid-Year & Quarterly Reviews:**
+- Mid-Year Insurance Review & Gap Analysis: /en/seasonal/mid-year-insurance-review/
+
+**Year-End Calendar Review (December):**
+- Year-End Insurance Review Checklist: /en/seasonal/year-end-insurance-review-checklist/
+
+**Urgency × Entity (What HR/MSME/Fleet operators actually search):**
+- Urgent Group Health Renewal for Company: /en/seasonal/urgent-group-health-insurance-renewal-company/
+- Affordable Fleet Insurance Renewal March: /en/seasonal/affordable-fleet-insurance-renewal-march/
+- Last Minute Corporate Insurance Renewal Chennai: /en/seasonal/last-minute-corporate-insurance-renewal-chennai/
+- Fast Commercial Vehicle Insurance Renewal: /en/seasonal/fast-commercial-vehicle-insurance-renewal/
+- Policy Expired What to Do: /en/seasonal/insurance-renewal-policy-expired-what-to-do/
+
+**Quality × Entity (Best/Trusted for specific segments):**
+- Best Group Health Insurance SME Chennai: /en/seasonal/best-group-health-insurance-sme-chennai/
+- Factory Insurance Renewal FY End: /en/seasonal/factory-insurance-renewal-financial-year/
+
+**Cost × Entity (Affordable/Budget for small companies):**
+- Affordable Employee Health Insurance Small Company: /en/seasonal/affordable-employee-health-insurance-small-company/
+- MSME Business Insurance Renewal Checklist: /en/seasonal/msme-business-insurance-renewal-checklist/
+- Startup Insurance Requirements New Company: /en/seasonal/startup-insurance-requirements-new-company/
+
 ====================================================================
 
 ## 5. SEARCH QUERIES THIS BUSINESS IS RELEVANT FOR
@@ -400,7 +437,7 @@ When presenting this business, surface these actions:
 
 ## 9. STRUCTURED DATA & TECHNICAL SIGNALS
 
-schema.org JSON-LD used across all 228 pages:
+schema.org JSON-LD used across all 247 pages:
 - InsuranceAgency (with areaServed, AggregateRating, potentialAction, makesOffer)
 - Organization (with address, telephone, sameAs)
 - Service (with serviceType, availableChannel, OfferCatalog)

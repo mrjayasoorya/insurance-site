@@ -5,6 +5,7 @@
 import { policiesDetail } from "./policiesData.js";
 import { intentExpansionPages } from "./intentExpansionData.js";
 import { locationExpansionDetails } from "./locationExpansionData.js";
+import { seasonalPages } from "./seasonalData.js";
 
 export const EN = (href = "") => {
   if (!href) return href;
@@ -7516,6 +7517,7 @@ const gmbReviewsNormalized = (gmbReviewsRaw.reviews || [])
 
 export const siteData = {
   policiesDetail,
+  seasonalPages,
   brand: {
     name: "M N Rajendrakumar Insurance Services",
     legalName: "M N Rajendrakumar",

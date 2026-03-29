@@ -1,0 +1,245 @@
+---
+// src/pages/en/seasonal/index.astro
+// Seasonal insurance hub — calendar-driven and time-sensitive pages
+
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+
+import { siteData, EN } from "../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/seasonal/");
+const cc = siteData.confidenceContent || {};
+
+const meta = buildMeta({
+  title: `Seasonal Insurance — Financial Year, Monsoon, Tax Deadline Guides | ${siteData.brand.name}`,
+  description: "Time-sensitive insurance guides: financial year end renewal, corporate insurance checklist, group health renewal, monsoon car insurance, tax saving insurance, and year-end coverage review. Act at the right time — save money, avoid gaps.",
+  canonical,
+  geo: geoMetaFromBrand(siteData),
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "servicesHub",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: "/en/" },
+    { name: "Seasonal Insurance Guides", href: canonical },
+  ],
+  faqs: [],
+});
+
+const allSeasonal = siteData.seasonalPages || {};
+
+const categories = {
+  "financial-year": { label: "Financial Year — End & Start", desc: "March-April renewals, corporate checklists, and FY transition guides." },
+  "monsoon": { label: "Monsoon Season", desc: "Chennai monsoon vehicle insurance preparation and flood coverage." },
+  "quarterly": { label: "Mid-Year & Quarterly Reviews", desc: "Regular insurance check-ups and gap analysis." },
+  "calendar-year": { label: "Year-End Review", desc: "Annual insurance audit and next-year planning." },
+};
+
+const grouped = {};
+for (const [slug, page] of Object.entries(allSeasonal)) {
+  const cat = page.seasonCategory || "other";
+  if (!grouped[cat]) grouped[cat] = [];
+  grouped[cat].push({ slug, ...page, href: EN(`/seasonal/${slug}/`) });
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="canonical" href={meta.canonical} />
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: "Time-sensitive insurance guides — renewal deadlines, seasonal coverage, tax planning, and corporate checklists. Act at the right time.",
+              phone: siteData.brand.phone,
+              areaChips: siteData.brand.areaChips,
+            }} />
+          </header>
+
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Seasonal Insurance Guides" },
+          ]} />
+
+          <section class="section section-padding">
+            <h1 class="section-title">Seasonal insurance guides — act at the right time</h1>
+            <p class="section-sub readable">Insurance has a rhythm. Financial year end brings corporate renewals. Monsoon brings flood claims. Tax deadlines push last-minute purchases. These guides help you act at the right time — not too early, not too late.</p>
+            <PageActionBar brand={siteData.brand} context="seasonal insurance guidance" />
+          </section>
+
+          {Object.entries(categories).map(([catKey, catInfo]) => {
+            const pages = grouped[catKey] || [];
+            if (!pages.length) return null;
+            return (
+              <section class="section section-padding" aria-label={catInfo.label}>
+                <h2 class="section-title">{catInfo.label}</h2>
+                <p class="section-sub">{catInfo.desc}</p>
+                <div class="seasonal-cards-grid">
+                  {pages.map((pg) => (
+                    <a class="seasonal-card" href={pg.href}>
+                      <div class="seasonal-card-header">
+                        <span class={`season-tag ${pg.urgency === 'high' ? 'urgency-high' : 'urgency-medium'}`}>{pg.seasonTag}</span>
+                        {pg.urgency === 'high' && <span class="urgency-badge">Act Now</span>}
+                      </div>
+                      <h3 class="seasonal-card-title">{pg.heroH1}</h3>
+                      <p class="seasonal-card-desc">{pg.seoDesc.slice(0, 140)}…</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <!-- SMART ASSIST -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Not sure what you need? Tell us your situation"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <!-- ========================= MOBILE ========================= -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: "Time-sensitive insurance guides — renewal deadlines, seasonal coverage, and tax planning.",
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">Seasonal insurance guides</h1>
+            <p class="section-sub readable">Insurance has a rhythm. These guides help you act at the right time.</p>
+            <PageActionBar brand={siteData.brand} context="seasonal insurance guidance" />
+          </section>
+
+          {Object.entries(categories).map(([catKey, catInfo]) => {
+            const pages = grouped[catKey] || [];
+            if (!pages.length) return null;
+            return (
+              <section class="section section-padding">
+                <h2 class="section-title">{catInfo.label}</h2>
+                <div class="seasonal-cards-grid">
+                  {pages.map((pg) => (
+                    <a class="seasonal-card" href={pg.href}>
+                      <div class="seasonal-card-header">
+                        <span class={`season-tag ${pg.urgency === 'high' ? 'urgency-high' : 'urgency-medium'}`}>{pg.seasonTag}</span>
+                      </div>
+                      <h3 class="seasonal-card-title">{pg.heroH1}</h3>
+                      <p class="seasonal-card-desc">{pg.seoDesc.slice(0, 100)}…</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+
+          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Not sure what you need?"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+      </div>
+    </main>
+
+    <GlobalOverlays />
+
+    <style is:global>
+      .readable{max-width:78ch}
+      .seasonal-cards-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+      .seasonal-card{display:block;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--surface);text-decoration:none;transition:border-color .2s}
+      .seasonal-card:hover{border-color:rgba(59,130,246,.5)}
+      .seasonal-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+      .seasonal-card-title{margin:0 0 8px;font-size:16px;font-weight:900;line-height:1.3}
+      .seasonal-card-desc{margin:0;font-size:13px;opacity:.8;line-height:1.4}
+
+      .season-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.02em;background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3)}
+      .urgency-high{background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)}
+      .urgency-medium{background:rgba(234,179,8,.15);color:#facc15;border-color:rgba(234,179,8,.3)}
+      .urgency-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;background:rgba(239,68,68,.2);color:#f87171}
+
+      @media (max-width:980px){.seasonal-cards-grid{grid-template-columns:1fr}}
+    </style>
+  </body>
+</html>
