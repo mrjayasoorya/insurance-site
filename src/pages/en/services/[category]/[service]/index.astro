@@ -13,7 +13,7 @@ import PageActionBar from "src/components/PageActionBar.astro";
 import Breadcrumbs from "src/components/Breadcrumbs.astro";
 
 import { siteData, EN, SERVICE_LOCAL_SUPPORT } from "../../../../../content/siteData";
-import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../../../lib/seo";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
 import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
@@ -43,6 +43,7 @@ const meta = buildMeta({
   description: data.seoDesc,
   canonical,
   ogType: "article",
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({

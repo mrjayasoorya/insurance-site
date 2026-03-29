@@ -7,7 +7,7 @@ import BacklinksRow from "src/components/BacklinksRow.astro";
 import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../content/siteData";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
 import WhyChooseUs from "src/components/WhyChooseUs.astro";
@@ -34,6 +34,7 @@ const meta = buildMeta({
     `Licensed insurance agency in Chennai (Red Hills / Sholavaram base). Direct expert support, claim-ready documentation, multilingual consultation, on-spot service across Chennai, and no lead-selling.`,
   canonical,
   ogType: "website",
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({

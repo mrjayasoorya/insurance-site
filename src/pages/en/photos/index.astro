@@ -10,7 +10,7 @@ import GlobalOverlays from "../../../components/GlobalOverlays.astro";
 import BacklinksRow from "../../../components/BacklinksRow.astro";
 
 import { siteData, EN } from "../../../content/siteData";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
 import WhyChooseUs from "src/components/WhyChooseUs.astro";
@@ -27,8 +27,7 @@ const meta = buildMeta({
   description:
     "Office and Google posts photos from our Sholavaram base—real local context for customers in Chennai North & NH corridors.",
   canonical,
-  ogType: "website",
-});
+  ogType: "website",  geo: geoMetaFromBrand(siteData),});
 
 const jsonLd = buildJsonLd({
   pageType: "photos",

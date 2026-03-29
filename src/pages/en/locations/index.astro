@@ -8,7 +8,7 @@ import PageActionBar from "src/components/PageActionBar.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 
 import { siteData, EN } from "../../../content/siteData";
-import { buildMeta, buildJsonLd, canonicalFromPath } from "../../../lib/seo";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
 import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
@@ -20,6 +20,7 @@ const meta = buildMeta({
   title: `Locations | ${siteData.brand.name}`,
   description: siteData.locationsIndex?.subtitle || "Locations we serve.",
   canonical,
+  geo: geoMetaFromBrand(siteData),
 });
 
 const zones = siteData.locationsIndex?.zones || [];

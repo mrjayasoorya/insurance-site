@@ -9,7 +9,7 @@ import PageActionBar from "src/components/PageActionBar.astro";
 import FAQSection from "../../../components/FAQSection.astro";
 
 import { siteData, EN } from "../../../content/siteData";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const services = (siteData.coreServices || []).map((s) => ({
@@ -24,8 +24,7 @@ const meta = buildMeta({
   description:
     "Frequently asked questions about insurance renewals, claims, documentation, service areas and policy selection—focused on Chennai North & NH corridors.",
   canonical,
-  ogType: "website",
-});
+  ogType: "website",  geo: geoMetaFromBrand(siteData),});
 
 const allFaqs = Object.values(siteData.faqsPage || {})
   .flatMap((g) => g?.items || [])

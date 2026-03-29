@@ -326,7 +326,8 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
 
   const graph = [];
   const regulatory = brand.regulatory || {};
-  const founder = brand.founder || {};6
+  const founder = brand.founder || {};
+  const waNumber = brand.whatsappE164 || brand.phoneE164?.replace("+", "") || "";
 
   // WebSite
   graph.push(prune({
@@ -364,6 +365,12 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
     name: brand.name,
     url: base,
     telephone: brand.phoneE164,
+    logo: `${base}/assets/logo/MNRajendraKumar_Insurance_services_logo_800x800px_white_bg_full.png`,
+    image: `${base}/assets/logo/MNRajendraKumar_Insurance_services_logo_800x800px_white_bg_full.png`,
+    slogan: brand.tagline || "Car \u2022 Lorry \u2022 Fleet \u2022 Factory \u2022 Health",
+    foundingDate: "1994",
+    naics: "524210",
+    description: brand.subtitle || "Car, bike, lorry, fleet, factory, warehouse and health insurance in Sholavaram, Red Hills and Chennai North.",
     sameAs: [brand.gbpUrl].filter(Boolean),
     hasMap: brand.gbpUrl || undefined,
     address: brand.addressLocality ? {
@@ -401,6 +408,55 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
     priceRange: "₹₹",
     paymentAccepted: ["Cash", "UPI", "Online Transfer"],
     currenciesAccepted: "INR",
+
+    // Click-to-call & WhatsApp actions (Google Search, Maps, AI assistants)
+    potentialAction: [
+      {
+        "@type": "CommunicateAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `tel:${brand.phoneE164}`,
+          actionPlatform: [
+            "http://schema.org/DesktopWebCheckerActionPlatform",
+            "http://schema.org/AndroidPlatform",
+            "http://schema.org/IOSPlatform",
+          ],
+        },
+        name: "Call Now",
+      },
+      ...(waNumber ? [{
+        "@type": "CommunicateAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `https://wa.me/${waNumber}`,
+          actionPlatform: [
+            "http://schema.org/AndroidPlatform",
+            "http://schema.org/IOSPlatform",
+          ],
+        },
+        name: "WhatsApp Now",
+      }] : []),
+    ],
+
+    // Key insurance service offerings
+    makesOffer: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Motor Insurance (Car, Bike, Commercial Vehicle)", serviceType: "Motor Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fleet & Transport Insurance", serviceType: "Fleet Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Factory & Industrial Insurance (Fire, Machinery, Stock)", serviceType: "Industrial Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Health & Personal Insurance", serviceType: "Health Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Marine & Cargo Insurance", serviceType: "Marine Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Contractor & Project Insurance (CAR, EAR, WC)", serviceType: "Contractor Insurance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Liability Insurance (Public, Professional, D&O)", serviceType: "Liability Insurance" } },
+    ],
+
+    // Insurer network affiliations
+    ...(siteData.brand?.insurerNetwork?.length ? {
+      memberOf: siteData.brand.insurerNetwork.map((ins: any) => ({
+        "@type": "Organization",
+        name: ins.name,
+      })),
+    } : {}),
+
       contactPoint: prune({
     "@type": "ContactPoint",
     telephone: brand.phoneE164,
@@ -499,6 +555,21 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
       description: serviceData.heroP || serviceData.seoDesc || description,
       url: canonical,
       provider: { "@id": agencyId },
+      serviceType: serviceData.category || serviceData.tags?.[0] || undefined,
+
+      // Contact channels for this service
+      availableChannel: [
+        {
+          "@type": "ServiceChannel",
+          servicePhone: { "@type": "ContactPoint", telephone: brand.phoneE164 },
+          name: "Phone",
+        },
+        ...(waNumber ? [{
+          "@type": "ServiceChannel",
+          serviceUrl: `https://wa.me/${waNumber}`,
+          name: "WhatsApp",
+        }] : []),
+      ],
 
       // IMPORTANT: service also carries area reach
       areaServed: areaServedStruct,
@@ -544,6 +615,29 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
       containedInPlace: [
         { "@type": "AdministrativeArea", name: "Chennai" },
         { "@type": "AdministrativeArea", name: "Tamil Nadu" },
+      ],
+    }));
+
+    // Service node linking agency to this location
+    graph.push(prune({
+      "@type": "Service",
+      "@id": `${canonical}#service`,
+      name: `Insurance Services in ${locationName || title}`,
+      description: `Car, lorry, fleet, factory, health, and marine insurance support in ${locationName || title}. Renewals, claims, and on-spot service.`,
+      url: canonical,
+      provider: { "@id": agencyId },
+      areaServed: { "@type": "Place", name: locationName || title },
+      availableChannel: [
+        {
+          "@type": "ServiceChannel",
+          servicePhone: { "@type": "ContactPoint", telephone: brand.phoneE164 },
+          name: "Phone",
+        },
+        ...(waNumber ? [{
+          "@type": "ServiceChannel",
+          serviceUrl: `https://wa.me/${waNumber}`,
+          name: "WhatsApp",
+        }] : []),
       ],
     }));
   }

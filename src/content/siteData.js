@@ -7476,7 +7476,7 @@ export const siteData = {
     legalName: "M N Rajendrakumar",
     tagline: "Car • Lorry • Fleet • Factory • Health",
     subtitle:
-      "Car, bike, lorry, fleet, factory, warehouse and health insurance in Sholavaram, Red Hills and Chennai North. Renewals, new policies and claim support. Call 7448324068.",
+      "Best insurance agent in Chennai — 30+ years, IRDAI licensed, 4.9★ Google rated. Car, bike, lorry, fleet, factory, warehouse and health insurance. Multi-insurer comparison, doorstep service across all Chennai. Call 7448324068.",
 
     phone: "7448324068",
     phoneE164,
@@ -7548,6 +7548,24 @@ founder: {
     },
   ],
 },
+
+insurerNetwork: [
+  { name: "The New India Assurance Company Limited", type: "public", primary: true },
+  { name: "United India Insurance Company Limited", type: "public" },
+  { name: "National Insurance Company Limited", type: "public" },
+  { name: "Oriental Insurance Company Limited", type: "public" },
+  { name: "Life Insurance Corporation of India", type: "life", primary: true },
+  { name: "ICICI Lombard General Insurance", type: "private" },
+  { name: "Bajaj Allianz General Insurance", type: "private" },
+  { name: "HDFC ERGO General Insurance", type: "private" },
+  { name: "Reliance General Insurance", type: "private" },
+  { name: "Tata AIG General Insurance", type: "private" },
+  { name: "Future Generali India Insurance", type: "private" },
+  { name: "Cholamandalam MS General Insurance", type: "private" },
+  { name: "Royal Sundaram General Insurance", type: "private" },
+  { name: "SBI General Insurance", type: "private" },
+  { name: "Iffco Tokio General Insurance", type: "private" },
+],
 
 // Regulatory proof (fill real values)
 regulatory: {
@@ -7761,9 +7779,9 @@ aboutPage: {
   // ✅ Above-the-fold intent (Identity + relevance)
   pageFlow: {
     heroH1:
-      "Insurance Agent in Sholavaram, Chennai — Car, Bike, Lorry, Fleet, Factory & Health",
+      "Best Insurance Agent in Chennai — Car, Bike, Lorry, Fleet, Factory & Health",
     heroP:
-      "30+ years serving Sholavaram, Red Hills, Madhavaram and Chennai North. Car and bike renewals, lorry and fleet cover, factory, warehouse and health insurance — new policy, renewal or claim support. Call 7448324068.",
+      "30+ years experience. IRDAI licensed. 4.9★ rated. Car, bike, lorry, fleet, factory, warehouse and health insurance across all Chennai — doorstep service, multi-insurer comparison, new policy, renewal or claim support. Call 7448324068.",
     primaryCtaLabel: "Call Now",
     secondaryCtaLabel: "WhatsApp for Help",
   },
@@ -13802,7 +13820,51 @@ areaServedStructData: [
 // 12) Dedicated logistics & warehousing zones
 { "@type": "Place", "name": "GNT Road Warehouse & Logistics Cluster" },
 { "@type": "Place", "name": "Red Hills–Madhavaram Warehouse Belt" },
-{ "@type": "Place", "name": "Manali–Ennore Industrial & Port Logistics Zone" }
+{ "@type": "Place", "name": "Manali–Ennore Industrial & Port Logistics Zone" },
+
+// 13) EXIM / Export-Import corridors & zones
+{ "@type": "Place", "name": "Chennai Port Trust (Chennai Harbour)" },
+{ "@type": "Place", "name": "Tondiarpet Export Zone" },
+{ "@type": "Place", "name": "MEPZ – Tambaram Export Processing Zone" },
+{ "@type": "Place", "name": "Kattupalli Shipyard & EXIM Zone" },
+{ "@type": "Place", "name": "Ennore–Manali EXIM Logistics Corridor" },
+
+// 14) Additional industrial estates & corridors (30km 360° radius)
+{ "@type": "Place", "name": "Guindy Industrial Estate" },
+{ "@type": "Place", "name": "Thirumudivakkam Industrial Area" },
+{ "@type": "Place", "name": "Maraimalai Nagar SIPCOT" },
+{ "@type": "Place", "name": "Thiruvottiyur Industrial Belt" },
+{ "@type": "Place", "name": "Vallalar Nagar Industrial Area" },
+
+// 15) NH corridor towns within 30km radius
+{ "@type": "Place", "name": "Tiruvallur" },
+{ "@type": "Place", "name": "Arakkonam" },
+{ "@type": "Place", "name": "Uthukottai" },
+{ "@type": "Place", "name": "Minjur" },
+{ "@type": "Place", "name": "Ponneri" },
+{ "@type": "Place", "name": "Kadambathur" },
+{ "@type": "Place", "name": "Karanodai" },
+{ "@type": "Place", "name": "Thiruninravur" },
+{ "@type": "Place", "name": "Thiruverkadu" },
+{ "@type": "Place", "name": "Kundrathur" },
+
+// 16) Additional key Chennai areas (360° coverage)
+{ "@type": "Place", "name": "Tambaram" },
+{ "@type": "Place", "name": "Chrompet" },
+{ "@type": "Place", "name": "Pallavaram" },
+{ "@type": "Place", "name": "Guindy" },
+{ "@type": "Place", "name": "T. Nagar" },
+{ "@type": "Place", "name": "Mylapore" },
+{ "@type": "Place", "name": "Egmore" },
+{ "@type": "Place", "name": "Kilpauk" },
+{ "@type": "Place", "name": "Kolathur" },
+{ "@type": "Place", "name": "Villivakkam" },
+{ "@type": "Place", "name": "Korattur" },
+{ "@type": "Place", "name": "Perungalathur" },
+{ "@type": "Place", "name": "Medavakkam" },
+{ "@type": "Place", "name": "Sholinganallur" },
+{ "@type": "Place", "name": "Thiruvanmiyur" },
+{ "@type": "Place", "name": "Washermanpet" }
 
 ],
 

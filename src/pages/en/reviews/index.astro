@@ -7,7 +7,7 @@ import Breadcrumbs from "src/components/Breadcrumbs.astro";
 import PageActionBar from "src/components/PageActionBar.astro";
 import { siteData, EN } from "../../../content/siteData";
 import BacklinksRow from "src/components/BacklinksRow.astro";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import WhyChooseUs from "src/components/WhyChooseUs.astro";
 import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
@@ -33,6 +33,7 @@ const meta = buildMeta({
     "Google Business Profile reviews and customer feedback for M N Rajendrakumar Insurance Services (Sholavaram).",
   canonical,
   ogType: "website",
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({

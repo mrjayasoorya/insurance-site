@@ -7,6 +7,7 @@ import BacklinksRow from "src/components/BacklinksRow.astro";
 // import LocalIdentitySection from "../../components/LocalIdentitySection.astro";
 
 import { siteData, EN } from "../../content/siteData";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import NearMeTrustSection from "src/components/NearMeTrustSection.astro";
 import UserQuestionsBlock from "src/components/UserQuestionsBlock.astro";
 import WhyChooseUs from "src/components/WhyChooseUs.astro";
@@ -15,75 +16,41 @@ import SmartAssistForm from "src/components/SmartAssistForm.astro";
 const brand = siteData.brand;
 const cc = siteData.confidenceContent || {};
 
-const canonicalBase = brand.websiteUrl || "https://rajendrakumarinsurance.in";
-const canonical = `${canonicalBase.replace(/\/$/, "")}/en/contact/`;
+const canonical = canonicalFromPath(brand.websiteUrl, "/en/contact/");
 
 const title = `Contact | ${brand.name}`;
 const description =
   "Contact M N Rajendrakumar Insurance Services — Sholavaram (Chennai outskirts). Call/WhatsApp, visit address and map. Commercial-first insurance guidance with claim-ready documentation discipline.";
+
+const meta = buildMeta({ title, description, canonical, ogType: "website", geo: geoMetaFromBrand(siteData) });
 
 const telHref = `tel:${brand.phoneE164}`;
 const waHref =
   `https://wa.me/${encodeURIComponent(brand.whatsappE164)}` +
   `?text=${encodeURIComponent(brand.whatsappPrefill || "Hi, I need help with insurance.")}`;
 
-// ✅ JSON-LD (single graph)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+// Use shared buildJsonLd for consistent structured data
+const jsonLd = buildJsonLd({
+  pageType: "generic",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: canonicalFromPath(brand.websiteUrl, "/en/") },
+    { name: "Contact", href: canonical },
+  ],
+  extraNodes: [
     {
       "@type": "ContactPage",
+      "@id": `${canonical}#contactpage`,
       name: "Contact",
       url: canonical,
-      description,
+      description: meta.description,
       inLanguage: "en",
-      isPartOf: { "@id": `${canonicalBase.replace(/\/$/, "")}/#website` },
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#website`,
-      url: canonicalBase,
-      name: brand.name,
-    },
-    {
-      "@type": "Organization",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#org`,
-      name: brand.name,
-      legalName: brand.legalName,
-      url: canonicalBase,
-      telephone: brand.phoneE164,
-      sameAs: [brand.gbpUrl].filter(Boolean),
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: brand.streetAddress || undefined,
-        addressLocality: brand.addressLocality,
-        addressRegion: brand.addressRegion,
-        postalCode: brand.postalCode || undefined,
-        addressCountry: brand.addressCountry,
-      },
-    },
-    {
-      "@type": "InsuranceAgency",
-      "@id": `${canonicalBase.replace(/\/$/, "")}/#agency`,
-      name: brand.name,
-      url: canonicalBase,
-      telephone: brand.phoneE164,
-      sameAs: [brand.gbpUrl].filter(Boolean),
-      areaServed: siteData.areaServedStructData || undefined,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: brand.streetAddress || undefined,
-        addressLocality: brand.addressLocality,
-        addressRegion: brand.addressRegion,
-        postalCode: brand.postalCode || undefined,
-        addressCountry: brand.addressCountry,
-      },
-      geo: brand.geo
-        ? { "@type": "GeoCoordinates", latitude: brand.geo.lat, longitude: brand.geo.lng }
-        : undefined,
     },
   ],
-};
+});
 ---
 
 <html lang="en">
@@ -91,15 +58,12 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
 <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
     <link rel="stylesheet" href="/styles/theme.css" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

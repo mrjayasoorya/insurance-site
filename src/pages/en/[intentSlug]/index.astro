@@ -12,7 +12,7 @@ import Breadcrumbs from "src/components/Breadcrumbs.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 
 import { siteData, EN } from "../../../content/siteData";
-import { canonicalFromPath, buildMeta, buildJsonLd } from "../../../lib/seo";
+import { canonicalFromPath, buildMeta, buildJsonLd, geoMetaFromBrand } from "../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
 import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
@@ -47,6 +47,7 @@ const meta = buildMeta({
   title: `${page.seoTitle} | ${siteData.brand.name}`,
   description: page.seoDesc,
   canonical,
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({

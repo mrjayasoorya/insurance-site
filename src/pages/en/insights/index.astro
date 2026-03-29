@@ -10,7 +10,7 @@ import FooterCtaBar from "../../../components/FooterCtaBar.astro";
 import GlobalOverlays from "src/components/GlobalOverlays.astro";
 import BacklinksRow from "src/components/BacklinksRow.astro";
 import { siteData, EN } from "../../../content/siteData";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "src/lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "src/lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insights/");
@@ -20,6 +20,7 @@ const meta = buildMeta({
     "Practical insurance guidance: claims, documents, renewals and risk clarity for Chennai North & NH corridors.",
   canonical,
   ogType: "website",
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({

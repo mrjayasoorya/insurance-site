@@ -10,7 +10,7 @@ import BacklinksRow from "../../../../components/BacklinksRow.astro";
 import PageActionBar from "src/components/PageActionBar.astro";
 import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
 import { siteData, EN } from "../../../../content/siteData";
-import { buildJsonLd, buildMeta, canonicalFromPath } from "../../../../lib/seo";
+import { buildJsonLd, buildMeta, canonicalFromPath, geoMetaFromBrand } from "../../../../lib/seo";
 import ConversionBlock from "src/components/ConversionBlock.astro";
 import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
 import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
@@ -39,6 +39,7 @@ const meta = buildMeta({
   description: cat.desc,
   canonical,
   ogType: "website",
+  geo: geoMetaFromBrand(siteData),
 });
 
 const jsonLd = buildJsonLd({
