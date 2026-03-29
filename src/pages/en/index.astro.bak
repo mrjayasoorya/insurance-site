@@ -397,7 +397,7 @@ const jsonLd = buildJsonLd({
     </main>
     <GlobalOverlays />
 
-    <style>
+    <style is:inline>
       @media (min-width: 820px){
         .readable { max-width: 100% !important; }
       }

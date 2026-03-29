@@ -549,7 +549,7 @@ siteData={siteData}
 
     <GlobalOverlays />
 
-    <style>
+    <style is:inline>
       .readable { max-width: 78ch; }
 
       .glance{
