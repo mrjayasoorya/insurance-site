@@ -1,0 +1,74 @@
+---
+---
+<!-- Sticky WhatsApp Footer Component -->
+<footer class="sticky-footer">
+  <div class="footer-content">
+    <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20insurance%20help%20from%20[Your%20Site%20Name]!" target="_blank" rel="noopener" class="whatsapp-cta">
+      <img src="/assets/logo/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon" />
+      <span class="cta-text">Chat on WhatsApp</span>
+      <span class="cta-subtext">Instant help, free quote, local expert</span>
+    </a>
+    <a href="tel:919876543210" class="call-cta">
+      <img src="/assets/logo/phone.svg" alt="Call" class="call-icon" />
+      <span class="cta-text">Call Now</span>
+    </a>
+  </div>
+  <style is:global>
+    .sticky-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+    .footer-content {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .whatsapp-cta, .call-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #222;
+      font-weight: 600;
+      font-size: 1rem;
+      background: #e9f5ee;
+      border-radius: 2rem;
+      padding: 0.5rem 1.2rem;
+      transition: background 0.2s;
+    }
+    .whatsapp-cta:hover {
+      background: #25d366;
+      color: #fff;
+    }
+    .call-cta:hover {
+      background: #e0e0e0;
+    }
+    .whatsapp-icon, .call-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .cta-subtext {
+      font-size: 0.85rem;
+      color: #555;
+      margin-left: 0.5rem;
+      font-weight: 400;
+    }
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .sticky-footer {
+        padding: 0.5rem 0.2rem;
+      }
+    }
+  </style>
+</footer>
