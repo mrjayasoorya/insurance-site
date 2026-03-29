@@ -160,16 +160,39 @@ https://insuranceconsult.in/en/
 - Business/MSME: https://insuranceconsult.in/en/services/business-msme/
 - Claims Support: https://insuranceconsult.in/en/services/claims-support/
 
+### Insurance Policy Guides (Deep-dive user-journey pages)
+- Policy Guides Hub: https://insuranceconsult.in/en/policies/
+- Car Insurance Guide: https://insuranceconsult.in/en/policies/car-insurance/
+- Health Insurance Guide: https://insuranceconsult.in/en/policies/health-insurance/
+- Bike Insurance Guide: https://insuranceconsult.in/en/policies/bike-insurance/
+- Commercial Vehicle Insurance Guide: https://insuranceconsult.in/en/policies/commercial-vehicle-insurance/
+
 ### Intent Pages
 - Insurance Near Me: https://insuranceconsult.in/en/insurance-near-me/
 - Renewal Help: https://insuranceconsult.in/en/insurance-renewal-near-me/
 - Claim Help: https://insuranceconsult.in/en/insurance-claim-help/
 - Buy Guidance: https://insuranceconsult.in/en/buy-insurance-guidance/
+- Best Insurance Company Chennai: https://insuranceconsult.in/en/best-insurance-company-chennai/
+- Best Insurance Agent Chennai: https://insuranceconsult.in/en/best-insurance-agent-chennai/
+- Trusted Insurance Services: https://insuranceconsult.in/en/trusted-insurance-services-chennai/
+- Top Rated Insurance: https://insuranceconsult.in/en/top-rated-insurance-chennai/
+- Affordable Insurance: https://insuranceconsult.in/en/affordable-insurance-chennai/
+- Hassle-Free Claims: https://insuranceconsult.in/en/hassle-free-insurance-claim/
+- Doorstep Service: https://insuranceconsult.in/en/doorstep-insurance-service-chennai/
+- Cashless Health Insurance: https://insuranceconsult.in/en/cashless-health-insurance-chennai/
+- Car Insurance Near Me: https://insuranceconsult.in/en/car-insurance-near-me/
+- Health Insurance Near Me: https://insuranceconsult.in/en/health-insurance-near-me/
+- Bike Insurance Near Me: https://insuranceconsult.in/en/bike-insurance-near-me/
+- Life Insurance Near Me: https://insuranceconsult.in/en/life-insurance-near-me/
 
-### 40+ Location Pages
-Covering: Sholavaram, Red Hills, Madhavaram, Manali, Ambattur, Avadi,
-Poonamallee, Anna Nagar, T. Nagar, Koyambedu, Nungambakkam, Adyar,
-Velachery, Guindy, Tambaram, Perambur, Kolathur, and many more.
+### 60+ Location Pages
+Covering all Chennai zones:
+- **North Chennai:** Sholavaram, Red Hills, Madhavaram, Manali, Puzhal, Karanodai
+- **South Chennai:** Tambaram, Chrompet, Velachery, Adyar, Guindy, Sholinganallur, Medavakkam
+- **Central Chennai:** T. Nagar, Egmore, Mylapore, Nungambakkam, Kilpauk
+- **West Chennai:** Anna Nagar, Porur, Mogappair, Koyambedu, Poonamallee
+- **TN Industrial:** Hosur, Oragadam, Sriperumbudur, Maraimalai Nagar
+- Plus: Ambattur, Avadi, Perambur, Kolathur, and many more.
 
 ---
 

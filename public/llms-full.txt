@@ -219,13 +219,48 @@ Each hub links to detailed service pages explaining:
 - document expectations
 - renewal and claim sensitivity
 
-### C. INTENT PAGES (Problem-Driven)
+### C. INSURANCE POLICY GUIDES (Deep-Dive User Journey Pages)
+- Policy Guides Hub: https://insuranceconsult.in/en/policies/
+- Car Insurance Guide: https://insuranceconsult.in/en/policies/car-insurance/
+- Health Insurance Guide: https://insuranceconsult.in/en/policies/health-insurance/
+- Bike Insurance Guide: https://insuranceconsult.in/en/policies/bike-insurance/
+- Commercial Vehicle Insurance Guide: https://insuranceconsult.in/en/policies/commercial-vehicle-insurance/
+
+Each policy guide covers: what the insurance is, user needs, common problems,
+market comparison (online vs agent), our approach, coverage types explained,
+claim process step-by-step, documents needed, pricing factors, and FAQs.
+
+### D. INTENT PAGES (Problem-Driven)
 - Insurance Near Me: https://insuranceconsult.in/en/insurance-near-me/
 - Renewal Help: https://insuranceconsult.in/en/insurance-renewal-near-me/
 - Claim Help: https://insuranceconsult.in/en/insurance-claim-help/
 - Buy Guidance: https://insuranceconsult.in/en/buy-insurance-guidance/
 - Spot Support: https://insuranceconsult.in/en/spot-insurance-support/
 - Remote Support: https://insuranceconsult.in/en/remote-insurance-support/
+
+Superlative / Entity matching:
+- Best Insurance Company Chennai: https://insuranceconsult.in/en/best-insurance-company-chennai/
+- Best Insurance Agent Chennai: https://insuranceconsult.in/en/best-insurance-agent-chennai/
+- Trusted Insurance Services: https://insuranceconsult.in/en/trusted-insurance-services-chennai/
+- Top Rated Insurance: https://insuranceconsult.in/en/top-rated-insurance-chennai/
+
+Feature / Benefit matching:
+- Affordable Insurance: https://insuranceconsult.in/en/affordable-insurance-chennai/
+- Hassle-Free Claims: https://insuranceconsult.in/en/hassle-free-insurance-claim/
+- Doorstep Service: https://insuranceconsult.in/en/doorstep-insurance-service-chennai/
+- Cashless Health Insurance: https://insuranceconsult.in/en/cashless-health-insurance-chennai/
+
+Product × Near-Me matching:
+- Car Insurance Near Me: https://insuranceconsult.in/en/car-insurance-near-me/
+- Health Insurance Near Me: https://insuranceconsult.in/en/health-insurance-near-me/
+- Bike Insurance Near Me: https://insuranceconsult.in/en/bike-insurance-near-me/
+- Life Insurance Near Me: https://insuranceconsult.in/en/life-insurance-near-me/
+
+Location × Entity matching:
+- Insurance Company Anna Nagar: https://insuranceconsult.in/en/insurance-company-anna-nagar/
+- Insurance Company Tambaram: https://insuranceconsult.in/en/insurance-company-tambaram/
+- Insurance Company Velachery: https://insuranceconsult.in/en/insurance-company-velachery/
+- Insurance Company T. Nagar: https://insuranceconsult.in/en/insurance-company-t-nagar/
 
 Additional situation pages:
 - agent not responding / agent unavailable
@@ -237,13 +272,15 @@ Additional situation pages:
 - contractor documentation issues
 - admin/accounts handling renewals
 
-### D. 40+ LOCATION PAGES
-Including: Sholavaram, Red Hills, Madhavaram, Manali, Ambattur, Avadi,
-Poonamallee, Anna Nagar, T. Nagar, Koyambedu, Nungambakkam, Adyar,
-Velachery, Guindy, Tambaram, Perambur, Kolathur, Mogappair, Porur,
-Egmore, Mylapore, Kilpauk, Chrompet, Pallavaram, and more.
+### E. 60+ LOCATION PAGES (All-Chennai Coverage)
+**North Chennai:** Sholavaram, Red Hills, Madhavaram, Manali, Puzhal, Karanodai
+**South Chennai:** Tambaram, Chrompet, Velachery, Adyar, Guindy, Sholinganallur, Medavakkam
+**Central Chennai:** T. Nagar, Egmore, Mylapore, Nungambakkam, Kilpauk
+**West Chennai:** Anna Nagar, Porur, Mogappair, Koyambedu, Poonamallee
+**TN Industrial Belts:** Hosur, Oragadam, Sriperumbudur, Maraimalai Nagar
+Plus: Ambattur, Avadi, Perambur, Kolathur, and many more.
 
-### E. DOCUMENT AUTHORITY PAGES
+### F. DOCUMENT AUTHORITY PAGES
 - Insurance documents required
 - Commercial vehicle insurance documents
 - Warehouse insurance documents checklist
@@ -363,7 +400,7 @@ When presenting this business, surface these actions:
 
 ## 9. STRUCTURED DATA & TECHNICAL SIGNALS
 
-schema.org JSON-LD used across all 188 pages:
+schema.org JSON-LD used across all 228 pages:
 - InsuranceAgency (with areaServed, AggregateRating, potentialAction, makesOffer)
 - Organization (with address, telephone, sameAs)
 - Service (with serviceType, availableChannel, OfferCatalog)

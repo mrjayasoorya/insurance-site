@@ -2,6 +2,10 @@
 // ✅ COMPLETE siteData rewrite (authority-sequenced, WHO–WHERE–WHY driven)
 // Keeps your existing theme/components, removes generic fluff, anchors experience + geo-risk.
 
+import { policiesDetail } from "./policiesData.js";
+import { intentExpansionPages } from "./intentExpansionData.js";
+import { locationExpansionDetails } from "./locationExpansionData.js";
+
 export const EN = (href = "") => {
   if (!href) return href;
   if (href.startsWith("http")) return href;
@@ -4755,6 +4759,9 @@ sholavaram: {
   },
 }
 
+// Merge expanded locations into locationsDetails
+Object.assign(locationsDetails, locationExpansionDetails);
+
 // ✅ UNIQUE ENRICHMENT PER LOCATION (NO GENERIC TEMPLATE TEXT)
 //
 // These fields are intentionally unique for each slug.
@@ -6936,6 +6943,43 @@ export const LOCATION_BUCKETS = {
   OUTSIDE_CITY_CORRIDOR_CONNECTED: [
     "arani",
   ],
+
+  // 9) South Chennai residential belt
+  SOUTH_CHENNAI_RESIDENTIAL: [
+    "tambaram",
+    "chrompet",
+    "velachery",
+    "adyar",
+    "guindy",
+    "sholinganallur",
+    "medavakkam",
+  ],
+
+  // 10) Central Chennai residential + commercial
+  CENTRAL_CHENNAI: [
+    "t-nagar",
+    "egmore",
+    "mylapore",
+    "nungambakkam",
+    "kilpauk",
+  ],
+
+  // 11) West Chennai residential + commercial
+  WEST_CHENNAI: [
+    "anna-nagar",
+    "porur",
+    "mogappair",
+    "koyambedu",
+    "poonamallee",
+  ],
+
+  // 12) TN Industrial belts (outside Chennai)
+  TN_INDUSTRIAL_BELT: [
+    "hosur",
+    "oragadam",
+    "sriperumbudur",
+    "maraimalai-nagar",
+  ],
 };
 
 export const SERVICE_LOCAL_SUPPORT = {
@@ -7471,6 +7515,7 @@ const gmbReviewsNormalized = (gmbReviewsRaw.reviews || [])
 
 
 export const siteData = {
+  policiesDetail,
   brand: {
     name: "M N Rajendrakumar Insurance Services",
     legalName: "M N Rajendrakumar",
@@ -13693,6 +13738,11 @@ office: {
       { q: "Do you handle multi-location commercial insurance in North Chennai?", a: "Yes — single-point coordination for businesses with multiple warehouses, vehicles, or sites across the North Chennai belt. We align all covers to renewal dates and maintain a single document repository." },
     ],
   },
+
+  // ===========================
+  // EXPANDED INTENT PAGES (superlative, entity, feature, product x near-me)
+  // ===========================
+  ...intentExpansionPages,
 
 },
 

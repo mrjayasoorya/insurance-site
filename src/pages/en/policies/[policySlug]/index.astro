@@ -1,0 +1,783 @@
+---
+// src/pages/en/policies/[policySlug]/index.astro
+// Policy guide pages — deep-dive product guides (car, health, fleet, etc.)
+// Section flow: What is it → User needs → Common problems → Market comparison →
+//               Our approach → Coverage types → Claim process → Pricing → FAQs → CTA
+
+import DesktopHero from "../../../../components/DesktopHero.astro";
+import MobileHero from "../../../../components/MobileHero.astro";
+import MobileAccordion from "../../../../components/MobileAccordion.astro";
+import FooterCtaBar from "../../../../components/FooterCtaBar.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+
+import { siteData, EN } from "../../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
+import ScenariosWeHandle from "src/components/ScenariosWeHandle.astro";
+import ThinkingGapFiller from "src/components/ThinkingGapFiller.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
+
+export async function getStaticPaths() {
+  const all = siteData?.policiesDetail || {};
+  return Object.keys(all).map(slug => ({ params: { policySlug: slug } }));
+}
+
+const { policySlug } = Astro.params;
+const data = siteData?.policiesDetail?.[policySlug];
+if (!data) throw new Error(`Unknown policy: ${policySlug}`);
+
+const cc = siteData.confidenceContent || {};
+const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/policies/${policySlug}/`);
+
+const meta = buildMeta({
+  title: `${data.seoTitle} | ${siteData.brand.name}`,
+  description: data.seoDesc,
+  canonical,
+  ogType: "article",
+  geo: geoMetaFromBrand(siteData),
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "serviceDetail",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  serviceData: data,
+  breadcrumbs: [
+    { name: "Home", href: "/en/" },
+    { name: "Insurance Policies", href: "/en/policies/" },
+    { name: data.heroH1, href: canonical },
+  ],
+  faqs: data.faqs || [],
+});
+
+// At a glance
+const atAGlance = [
+  { k: "Best for", v: (data.bestFor || []).slice(0, 3).join(" · ") },
+  { k: "Coverage types", v: (data.coverageTypes || []).map(c => c.title).slice(0, 3).join(" · ") },
+  { k: "Avg. premium range", v: data.premiumRange || "" },
+  { k: "Claim process", v: data.claimSummary || "" },
+  { k: "Key document", v: (data.documents || []).slice(0, 2).join(" · ") },
+].filter(x => x.v);
+
+const relatedPolicies = (data.relatedPolicies || []).map(l => ({
+  ...l,
+  desc: l.desc || "Complete guide — coverage, claim process and what to check.",
+}));
+
+const intentCards = [
+  { title: "Insurance near me", desc: "Local support, document checklist, insurer coordination.", href: EN("/insurance-near-me/") },
+  { title: "Insurance renewal help", desc: "Renewal checks: IDV, NCB, add-ons, documentation.", href: EN("/insurance-renewal-near-me/") },
+  { title: "Insurance claim help", desc: "First steps, proof requirements, claim timeline.", href: EN("/insurance-claim-help/") },
+];
+
+const svcScenarios = data.scenarios || cc.homeScenarios?.slice(0, 2) || [];
+const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
+---
+
+<html lang="en">
+  <head>
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: data.heroP,
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
+                areaChips: siteData.brand.areaChips,
+              }}
+            />
+          </header>
+
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Insurance Policies", href: EN("/policies/") },
+            { label: data.heroH1 },
+          ]} />
+
+          <!-- 1. H1 + CTA -->
+          <section class="section section-padding" aria-label="Policy overview">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
+          </section>
+
+          <!-- 2. At a glance -->
+          {atAGlance.length ? (
+            <section class="section section-padding" aria-label="At a glance">
+              <h2 class="section-title">At a glance</h2>
+              <div class="glance">
+                {atAGlance.map((x) => (
+                  <div class="glance-row">
+                    <div class="glance-k">{x.k}</div>
+                    <div class="glance-v">{x.v}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 3. What is this insurance? -->
+          {data.whatIsIt ? (
+            <section class="section section-padding" aria-label="What is this insurance">
+              <h2 class="section-title">{data.whatIsIt.title || "What is this insurance?"}</h2>
+              <p class="readable">{data.whatIsIt.text}</p>
+              {data.whatIsIt.bullets?.length ? (
+                <ul class="bullets" style="margin-top:12px">{data.whatIsIt.bullets.map(b => <li>{b}</li>)}</ul>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 4. What users actually need (scenario-based) -->
+          {data.userNeeds?.length ? (
+            <section class="section section-padding" aria-label="What you might need">
+              <h2 class="section-title">What you might need</h2>
+              <div class="grid grid-3">
+                {data.userNeeds.map(n => (
+                  <div class="card">
+                    <h3 class="card-title">{n.title}</h3>
+                    <p class="card-desc readable">{n.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 5. Common problems users face -->
+          {data.commonProblems?.length ? (
+            <section class="section section-padding" aria-label="Common problems">
+              <h2 class="section-title">Common problems people face</h2>
+              <div class="problem-list">
+                {data.commonProblems.map(p => (
+                  <div class="problem-item">
+                    <div class="problem-icon">✗</div>
+                    <div>
+                      <strong>{p.title}</strong>
+                      <p class="readable" style="margin-top:4px;opacity:.85">{p.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 6. How the market works (comparison) -->
+          {data.marketComparison ? (
+            <section class="section section-padding" aria-label="Market comparison">
+              <h2 class="section-title">{data.marketComparison.title || "How the market works"}</h2>
+              <p class="readable">{data.marketComparison.intro}</p>
+              {data.marketComparison.rows?.length ? (
+                <div class="compare-table" style="margin-top:16px">
+                  <div class="compare-header">
+                    <div class="compare-cell compare-k">Factor</div>
+                    <div class="compare-cell">Online / Aggregator</div>
+                    <div class="compare-cell compare-us">With Us</div>
+                  </div>
+                  {data.marketComparison.rows.map(r => (
+                    <div class="compare-row">
+                      <div class="compare-cell compare-k">{r.factor}</div>
+                      <div class="compare-cell">{r.online}</div>
+                      <div class="compare-cell compare-us">{r.withUs}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- SCENARIOS WE HANDLE -->
+          <ScenariosWeHandle
+            title={`Real situations we've handled — ${data.heroH1.split('—')[0].trim()}`}
+            subtitle="If your situation is similar, we can help. Send a WhatsApp message."
+            scenarios={svcScenarios}
+            waNumber={waNumber}
+          />
+
+          <!-- MID-PAGE CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 7. Our approach / how we solve it -->
+          {data.ourApproach ? (
+            <section class="section section-padding" aria-label="Our approach">
+              <h2 class="section-title">{data.ourApproach.title || "How we handle this differently"}</h2>
+              <p class="readable">{data.ourApproach.intro}</p>
+              {data.ourApproach.steps?.length ? (
+                <div class="steps-grid" style="margin-top:16px">
+                  {data.ourApproach.steps.map((s, i) => (
+                    <div class="step-card">
+                      <div class="step-num">{i + 1}</div>
+                      <div>
+                        <strong>{s.title}</strong>
+                        <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 8. Coverage types explained -->
+          {data.coverageTypes?.length ? (
+            <section class="section section-padding" aria-label="Coverage types">
+              <h2 class="section-title">Coverage types explained</h2>
+              {data.coverageTypes.map(ct => (
+                <details class="expand-block" style="margin-bottom:12px">
+                  <summary class="expand-trigger">{ct.title}</summary>
+                  <p class="readable" style="margin-top:8px">{ct.text}</p>
+                  {ct.bullets?.length ? (
+                    <ul class="bullets" style="margin-top:8px">{ct.bullets.map(b => <li>{b}</li>)}</ul>
+                  ) : null}
+                </details>
+              ))}
+            </section>
+          ) : null}
+
+          <!-- 9. Claim process — how it works -->
+          {data.claimProcess?.steps?.length ? (
+            <section class="section section-padding" aria-label="Claim process">
+              <h2 class="section-title">{data.claimProcess.title || "How claims work"}</h2>
+              {data.claimProcess.intro ? <p class="readable">{data.claimProcess.intro}</p> : null}
+              <div class="steps-grid" style="margin-top:14px">
+                {data.claimProcess.steps.map((s, i) => (
+                  <div class="step-card">
+                    <div class="step-num">{i + 1}</div>
+                    <div>
+                      <strong>{s.title}</strong>
+                      <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {data.claimProcess.ourRole ? (
+                <div class="our-role-box" style="margin-top:16px">
+                  <strong>Our role at each step:</strong>
+                  <p class="readable" style="margin-top:4px">{data.claimProcess.ourRole}</p>
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 10. Documents needed -->
+          {data.documents?.length ? (
+            <section class="section section-padding" aria-label="Documents needed">
+              <h2 class="section-title">Documents you'll need</h2>
+              <ul class="bullets">{data.documents.map(d => <li>{d}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- 11. Pricing & what affects premium -->
+          {data.pricingFactors?.length ? (
+            <section class="section section-padding" aria-label="Pricing factors">
+              <h2 class="section-title">What affects your premium</h2>
+              <ul class="bullets">{data.pricingFactors.map(p => <li>{p}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- GAP-FILLER -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            subtitle="Common questions before reaching out."
+            items={svcGapQs}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${data.heroH1.split('—')[0].trim()}. Can you guide me?`}
+          />
+
+          <!-- SMART ASSIST -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Need help with this? Pre-fill your WhatsApp message"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us for this"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- 12. FAQs -->
+          {data.faqs?.length ? (
+            <section class="section section-padding" aria-label="FAQs">
+              <h2 class="section-title">Frequently asked questions</h2>
+              <MobileAccordion
+                sections={[{
+                  title: "Questions people ask",
+                  items: data.faqs.map(f => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+
+          <!-- FINAL CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 13. Related policies -->
+          {relatedPolicies.length ? (
+            <section class="section section-padding" aria-label="Related policies">
+              <h2 class="section-title">Related insurance guides</h2>
+              <div class="grid grid-2">
+                {relatedPolicies.map(l => (
+                  <a class="card" href={l.href}>
+                    <h3 class="card-title">{l.label}</h3>
+                    <p class="card-desc readable">{l.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- Quick actions -->
+          <section class="section section-padding" aria-label="Quick actions">
+            <h2 class="section-title">Quick actions</h2>
+            <div class="grid grid-2">
+              {intentCards.map(c => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <!-- ========================= MOBILE ========================= -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: data.heroP,
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <!-- 1. H1 + CTA -->
+          <section class="section section-padding">
+            <h1 class="section-title">{data.heroH1}</h1>
+            <p class="section-sub readable">{data.heroP}</p>
+            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
+          </section>
+
+          <!-- 2. At a glance -->
+          {atAGlance.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">At a glance</h2>
+              <div class="glance">
+                {atAGlance.map(x => (
+                  <div class="glance-row">
+                    <div class="glance-k">{x.k}</div>
+                    <div class="glance-v">{x.v}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 3. What is this insurance? -->
+          {data.whatIsIt ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.whatIsIt.title || "What is this insurance?"}</h2>
+              <p class="readable">{data.whatIsIt.text}</p>
+              {data.whatIsIt.bullets?.length ? (
+                <ul class="bullets" style="margin-top:12px">{data.whatIsIt.bullets.map(b => <li>{b}</li>)}</ul>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 4. What you might need -->
+          {data.userNeeds?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">What you might need</h2>
+              <div class="grid grid-1">
+                {data.userNeeds.map(n => (
+                  <div class="card">
+                    <h3 class="card-title">{n.title}</h3>
+                    <p class="card-desc readable">{n.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 5. Common problems -->
+          {data.commonProblems?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Common problems people face</h2>
+              <div class="problem-list">
+                {data.commonProblems.map(p => (
+                  <div class="problem-item">
+                    <div class="problem-icon">✗</div>
+                    <div>
+                      <strong>{p.title}</strong>
+                      <p class="readable" style="margin-top:4px;opacity:.85">{p.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 6. Market comparison -->
+          {data.marketComparison ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.marketComparison.title || "How the market works"}</h2>
+              <p class="readable">{data.marketComparison.intro}</p>
+              {data.marketComparison.rows?.length ? (
+                <div class="compare-table" style="margin-top:16px">
+                  <div class="compare-header">
+                    <div class="compare-cell compare-k">Factor</div>
+                    <div class="compare-cell">Online</div>
+                    <div class="compare-cell compare-us">With Us</div>
+                  </div>
+                  {data.marketComparison.rows.map(r => (
+                    <div class="compare-row">
+                      <div class="compare-cell compare-k">{r.factor}</div>
+                      <div class="compare-cell">{r.online}</div>
+                      <div class="compare-cell compare-us">{r.withUs}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- SCENARIOS -->
+          <ScenariosWeHandle
+            title="Real situations we've handled"
+            scenarios={svcScenarios.slice(0, 2)}
+            waNumber={waNumber}
+          />
+
+          <!-- MID CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- 7. Our approach -->
+          {data.ourApproach ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.ourApproach.title || "How we handle this differently"}</h2>
+              <p class="readable">{data.ourApproach.intro}</p>
+              {data.ourApproach.steps?.length ? (
+                <div class="steps-grid" style="margin-top:16px">
+                  {data.ourApproach.steps.map((s, i) => (
+                    <div class="step-card">
+                      <div class="step-num">{i + 1}</div>
+                      <div>
+                        <strong>{s.title}</strong>
+                        <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          <!-- 8. Coverage types -->
+          {data.coverageTypes?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Coverage types explained</h2>
+              {data.coverageTypes.map(ct => (
+                <details class="expand-block" style="margin-bottom:12px">
+                  <summary class="expand-trigger">{ct.title}</summary>
+                  <p class="readable" style="margin-top:8px">{ct.text}</p>
+                  {ct.bullets?.length ? (
+                    <ul class="bullets" style="margin-top:8px">{ct.bullets.map(b => <li>{b}</li>)}</ul>
+                  ) : null}
+                </details>
+              ))}
+            </section>
+          ) : null}
+
+          <!-- 9. Claim process -->
+          {data.claimProcess?.steps?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.claimProcess.title || "How claims work"}</h2>
+              {data.claimProcess.intro ? <p class="readable">{data.claimProcess.intro}</p> : null}
+              <div class="steps-grid" style="margin-top:14px">
+                {data.claimProcess.steps.map((s, i) => (
+                  <div class="step-card">
+                    <div class="step-num">{i + 1}</div>
+                    <div>
+                      <strong>{s.title}</strong>
+                      <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 10. Documents -->
+          {data.documents?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Documents you'll need</h2>
+              <ul class="bullets">{data.documents.map(d => <li>{d}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- 11. Pricing -->
+          {data.pricingFactors?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">What affects your premium</h2>
+              <ul class="bullets">{data.pricingFactors.map(p => <li>{p}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <!-- GAP-FILLER -->
+          <ThinkingGapFiller
+            title="Still wondering?"
+            items={svcGapQs.slice(0, 3)}
+            waNumber={waNumber}
+            waText={`Hi, I have a question about ${data.heroH1.split('—')[0].trim()}. Can you guide me?`}
+          />
+
+          <!-- SMART ASSIST -->
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Need help? Pre-fill your WhatsApp message"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <!-- WHY CHOOSE US -->
+          <WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <!-- FAQs -->
+          {data.faqs?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Frequently asked questions</h2>
+              <MobileAccordion sections={[{ title: "Questions people ask", items: data.faqs.map(f => ({ strong: f.q, text: f.a })) }]} defaultOpen={true} />
+            </section>
+          ) : null}
+
+          <!-- FINAL CTA -->
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <!-- Related policies -->
+          {relatedPolicies.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Related insurance guides</h2>
+              <div class="grid grid-1">
+                {relatedPolicies.map(l => (
+                  <a class="card" href={l.href}>
+                    <h3 class="card-title">{l.label}</h3>
+                    <p class="card-desc readable">{l.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+      </div>
+    </main>
+
+    <GlobalOverlays />
+
+    <style is:inline>
+      .readable { max-width: 78ch; }
+
+      .glance{
+        border:1px solid var(--border);
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 10px 12px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        box-shadow: 0 2px 10px rgba(11,13,18,.05);
+      }
+      .glance-row{
+        display:grid;
+        grid-template-columns: 160px 1fr;
+        gap: 10px;
+        align-items:start;
+      }
+      .glance-k{
+        font-weight: 950;
+        opacity: .85;
+        font-size: 13px;
+      }
+      .glance-v{
+        opacity: .9;
+        font-size: 13.5px;
+        line-height: 1.35;
+      }
+
+      .expand-block{
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:10px 14px;
+      }
+      .expand-trigger{
+        cursor:pointer;
+        font-weight:900;
+        font-size:14px;
+      }
+
+      .problem-list{
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+      }
+      .problem-item{
+        display:flex;
+        gap:12px;
+        align-items:flex-start;
+        padding:12px 14px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background: var(--surface);
+      }
+      .problem-icon{
+        color:#d32f2f;
+        font-weight:900;
+        font-size:18px;
+        flex-shrink:0;
+        margin-top:2px;
+      }
+
+      .compare-table{
+        border:1px solid var(--border);
+        border-radius:12px;
+        overflow:hidden;
+      }
+      .compare-header{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: var(--surface);
+        font-weight:900;
+        font-size:13px;
+      }
+      .compare-row{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-top:1px solid var(--border);
+      }
+      .compare-cell{
+        padding:10px 12px;
+        font-size:13px;
+        line-height:1.35;
+      }
+      .compare-k{
+        font-weight:700;
+        opacity:.85;
+      }
+      .compare-us{
+        background:rgba(46,125,50,.06);
+        font-weight:600;
+      }
+
+      .steps-grid{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      }
+      .step-card{
+        display:flex;
+        gap:14px;
+        align-items:flex-start;
+        padding:14px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background: var(--surface);
+      }
+      .step-num{
+        width:32px;
+        height:32px;
+        border-radius:50%;
+        background: var(--primary, #1a237e);
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:900;
+        font-size:14px;
+        flex-shrink:0;
+      }
+
+      .our-role-box{
+        padding:14px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background: rgba(46,125,50,.04);
+      }
+
+      @media (max-width: 520px){
+        .glance-row{ grid-template-columns: 1fr; }
+        .compare-header, .compare-row{ grid-template-columns: 1fr 1fr 1fr; font-size:11px; }
+        .compare-cell{ padding:8px 6px; }
+      }
+    </style>
+  </body>
+</html>

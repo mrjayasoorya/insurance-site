@@ -1,0 +1,292 @@
+---
+// src/pages/en/policies/index.astro
+// Policies hub page — links to all policy guide pages
+
+import DesktopHero from "../../../components/DesktopHero.astro";
+import MobileHero from "../../../components/MobileHero.astro";
+import FooterCtaBar from "../../../components/FooterCtaBar.astro";
+import GlobalOverlays from "src/components/GlobalOverlays.astro";
+import BacklinksRow from "src/components/BacklinksRow.astro";
+import PageActionBar from "src/components/PageActionBar.astro";
+import Breadcrumbs from "src/components/Breadcrumbs.astro";
+
+import { siteData, EN } from "../../../content/siteData";
+import { buildMeta, buildJsonLd, canonicalFromPath, geoMetaFromBrand } from "../../../lib/seo";
+import ConversionBlock from "src/components/ConversionBlock.astro";
+import SmartAssistForm from "src/components/SmartAssistForm.astro";
+import WhyChooseUs from "src/components/WhyChooseUs.astro";
+
+const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/policies/");
+const cc = siteData.confidenceContent || {};
+
+const meta = buildMeta({
+  title: `Insurance Policy Guides — Car, Health, Bike & Commercial | ${siteData.brand.name}`,
+  description: "Complete insurance policy guides for Chennai. Car insurance, health insurance, bike insurance, commercial vehicle insurance — coverage types, claim process, pricing, and what to check before buying. Expert guidance from a 4.9★ rated, 30+ year IRDAI licensed agent.",
+  canonical,
+  geo: geoMetaFromBrand(siteData),
+});
+
+const jsonLd = buildJsonLd({
+  pageType: "servicesHub",
+  siteData,
+  canonical,
+  title: meta.title,
+  description: meta.description,
+  breadcrumbs: [
+    { name: "Home", href: "/en/" },
+    { name: "Insurance Policies", href: canonical },
+  ],
+  faqs: [],
+});
+
+// Build policy cards from policiesDetail
+const allPolicies = siteData.policiesDetail || {};
+const policyCards = Object.entries(allPolicies).map(([slug, data]) => ({
+  slug,
+  title: data.heroH1.split("—")[0].trim(),
+  desc: data.seoDesc.slice(0, 160) + "…",
+  href: EN(`/policies/${slug}/`),
+  bestFor: data.bestFor || [],
+  premiumRange: data.premiumRange || "",
+}));
+
+const categories = [
+  {
+    title: "Personal Insurance Guides",
+    subtitle: "Coverage guides for car owners, bike riders, and families",
+    slugs: ["car-insurance", "bike-insurance", "health-insurance"],
+  },
+  {
+    title: "Commercial & Business Insurance Guides",
+    subtitle: "Detailed guides for transport operators, fleet owners, and businesses",
+    slugs: ["commercial-vehicle-insurance"],
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {Object.entries(meta.tags).map(([k, v]) => <meta property={k} content={v} />)}
+    {Object.entries(meta.nameTags || {}).map(([k, v]) => <meta name={k} content={v} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="icon" type="image/png" href="/assets/logo/MNRajendraKumar_Insurance_services_logo_48x48px_white_bg_icon.png"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <link rel="stylesheet" href="/styles/theme.css" />
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="container">
+
+        <!-- ========================= DESKTOP ========================= -->
+        <div class="ui-desktop">
+          <header>
+            <DesktopHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: "Complete insurance policy guides — understand coverage, claim process, and what to check before buying.",
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: "Hi, I want to understand my insurance options. Please guide me.",
+                areaChips: siteData.brand.areaChips,
+              }}
+            />
+          </header>
+
+          <Breadcrumbs items={[
+            { label: "Home", href: EN("/") },
+            { label: "Insurance Policies" },
+          ]} />
+
+          <section class="section section-padding" aria-label="Policy guides overview">
+            <h1 class="section-title">Insurance Policy Guides</h1>
+            <p class="section-sub readable">
+              Understand exactly what each insurance policy covers, how claims work, what affects your premium,
+              and what mistakes to avoid — before you buy. Written from 30+ years of real claim handling experience.
+            </p>
+            <PageActionBar brand={siteData.brand} context="insurance policy guidance" />
+          </section>
+
+          <!-- Why these guides matter -->
+          <section class="section section-padding" aria-label="Why these guides">
+            <h2 class="section-title">Why read these guides before buying?</h2>
+            <div class="grid grid-3">
+              <div class="card">
+                <h3 class="card-title">Avoid claim rejection</h3>
+                <p class="card-desc readable">Most rejections happen because of wrong documentation, undisclosed conditions, or mismatched policy details. Our guides explain exactly what to check.</p>
+              </div>
+              <div class="card">
+                <h3 class="card-title">Compare coverage, not just price</h3>
+                <p class="card-desc readable">The cheapest policy isn't the best. These guides explain what coverage types, add-ons, and exclusions actually mean for YOUR situation.</p>
+              </div>
+              <div class="card">
+                <h3 class="card-title">Know the claim process</h3>
+                <p class="card-desc readable">Step-by-step claim process explained — what to do in the first hour, which documents to collect, and how settlement timelines work.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Policy categories -->
+          {categories.map(cat => {
+            const cards = cat.slugs.map(s => policyCards.find(p => p.slug === s)).filter(Boolean);
+            return cards.length ? (
+              <section class="section section-padding" aria-label={cat.title}>
+                <h2 class="section-title">{cat.title}</h2>
+                <p class="section-sub readable">{cat.subtitle}</p>
+                <div class="grid grid-2" style="margin-top:16px">
+                  {cards.map(c => (
+                    <a class="card" href={c.href}>
+                      <h3 class="card-title">{c.title}</h3>
+                      <p class="card-desc readable">{c.desc}</p>
+                      {c.premiumRange ? <p class="card-meta">{c.premiumRange}</p> : null}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null;
+          })}
+
+          <!-- Coming soon -->
+          <section class="section section-padding" aria-label="More guides coming">
+            <h2 class="section-title">More guides coming soon</h2>
+            <div class="grid grid-3">
+              {[
+                { title: "Fleet Insurance", desc: "Multi-vehicle management, bulk renewal, and fleet claim coordination." },
+                { title: "Factory & Industrial Insurance", desc: "Fire, machinery, stock — SFSP, IAR, and MBD policies explained." },
+                { title: "Warehouse Insurance", desc: "Stock declaration, fire load, and burglary coverage for godowns." },
+                { title: "Marine Cargo Insurance", desc: "Goods-in-transit, import/export, and inland marine coverage." },
+                { title: "Home Insurance", desc: "Building structure + contents protection for homeowners." },
+                { title: "Life Insurance (LIC)", desc: "Term, endowment, pension — understanding LIC policies." },
+              ].map(c => (
+                <div class="card card-muted">
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Not sure which policy you need? Tell us your situation"
+            subheading="Pick your situation — we build the WhatsApp message, you just send."
+          />
+
+          <WhyChooseUs
+            title="Why get guidance from us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+        <!-- ========================= MOBILE ========================= -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: "Complete insurance policy guides — coverage, claims & what to check before buying.",
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: "Hi, I want to understand my insurance options. Please guide me.",
+                areaChips: [],
+              }}
+            />
+          </header>
+
+          <section class="section section-padding">
+            <h1 class="section-title">Insurance Policy Guides</h1>
+            <p class="section-sub readable">
+              Understand what each policy covers, how claims work, and what to check — from 30+ years of real experience.
+            </p>
+            <PageActionBar brand={siteData.brand} context="insurance policy guidance" />
+          </section>
+
+          <!-- All policy cards combined for mobile -->
+          <section class="section section-padding">
+            <h2 class="section-title">Policy Guides</h2>
+            <div class="grid grid-1">
+              {policyCards.map(c => (
+                <a class="card" href={c.href}>
+                  <h3 class="card-title">{c.title}</h3>
+                  <p class="card-desc readable">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+
+          <SmartAssistForm
+            brand={siteData.brand}
+            id="sa-mob"
+            heading="Not sure which policy? Tell us your situation"
+            subheading="Pick your situation — we build the message, you just send."
+          />
+
+          <WhyChooseUs
+            title="Why get guidance from us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+
+          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+          <FooterCtaBar
+            title={siteData.footerCtas.title}
+            subtitle={siteData.footerCtas.subtitle}
+            whatsappNumber={siteData.brand.whatsappE164}
+            whatsappText={siteData.brand.whatsappPrefill}
+            callNumber={siteData.brand.phoneE164}
+            callLabel={siteData.footerCtas.callLabel}
+            brandName={siteData.footerCtas.brandName}
+            logoText={siteData.footerCtas.logoText}
+            copyright={siteData.footerCtas.copyright}
+          />
+        </div>
+
+      </div>
+    </main>
+
+    <GlobalOverlays />
+
+    <style is:inline>
+      .readable { max-width: 78ch; }
+      .card-meta {
+        margin-top: 8px;
+        font-size: 12px;
+        opacity: .7;
+        font-weight: 600;
+      }
+      .card-muted {
+        opacity: .6;
+        pointer-events: none;
+      }
+    </style>
+  </body>
+</html>
