@@ -28,7 +28,7 @@ const avgRatingStr = avgRating ? avgRating.toFixed(1) : null;
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/reviews/");
 const meta = buildMeta({
-  title: `Reviews | ${siteData.brand.name}`,
+  title: `Reviews | ${siteData.brand.shortName}`,
   description:
     "Google Business Profile reviews and customer feedback for M N Rajendrakumar Insurance Services (Sholavaram).",
   canonical,
@@ -209,8 +209,6 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             )}
           </section>
 
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
           <!-- How we work -->
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
@@ -369,8 +367,6 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               <p class="section-sub">No reviews found in dataset yet.</p>
             )}
           </section>
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
 
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">

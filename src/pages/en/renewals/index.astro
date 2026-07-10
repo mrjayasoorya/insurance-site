@@ -21,7 +21,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/renewals/");
 const meta = buildMeta({
-  title: `Renewals | ${siteData.brand.name}`,
+  title: `Renewals | ${siteData.brand.shortName}`,
   description:
     "Renewal guidance for car, commercial vehicles and LIC—checklists and claim-safe renewal discipline for Chennai North & NH corridors.",
   canonical,
@@ -98,9 +98,6 @@ const jsonLd = buildJsonLd({
               </a>
             </div>
           </section>
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
 
           <!-- 3. Renewal posts -->
           <BlogSection
@@ -190,8 +187,6 @@ const jsonLd = buildJsonLd({
               </a>
             </div>
           </section>
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
 
           <BlogSection
             title={siteData.renewalLicPosts.title}

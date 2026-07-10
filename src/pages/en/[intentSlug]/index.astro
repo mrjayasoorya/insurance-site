@@ -44,7 +44,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/${intentSlug}/`);
 const meta = buildMeta({
-  title: `${page.seoTitle} | ${siteData.brand.name}`,
+  title: `${page.seoTitle} | ${siteData.brand.shortName}`,
   description: page.seoDesc,
   canonical,
   geo: geoMetaFromBrand(siteData),
@@ -139,9 +139,6 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
 
           <!-- USER QUESTIONS -->
           <UserQuestionsBlock
@@ -266,9 +263,6 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
 
           <!-- USER QUESTIONS -->
           <UserQuestionsBlock

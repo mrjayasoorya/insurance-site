@@ -13,7 +13,7 @@ export const intentExpansionPages = {
 
   "best-insurance-company-chennai": {
     slug: "best-insurance-company-chennai",
-    seoTitle: "Best Insurance Company in Chennai — Compare & Choose the Right Insurer | M N Rajendrakumar",
+    seoTitle: "Best Insurance Company in Chennai — Compare & Choose the Right Insurer",
     seoDesc: "Looking for the best insurance company in Chennai? Compare top insurers, understand what makes a company reliable, and get expert guidance from a 4.9★ rated, 30+ year IRDAI licensed insurance agent.",
     heroH1: "Best insurance company in Chennai — how to choose the right one",
     heroP: "There is no single 'best' insurance company — the right insurer depends on your policy type, claim track record, and local support. Here is how to evaluate companies and make the right choice with expert guidance.",

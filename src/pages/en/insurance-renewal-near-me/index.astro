@@ -23,7 +23,7 @@ const page = siteData.intentPages["insurance-renewal-near-me"];
 const cc = siteData.confidenceContent || {};
 const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/insurance-renewal-near-me/");
-const meta = buildMeta({ title: `${page.seoTitle} | ${siteData.brand.name}`, description: page.seoDesc, canonical, geo: geoMetaFromBrand(siteData) });
+const meta = buildMeta({ title: `${page.seoTitle} | ${siteData.brand.shortName}`, description: page.seoDesc, canonical, geo: geoMetaFromBrand(siteData) });
 
 const jsonLd = buildJsonLd({
   pageType: "intent",
@@ -82,9 +82,6 @@ const jsonLd = buildJsonLd({
             <h2 class="section-title">{page.renewalChecks.title}</h2>
             <ul class="bullets">{page.renewalChecks.bullets.map((x) => <li>{x}</li>)}</ul>
           </section>
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
 
           <!-- USER QUESTIONS: area, language, scope -->
           <UserQuestionsBlock
@@ -164,9 +161,6 @@ const jsonLd = buildJsonLd({
             <h2 class="section-title">{page.renewalChecks.title}</h2>
             <ul class="bullets">{page.renewalChecks.bullets.map((x) => <li>{x}</li>)}</ul>
           </section>
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.expired} brand={siteData.brand} />
 
           <!-- USER QUESTIONS -->
           <UserQuestionsBlock

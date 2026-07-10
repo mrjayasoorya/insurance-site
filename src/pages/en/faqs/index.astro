@@ -20,7 +20,7 @@ const services = (siteData.coreServices || []).map((s) => ({
 const brand = siteData.brand;
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/faqs/");
 const meta = buildMeta({
-  title: `FAQs | ${siteData.brand.name}`,
+  title: `FAQs | ${siteData.brand.shortName}`,
   description:
     "Frequently asked questions about insurance renewals, claims, documentation, service areas and policy selection—focused on Chennai North & NH corridors.",
   canonical,
@@ -127,8 +127,6 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               ) : null;
             })
           }
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
 
           <!-- Services we support -->
           <section class="section section-padding" aria-labelledby="services-title">
@@ -246,8 +244,6 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               ) : null;
             })
           }
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
 
           <section class="section section-padding" aria-labelledby="m-services-title">
             <h2 id="m-services-title" class="section-title">Services we support</h2>

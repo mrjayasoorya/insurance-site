@@ -20,7 +20,7 @@ const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/services/");
 
 // Meta (with geo tags)
 const meta = buildMeta({
-  title: `Services | ${siteData.brand.name}`,
+  title: `Services | ${siteData.brand.shortName}`,
   description:
     "Insurance guidance for commercial, transport, industrial and personal needs—built around documentation clarity and claim-ready workflows across Chennai and corridor belts.",
   canonical,
@@ -377,11 +377,6 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               ))}
             </div>
           </section>
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.expired}
-    brand={siteData.brand}
-  />
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>
@@ -544,11 +539,6 @@ siteData={siteData}
               <a class="chiplink" href={EN("/locations/")}>View all locations</a>
             </p>
           </section>
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.expired}
-    brand={siteData.brand}
-  />
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>

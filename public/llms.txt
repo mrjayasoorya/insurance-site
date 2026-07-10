@@ -44,7 +44,11 @@ Corporation of India (LIC). Works with multiple public and private sector insure
 - Fleet & transport operator insurance (bulk renewals + claim management)
 - Warehouse / godown / factory insurance (fire, stock, machinery)
 - Industrial All Risk (IAR) and Standard Fire & Special Perils (SFSP)
+- Machinery breakdown insurance
+- Mining & heavy industrial insurance (quarries, mineral processing, heavy equipment)
 - Marine cargo & goods-in-transit insurance
+- Marine hull & inland vessel insurance
+- Import & export cargo insurance
 - Contractor All Risk (CAR), Erection All Risk (EAR)
 - Workmen Compensation (WC)
 - Crane & heavy equipment insurance (CPM)
@@ -53,6 +57,8 @@ Corporation of India (LIC). Works with multiple public and private sector insure
 - Directors & Officers (D&O) liability
 - Business interruption insurance
 - Shop / office / SME package policies
+- Office / commercial property package
+- Land & property insurance (building, under-construction, commercial property)
 
 ### Personal & Family
 - Car insurance (new policy + renewal + claim support)
@@ -60,6 +66,7 @@ Corporation of India (LIC). Works with multiple public and private sector insure
 - Health insurance / mediclaim (individual, family floater, senior citizen)
 - Group health insurance (corporate / employee)
 - Life insurance (LIC policies — servicing and renewals)
+- LIC & term life insurance (plan selection, premium comparison, claim support)
 - Home insurance (structure + contents)
 - Travel insurance
 
@@ -152,12 +159,15 @@ https://insuranceconsult.in/en/
 - FAQs: https://insuranceconsult.in/en/faqs/
 - Reviews: https://insuranceconsult.in/en/reviews/
 
-### Service Categories
+### Service Categories (9 categories, 34 individual service pages)
 - Transport & Fleet: https://insuranceconsult.in/en/services/transport-fleet/
-- Industrial: https://insuranceconsult.in/en/services/industrial/
+- Industrial: https://insuranceconsult.in/en/services/industrial/ (incl. mining & heavy industrial, land & property)
 - Construction: https://insuranceconsult.in/en/services/construction/
-- Heavy Equipment: https://insuranceconsult.in/en/services/heavy-equipment/
-- Business/MSME: https://insuranceconsult.in/en/services/business-msme/
+- Heavy Equipment: https://insuranceconsult.in/en/services/heavy-equipment/ (incl. erection all risk)
+- Business/MSME: https://insuranceconsult.in/en/services/business-msme/ (incl. office insurance)
+- Liability: https://insuranceconsult.in/en/services/liability/ (incl. professional indemnity & D&O)
+- Marine: https://insuranceconsult.in/en/services/marine/ (incl. marine hull, import/export cargo)
+- Personal: https://insuranceconsult.in/en/services/personal/ (incl. LIC & term life)
 - Claims Support: https://insuranceconsult.in/en/services/claims-support/
 
 ### Insurance Policy Guides (Deep-dive user-journey pages)
@@ -185,7 +195,7 @@ https://insuranceconsult.in/en/
 - Bike Insurance Near Me: https://insuranceconsult.in/en/bike-insurance-near-me/
 - Life Insurance Near Me: https://insuranceconsult.in/en/life-insurance-near-me/
 
-### 60+ Location Pages
+### 72 Location Pages
 Covering all Chennai zones:
 - **North Chennai:** Sholavaram, Red Hills, Madhavaram, Manali, Puzhal, Karanodai
 - **South Chennai:** Tambaram, Chrompet, Velachery, Adyar, Guindy, Sholinganallur, Medavakkam

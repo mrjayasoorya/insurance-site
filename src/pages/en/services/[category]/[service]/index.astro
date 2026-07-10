@@ -39,7 +39,7 @@ if (!data) throw new Error(`Unknown service: ${category}/${serviceSlug}`);
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/${serviceSlug}/`);
 
 const meta = buildMeta({
-  title: `${data.seoTitle} | ${siteData.brand.name}`,
+  title: `${data.seoTitle} | ${siteData.brand.shortName}`,
   description: data.seoDesc,
   canonical,
   ogType: "article",
@@ -64,11 +64,13 @@ const jsonLd = buildJsonLd({
 
 const localSupportSlugs = SERVICE_LOCAL_SUPPORT?.[category]?.[serviceSlug] || [];
 
+// One short, readable phrase per row instead of two long fragments joined
+// with "·" — this box is meant for a 5-second skim, not a full read.
 const atAGlance = [
-  { k: "Best for", v: (data.whoFor || []).slice(0, 2).join(" · ") },
-  { k: "Key coverage", v: (data.keyCoverFocus || []).slice(0, 2).join(" · ") },
-  { k: "Watch out for", v: (data.whatCanGoWrong || []).slice(0, 1).join("") },
-  { k: "Documents", v: (data.claimDocs || []).slice(0, 2).join(" · ") },
+  { k: "Who it's for", v: (data.whoFor || [])[0] || "" },
+  { k: "Covers", v: (data.keyCoverFocus || [])[0] || "" },
+  { k: "Common issue", v: (data.whatCanGoWrong || [])[0] || "" },
+  { k: "You'll need", v: (data.claimDocs || [])[0] || "" },
 ].filter((x) => x.v);
 
 const linkCards = (data.internalLinks || []).map((l) => ({
@@ -113,6 +115,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
         <div class="ui-desktop">
           <header>
             <DesktopHero
+              heroH1={data.heroH1}
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
@@ -133,19 +136,12 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
             { label: data.heroH1 },
           ]} />
 
-          <!-- 1. H1 + CTA (immediate action) -->
-          <section class="section section-padding" aria-label="Service overview">
-            <h1 class="section-title">{data.heroH1}</h1>
-            <p class="section-sub readable">{data.heroP}</p>
-            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
-          </section>
-
           <!-- 2. At a glance (quick facts) -->
           {atAGlance.length ? (
             <section class="section section-padding" aria-label="At a glance">
               <h2 class="section-title">At a glance</h2>
               <div class="glance">
-                {atAGlance.map((x) => (
+                {atAGlance.slice(0, 4).map((x) => (
                   <div class="glance-row">
                     <div class="glance-k">{x.k}</div>
                     <div class="glance-v">{x.v}</div>
@@ -155,45 +151,31 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
             </section>
           ) : null}
 
-          <!-- 3. What this covers (PRIMARY user search intent) -->
-          {data.keyCoverFocus?.length ? (
-            <section class="section section-padding" aria-label="What this covers">
-              <h2 class="section-title">What this covers</h2>
-              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
-              {data.standardModules?.bullets?.length ? (
-                <details class="expand-block" style="margin-top:14px">
-                  <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
-                  <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
-                </details>
+          <!-- 3. What this covers + who it's for (merged: coverage detail read together with the intended audience) -->
+          {(data.keyCoverFocus?.length || data.whoFor?.length) ? (
+            <section class="section section-padding" aria-label="What this covers and who it's for">
+              {data.keyCoverFocus?.length ? (
+                <>
+                  <h2 class="section-title">What this covers</h2>
+                  <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
+                  {data.standardModules?.bullets?.length ? (
+                    <details class="expand-block" style="margin-top:14px">
+                      <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
+                      <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
+                    </details>
+                  ) : null}
+                </>
+              ) : null}
+              {data.whoFor?.length ? (
+                <>
+                  <h3 class="section-title" style="font-size:17px;margin-top:22px">Who this is for</h3>
+                  <ul class="bullets">{data.whoFor.map((x) => <li>{x}</li>)}</ul>
+                </>
               ) : null}
             </section>
           ) : null}
 
-          <!-- 4. Who this is for (user identification) -->
-          {data.whoFor?.length ? (
-            <section class="section section-padding" aria-label="Who this is for">
-              <h2 class="section-title">Who this is for</h2>
-              <ul class="bullets">{data.whoFor.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- 5. Documents you'll need (actionable) -->
-          {data.claimDocs?.length ? (
-            <section class="section section-padding" aria-label="Documents checklist">
-              <h2 class="section-title">Documents you'll need</h2>
-              <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- 6. What affects pricing (high search demand) -->
-          {data.pricingFactors?.bullets?.length ? (
-            <section class="section section-padding" aria-label="Pricing factors">
-              <h2 class="section-title">{data.pricingFactors.title || "What affects your premium"}</h2>
-              <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- SCENARIOS WE HANDLE — service-specific confidence -->
+          <!-- SCENARIOS WE HANDLE — moved up: trust before the checklist sections -->
           <ScenariosWeHandle
             title={`Real situations we've handled — ${data.heroH1.split('(')[0].trim()}`}
             subtitle="If your situation is similar, we can help. Send a WhatsApp message to get started."
@@ -201,25 +183,42 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
             waNumber={waNumber}
           />
 
-          <!-- MID-PAGE CTA (user has core info → capture now) -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
-          <!-- 8. Mistakes to avoid (trust-building) -->
-          {(data.commonMistakes?.length || data.whatCanGoWrong?.length) ? (
-            <section class="section section-padding" aria-label="Mistakes to avoid">
-              <h2 class="section-title">Mistakes that delay or reduce claims</h2>
-              <ul class="bullets">
-                {(data.commonMistakes || []).map((x) => <li>{x}</li>)}
-                {(data.whatCanGoWrong || []).map((x) => <li>{x}</li>)}
-              </ul>
+          <!-- 5. Documents + what affects pricing (merged: both practical/planning info) -->
+          {(data.claimDocs?.length || data.pricingFactors?.bullets?.length) ? (
+            <section class="section section-padding" aria-label="Documents and pricing factors">
+              {data.claimDocs?.length ? (
+                <>
+                  <h2 class="section-title">Documents you'll need</h2>
+                  <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
+                </>
+              ) : null}
+              {data.pricingFactors?.bullets?.length ? (
+                <>
+                  <h3 class="section-title" style="font-size:17px;margin-top:22px">{data.pricingFactors.title || "What affects your premium"}</h3>
+                  <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
+                </>
+              ) : null}
             </section>
           ) : null}
 
-          <!-- 9. Before you buy / renew -->
-          {data.preBuyChecklist?.bullets?.length ? (
-            <section class="section section-padding" aria-label="Before you buy or renew">
-              <h2 class="section-title">{data.preBuyChecklist.title || "Before you buy or renew"}</h2>
-              <ul class="bullets">{data.preBuyChecklist.bullets.map((x) => <li>{x}</li>)}</ul>
+          <!-- 6. Mistakes to avoid + before you buy (merged: both are "avoid pitfalls" framing) -->
+          {(data.commonMistakes?.length || data.whatCanGoWrong?.length || data.preBuyChecklist?.bullets?.length) ? (
+            <section class="section section-padding" aria-label="Mistakes to avoid and before you buy">
+              {(data.commonMistakes?.length || data.whatCanGoWrong?.length) ? (
+                <>
+                  <h2 class="section-title">Mistakes that delay or reduce claims</h2>
+                  <ul class="bullets">
+                    {(data.commonMistakes || []).map((x) => <li>{x}</li>)}
+                    {(data.whatCanGoWrong || []).map((x) => <li>{x}</li>)}
+                  </ul>
+                </>
+              ) : null}
+              {data.preBuyChecklist?.bullets?.length ? (
+                <>
+                  <h3 class="section-title" style="font-size:17px;margin-top:22px">{data.preBuyChecklist.title || "Before you buy or renew"}</h3>
+                  <ul class="bullets">{data.preBuyChecklist.bullets.map((x) => <li>{x}</li>)}</ul>
+                </>
+              ) : null}
             </section>
           ) : null}
 
@@ -331,19 +330,16 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
             />
           </header>
 
-          <!-- 1. H1 + CTA -->
-          <section class="section section-padding">
-            <h1 class="section-title">{data.heroH1}</h1>
-            <p class="section-sub readable">{data.heroP}</p>
-            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
-          </section>
+          <!-- 1. H1 only — MobileHero above already shows this title's subtitle text + CTA buttons,
+               so this section exists solely to give the page a real <h1> (MobileHero uses <h2>). -->
+          <h1 class="sr-only">{data.heroH1}</h1>
 
           <!-- 2. At a glance -->
           {atAGlance.length ? (
             <section class="section section-padding">
               <h2 class="section-title">At a glance</h2>
               <div class="glance">
-                {atAGlance.map((x) => (
+                {atAGlance.slice(0, 4).map((x) => (
                   <div class="glance-row">
                     <div class="glance-k">{x.k}</div>
                     <div class="glance-v">{x.v}</div>
@@ -353,55 +349,56 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
             </section>
           ) : null}
 
-          <!-- 3. What this covers -->
-          {data.keyCoverFocus?.length ? (
+          <!-- 3. What this covers + who it's for (merged) -->
+          {(data.keyCoverFocus?.length || data.whoFor?.length) ? (
             <section class="section section-padding">
-              <h2 class="section-title">What this covers</h2>
-              <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
-              {data.standardModules?.bullets?.length ? (
-                <details class="expand-block" style="margin-top:14px">
-                  <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
-                  <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
-                </details>
+              {data.keyCoverFocus?.length ? (
+                <>
+                  <h2 class="section-title">What this covers</h2>
+                  <ul class="bullets">{data.keyCoverFocus.map((x) => <li>{x}</li>)}</ul>
+                  {data.standardModules?.bullets?.length ? (
+                    <details class="expand-block" style="margin-top:14px">
+                      <summary class="expand-trigger">{data.standardModules.title || "Coverage modules & add-ons"}</summary>
+                      <ul class="bullets" style="margin-top:10px">{data.standardModules.bullets.map((x) => <li>{x}</li>)}</ul>
+                    </details>
+                  ) : null}
+                </>
+              ) : null}
+              {data.whoFor?.length ? (
+                <>
+                  <h3 class="section-title" style="font-size:17px;margin-top:22px">Who this is for</h3>
+                  <ul class="bullets">{data.whoFor.map((x) => <li>{x}</li>)}</ul>
+                </>
               ) : null}
             </section>
           ) : null}
 
-          <!-- 4. Who this is for -->
-          {data.whoFor?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Who this is for</h2>
-              <ul class="bullets">{data.whoFor.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- 5. Documents -->
-          {data.claimDocs?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Documents you'll need</h2>
-              <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- 6. Pricing -->
-          {data.pricingFactors?.bullets?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.pricingFactors.title || "What affects your premium"}</h2>
-              <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- SCENARIOS WE HANDLE (mobile) -->
+          <!-- SCENARIOS WE HANDLE (mobile) — moved up: trust before checklist sections -->
           <ScenariosWeHandle
             title="Real situations we've handled"
             scenarios={svcScenarios.slice(0, 2)}
             waNumber={waNumber}
           />
 
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+          <!-- 5. Documents + pricing (merged) -->
+          {(data.claimDocs?.length || data.pricingFactors?.bullets?.length) ? (
+            <section class="section section-padding">
+              {data.claimDocs?.length ? (
+                <>
+                  <h2 class="section-title">Documents you'll need</h2>
+                  <ul class="bullets">{data.claimDocs.map((x) => <li>{x}</li>)}</ul>
+                </>
+              ) : null}
+              {data.pricingFactors?.bullets?.length ? (
+                <>
+                  <h3 class="section-title" style="font-size:17px;margin-top:22px">{data.pricingFactors.title || "What affects your premium"}</h3>
+                  <ul class="bullets">{data.pricingFactors.bullets.map((x) => <li>{x}</li>)}</ul>
+                </>
+              ) : null}
+            </section>
+          ) : null}
 
-          <!-- 8. Mistakes to avoid -->
+          <!-- 6. Mistakes to avoid -->
           {(data.commonMistakes?.length || data.whatCanGoWrong?.length) ? (
             <section class="section section-padding">
               <h2 class="section-title">Mistakes that delay or reduce claims</h2>

@@ -35,7 +35,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/services/${category}/`);
 
 const meta = buildMeta({
-  title: `${cat.title} | Services | ${siteData.brand.name}`,
+  title: `${cat.title} | Services | ${siteData.brand.shortName}`,
   description: cat.desc,
   canonical,
   ogType: "website",
@@ -119,8 +119,6 @@ const jsonLd = buildJsonLd({
               <ul class="bullets">{cat.problems.map((p) => <li>{p}</li>)}</ul>
             </section>
           ) : null}
-
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
 
           <!-- USER QUESTIONS -->
           <UserQuestionsBlock

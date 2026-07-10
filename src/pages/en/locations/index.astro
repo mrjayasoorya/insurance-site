@@ -17,7 +17,7 @@ import WhyChooseUs from "src/components/WhyChooseUs.astro";
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/");
 
 const meta = buildMeta({
-  title: `Locations | ${siteData.brand.name}`,
+  title: `Locations | ${siteData.brand.shortName}`,
   description: siteData.locationsIndex?.subtitle || "Locations we serve.",
   canonical,
   geo: geoMetaFromBrand(siteData),
@@ -88,6 +88,7 @@ const jsonLd = buildJsonLd({
         <div class="ui-desktop">
           <header>
             <DesktopHero
+              heroH1={siteData.locationsIndex?.title}
               brand={{
                 name: siteData.brand.name,
                 tagline: siteData.brand.tagline,
@@ -102,12 +103,6 @@ const jsonLd = buildJsonLd({
             { label: "Home", href: "/en/" },
             { label: "Locations" },
           ]} />
-
-          <section class="section section-padding" aria-labelledby="loc-title">
-            <h1 id="loc-title" class="section-title">{siteData.locationsIndex?.title}</h1>
-            <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
-            <PageActionBar brand={siteData.brand} context="Locations" />
-          </section>
 
           <!-- Central hub (answers: office vs service area) -->
           {centralHub?.title ? (
@@ -229,11 +224,6 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>
@@ -301,11 +291,7 @@ siteData={siteData}
             />
           </header>
 
-          <section class="section section-padding">
-            <h1 class="section-title">{siteData.locationsIndex?.title}</h1>
-            <p class="section-sub readable">{siteData.locationsIndex?.subtitle}</p>
-            <PageActionBar brand={siteData.brand} context="Locations" />
-          </section>
+          <h1 class="sr-only">{siteData.locationsIndex?.title}</h1>
 
           {centralHub?.title ? (
             <section class="section section-padding">
@@ -370,12 +356,6 @@ siteData={siteData}
               </div>
             </section>
           ) : null}
-  <ConversionBlock 
-siteData={siteData}
-    block={siteData.conversionBlocks.default}
-    brand={siteData.brand}
-  />
-
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>

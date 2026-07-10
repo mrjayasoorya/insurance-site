@@ -16,7 +16,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Tambaram, Chennai — Car, Health, Bike & Commercial Insurance",
     seoDesc: "Insurance services in Tambaram, Chennai. Car, health, bike, life, and commercial insurance from a 4.9★ IRDAI licensed agent. Doorstep service, multi-insurer comparison, and local claim support.",
     heroH1: "Insurance Agent in Tambaram, Chennai — Vehicle, Health & Business",
-    heroP: "Insurance support for Tambaram, Chrompet, Pallavaram, and Selaiyur. Personal and commercial insurance with doorstep service and claim documentation support. Call 7448324068.",
+    heroP: "Tambaram, Chrompet, Pallavaram and Selaiyur are mostly families and small businesses — car, health and shop policies. Tell us what you need and we'll come to you if that's easier.",
     localContext: [
       "Tambaram is a major residential and commercial hub in South Chennai with high vehicle density.",
       "Mix of families needing health/car insurance and small businesses needing commercial coverage.",
@@ -56,7 +56,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Chrompet, Chennai — Car, Health & Two-Wheeler Insurance",
     seoDesc: "Insurance services in Chrompet, Chennai. Car, health, bike insurance with doorstep service and claim support from a 4.9★ rated IRDAI licensed agent. Multi-insurer comparison.",
     heroH1: "Insurance Agent in Chrompet, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Chrompet, Pallavaram, and Pammal. Personal and family insurance with doorstep service, multi-insurer comparison, and claim documentation support.",
+    heroP: "Chrompet, Pallavaram and Pammal are mostly families — car, health and life policies. We compare across insurers and come to you if a visit is easier than WhatsApp.",
     localContext: [
       "Chrompet is a densely populated residential area in South Chennai with high two-wheeler and car ownership.",
       "Families need health insurance with cashless hospitals nearby — Sundaram Medical Foundation, SRM Hospital.",
@@ -92,7 +92,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Velachery, Chennai — Car, Health & Life Insurance",
     seoDesc: "Insurance services in Velachery, Chennai. Car, health, life insurance with doorstep service and claim support. Multi-insurer comparison from a 4.9★ IRDAI licensed agent.",
     heroH1: "Insurance Agent in Velachery, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Velachery, Medavakkam, Pallikaranai, and Thoraipakkam. Personal and family insurance with doorstep service and claim documentation support.",
+    heroP: "Velachery, Medavakkam, Pallikaranai and Thoraipakkam are mostly families reaching out for car, health and life cover. Send your details on WhatsApp and we'll guide you honestly.",
     localContext: [
       "Velachery is one of Chennai's largest residential hubs with a mix of IT professionals and families.",
       "High demand for health insurance with cashless hospitals — several multispecialty hospitals nearby.",
@@ -129,7 +129,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Adyar, Chennai — Car, Health & Life Insurance",
     seoDesc: "Insurance services in Adyar, Chennai. Car, health, life insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent. Multi-insurer comparison for Adyar residents.",
     heroH1: "Insurance Agent in Adyar, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Adyar, Besant Nagar, Thiruvanmiyur, and Indira Nagar. Personal and family insurance with doorstep service and local claim support.",
+    heroP: "Adyar, Besant Nagar, Thiruvanmiyur and Indira Nagar are mostly families — car, health and life policies. We'll come to you if a visit is easier than sorting it over WhatsApp.",
     localContext: [
       "Adyar is a premium residential area with families and professionals needing comprehensive health and car insurance.",
       "Several major hospitals nearby: Adyar Cancer Institute, Apollo Hospitals, Kauvery Hospital.",
@@ -166,7 +166,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Guindy, Chennai — Car, Health & Commercial Insurance",
     seoDesc: "Insurance services in Guindy, Chennai. Car, health, commercial, and industrial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for Guindy Industrial Estate and surrounding areas.",
     heroH1: "Insurance Agent in Guindy, Chennai — Vehicle, Health & Business",
-    heroP: "Insurance support for Guindy, Guindy Industrial Estate, Ekkatuthangal, and Alandur. Personal and commercial insurance with doorstep service and claim support.",
+    heroP: "Guindy Industrial Estate is one of Chennai's oldest — factories and warehouses alongside personal policies from families in Ekkatuthangal and Alandur. Tell us which one you are and we'll take it from there.",
     localContext: [
       "Guindy Industrial Estate is one of Chennai's oldest and largest industrial hubs — factories, warehouses, and SMEs.",
       "Mix of industrial insurance (fire, machinery, stock) and personal insurance (car, health, bike) for employees.",
@@ -178,6 +178,8 @@ export const locationExpansionDetails = {
       { title: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
       { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { title: "Machinery Breakdown Insurance", href: EN("/machinery-breakdown-insurance-guindy/") },
+      { title: "Public & Professional Liability Insurance", href: EN("/liability-insurance-guindy/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
     faqs: [
@@ -185,6 +187,9 @@ export const locationExpansionDetails = {
       { q: "Can you visit Guindy for insurance discussions?", a: "Yes. Doorstep service for Guindy, Guindy Industrial Estate, Ekkatuthangal, and Alandur. For commercial insurance, site visits help us understand your exact requirements." },
     ],
     relatedLocations: [
+      { label: "Ekkatuthangal", href: EN("/locations/ekkatuthangal/") },
+      { label: "Alandur / St. Thomas Mount", href: EN("/locations/alandur-st-thomas-mount/") },
+      { label: "SIDCO Thirumudivakkam", href: EN("/locations/sidco-thirumudivakkam/") },
       { label: "Adyar", href: EN("/locations/adyar/") },
       { label: "T. Nagar", href: EN("/locations/t-nagar/") },
       { label: "Velachery", href: EN("/locations/velachery/") },
@@ -204,7 +209,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Sholinganallur, Chennai — Car, Health & IT Corridor Insurance",
     seoDesc: "Insurance services in Sholinganallur, OMR, Chennai. Car, health, life insurance for IT professionals and families from a 4.9★ IRDAI licensed agent with 15+ insurer options.",
     heroH1: "Insurance Agent in Sholinganallur, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Sholinganallur, OMR, Karapakkam, and Perungudi. Car, health, and life insurance for IT corridor professionals with doorstep service and claim support.",
+    heroP: "Sholinganallur and the OMR IT corridor bring in a lot of working professionals — car, health and life cover mostly. We keep it simple and quick since you're probably doing this between meetings.",
     localContext: [
       "Sholinganallur and the OMR IT corridor house thousands of IT professionals and young families.",
       "High demand for health insurance with cashless hospitals, car insurance for daily commuters, and term life insurance.",
@@ -240,7 +245,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Medavakkam, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Medavakkam, Chennai. Car, health, bike, and family insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent.",
     heroH1: "Insurance Agent in Medavakkam, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Medavakkam, Kovilambakkam, and Keelkattalai. Personal and family insurance with doorstep service and multi-insurer comparison.",
+    heroP: "Medavakkam, Kovilambakkam and Keelkattalai are mostly families — car, health and life policies, compared across insurers so you're not just taking the first quote you see.",
     localContext: [
       "Medavakkam is a rapidly growing residential area in South Chennai with young families and professionals.",
       "Health insurance demand is high — families need coverage with cashless hospitals accessible from Medavakkam.",
@@ -279,7 +284,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in T. Nagar, Chennai — Car, Health, Shop & Business Insurance",
     seoDesc: "Insurance services in T. Nagar, Chennai. Car, health, shop, fire, and commercial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for T. Nagar, Mambalam, and surrounding areas.",
     heroH1: "Insurance Agent in T. Nagar, Chennai — Vehicle, Health & Shop Insurance",
-    heroP: "Insurance support for T. Nagar, Mambalam, Kodambakkam, and surrounding areas. Personal, family, and commercial insurance — including shop and stock coverage for T. Nagar's commercial establishments.",
+    heroP: "T. Nagar's shops and commercial establishments need stock and property cover that actually matches what's inside, alongside the usual family policies from Mambalam and Kodambakkam. We size it to your business, not a generic template.",
     localContext: [
       "T. Nagar is Chennai's busiest commercial hub — textiles, jewellery, and retail establishments need fire, stock, and liability insurance.",
       "Residential areas in Mambalam and West Mambalam have high demand for car, health, and family insurance.",
@@ -320,7 +325,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Egmore, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Egmore, Chennai. Car, health, life, and family insurance with doorstep service from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Egmore, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Egmore, Kilpauk, Chetpet, and Purasawalkam. Personal and family insurance with doorstep service, multi-insurer comparison, and claim support.",
+    heroP: "Egmore, Kilpauk, Chetpet and Purasawalkam are mostly families reaching out about car, health and life cover. We compare across insurers so you actually know you're getting a fair deal.",
     localContext: [
       "Egmore is a central Chennai residential and commercial area — mix of families, businesses, and institutions.",
       "Multiple major hospitals nearby: SRMC, Government General Hospital, Apollo Hospitals — strong health insurance utility.",
@@ -356,7 +361,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Mylapore, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Mylapore, Chennai. Car, health, life insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent with 15+ insurer options.",
     heroH1: "Insurance Agent in Mylapore, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Mylapore, Mandaveli, R.A. Puram, and Alwarpet. Personal and family insurance with doorstep service and local claim support.",
+    heroP: "Mylapore, Mandaveli, R.A. Puram and Alwarpet are mostly families — car, health and life policies. We'll come to you if that's easier than sorting it over the phone.",
     localContext: [
       "Mylapore is one of Chennai's oldest and most respected residential areas — families and senior citizens with comprehensive insurance needs.",
       "High demand for senior citizen health insurance and family floater plans.",
@@ -391,7 +396,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Nungambakkam, Chennai — Car, Health & Business Insurance",
     seoDesc: "Insurance services in Nungambakkam, Chennai. Car, health, life, and commercial insurance from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Nungambakkam, Chennai — Vehicle, Health & Business",
-    heroP: "Insurance support for Nungambakkam, Thousand Lights, and Teynampet. Personal and commercial insurance with doorstep service and claim documentation support.",
+    heroP: "Nungambakkam, Thousand Lights and Teynampet bring a mix of family policies and small business cover. Tell us which one you need and we'll guide you from there.",
     localContext: [
       "Nungambakkam is a prime commercial and residential area — mix of corporate offices, residential apartments, and healthcare facilities.",
       "Apollo Hospitals Greams Road and Frontier Lifeline are nearby — cashless health insurance is a primary need.",
@@ -426,7 +431,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Kilpauk, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Kilpauk, Chennai. Car, health, bike, and family insurance with doorstep service from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Kilpauk, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Kilpauk, Aminjikarai, and Shenoy Nagar. Personal and family insurance with doorstep service and claim documentation support.",
+    heroP: "Kilpauk, Aminjikarai and Shenoy Nagar are mostly families — car, health and life cover. Send your details on WhatsApp and we'll guide you honestly.",
     localContext: [
       "Kilpauk is a well-established residential area in North-Central Chennai with families and working professionals.",
       "Kilpauk Medical College Hospital nearby — health insurance with cashless facility is a key requirement.",
@@ -465,7 +470,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Anna Nagar, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Anna Nagar, Chennai. Car, health, life, and family insurance from a 4.9★ IRDAI licensed agent. Multi-insurer comparison, doorstep service, and local claim support.",
     heroH1: "Insurance Agent in Anna Nagar, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Anna Nagar, Anna Nagar West, and Thirumangalam. Personal and family insurance with doorstep service, 15+ insurer comparison, and claim documentation support.",
+    heroP: "Anna Nagar, Anna Nagar West and Thirumangalam are mostly families asking about car, health and life cover — with hospitals like Kaveri, Billroth and Apollo First Med nearby, getting cashless health insurance right matters a lot here.",
     localContext: [
       "Anna Nagar is one of Chennai's most planned and premium residential areas with high family insurance demand.",
       "Multiple hospitals within and nearby: Kaveri, Billroth, Apollo First Med — strong cashless health insurance utility.",
@@ -504,7 +509,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Porur, Chennai — Car, Health & Commercial Insurance",
     seoDesc: "Insurance services in Porur, Chennai. Car, health, commercial insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent. Serving Porur, Ramapuram, and Mugalivakkam.",
     heroH1: "Insurance Agent in Porur, Chennai — Vehicle, Health & Business",
-    heroP: "Insurance support for Porur, Ramapuram, Mugalivakkam, and Valasaravakkam. Personal and commercial insurance with doorstep service and claim documentation support.",
+    heroP: "Porur, Ramapuram, Mugalivakkam and Valasaravakkam see a mix of families and small businesses — whichever one you are, send your details on WhatsApp and we'll guide you from there.",
     localContext: [
       "Porur is a growing hub connecting West Chennai to the Mount-Poonamallee corridor — mix of residential and commercial activity.",
       "MIOT International Hospital and Ramachandra Medical Centre are nearby — strong cashless health insurance demand.",
@@ -540,7 +545,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Mogappair, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Mogappair, Chennai. Car, health, bike insurance with doorstep service from a 4.9★ IRDAI licensed agent. Serving Mogappair East, West, and Nolambur.",
     heroH1: "Insurance Agent in Mogappair, Chennai — Vehicle, Health & Family",
-    heroP: "Insurance support for Mogappair East, Mogappair West, Nolambur, and Ambattur. Personal and family insurance with doorstep service and multi-insurer comparison.",
+    heroP: "Mogappair East, Mogappair West, Nolambur and Ambattur are mostly families — car, health and life cover, compared across insurers so you're not stuck with the first quote you got.",
     localContext: [
       "Mogappair is a large residential area adjacent to Anna Nagar — predominantly families with personal insurance needs.",
       "Proximity to Ambattur Industrial Estate creates overlap with personal and commercial insurance demand.",
@@ -575,7 +580,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Koyambedu, Chennai — Car, Health & Commercial Insurance",
     seoDesc: "Insurance services in Koyambedu, Chennai. Car, health, commercial vehicle, and business insurance from a 4.9★ IRDAI licensed agent. Serving Koyambedu, Vadapalani, and Virugambakkam.",
     heroH1: "Insurance Agent in Koyambedu, Chennai — Vehicle, Health & Business",
-    heroP: "Insurance support for Koyambedu, Vadapalani, Virugambakkam, and Ashok Nagar. Personal and commercial insurance — including transport and goods-in-transit coverage for the Koyambedu commercial hub.",
+    heroP: "Koyambedu's wholesale market and bus terminal mean a lot of goods-in-transit and vehicle cover comes through here, alongside regular family policies from Vadapalani, Virugambakkam and Ashok Nagar. Whichever one you need, we'll guide you straight.",
     localContext: [
       "Koyambedu is Chennai's largest wholesale market hub — fruits, vegetables, and flowers. Commercial and goods-in-transit insurance is essential.",
       "Major bus terminal creates high transit and vehicle insurance activity.",
@@ -614,7 +619,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Poonamallee, Chennai — Car, Health & Industrial Insurance",
     seoDesc: "Insurance services in Poonamallee, Chennai. Car, health, commercial vehicle, and industrial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for Poonamallee and surrounding areas.",
     heroH1: "Insurance Agent in Poonamallee, Chennai — Vehicle, Health & Industrial",
-    heroP: "Insurance support for Poonamallee, Avadi, and the industrial corridor connecting to Sriperumbudur. Personal, commercial, and industrial insurance with claim documentation support.",
+    heroP: "Poonamallee and Avadi sit on the industrial corridor toward Sriperumbudur, so we see everything here — family policies, small business cover, and the occasional factory or fleet case.",
     localContext: [
       "Poonamallee is a western gateway of Chennai — connecting the city to the industrial corridors of Sriperumbudur and Oragadam.",
       "Mix of residential areas and industrial activity along the Chennai-Bangalore highway.",
@@ -655,7 +660,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Hosur — Factory, Fleet & Commercial Insurance",
     seoDesc: "Insurance services in Hosur industrial area. Factory, fleet, commercial vehicle, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent with 30+ years experience.",
     heroH1: "Insurance Agent in Hosur — Factory, Fleet & Commercial Insurance",
-    heroP: "Insurance support for Hosur industrial area — SIPCOT, SEZ, and surrounding manufacturing zones. Factory, fleet, warehouse, and contractor insurance with claim documentation support.",
+    heroP: "Hosur's SIPCOT and SEZ zones are genuine manufacturing territory, so factory, fleet, warehouse and contractor cover are what we mostly handle here — set up properly before you ever need to claim.",
     localContext: [
       "Hosur is one of Tamil Nadu's most important industrial hubs — automotive, electronics, and manufacturing.",
       "SIPCOT Industrial Complex and SEZ host major factories needing comprehensive industrial insurance.",
@@ -691,7 +696,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Oragadam — Factory, Fleet & Industrial Insurance",
     seoDesc: "Insurance services in Oragadam industrial corridor. Factory, fleet, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent. SIPCOT and automotive hub coverage.",
     heroH1: "Insurance Agent in Oragadam — Factory, Fleet & Industrial Insurance",
-    heroP: "Insurance support for Oragadam industrial corridor — the 'Detroit of India.' Factory, fleet, warehouse, and contractor insurance for automotive and manufacturing operations.",
+    heroP: "Oragadam's automotive manufacturing belt means factory, fleet and contractor cover are what we mostly handle here. We understand how plant-level operations actually work, not just generic industrial policies.",
     localContext: [
       "Oragadam is India's automotive manufacturing hub — Hyundai, Renault-Nissan, Daimler, and tier-1 supplier factories.",
       "SIPCOT Oragadam hosts large-scale manufacturing with significant fire, machinery, and stock insurance needs.",
@@ -701,7 +706,7 @@ export const locationExpansionDetails = {
       { title: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
-      { title: "Crane & Heavy Equipment Insurance", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
+      { title: "Crane & Heavy Equipment Insurance", href: EN("/crane-insurance-oragadam/") },
       { title: "Contractor All Risk", href: EN("/services/construction/contractor-all-risk/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
@@ -728,7 +733,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Sriperumbudur — Factory, Fleet & Industrial Insurance",
     seoDesc: "Insurance services in Sriperumbudur SIPCOT and industrial area. Factory, fleet, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent with 30+ years experience.",
     heroH1: "Insurance Agent in Sriperumbudur — Factory, Fleet & Commercial Insurance",
-    heroP: "Insurance support for Sriperumbudur industrial zone — SIPCOT, electronics, automotive, and logistics. Factory, fleet, and warehouse insurance with documentation-first approach.",
+    heroP: "Sriperumbudur SIPCOT covers electronics, automotive and logistics, so factory, fleet and warehouse cover are what we mostly handle here. We get the documentation right before it's ever tested by a claim.",
     localContext: [
       "Sriperumbudur is a major industrial hub — Samsung, Foxconn, Nokia, and numerous electronics/automotive manufacturers.",
       "SIPCOT Sriperumbudur has extensive industrial insurance needs: fire, machinery, stock, and contractor coverage.",
@@ -740,6 +745,7 @@ export const locationExpansionDetails = {
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
       { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
       { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Crane & Heavy Equipment Insurance", href: EN("/crane-insurance-sriperumbudur/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
     faqs: [
@@ -765,7 +771,7 @@ export const locationExpansionDetails = {
     seoTitle: "Insurance Agent in Maraimalai Nagar — Factory, Commercial & Industrial Insurance",
     seoDesc: "Insurance services in Maraimalai Nagar industrial area. Factory, fleet, warehouse, and commercial insurance from a 4.9★ IRDAI licensed agent. SIPCOT and GST Road corridor coverage.",
     heroH1: "Insurance Agent in Maraimalai Nagar — Factory & Commercial Insurance",
-    heroP: "Insurance support for Maraimalai Nagar industrial zone and GST Road corridor. Factory, warehouse, fleet, and commercial insurance with documentation-first claim support.",
+    heroP: "Maraimalai Nagar and the GST Road corridor bring in factory, warehouse and fleet cover mostly. We set the documentation up right from the start, so a claim doesn't stall over something avoidable.",
     localContext: [
       "Maraimalai Nagar SIPCOT hosts manufacturing plants, warehouses, and logistics operations along the GST Road.",
       "Industrial insurance needs include fire, machinery, stock, and goods-in-transit coverage.",
@@ -776,6 +782,7 @@ export const locationExpansionDetails = {
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
       { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
+      { title: "Contractor Insurance (CAR + WC)", href: EN("/contractor-insurance-maraimalai-nagar/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
     faqs: [

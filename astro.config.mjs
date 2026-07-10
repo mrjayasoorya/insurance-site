@@ -243,6 +243,35 @@ function ga4Injector() {
           } catch (_) {}
         }, { capture: true, passive: true });
       } catch (_) {}
+
+      // Scroll depth (fires once per threshold per page load)
+      try {
+        var scrollFired = { 25: false, 50: false, 75: false, 90: false };
+        function checkScrollDepth() {
+          try {
+            var doc = document.documentElement;
+            var scrollTop = window.scrollY || doc.scrollTop || 0;
+            var scrollable = (doc.scrollHeight || 0) - (window.innerHeight || 0);
+            if (scrollable <= 0) return;
+            var pct = Math.round((scrollTop / scrollable) * 100);
+            [25, 50, 75, 90].forEach(function (threshold) {
+              if (!scrollFired[threshold] && pct >= threshold) {
+                scrollFired[threshold] = true;
+                fire("scroll_depth", { percent_scrolled: threshold });
+              }
+            });
+          } catch (_) {}
+        }
+        var scrollTicking = false;
+        window.addEventListener("scroll", function () {
+          if (scrollTicking) return;
+          scrollTicking = true;
+          window.requestAnimationFrame(function () {
+            checkScrollDepth();
+            scrollTicking = false;
+          });
+        }, { passive: true });
+      } catch (_) {}
     }
 
     // Init + listeners when idle (or ASAP fallback)
@@ -279,4 +308,13 @@ export default defineConfig({
   site: "https://insuranceconsult.in",
   trailingSlash: "always",
   integrations: [sitemap(), ga4Injector()],
+  redirects: {
+    // /services/marine-cargo-goods-in-transit-insurance/ is a legitimate
+    // serviceCategories overview page (siblings: business-msme-insurance,
+    // transport-fleet-lorry-insurance, etc.) — NOT redirected.
+    // Only /services/marine/marine-cargo-goods-in-transit/ is a true content
+    // duplicate of /services/marine/marine-cargo-goods-in-transit-insurance/
+    // (verified near-identical H1/section structure).
+    "/en/services/marine/marine-cargo-goods-in-transit": "/en/services/marine/marine-cargo-goods-in-transit-insurance",
+  },
 });

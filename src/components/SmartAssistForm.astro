@@ -245,16 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return !Number.isFinite(n) || (Date.now() - n > cooldownMs);
     }
 
+    // Exit-intent only: fires when the cursor leaves toward the top of the
+    // viewport (about to close tab / switch away). Deliberately no timer or
+    // scroll-percentage trigger — those interrupted active reading and had a
+    // ~76% dismissal rate in practice.
     function onMouseOut(e) { if (e && typeof e.clientY === 'number' && e.clientY <= 0 && canShow()) { document.removeEventListener('mouseout', onMouseOut); openPanel(); } }
     document.addEventListener('mouseout', onMouseOut);
-    const tid = setTimeout(() => { if (canShow()) { document.removeEventListener('mouseout', onMouseOut); openPanel(); } }, 45000);
-    let scrollDone = false;
-    function onScroll() {
-      if (scrollDone || shown) return;
-      const pct = (window.scrollY || 0) / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      if (pct >= 0.55) { scrollDone = true; window.removeEventListener('scroll', onScroll); if (canShow()) { clearTimeout(tid); document.removeEventListener('mouseout', onMouseOut); openPanel(); } }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
 
     root.querySelector('[data-sa-close]')?.addEventListener('click', () => { ga('sa_dismissed'); closePanel(); });
     if (backdrop) backdrop.addEventListener('click', () => { if (open) { ga('sa_dismissed'); closePanel(); } });

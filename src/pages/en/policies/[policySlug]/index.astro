@@ -36,7 +36,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/policies/${policySlug}/`);
 
 const meta = buildMeta({
-  title: `${data.seoTitle} | ${siteData.brand.name}`,
+  title: `${data.seoTitle} | ${siteData.brand.shortName}`,
   description: data.seoDesc,
   canonical,
   ogType: "article",

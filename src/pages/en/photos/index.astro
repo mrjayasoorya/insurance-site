@@ -23,7 +23,7 @@ const images = (page.images || []).filter((i) => i?.src);
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, "/en/photos/");
 const meta = buildMeta({
-  title: `Photos | ${siteData.brand.name}`,
+  title: `Photos | ${siteData.brand.shortName}`,
   description:
     "Office and Google posts photos from our Sholavaram base—real local context for customers in Chennai North & NH corridors.",
   canonical,

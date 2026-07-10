@@ -36,7 +36,7 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
 
 const canonical = canonicalFromPath(siteData.brand.websiteUrl, `/en/seasonal/${seasonalSlug}/`);
 const meta = buildMeta({
-  title: `${page.seoTitle} | ${siteData.brand.name}`,
+  title: `${page.seoTitle} | ${siteData.brand.shortName}`,
   description: page.seoDesc,
   canonical,
   geo: geoMetaFromBrand(siteData),
