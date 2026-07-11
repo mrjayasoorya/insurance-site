@@ -10,6 +10,8 @@ Purpose: Insurance guidance focused on documentation discipline,
          renewal clarity, and claim-ready workflows.
 Primary Focus: Commercial, transport, industrial, marine, liability, and MSME insurance
 Secondary Focus: Personal motor, health, and LIC/term life servicing
+Vertical Coverage: Export/import trade, professionals & consultants, wholesale/trade/retail,
+                    hospitality, schools/trusts/NGOs, e-commerce, hospitals & clinics
 
 Languages: English
 Country: India

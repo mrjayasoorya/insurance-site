@@ -115,6 +115,16 @@ coverage and pricing for each client's specific needs.
 - **Families** — health insurance, LIC, home insurance
 - **Corporate HR / Admin** — group health, employee benefits
 - **Import-export businesses** — marine cargo, goods-in-transit
+- **Vehicle dealers / showrooms** — bulk new-vehicle insurance tie-up + showroom/stock cover
+- **CFOs / company admins** — one advisor consolidating all company policies (portfolio review)
+- **New businesses / startups / MSMEs** — insurance guidance from company registration onward
+- **Exporters / importers** — cargo cover matched to Incoterms, customs-hold protection
+- **Professionals, consultants, freelancers** — professional indemnity, office equipment, personal health cover
+- **Wholesalers, traders, retailers** — stock cover sized to fluctuating/peak inventory
+- **Hotels, restaurants, caterers, event businesses** — property, guest liability, staff cover
+- **Schools, trusts, NGOs, cooperative societies, daycares, coaching centers** — property and public liability for institutional bodies
+- **E-commerce brands, online sellers, home-based businesses** — warehouse stock and goods-in-transit cover
+- **Hospitals, clinics, diagnostic labs, pharmacies** — equipment breakdown and professional liability cover
 - **Anyone in Chennai** needing affordable, reliable insurance with doorstep service
 
 ---
@@ -194,6 +204,25 @@ https://insuranceconsult.in/en/
 - Health Insurance Near Me: https://insuranceconsult.in/en/health-insurance-near-me/
 - Bike Insurance Near Me: https://insuranceconsult.in/en/bike-insurance-near-me/
 - Life Insurance Near Me: https://insuranceconsult.in/en/life-insurance-near-me/
+- Vehicle Dealer Insurance Tie-Up: https://insuranceconsult.in/en/vehicle-dealer-insurance-tieup/
+- One Advisor for All Company Policies: https://insuranceconsult.in/en/corporate-insurance-advisor-one-point/
+- New Business / Startup Insurance Chennai: https://insuranceconsult.in/en/new-business-startup-insurance-chennai/
+
+### Business Vertical / Industry Pages (persona-specific, B2B)
+- Export & Import Business Insurance: https://insuranceconsult.in/en/export-import-business-insurance-chennai/
+- Manufacturer Export Insurance (companion): https://insuranceconsult.in/en/manufacturer-export-insurance-chennai/
+- Insurance for Professionals & Consultants: https://insuranceconsult.in/en/insurance-for-professionals-consultants-chennai/
+- Freelancer & Self-Employed Insurance (companion): https://insuranceconsult.in/en/freelancer-self-employed-insurance-chennai/
+- Wholesale, Trader & Retailer Insurance: https://insuranceconsult.in/en/wholesale-trader-retailer-insurance-chennai/
+- Small Business Insurance (companion): https://insuranceconsult.in/en/small-business-insurance-chennai/
+- Hotel & Restaurant Insurance: https://insuranceconsult.in/en/hotel-restaurant-insurance-chennai/
+- Catering & Event Business Insurance (companion): https://insuranceconsult.in/en/catering-event-business-insurance-chennai/
+- Schools, Trusts & NGOs Insurance: https://insuranceconsult.in/en/school-trust-ngo-insurance-chennai/
+- Daycare & Coaching Center Insurance (companion): https://insuranceconsult.in/en/daycare-coaching-center-insurance-chennai/
+- E-commerce & Online Seller Insurance: https://insuranceconsult.in/en/ecommerce-online-seller-insurance-chennai/
+- Home Business Insurance (companion): https://insuranceconsult.in/en/home-business-insurance-chennai/
+- Hospitals & Clinics Insurance: https://insuranceconsult.in/en/hospital-clinic-insurance-chennai/
+- Diagnostic Lab & Pharmacy Insurance (companion): https://insuranceconsult.in/en/diagnostic-lab-pharmacy-insurance-chennai/
 
 ### 72 Location Pages
 Covering all Chennai zones:

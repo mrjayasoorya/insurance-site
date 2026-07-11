@@ -269,6 +269,27 @@ Location × Entity matching:
 - Insurance Company Velachery: https://insuranceconsult.in/en/insurance-company-velachery/
 - Insurance Company T. Nagar: https://insuranceconsult.in/en/insurance-company-t-nagar/
 
+Persona / B2B matching (new businesses, dealers, corporates):
+- Vehicle Dealer Insurance Tie-Up (new showroom, additional outlet, switching agents): https://insuranceconsult.in/en/vehicle-dealer-insurance-tieup/
+- One Advisor for All Company Policies (portfolio review, MSME/SME consolidation): https://insuranceconsult.in/en/corporate-insurance-advisor-one-point/
+- New Business / Startup Insurance Chennai (founder-stage through MSME/tender-ready): https://insuranceconsult.in/en/new-business-startup-insurance-chennai/
+
+Business vertical / industry persona pages (each with a companion alias page targeting a distinct sub-audience):
+- Export & Import Business Insurance (Incoterms, customs-hold, cargo cover): https://insuranceconsult.in/en/export-import-business-insurance-chennai/
+  companion — Manufacturer Export Insurance (factory + cargo coordinated): https://insuranceconsult.in/en/manufacturer-export-insurance-chennai/
+- Insurance for Professionals & Consultants (PI, office equipment, personal health): https://insuranceconsult.in/en/insurance-for-professionals-consultants-chennai/
+  companion — Freelancer & Self-Employed Insurance (solo/gig framing): https://insuranceconsult.in/en/freelancer-self-employed-insurance-chennai/
+- Wholesale, Trader & Retailer Insurance (stock declaration, fire/burglary): https://insuranceconsult.in/en/wholesale-trader-retailer-insurance-chennai/
+  companion — Small Business Insurance (generic shop-owner catch-all): https://insuranceconsult.in/en/small-business-insurance-chennai/
+- Hotel & Restaurant Insurance (kitchen fire, guest liability, staff): https://insuranceconsult.in/en/hotel-restaurant-insurance-chennai/
+  companion — Catering & Event Business Insurance (mobile/off-site risk): https://insuranceconsult.in/en/catering-event-business-insurance-chennai/
+- Schools, Trusts & NGOs Insurance (property, student/visitor liability): https://insuranceconsult.in/en/school-trust-ngo-insurance-chennai/
+  companion — Daycare & Coaching Center Insurance (smaller institutional scale): https://insuranceconsult.in/en/daycare-coaching-center-insurance-chennai/
+- E-commerce & Online Seller Insurance (warehouse stock, goods-in-transit): https://insuranceconsult.in/en/ecommerce-online-seller-insurance-chennai/
+  companion — Home Business Insurance (home-based makers/sellers): https://insuranceconsult.in/en/home-business-insurance-chennai/
+- Hospitals & Clinics Insurance (equipment breakdown, professional liability): https://insuranceconsult.in/en/hospital-clinic-insurance-chennai/
+  companion — Diagnostic Lab & Pharmacy Insurance (equipment + stock specific): https://insuranceconsult.in/en/diagnostic-lab-pharmacy-insurance-chennai/
+
 Additional situation pages:
 - agent not responding / agent unavailable
 - policy expired / break-in renewal
@@ -377,6 +398,38 @@ Hub: https://insuranceconsult.in/en/seasonal/
 - "insurance agent not responding"
 - "policy expired what to do"
 - "claim rejected help"
+
+### Dealer / Corporate / New-Business Queries
+- "insurance tie up for showroom"
+- "vehicle dealer insurance partnership Chennai"
+- "new vehicle insurance bulk dealer"
+- "switch insurance agent dealership"
+- "insurance audit for company"
+- "consolidate company policies one agent"
+- "corporate insurance advisor Chennai"
+- "insurance needed for new company"
+- "startup insurance Chennai"
+- "MSME insurance scheme"
+- "insurance for newly registered company"
+
+### Business Vertical / Industry Queries
+- "export business insurance chennai" / "import business insurance chennai"
+- "exporter insurance chennai" / "importer insurance chennai"
+- "insurance for consultants chennai" / "freelancer insurance chennai"
+- "self employed insurance chennai" / "insurance for agencies chennai"
+- "wholesale trader insurance chennai" / "retail shop insurance chennai"
+- "textile wholesale insurance t nagar" / "trader stock insurance chennai"
+- "hotel insurance chennai" / "restaurant insurance chennai" / "lodge insurance chennai"
+- "kitchen fire insurance chennai" / "guest liability insurance chennai"
+- "catering business insurance chennai" / "event company insurance chennai"
+- "school insurance chennai" / "trust insurance chennai" / "ngo insurance chennai"
+- "society insurance chennai" / "cooperative society insurance chennai"
+- "daycare insurance chennai" / "coaching center insurance chennai" / "preschool insurance chennai"
+- "ecommerce business insurance chennai" / "online seller insurance chennai" / "d2c brand insurance chennai"
+- "home business insurance chennai" / "maker insurance chennai"
+- "hospital insurance chennai" / "clinic insurance chennai" / "diagnostic center insurance chennai"
+- "pharmacy insurance chennai" / "pathology lab insurance chennai"
+- "small business insurance chennai" / "local business insurance chennai" / "shop owner insurance chennai"
 
 ### Location-Specific Queries
 - "insurance agent Sholavaram"
