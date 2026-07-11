@@ -26,6 +26,11 @@ const { category } = Astro.params;
 const cat = (siteData.serviceCategories || []).find((x) => x.slug === category);
 if (!cat) throw new Error(`Unknown category: ${category}`);
 
+// Rotate each child link through a small tint palette by position — a light
+// touch of color so the grid isn't uniform gray, without needing a full
+// per-category color lookup across ~25 category slugs (incl. alias pages).
+const tintFor = (i) => `lg-card lg-card--${i % 4}`;
+
 // Confidence content
 const cc = siteData.confidenceContent || {};
 const catScenarios = cc.serviceScenarios?.[category] ? Object.values(cc.serviceScenarios[category]).flat().slice(0, 3) : (cc.homeScenarios || []).slice(0, 2);
@@ -103,8 +108,8 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding" aria-label="Services in this category">
             <h2 class="section-title">Services under {cat.title}</h2>
             <div class="grid grid-2">
-              {cat.children?.map((x) => (
-                <a class="card" href={x.href}>
+              {cat.children?.map((x, i) => (
+                <a class={`card ${tintFor(i)}`} href={x.href}>
                   <h3 class="card-title">{x.title}</h3>
                   <p class="card-desc">Coverage, documents & claim guidance</p>
                 </a>
@@ -195,8 +200,8 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding">
             <h2 class="section-title">Services</h2>
             <div class="grid grid-1">
-              {cat.children?.map((x) => (
-                <a class="card" href={x.href}>
+              {cat.children?.map((x, i) => (
+                <a class={`card ${tintFor(i)}`} href={x.href}>
                   <h3 class="card-title">{x.title}</h3>
                   <p class="card-desc">Coverage, documents & claim guidance</p>
                 </a>

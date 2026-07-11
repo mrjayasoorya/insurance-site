@@ -43,9 +43,14 @@ const jsonLd = buildJsonLd({
 
 // ---- Data shaping (avoid thin cards) ----
 
+// Category tag -> accent suffix (ties each card's color to its category
+// instead of every card reading as identical gray-on-white).
+const tagToAccentSuffix = (tag) =>
+  (tag || "Service").toLowerCase().replace(/\s+/g, "-");
+
 // 1) Popular service cards: ensure desc exists and is meaningful
 const popularServices = (siteData.servicePopular || [])
-  .slice(0, 10)
+  .slice(0, 12)
   .map((x) => ({
     ...x,
     href: x.href,
@@ -55,6 +60,7 @@ const popularServices = (siteData.servicePopular || [])
       x.desc ||
       "Coverage structure + document checklist + renewal/claim mistakes to avoid (practical guidance).",
     badge: x.tag || "Service",
+    accentSuffix: tagToAccentSuffix(x.tag),
   }));
 
 // 2) Category cards: keep as-is but ensure desc is present
@@ -151,6 +157,42 @@ const beltClusters = [
     buckets: [
       ...LOCATION_BUCKETS.CITY_SIDE_RESIDENTIAL_SME,
       ...LOCATION_BUCKETS.NORTH_CONNECTOR_POCKETS,
+    ],
+  },
+  {
+    key: "chennai-personal-sme",
+    title: "South, Central & West Chennai (Personal + SME)",
+    desc:
+      "Dense residential and small-business areas—car/bike renewals, health guidance and shop/office MSME packages across full Chennai.",
+    links: safeLocLinks([
+      ...LOCATION_BUCKETS.SOUTH_CHENNAI_RESIDENTIAL,
+      ...LOCATION_BUCKETS.CENTRAL_CHENNAI,
+      ...LOCATION_BUCKETS.WEST_CHENNAI,
+      ...LOCATION_BUCKETS.SOUTH_CENTRAL_CONNECTOR,
+    ]),
+    buckets: [
+      ...LOCATION_BUCKETS.SOUTH_CHENNAI_RESIDENTIAL,
+      ...LOCATION_BUCKETS.CENTRAL_CHENNAI,
+      ...LOCATION_BUCKETS.WEST_CHENNAI,
+      ...LOCATION_BUCKETS.SOUTH_CENTRAL_CONNECTOR,
+    ],
+  },
+  {
+    key: "port-outskirts-industrial",
+    title: "Port belt + outskirts industrial (Ennore, Sriperumbudur, Hosur)",
+    desc:
+      "High-premium industrial and port-linked cargo risk—factories, contractor worksites, heavy equipment and import/export cargo cover.",
+    links: safeLocLinks([
+      ...LOCATION_BUCKETS.NORTH_COASTAL_PORT_BELT,
+      ...LOCATION_BUCKETS.KANCHEEPURAM_OUTSKIRTS_BELT,
+      ...LOCATION_BUCKETS.TN_INDUSTRIAL_BELT,
+      ...LOCATION_BUCKETS.OUTSIDE_CITY_CORRIDOR_CONNECTED,
+    ]),
+    buckets: [
+      ...LOCATION_BUCKETS.NORTH_COASTAL_PORT_BELT,
+      ...LOCATION_BUCKETS.KANCHEEPURAM_OUTSKIRTS_BELT,
+      ...LOCATION_BUCKETS.TN_INDUSTRIAL_BELT,
+      ...LOCATION_BUCKETS.OUTSIDE_CITY_CORRIDOR_CONNECTED,
     ],
   },
 ];
@@ -253,6 +295,14 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
                   What to do first, what proof matters, and common delay reasons—without overpromises.
                 </p>
               </a>
+
+              <a class="card" href={EN("/not-sure-if-we-cover-you/")}>
+                <div class="card-row"><span class="chip">Not listed?</span></div>
+                <h2 class="card-title">Don't see your exact situation here?</h2>
+                <p class="card-desc readable">
+                  Most cases not listed on this site are still covered—ask us directly and we'll confirm in minutes.
+                </p>
+              </a>
             </div>
           </section>
 
@@ -281,10 +331,10 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             </p>
 
             <div class="grid grid-2">
-              {popularServices.slice(0, 8).map((x) => (
-                <a class="card" href={x.href}>
+              {popularServices.slice(0, 12).map((x) => (
+                <a class={`card card--accent card--${x.accentSuffix}`} href={x.href}>
                   <div class="card-row">
-                    <span class="chip">{x.badge}</span>
+                    <span class={`chip chip--${x.accentSuffix}`}>{x.badge}</span>
                     <span class="chip chip-ghost">Claim-ready</span>
                   </div>
                   <h3 class="card-title">{x.cardTitle}</h3>
@@ -459,6 +509,11 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
                 <h2 class="card-title">Insurance claim help</h2>
                 <p class="card-desc readable">Documents + timeline discipline to reduce delays.</p>
               </a>
+              <a class="card" href={EN("/not-sure-if-we-cover-you/")}>
+                <div class="card-row"><span class="chip">Not listed?</span></div>
+                <h2 class="card-title">Don't see your situation here?</h2>
+                <p class="card-desc readable">Most unlisted cases are still covered—ask us directly.</p>
+              </a>
             </div>
           </section>
 
@@ -477,10 +532,10 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
           <section class="section section-padding" aria-label="Most requested services">
             <h2 class="section-title">Most requested services</h2>
             <div class="grid grid-1">
-              {popularServices.slice(0, 8).map((x) => (
-                <a class="card" href={x.href}>
+              {popularServices.slice(0, 12).map((x) => (
+                <a class={`card card--accent card--${x.accentSuffix}`} href={x.href}>
                   <div class="card-row">
-                    <span class="chip">{x.badge}</span>
+                    <span class={`chip chip--${x.accentSuffix}`}>{x.badge}</span>
                     <span class="chip chip-ghost">Claim-ready</span>
                   </div>
                   <h3 class="card-title">{x.cardTitle}</h3>

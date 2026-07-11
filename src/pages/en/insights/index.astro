@@ -78,19 +78,19 @@ const jsonLd = buildJsonLd({
             <h2 class="section-title">Not sure where to start?</h2>
             <p class="section-sub readable">If you're looking for specific help rather than articles, try one of these:</p>
             <div class="grid grid-2">
-              <a class="card" href={EN("/insurance-near-me/")}>
+              <a class="card lg-card lg-card--0" href={EN("/insurance-near-me/")}>
                 <h3 class="card-title">I need insurance help nearby</h3>
                 <p class="card-desc">How local support works — visit vs WhatsApp/phone.</p>
               </a>
-              <a class="card" href={EN("/insurance-claim-help/")}>
+              <a class="card lg-card lg-card--1" href={EN("/insurance-claim-help/")}>
                 <h3 class="card-title">I need help with a claim</h3>
                 <p class="card-desc">Documents, timeline, and common delay reasons.</p>
               </a>
-              <a class="card" href={EN("/services/")}>
+              <a class="card lg-card lg-card--2" href={EN("/services/")}>
                 <h3 class="card-title">Browse all services</h3>
                 <p class="card-desc">Transport, industrial, construction, business & personal insurance.</p>
               </a>
-              <a class="card" href={EN("/faqs/")}>
+              <a class="card lg-card lg-card--3" href={EN("/faqs/")}>
                 <h3 class="card-title">Read FAQs</h3>
                 <p class="card-desc">Common questions about renewals, claims, documents & coverage.</p>
               </a>
@@ -114,8 +114,8 @@ const jsonLd = buildJsonLd({
             <section class="section section-padding" aria-label="How our process works">
               <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
               <div class="grid grid-2">
-                {siteData.aboutPage.howWeWork.steps.map((step) => (
-                  <article class="card">
+                {siteData.aboutPage.howWeWork.steps.map((step, i) => (
+                  <article class={`card lg-card lg-card--${i % 4}`}>
                     <h3 class="card-title">{step.title}</h3>
                     <p class="card-desc readable">{step.desc}</p>
                   </article>
@@ -155,11 +155,11 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding">
             <h2 class="section-title">Not sure where to start?</h2>
             <div class="grid grid-1">
-              <a class="card" href={EN("/insurance-near-me/")}>
+              <a class="card lg-card lg-card--1" href={EN("/insurance-near-me/")}>
                 <h3 class="card-title">I need insurance help nearby</h3>
                 <p class="card-desc">How local support works.</p>
               </a>
-              <a class="card" href={EN("/services/")}>
+              <a class="card lg-card lg-card--2" href={EN("/services/")}>
                 <h3 class="card-title">Browse all services</h3>
                 <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
               </a>

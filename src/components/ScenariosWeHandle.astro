@@ -25,7 +25,7 @@ const {
     <div class="swh-grid">
       {scenarios.map((s, i) => (
         <article class="swh-card">
-          <div class="swh-num">{i + 1}</div>
+          <div class={`swh-num swh-num--${i % 6}`}>{i + 1}</div>
           <h3 class="swh-heading">{s.title}</h3>
           <div class="swh-body">
             <p class="swh-label">The situation</p>
@@ -70,15 +70,18 @@ const {
   .swh-num{
     width:28px;height:28px;
     border-radius:50%;
-    background:#f0fdf4;
-    color:#15803d;
     font-weight:900;
     font-size:13px;
     display:grid;
     place-items:center;
     margin-bottom:10px;
-    border:1px solid #bbf7d0;
   }
+  .swh-num--0{ background:#e6faf6; color:#0d9488; }
+  .swh-num--1{ background:#fff4e0; color:#b45309; }
+  .swh-num--2{ background:#e8f1ff; color:#1d4ed8; }
+  .swh-num--3{ background:#f4edff; color:#7c3aed; }
+  .swh-num--4{ background:#ffeeee; color:#dc2626; }
+  .swh-num--5{ background:#eafbe9; color:#15803d; }
   .swh-heading{
     font-size:15px;
     font-weight:950;

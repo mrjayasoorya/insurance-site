@@ -732,6 +732,10 @@ let servicesDetail = {
           q: "What happens when one vehicle in my fleet has a claim?",
           a: "Only the specific vehicle's claim record is affected. However, at renewal, the overall fleet claim ratio may influence premium. We maintain clean claim documentation per vehicle to protect your fleet's renewal terms.",
         },
+        {
+          q: "Can I increase the sum insured or IDV mid-term if a vehicle's value changes?",
+          a: "Yes — this is done through a mid-term endorsement. It's common after adding a body upgrade, new equipment, or when the declared IDV was set too low at renewal. The insurer adjusts premium pro-rata for the remaining policy period. We handle the endorsement request so the higher value is on record before you need to claim, not after.",
+        },
       ],
       internalLinks: [
         { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH-belt lorry exposures + compliance discipline." },
@@ -1270,6 +1274,10 @@ let servicesDetail = {
           q: "How long does a fire or burglary claim typically take to settle?",
           a: "With a clean, complete proof file: 2–4 weeks for straightforward claims. With missing documents or valuation disputes: 3–6 months or longer, sometimes going to an arbitrator. The difference is almost always the quality of proof prepared before the loss. We guide you on what to keep on file so you're ready when it matters.",
         },
+        {
+          q: "There's been a fire in my godown — what do I do first, and who pays?",
+          a: "Call the fire brigade first if the fire is active, then report to your insurer within 24 hours. Don't clear debris or start repairs until the surveyor has inspected — that's how disputes start. If your fire insurance sum insured is adequate, the insurer pays for the covered loss to building, stock and fittings as per your policy terms; if you're underinsured, the average clause reduces the payout proportionately. We can guide you through the surveyor visit and documentation.",
+        },
       ],
     },
 
@@ -1753,6 +1761,10 @@ let servicesDetail = {
           q: "What is the sum insured for a CAR policy?",
           a: "Sum insured is the full contract value including materials, labour, and contractor's profit. Underinsuring creates the same average clause risk as fire insurance — partial claims get proportionately reduced.",
         },
+        {
+          q: "A crane accident happened at our site — who is liable, and does CAR cover it?",
+          a: "CAR's third-party liability section can cover injury or property damage caused at the worksite during the contract period, but crane operation is often better covered under a specific liability or crane/CPM add-on depending on how the incident happened. Report immediately, preserve the site as-is where safe, and get us the incident details — we'll check which section of your cover actually applies before you make any claim commitments.",
+        },
       ],
       internalLinks: [
         { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/"), desc: "Workforce exposure: classification + payroll discipline." },
@@ -1870,6 +1882,10 @@ let servicesDetail = {
         {
           q: "Does WC insurance cover contract workers?",
           a: "Yes, if they are engaged through the principal employer. The policy must correctly classify and include contract workers. Many claim disputes arise because contract workers were not properly declared — we help verify classification before policy issuance.",
+        },
+        {
+          q: "A worker was injured on site — who pays the compensation?",
+          a: "The employer is legally liable for compensation under the Employee's Compensation Act, regardless of fault. If you hold a WC policy, the insurer pays this liability on your behalf — medical costs, disability compensation, or death benefit as applicable. Report the incident immediately and keep the worker's classification and payroll record ready; that's what determines how fast the claim settles.",
         },
       ],
       internalLinks: [
@@ -3190,6 +3206,16 @@ let servicesDetail = {
         "NH belt goods in transit insurance guidance",
         "Red Hills logistics transit insurance",
       ],
+      faqs: [
+        {
+          q: "Goods were damaged in transport — who pays?",
+          a: "It depends on whose custody the goods were in and what your policy covers. A goods-in-transit/marine cargo policy pays you (the goods owner) directly for transit damage or loss, regardless of who is at fault — you don't have to wait for the carrier to accept liability. Report immediately, preserve the damaged packaging, and keep your invoice and dispatch proof ready for the surveyor.",
+        },
+        {
+          q: "Sending machinery to another state — do I need transit insurance?",
+          a: "Yes. Interstate movement of machinery carries higher risk from longer transit time, multiple handling points, and road conditions. A goods-in-transit policy covers the machinery's declared value during that specific movement — get it arranged before dispatch, not after.",
+        },
+      ],
       internalLinks: [
         { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH movement exposure and claims readiness." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline and evidence discipline." },
@@ -3418,6 +3444,184 @@ let servicesDetail = {
       ],
     },
 
+    "auto-rickshaw-insurance": {
+      seoTitle: "Auto Rickshaw Insurance Agent – Chennai",
+      seoDesc:
+        "Auto rickshaw insurance for individual and commercial-permit autos in Chennai. Usage clarity, renewal checks and claim steps. Call or WhatsApp 7448324068.",
+      heroH1: "Auto Rickshaw Insurance in Chennai — Permit, Renewal & Claims",
+      heroP:
+        "An auto running on a commercial permit needs the usage category on the policy to actually match how it's used — that mismatch is the single biggest reason auto claims get delayed. Send me your permit and policy copy and I'll check the fit.",
+
+      coverageSummary: [
+        "Auto rickshaw policies are usage-sensitive — personal-use vs commercial-permit autos need different coverage, and mixing them up causes claim disputes.",
+        "This page covers renewal checks and basic claim-step discipline for both owner-driven and rented-out autos."
+      ],
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm whether the permit is personal or commercial, and that the policy usage category matches",
+          "Keep the permit, fitness certificate and previous policy copy ready",
+          "Know basic claim steps before an incident happens",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks",
+        bullets: [
+          "Usage category (personal/commercial) matches actual operation",
+          "Permit and fitness validity aligned with renewal date",
+          "Avoid expiry gaps between old and new policy",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline",
+        intro:
+          "Most delays are avoidable: early reporting and basic photo evidence matters, especially for autos that change hands between family members or are rented out.",
+        bullets: [
+          "Report early and keep a clean timeline",
+          "Capture photos before repairs (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle age and claim history",
+          "Personal vs commercial-permit usage",
+          "Add-ons selected (case-dependent)",
+        ],
+      },
+
+      whoFor: [
+        "Auto rickshaw owners and drivers, personal or commercial-permit",
+        "Owners who rent out their auto and are unsure which usage category applies",
+      ],
+      localFit:
+        "Autos on commercial permits see frequent city-usage exposure. Clean reporting and basic document discipline helps during claims.",
+      keyCoverFocus: [
+        "Usage clarity aligned to policy wording (personal vs commercial permit)",
+        "Basic claim-step readiness and reporting discipline",
+      ],
+      claimDocs: [
+        "Policy copy",
+        "Permit and fitness certificate",
+        "Incident timeline + photos (as applicable)",
+      ],
+      commonMistakes: [
+        "Usage mismatch vs policy (commercial permit, personal-use policy or vice versa)",
+        "Late reporting after incidents",
+      ],
+      alsoKnownAs: ["Auto insurance", "Three-wheeler insurance", "Rickshaw insurance"],
+      whatCanGoWrong: ["Usage mismatch disputes", "Late reporting weakens the timeline"],
+      localLanding: {
+        primaryLocations: ["tambaram", "chrompet", "poonamallee", "villivakkam-industrial-areas"],
+        phrases: [
+          "auto rickshaw insurance tambaram",
+          "auto insurance chrompet",
+          "three wheeler insurance poonamallee",
+        ],
+      },
+      areaRealityTitle: "Auto rickshaw claim reality (city usage)",
+      areaRealityText:
+        "Most issues are workflow and usage-declaration issues. Clean reporting and matching the permit type to the policy prevents avoidable delays.",
+      areaSignals: ["Chennai auto rickshaw insurance support", "Auto insurance guidance Chennai"],
+      internalLinks: [
+        { label: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/"), desc: "Two-wheeler renewal and claim guidance." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+
+    "tempo-mini-truck-insurance": {
+      seoTitle: "Tempo & Mini Truck Insurance Agent – Chennai",
+      seoDesc:
+        "Tempo, mini-truck and pickup insurance for individual owner-operators in Chennai. Usage and load-type clarity, renewal checks and claim steps. Call or WhatsApp 7448324068.",
+      heroH1: "Tempo & Mini Truck Insurance in Chennai — Load, Renewal & Claims",
+      heroP:
+        "A tempo or mini-truck's policy needs to reflect what it actually carries — general goods, perishables, or a specific trade — since load-type mismatches are one of the most common reasons small commercial-vehicle claims get disputed. Send me your permit and usage details and I'll check the fit before renewal.",
+
+      coverageSummary: [
+        "Tempo and mini-truck policies (individual owner-operator, not fleet) are sensitive to declared load type and usage — mismatches are a common source of claim disputes.",
+        "This page covers renewal checks and claim-step discipline for single-vehicle tempo/mini-truck owners."
+      ],
+
+      preBuyChecklist: {
+        title: "Before you buy or renew",
+        bullets: [
+          "Confirm the declared load/goods type matches what's actually carried",
+          "Keep permit, fitness certificate and previous policy copy ready",
+          "Know basic claim steps before an incident happens",
+        ],
+      },
+
+      renewalChecks: {
+        title: "Renewal checks",
+        bullets: [
+          "Load-type and usage disclosure matches real operation",
+          "Permit and fitness validity aligned with renewal date",
+          "Avoid expiry gaps between old and new policy",
+        ],
+      },
+
+      claimDiscipline: {
+        title: "Claim discipline",
+        intro:
+          "Most delays trace back to load-type mismatch or late reporting — both avoidable with basic documentation discipline.",
+        bullets: [
+          "Report early and keep a clean timeline",
+          "Capture photos of the load/goods and damage before repairs (as applicable)",
+        ],
+      },
+
+      pricingFactors: {
+        title: "What affects premium and acceptance",
+        bullets: [
+          "Vehicle age, load capacity and claim history",
+          "Declared goods type and route/usage pattern",
+          "Add-ons selected (case-dependent)",
+        ],
+      },
+
+      whoFor: [
+        "Individual tempo and mini-truck owner-operators (not fleet — see Fleet Insurance for multi-vehicle)",
+        "Small traders/transporters running local delivery routes",
+      ],
+      localFit:
+        "Single-vehicle tempo/mini-truck operators face frequent short-haul exposure. Clean load-type declaration and reporting discipline helps at claim time.",
+      keyCoverFocus: [
+        "Load/goods-type declaration matched to policy wording",
+        "Basic claim-step readiness and reporting discipline",
+      ],
+      claimDocs: [
+        "Policy copy",
+        "Permit and fitness certificate",
+        "Incident timeline + photos of load and damage (as applicable)",
+      ],
+      commonMistakes: [
+        "Declared goods type not matching what's actually carried",
+        "Late reporting after incidents",
+      ],
+      alsoKnownAs: ["Tempo insurance", "Mini truck insurance", "Pickup van insurance"],
+      whatCanGoWrong: ["Load-type mismatch disputes", "Late reporting weakens the timeline"],
+      localLanding: {
+        primaryLocations: ["madhavaram-truck-terminal", "koyambedu", "pattabiram", "porur"],
+        phrases: [
+          "tempo insurance madhavaram",
+          "mini truck insurance koyambedu",
+          "pickup van insurance porur",
+        ],
+      },
+      areaRealityTitle: "Tempo/mini-truck claim reality (local delivery usage)",
+      areaRealityText:
+        "Most issues trace back to load-type declaration mismatches. Clean reporting and matching the declared goods type to the policy prevents avoidable delays.",
+      areaSignals: ["Chennai tempo insurance support", "Mini truck insurance guidance Chennai"],
+      internalLinks: [
+        { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), desc: "Larger goods-vehicle cover for fleet operators." },
+        { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
+      ],
+    },
+
     "car-insurance-support": {
       seoTitle: "Car Insurance Agent in Chennai, Sholavaram | Renewal, New Policy & Claims",
       seoDesc:
@@ -3548,6 +3752,14 @@ let servicesDetail = {
         {
           q: "What is the difference between comprehensive and third-party car insurance?",
           a: "Third-party (TP) covers only damage or injury to the other person/vehicle. It is mandatory by law but covers nothing for your own car. Comprehensive covers TP liability plus your own car damage from accident, theft, fire, flood, etc. Almost all car owners in Chennai should have comprehensive cover — the premium difference is usually ₹3,000–10,000 per year depending on car value.",
+        },
+        {
+          q: "I sold my car — how do I transfer the insurance to the new owner?",
+          a: "Insurance must be formally transferred to the buyer within 14 days of sale (RTO transfer), or the seller stays liable for any claim in that window. The process involves an endorsement request to the insurer with the new RC and a transfer form. We handle this along with the RC transfer so there's no liability gap on either side.",
+        },
+        {
+          q: "Can I add a family member as a driver, or is my policy valid for anyone driving my car?",
+          a: "A private car comprehensive policy generally covers the vehicle, not a named driver — anyone driving with your permission and a valid license is covered under the standard policy. You don't need to formally 'add' a driver. What you should update via endorsement is your own details if they change (address, RC number) or the vehicle itself if it's modified or replaced.",
         },
       ],
     },
@@ -3720,6 +3932,7 @@ let locationsDetails = {
   // ====== PRIORITY BELT: Sholavaram ↔ Madhavaram corridor ======
 sholavaram: {
     name: "Sholavaram",
+    postalCode: "600067",
     seoTitle: "Insurance Services in Sholavaram (Chennai Outskirts) – Office Support & Claim Guidance",
     seoDesc:
       "Insurance guidance anchored to our Sholavaram office: commercial transport/fleet, warehouses/property basics, contractor workflows (as applicable), and claim documentation support. Practical, claim-ready approach.",
@@ -3740,6 +3953,7 @@ sholavaram: {
       { title: "Crane & Heavy Equipment Insurance", href: EN("/crane-insurance-sholavaram/") },
       { title: "Contractor Insurance (CAR + WC)", href: EN("/contractor-insurance-sholavaram/") },
       { title: "Fire & Burglary Insurance", href: EN("/fire-burglary-insurance-sholavaram/") },
+      { title: "Land & Property Insurance", href: EN("/land-property-insurance-sholavaram/") },
       { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
     ],
     faqs: [
@@ -3769,6 +3983,7 @@ sholavaram: {
 
   "red-hills": {
     name: "Red Hills",
+    postalCode: "600052",
     seoTitle: "Insurance Services in Red Hills – NH Belt Transport, Warehouse & Claim Support",
     seoDesc:
       "Red Hills insurance guidance via Sholavaram office support: transport/fleet documentation discipline, warehouse/property basics (as applicable), MSME packages and claim documentation support.",
@@ -3814,6 +4029,7 @@ sholavaram: {
 
   madhavaram: {
     name: "Madhavaram",
+    postalCode: "600060",
     seoTitle: "Insurance Services in Madhavaram – Motor, SME & Commercial Vehicle Support",
     seoDesc:
       "Madhavaram support via Sholavaram office: motor renewals, SME packages, commercial vehicle documentation discipline and claim documentation guidance.",
@@ -3852,6 +4068,7 @@ sholavaram: {
 
   ambattur: {
     name: "Ambattur",
+    postalCode: "600053",
     seoTitle: "Insurance Services in Ambattur – Motor, SME & Claim Documentation Support",
     seoDesc:
       "Ambattur support via Sholavaram office: motor renewals, SME packages and claim documentation guidance with a practical, claim-ready approach.",
@@ -3888,6 +4105,7 @@ sholavaram: {
   },
   puzhal: {
     name: "Puzhal",
+    postalCode: "600066",
     seoTitle: "Insurance Services in Puzhal (Chennai North) – Motor, SME & Claim Support",
     seoDesc:
       "Insurance guidance for Puzhal customers via Sholavaram office support: motor renewals, SME packages, and claim documentation steps. Practical, claim-ready approach.",
@@ -3935,6 +4153,7 @@ sholavaram: {
 
   kavangarai: {
     name: "Kavangarai",
+    postalCode: "600066",
     seoTitle: "Insurance Services in Kavangarai – NH Corridor & Mixed Commercial Support",
     seoDesc:
       "Kavangarai insurance guidance via Sholavaram office support for NH movement and mixed SME needs: commercial vehicle documentation discipline, MSME packages, and claim support.",
@@ -3979,6 +4198,7 @@ sholavaram: {
 
   kosapaur: {
     name: "Kosapaur",
+    postalCode: "600060",
     seoTitle: "Insurance Services in Kosapaur – Motor, SME & Claim Documentation Support",
     seoDesc:
       "Kosapaur insurance guidance via Sholavaram office support: motor renewals, SME packages, and claim documentation steps with a practical approach.",
@@ -4015,6 +4235,7 @@ sholavaram: {
 
   surapet: {
     name: "Surapet",
+    postalCode: "600066",
     seoTitle: "Insurance Services in Surapet – Motor, SME & Industrial Pockets Support",
     seoDesc:
       "Surapet insurance guidance via Sholavaram office support: motor renewals, SME packages, claim documentation support, and guidance for industrial pockets (as applicable).",
@@ -4053,6 +4274,7 @@ sholavaram: {
 
   "madhavaram-milk-colony": {
     name: "Madhavaram Milk Colony",
+    postalCode: "600051",
     seoTitle: "Insurance Services in Madhavaram Milk Colony – Renewals & Claim Support",
     seoDesc:
       "Madhavaram Milk Colony support via Sholavaram office: motor renewals, health guidance, SME packages and claim documentation steps.",
@@ -4086,6 +4308,7 @@ sholavaram: {
 
   "madhavaram-truck-terminal": {
     name: "Madhavaram Truck Terminal",
+    postalCode: "600110",
     seoTitle: "Insurance Services near Madhavaram Truck Terminal – Commercial Vehicle & Fleet Support",
     seoDesc:
       "Commercial-first insurance guidance near Madhavaram Truck Terminal via Sholavaram office: commercial vehicles, goods carriers, fleet documentation discipline and claim support.",
@@ -4127,6 +4350,7 @@ sholavaram: {
 
   budur: {
     name: "Budur",
+    postalCode: "600067",
     seoTitle: "Insurance Services in Budur – NH Belt Transport & SME Guidance",
     seoDesc:
       "Budur insurance guidance via Sholavaram office support: commercial vehicles, goods carriers, fleet documentation habits and MSME packages (as applicable).",
@@ -4161,6 +4385,7 @@ sholavaram: {
 
   thiruninravur: {
     name: "Thiruninravur",
+    postalCode: "602024",
     seoTitle: "Insurance Services in Thiruninravur – Motor, SME & Commercial Vehicle Support",
     seoDesc:
       "Thiruninravur insurance guidance via Sholavaram office support: motor renewals, SME packages, commercial vehicle documentation habits and claim support.",
@@ -4194,6 +4419,7 @@ sholavaram: {
 
   veppampattu: {
     name: "Veppampattu",
+    postalCode: "602024",
     seoTitle: "Insurance Services in Veppampattu – Commercial Vehicle & SME Guidance",
     seoDesc:
       "Veppampattu insurance guidance via Sholavaram office support for commercial vehicles, goods carriers, SME packages and claim documentation help (as applicable).",
@@ -4227,6 +4453,7 @@ sholavaram: {
 
   "thiruvallur-sipcot-outskirts": {
     name: "Thiruvallur SIPCOT outskirts",
+    postalCode: "602001",
     seoTitle: "Insurance Support near Thiruvallur SIPCOT (Outskirts) – Industrial & Contractor Needs",
     seoDesc:
       "Support near Thiruvallur SIPCOT outskirts via Sholavaram office guidance: industrial/property insurance basics, contractor CAR/WC guidance and claim documentation discipline (as applicable).",
@@ -4262,6 +4489,7 @@ sholavaram: {
 
   "poonamallee-bypass": {
     name: "Poonamallee bypass",
+    postalCode: "600056",
     seoTitle: "Insurance Support near Poonamallee Bypass – Transport, Contractor & Industrial Guidance",
     seoDesc:
       "Support near Poonamallee bypass via Sholavaram office guidance: transport/fleet needs, contractor CAR/WC, industrial/property basics and claim support (as applicable).",
@@ -4296,6 +4524,7 @@ sholavaram: {
 
   kuthambakkam: {
     name: "Kuthambakkam",
+    postalCode: "600124",
     seoTitle: "Insurance Support in Kuthambakkam – Industrial Corridor Guidance",
     seoDesc:
       "Kuthambakkam support via Sholavaram office guidance: transport/fleet needs, contractor CAR/WC, warehouse/property insurance basics and claim support (as applicable).",
@@ -4329,6 +4558,7 @@ sholavaram: {
 
   thirumazhisai: {
     name: "Thirumazhisai",
+    postalCode: "600124",
     seoTitle: "Insurance Support in Thirumazhisai – Transport, SME & Industrial Guidance",
     seoDesc:
       "Thirumazhisai insurance guidance via Sholavaram office support: commercial vehicles, SME packages, industrial/property basics and claim documentation discipline.",
@@ -4362,6 +4592,7 @@ sholavaram: {
 
   chembarambakkam: {
     name: "Chembarambakkam",
+    postalCode: "602103",
     seoTitle: "Insurance Support in Chembarambakkam – Industrial Corridor & Vehicle Guidance",
     seoDesc:
       "Chembarambakkam insurance guidance via Sholavaram office support: commercial vehicles, SME packages, industrial/property basics and claim documentation support (as applicable).",
@@ -4393,6 +4624,7 @@ sholavaram: {
 
   "sriperumbudur-sipcot": {
     name: "Sriperumbudur SIPCOT",
+    postalCode: "602105",
     seoTitle: "Insurance Support near Sriperumbudur SIPCOT – Industrial, Contractor & Transit Guidance",
     seoDesc:
       "Support near Sriperumbudur SIPCOT via Sholavaram office guidance: industrial/property basics, contractor CAR/WC, transit documentation discipline and claim support (as applicable).",
@@ -4428,6 +4660,7 @@ sholavaram: {
 
   "oragadam-outskirts": {
     name: "Oragadam outskirts",
+    postalCode: "602105",
     seoTitle: "Insurance Support near Oragadam (Outskirts) – Industrial, Contractor & Fleet Guidance",
     seoDesc:
       "Support near Oragadam outskirts via Sholavaram office guidance: contractor CAR/WC, industrial/property basics, fleet documentation discipline and claim support (as applicable).",
@@ -4463,6 +4696,7 @@ sholavaram: {
 
   "manali-new-town": {
     name: "Manali New Town",
+    postalCode: "600103",
     seoTitle: "Insurance Support in Manali New Town – Commercial Vehicle & Industrial Guidance",
     seoDesc:
       "Manali New Town support via Sholavaram office guidance: commercial vehicles, industrial/property basics, transit documentation discipline and claim support (as applicable).",
@@ -4498,6 +4732,7 @@ sholavaram: {
 
   "manali-industrial-estate": {
     name: "Manali Industrial Estate",
+    postalCode: "600068",
     seoTitle: "Insurance Support in Manali Industrial Estate – Industrial, Liability & Transit Guidance",
     seoDesc:
       "Manali Industrial Estate support via Sholavaram office guidance: industrial/property basics, liability awareness, transit documentation discipline and claim support (as applicable).",
@@ -4532,6 +4767,7 @@ sholavaram: {
 
   "nh-manali-road": {
     name: "NH Manali Road",
+    postalCode: "600068",
     seoTitle: "Insurance Support near NH Manali Road – Transport, Transit & Claim Guidance",
     seoDesc:
       "NH Manali Road belt support via Sholavaram office guidance: commercial vehicles, goods carriers, transit documentation discipline and claim support (as applicable).",
@@ -4567,6 +4803,7 @@ sholavaram: {
 
   "kolathur-commercial-pockets": {
     name: "Kolathur (commercial pockets)",
+    postalCode: "600099",
     seoTitle: "Insurance Services in Kolathur (Commercial Pockets) – Motor, SME & Claim Support",
     seoDesc:
       "Kolathur commercial pockets support via Sholavaram office: motor renewals, SME packages, claim documentation steps and practical guidance.",
@@ -4602,6 +4839,7 @@ sholavaram: {
 
   retteri: {
     name: "Retteri",
+    postalCode: "600099",
     seoTitle: "Insurance Services in Retteri – Motor Renewals & Claim Support",
     seoDesc:
       "Retteri support via Sholavaram office: car/bike renewals, add-on clarity, claim documentation steps and practical guidance.",
@@ -4634,6 +4872,7 @@ sholavaram: {
 
   "villivakkam-industrial-areas": {
     name: "Villivakkam (industrial areas)",
+    postalCode: "600049",
     seoTitle: "Insurance Support in Villivakkam (Industrial Areas) – SME, Property & Motor",
     seoDesc:
       "Villivakkam industrial areas support via Sholavaram office: SME packages, selected property risk guidance (as applicable), motor renewals and claim documentation help.",
@@ -4667,6 +4906,7 @@ sholavaram: {
 
   "mogappair-west": {
     name: "Mogappair West",
+    postalCode: "600037",
     seoTitle: "Insurance Services in Mogappair West – Motor, Health & Renewal Support",
     seoDesc:
       "Mogappair West support via Sholavaram office: car/bike renewals, health policy guidance, and claim documentation steps with practical clarity.",
@@ -4704,6 +4944,7 @@ sholavaram: {
 
   manali: {
     name: "Manali",
+    postalCode: "600068",
     seoTitle: "Insurance Services in Manali – Industrial, Transport & Transit Guidance",
     seoDesc:
       "Manali support via Sholavaram office guidance: commercial vehicles, industrial/property basics, transit documentation discipline and claim support (as applicable).",
@@ -4723,6 +4964,7 @@ sholavaram: {
       { title: "Crane & Heavy Equipment Insurance", href: EN("/crane-insurance-manali/") },
       { title: "Contractor Insurance (CAR + WC)", href: EN("/contractor-insurance-manali/") },
       { title: "Industrial Fire Insurance (Refinery Belt)", href: EN("/industrial-fire-insurance-manali-refinery-belt/") },
+      { title: "Mining / Heavy Industrial Insurance (Manali)", href: EN("/mining-heavy-industrial-insurance-manali/") },
       { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
     ],
     faqs: [
@@ -4742,6 +4984,7 @@ sholavaram: {
 
   karanodai: {
     name: "Karanodai",
+    postalCode: "600067",
     seoTitle: "Insurance Services in Karanodai – NH Belt Transport & Claim Support",
     seoDesc:
       "Karanodai NH belt support via Sholavaram office: transport/fleet documentation discipline, goods carriers, and claim documentation guidance (as applicable).",
@@ -4778,6 +5021,7 @@ sholavaram: {
 
   periyapalayam: {
     name: "Periyapalayam",
+    postalCode: "601102",
     seoTitle: "Insurance Services in Periyapalayam – Outskirts Corridor Transport & SME Support",
     seoDesc:
       "Periyapalayam corridor support via Sholavaram office: transport/fleet guidance, SME packages and claim documentation discipline (as applicable).",
@@ -4843,6 +5087,7 @@ sholavaram: {
 
   perambur: {
     name: "Perambur",
+    postalCode: "600011",
     seoTitle: "Insurance Services in Perambur – Motor, Health & SME Support",
     seoDesc:
       "Perambur support via Sholavaram office: car/bike renewals, health policy guidance, SME packages and claim documentation support.",
@@ -4877,6 +5122,7 @@ sholavaram: {
 
   kolathur: {
     name: "Kolathur",
+    postalCode: "600099",
     seoTitle: "Insurance Services in Kolathur – Motor Renewals, SME Packages & Claim Support",
     seoDesc:
       "Kolathur support via Sholavaram office: car/bike renewals, SME packages and claim documentation guidance with a practical approach.",
@@ -4909,6 +5155,7 @@ sholavaram: {
 
   koyambedu: {
     name: "Koyambedu",
+    postalCode: "600107",
     seoTitle: "Insurance Services in Koyambedu – Motor Renewals & Claim Documentation Support",
     seoDesc:
       "Koyambedu support via Sholavaram office: motor renewals, add-on clarity and claim documentation steps with practical guidance.",
@@ -4940,6 +5187,7 @@ sholavaram: {
 
   "anna-nagar": {
     name: "Anna Nagar",
+    postalCode: "600040",
     seoTitle: "Insurance Services in Anna Nagar – Motor, Health & Renewal Support",
     seoDesc:
       "Anna Nagar support via Sholavaram office: car/bike renewals, health policy guidance and claim documentation steps with practical clarity.",
@@ -4975,6 +5223,7 @@ sholavaram: {
 
   tiruvottiyur: {
     name: "Tiruvottiyur",
+    postalCode: "600019",
     seoTitle: "Insurance Services in Tiruvottiyur – Marine Cargo, Fleet & Factory Insurance",
     seoDesc: "Insurance guidance for Tiruvottiyur port and industrial businesses: marine cargo transit, lorry/fleet documentation, factory & property risk, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Tiruvottiyur",
@@ -5013,6 +5262,7 @@ sholavaram: {
 
   ennore: {
     name: "Ennore (Kamarajar Port Belt)",
+    postalCode: "600057",
     seoTitle: "Insurance Services in Ennore – Marine Cargo, Industrial & Port Belt Insurance",
     seoDesc: "Insurance guidance for Ennore/Kamarajar Port belt: marine cargo transit, import/export risk, factory & warehouse property, and fleet documentation support via Sholavaram office.",
     heroH1: "Insurance services in Ennore (Kamarajar Port Belt)",
@@ -5024,6 +5274,8 @@ sholavaram: {
     ],
     serviceLinks: [
       { title: "Marine Cargo Insurance (Ennore Port Belt)", href: EN("/marine-cargo-insurance-ennore-port/") },
+      { title: "Import / Export Cargo Insurance (Ennore Port)", href: EN("/import-export-cargo-insurance-ennore-port/") },
+      { title: "Marine Hull Insurance (Kattupalli Port)", href: EN("/marine-hull-insurance-kattupalli-port/") },
       { title: "Crane & Cargo Handling Equipment Insurance", href: EN("/crane-insurance-ennore-port/") },
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
@@ -5052,6 +5304,7 @@ sholavaram: {
 
   gummidipoondi: {
     name: "Gummidipoondi (SIPCOT)",
+    postalCode: "601201",
     seoTitle: "Insurance Services in Gummidipoondi SIPCOT – Factory, Fleet & Contractor Insurance",
     seoDesc: "Insurance guidance for Gummidipoondi SIPCOT industrial estate: factory & property risk, commercial fleet documentation, contractor all-risk, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Gummidipoondi (SIPCOT Industrial Estate)",
@@ -5090,6 +5343,7 @@ sholavaram: {
 
   ponneri: {
     name: "Ponneri",
+    postalCode: "601204",
     seoTitle: "Insurance Services in Ponneri – Lorry, Fleet & SME Insurance",
     seoDesc: "Insurance guidance for Ponneri district: lorry/fleet renewal documentation, commercial vehicle insurance, SME business packages, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Ponneri",
@@ -5125,6 +5379,7 @@ sholavaram: {
 
   minjur: {
     name: "Minjur",
+    postalCode: "601203",
     seoTitle: "Insurance Services in Minjur – Fleet, Heavy Vehicle & Commercial Insurance",
     seoDesc: "Insurance guidance for Minjur: commercial fleet and lorry documentation, heavy vehicle renewal support, and SME risk guidance via Sholavaram office.",
     heroH1: "Insurance services in Minjur",
@@ -5157,6 +5412,7 @@ sholavaram: {
 
   thirumullaivoyal: {
     name: "Thirumullaivoyal",
+    postalCode: "600062",
     seoTitle: "Insurance Services in Thirumullaivoyal – Logistics, Fleet & SME Insurance",
     seoDesc: "Insurance guidance for Thirumullaivoyal airport-adjacent logistics corridor: fleet documentation, warehouse/property risk, SME packages, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Thirumullaivoyal",
@@ -5190,6 +5446,7 @@ sholavaram: {
 
   tondiarpet: {
     name: "Tondiarpet",
+    postalCode: "600081",
     seoTitle: "Insurance Services in Tondiarpet – Lorry, Fleet, Marine & Warehouse Insurance",
     seoDesc: "Insurance guidance for Tondiarpet North Chennai logistics hub: lorry/fleet documentation, marine cargo transit, warehouse property, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Tondiarpet",
@@ -5225,6 +5482,7 @@ sholavaram: {
 
   kodungaiyur: {
     name: "Kodungaiyur",
+    postalCode: "600118",
     seoTitle: "Insurance Services in Kodungaiyur – Commercial Vehicle & Fleet Insurance",
     seoDesc: "Insurance guidance for Kodungaiyur logistics belt: commercial vehicle and fleet documentation, lorry renewals, and SME risk support via Sholavaram office.",
     heroH1: "Insurance services in Kodungaiyur",
@@ -5257,6 +5515,7 @@ sholavaram: {
 
   erukkanchery: {
     name: "Erukkanchery",
+    postalCode: "600118",
     seoTitle: "Insurance Services in Erukkanchery – SME, Transport & Commercial Insurance",
     seoDesc: "Insurance guidance for Erukkanchery North Chennai: SME business packages, commercial vehicle documentation, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Erukkanchery",
@@ -5288,6 +5547,7 @@ sholavaram: {
 
   pattabiram: {
     name: "Pattabiram",
+    postalCode: "600072",
     seoTitle: "Insurance Services in Pattabiram – Fleet, Contractor & Vehicle Insurance",
     seoDesc: "Insurance guidance for Pattabiram western corridor: fleet and lorry renewal documentation, contractor risk, personal motor, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Pattabiram",
@@ -5321,6 +5581,7 @@ sholavaram: {
 
   velappanchavadi: {
     name: "Velappanchavadi",
+    postalCode: "600077",
     seoTitle: "Insurance Services in Velappanchavadi – SME, Fleet & Motor Insurance",
     seoDesc: "Insurance guidance for Velappanchavadi: SME business packages, fleet renewal documentation, personal motor renewals, and claim support via Sholavaram office.",
     heroH1: "Insurance services in Velappanchavadi",
@@ -5353,6 +5614,7 @@ sholavaram: {
 
   naravarikuppam: {
     name: "Naravarikuppam",
+    postalCode: "600052",
     seoTitle: "Insurance Services in Naravarikuppam – Lorry & Transport Insurance",
     seoDesc: "Insurance guidance for Naravarikuppam: lorry renwal documentation, small transport operator support, and claim guidance via Sholavaram office.",
     heroH1: "Insurance services in Naravarikuppam",
@@ -5382,6 +5644,7 @@ sholavaram: {
 
   kancheepuram: {
     name: "Kancheepuram",
+    postalCode: "631501",
     seoTitle: "Insurance Services in Kancheepuram – SME, Factory & Fleet Insurance",
     seoDesc: "Insurance guidance for Kancheepuram district: SME and factory property risk, commercial fleet documentation, contractor support, and claim guidance via Sholavaram office.",
     heroH1: "Insurance services in Kancheepuram",
@@ -5415,6 +5678,7 @@ sholavaram: {
 
   "chennai-north": {
     name: "Chennai (North)",
+    postalCode: "600001",
     seoTitle: "Insurance Services in North Chennai – Commercial, Fleet & SME Insurance",
     seoDesc: "Insurance guidance for North Chennai belt: commercial fleet and lorry documentation, SME packages, marine cargo, and claim support from our Sholavaram office.",
     heroH1: "Insurance services in North Chennai",
@@ -5455,6 +5719,7 @@ sholavaram: {
 
   thiruvallur: {
     name: "Thiruvallur",
+    postalCode: "602001",
     seoTitle: "Insurance Services in Thiruvallur – Fleet, Factory & Commercial Insurance",
     seoDesc: "Insurance guidance for Thiruvallur district: lorry and fleet renewal documentation, factory and property risk, contractor support, and claim guidance via Sholavaram office.",
     heroH1: "Insurance services in Thiruvallur",
@@ -5493,6 +5758,7 @@ sholavaram: {
 
   "sidco-thirumudivakkam": {
     name: "SIDCO Industrial Estate, Thirumudivakkam",
+    postalCode: "600044",
     seoTitle: "Insurance Agent near SIDCO Thirumudivakkam – Factory & Fire",
     seoDesc: "Factory, fire and machinery insurance for small and mid-size manufacturing units in SIDCO Industrial Estate, Thirumudivakkam, coordinated from our Sholavaram office.",
     heroH1: "Insurance agent for SIDCO Industrial Estate, Thirumudivakkam",
@@ -5528,6 +5794,7 @@ sholavaram: {
 
   ekkatuthangal: {
     name: "Ekkatuthangal",
+    postalCode: "600032",
     seoTitle: "Insurance Agent in Ekkatuthangal – Print, Light Engineering & Office",
     seoDesc: "Fire, machinery and office package insurance for printing, light-engineering and commercial units in Ekkatuthangal, coordinated from our Sholavaram office.",
     heroH1: "Insurance agent in Ekkatuthangal — printing, light engineering & office",
@@ -5563,6 +5830,7 @@ sholavaram: {
 
   "alandur-st-thomas-mount": {
     name: "Alandur / St. Thomas Mount",
+    postalCode: "600016",
     seoTitle: "Insurance Agent in Alandur & St. Thomas Mount – Commercial & Office",
     seoDesc: "Fire, liability and office-package insurance for commercial establishments and offices in Alandur and St. Thomas Mount, coordinated from our Sholavaram office.",
     heroH1: "Insurance agent in Alandur and St. Thomas Mount",
@@ -7284,6 +7552,8 @@ const LOC_ENRICH = {
     ],
     serviceLinks: [
       { title: "Marine Cargo Insurance (Ennore Port Belt)", href: EN("/marine-cargo-insurance-ennore-port/") },
+      { title: "Import / Export Cargo Insurance (Ennore Port)", href: EN("/import-export-cargo-insurance-ennore-port/") },
+      { title: "Marine Hull Insurance (Kattupalli Port)", href: EN("/marine-hull-insurance-kattupalli-port/") },
       { title: "Crane & Cargo Handling Equipment Insurance", href: EN("/crane-insurance-ennore-port/") },
       { title: "Fleet / Transport Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
       { title: "Factory / Fire & Burglary Insurance", href: EN("/services/industrial/fire-burglary-insurance/") },
@@ -7819,6 +8089,36 @@ export const LOCATION_BUCKETS = {
     "sriperumbudur",
     "maraimalai-nagar",
   ],
+
+  // 13) North coastal / port belt (Ennore, Manali outskirts, Ponneri)
+  NORTH_COASTAL_PORT_BELT: [
+    "tiruvottiyur",
+    "ennore",
+    "gummidipoondi",
+    "ponneri",
+    "minjur",
+    "thirumullaivoyal",
+    "tondiarpet",
+    "kodungaiyur",
+    "erukkanchery",
+    "pattabiram",
+    "velappanchavadi",
+    "naravarikuppam",
+  ],
+
+  // 14) Kancheepuram / outskirts industrial (extends the TN industrial belt)
+  KANCHEEPURAM_OUTSKIRTS_BELT: [
+    "kancheepuram",
+    "chennai-north",
+    "thiruvallur",
+    "sidco-thirumudivakkam",
+  ],
+
+  // 15) South-central connector pockets (IT-corridor adjacent)
+  SOUTH_CENTRAL_CONNECTOR: [
+    "ekkatuthangal",
+    "alandur-st-thomas-mount",
+  ],
 };
 
 export const SERVICE_LOCAL_SUPPORT = {
@@ -8113,6 +8413,145 @@ const NH_PRIORITY = [
         "Renewal mistakes (IDV/NCB/add-ons) are common—simple checks prevent surprises.",
       ],
     },
+
+    {
+      id: "north-coastal-port-belt",
+      title: "North coastal / port belt (Ennore, Manali outskirts, Ponneri)",
+      subtitle:
+        "Port-adjacent industrial and coastal pockets—cargo movement, transit exposure and factory/warehouse property risk.",
+      whyThisZoneMatters:
+        "Proximity to Kamarajar (Ennore) Port and the SIPCOT belt means cargo, transit and industrial property risk overlap here—documentation discipline for goods-in-transit and factory cover both matter.",
+      commonNeeds: [
+        "Import/export cargo and goods-in-transit cover for port-linked movement",
+        "Factory and warehouse fire/burglary proof discipline",
+        "Commercial vehicle and third-party exposure for transit-heavy operations",
+      ],
+      topServices: buildServiceList([
+        ["marine", "import-export-insurance", "Import / export cargo insurance"],
+        ["marine", "marine-cargo-goods-in-transit-insurance", "Marine cargo / goods-in-transit"],
+        ["industrial", "factory-insurance", "Factory insurance"],
+        ["industrial", "warehouse-insurance", "Warehouse / godown insurance"],
+        ["claims-support", "claim-support", "Claim support (documents + timeline)"],
+      ]),
+      searchesPeopleUse: [
+        "import export insurance ennore",
+        "cargo insurance ennore port",
+        "factory insurance gummidipoondi",
+        "warehouse insurance ponneri",
+      ],
+      locations: pick([
+        "ennore",
+        "tiruvottiyur",
+        "gummidipoondi",
+        "ponneri",
+        "minjur",
+        "tondiarpet",
+        "kodungaiyur",
+        "erukkanchery",
+        "surapet",
+        "thirumullaivoyal",
+        "pattabiram",
+        "velappanchavadi",
+        "naravarikuppam",
+        "arani",
+        "chennai-north",
+        "thiruvallur",
+      ]).map(mk),
+      zoneSignals: [
+        "Port-linked cargo claims depend on dispatch/receipt proof and clean invoice trails.",
+        "Factory/warehouse claims in this belt hinge on stock valuation and safety-condition proof.",
+      ],
+    },
+
+    {
+      id: "south-chennai-it-corridor",
+      title: "South Chennai / IT corridor (Personal + SME support)",
+      subtitle:
+        "Dense residential and IT-commute areas—motor renewals, health guidance and shop/office SME cover.",
+      whyThisZoneMatters:
+        "These are primarily personal-line and small-business areas: car/bike renewals, health claims guidance, and office/shop MSME packages rather than heavy industrial risk.",
+      commonNeeds: [
+        "Car and bike insurance renewal checks (IDV/NCB/add-ons)",
+        "Health insurance claim guidance (cashless vs reimbursement)",
+        "Shop, office and small-business MSME package cover",
+      ],
+      topServices: buildServiceList([
+        ["personal", "car-insurance-support", "Car insurance support"],
+        ["personal", "bike-insurance-support", "Bike insurance support"],
+        ["personal", "health-insurance-support", "Health insurance support"],
+        ["business-msme", "office-insurance", "Office insurance package"],
+        ["business-msme", "shop-msme-insurance", "Shop & MSME package insurance"],
+      ]),
+      searchesPeopleUse: [
+        "car insurance velachery",
+        "bike insurance tambaram",
+        "health insurance adyar",
+        "office insurance guindy",
+        "insurance agent porur",
+      ],
+      locations: pick([
+        "tambaram",
+        "chrompet",
+        "velachery",
+        "adyar",
+        "guindy",
+        "sholinganallur",
+        "medavakkam",
+        "t-nagar",
+        "egmore",
+        "mylapore",
+        "nungambakkam",
+        "kilpauk",
+        "porur",
+        "mogappair",
+        "poonamallee",
+        "ekkatuthangal",
+        "alandur-st-thomas-mount",
+      ]).map(mk),
+      zoneSignals: [
+        "Motor renewal mistakes (wrong IDV/NCB/add-ons) are the most common gap here.",
+        "Health claim delays usually trace back to missing or mismatched documents.",
+      ],
+    },
+
+    {
+      id: "southwest-industrial-outskirts",
+      title: "Southwest industrial outskirts (Sriperumbudur, Oragadam, Hosur belt)",
+      subtitle:
+        "Auto/engineering SIPCOT belt and outskirts industrial towns—high-premium factory, contractor and heavy-equipment risk.",
+      whyThisZoneMatters:
+        "This belt carries genuine high-value industrial exposure: large factories, contractor worksites and heavy equipment, where declared-value clarity and stock/asset proof discipline directly affect claim outcomes.",
+      commonNeeds: [
+        "Factory and mining/heavy-industrial property cover",
+        "Contractor CAR/WC cover for active worksites",
+        "Crane/heavy-equipment (CPM) and machinery breakdown cover",
+      ],
+      topServices: buildServiceList([
+        ["industrial", "factory-insurance", "Factory insurance"],
+        ["industrial", "mining-industrial-insurance", "Mining / heavy industrial insurance"],
+        ["industrial", "machinery-breakdown-insurance", "Machinery breakdown insurance"],
+        ["construction", "contractor-car-wc-insurance", "Contractor CAR/WC insurance"],
+        ["heavy-equipment", "crane-cpm-insurance", "Crane / heavy equipment (CPM)"],
+      ]),
+      searchesPeopleUse: [
+        "factory insurance sriperumbudur",
+        "contractor insurance oragadam",
+        "crane insurance hosur",
+        "machinery breakdown insurance kancheepuram",
+      ],
+      locations: pick([
+        "sriperumbudur",
+        "oragadam",
+        "kancheepuram",
+        "maraimalai-nagar",
+        "sidco-thirumudivakkam",
+        "hosur",
+      ]).map(mk),
+      zoneSignals: [
+        "Declared value set too low is the most common issue on heavy-equipment claims here.",
+        "Contractor WC claims depend on payroll/classification records being accurate.",
+      ],
+    },
   ];
 
   // Fallback “all locations” (for View All / search)
@@ -8155,6 +8594,11 @@ const NH_PRIORITY = [
           title: "Services hub",
           desc: "Browse transport/fleet, industrial property, contractor, MSME and claim support services.",
           href: EN("/services/"),
+        },
+        {
+          title: "Don't see your location listed?",
+          desc: "Most locations not listed here are still covered—ask us directly and we'll confirm in minutes.",
+          href: EN("/not-sure-if-we-cover-you/"),
         },
       ],
     },
@@ -8556,7 +9000,7 @@ aboutPage: {
     bullets: [
       "Physical office and local operating base (Red Hills / Sholavaram belt).",
       "Google Business Profile listing (map, reviews, directions).",
-      "IRDAI license details published on this page (once entered).",
+      "IRDAI Licensed · No. 1427274.",
       "30+ years of consulting experience under a single lead advisor.",
     ],
   },
@@ -8566,6 +9010,10 @@ aboutPage: {
     {
       q: "Do you provide on-spot insurance support anywhere in Chennai?",
       a: "Yes. We provide on-spot support across Chennai when the situation requires it—especially for commercial cases and claim documentation steps.",
+    },
+    {
+      q: "Do you visit our site or factory, or do we have to come to your office?",
+      a: "Yes, we visit — at no charge — anywhere within roughly 30 km of our Sholavaram/Red Hills base for site inspections, document collection, or policy signing. Beyond that radius, we still support high-premium commercial cases (factories, fleets, contractors); we'll confirm visit logistics on a case-by-case basis when you contact us.",
     },
     {
       q: "Do you help with claims, or only sell policies?",
@@ -9287,7 +9735,7 @@ aboutPage: {
   renewalLicPosts: {
     title: "Renewal & LIC (Support)",
     subtitle:
-      "Helpful reminders that maintain existing traffic—kept limited so commercial authority stays primary.",
+      "Renewal checklists and LIC servicing guidance from 30+ years of policy work—simple checks that prevent coverage gaps and claim surprises.",
     viewAllHref: EN("/renewals"),
     viewMoreHref: EN("/renewals"),
     items: [
@@ -11111,11 +11559,35 @@ servicePopular: [
     tag: "Heavy Equipment",
     desc: "Contractors Plant & Machinery insurance for cranes, excavators, and heavy equipment—declared value clarity, third-party exposure, and breakdown coverage."
   },
-  { 
-    title: "Claim Support & Documentation", 
-    href: EN("/services/claims-support/"), 
+  {
+    title: "Claim Support & Documentation",
+    href: EN("/services/claims-support/"),
     tag: "Claims",
     desc: "Step-by-step guidance on claim documentation, timeline management, and reporting workflows—built to reduce delays and improve settlement outcomes."
+  },
+  {
+    title: "Machinery Breakdown Insurance",
+    href: EN("/services/industrial/machinery-breakdown-insurance/"),
+    tag: "Industrial",
+    desc: "Mechanical and electrical failure cover for factories and industrial units—separate from fire insurance, sized to actual replacement cost."
+  },
+  {
+    title: "Office Insurance Package",
+    href: EN("/services/business-msme/office-insurance/"),
+    tag: "Commercial",
+    desc: "Equipment, furniture and business interruption cover for commercial offices—distinct from a retail shop policy stretched to fit."
+  },
+  {
+    title: "Marine Hull & Inland Vessel Insurance",
+    href: EN("/services/marine/marine-hull-inland-vessel-insurance/"),
+    tag: "Marine",
+    desc: "Hull damage, machinery breakdown and liability cover for boats, barges and inland waterway craft near Chennai."
+  },
+  {
+    title: "LIC / Term Life Insurance",
+    href: EN("/services/personal/lic-life-term-insurance/"),
+    tag: "Personal",
+    desc: "LIC servicing and term life guidance—policy selection, premium clarity and claim support for individuals and families."
   },
 ],
 
@@ -11159,6 +11631,9 @@ servicePopular: [
         { title: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
         { title: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
         { title: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+        { title: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
+        { title: "Mining / Heavy Industrial Insurance", href: EN("/services/industrial/mining-industrial-insurance/") },
+        { title: "Land & Property Insurance", href: EN("/services/industrial/land-property-insurance/") },
       ],
     },
 
@@ -11194,6 +11669,7 @@ servicePopular: [
       children: [
         { title: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
         { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
+        { title: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
       ],
     },
 
@@ -11208,6 +11684,7 @@ servicePopular: [
         "Weak proof trail after incident",
       ],
       children: [
+        { title: "Erection All Risk (EAR) Insurance", href: EN("/services/heavy-equipment/erection-all-risk-insurance/") },
         { title: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
         { title: "Crane Third-Party Liability Basics", href: EN("/services/heavy-equipment/crane-liability/") },
       ],
@@ -11546,6 +12023,7 @@ servicePopular: [
   children: [
     { title: "Public Liability", href: EN("/services/liability/public-liability/") },
     { title: "Public Liability & Third-Party Insurance", href: EN("/services/public-liability-third-party-insurance/") },
+    { title: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
     { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
   ],
 },
@@ -11563,6 +12041,8 @@ servicePopular: [
   ],
   children: [
     { title: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+    { title: "Marine Hull & Inland Vessel Insurance", href: EN("/services/marine/marine-hull-inland-vessel-insurance/") },
+    { title: "Import / Export Cargo Insurance", href: EN("/services/marine/import-export-insurance/") },
     { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
   ],
 },
@@ -11581,7 +12061,11 @@ servicePopular: [
   children: [
     { title: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
     { title: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
+    { title: "Auto Rickshaw Insurance", href: EN("/services/personal/auto-rickshaw-insurance/") },
+    { title: "Tempo / Mini Truck Insurance", href: EN("/services/personal/tempo-mini-truck-insurance/") },
+    { title: "Taxi & Cab Insurance", href: EN("/services/personal/taxi-cab-insurance/") },
     { title: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+    { title: "LIC / Term Life Insurance", href: EN("/services/personal/lic-life-term-insurance/") },
     { title: "Insurance Renewal Near Me", href: EN("/insurance-renewal-near-me/") },
     { title: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
   ],
@@ -12110,6 +12594,51 @@ trustValidation: {
 // INTENT PAGES (Near-me, renewal, claim help, etc.)
 // ===========================
 intentPages: {
+  // 0) not-sure-if-we-cover-you — catch-all for coverage doubt
+  "not-sure-if-we-cover-you": {
+    slug: "not-sure-if-we-cover-you",
+    seoTitle: "Not Sure If We Cover Your Situation? – Ask Us Directly, Chennai & Tamil Nadu",
+    seoDesc:
+      "Don't see your exact vehicle, business, property or location listed? Most cases are still covered—send one WhatsApp message and we'll confirm in minutes.",
+    heroH1: "Don't see your exact situation listed? It's still very likely we cover it.",
+    heroP:
+      "This site lists our most common services and locations, but real situations don't always fit neatly into a page title. If your vehicle, business, property, or location isn't named anywhere on this site, that almost never means we don't handle it—it usually just means we haven't written a page for that exact combination yet. Send us one WhatsApp message describing your situation and we'll tell you directly, within minutes, whether and how we can help—no need to keep searching for the perfect match.",
+    intentSignals: [
+      "do you cover my vehicle",
+      "not listed on your website",
+      "is this covered",
+      "unusual insurance request",
+      "insurance for something specific",
+    ],
+    whoThisHelps: [
+      "Anyone whose vehicle, business type, property, or location doesn't appear anywhere on this site.",
+      "People insuring something unusual or high-value: event/shooting equipment, sports gear, a new imported vehicle before registration, a one-off goods shipment, a dealer/agent vehicle deal.",
+      "Businesses in industries not explicitly named here—if it involves property, stock, vehicles, contractors, liability, or people, it's very likely coverable even without a dedicated page.",
+    ],
+    whatYouGet: [
+      "A direct answer on whether we can help—within minutes over WhatsApp, not a form you fill and wait on.",
+      "If it's outside what we handle personally, honest redirection instead of a runaround.",
+      "The same documentation-first, claim-ready guidance we give on every listed service, even for one-off or unusual cases.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your situation", text: "WhatsApp a short description: what you're insuring, roughly where, and why it matters (value, urgency, upcoming deadline)." },
+      { title: "Step 2 — We confirm fit", text: "We tell you plainly whether it's something we handle directly, and what information we'd need next." },
+      { title: "Step 3 — Next steps or an honest no", text: "If we can help, we guide you on documents and process. If it's outside our scope, we say so directly instead of wasting your time." },
+    ],
+    recommendedServices: [
+      { label: "Browse all services", href: EN("/services/") },
+      { label: "Browse all locations", href: EN("/locations/") },
+      { label: "Insurance claim help", href: EN("/insurance-claim-help/") },
+      { label: "Buy insurance guidance", href: EN("/buy-insurance-guidance/") },
+    ],
+    faqs: [
+      { q: "My vehicle/business type isn't listed anywhere on the site—does that mean you don't cover it?", a: "No. This site covers our most common services and locations, but it can't list every exact combination. Most situations not explicitly listed are still covered—ask directly and we'll confirm." },
+      { q: "What if I'm outside Chennai or Tamil Nadu?", a: "For high-value commercial and industrial risk, we serve clients across India, not just our home belt. Send your location and we'll confirm reach." },
+      { q: "Do I need to visit in person to find out?", a: "No. A WhatsApp message describing your situation is enough for an initial answer. A visit or call is only needed for verification in specific cases (as applicable)." },
+      { q: "What if it turns out you can't help with my specific case?", a: "We'll tell you directly rather than stringing you along—and where possible, point you toward what actually applies." },
+    ],
+  },
+
   // 1) insurance-near-me
   "insurance-near-me": {
     slug: "insurance-near-me",

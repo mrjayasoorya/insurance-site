@@ -48,8 +48,8 @@ const items = (group || [])
   <p class="section-sub readable">{subtitle}</p>
 
   <div class="qh-grid" role="list">
-    {items.map((it) => (
-      <a class="qh-card" href={it.href} role="listitem">
+    {items.map((it, i) => (
+      <a class={`qh-card qh-card--${i % 4}`} href={it.href} role="listitem">
         <span class="qh-title">{it.title}</span>
         {it.desc ? <span class="qh-desc">{it.desc}</span> : null}
       </a>
@@ -68,11 +68,16 @@ const items = (group || [])
     display: block;
     padding: 12px 14px;
     border: 1px solid var(--border);
+    border-left-width: 3px;
     border-radius: 16px;
     background: var(--surface);
     text-decoration: none;
     box-shadow: 0 2px 10px rgba(11, 13, 18, 0.05);
   }
+  .qh-card--0{ border-left-color:#0d9488; }
+  .qh-card--1{ border-left-color:#7c3aed; }
+  .qh-card--2{ border-left-color:#1d4ed8; }
+  .qh-card--3{ border-left-color:#b45309; }
   .qh-title {
     display: block;
     font-weight: 950;

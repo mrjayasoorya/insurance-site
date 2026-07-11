@@ -72,6 +72,7 @@ const jsonLd = buildJsonLd({
   title: meta.title,
   description: meta.description,
   locationName: data.name,
+  locationPostalCode: data.postalCode,
   breadcrumbs: [
     { name: "Home", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/") },
     { name: "Locations", href: canonicalFromPath(siteData.brand.websiteUrl, "/en/locations/") },
@@ -122,13 +123,22 @@ const jsonLd = buildJsonLd({
             { label: data.heroH1 || data.name },
           ]} />
 
+          {data.postalCode ? (
+            <p class="readable" style="opacity:.75;font-size:14px;margin:4px 0 0">
+              {data.name} — Pin code {data.postalCode}
+            </p>
+          ) : null}
+
           <!-- 2. Services available here (PRIMARY user intent) -->
           {serviceCards?.length ? (
             <section class="section section-padding" aria-label="Services supported">
               <h2 class="section-title">Services available in {data.name}</h2>
+              <p class="section-sub readable">
+                Beyond the obvious cover, these are the risks people in {data.name} commonly ask about once we start talking—worth a look even if you called about something else.
+              </p>
               <div class="grid grid-2">
-                {serviceCards.map((s) => (
-                  <a class="card" href={s.href}>
+                {serviceCards.map((s, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={s.href}>
                     <h3 class="card-title">{s.title}</h3>
                     <p class="card-desc readable">{s.desc}</p>
                   </a>
@@ -217,8 +227,8 @@ const jsonLd = buildJsonLd({
           <section class="section section-padding" aria-label="Quick actions">
             <h2 class="section-title">Quick actions</h2>
             <div class="grid grid-2">
-              {intentCards.map((c) => (
-                <a class="card" href={c.href}>
+              {intentCards.map((c, i) => (
+                <a class={`card lg-card lg-card--${i % 4}`} href={c.href}>
                   <h3 class="card-title">{c.title}</h3>
                   <p class="card-desc readable">{c.desc}</p>
                 </a>
@@ -275,13 +285,22 @@ const jsonLd = buildJsonLd({
                solely to give the page a real, visible-to-crawlers <h1>. -->
           <h1 class="sr-only">{data.heroH1}</h1>
 
+          {data.postalCode ? (
+            <p class="readable" style="opacity:.75;font-size:14px;margin:4px 0 0;padding:0 16px">
+              {data.name} — Pin code {data.postalCode}
+            </p>
+          ) : null}
+
           <!-- 2. Services available -->
           {serviceCards?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Services in {data.name}</h2>
+              <p class="section-sub readable">
+                Worth a look even if you called about something else—these are the risks people here commonly ask about once we start talking.
+              </p>
               <div class="grid grid-1">
-                {serviceCards.map((s) => (
-                  <a class="card" href={s.href}>
+                {serviceCards.map((s, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={s.href}>
                     <h3 class="card-title">{s.title}</h3>
                     <p class="card-desc readable">{s.desc}</p>
                   </a>

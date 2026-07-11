@@ -266,9 +266,12 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
           {linkCards.length ? (
             <section class="section section-padding" aria-label="Related services">
               <h2 class="section-title">Related services</h2>
+              <p class="section-sub readable">
+                People who need {data.heroH1?.split(" in ")[0] || "this cover"} often need one of these too—worth checking even if it's not why you're here today.
+              </p>
               <div class="grid grid-2">
-                {linkCards.map((l) => (
-                  <a class="card" href={l.href}>
+                {linkCards.map((l, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={l.href}>
                     <h3 class="card-title">{l.label}</h3>
                     <p class="card-desc readable">{l.desc}</p>
                   </a>
@@ -446,9 +449,12 @@ const waNumber = (siteData.brand.whatsappE164 || "").replace("+", "");
           {linkCards.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Related services</h2>
+              <p class="section-sub readable">
+                People who need {data.heroH1?.split(" in ")[0] || "this cover"} often need one of these too—worth checking even if it's not why you're here today.
+              </p>
               <div class="grid grid-1">
-                {linkCards.map((l) => (
-                  <a class="card" href={l.href}>
+                {linkCards.map((l, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={l.href}>
                     <h3 class="card-title">{l.label}</h3>
                     <p class="card-desc readable">{l.desc}</p>
                   </a>

@@ -121,8 +121,8 @@ const jsonLd = buildJsonLd({
             <section class="section section-padding" aria-label="Intent router">
               <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
               <div class="grid grid-2">
-                {intentRouter.cards.map((c) => (
-                  <a class="card" href={c.href}>
+                {intentRouter.cards.map((c, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={c.href}>
                     <h3 class="card-title">{c.title}</h3>
                     <p class="card-desc readable">{c.desc}</p>
                   </a>
@@ -308,8 +308,8 @@ const jsonLd = buildJsonLd({
             <section class="section section-padding">
               <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
               <div class="grid grid-1">
-                {intentRouter.cards.map((c) => (
-                  <a class="card" href={c.href}>
+                {intentRouter.cards.map((c, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={c.href}>
                     <h3 class="card-title">{c.title}</h3>
                     <p class="card-desc readable">{c.desc}</p>
                   </a>

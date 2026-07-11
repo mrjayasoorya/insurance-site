@@ -197,20 +197,24 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
               <h2 class="section-title">{data.marketComparison.title || "How the market works"}</h2>
               <p class="readable">{data.marketComparison.intro}</p>
               {data.marketComparison.rows?.length ? (
-                <div class="compare-table" style="margin-top:16px">
-                  <div class="compare-header">
-                    <div class="compare-cell compare-k">Factor</div>
-                    <div class="compare-cell">Online / Aggregator</div>
-                    <div class="compare-cell compare-us">With Us</div>
-                  </div>
-                  {data.marketComparison.rows.map(r => (
-                    <div class="compare-row">
-                      <div class="compare-cell compare-k">{r.factor}</div>
-                      <div class="compare-cell">{r.online}</div>
-                      <div class="compare-cell compare-us">{r.withUs}</div>
-                    </div>
-                  ))}
-                </div>
+                <table class="compare-table" style="margin-top:16px">
+                  <thead>
+                    <tr class="compare-header">
+                      <th class="compare-cell compare-k" scope="col">Factor</th>
+                      <th class="compare-cell" scope="col">Online / Aggregator</th>
+                      <th class="compare-cell compare-us" scope="col">With Us</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.marketComparison.rows.map(r => (
+                      <tr class="compare-row">
+                        <th class="compare-cell compare-k" scope="row">{r.factor}</th>
+                        <td class="compare-cell">{r.online}</td>
+                        <td class="compare-cell compare-us">{r.withUs}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               ) : null}
             </section>
           ) : null}
@@ -476,20 +480,24 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
               <h2 class="section-title">{data.marketComparison.title || "How the market works"}</h2>
               <p class="readable">{data.marketComparison.intro}</p>
               {data.marketComparison.rows?.length ? (
-                <div class="compare-table" style="margin-top:16px">
-                  <div class="compare-header">
-                    <div class="compare-cell compare-k">Factor</div>
-                    <div class="compare-cell">Online</div>
-                    <div class="compare-cell compare-us">With Us</div>
-                  </div>
-                  {data.marketComparison.rows.map(r => (
-                    <div class="compare-row">
-                      <div class="compare-cell compare-k">{r.factor}</div>
-                      <div class="compare-cell">{r.online}</div>
-                      <div class="compare-cell compare-us">{r.withUs}</div>
-                    </div>
-                  ))}
-                </div>
+                <table class="compare-table" style="margin-top:16px">
+                  <thead>
+                    <tr class="compare-header">
+                      <th class="compare-cell compare-k" scope="col">Factor</th>
+                      <th class="compare-cell" scope="col">Online</th>
+                      <th class="compare-cell compare-us" scope="col">With Us</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.marketComparison.rows.map(r => (
+                      <tr class="compare-row">
+                        <th class="compare-cell compare-k" scope="row">{r.factor}</th>
+                        <td class="compare-cell">{r.online}</td>
+                        <td class="compare-cell compare-us">{r.withUs}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               ) : null}
             </section>
           ) : null}
@@ -708,26 +716,31 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
       }
 
       .compare-table{
+        width:100%;
         border:1px solid var(--border);
         border-radius:12px;
         overflow:hidden;
+        border-collapse:collapse;
+      }
+      .compare-header, .compare-row{
+        display:table-row;
       }
       .compare-header{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
         background: var(--surface);
         font-weight:900;
         font-size:13px;
       }
       .compare-row{
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
         border-top:1px solid var(--border);
       }
       .compare-cell{
+        display:table-cell;
+        width:33.333%;
         padding:10px 12px;
         font-size:13px;
         line-height:1.35;
+        text-align:left;
+        font-weight:400;
       }
       .compare-k{
         font-weight:700;
@@ -775,7 +788,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
 
       @media (max-width: 520px){
         .glance-row{ grid-template-columns: 1fr; }
-        .compare-header, .compare-row{ grid-template-columns: 1fr 1fr 1fr; font-size:11px; }
+        .compare-header{ font-size:11px; }
         .compare-cell{ padding:8px 6px; }
       }
     </style>

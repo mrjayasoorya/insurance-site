@@ -15,8 +15,8 @@ const { items = [], title = "Quick answers to common concerns" } = Astro.props;
   <section class="uqb section section-padding" aria-labelledby="uqb-title">
     <h2 id="uqb-title" class="section-title">{title}</h2>
     <div class="uqb-grid">
-      {items.map((item) => (
-        <div class="uqb-card">
+      {items.map((item, i) => (
+        <div class={`uqb-card uqb-card--${i % 4}`}>
           <div class="uqb-top">
             <span class="uqb-icon">{item.icon}</span>
             <p class="uqb-q">{item.q}</p>
@@ -38,10 +38,15 @@ const { items = [], title = "Quick answers to common concerns" } = Astro.props;
   .uqb-card{
     padding:16px;
     border:1px solid var(--border);
+    border-left-width:3px;
     border-radius:14px;
     background:var(--surface);
     box-shadow:0 1px 6px rgba(11,13,18,.04);
   }
+  .uqb-card--0{ border-left-color:#0d9488; }
+  .uqb-card--1{ border-left-color:#7c3aed; }
+  .uqb-card--2{ border-left-color:#1d4ed8; }
+  .uqb-card--3{ border-left-color:#b45309; }
   .uqb-top{
     display:flex;
     gap:9px;

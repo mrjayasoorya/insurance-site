@@ -30,12 +30,14 @@ const {
   levelOrFreq = "Updated weekly",
   showSaveButton = true,
 } = Astro.props as BlogCardProps;
+
+const catSlug = (chipCategory || "").toLowerCase().replace(/\s+/g, "-");
 ---
 
 <article class="blogcard" role="listitem">
   <div class="blogcard-top">
     <div class="chiprow" aria-label="Categories">
-      <span class="chip chip-cat">{chipCategory}</span>
+      <span class={`chip chip-cat chip--${catSlug}`}>{chipCategory}</span>
       <span class="chip chip-map">{chipMap}</span>
     </div>
 

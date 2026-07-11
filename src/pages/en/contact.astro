@@ -208,11 +208,11 @@ const jsonLd = buildJsonLd({
 
             <div class="grid grid-2">
               {
-                siteData.locationsIndex?.groups
+                siteData.locationsIndex?.zones
                   ?.flatMap((g) => g.locations || [])
                   .slice(0, 12)
-                  .map((loc) => (
-                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                  .map((loc, i) => (
+                    <a class={`card lg-card lg-card--${i % 4}`} href={EN(`/locations/${loc.slug}/`)}>
                       <h3 class="card-title">{loc.name}</h3>
                       <p class="card-desc">Open local service guide</p>
                     </a>
@@ -364,11 +364,11 @@ const jsonLd = buildJsonLd({
 
             <div class="grid grid-2">
               {
-                siteData.locationsIndex?.groups
+                siteData.locationsIndex?.zones
                   ?.flatMap((g) => g.locations || [])
                   .slice(0, 12)
-                  .map((loc) => (
-                    <a class="card" href={EN(`/locations/${loc.slug}/`)}>
+                  .map((loc, i) => (
+                    <a class={`card lg-card lg-card--${i % 4}`} href={EN(`/locations/${loc.slug}/`)}>
                       <h3 class="card-title">{loc.name}</h3>
                       <p class="card-desc">Open local service guide</p>
                     </a>

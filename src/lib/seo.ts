@@ -184,6 +184,7 @@ export function buildJsonLd(input) {
     faqs = [],
     serviceData,
     locationName,
+    locationPostalCode,
     intentKeywords = [],
     extraNodes = [],
   } = input;
@@ -608,6 +609,7 @@ function pickKnowsAbout({ pageType, serviceData, siteData }: any) {
       address: {
         "@type": "PostalAddress",
         addressLocality: locationName || undefined,
+        postalCode: locationPostalCode || undefined,
         addressRegion: "Tamil Nadu",
         addressCountry: "IN",
       },

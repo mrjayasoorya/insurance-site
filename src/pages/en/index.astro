@@ -221,11 +221,12 @@ const jsonLd = buildJsonLd({
               </p>
               <div class="promo-tiles" role="list" aria-label="Category cards">
                 {promoBanners.map((b) => (
-                  <a class={`promo-tile ${b.tint}`} role="listitem" href={b.href}>
-                    <span class="promo-icon" aria-hidden="true">{b.icon}</span>
-                    <h3 class="promo-tile-title">{b.title}</h3>
-                    <p class="promo-tile-desc">{b.desc}</p>
-                    <span class="promo-tile-arrow" aria-hidden="true">→</span>
+                  <a class="promo-tile" role="listitem" href={b.href}>
+                    <span class={`promo-icon ${b.tint}`} aria-hidden="true">{b.icon}</span>
+                    <span class="promo-tile-text">
+                      <h3 class="promo-tile-title">{b.title}</h3>
+                      <p class="promo-tile-desc">{b.desc}</p>
+                    </span>
                   </a>
                 ))}
               </div>
@@ -440,15 +441,16 @@ const jsonLd = buildJsonLd({
             <section class="section section-padding" aria-labelledby="m-promo-title">
               <h2 id="m-promo-title" class="section-title">Browse by category</h2>
               <p class="section-sub readable">
-                Swipe and tap to see what's covered before you reach out.
+                Tap a category to see what's covered before you reach out.
               </p>
-              <div class="promo-swipe" role="list" aria-label="Swipe category cards">
+              <div class="promo-tiles promo-tiles--mobile" role="list" aria-label="Category cards">
                 {promoBanners.map((b) => (
-                  <a class={`promo-swipe-card ${b.tint}`} role="listitem" href={b.href}>
-                    <span class="promo-icon" aria-hidden="true">{b.icon}</span>
-                    <h3 class="promo-tile-title">{b.title}</h3>
-                    <p class="promo-tile-desc">{b.desc}</p>
-                    <span class="promo-tile-arrow" aria-hidden="true">→</span>
+                  <a class="promo-tile" role="listitem" href={b.href}>
+                    <span class={`promo-icon ${b.tint}`} aria-hidden="true">{b.icon}</span>
+                    <span class="promo-tile-text">
+                      <h3 class="promo-tile-title">{b.title}</h3>
+                      <p class="promo-tile-desc">{b.desc}</p>
+                    </span>
                   </a>
                 ))}
               </div>
@@ -583,14 +585,18 @@ const jsonLd = buildJsonLd({
       .card{
         display:block;
         padding:14px;
-        border:1px solid rgba(255,255,255,.12);
+        border:1px solid var(--border, #e7e9ee);
         border-radius:14px;
         text-decoration:none;
+        color:#14161c;
       }
       .card-highlight{
-        border-color: rgba(255,255,255,.22);
-        background: rgba(255,255,255,.03);
+        border-left: 3px solid #bdeee5;
       }
+      .card-highlight:nth-child(4n+1){ border-left-color:#0d9488; }
+      .card-highlight:nth-child(4n+2){ border-left-color:#7c3aed; }
+      .card-highlight:nth-child(4n+3){ border-left-color:#1d4ed8; }
+      .card-highlight:nth-child(4n+4){ border-left-color:#b45309; }
       .card-title{ font-size:16px; margin:8px 0 6px; }
       .card-desc{ margin:0; opacity:.85; }
       .card-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
@@ -654,74 +660,51 @@ const jsonLd = buildJsonLd({
         .how-it-works{ grid-template-columns: 1fr; gap:16px; }
       }
 
-      /* Category tiles — soft tinted cards, one accent colour per category */
+      /* Category tiles — flat row: colored icon badge + text, no card fill */
       .promo-tiles{
         display:grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap:14px;
+        gap:4px 24px;
       }
-      .promo-tile, .promo-swipe-card{
+      .promo-tiles--mobile{
+        grid-template-columns: 1fr;
+      }
+      .promo-tile{
         position:relative;
-        display:block;
-        padding:20px 44px 20px 18px;
-        border-radius:16px;
-        border:1px solid transparent;
+        display:flex;
+        align-items:center;
+        gap:14px;
+        padding:14px 4px;
+        border-bottom:1px solid var(--border, #e7e9ee);
         text-decoration:none;
         color:#14161c;
-        transition: transform 160ms ease, box-shadow 160ms ease;
+        transition: opacity 160ms ease;
       }
-      .promo-tile:hover, .promo-swipe-card:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba(20,22,28,.08);
+      .promo-tile:hover{
+        opacity:.7;
       }
       .promo-icon{
-        display:block; font-size:30px; margin-bottom:10px; line-height:1;
+        flex:0 0 auto;
+        width:42px; height:42px;
+        border-radius:50%;
+        display:grid; place-items:center;
+        font-size:19px; line-height:1;
       }
+      .promo-tile-text{ min-width:0; }
       .promo-tile-title{
-        font-size:16px; font-weight:800; margin:0 0 4px; color:#14161c;
+        font-size:15px; font-weight:800; margin:0 0 2px; color:#14161c;
       }
       .promo-tile-desc{
-        font-size:13.5px; margin:0; color:#4a4f5c; line-height:1.4;
-      }
-      .promo-tile-arrow{
-        position:absolute; right:16px; top:18px;
-        font-size:18px; opacity:.35; font-weight:700;
+        font-size:13px; margin:0; color:#4a4f5c; line-height:1.35;
       }
 
-      /* Six distinct soft tints so each category is visually distinct */
-      .t-teal{ background:#e6faf6; border-color:#bdeee5; }
-      .t-teal .promo-tile-arrow{ color:#0d9488; }
-      .t-amber{ background:#fff4e0; border-color:#fbe0ac; }
-      .t-amber .promo-tile-arrow{ color:#b45309; }
-      .t-blue{ background:#e8f1ff; border-color:#c3daff; }
-      .t-blue .promo-tile-arrow{ color:#1d4ed8; }
-      .t-purple{ background:#f4edff; border-color:#ddc9ff; }
-      .t-purple .promo-tile-arrow{ color:#7c3aed; }
-      .t-coral{ background:#ffeeee; border-color:#ffcfcf; }
-      .t-coral .promo-tile-arrow{ color:#dc2626; }
-      .t-green{ background:#eafbe9; border-color:#c8f0c4; }
-      .t-green .promo-tile-arrow{ color:#15803d; }
-
-      @media (max-width:820px){
-        .promo-tiles{ display:none; }
-        .promo-swipe{
-          display:flex; gap:14px;
-          overflow-x:auto; -webkit-overflow-scrolling:touch;
-          flex-wrap: nowrap;
-          width: calc(100% + 24px);
-          margin-left: -12px; margin-right: -12px;
-          padding-left: 12px; padding-right: 12px; padding-bottom: 10px;
-          scroll-snap-type: x mandatory;
-        }
-        .promo-swipe::-webkit-scrollbar{ display:none; }
-        .promo-swipe-card{
-          width:220px; flex: 0 0 220px;
-          scroll-snap-align: start;
-        }
-      }
-      @media (min-width:821px){
-        .promo-swipe{ display:none; }
-      }
+      /* Six distinct icon-badge tints so each category is visually distinct */
+      .t-teal{ background:#e6faf6; }
+      .t-amber{ background:#fff4e0; }
+      .t-blue{ background:#e8f1ff; }
+      .t-purple{ background:#f4edff; }
+      .t-coral{ background:#ffeeee; }
+      .t-green{ background:#eafbe9; }
 
       @media (max-width: 980px){
         .grid-2 { grid-template-columns: 1fr; }

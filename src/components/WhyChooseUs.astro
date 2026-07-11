@@ -21,9 +21,9 @@ const {
     {subtitle && <p class="section-sub readable">{subtitle}</p>}
 
     <div class="wcu-grid">
-      {points.map((p) => (
+      {points.map((p, i) => (
         <div class="wcu-point">
-          <div class="wcu-icon">{p.icon}</div>
+          <div class={`wcu-icon wcu-icon--${i % 6}`}>{p.icon}</div>
           <div>
             <h3 class="wcu-heading">{p.title}</h3>
             <p class="wcu-desc">{p.desc}</p>
@@ -55,12 +55,16 @@ const {
     flex:0 0 auto;
     width:36px;height:36px;
     border-radius:10px;
-    background:#f0fdf4;
-    border:1px solid #bbf7d0;
     display:grid;
     place-items:center;
     font-size:18px;
   }
+  .wcu-icon--0{ background:#e6faf6; }
+  .wcu-icon--1{ background:#fff4e0; }
+  .wcu-icon--2{ background:#e8f1ff; }
+  .wcu-icon--3{ background:#f4edff; }
+  .wcu-icon--4{ background:#ffeeee; }
+  .wcu-icon--5{ background:#eafbe9; }
   .wcu-heading{
     margin:0 0 4px;
     font-size:14px;

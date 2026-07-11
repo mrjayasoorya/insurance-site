@@ -13,6 +13,7 @@ export const locationExpansionDetails = {
 
   tambaram: {
     name: "Tambaram",
+    postalCode: "600045",
     seoTitle: "Insurance Agent in Tambaram, Chennai — Car, Health, Bike & Commercial Insurance",
     seoDesc: "Insurance services in Tambaram, Chennai. Car, health, bike, life, and commercial insurance from a 4.9★ IRDAI licensed agent. Doorstep service, multi-insurer comparison, and local claim support.",
     heroH1: "Insurance Agent in Tambaram, Chennai — Vehicle, Health & Business",
@@ -26,6 +27,7 @@ export const locationExpansionDetails = {
       { title: "Car Insurance", href: EN("/policies/car-insurance/") },
       { title: "Health Insurance", href: EN("/policies/health-insurance/") },
       { title: "Bike Insurance", href: EN("/policies/bike-insurance/") },
+      { title: "Bike Insurance Renewal (Tambaram)", href: EN("/bike-insurance-tambaram/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
       { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
       { title: "Claim Support & Documentation", href: EN("/services/claims-support/") },
@@ -53,6 +55,7 @@ export const locationExpansionDetails = {
 
   chrompet: {
     name: "Chrompet",
+    postalCode: "600044",
     seoTitle: "Insurance Agent in Chrompet, Chennai — Car, Health & Two-Wheeler Insurance",
     seoDesc: "Insurance services in Chrompet, Chennai. Car, health, bike insurance with doorstep service and claim support from a 4.9★ rated IRDAI licensed agent. Multi-insurer comparison.",
     heroH1: "Insurance Agent in Chrompet, Chennai — Vehicle, Health & Family",
@@ -89,6 +92,7 @@ export const locationExpansionDetails = {
 
   velachery: {
     name: "Velachery",
+    postalCode: "600042",
     seoTitle: "Insurance Agent in Velachery, Chennai — Car, Health & Life Insurance",
     seoDesc: "Insurance services in Velachery, Chennai. Car, health, life insurance with doorstep service and claim support. Multi-insurer comparison from a 4.9★ IRDAI licensed agent.",
     heroH1: "Insurance Agent in Velachery, Chennai — Vehicle, Health & Family",
@@ -100,6 +104,7 @@ export const locationExpansionDetails = {
     ],
     serviceLinks: [
       { title: "Car Insurance", href: EN("/policies/car-insurance/") },
+      { title: "Car Insurance Renewal (Velachery)", href: EN("/car-insurance-velachery/") },
       { title: "Health Insurance", href: EN("/policies/health-insurance/") },
       { title: "Bike Insurance", href: EN("/policies/bike-insurance/") },
       { title: "All Insurance Services", href: EN("/services/") },
@@ -126,6 +131,7 @@ export const locationExpansionDetails = {
 
   adyar: {
     name: "Adyar",
+    postalCode: "600020",
     seoTitle: "Insurance Agent in Adyar, Chennai — Car, Health & Life Insurance",
     seoDesc: "Insurance services in Adyar, Chennai. Car, health, life insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent. Multi-insurer comparison for Adyar residents.",
     heroH1: "Insurance Agent in Adyar, Chennai — Vehicle, Health & Family",
@@ -163,6 +169,7 @@ export const locationExpansionDetails = {
 
   guindy: {
     name: "Guindy",
+    postalCode: "600032",
     seoTitle: "Insurance Agent in Guindy, Chennai — Car, Health & Commercial Insurance",
     seoDesc: "Insurance services in Guindy, Chennai. Car, health, commercial, and industrial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for Guindy Industrial Estate and surrounding areas.",
     heroH1: "Insurance Agent in Guindy, Chennai — Vehicle, Health & Business",
@@ -180,6 +187,7 @@ export const locationExpansionDetails = {
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Machinery Breakdown Insurance", href: EN("/machinery-breakdown-insurance-guindy/") },
       { title: "Public & Professional Liability Insurance", href: EN("/liability-insurance-guindy/") },
+      { title: "Office Insurance Package (Guindy)", href: EN("/office-insurance-guindy/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
     faqs: [
@@ -206,6 +214,7 @@ export const locationExpansionDetails = {
 
   sholinganallur: {
     name: "Sholinganallur",
+    postalCode: "600119",
     seoTitle: "Insurance Agent in Sholinganallur, Chennai — Car, Health & IT Corridor Insurance",
     seoDesc: "Insurance services in Sholinganallur, OMR, Chennai. Car, health, life insurance for IT professionals and families from a 4.9★ IRDAI licensed agent with 15+ insurer options.",
     heroH1: "Insurance Agent in Sholinganallur, Chennai — Vehicle, Health & Family",
@@ -220,6 +229,7 @@ export const locationExpansionDetails = {
       { title: "Health Insurance", href: EN("/policies/health-insurance/") },
       { title: "Bike Insurance", href: EN("/policies/bike-insurance/") },
       { title: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
+      { title: "D&O / Professional Indemnity Insurance (OMR)", href: EN("/professional-indemnity-do-insurance-sholinganallur/") },
       { title: "All Insurance Services", href: EN("/services/") },
     ],
     faqs: [
@@ -242,6 +252,7 @@ export const locationExpansionDetails = {
 
   medavakkam: {
     name: "Medavakkam",
+    postalCode: "600100",
     seoTitle: "Insurance Agent in Medavakkam, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Medavakkam, Chennai. Car, health, bike, and family insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent.",
     heroH1: "Insurance Agent in Medavakkam, Chennai — Vehicle, Health & Family",
@@ -281,6 +292,7 @@ export const locationExpansionDetails = {
 
   "t-nagar": {
     name: "T. Nagar",
+    postalCode: "600017",
     seoTitle: "Insurance Agent in T. Nagar, Chennai — Car, Health, Shop & Business Insurance",
     seoDesc: "Insurance services in T. Nagar, Chennai. Car, health, shop, fire, and commercial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for T. Nagar, Mambalam, and surrounding areas.",
     heroH1: "Insurance Agent in T. Nagar, Chennai — Vehicle, Health & Shop Insurance",
@@ -322,6 +334,7 @@ export const locationExpansionDetails = {
 
   egmore: {
     name: "Egmore",
+    postalCode: "600008",
     seoTitle: "Insurance Agent in Egmore, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Egmore, Chennai. Car, health, life, and family insurance with doorstep service from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Egmore, Chennai — Vehicle, Health & Family",
@@ -358,6 +371,7 @@ export const locationExpansionDetails = {
 
   mylapore: {
     name: "Mylapore",
+    postalCode: "600004",
     seoTitle: "Insurance Agent in Mylapore, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Mylapore, Chennai. Car, health, life insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent with 15+ insurer options.",
     heroH1: "Insurance Agent in Mylapore, Chennai — Vehicle, Health & Family",
@@ -393,6 +407,7 @@ export const locationExpansionDetails = {
 
   nungambakkam: {
     name: "Nungambakkam",
+    postalCode: "600034",
     seoTitle: "Insurance Agent in Nungambakkam, Chennai — Car, Health & Business Insurance",
     seoDesc: "Insurance services in Nungambakkam, Chennai. Car, health, life, and commercial insurance from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Nungambakkam, Chennai — Vehicle, Health & Business",
@@ -428,6 +443,7 @@ export const locationExpansionDetails = {
 
   kilpauk: {
     name: "Kilpauk",
+    postalCode: "600010",
     seoTitle: "Insurance Agent in Kilpauk, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Kilpauk, Chennai. Car, health, bike, and family insurance with doorstep service from a 4.9★ IRDAI licensed agent. Multi-insurer comparison and claim support.",
     heroH1: "Insurance Agent in Kilpauk, Chennai — Vehicle, Health & Family",
@@ -506,6 +522,7 @@ export const locationExpansionDetails = {
 
   porur: {
     name: "Porur",
+    postalCode: "600116",
     seoTitle: "Insurance Agent in Porur, Chennai — Car, Health & Commercial Insurance",
     seoDesc: "Insurance services in Porur, Chennai. Car, health, commercial insurance with doorstep service and claim support from a 4.9★ IRDAI licensed agent. Serving Porur, Ramapuram, and Mugalivakkam.",
     heroH1: "Insurance Agent in Porur, Chennai — Vehicle, Health & Business",
@@ -518,6 +535,7 @@ export const locationExpansionDetails = {
     serviceLinks: [
       { title: "Car Insurance", href: EN("/policies/car-insurance/") },
       { title: "Health Insurance", href: EN("/policies/health-insurance/") },
+      { title: "Auto Rickshaw Insurance (Porur)", href: EN("/auto-rickshaw-insurance-porur/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
       { title: "Business & MSME Insurance", href: EN("/services/business-msme/business-msme-insurance/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
@@ -542,6 +560,7 @@ export const locationExpansionDetails = {
 
   mogappair: {
     name: "Mogappair",
+    postalCode: "600037",
     seoTitle: "Insurance Agent in Mogappair, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Mogappair, Chennai. Car, health, bike insurance with doorstep service from a 4.9★ IRDAI licensed agent. Serving Mogappair East, West, and Nolambur.",
     heroH1: "Insurance Agent in Mogappair, Chennai — Vehicle, Health & Family",
@@ -616,6 +635,7 @@ export const locationExpansionDetails = {
 
   poonamallee: {
     name: "Poonamallee",
+    postalCode: "600056",
     seoTitle: "Insurance Agent in Poonamallee, Chennai — Car, Health & Industrial Insurance",
     seoDesc: "Insurance services in Poonamallee, Chennai. Car, health, commercial vehicle, and industrial insurance from a 4.9★ IRDAI licensed agent. Doorstep service for Poonamallee and surrounding areas.",
     heroH1: "Insurance Agent in Poonamallee, Chennai — Vehicle, Health & Industrial",
@@ -629,6 +649,7 @@ export const locationExpansionDetails = {
       { title: "Car Insurance", href: EN("/policies/car-insurance/") },
       { title: "Health Insurance", href: EN("/policies/health-insurance/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
+      { title: "Tempo / Mini Truck Insurance (Poonamallee)", href: EN("/tempo-insurance-poonamallee/") },
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
@@ -657,6 +678,7 @@ export const locationExpansionDetails = {
 
   hosur: {
     name: "Hosur",
+    postalCode: "635109",
     seoTitle: "Insurance Agent in Hosur — Factory, Fleet & Commercial Insurance",
     seoDesc: "Insurance services in Hosur industrial area. Factory, fleet, commercial vehicle, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent with 30+ years experience.",
     heroH1: "Insurance Agent in Hosur — Factory, Fleet & Commercial Insurance",
@@ -693,6 +715,7 @@ export const locationExpansionDetails = {
 
   oragadam: {
     name: "Oragadam",
+    postalCode: "602105",
     seoTitle: "Insurance Agent in Oragadam — Factory, Fleet & Industrial Insurance",
     seoDesc: "Insurance services in Oragadam industrial corridor. Factory, fleet, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent. SIPCOT and automotive hub coverage.",
     heroH1: "Insurance Agent in Oragadam — Factory, Fleet & Industrial Insurance",
@@ -707,6 +730,7 @@ export const locationExpansionDetails = {
       { title: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/") },
       { title: "Commercial Vehicle Insurance", href: EN("/policies/commercial-vehicle-insurance/") },
       { title: "Crane & Heavy Equipment Insurance", href: EN("/crane-insurance-oragadam/") },
+      { title: "Machinery Breakdown Insurance (Oragadam)", href: EN("/machinery-breakdown-insurance-oragadam/") },
       { title: "Contractor All Risk", href: EN("/services/construction/contractor-all-risk/") },
       { title: "Claim Support", href: EN("/services/claims-support/") },
     ],
@@ -730,6 +754,7 @@ export const locationExpansionDetails = {
 
   sriperumbudur: {
     name: "Sriperumbudur",
+    postalCode: "602105",
     seoTitle: "Insurance Agent in Sriperumbudur — Factory, Fleet & Industrial Insurance",
     seoDesc: "Insurance services in Sriperumbudur SIPCOT and industrial area. Factory, fleet, warehouse, and contractor insurance from a 4.9★ IRDAI licensed agent with 30+ years experience.",
     heroH1: "Insurance Agent in Sriperumbudur — Factory, Fleet & Commercial Insurance",
@@ -768,6 +793,7 @@ export const locationExpansionDetails = {
 
   "maraimalai-nagar": {
     name: "Maraimalai Nagar",
+    postalCode: "603209",
     seoTitle: "Insurance Agent in Maraimalai Nagar — Factory, Commercial & Industrial Insurance",
     seoDesc: "Insurance services in Maraimalai Nagar industrial area. Factory, fleet, warehouse, and commercial insurance from a 4.9★ IRDAI licensed agent. SIPCOT and GST Road corridor coverage.",
     heroH1: "Insurance Agent in Maraimalai Nagar — Factory & Commercial Insurance",

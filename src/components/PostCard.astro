@@ -18,13 +18,15 @@ const {
   readTime = "6 min read",
   levelOrFreq = "Practical",
 } = Astro.props as PostCardProps;
+
+const chipSlug = (c: string) => (c || "").toLowerCase().replace(/\s+/g, "-");
 ---
 
 <article class="postcard" role="listitem">
   <div class="postcard-top" aria-label="Post categories">
     <div class="chiprow">
-      {chips.map((c) => (
-        <span class="chip">{c}</span>
+      {chips.map((c, i) => (
+        <span class={i === 0 ? `chip chip--${chipSlug(c)}` : "chip"}>{c}</span>
       ))}
     </div>
   </div>

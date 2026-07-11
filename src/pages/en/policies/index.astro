@@ -142,8 +142,8 @@ const categories = [
                 <h2 class="section-title">{cat.title}</h2>
                 <p class="section-sub readable">{cat.subtitle}</p>
                 <div class="grid grid-2" style="margin-top:16px">
-                  {cards.map(c => (
-                    <a class="card" href={c.href}>
+                  {cards.map((c, i) => (
+                    <a class={`card lg-card lg-card--${i % 4}`} href={c.href}>
                       <h3 class="card-title">{c.title}</h3>
                       <p class="card-desc readable">{c.desc}</p>
                       {c.premiumRange ? <p class="card-meta">{c.premiumRange}</p> : null}
@@ -232,8 +232,8 @@ const categories = [
           <section class="section section-padding">
             <h2 class="section-title">Policy Guides</h2>
             <div class="grid grid-1">
-              {policyCards.map(c => (
-                <a class="card" href={c.href}>
+              {policyCards.map((c, i) => (
+                <a class={`card lg-card lg-card--${i % 4}`} href={c.href}>
                   <h3 class="card-title">{c.title}</h3>
                   <p class="card-desc readable">{c.desc}</p>
                 </a>

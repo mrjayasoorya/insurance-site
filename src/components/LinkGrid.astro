@@ -8,8 +8,8 @@ const { title, subtitle, items = [] } = Astro.props;
   {subtitle ? <p class="section-sub">{subtitle}</p> : null}
 
   <div class="grid grid-2">
-    {items.map((x) => (
-      <a class="card" href={x.href} aria-label={x.title} style="text-decoration:none; color:inherit;">
+    {items.map((x, i) => (
+      <a class={`card lg-card lg-card--${i % 4}`} href={x.href} aria-label={x.title} style="text-decoration:none; color:inherit;">
         <h3 class="card-title">{x.title}</h3>
         <p class="card-desc">{x.desc}</p>
         {x.chips?.length ? (
@@ -23,5 +23,10 @@ const { title, subtitle, items = [] } = Astro.props;
 
   <style is:global>
     .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);opacity:.9}
+    .lg-card{ border-left-width:3px; }
+    .lg-card--0{ border-left-color:#0d9488; }
+    .lg-card--1{ border-left-color:#7c3aed; }
+    .lg-card--2{ border-left-color:#1d4ed8; }
+    .lg-card--3{ border-left-color:#b45309; }
   </style>
 </section>
