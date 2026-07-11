@@ -173,9 +173,6 @@ let servicesDetail = {
           a:
             "RC, permit/fitness dates, driver details (as applicable), usual route/usage summary, and previous policy copy/endorsements if any.",
         },
-      ],
-
-            faqs: [
         {
           q: "What documents are needed for lorry insurance renewal?",
           a: "RC copy, previous policy, fitness certificate, permit copy, and driver licence. For NH-belt lorries, route permit alignment matters. Call 7448324068 — we check all documents before renewal.",
@@ -193,6 +190,56 @@ let servicesDetail = {
           a: "IDV for older commercial vehicles is based on manufacturer list price minus age-based depreciation. For 10+ year vehicles, IDV is negotiable. Getting it right matters because total loss or theft payout equals IDV.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Single lorry owner-operator",
+          forWhom: "You own and drive one lorry, and permit/fitness renewal timing is what usually trips you up.",
+          points: [
+            "We check permit and fitness dates against your policy renewal so nothing lapses out of sync.",
+            "Route/usage summary matched to your policy wording to prevent claim disputes over exposure.",
+            "Same document folder approach every renewal — RC, permit, fitness, driver docs, all checked together.",
+          ],
+          ctaLabel: "WhatsApp — single lorry renewal",
+          waText: "Hi, I own one lorry and want my permit/fitness/insurance dates checked before renewal.",
+        },
+        {
+          label: "Fleet operator (multiple lorries)",
+          forWhom: "You run several lorries and tracking each one's permit, fitness, and policy separately has become unmanageable.",
+          points: [
+            "One consolidated view of every vehicle's compliance status, not separate spreadsheets per truck.",
+            "Consistent disclosures across the fleet — mismatched wording between vehicles is a common dispute trigger.",
+            "Mid-term additions/removals handled without disrupting the rest of the fleet's cover.",
+          ],
+          ctaLabel: "WhatsApp — fleet consolidation",
+          waText: "Hi, I run a fleet of lorries and want to consolidate renewal and compliance tracking.",
+        },
+        {
+          label: "Dealing with an active claim",
+          forWhom: "An incident already happened and you need to move correctly, fast.",
+          points: [
+            "Step-by-step guidance on incident timeline, photos, and reporting — the biggest factor in claim speed.",
+            "We check permit/fitness validity on the incident date before the insurer does, so you know where you stand.",
+            "If goods were damaged too, we clarify that's a separate marine cargo claim, not part of the lorry's own-damage cover.",
+          ],
+          ctaLabel: "WhatsApp — active claim help",
+          waText: "Hi, I have a lorry insurance claim in progress and need guidance on next steps.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Permit/fitness unchecked vs. verified before renewal",
+        intro: "This single check is behind most avoidable lorry claim disputes on the NH belt.",
+        columns: ["What matters", "Renewed without checking", "Verified before renewal"],
+        rows: [
+          ["Permit-policy match", "Risk of mismatch discovered only at claim time", "Confirmed to align before renewal"],
+          ["Fitness validity", "May lapse silently between renewals", "Checked and flagged in advance"],
+          ["Endorsement fit", "May not reflect current loading/unloading exposure", "Reviewed against real operations"],
+          ["Claim risk", "High — void risk if permit type mismatches usage", "Substantially reduced"],
+        ],
+      },
+
       internalLinks: [
         { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), desc: "Pickup/goods-auto/goods carriers: permit/route discipline + claim-ready steps." },
         { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), desc: "Business-use vehicle cover: usage clarity + endorsement fit." },
@@ -322,6 +369,67 @@ let servicesDetail = {
         "Chennai outskirts commercial motor insurance",
       ],
 
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Single commercial vehicle owner",
+          forWhom: "You run one business-use vehicle — a delivery van, a tempo, a single commercial car — and want the usage declared correctly.",
+          points: [
+            "We match your policy's declared usage to what the vehicle actually does daily, before it becomes a claim dispute.",
+            "Endorsements checked against your real operations, not left as whatever the previous agent set up.",
+            "Renewal handled over WhatsApp — send your permit and last policy copy.",
+          ],
+          ctaLabel: "WhatsApp — single vehicle check",
+          waText: "Hi, I have one commercial vehicle and want my usage/endorsement details checked before renewal.",
+        },
+        {
+          label: "Small fleet operator (2-10 vehicles)",
+          forWhom: "You run a handful of vehicles and are tired of tracking renewals and endorsements manually across each one.",
+          points: [
+            "One consolidated renewal view across your vehicles instead of tracking each expiry separately.",
+            "Mid-term additions/removals and endorsements handled without disrupting the rest of the fleet's cover.",
+            "If a vehicle in your fleet has a claim, only that vehicle's record is affected — we keep documentation clean per vehicle.",
+          ],
+          ctaLabel: "WhatsApp — small fleet setup",
+          waText: "Hi, I run a small fleet of commercial vehicles and want to consolidate renewals under one contact.",
+        },
+        {
+          label: "Vehicle dealer selling commercial vehicles",
+          forWhom: "You sell commercial vehicles to customers and need insurance sorted at every delivery.",
+          points: [
+            "A dealer tie-up handles insurance for every commercial vehicle you sell, not just occasional customers.",
+            "Consistent turnaround so insurance doesn't hold up delivery.",
+            "See the dedicated dealer page for the full tie-up process.",
+          ],
+          ctaLabel: "WhatsApp — dealer tie-up",
+          waText: "Hi, we're a dealership selling commercial vehicles and want to set up an insurance tie-up.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Usage mismatch vs. usage verified before renewal",
+        intro: "This is the single biggest driver of commercial motor claim disputes — how the policy describes the vehicle's use versus how it's actually used.",
+        columns: ["What matters", "Usage declared once, never rechecked", "Usage verified at each renewal"],
+        rows: [
+          ["Claim risk", "High — mismatch discovered only during a claim", "Low — caught and corrected in advance"],
+          ["Endorsements", "May not reflect current operations", "Reviewed and aligned to real usage"],
+          ["Premium accuracy", "Can be wrong in either direction", "Matched to actual risk"],
+          ["Renewal speed", "Fast, but risk carried forward silently", "A few extra minutes, risk addressed"],
+        ],
+      },
+
+      guideSections: [
+        {
+          title: "What 'usage mismatch' actually means, in plain terms",
+          intro: "This phrase comes up constantly in commercial motor claims — here's what it means for your specific vehicle.",
+          points: [
+            "If your policy says 'goods carrying' but the vehicle was being used for hire/passenger transport at the time of an incident, that mismatch can affect the claim.",
+            "If your business operations changed since the policy was issued (new routes, new cargo type, added driver categories), the endorsement should reflect that.",
+            "The fix is simple: a one-line usage summary reviewed at each renewal, not assumed to be unchanged year after year.",
+          ],
+        },
+      ],
+
             faqs: [
         {
           q: "What is the difference between commercial and private vehicle insurance?",
@@ -340,6 +448,7 @@ let servicesDetail = {
         { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH-belt lorry exposures: permits/fitness/endorsements." },
         { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/"), desc: "Permit/route discipline for goods carriers." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Documents + timeline steps that reduce delays." },
+        { label: "Vehicle Dealer Insurance Tie-Up", href: EN("/vehicle-dealer-insurance-tieup/"), desc: "Run a showroom? Bulk customer insurance + stock cover, one contact." },
       ],
     },
 
@@ -737,11 +846,62 @@ let servicesDetail = {
           a: "Yes — this is done through a mid-term endorsement. It's common after adding a body upgrade, new equipment, or when the declared IDV was set too low at renewal. The insurer adjusts premium pro-rata for the remaining policy period. We handle the endorsement request so the higher value is on record before you need to claim, not after.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Small fleet (2-5 vehicles)",
+          forWhom: "Just crossed from single-vehicle to a small fleet, and manual tracking is starting to break down.",
+          points: [
+            "We set up a centralized expiry tracker so no vehicle's permit, fitness, or policy renewal gets missed.",
+            "One incident-reporting checklist for all your drivers, instead of everyone reporting differently.",
+            "Renewal handled together, not vehicle-by-vehicle on different days.",
+          ],
+          ctaLabel: "WhatsApp — small fleet setup",
+          waText: "Hi, I have a small fleet of 2-5 vehicles and want to set up centralized renewal tracking.",
+        },
+        {
+          label: "Established fleet operator",
+          forWhom: "Running a larger fleet for years, but inconsistent documentation across vehicles keeps causing claim friction.",
+          points: [
+            "We audit your current fleet's disclosures and endorsements for consistency — mismatches here are the most common dispute trigger.",
+            "A standard driver-reporting SOP that works across your whole team, not just the vehicles you personally manage.",
+            "One point of contact across the entire fleet for renewals and claims.",
+          ],
+          ctaLabel: "WhatsApp — fleet documentation audit",
+          waText: "Hi, I run an established fleet and want our documentation and disclosures reviewed for consistency.",
+        },
+        {
+          label: "One vehicle in the fleet just had an incident",
+          forWhom: "A claim is active on one vehicle and you want to understand what happens to the rest of the fleet.",
+          points: [
+            "Only that specific vehicle's claim record is directly affected — we explain how the overall fleet claim ratio factors into renewal.",
+            "Clean, vehicle-specific documentation so this claim doesn't create confusion with your other vehicles' records.",
+            "Guidance on the incident timeline and reporting steps to move the claim forward quickly.",
+          ],
+          ctaLabel: "WhatsApp — active fleet claim",
+          waText: "Hi, one vehicle in our fleet has an active claim and I want guidance on next steps.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Managing vehicles separately vs. one fleet system",
+        intro: "This is the difference most operators notice within the first renewal cycle after consolidating.",
+        columns: ["What matters", "Each vehicle tracked separately", "One fleet system"],
+        rows: [
+          ["Renewal dates", "Scattered — easy to miss one", "Consolidated tracker, nothing missed"],
+          ["Driver incident reporting", "Inconsistent, depends on the driver", "Standard checklist across all drivers"],
+          ["Documentation", "Spread across files/folders per vehicle", "Centralized, one place to check"],
+          ["Claim impact from one vehicle", "Unclear how it affects the rest", "Explained clearly, tracked separately per vehicle"],
+        ],
+      },
+
       internalLinks: [
         { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH-belt lorry exposures + compliance discipline." },
         { label: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/"), desc: "Trailer third-party exposure + endorsement fit." },
         { label: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/"), desc: "Usage + wording alignment for business vehicles." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow, documents checklist, timeline discipline." },
+        { label: "Vehicle Dealer Insurance Tie-Up", href: EN("/vehicle-dealer-insurance-tieup/"), desc: "Sell commercial vehicles to fleet operators? See the dealer tie-up process." },
       ],
     },
 
@@ -999,6 +1159,56 @@ let servicesDetail = {
           a: "Stock register, purchase invoices, premises photos (pre-loss), fire brigade report, and an incident timeline. Missing any of these delays settlement by weeks. We help you set up a proof system before a loss occurs.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Fixed stock, stable value",
+          forWhom: "Your warehouse holds roughly the same stock value year-round.",
+          points: [
+            "A straightforward fire + burglary policy sized to your current stock and building value.",
+            "We check the sum insured is realistic against replacement cost, not a rounded guess carried forward each year.",
+            "Simple proof-folder habit — invoices and photos kept on file so a claim isn't a scramble.",
+          ],
+          ctaLabel: "WhatsApp — warehouse policy check",
+          waText: "Hi, we run a warehouse with stable stock levels and want our fire/burglary cover reviewed.",
+        },
+        {
+          label: "Fluctuating stock through the year",
+          forWhom: "Stock value swings significantly by season — peak season holds far more than off-season.",
+          points: [
+            "A stock declaration policy structure so your cover matches actual stock levels, not a flat year-round figure.",
+            "We size the sum insured to your peak, not your average, since the average clause punishes underinsurance at exactly the wrong moment.",
+            "Guidance on the declaration rhythm — how often you should update the insurer on current stock value.",
+          ],
+          ctaLabel: "WhatsApp — fluctuating stock cover",
+          waText: "Hi, our warehouse stock value fluctuates a lot through the year and we want the right policy structure for that.",
+        },
+        {
+          label: "After a fire or theft — filing a claim",
+          forWhom: "Something's already happened and you need to move correctly.",
+          points: [
+            "We check what proof you already have (invoices, photos, registers) and what's still missing before the surveyor visits.",
+            "Guidance on the average clause — if you're underinsured, we explain exactly how that affects your payout, honestly.",
+            "Support through the surveyor process and documentation submission.",
+          ],
+          ctaLabel: "WhatsApp — active warehouse claim",
+          waText: "Hi, we've had a fire/theft incident at our warehouse and need help with the claim process.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Undervalued sum insured vs. a realistic one",
+        intro: "The average clause is the single biggest reason warehouse claims settle for less than expected.",
+        columns: ["What matters", "Sum insured set too low", "Sum insured set realistically"],
+        rows: [
+          ["Premium today", "Lower", "Reflects actual risk"],
+          ["Partial loss payout", "Reduced proportionately under the average clause", "Paid in full up to the covered amount"],
+          ["Peak-season stock", "Often uncovered if declared at off-season levels", "Covered if declared at peak value"],
+          ["Claim dispute risk", "High", "Low — valuation matches reality"],
+        ],
+      },
+
       internalLinks: [
         { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property fire/burglary: proof discipline + conditions awareness." },
         { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/"), desc: "Fluctuating stock: declaration rhythm + evidence." },
@@ -1116,6 +1326,68 @@ let servicesDetail = {
         "Madhavaram industrial unit insurance support",
         "Chennai outskirts factory insurance consultant",
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Small MSME unit, first factory policy",
+          forWhom: "A small manufacturing unit that either has no cover yet or a policy set up years ago and never revisited.",
+          points: [
+            "We start with a realistic valuation of your building, machinery and stock — no minimum size to qualify.",
+            "Straightforward guidance on what's genuinely needed now versus what can wait as the unit grows.",
+            "If a bank loan or MSME registration requires proof of insurance, we get you compliant documentation.",
+          ],
+          ctaLabel: "WhatsApp — small factory setup",
+          waText: "Hi, we run a small manufacturing unit and need help setting up our first factory insurance policy.",
+        },
+        {
+          label: "Established factory, reviewing sum insured",
+          forWhom: "Running for years, but the sum insured hasn't kept pace with added machinery, expanded stock, or inflation.",
+          points: [
+            "We check your current sum insured against actual asset value — most underinsurance happens quietly, over several renewal cycles.",
+            "Machinery breakdown and business interruption add-ons assessed against your real exposure, not sold as a default bundle.",
+            "Renewal handled with a proper valuation review, not a same-figure rollover.",
+          ],
+          ctaLabel: "WhatsApp — sum insured review",
+          waText: "Hi, our factory has been running for years and we want our sum insured reviewed before the next renewal.",
+        },
+        {
+          label: "Bidding for a tender or bank loan",
+          forWhom: "A tender, loan application, or corporate customer is asking for proof of factory insurance you need quickly.",
+          points: [
+            "Send us the exact requirement and we confirm what's needed — usually fire cover, sometimes liability or machinery breakdown too.",
+            "We work to your deadline, since this is the one situation where speed matters more than a leisurely valuation exercise.",
+            "Documentation matched precisely to what the tender or bank has asked for.",
+          ],
+          ctaLabel: "WhatsApp — need proof of insurance fast",
+          waText: "Hi, we need factory insurance proof quickly for a tender or bank loan requirement. Can you help?",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Same sum insured for years vs. a periodic valuation check",
+        intro: "The average clause is the single biggest reason factory fire claims settle for less than expected — and it's almost always caused by this.",
+        columns: ["What matters", "Sum insured unchanged for years", "Valuation reviewed at renewal"],
+        rows: [
+          ["Underinsurance risk", "High — machinery and stock value grows, sum insured doesn't", "Checked and corrected periodically"],
+          ["Claim payout on partial loss", "Reduced proportionately under the average clause", "Matched to actual coverage need"],
+          ["Premium accuracy", "May be paying for outdated (often lower) risk profile", "Reflects current asset value"],
+          ["Tender/bank compliance", "May not meet current proof-of-insurance expectations", "Documentation stays current"],
+        ],
+      },
+
+      guideSections: [
+        {
+          title: "The average clause, explained simply",
+          intro: "This is the single most consequential concept in factory insurance, and most owners only learn about it at claim time.",
+          points: [
+            "If your factory's actual value is ₹1 crore but you've insured it for ₹60 lakh, you're 40% underinsured.",
+            "On a claim — even a small, partial one — the insurer pays only 60% of the loss, proportionate to how underinsured you are.",
+            "The fix is simple: review your sum insured at every renewal against current machinery, stock, and building replacement value — not the figure from three years ago.",
+          ],
+        },
+      ],
+
             faqs: [
         {
           q: "What does factory insurance typically cover?",
@@ -1134,6 +1406,8 @@ let servicesDetail = {
         { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Storage risk: stock proof discipline + valuation." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow and document readiness." },
         { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for visitor/vendor movement." },
+        { label: "One Advisor for All Company Policies", href: EN("/corporate-insurance-advisor-one-point/"), desc: "Factory policy is one of several? Consolidate under one advisor." },
+        { label: "New Business / Startup Insurance", href: EN("/new-business-startup-insurance-chennai/"), desc: "New factory or first-time MSME registration? What's mandatory at your stage." },
       ],
     },
 
@@ -1244,6 +1518,55 @@ let servicesDetail = {
         "Madhavaram burglary insurance support",
         "Red Hills godown fire insurance",
       ],
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Setting up cover for the first time",
+          forWhom: "A shop, warehouse, or commercial building with no fire/burglary cover yet.",
+          points: [
+            "We evaluate construction type and fire load honestly — pucca, semi-pucca, or kutcha structures all get assessed fairly.",
+            "Sum insured set to a realistic figure — building replacement cost plus peak stock value, not a rounded guess.",
+            "Fire and burglary explained separately, since burglary needs its own security conditions to be maintained.",
+          ],
+          ctaLabel: "WhatsApp — first fire/burglary policy",
+          waText: "Hi, we want to set up fire and burglary insurance for our shop/premises for the first time.",
+        },
+        {
+          label: "Renewing — checking for underinsurance",
+          forWhom: "You have cover already, but sum insured hasn't been revisited in a while.",
+          points: [
+            "We check your sum insured against current stock and building value — this is where the average clause quietly hurts most owners.",
+            "Security conditions for burglary cover reviewed against what's actually in place.",
+            "Renewal handled with an honest valuation check, not a same-figure rollover.",
+          ],
+          ctaLabel: "WhatsApp — renewal valuation check",
+          waText: "Hi, we want our fire/burglary sum insured checked for underinsurance before renewal.",
+        },
+        {
+          label: "Fire or theft has happened — filing a claim",
+          forWhom: "An incident's already occurred and you need to move correctly.",
+          points: [
+            "Call the fire brigade first if active, then report to the insurer within 24 hours — don't clear debris before the surveyor visits.",
+            "We check what proof you have and what's missing before the surveyor asks.",
+            "Honest guidance on how the average clause affects your payout if you're underinsured.",
+          ],
+          ctaLabel: "WhatsApp — active fire/burglary claim",
+          waText: "Hi, we've had a fire/theft incident and need help with the insurance claim process.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Underinsured vs. realistic sum insured",
+        intro: "The average clause is the single biggest reason fire/burglary claims in industrial estates settle for less than expected.",
+        columns: ["What matters", "Underinsured", "Realistic sum insured"],
+        rows: [
+          ["Partial loss payout", "Reduced proportionately under the average clause", "Paid in full up to the covered amount"],
+          ["Peak-stock coverage", "Often set at off-season levels", "Set to peak-season stock value"],
+          ["Premium", "Lower, but exposure is real", "Reflects actual risk"],
+          ["Claim dispute risk", "High", "Low — valuation matches reality"],
+        ],
+      },
+
       internalLinks: [
         { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Warehouse proof discipline and valuation." },
         { label: "Shop & MSME Package", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "MSME modules + valuation discipline." },
@@ -1483,6 +1806,61 @@ let servicesDetail = {
         "Ambattur industrial estate machinery insurance",
         "Chennai factory machinery breakdown cover",
       ],
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Established factory, no MB cover yet",
+          forWhom: "You have fire insurance but no separate cover for mechanical/electrical breakdown — a common gap.",
+          points: [
+            "We identify which machines actually justify MB cover based on replacement cost and how critical they are to production.",
+            "Sum insured set to realistic replacement value, not a rounded guess.",
+            "Basic maintenance record-keeping habit set up, since that's what insurers check first at claim time.",
+          ],
+          ctaLabel: "WhatsApp — first MB policy",
+          waText: "Hi, we have fire insurance but no machinery breakdown cover and want to understand if we need it.",
+        },
+        {
+          label: "Older machinery, renewing MB cover",
+          forWhom: "Equipment running well past its original expected life — common in Chennai's older industrial belts.",
+          points: [
+            "Honest guidance on realistic sum insured for aging equipment, not an inflated figure that invites disputes.",
+            "We help you keep maintenance records that show the machine wasn't neglected — this decides most claim outcomes.",
+            "Renewal reviewed against any equipment changes since the last policy.",
+          ],
+          ctaLabel: "WhatsApp — older equipment MB renewal",
+          waText: "Hi, we're renewing machinery breakdown cover for older equipment and want guidance on realistic sum insured.",
+        },
+        {
+          label: "Machine has broken down — filing a claim",
+          forWhom: "A mechanical or electrical failure has already happened.",
+          points: [
+            "We check whether this is genuinely an MB claim (sudden, unforeseen failure) versus wear-and-tear, which isn't covered.",
+            "Guidance on gathering maintenance records and incident documentation before the surveyor visits.",
+            "Support through the claim process to reduce avoidable delays.",
+          ],
+          ctaLabel: "WhatsApp — active MB claim",
+          waText: "Hi, a machine has broken down and we need help with the machinery breakdown insurance claim.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Fire insurance vs. machinery breakdown — what's actually covered",
+        intro: "This distinction is where most factory owners get caught out.",
+        columns: ["Cause of loss", "Standard fire policy", "Machinery Breakdown"],
+        rows: [
+          ["Fire, explosion, lightning", "Covered", "Not applicable"],
+          ["Sudden mechanical failure", "Not covered", "Covered"],
+          ["Electrical breakdown", "Not covered", "Covered"],
+          ["Normal wear and tear", "Not covered", "Not covered — neither policy pays for this"],
+        ],
+      },
+
+      faqs: [
+        { q: "Does my factory fire policy already cover machinery breakdown?", a: "No. Standard fire policies cover fire, explosion, and allied perils — not mechanical or electrical failure. Machinery Breakdown is a separate policy specifically for sudden, unforeseen equipment failure." },
+        { q: "Will old machinery still qualify for MB cover?", a: "Usually yes, but insurers may ask for maintenance records and set the sum insured based on realistic current value, not original purchase price. We help you present this accurately." },
+        { q: "What disqualifies a machinery breakdown claim?", a: "Wear and tear, lack of maintenance, or gradual deterioration are typically excluded — MB covers sudden, accidental failure, not neglect. Keeping basic maintenance records protects your claim." },
+      ],
+
       internalLinks: [
         { label: "Factory Insurance", href: EN("/services/industrial/factory-insurance/"), desc: "Fire, stock and machinery cover for factories." },
         { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property cover, separate from breakdown risk." },
@@ -1766,6 +2144,56 @@ let servicesDetail = {
           a: "CAR's third-party liability section can cover injury or property damage caused at the worksite during the contract period, but crane operation is often better covered under a specific liability or crane/CPM add-on depending on how the incident happened. Report immediately, preserve the site as-is where safe, and get us the incident details — we'll check which section of your cover actually applies before you make any claim commitments.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Contractor bidding for a project",
+          forWhom: "You need CAR cover arranged before a tender or contract award, often against a deadline.",
+          points: [
+            "Sum insured set to the full contract value — materials, labour, and profit — so the average clause doesn't quietly reduce a future claim.",
+            "We work to your tender deadline; this is one situation where speed genuinely matters more than a leisurely review.",
+            "Project owner named as co-insured where the contract requires it.",
+          ],
+          ctaLabel: "WhatsApp — CAR for a new project",
+          waText: "Hi, we're bidding for a project and need Contractor All Risk insurance arranged quickly.",
+        },
+        {
+          label: "Project timeline has extended",
+          forWhom: "Your project is running longer than the original policy period, and the CAR cover needs to match.",
+          points: [
+            "We extend the policy period to match the real timeline — a common gap that only surfaces at claim time if missed.",
+            "Maintenance period coverage checked against your actual handover schedule.",
+            "Endorsement handled without disrupting your existing cover.",
+          ],
+          ctaLabel: "WhatsApp — extend project cover",
+          waText: "Hi, our project timeline has extended and we need our CAR policy period updated to match.",
+        },
+        {
+          label: "Incident at the worksite — need to claim",
+          forWhom: "Something's already happened — damage to the works, a third-party injury, or a dispute over what's covered.",
+          points: [
+            "We check which section of your CAR policy actually applies before you make any claim commitments.",
+            "Guidance on preserving the site and documentation the way a surveyor will expect to see it.",
+            "If it's a crane or equipment-specific incident, we clarify whether that's covered under CAR or needs a separate liability/CPM claim.",
+          ],
+          ctaLabel: "WhatsApp — worksite incident",
+          waText: "Hi, we've had an incident at our worksite and need guidance on our CAR insurance claim.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Underinsured contract value vs. full contract value",
+        intro: "Same average-clause risk as fire insurance, but many contractors don't realise CAR works the same way.",
+        columns: ["What matters", "Sum insured below contract value", "Sum insured at full contract value"],
+        rows: [
+          ["Partial loss payout", "Reduced proportionately", "Paid in full up to the covered amount"],
+          ["Tender compliance", "May not satisfy the tender's insurance clause", "Meets the stated requirement"],
+          ["Premium", "Lower, but exposure is real", "Reflects actual project risk"],
+          ["Claim dispute risk", "High if a loss occurs", "Low — valuation matches the contract"],
+        ],
+      },
+
       internalLinks: [
         { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/"), desc: "Workforce exposure: classification + payroll discipline." },
         { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Worksite + workforce combined risk." },
@@ -1888,6 +2316,56 @@ let servicesDetail = {
           a: "The employer is legally liable for compensation under the Employee's Compensation Act, regardless of fault. If you hold a WC policy, the insurer pays this liability on your behalf — medical costs, disability compensation, or death benefit as applicable. Report the incident immediately and keep the worker's classification and payroll record ready; that's what determines how fast the claim settles.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "First WC policy for your site",
+          forWhom: "You've started employing workers with site/physical risk and haven't set up WC cover yet.",
+          points: [
+            "We verify worker classification and wage basis before the policy is issued — this is where most future disputes start.",
+            "Contract workers included and correctly declared if they're engaged through you as principal employer.",
+            "Straightforward setup, no unnecessary add-ons for a straightforward workforce.",
+          ],
+          ctaLabel: "WhatsApp — first WC policy",
+          waText: "Hi, we're setting up Workmen Compensation insurance for the first time and need guidance.",
+        },
+        {
+          label: "Renewing with a changed workforce",
+          forWhom: "Your worker count, wage bill, or contractor mix has changed since the last policy was issued.",
+          points: [
+            "We update classification and payroll basis to match your current workforce, not the numbers from last year.",
+            "If you've added contract workers through subcontractors, we check they're properly declared.",
+            "Premium recalculated fairly against your actual current risk, not carried forward blindly.",
+          ],
+          ctaLabel: "WhatsApp — WC renewal review",
+          waText: "Hi, our workforce has changed and we want our Workmen Compensation policy reviewed before renewal.",
+        },
+        {
+          label: "A worker was injured — filing a claim",
+          forWhom: "An incident has already happened and you need to move correctly and quickly.",
+          points: [
+            "Report immediately — timing affects how smoothly the claim proceeds.",
+            "We check your worker classification and payroll record are consistent and ready before the insurer asks.",
+            "Guidance through medical, disability, or death benefit claims as applicable, so the family or worker isn't left waiting.",
+          ],
+          ctaLabel: "WhatsApp — active WC claim",
+          waText: "Hi, a worker was injured on our site and we need help with the Workmen Compensation claim process.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Misclassified workers vs. correctly declared",
+        intro: "This is the single biggest cause of WC claim disputes — and it's entirely preventable at the policy stage.",
+        columns: ["What matters", "Classification/payroll mismatch", "Correctly declared"],
+        rows: [
+          ["Claim risk", "High — disputes common at claim time", "Low — classification already matches reality"],
+          ["Contract workers", "Often undeclared, creating coverage gaps", "Included and verified through principal employer"],
+          ["Premium accuracy", "May be under- or over-priced for actual risk", "Reflects real wage bill and risk category"],
+          ["Claim speed", "Slowed by verification disputes", "Faster — records already consistent"],
+        ],
+      },
+
       internalLinks: [
         { label: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/"), desc: "Worksite risk: period/scope alignment." },
         { label: "CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/"), desc: "Combined discipline for project + workforce." },
@@ -2149,9 +2627,6 @@ let servicesDetail = {
           a:
             "Business type, exact location, approximate stock/assets value, and existing policy details (if any). If you store stock, keep basic proof (invoices/register/photos).",
         },
-      ],
-
-            faqs: [
         {
           q: "What does a shop insurance package policy cover?",
           a: "A shop package (MSME package) typically bundles fire, burglary, plate glass, sign board, money-in-transit, personal accident, and public liability into one policy. The exact modules depend on the insurer and shop type. We help select the right modules.",
@@ -2165,11 +2640,62 @@ let servicesDetail = {
           a: "Yes. Even small shops can get fire, burglary, and public liability cover. The insurer will assess construction type (pucca/semi-pucca/kutcha), fire load (electrical wiring, flammable goods), and security measures. Kutcha structures may have limited options.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Small shop, first policy",
+          forWhom: "A roadside shop or small unit with no cover yet.",
+          points: [
+            "We assess construction type and fire load honestly — pucca, semi-pucca, or kutcha all get evaluated fairly, not assumed uninsurable.",
+            "Modules kept simple: fire, burglary, and public liability if customers visit — not an oversold bundle.",
+            "No published price list because premium genuinely depends on your specific shop — we give a ballpark on a quick call.",
+          ],
+          ctaLabel: "WhatsApp — small shop policy",
+          waText: "Hi, I run a small shop and want to set up insurance for the first time.",
+        },
+        {
+          label: "Established MSME, reviewing cover",
+          forWhom: "Running for a while, but sum insured or modules haven't been revisited since the policy was first bought.",
+          points: [
+            "We check sum insured against current stock/asset value — this drifts quietly over time and causes underinsurance.",
+            "Modules reviewed against what your business actually needs now, not what was relevant when you first bought.",
+            "If a bank loan or MSME registration now asks for proof of insurance, we get you compliant documentation.",
+          ],
+          ctaLabel: "WhatsApp — MSME policy review",
+          waText: "Hi, our shop/MSME insurance hasn't been reviewed in a while and we want it checked before renewal.",
+        },
+        {
+          label: "Filing a claim",
+          forWhom: "Fire, burglary, or damage has already happened and you need to move correctly.",
+          points: [
+            "We check what proof you already have (invoices, photos, registers) and what's still missing before the surveyor visits.",
+            "Honest guidance on the average clause if your sum insured turns out to be lower than actual value.",
+            "Support through documentation and the surveyor process.",
+          ],
+          ctaLabel: "WhatsApp — active shop claim",
+          waText: "Hi, we've had a fire/burglary incident at our shop and need help with the claim process.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Generic bundle vs. modules matched to your shop",
+        intro: "Shop package policies bundle several covers — but not every shop needs every module.",
+        columns: ["What matters", "Generic bundled package", "Modules matched to your shop"],
+        rows: [
+          ["Cost", "Pay for modules you may not need", "Pay for what's actually relevant"],
+          ["Public liability", "Included by default", "Included if customers/vendors visit your premises"],
+          ["Sum insured accuracy", "Often a rounded guess", "Based on your actual stock and asset value"],
+          ["Claim readiness", "Depends on whether proof habits were ever explained", "Proof-folder habit set up from day one"],
+        ],
+      },
+
       internalLinks: [
         { label: "Fire & Burglary", href: EN("/services/industrial/fire-burglary-insurance/"), desc: "Property cover and condition awareness." },
         { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for visitor-facing businesses." },
         { label: "Warehouse Insurance", href: EN("/services/industrial/warehouse-insurance/"), desc: "Warehouse valuation + proof discipline." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow, documents checklist, timelines." },
+        { label: "One Advisor for All Company Policies", href: EN("/corporate-insurance-advisor-one-point/"), desc: "Shop policy is one of several? Consolidate under one advisor." },
       ],
     },
 
@@ -2295,6 +2821,8 @@ let servicesDetail = {
     { label: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/"), desc: "Package structure + proof discipline." },
     { label: "Public Liability", href: EN("/services/liability/public-liability/"), desc: "Third-party exposure for customer-facing businesses." },
     { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps + document discipline." },
+    { label: "One Advisor for All Company Policies", href: EN("/corporate-insurance-advisor-one-point/"), desc: "Juggling multiple policies across agents? Consolidate under one contact." },
+    { label: "New Business / Startup Insurance", href: EN("/new-business-startup-insurance-chennai/"), desc: "Just registered or about to hire? What's mandatory vs optional at your stage." },
   ],
 
   faqs: [
@@ -3216,6 +3744,56 @@ let servicesDetail = {
           a: "Yes. Interstate movement of machinery carries higher risk from longer transit time, multiple handling points, and road conditions. A goods-in-transit policy covers the machinery's declared value during that specific movement — get it arranged before dispatch, not after.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Regular shipper — same routes repeatedly",
+          forWhom: "You move goods on the same NH corridors regularly and want a consistent process, not a one-off policy each time.",
+          points: [
+            "We set up a repeatable invoice/packing/dispatch proof habit so each shipment is claim-ready by default.",
+            "Route and mode declared clearly to avoid disputes if a claim arises.",
+            "One contact for cover across all your regular shipments.",
+          ],
+          ctaLabel: "WhatsApp — regular transit cover",
+          waText: "Hi, we ship goods regularly on the same routes and want a consistent transit insurance process set up.",
+        },
+        {
+          label: "One-off or occasional shipment",
+          forWhom: "A single high-value shipment — machinery, equipment, or goods moving interstate — that needs cover just for that movement.",
+          points: [
+            "Cover arranged for that specific movement, sized to the declared value of what's being shipped.",
+            "Fast turnaround so this doesn't hold up your dispatch schedule.",
+            "Clear guidance on what proof to capture before and during transit for that one shipment.",
+          ],
+          ctaLabel: "WhatsApp — one-off shipment cover",
+          waText: "Hi, we have a one-off shipment that needs transit insurance arranged before dispatch.",
+        },
+        {
+          label: "Goods damaged — filing a claim",
+          forWhom: "A shipment has already been damaged or lost in transit and you need to move correctly.",
+          points: [
+            "We confirm the policy pays you directly, regardless of who's at fault — you don't have to wait for the carrier to accept liability.",
+            "Guidance on preserving damaged packaging and gathering invoice/dispatch proof before the surveyor visits.",
+            "Support through the claim process from report to settlement.",
+          ],
+          ctaLabel: "WhatsApp — transit damage claim",
+          waText: "Hi, our goods were damaged in transit and we need help filing the insurance claim.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Weak proof trail vs. clean documentation",
+        intro: "Transit claims are almost entirely documentation disputes — this is what decides the outcome.",
+        columns: ["What matters", "Weak proof trail", "Clean documentation"],
+        rows: [
+          ["Invoice/packing match", "Mismatch risks claim dispute", "Consistent, verified before dispatch"],
+          ["Damage evidence", "Photos/condition not documented", "Packing condition photographed"],
+          ["Reporting speed", "Delayed — weakens the case", "Reported immediately"],
+          ["Claim outcome", "Higher dispute risk", "Smoother, faster settlement"],
+        ],
+      },
+
       internalLinks: [
         { label: "Lorry / Heavy Vehicle Insurance", href: EN("/services/transport-fleet/lorry-insurance/"), desc: "NH movement exposure and claims readiness." },
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Timeline and evidence discipline." },
@@ -3724,9 +4302,73 @@ let servicesDetail = {
         "IDV NCB check Chennai car insurance",
         "Zero depreciation car insurance Chennai",
       ],
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Renewing this year",
+          forWhom: "Your policy is due soon and you want it done right, not just done fast.",
+          points: [
+            "We check your IDV and NCB carry-forward before you renew, not after.",
+            "If zero dep or another add-on no longer makes sense for your car's age, we tell you — not upsell it anyway.",
+            "Renewal handled over WhatsApp in about 10 minutes once we have your current policy copy.",
+          ],
+          ctaLabel: "WhatsApp — renewal check",
+          waText: "Hi, my car insurance is due for renewal and I want an IDV/NCB check before I renew.",
+        },
+        {
+          label: "Buying for the first time",
+          forWhom: "New car, or your first time choosing a policy without a previous one to compare against.",
+          points: [
+            "We explain comprehensive vs third-party in plain terms — not just insurer jargon.",
+            "IDV set to your car's real market value from day one, not a default that's easy to get wrong.",
+            "Add-ons recommended based on how you'll actually use the car, not a standard bundle.",
+          ],
+          ctaLabel: "WhatsApp — new car policy",
+          waText: "Hi, I just bought a car and need help choosing the right insurance policy.",
+        },
+        {
+          label: "Dealing with a claim or lapsed policy",
+          forWhom: "Something's already gone wrong — an accident, a missed renewal, or a claim that got complicated.",
+          points: [
+            "Step-by-step guidance from the first hour after an accident — what to photograph, who to call, what not to do.",
+            "If your policy lapsed, we handle the inspection requirement and get you back on cover with minimal friction.",
+            "If a claim was rejected or delayed, we review what happened and advise on realistic next steps.",
+          ],
+          ctaLabel: "WhatsApp — claim or lapsed policy",
+          waText: "Hi, I need help with a car insurance claim or a lapsed policy. Can you guide me?",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Renewing blind vs. renewing with a check",
+        intro: "Most renewal problems trace back to one thing: nobody looked at the numbers before hitting 'pay.'",
+        columns: ["What matters", "Auto-renew / renew blind", "Renew with a quick check"],
+        rows: [
+          ["IDV accuracy", "Often carried forward unchanged, even as the car ages", "Verified against current market value"],
+          ["NCB", "Assumed correct — sometimes lost silently on insurer switch", "Confirmed and carried forward properly"],
+          ["Add-ons", "Same bundle every year regardless of car age", "Reviewed — dropped if no longer relevant"],
+          ["Claim payout risk", "Discovered only when you file a claim", "Caught and fixed before you need it"],
+          ["Time cost", "Fast, but risk is invisible until claim time", "About 10 minutes, before the risk becomes real"],
+        ],
+      },
+
+      guideSections: [
+        {
+          title: "The 10-minute renewal check, explained",
+          intro: "This is exactly what we look at before you renew — you can do this yourself too, but most people don't.",
+          points: [
+            "IDV: compare it against your car's actual current market value, not last year's number carried forward.",
+            "NCB: confirm the percentage matches your claim-free years, especially if you're switching insurers.",
+            "Add-ons: zero dep makes sense under 5 years old; beyond 7-8 years, most insurers won't even offer it.",
+            "Claim history: make sure it's declared accurately — a mismatch here can cause problems at claim time, not renewal time.",
+          ],
+        },
+      ],
+
       internalLinks: [
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
         { label: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/"), desc: "Two-wheeler IDV, NCB and claim guidance." },
+        { label: "Vehicle Dealer Insurance Tie-Up", href: EN("/vehicle-dealer-insurance-tieup/"), desc: "Run a showroom? Bulk customer insurance + stock cover, one contact." },
       ],
       faqs: [
         {
@@ -3842,6 +4484,57 @@ let servicesDetail = {
           a: "Third-party is mandatory and covers damage to others only. Comprehensive adds own-damage cover (accident, theft, flood, fire). For bikes under 5 years or worth over ₹80K, comprehensive is strongly recommended. The premium difference is usually ₹500-1500 per year.",
         },
       ],
+
+      personaGuideTitle: "Which of these is you?",
+      personaGuide: [
+        {
+          label: "Daily commuter renewing this year",
+          forWhom: "You use the bike daily for work/college and just want the renewal done right.",
+          points: [
+            "IDV and NCB checked before renewal so you're not silently paying more or covered for less.",
+            "Same-day renewal over WhatsApp — send your current policy copy to start.",
+            "Add-ons reviewed against how much you actually ride, not sold as a default bundle.",
+          ],
+          ctaLabel: "WhatsApp — renewal check",
+          waText: "Hi, my bike insurance is due for renewal and I want an IDV/NCB check before I renew.",
+        },
+        {
+          label: "Delivery rider / gig worker",
+          forWhom: "You use the bike for delivery or ride-hailing work, which changes what your policy needs to cover.",
+          points: [
+            "We flag if your current policy's declared usage matches commercial/delivery use — a mismatch here is a common claim-rejection reason.",
+            "Guidance on whether a personal policy is still valid for your usage pattern, or if it needs a different structure.",
+            "Faster claim support given how often delivery riders are on the road.",
+          ],
+          ctaLabel: "WhatsApp — delivery rider policy check",
+          waText: "Hi, I use my bike for delivery/gig work and want to check if my insurance actually covers this usage.",
+        },
+        {
+          label: "Lapsed policy or first-time buyer",
+          forWhom: "No current cover — either it lapsed, or this is a new bike.",
+          points: [
+            "If lapsed, we handle the inspection requirement and get you back on cover with minimal friction.",
+            "If new, we help you decide comprehensive vs third-party based on the bike's value and your usage.",
+            "Same-day processing so you're not riding uninsured longer than necessary.",
+          ],
+          ctaLabel: "WhatsApp — lapsed or new policy",
+          waText: "Hi, my bike insurance lapsed / I have a new bike and need a policy set up quickly.",
+        },
+      ],
+
+      comparisonTable: {
+        title: "Third-party only vs. comprehensive",
+        intro: "Third-party is legally mandatory either way — this is about what happens to your own bike.",
+        columns: ["What matters", "Third-party only", "Comprehensive"],
+        rows: [
+          ["Damage to others (mandatory)", "Covered", "Covered"],
+          ["Damage to your own bike", "Not covered", "Covered (accident, fire, theft, flood)"],
+          ["Theft", "Not covered", "Covered"],
+          ["Premium difference", "Lower", "Usually ₹500–1,500/year more"],
+          ["Best for", "Very old bikes with low resale value", "Bikes under 5 years or worth over ₹80K"],
+        ],
+      },
+
       internalLinks: [
         { label: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/"), desc: "Claim steps and evidence discipline." },
       ],
@@ -3873,11 +4566,79 @@ let servicesDetail = {
   areaRealityTitle: "Health claim reality",
   areaRealityText: "Clean reports and correct process reduce delays more than chasing shortcuts.",
   areaSignals: ["health insurance support chennai"],
+
+  personaGuideTitle: "Which of these is you?",
+  personaGuide: [
+    {
+      label: "Buying your first health policy",
+      forWhom: "No existing cover, or relying only on an employer group policy that ends if you change jobs.",
+      points: [
+        "We explain individual vs family floater plainly, matched to your actual family situation.",
+        "Waiting periods and exclusions explained upfront — not discovered at claim time.",
+        "Sum insured recommended based on realistic hospital costs in your area, not a generic number.",
+      ],
+      ctaLabel: "WhatsApp — first health policy",
+      waText: "Hi, I don't have health insurance yet and want guidance on choosing my first policy.",
+    },
+    {
+      label: "Renewing or reviewing an existing plan",
+      forWhom: "You have a policy already but haven't checked in a while whether it still fits.",
+      points: [
+        "We check if your sum insured still matches current hospital costs — premiums rise, but sum insured often doesn't get revisited.",
+        "Continuity protected — we flag risk before a lapse breaks your waiting-period benefits.",
+        "If a better-fit plan exists, we say so; if your current one is fine, we say that too.",
+      ],
+      ctaLabel: "WhatsApp — renewal review",
+      waText: "Hi, I want my existing health insurance policy reviewed before I renew it.",
+    },
+    {
+      label: "Senior citizen or pre-existing condition",
+      forWhom: "Buying or renewing cover where age or a known health condition changes what's available.",
+      points: [
+        "We identify insurers who genuinely accept your age/condition profile — not just list every company generically.",
+        "Waiting periods for pre-existing conditions explained clearly, since this is where most disputes happen later.",
+        "Guidance on accurate disclosure — under-disclosing to get a lower premium is the single biggest cause of claim rejection.",
+      ],
+      ctaLabel: "WhatsApp — senior/pre-existing cover",
+      waText: "Hi, I'm looking for health insurance for a senior citizen or with a pre-existing condition. Can you guide me?",
+    },
+  ],
+
+  comparisonTable: {
+    title: "Accurate disclosure vs. under-disclosing to save premium",
+    intro: "This is the single biggest fork in the road for health insurance claims — most people don't realise it until it's too late.",
+    columns: ["What matters", "Under-disclose to save premium", "Disclose accurately"],
+    rows: [
+      ["Premium today", "Slightly lower", "Reflects your real risk — sometimes marginally higher"],
+      ["Claim for a related condition", "High risk of rejection for non-disclosure", "Processed on its actual merits"],
+      ["Waiting period clarity", "Unclear — insurer may treat it as concealment", "Known and predictable from day one"],
+      ["Policy stability", "Insurer can cancel the policy if concealment is found", "Policy stands as issued"],
+      ["Peace of mind", "None — risk sits hidden until a claim", "Full — you know exactly where you stand"],
+    ],
+  },
+
+  guideSections: [
+    {
+      title: "What actually causes health claim rejections",
+      intro: "Not insurer unfairness — usually one of these three, and all three are avoidable.",
+      points: [
+        "Non-disclosure of a pre-existing condition, even one that seems minor or unrelated to the current claim.",
+        "A lapsed policy that broke continuity, resetting waiting periods that had already been served.",
+        "Missing or inconsistent documents — discharge summary, bills, and reports not matching each other.",
+      ],
+    },
+  ],
+
   internalLinks: [
     { label: "Insurance Renewal Near Me", href: EN("/insurance-renewal-near-me/"), desc: "Renewal discipline and checks." },
     { label: "Claim Support", href: EN("/services/claims-support/claim-support/"), desc: "Claim workflow discipline." },
+    { label: "One Advisor for All Company Policies", href: EN("/corporate-insurance-advisor-one-point/"), desc: "Setting up group health for your company? See the consolidated-advisor approach." },
   ],
-  faqs: [{ q: "Do you guarantee cashless?", a: "No. Cashless depends on insurer/TPA and hospital process. We guide documents and steps (case-dependent)." }],
+  faqs: [
+    { q: "Do you guarantee cashless?", a: "No. Cashless depends on insurer/TPA and hospital process. We guide documents and steps (case-dependent)." },
+    { q: "I have a minor pre-existing condition — should I mention it even if it seems unrelated?", a: "Yes, always disclose it. Non-disclosure — even of something that seems minor — is the most common reason claims get rejected later, sometimes for conditions that appear unrelated on the surface. Accurate disclosure protects you." },
+    { q: "What happens if I let my health policy lapse for a few days?", a: "You risk losing continuity benefits, which can reset waiting periods for pre-existing conditions. Even a short lapse can mean re-serving a waiting period you'd already completed. Renew before expiry, or contact us immediately if it's already lapsed." },
+  ],
 },
 "lic-life-term-insurance": {
   seoTitle: "LIC & Term Life Insurance Support – Chennai",
@@ -3966,6 +4727,44 @@ sholavaram: {
         a: "Sholavaram is our base. We commonly support nearby Chennai North and corridor-connected areas depending on the policy and insurer requirements.",
       },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Nearby resident or small business, walking distance",
+        forWhom: "You're in or near Sholavaram and would rather sort things out in person.",
+        points: [
+          "Walk in directly — call or WhatsApp first so we can prep the document checklist and save you a repeat trip.",
+          "Personal, health, and small business policies handled the same way as commercial cases, with the same attention.",
+          "Same-day support for renewals when you bring your documents.",
+        ],
+        ctaLabel: "WhatsApp — visiting the office",
+        waText: "Hi, I'm nearby in Sholavaram and want to visit the office. What should I bring?",
+      },
+      {
+        label: "Transport or warehouse business on the corridor",
+        forWhom: "You operate a lorry, fleet, or warehouse along the NH/corridor belt connected to Sholavaram.",
+        points: [
+          "Permit, fitness, and endorsement checks handled the same way whether you visit or send documents over WhatsApp.",
+          "Warehouse and stock valuation reviewed with the same proof-discipline approach used across the corridor belt.",
+          "This is our specialty — 30+ years anchored to exactly this kind of commercial risk.",
+        ],
+        ctaLabel: "WhatsApp — commercial/transport support",
+        waText: "Hi, I run a transport/warehouse business near Sholavaram and need insurance support.",
+      },
+      {
+        label: "Remote — not near Sholavaram but still in reach",
+        forWhom: "You're further out but within our support radius, and prefer to handle everything remotely.",
+        points: [
+          "Full renewal, claim, and new-policy support over WhatsApp — a physical visit is rarely required.",
+          "We visit your site for inspections or signatures within roughly 30 km of Sholavaram at no charge, when needed.",
+          "Same advisor, same attention, regardless of whether you ever visit the office.",
+        ],
+        ctaLabel: "WhatsApp — remote support",
+        waText: "Hi, I'm not near Sholavaram but would like remote insurance support. Can you help?",
+      },
+    ],
+
     relatedLocations: [
       { label: "Red Hills", href: EN("/locations/red-hills/") },
       { label: "Puzhal", href: EN("/locations/puzhal/") },
@@ -4012,6 +4811,44 @@ sholavaram: {
         a: "Third-party involvement and compliance checks (as applicable) are more common. Clean reporting, valid documents and a clear timeline reduce avoidable delays.",
       },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Lorry or fleet operator on the NH belt",
+        forWhom: "You run vehicles through the Red Hills toll/NH corridor, where documentation scrutiny is higher.",
+        points: [
+          "Permit and fitness checked against your policy before renewal, since NH-belt claims are unusually document-driven.",
+          "Endorsements reviewed against real route/usage to avoid disputes if a third-party incident happens.",
+          "Fast turnaround given how often NH-belt vehicles are on the move.",
+        ],
+        ctaLabel: "WhatsApp — NH belt fleet/lorry",
+        waText: "Hi, I run vehicles through the Red Hills/NH belt and want my insurance documentation checked.",
+      },
+      {
+        label: "Warehouse or godown owner",
+        forWhom: "You store stock in a warehouse near Red Hills and need fire/burglary or stock declaration cover.",
+        points: [
+          "Sum insured checked against actual stock and building value — underinsurance is the most common claim-reduction cause here.",
+          "Burglary security conditions reviewed against what's genuinely in place.",
+          "Proof-folder habit set up so a claim isn't a scramble.",
+        ],
+        ctaLabel: "WhatsApp — warehouse cover",
+        waText: "Hi, I own a warehouse near Red Hills and want to check our fire/burglary insurance.",
+      },
+      {
+        label: "Family or individual (car, bike, health)",
+        forWhom: "You live in Red Hills and need personal insurance, not commercial.",
+        points: [
+          "Same doorstep support as our commercial clients — renewal checks, IDV/NCB verification, claim guidance.",
+          "Quick WhatsApp process for renewals; a visit is rarely needed.",
+          "We're anchored in Sholavaram nearby, so local support isn't a stretch.",
+        ],
+        ctaLabel: "WhatsApp — personal insurance",
+        waText: "Hi, I'm in Red Hills and need help with car/bike/health insurance.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Sholavaram", href: EN("/locations/sholavaram/") },
       { label: "Madhavaram", href: EN("/locations/madhavaram/") },
@@ -4052,6 +4889,44 @@ sholavaram: {
     faqs: [
       { q: "Do you support Madhavaram customers for renewals?", a: "Yes. Renewals and claim documentation clarity are common requests we handle." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Family — car, bike, or health renewal",
+        forWhom: "You need a personal policy renewed or reviewed, not a commercial one.",
+        points: [
+          "IDV/NCB checked on car and bike renewals before you pay, not after.",
+          "Health policy sum insured and continuity checked so a lapse doesn't reset your waiting period.",
+          "WhatsApp-first process — send your documents, we handle the rest.",
+        ],
+        ctaLabel: "WhatsApp — personal renewal",
+        waText: "Hi, I'm in Madhavaram and need my car/bike/health insurance renewal checked.",
+      },
+      {
+        label: "Transport business — commercial vehicle",
+        forWhom: "You run goods vehicles through the Madhavaram truck terminal / logistics corridor.",
+        points: [
+          "Permit, fitness, and endorsement checks matched to real usage — this belt sees frequent document scrutiny.",
+          "Goods-carrying and commercial vehicle cover reviewed together if you run more than one vehicle type.",
+          "Fast turnaround given how often commercial vehicles here are on the move.",
+        ],
+        ctaLabel: "WhatsApp — commercial vehicle",
+        waText: "Hi, I run commercial vehicles near Madhavaram and want my insurance documentation checked.",
+      },
+      {
+        label: "Small business / MSME",
+        forWhom: "You run a shop, office, or small unit and need business cover, not vehicle insurance.",
+        points: [
+          "Shop/MSME package sized to your actual stock and premises, not a generic bundle.",
+          "Fire and burglary conditions explained clearly if you're setting up cover for the first time.",
+          "One contact for renewals and claims going forward.",
+        ],
+        ctaLabel: "WhatsApp — business/MSME cover",
+        waText: "Hi, I run a small business in Madhavaram and need insurance guidance.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Puzhal", href: EN("/locations/puzhal/") },
       { label: "Red Hills", href: EN("/locations/red-hills/") },
@@ -5207,6 +6082,44 @@ sholavaram: {
     faqs: [
       { q: "Do you support Anna Nagar customers from Sholavaram office?", a: "Yes. We support via phone/WhatsApp and guided documentation depending on requirement." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Renewing this year",
+        forWhom: "Your car, bike, or health policy is due and you want it checked before you pay.",
+        points: [
+          "IDV/NCB checked on motor renewals; sum insured checked on health — before renewal, not after.",
+          "Add-ons reviewed against your actual usage, not sold as a default bundle.",
+          "Entire process over WhatsApp — send your current policy copy to start.",
+        ],
+        ctaLabel: "WhatsApp — renewal check",
+        waText: "Hi, I'm in Anna Nagar and want my insurance renewal checked before I pay.",
+      },
+      {
+        label: "Buying for the first time",
+        forWhom: "New vehicle, new health policy, or your first time choosing without a previous one to compare.",
+        points: [
+          "Plain-language explanation of what you're actually choosing between, not just insurer jargon.",
+          "Right-sized cover for your situation, not a generic recommendation.",
+          "Documentation guidance so the policy is issued correctly the first time.",
+        ],
+        ctaLabel: "WhatsApp — first-time policy",
+        waText: "Hi, I'm buying insurance for the first time and need guidance. I'm in Anna Nagar.",
+      },
+      {
+        label: "Dealing with a claim",
+        forWhom: "An accident or health event has already happened and you need to move correctly.",
+        points: [
+          "Step-by-step guidance on documentation and reporting from the first hour.",
+          "If a claim was delayed or rejected, we review what happened and advise on realistic next steps.",
+          "Support through to settlement, not just the initial filing.",
+        ],
+        ctaLabel: "WhatsApp — claim help",
+        waText: "Hi, I need help with an insurance claim. I'm in Anna Nagar.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Koyambedu", href: EN("/locations/koyambedu/") },
       { label: "Mogappair West", href: EN("/locations/mogappair-west/") },
@@ -5326,6 +6239,44 @@ sholavaram: {
       { q: "What insurance do Gummidipoondi factories typically need?", a: "Standard industrial property insurance (fire, explosion, flood), stock declaration, machinery breakdown, and liability. Requirements vary by industry type — we help align the right covers." },
       { q: "Do you support contractor documentation for SIPCOT projects?", a: "Yes — Contractor All Risk and WC documentation including project value declarations, site list, and manpower details if required." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Factory / industrial estate owner",
+        forWhom: "You run a factory or industrial unit within Gummidipoondi SIPCOT.",
+        points: [
+          "Fire, stock, and machinery cover assessed together, sized to your actual asset value.",
+          "Stock declaration structure if your inventory fluctuates through the year, so you're not underinsured at peak.",
+          "Liability cover reviewed if vendors or visitors regularly access your site.",
+        ],
+        ctaLabel: "WhatsApp — factory insurance",
+        waText: "Hi, we run a factory in Gummidipoondi SIPCOT and want our insurance reviewed.",
+      },
+      {
+        label: "Long-distance fleet / lorry operator",
+        forWhom: "You operate lorries or heavy vehicles running long routes out of Gummidipoondi.",
+        points: [
+          "Vehicle class declarations and permit alignment checked to avoid disputes on long-distance third-party incidents.",
+          "Route-specific exposure discussed honestly, since long-haul operations carry different risk than local trips.",
+          "Fleet documentation centralized if you run more than one vehicle.",
+        ],
+        ctaLabel: "WhatsApp — fleet/lorry insurance",
+        waText: "Hi, we run long-distance lorries out of Gummidipoondi and need our insurance documentation checked.",
+      },
+      {
+        label: "Contractor working on SIPCOT projects",
+        forWhom: "You're a contractor with active or upcoming project work in the estate.",
+        points: [
+          "Contractor All Risk and Workmen Compensation documentation prepared together — project value, site list, and manpower details as required.",
+          "Sum insured set to full contract value to avoid the average clause reducing a future claim.",
+          "We work to tender deadlines when insurance proof is required to bid.",
+        ],
+        ctaLabel: "WhatsApp — contractor insurance",
+        waText: "Hi, we're a contractor working on SIPCOT projects near Gummidipoondi and need CAR/WC insurance set up.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Sholavaram", href: EN("/locations/sholavaram/") },
       { label: "Ponneri", href: EN("/locations/ponneri/") },
@@ -11591,6 +12542,96 @@ servicePopular: [
   },
 ],
 
+  businessAudiences: [
+    {
+      title: "Vehicle Dealer Insurance Tie-Up",
+      href: EN("/vehicle-dealer-insurance-tieup/"),
+      tag: "Dealers",
+      desc: "New showroom, additional outlet, or switching agents — bulk customer insurance and showroom/stock cover under one contact.",
+    },
+    {
+      title: "One Advisor for All Company Policies",
+      href: EN("/corporate-insurance-advisor-one-point/"),
+      tag: "Corporate",
+      desc: "Consolidate factory, fleet, health and liability policies scattered across agents — one portfolio review, one renewal calendar.",
+    },
+    {
+      title: "New Business / Startup Insurance",
+      href: EN("/new-business-startup-insurance-chennai/"),
+      tag: "MSME",
+      desc: "What's mandatory vs optional from company registration through your first hires and tenders.",
+    },
+    {
+      title: "Export & Import Business Insurance",
+      href: EN("/export-import-business-insurance-chennai/"),
+      tag: "EXIM",
+      desc: "Cargo cover matched to your actual Incoterms — FOB, CIF, EXW — not a generic marine policy.",
+    },
+    {
+      title: "Insurance for Professionals & Consultants",
+      href: EN("/insurance-for-professionals-consultants-chennai/"),
+      tag: "Professionals",
+      desc: "Professional indemnity, office equipment and health cover matched to how you actually work.",
+    },
+    {
+      title: "Wholesale, Trader & Retailer Insurance",
+      href: EN("/wholesale-trader-retailer-insurance-chennai/"),
+      tag: "Traders",
+      desc: "Stock cover sized to your peak holding, not a flat figure that's wrong most of the year.",
+    },
+    {
+      title: "Hotel & Restaurant Insurance",
+      href: EN("/hotel-restaurant-insurance-chennai/"),
+      tag: "Hospitality",
+      desc: "Fire, guest liability and staff cover matched to hospitality risk, not a generic shop policy.",
+    },
+    {
+      title: "Schools, Trusts & NGOs Insurance",
+      href: EN("/school-trust-ngo-insurance-chennai/"),
+      tag: "Institutions",
+      desc: "Property and liability cover for schools, trusts, NGOs and cooperative societies.",
+    },
+    {
+      title: "E-commerce & Online Seller Insurance",
+      href: EN("/ecommerce-online-seller-insurance-chennai/"),
+      tag: "E-commerce",
+      desc: "Warehouse stock and goods-in-transit cover for D2C brands and online sellers.",
+    },
+    {
+      title: "Hospitals & Clinics Insurance",
+      href: EN("/hospital-clinic-insurance-chennai/"),
+      tag: "Healthcare",
+      desc: "Equipment breakdown and professional liability cover matched to healthcare risk.",
+    },
+  ],
+
+  homeComparisonTable: {
+    title: "Online aggregator vs. no insurance vs. us",
+    intro: "Three ways people usually approach buying insurance. Here's an honest comparison, not a sales pitch.",
+    columns: ["What matters", "Skip it / delay it", "Buy online yourself", "Through us"],
+    rows: [
+      ["Premium", "₹0 now, full risk later", "Lowest listed price", "Same price — no markup, commission is built in by the insurer"],
+      ["Coverage accuracy", "No cover at all", "Self-service filters — easy to under-insure or miss add-ons", "IDV/sum insured checked before you commit"],
+      ["Claim support", "Nothing to claim against", "Call center / app ticket queue", "One accountable person, documentation-first"],
+      ["Renewal tracking", "Easy to forget entirely", "Auto-renewal email you may not read carefully", "We track it and reach out before it lapses"],
+      ["Language & explanation", "N/A", "English-only interface typically", "Tamil, English, Malayalam — explained plainly"],
+      ["What happens if something goes wrong", "You absorb the full loss", "You navigate the claim process alone", "We coordinate documentation, insurer, and follow-up"],
+    ],
+  },
+
+  homeGuideSection: {
+    title: "How to actually choose the right cover",
+    intro: "A short, honest checklist — whether you end up buying through us or anywhere else.",
+    points: [
+      "Start with what you're protecting, not the cheapest premium — a policy that doesn't pay out when it matters isn't cheap, it's a gap.",
+      "For vehicles: check your IDV/sum insured is realistic, not auto-filled too low to shave off premium.",
+      "For property/stock: sum insured should reflect peak value during the year, not a rounded guess — underinsurance quietly reduces every future claim.",
+      "For businesses: confirm mandatory covers for your stage (Workmen Compensation once you have employees, third-party motor cover for any company vehicle).",
+      "Ask how claims actually get handled before you buy — a vague answer today becomes a real problem at claim time.",
+      "Keep a renewal calendar, even a simple one — most coverage gaps happen from a lapsed policy, not a wrong purchase.",
+    ],
+  },
+
   serviceCategories: [
     {
       slug: "transport-fleet",
@@ -11611,6 +12652,13 @@ servicePopular: [
         { title: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
         { title: "Trailer Insurance", href: EN("/services/transport-fleet/trailer-insurance/") },
         { title: "Commercial Vehicle Insurance", href: EN("/services/transport-fleet/commercial-vehicle-insurance/") },
+      ],
+      serviceFinder: [
+        { situation: "I own one lorry or heavy vehicle", service: "Lorry / Heavy Vehicle Insurance" },
+        { situation: "I manage multiple vehicles under one business", service: "Fleet Insurance" },
+        { situation: "My vehicle specifically carries goods for hire", service: "Goods Carrying Vehicle Insurance" },
+        { situation: "I operate a trailer attached to a prime mover", service: "Trailer Insurance" },
+        { situation: "I have a general business-use vehicle, not sure which category", service: "Commercial Vehicle Insurance" },
       ],
     },
 
@@ -11635,6 +12683,15 @@ servicePopular: [
         { title: "Mining / Heavy Industrial Insurance", href: EN("/services/industrial/mining-industrial-insurance/") },
         { title: "Land & Property Insurance", href: EN("/services/industrial/land-property-insurance/") },
       ],
+      serviceFinder: [
+        { situation: "I store goods/stock in a warehouse or godown", service: "Warehouse / Godown Insurance" },
+        { situation: "I run a manufacturing unit with machinery + stock", service: "Factory Insurance" },
+        { situation: "I need fire/burglary cover for a shop or commercial building", service: "Fire & Burglary (Commercial Property)" },
+        { situation: "My stock value fluctuates through the year", service: "Stock Declaration Policies" },
+        { situation: "I'm worried about mechanical/electrical breakdown, not fire", service: "Machinery Breakdown Insurance" },
+        { situation: "I run a quarry, mine, or heavy industrial site", service: "Mining / Heavy Industrial Insurance" },
+        { situation: "I own land or a building, not currently in active use", service: "Land & Property Insurance" },
+      ],
     },
 
     {
@@ -11652,6 +12709,11 @@ servicePopular: [
         { title: "Contractor All Risk (CAR)", href: EN("/services/construction/contractor-all-risk/") },
         { title: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
         { title: "Contractor CAR/WC Combined Guidance", href: EN("/services/construction/contractor-car-wc-insurance/") },
+      ],
+      serviceFinder: [
+        { situation: "I need to cover the worksite/project itself", service: "Contractor All Risk (CAR)" },
+        { situation: "I need to cover my workforce's injury liability", service: "Workmen Compensation (WC)" },
+        { situation: "I need both worksite and workforce cover together", service: "Contractor CAR/WC Combined Guidance" },
       ],
     },
 
@@ -11671,6 +12733,11 @@ servicePopular: [
         { title: "Public Liability for Businesses", href: EN("/services/liability/public-liability/") },
         { title: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
       ],
+      serviceFinder: [
+        { situation: "I run a retail shop or small unit with stock", service: "Shop & MSME Package Insurance" },
+        { situation: "Customers or vendors visit my premises regularly", service: "Public Liability for Businesses" },
+        { situation: "I run an office (no stock, mostly equipment/furniture)", service: "Office Insurance Package" },
+      ],
     },
 
     {
@@ -11687,6 +12754,11 @@ servicePopular: [
         { title: "Erection All Risk (EAR) Insurance", href: EN("/services/heavy-equipment/erection-all-risk-insurance/") },
         { title: "Crane / Heavy Equipment (CPM)", href: EN("/services/heavy-equipment/crane-cpm-insurance/") },
         { title: "Crane Third-Party Liability Basics", href: EN("/services/heavy-equipment/crane-liability/") },
+      ],
+      serviceFinder: [
+        { situation: "I'm installing/erecting equipment at a project site", service: "Erection All Risk (EAR) Insurance" },
+        { situation: "I own a crane or heavy equipment used across sites", service: "Crane / Heavy Equipment (CPM)" },
+        { situation: "I need to understand third-party liability basics for crane work", service: "Crane Third-Party Liability Basics" },
       ],
     },
 
@@ -12026,6 +13098,12 @@ servicePopular: [
     { title: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
     { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
   ],
+  serviceFinder: [
+    { situation: "Customers/vendors visit my premises or site", service: "Public Liability" },
+    { situation: "I want the fuller third-party liability picture", service: "Public Liability & Third-Party Insurance" },
+    { situation: "I'm a director/professional worried about personal liability", service: "D&O / Professional Indemnity Insurance" },
+    { situation: "I already have cover and need help with a claim", service: "Claim Support & Documentation" },
+  ],
 },
 
 {
@@ -12044,6 +13122,12 @@ servicePopular: [
     { title: "Marine Hull & Inland Vessel Insurance", href: EN("/services/marine/marine-hull-inland-vessel-insurance/") },
     { title: "Import / Export Cargo Insurance", href: EN("/services/marine/import-export-insurance/") },
     { title: "Claim Support & Documentation", href: EN("/services/claims-support/claim-support/") },
+  ],
+  serviceFinder: [
+    { situation: "I'm moving goods within India by road/rail", service: "Marine Cargo / Goods-in-Transit" },
+    { situation: "I own or operate a vessel (boat, barge)", service: "Marine Hull & Inland Vessel Insurance" },
+    { situation: "I'm importing or exporting across a port/border", service: "Import / Export Cargo Insurance" },
+    { situation: "I already have cover and need help with a claim", service: "Claim Support & Documentation" },
   ],
 },
 
@@ -12068,6 +13152,17 @@ servicePopular: [
     { title: "LIC / Term Life Insurance", href: EN("/services/personal/lic-life-term-insurance/") },
     { title: "Insurance Renewal Near Me", href: EN("/insurance-renewal-near-me/") },
     { title: "Insurance Claim Help", href: EN("/insurance-claim-help/") },
+  ],
+  serviceFinder: [
+    { situation: "I own a private car", service: "Car Insurance Support" },
+    { situation: "I own a bike or scooter", service: "Bike Insurance Support" },
+    { situation: "I run an auto rickshaw for hire", service: "Auto Rickshaw Insurance" },
+    { situation: "I run a tempo or mini truck for local delivery", service: "Tempo / Mini Truck Insurance" },
+    { situation: "I run a taxi or cab service", service: "Taxi & Cab Insurance" },
+    { situation: "I need health/mediclaim cover for myself or family", service: "Health Insurance Support" },
+    { situation: "I need life insurance or LIC servicing", service: "LIC / Term Life Insurance" },
+    { situation: "My policy is due soon and I want it checked", service: "Insurance Renewal Near Me" },
+    { situation: "I need help filing or following up a claim", service: "Insurance Claim Help" },
   ],
 },
 

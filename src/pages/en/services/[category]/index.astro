@@ -107,6 +107,26 @@ const jsonLd = buildJsonLd({
           <!-- 2. Services in this category (PRIMARY intent) -->
           <section class="section section-padding" aria-label="Services in this category">
             <h2 class="section-title">Services under {cat.title}</h2>
+
+            {cat.serviceFinder?.length ? (
+              <table class="compare-table" style="margin:14px 0 18px">
+                <thead>
+                  <tr class="compare-header">
+                    <th class="compare-cell compare-k" scope="col">Your situation</th>
+                    <th class="compare-cell compare-us" scope="col">Service</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cat.serviceFinder.map((row) => (
+                    <tr class="compare-row">
+                      <th class="compare-cell compare-k" scope="row">{row.situation}</th>
+                      <td class="compare-cell compare-us">{row.service}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : null}
+
             <div class="grid grid-2">
               {cat.children?.map((x, i) => (
                 <a class={`card ${tintFor(i)}`} href={x.href}>
@@ -199,6 +219,28 @@ const jsonLd = buildJsonLd({
           <!-- 2. Services -->
           <section class="section section-padding">
             <h2 class="section-title">Services</h2>
+
+            {cat.serviceFinder?.length ? (
+              <div style="overflow-x:auto">
+                <table class="compare-table" style="margin:12px 0 16px;min-width:400px">
+                  <thead>
+                    <tr class="compare-header">
+                      <th class="compare-cell compare-k" scope="col">Your situation</th>
+                      <th class="compare-cell compare-us" scope="col">Service</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cat.serviceFinder.map((row) => (
+                      <tr class="compare-row">
+                        <th class="compare-cell compare-k" scope="row">{row.situation}</th>
+                        <td class="compare-cell compare-us">{row.service}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null}
+
             <div class="grid grid-1">
               {cat.children?.map((x, i) => (
                 <a class={`card ${tintFor(i)}`} href={x.href}>

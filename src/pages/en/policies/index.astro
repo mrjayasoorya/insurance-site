@@ -134,6 +134,31 @@ const categories = [
             </div>
           </section>
 
+          <!-- Which guide is for me — quick reference -->
+          {policyCards.length ? (
+            <section class="section section-padding" aria-label="Which guide is for me">
+              <h2 class="section-title">Which guide is for you?</h2>
+              <table class="compare-table" style="margin-top:14px">
+                <thead>
+                  <tr class="compare-header">
+                    <th class="compare-cell compare-k" scope="col">Guide</th>
+                    <th class="compare-cell" scope="col">Best for</th>
+                    <th class="compare-cell compare-us" scope="col">Typical premium range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {policyCards.map((c) => (
+                    <tr class="compare-row">
+                      <th class="compare-cell compare-k" scope="row"><a href={c.href}>{c.title}</a></th>
+                      <td class="compare-cell">{(c.bestFor || []).slice(0, 2).join(", ")}</td>
+                      <td class="compare-cell compare-us">{c.premiumRange}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
+
           <!-- Policy categories -->
           {categories.map(cat => {
             const cards = cat.slugs.map(s => policyCards.find(p => p.slug === s)).filter(Boolean);
@@ -227,6 +252,33 @@ const categories = [
             </p>
             <PageActionBar brand={siteData.brand} context="insurance policy guidance" />
           </section>
+
+          <!-- Which guide is for me — quick reference (mobile) -->
+          {policyCards.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">Which guide is for you?</h2>
+              <div style="overflow-x:auto">
+                <table class="compare-table" style="margin-top:12px;min-width:420px">
+                  <thead>
+                    <tr class="compare-header">
+                      <th class="compare-cell compare-k" scope="col">Guide</th>
+                      <th class="compare-cell" scope="col">Best for</th>
+                      <th class="compare-cell compare-us" scope="col">Premium range</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {policyCards.map((c) => (
+                      <tr class="compare-row">
+                        <th class="compare-cell compare-k" scope="row"><a href={c.href}>{c.title}</a></th>
+                        <td class="compare-cell">{(c.bestFor || []).slice(0, 2).join(", ")}</td>
+                        <td class="compare-cell compare-us">{c.premiumRange}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ) : null}
 
           <!-- All policy cards combined for mobile -->
           <section class="section section-padding">

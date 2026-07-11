@@ -37,6 +37,44 @@ export const locationExpansionDetails = {
       { q: "Which insurance companies do you work with?", a: "15+ insurers: New India, United India, ICICI Lombard, HDFC ERGO, Bajaj Allianz, Star Health, and more. We compare across companies to find the best fit for your need." },
       { q: "Can you help with car insurance claims in Tambaram?", a: "Yes. Accident documentation, FIR guidance, surveyor coordination, and settlement follow-up for Tambaram and surrounding areas." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Family — car, bike, or health",
+        forWhom: "You live in Tambaram, Chrompet, Pallavaram, or Selaiyur and need a personal policy.",
+        points: [
+          "IDV/NCB checked on renewals; sum insured checked on health policies — before you pay, not after.",
+          "Doorstep service if a visit is easier than WhatsApp for document verification or signatures.",
+          "15+ insurers compared to find the right fit, not just the cheapest listing.",
+        ],
+        ctaLabel: "WhatsApp — personal insurance",
+        waText: "Hi, I'm in Tambaram and need help with car/bike/health insurance.",
+      },
+      {
+        label: "GST Road commercial transport",
+        forWhom: "You run commercial vehicles or goods transport near the GST Road corridor.",
+        points: [
+          "Commercial vehicle and goods-in-transit cover reviewed together if you move goods regularly.",
+          "Permit and usage disclosure checked to avoid claim disputes common on this corridor.",
+          "Fast turnaround given how often vehicles here are on the road.",
+        ],
+        ctaLabel: "WhatsApp — commercial vehicle",
+        waText: "Hi, I run commercial transport near GST Road/Tambaram and need insurance support.",
+      },
+      {
+        label: "Small business / MSME",
+        forWhom: "You run a shop or small business in the Tambaram area.",
+        points: [
+          "Shop/MSME package sized to your actual premises and stock, not a generic bundle.",
+          "One contact for renewals and claims going forward.",
+          "Doorstep or WhatsApp — whichever is easier for you.",
+        ],
+        ctaLabel: "WhatsApp — business/MSME cover",
+        waText: "Hi, I run a small business in Tambaram and need insurance guidance.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Chrompet", href: EN("/locations/chrompet/") },
       { label: "Velachery", href: EN("/locations/velachery/") },
@@ -114,6 +152,44 @@ export const locationExpansionDetails = {
       { q: "Do you provide insurance services in Velachery?", a: "Yes. Velachery, Medavakkam, Pallikaranai, and Thoraipakkam. Doorstep service available — most work handled via WhatsApp for convenience." },
       { q: "Which health insurance has the best hospitals near Velachery?", a: "We check cashless networks specific to Velachery — Global Hospital, Chettinad Health City, and others. Insurer networks vary by locality." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "IT professional / working individual",
+        forWhom: "You want insurance sorted quickly without back-and-forth, likely for car, bike, or health.",
+        points: [
+          "Entire process over WhatsApp — send your documents, get the check done, no office visit needed.",
+          "IDV/NCB checked before renewal so you're not overpaying or under-covered without realizing it.",
+          "Health policy comparisons against cashless hospital networks actually near you, not a generic list.",
+        ],
+        ctaLabel: "WhatsApp — quick policy check",
+        waText: "Hi, I'm in Velachery and want my car/bike/health insurance checked over WhatsApp.",
+      },
+      {
+        label: "Family with senior citizens",
+        forWhom: "You're looking for health cover for parents or senior family members, which has different rules than a young adult's policy.",
+        points: [
+          "Honest guidance on which insurers genuinely accept senior citizen profiles, not a generic list.",
+          "Pre-existing condition waiting periods explained clearly upfront.",
+          "Accurate disclosure guidance — this is what actually protects a claim later, more than the premium amount.",
+        ],
+        ctaLabel: "WhatsApp — senior citizen health cover",
+        waText: "Hi, I'm looking for health insurance for a senior citizen family member in Velachery.",
+      },
+      {
+        label: "Car owner concerned about monsoon/flood damage",
+        forWhom: "Velachery is a known flood-prone area during the Chennai monsoon — worth checking your cover now, not after.",
+        points: [
+          "We check whether your policy has engine protection (hydrostatic lock cover) — standard comprehensive doesn't include it by default.",
+          "Guidance on what to do if your car has already been in flood water — never start it before inspection.",
+          "See our dedicated monsoon car insurance guide for Chennai-specific flood coverage details.",
+        ],
+        ctaLabel: "WhatsApp — monsoon/flood car cover",
+        waText: "Hi, I'm in Velachery and want to check if my car insurance covers monsoon flood damage.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Tambaram", href: EN("/locations/tambaram/") },
       { label: "Sholinganallur", href: EN("/locations/sholinganallur/") },
@@ -315,6 +391,44 @@ export const locationExpansionDetails = {
       { q: "Can you visit T. Nagar for insurance work?", a: "Yes. Doorstep service for T. Nagar, Mambalam, West Mambalam, and Kodambakkam. Most paperwork is done via WhatsApp — visits for document collection and verification." },
       { q: "Which health insurance works best for T. Nagar residents?", a: "T. Nagar has excellent hospital access — Apollo, MIOT, Kauvery are all within 5-10 km. We check which insurers have cashless tie-ups with your preferred hospitals." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Shop or showroom owner",
+        forWhom: "You run a retail establishment — textiles, jewellery, electronics — and need stock, fire, or liability cover.",
+        points: [
+          "Sum insured matched to your actual stock value, especially important for high-value inventory like jewellery or electronics.",
+          "Public liability included if customers visit your premises — a common gap in generic shop policies.",
+          "We understand retail-specific risk, not just a generic 'commercial property' template.",
+        ],
+        ctaLabel: "WhatsApp — shop/showroom insurance",
+        waText: "Hi, I run a shop/showroom in T. Nagar and need fire and stock insurance sorted correctly.",
+      },
+      {
+        label: "Family in Mambalam / West Mambalam / Kodambakkam",
+        forWhom: "You need personal car, bike, or health insurance, not a business policy.",
+        points: [
+          "Health insurance checked against T. Nagar's excellent hospital access — Apollo, MIOT, Kauvery are all nearby.",
+          "IDV/NCB checked on motor renewals before you pay.",
+          "Doorstep service for document collection if a visit is easier than WhatsApp.",
+        ],
+        ctaLabel: "WhatsApp — personal insurance",
+        waText: "Hi, I'm in the T. Nagar/Mambalam area and need help with car/bike/health insurance.",
+      },
+      {
+        label: "Filing a claim — shop or personal",
+        forWhom: "Something's already happened, whether it's a shop incident or a personal claim.",
+        points: [
+          "For shops: proof file guidance (stock register, invoices, photos) before the surveyor visits.",
+          "For personal claims: step-by-step guidance from the first hour, whichever type of policy it is.",
+          "Support through to settlement, not just the initial filing.",
+        ],
+        ctaLabel: "WhatsApp — claim help",
+        waText: "Hi, I need help with an insurance claim in T. Nagar — shop or personal.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Anna Nagar", href: EN("/locations/anna-nagar/") },
       { label: "Guindy", href: EN("/locations/guindy/") },
@@ -483,6 +597,7 @@ export const locationExpansionDetails = {
 
   "anna-nagar": {
     name: "Anna Nagar",
+    postalCode: "600040",
     seoTitle: "Insurance Agent in Anna Nagar, Chennai — Car, Health & Family Insurance",
     seoDesc: "Insurance services in Anna Nagar, Chennai. Car, health, life, and family insurance from a 4.9★ IRDAI licensed agent. Multi-insurer comparison, doorstep service, and local claim support.",
     heroH1: "Insurance Agent in Anna Nagar, Chennai — Vehicle, Health & Family",
@@ -504,6 +619,44 @@ export const locationExpansionDetails = {
       { q: "Which health insurance providers have cashless hospitals near Anna Nagar?", a: "Kaveri Hospital, Billroth Hospital, and Apollo First Med in Anna Nagar have cashless tie-ups with major insurers. We check the specific network based on your preferred hospitals." },
       { q: "Can you help with car insurance in Anna Nagar?", a: "Yes. Premium comparison across 15+ insurers, IDV check, add-on recommendations, and local claim support for accidents in the Anna Nagar area." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Renewing this year",
+        forWhom: "Your car, bike, or health policy is due and you want it checked before you pay.",
+        points: [
+          "IDV/NCB checked on motor renewals; sum insured checked on health — before renewal, not after.",
+          "Add-ons reviewed against your actual usage, not sold as a default bundle.",
+          "Entire process over WhatsApp — send your current policy copy to start.",
+        ],
+        ctaLabel: "WhatsApp — renewal check",
+        waText: "Hi, I'm in Anna Nagar and want my insurance renewal checked before I pay.",
+      },
+      {
+        label: "Choosing a cashless hospital network",
+        forWhom: "You want a health policy that actually works with Kaveri, Billroth, or Apollo First Med nearby.",
+        points: [
+          "We check the specific insurer network against your preferred hospitals, not a generic 'wide network' claim.",
+          "Waiting periods and exclusions explained clearly before you commit.",
+          "Family floater vs individual plans compared honestly for your household size.",
+        ],
+        ctaLabel: "WhatsApp — cashless hospital check",
+        waText: "Hi, I'm in Anna Nagar and want to check which health insurer has cashless tie-ups with Kaveri/Billroth/Apollo First Med.",
+      },
+      {
+        label: "Dealing with a claim",
+        forWhom: "An accident or health event has already happened and you need to move correctly.",
+        points: [
+          "Step-by-step guidance on documentation and reporting from the first hour.",
+          "If a claim was delayed or rejected, we review what happened and advise on realistic next steps.",
+          "Support through to settlement, not just the initial filing.",
+        ],
+        ctaLabel: "WhatsApp — claim help",
+        waText: "Hi, I need help with an insurance claim. I'm in Anna Nagar.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Mogappair", href: EN("/locations/mogappair/") },
       { label: "T. Nagar", href: EN("/locations/t-nagar/") },
@@ -738,6 +891,44 @@ export const locationExpansionDetails = {
       { q: "Do you handle insurance for Oragadam factories?", a: "Yes. Fire, machinery breakdown, stock, and liability insurance for manufacturing plants in Oragadam SIPCOT. We handle everything from policy documentation to claim support." },
       { q: "Can you insure the logistics fleet operating from Oragadam?", a: "Yes. Commercial vehicle fleet insurance for logistics companies and part suppliers operating in the Oragadam-Sriperumbudur-Chennai corridor." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "OEM / large manufacturing plant",
+        forWhom: "You run a large-scale automotive manufacturing operation with significant machinery and stock exposure.",
+        points: [
+          "Sum insured reviewed against actual machinery and stock replacement cost at this scale.",
+          "Machinery breakdown assessed as a distinct cover from fire — sudden mechanical/electrical failure isn't a fire-policy matter.",
+          "Site visits available given the complexity of large plant-level risk.",
+        ],
+        ctaLabel: "WhatsApp — large plant insurance review",
+        waText: "Hi, we run a large manufacturing plant in Oragadam and want our insurance reviewed.",
+      },
+      {
+        label: "Tier-1 / tier-2 supplier",
+        forWhom: "You're a smaller supplier to the OEMs, often with contractor-style operations alongside your factory.",
+        points: [
+          "Coverage sized to your actual scale, not the large-OEM template.",
+          "Workmen Compensation and contractor cover addressed together if your operations involve on-site work for the OEM.",
+          "Guidance on proof of insurance if the OEM requires it for supplier qualification.",
+        ],
+        ctaLabel: "WhatsApp — tier-1/2 supplier cover",
+        waText: "Hi, we're a tier-1/2 supplier operating near Oragadam and need our insurance reviewed.",
+      },
+      {
+        label: "Logistics / parts transport",
+        forWhom: "You move parts and materials through the Oragadam-Sriperumbudur-Chennai corridor.",
+        points: [
+          "Commercial vehicle fleet insurance matched to your actual vehicle usage and route exposure.",
+          "Goods-in-transit cover for high-value parts shipments, with documentation set up before dispatch.",
+          "Consistent proof-trail habits so claims don't stall on missing paperwork.",
+        ],
+        ctaLabel: "WhatsApp — logistics/fleet cover",
+        waText: "Hi, we run logistics/transport near Oragadam and need fleet and goods-in-transit insurance reviewed.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Sriperumbudur", href: EN("/locations/sriperumbudur/") },
       { label: "Hosur", href: EN("/locations/hosur/") },
@@ -777,6 +968,44 @@ export const locationExpansionDetails = {
       { q: "Do you handle insurance for Sriperumbudur SIPCOT factories?", a: "Yes. Fire, machinery, stock, liability, and contractor insurance for manufacturing plants in Sriperumbudur SIPCOT. Site visits available for complex industrial requirements." },
       { q: "Can you handle goods-in-transit insurance for Sriperumbudur logistics?", a: "Yes. Marine cargo and goods-in-transit insurance for companies moving goods between Sriperumbudur, Chennai Port, and destinations across India." },
     ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Established manufacturer / large factory",
+        forWhom: "You run a manufacturing plant in SIPCOT with significant machinery and stock value.",
+        points: [
+          "Sum insured reviewed against actual machinery and stock replacement cost — the average clause is unforgiving on undervaluation at this scale.",
+          "Machinery breakdown cover assessed separately from fire, since they're genuinely different risks.",
+          "Site visits available for complex industrial requirements — we don't do this entirely over WhatsApp when the risk warrants an in-person look.",
+        ],
+        ctaLabel: "WhatsApp — factory insurance review",
+        waText: "Hi, we run a manufacturing plant in Sriperumbudur SIPCOT and want our insurance reviewed.",
+      },
+      {
+        label: "Logistics / fleet operator on the corridor",
+        forWhom: "You move goods between Sriperumbudur, Chennai Port, and destinations across India.",
+        points: [
+          "Marine cargo and goods-in-transit cover matched to your actual shipment patterns.",
+          "Fleet documentation (permit, fitness, endorsements) checked together if you also run the vehicles.",
+          "Consistent proof-trail habits so a transit claim doesn't stall on documentation.",
+        ],
+        ctaLabel: "WhatsApp — logistics/transit cover",
+        waText: "Hi, we run logistics/transport out of Sriperumbudur and need goods-in-transit and fleet insurance reviewed.",
+      },
+      {
+        label: "New MSME setting up in SIPCOT",
+        forWhom: "You're a smaller supplier or MSME newly registered or setting up near the industrial hub.",
+        points: [
+          "We map what's mandatory at your stage versus what can wait, rather than overselling a large-factory bundle.",
+          "Workmen Compensation set up correctly as soon as you hire, sized to your actual headcount.",
+          "Guidance on proof of insurance if a larger manufacturer or tender requires it for supplier qualification.",
+        ],
+        ctaLabel: "WhatsApp — new MSME setup",
+        waText: "Hi, we're a new MSME setting up near Sriperumbudur SIPCOT and need insurance guidance.",
+      },
+    ],
+
     relatedLocations: [
       { label: "Oragadam", href: EN("/locations/oragadam/") },
       { label: "Poonamallee", href: EN("/locations/poonamallee/") },

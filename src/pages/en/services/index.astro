@@ -63,12 +63,33 @@ const popularServices = (siteData.servicePopular || [])
     accentSuffix: tagToAccentSuffix(x.tag),
   }));
 
-// 2) Category cards: keep as-is but ensure desc is present
-const categories = (siteData.serviceCategories || []).map((c) => ({
-  ...c,
-  href: c.href,
-  cardDesc: c.desc || "Open category guidance and service options.",
-}));
+// 2) Category cards: filter to the real top-level categories only (siteData.serviceCategories
+// also contains alias/redirect entries used to prevent /services/<slug>/ 404s — those aren't
+// meant to appear as hub navigation cards), dedupe by slug, and attach a color accent.
+const REAL_CATEGORY_SLUGS = ["transport-fleet", "industrial", "construction", "business-msme", "heavy-equipment", "claims-support", "liability", "marine", "personal"];
+const seenCatSlugs = new Set();
+const categories = (siteData.serviceCategories || [])
+  .filter((c) => REAL_CATEGORY_SLUGS.includes(c.slug) && !seenCatSlugs.has(c.slug) && seenCatSlugs.add(c.slug))
+  .map((c) => ({
+    ...c,
+    href: c.href,
+    cardDesc: c.desc || "Open category guidance and service options.",
+    accentSuffix: tagToAccentSuffix(c.slug === "claims-support" ? "claims" : c.slug),
+  }));
+
+// Compact "which category is mine?" table — the actual decision most first-time
+// visitors are making before they pick a category card.
+const categoryFinder = [
+  { situation: "I own/run vehicles for business (lorry, fleet, taxi)", category: "Transport & Fleet" },
+  { situation: "I own a warehouse, factory, or store physical stock", category: "Industrial & Property" },
+  { situation: "I'm a contractor or builder with an active worksite", category: "Construction & Contractor" },
+  { situation: "I run a shop, office, or small business (MSME)", category: "Business & MSME" },
+  { situation: "I operate cranes or heavy machinery", category: "Heavy Equipment" },
+  { situation: "I need help with an existing claim, not a new policy", category: "Claim Support" },
+  { situation: "I'm concerned about third-party or professional liability", category: "Liability" },
+  { situation: "I move goods by sea/port, or own a vessel", category: "Marine" },
+  { situation: "I need car, bike, health, or life insurance for myself/family", category: "Personal" },
+];
 
 // 3) Vehicle type chips: keep as-is
 const vehicleTypes = siteData.serviceVehicleTypes || [];
@@ -351,11 +372,28 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               Choose your category based on real exposure: transport/fleet movement, property/stock risk, contractor workforce liability, or personal motor/health needs.
             </p>
 
+            <table class="compare-table" style="margin:14px 0 20px">
+              <thead>
+                <tr class="compare-header">
+                  <th class="compare-cell compare-k" scope="col">Your situation</th>
+                  <th class="compare-cell compare-us" scope="col">Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categoryFinder.map((row) => (
+                  <tr class="compare-row">
+                    <th class="compare-cell compare-k" scope="row">{row.situation}</th>
+                    <td class="compare-cell compare-us">{row.category}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
             <div class="grid grid-2">
               {categories.map((c) => (
-                <a class="card" href={c.href}>
+                <a class={`card card--accent card--${c.accentSuffix}`} href={c.href}>
                   <div class="card-row">
-                    <span class="chip">Category</span>
+                    <span class={`chip chip--${c.accentSuffix}`}>Category</span>
                     <span class="chip chip-ghost">Guidance</span>
                   </div>
                   <h3 class="card-title">{c.title}</h3>
@@ -547,11 +585,29 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
 
           <section class="section section-padding" aria-label="Categories">
             <h2 class="section-title">Categories</h2>
+            <div style="overflow-x:auto">
+              <table class="compare-table" style="margin:12px 0 16px;min-width:420px">
+                <thead>
+                  <tr class="compare-header">
+                    <th class="compare-cell compare-k" scope="col">Your situation</th>
+                    <th class="compare-cell compare-us" scope="col">Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categoryFinder.map((row) => (
+                    <tr class="compare-row">
+                      <th class="compare-cell compare-k" scope="row">{row.situation}</th>
+                      <td class="compare-cell compare-us">{row.category}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <div class="grid grid-1">
               {categories.map((c) => (
-                <a class="card" href={c.href}>
+                <a class={`card card--accent card--${c.accentSuffix}`} href={c.href}>
                   <div class="card-row">
-                    <span class="chip">Category</span>
+                    <span class={`chip chip--${c.accentSuffix}`}>Category</span>
                     <span class="chip chip-ghost">Guidance</span>
                   </div>
                   <h3 class="card-title">{c.title}</h3>

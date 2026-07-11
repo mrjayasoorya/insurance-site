@@ -168,11 +168,60 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- 4b. Who you are — persona-specific guidance -->
+          {data.personaGuide?.length ? (
+            <section class="section section-padding" aria-label="Guidance by situation">
+              <h2 class="section-title">{data.personaGuideTitle || "Find your situation"}</h2>
+              <div class="persona-grid">
+                {data.personaGuide.map((p) => (
+                  <div class="persona-card">
+                    <h3 class="persona-heading">{p.label}</h3>
+                    {p.forWhom ? <p class="persona-sub readable">{p.forWhom}</p> : null}
+                    <ul class="bullets">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+                    {p.waText && waNumber ? (
+                      <a class="persona-cta" href={`https://wa.me/${waNumber}?text=${encodeURIComponent(p.waText)}`} target="_blank" rel="noopener">
+                        {p.ctaLabel || "WhatsApp about this"}
+                      </a>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 4c. Comparison table -->
+          {data.comparisonTable?.rows?.length ? (
+            <section class="section section-padding" aria-label="Comparison">
+              <h2 class="section-title">{data.comparisonTable.title || "How this compares"}</h2>
+              {data.comparisonTable.intro ? <p class="readable">{data.comparisonTable.intro}</p> : null}
+              <table class="compare-table" style="margin-top:16px">
+                <thead>
+                  <tr class="compare-header">
+                    {data.comparisonTable.columns.map((c, i) => (
+                      <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === data.comparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.comparisonTable.rows.map((r) => (
+                    <tr class="compare-row">
+                      {r.map((cell, i) => (
+                        i === 0
+                          ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                          : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
+
           <!-- SCENARIOS WE HANDLE — trust before the ask -->
           <ScenariosWeHandle
             title={`Real situations we handle in ${data.name}`}
             subtitle="People from this area reach us with exactly these kinds of situations."
-            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            scenarios={(data.scenarios?.length ? data.scenarios : (cc.homeScenarios || [])).slice(0, 3)}
             waNumber={waNumber}
           />
 
@@ -318,10 +367,61 @@ const jsonLd = buildJsonLd({
             </section>
           ) : null}
 
+          <!-- 3b. Who you are — persona-specific guidance (mobile) -->
+          {data.personaGuide?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.personaGuideTitle || "Find your situation"}</h2>
+              <div class="persona-grid">
+                {data.personaGuide.map((p) => (
+                  <div class="persona-card">
+                    <h3 class="persona-heading">{p.label}</h3>
+                    {p.forWhom ? <p class="persona-sub readable">{p.forWhom}</p> : null}
+                    <ul class="bullets">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+                    {p.waText && waNumber ? (
+                      <a class="persona-cta" href={`https://wa.me/${waNumber}?text=${encodeURIComponent(p.waText)}`} target="_blank" rel="noopener">
+                        {p.ctaLabel || "WhatsApp about this"}
+                      </a>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <!-- 3c. Comparison table (mobile) -->
+          {data.comparisonTable?.rows?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{data.comparisonTable.title || "How this compares"}</h2>
+              {data.comparisonTable.intro ? <p class="readable">{data.comparisonTable.intro}</p> : null}
+              <div style="overflow-x:auto">
+                <table class="compare-table" style="margin-top:16px;min-width:480px">
+                  <thead>
+                    <tr class="compare-header">
+                      {data.comparisonTable.columns.map((c, i) => (
+                        <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === data.comparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.comparisonTable.rows.map((r) => (
+                      <tr class="compare-row">
+                        {r.map((cell, i) => (
+                          i === 0
+                            ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                            : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ) : null}
+
           <!-- SCENARIOS (mobile) — trust before the ask -->
           <ScenariosWeHandle
             title="Real situations we handle"
-            scenarios={(cc.homeScenarios || []).slice(0, 2)}
+            scenarios={(data.scenarios?.length ? data.scenarios : (cc.homeScenarios || [])).slice(0, 2)}
             waNumber={waNumber}
           />
 

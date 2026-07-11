@@ -52,6 +52,17 @@ export const seasonalPages = {
       { title: "Step 2 — We review and recommend", text: "We check each policy for gaps, compare with alternatives, and recommend whether to renew or switch." },
       { title: "Step 3 — Coordinated renewal", text: "All renewals processed together. New policy documents delivered before expiry. Zero gaps." },
     ],
+    comparisonTable: {
+      title: "Renewing before vs. after March 31",
+      intro: "The date you renew changes more than just convenience.",
+      columns: ["What matters", "Renewed after lapse", "Renewed before March 31"],
+      rows: [
+        ["NCB (vehicles)", "Lost if lapsed", "Carried forward"],
+        ["Health continuity", "Waiting periods can reset", "Continuity preserved"],
+        ["Tax deduction (80C/80D)", "Missed for this financial year", "Claimable for this FY"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance Renewal", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Fleet Insurance Renewal", href: EN("/fleet-renewal-management-support/") },
@@ -110,6 +121,17 @@ export const seasonalPages = {
       { title: "Step 2 — We create a renewal plan", text: "We review each policy, flag issues, compare alternatives, and prepare a renewal recommendation report." },
       { title: "Step 3 — Execute and deliver", text: "Renewals processed, new policies issued, documents organized by policy type and department." },
     ],
+    comparisonTable: {
+      title: "Auto-renewed vs. reviewed renewal",
+      intro: "Corporate policies renewed without review often carry forward outdated terms.",
+      columns: ["What matters", "Auto-renewed at old terms", "Reviewed before renewal"],
+      rows: [
+        ["Sum insured (fire/property)", "May not reflect current replacement value", "Updated to current value"],
+        ["Group health premium", "Based on last year's rate, unquestioned", "Negotiated using claims data"],
+        ["Employee/wage roll accuracy", "May be outdated", "Verified before renewal"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
@@ -165,6 +187,17 @@ export const seasonalPages = {
       { title: "Step 2 — We compare and negotiate", text: "We get quotes from 3-4 insurers, compare coverage details, and negotiate the best terms." },
       { title: "Step 3 — Renew or switch", text: "You decide based on our recommendation. We handle the paperwork and ensure continuous coverage." },
     ],
+    comparisonTable: {
+      title: "Claims ratio and what it means for your renewal",
+      intro: "Your company's claims data over the past year is the main driver of the renewal premium.",
+      columns: ["Claims ratio", "Typical premium change"],
+      rows: [
+        ["Under 60% of premium", "0–10% increase"],
+        ["60–100% of premium", "10–15% increase"],
+        ["Over 100% of premium", "15–40% increase — negotiation matters most here"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
@@ -218,6 +251,17 @@ export const seasonalPages = {
       { title: "Step 2 — We recommend the right plan", text: "We suggest health insurance (80D) or life insurance (80C) based on your actual coverage needs — not just premium amount." },
       { title: "Step 3 — Same-day processing", text: "We process the proposal and payment on the same day. Policy issued, tax certificates provided." },
     ],
+    comparisonTable: {
+      title: "Section 80D deduction limits",
+      intro: "The exact limit depends on your and your parents' ages.",
+      columns: ["Situation", "Maximum 80D deduction"],
+      rows: [
+        ["Self/family under 60, parents under 60", "₹50,000 (₹25,000 + ₹25,000)"],
+        ["Self/family under 60, senior citizen parents", "₹75,000 (₹25,000 + ₹50,000)"],
+        ["Self 60+, senior citizen parents", "₹1,00,000 (₹50,000 + ₹50,000)"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
       { label: "Life Insurance Near Me", href: EN("/life-insurance-near-me/") },
@@ -275,6 +319,17 @@ export const seasonalPages = {
       { title: "Step 2 — We review and recommend", text: "We identify gaps, recommend new coverage, and create a renewal calendar for the entire FY." },
       { title: "Step 3 — Quarterly checkups", text: "We do quarterly mini-reviews to catch changes — new vehicles, new employees, changed risks." },
     ],
+    comparisonTable: {
+      title: "Q1 (April-June) vs. Q4 (Jan-March) — when to buy",
+      intro: "Timing changes how much attention your policy actually gets.",
+      columns: ["What matters", "Q4 (Jan-March)", "Q1 (April-June)"],
+      rows: [
+        ["Agent/insurer attention", "Rushed — everyone renewing at once", "Dedicated, unhurried"],
+        ["Comparison time", "Limited", "Ample time to compare options"],
+        ["Processing speed", "Delays common", "Faster turnaround"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Insurance Services", href: EN("/services/") },
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
@@ -330,6 +385,17 @@ export const seasonalPages = {
       { title: "Step 2 — Monsoon readiness report", text: "We tell you exactly what add-ons to add, whether IDV is adequate, and estimated cost." },
       { title: "Step 3 — Add-on or renewal with coverage", text: "We add missing coverage immediately or set up proper coverage at your next renewal." },
     ],
+    comparisonTable: {
+      title: "Comprehensive alone vs. comprehensive + Engine Protection",
+      intro: "This is the single most costly gap in monsoon car cover.",
+      columns: ["What matters", "Comprehensive only", "+ Engine Protection add-on"],
+      rows: [
+        ["Exterior/interior flood damage", "Covered", "Covered"],
+        ["Engine hydrostatic lock damage", "Not covered — ₹1-5 lakh out of pocket", "Covered"],
+        ["When to add it", "Too late after damage occurs", "Must be added before monsoon starts"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
       { label: "Bike Insurance Guide", href: EN("/policies/bike-insurance/") },
@@ -387,6 +453,17 @@ export const seasonalPages = {
       { title: "Step 2 — We audit and report", text: "We compare your policies against your current situation and send a gap analysis report." },
       { title: "Step 3 — Fix gaps now", text: "We process endorsements, additions, and new policies as needed. No waiting until March." },
     ],
+    comparisonTable: {
+      title: "Skipping the mid-year review vs. doing it",
+      intro: "Six months is long enough for real changes to slip past your coverage unnoticed.",
+      columns: ["What matters", "No mid-year review", "Reviewed at H1"],
+      rows: [
+        ["New assets/employees since April", "May be uninsured until March renewal", "Endorsed and covered now"],
+        ["High H1 claim ratio", "Discovered as a shock at March renewal", "Negotiation planned early"],
+        ["Life events (marriage, baby)", "Coverage may lag behind reality", "Updated as they happen"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Services", href: EN("/services/") },
       { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
@@ -443,6 +520,17 @@ export const seasonalPages = {
       { title: "Step 2 — Complete audit", text: "We review coverage adequacy, gaps, and expiry dates. You get a clear report with specific recommendations." },
       { title: "Step 3 — Action plan", text: "We create a month-by-month action plan for the coming year — renewals, upgrades, and new purchases." },
     ],
+    comparisonTable: {
+      title: "Sum insured from 3 years ago vs. updated for today",
+      intro: "Medical inflation alone runs around 14% a year — old figures fall behind fast.",
+      columns: ["What matters", "Unreviewed for 3 years", "Reviewed annually"],
+      rows: [
+        ["Health sum insured", "May be inadequate against today's hospital costs", "Matched to current medical inflation"],
+        ["Vehicle IDV", "May not reflect current market value", "Checked at each review"],
+        ["Life cover adequacy", "May not reflect marriage/kids/loans since purchase", "Updated as circumstances change"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
@@ -498,6 +586,17 @@ export const seasonalPages = {
       { title: "Step 2 — We process same-day", text: "We contact the insurer, negotiate renewal terms, prepare proposal, and get approval within hours." },
       { title: "Step 3 — Renewed before deadline", text: "Policy renewed, confirmation received, and zero gap in employee coverage." },
     ],
+    comparisonTable: {
+      title: "Renewal timeline — same insurer vs. switching",
+      intro: "If you're up against the deadline, this determines what's realistically possible.",
+      columns: ["Path", "Timeline"],
+      rows: [
+        ["Same insurer, urgent renewal", "Same-day, sometimes within hours"],
+        ["Switching to a new insurer", "3-5 days minimum"],
+        ["Already lapsed", "Some insurers allow a 15-30 day grace window — act immediately"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Corporate Renewal Checklist", href: EN("/seasonal/corporate-insurance-renewal-checklist/") },
@@ -551,6 +650,17 @@ export const seasonalPages = {
       { title: "Step 2 — We compare bulk rates", text: "We get fleet quotes from 3-4 insurers and present a comparison — premium, IDV, coverage differences." },
       { title: "Step 3 — Bulk renewal with zero gaps", text: "All vehicles renewed before expiry. Policy copies, e-copies, and fleet tracker provided." },
     ],
+    comparisonTable: {
+      title: "Renewing vehicle-by-vehicle vs. bulk fleet renewal",
+      intro: "The gap widens as fleet size grows.",
+      columns: ["What matters", "Vehicle-by-vehicle", "Bulk fleet renewal"],
+      rows: [
+        ["Premium", "Retail rate per vehicle", "10–25% savings typically"],
+        ["IDV accuracy", "Inconsistent across vehicles", "Reviewed together, correctly valued"],
+        ["Points of contact", "Potentially different agents/insurers", "One contact for the whole fleet"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
       { label: "Commercial Vehicle Insurance Guide", href: EN("/policies/commercial-vehicle-insurance/") },
@@ -604,6 +714,17 @@ export const seasonalPages = {
       { title: "Step 2 — Priority processing", text: "We contact insurers, negotiate terms, prepare proposals. All policies processed in parallel." },
       { title: "Step 3 — Renewed before midnight", text: "All policies renewed with zero lapse. Confirmations and documents follow." },
     ],
+    comparisonTable: {
+      title: "What to prioritize when time is short",
+      intro: "If you can't renew everything at once, this is the order that matters most.",
+      columns: ["Policy type", "Why it's urgent"],
+      rows: [
+        ["Group health / WC", "People risk — employees uninsured immediately on lapse"],
+        ["Fire / property", "Asset risk — one incident during a gap is a full loss"],
+        ["Liability", "Still important, but typically lower immediate exposure than the above"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Corporate Renewal Checklist", href: EN("/seasonal/corporate-insurance-renewal-checklist/") },
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
@@ -661,6 +782,16 @@ export const seasonalPages = {
       { title: "Step 2 — We compare 4-5 insurers", text: "Customized comparison: premium, network, room rent, sub-limits, claim process, insurer reputation." },
       { title: "Step 3 — You choose, we handle", text: "Once you select, we handle proposal submission, employee onboarding, e-card distribution, and year-round support." },
     ],
+    comparisonTable: {
+      title: "Typical group health cost per employee",
+      intro: "A rough budget reference — exact numbers depend on age profile and coverage structure.",
+      columns: ["Coverage structure", "Typical annual cost"],
+      rows: [
+        ["Employee only", "₹3,000–6,000/employee/year"],
+        ["Employee + family", "₹8,000–15,000/employee/year"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
@@ -715,6 +846,16 @@ export const seasonalPages = {
       { title: "Step 2 — We audit and recommend", text: "We check each policy against your current factory reality. Gaps, under-valuation, and missing coverages identified." },
       { title: "Step 3 — Coordinated renewal", text: "All factory policies renewed together. Updated valuations, correct coverage, competitive premium." },
     ],
+    comparisonTable: {
+      title: "Underinsured factory vs. correctly valued",
+      intro: "The average clause is the single biggest reason factory fire claims settle for less than expected.",
+      columns: ["What matters", "Underinsured (e.g. 40%)", "Correctly valued"],
+      rows: [
+        ["₹80L partial loss on ₹2Cr actual value", "Paid only 40% (₹32L)", "Paid in full up to sum insured"],
+        ["WC coverage for contract workers", "Uncovered if undeclared", "Covered when properly declared"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
       { label: "Workmen Compensation", href: EN("/services/construction/workmen-compensation/") },
@@ -772,6 +913,16 @@ export const seasonalPages = {
       { title: "Step 2 — Quote in 30 minutes", text: "We quote from 2-3 insurers. You pick. Payment via UPI/NEFT/cheque." },
       { title: "Step 3 — Cover note same day", text: "Cover note (temporary insurance proof) issued within hours. Full policy follows in 1-2 days." },
     ],
+    comparisonTable: {
+      title: "Third-party vs. comprehensive for commercial vehicles",
+      intro: "A quick reference while you decide under time pressure.",
+      columns: ["What matters", "Third-party only", "Comprehensive"],
+      rows: [
+        ["Annual cost (heavy vehicle)", "₹15,000–25,000/year", "₹25,000–50,000/year"],
+        ["Own-damage repair cost if uninsured", "₹1–5 lakh out of pocket", "Covered"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Commercial Vehicle Insurance Guide", href: EN("/policies/commercial-vehicle-insurance/") },
       { label: "Fleet Insurance", href: EN("/services/transport-fleet/fleet-insurance/") },
@@ -829,6 +980,16 @@ export const seasonalPages = {
       { title: "Step 2 — Budget comparison", text: "We present 3-4 options at different budget levels — you choose what fits." },
       { title: "Step 3 — Quick implementation", text: "Policy issued in 3-5 days. Employee e-cards in a week. Cashless from day one." },
     ],
+    comparisonTable: {
+      title: "Cash allowance vs. group health cover",
+      intro: "A common small-company question — here's the real math.",
+      columns: ["What matters", "Cash allowance (~₹5,000/year)", "Group health (~₹3,000/employee)"],
+      rows: [
+        ["Coverage for a medical emergency (₹5-10L cost)", "Doesn't come close to covering it", "₹2-5 lakh sum insured, cashless"],
+        ["Employee perception", "Feels like a small extra, not real protection", "A genuine safety net"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Best Group Health for SME", href: EN("/seasonal/best-group-health-insurance-sme-chennai/") },
@@ -889,6 +1050,17 @@ export const seasonalPages = {
       { title: "Step 2 — We audit and checklist", text: "What do you HAVE vs. what do you NEED? We identify gaps, prioritize by risk, and quote missing coverages." },
       { title: "Step 3 — Comprehensive renewal", text: "All policies renewed, gaps filled, bank certificates provided. Complete MSME insurance sorted for the year." },
     ],
+    comparisonTable: {
+      title: "Legally required vs. practically necessary",
+      intro: "Not everything on your checklist is mandatory — but that doesn't mean it's optional in practice.",
+      columns: ["Cover", "Status"],
+      rows: [
+        ["Workmen Compensation (if you have workers)", "Legally required"],
+        ["Motor insurance (company vehicles)", "Legally required"],
+        ["Fire/property, group health, public liability", "Not always mandatory, but often required by lenders/tenders or expected by employees"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
       { label: "Workmen Compensation", href: EN("/services/construction/workmen-compensation/") },
@@ -944,6 +1116,17 @@ export const seasonalPages = {
       { title: "Step 2 — Staged insurance plan", text: "We recommend what to buy NOW (essential) vs. what to add later (as you grow). With budget estimates." },
       { title: "Step 3 — Quick implementation", text: "We handle procurement of all recommended policies. One agent for everything." },
     ],
+    comparisonTable: {
+      title: "Buy now vs. add later — a staged approach",
+      intro: "Not everything needs to happen day one.",
+      columns: ["Cover", "When to get it"],
+      rows: [
+        ["Group health, vehicle insurance", "Day one — highest priority, lowest cost to delay"],
+        ["Professional Indemnity", "As soon as you're delivering client work/advice"],
+        ["D&O, cyber insurance", "Once you have external investors, a board, or handle customer data at scale"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
       { label: "Professional Indemnity", href: EN("/services/liability/professional-indemnity/") },
@@ -1001,6 +1184,17 @@ export const seasonalPages = {
       { title: "Step 2 — Options within 1 hour", text: "We assess damage (NCB loss, inspection requirement) and present renewal options with quotes." },
       { title: "Step 3 — Renewed as fast as possible", text: "Payment processed, cover note issued (for vehicles), and you're back to being insured." },
     ],
+    comparisonTable: {
+      title: "Lapse duration and what it costs you",
+      intro: "The longer a policy stays lapsed, the more you lose — this is the actual timeline.",
+      columns: ["Lapse duration", "What happens"],
+      rows: [
+        ["Within 90 days (vehicle)", "NCB usually preserved, inspection often not required"],
+        ["Beyond 90 days (vehicle)", "NCB resets to zero, inspection typically required"],
+        ["Health insurance", "Continuity benefit at risk — varies by insurer, some allow 30-60 day grace"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
       { label: "Bike Insurance Guide", href: EN("/policies/bike-insurance/") },

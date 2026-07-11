@@ -160,6 +160,23 @@ const jsonLd = buildJsonLd({
                 These groupings exist because insurance needs and claim friction points vary by belt: logistics movement, industrial property exposure, contractor worksites, or city-side renewal support.
               </p>
 
+              <table class="compare-table" style="margin:14px 0 20px">
+                <thead>
+                  <tr class="compare-header">
+                    <th class="compare-cell compare-k" scope="col">Zone</th>
+                    <th class="compare-cell compare-us" scope="col">What's typically needed here</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {zones.map((z) => (
+                    <tr class="compare-row">
+                      <th class="compare-cell compare-k" scope="row">{z.title}</th>
+                      <td class="compare-cell compare-us">{(z.commonNeeds || [])[0] || z.subtitle}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
               <div class="zone-grid">
                 {zones.map((z) => (
                   <article class="zone-card" aria-label={z.title}>
@@ -324,6 +341,25 @@ const jsonLd = buildJsonLd({
               <p class="section-sub readable">
                 Choose a belt to see relevant services and location pages.
               </p>
+
+              <div style="overflow-x:auto">
+                <table class="compare-table" style="margin:12px 0 16px;min-width:420px">
+                  <thead>
+                    <tr class="compare-header">
+                      <th class="compare-cell compare-k" scope="col">Zone</th>
+                      <th class="compare-cell compare-us" scope="col">Typically needed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {zones.map((z) => (
+                      <tr class="compare-row">
+                        <th class="compare-cell compare-k" scope="row">{z.title}</th>
+                        <td class="compare-cell compare-us">{(z.commonNeeds || [])[0] || z.subtitle}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
               <div class="grid grid-1">
                 {zones.map((z) => (

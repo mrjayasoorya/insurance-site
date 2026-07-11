@@ -256,6 +256,43 @@ const jsonLd = buildJsonLd({
               points={cc.whyUs || []}
             />
 
+            <!-- 5b-ii. COMPARISON TABLE -->
+            {siteData.homeComparisonTable?.rows?.length ? (
+              <section class="section section-padding" aria-label="Comparison">
+                <h2 class="section-title">{siteData.homeComparisonTable.title}</h2>
+                <p class="readable">{siteData.homeComparisonTable.intro}</p>
+                <table class="compare-table" style="margin-top:16px">
+                  <thead>
+                    <tr class="compare-header">
+                      {siteData.homeComparisonTable.columns.map((c, i) => (
+                        <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === siteData.homeComparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {siteData.homeComparisonTable.rows.map((r) => (
+                      <tr class="compare-row">
+                        {r.map((cell, i) => (
+                          i === 0
+                            ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                            : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            ) : null}
+
+            <!-- 5b-iii. GUIDE SECTION -->
+            {siteData.homeGuideSection ? (
+              <section class="section section-padding" aria-label={siteData.homeGuideSection.title}>
+                <h2 class="section-title">{siteData.homeGuideSection.title}</h2>
+                <p class="readable">{siteData.homeGuideSection.intro}</p>
+                <ul class="bullets" style="margin-top:12px">{siteData.homeGuideSection.points.map((x) => <li>{x}</li>)}</ul>
+              </section>
+            ) : null}
+
             <!-- 5c. REAL SITUATIONS WE HANDLE — scenario confidence builder -->
             <ScenariosWeHandle
               title="Real situations we handle"
@@ -294,6 +331,25 @@ const jsonLd = buildJsonLd({
                 <a class="chiplink" href={EN("/services/")}>View all services and categories →</a>
               </p>
             </section>
+
+            <!-- 6b. FOR DEALERS, BUSINESSES & NEW COMPANIES -->
+            {siteData.businessAudiences?.length ? (
+              <section class="section section-padding" aria-labelledby="biz-aud-title">
+                <h2 id="biz-aud-title" class="section-title">For dealers, businesses & new companies</h2>
+                <p class="section-sub readable">
+                  Set up differently from a single personal policy — one contact across multiple vehicles, policies, or a growing company.
+                </p>
+                <div class="grid grid-2">
+                  {siteData.businessAudiences.map((x) => (
+                    <a class="card" href={x.href}>
+                      <div class="card-row"><span class="chip">{x.tag}</span></div>
+                      <h3 class="card-title">{x.title}</h3>
+                      <p class="card-desc readable" title={x.desc}>{x.desc}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <!-- 7. AREAS WE SERVE -->
             <section class="section section-padding" aria-labelledby="loc-title">
@@ -480,6 +536,45 @@ const jsonLd = buildJsonLd({
               points={cc.whyUs || []}
             />
 
+            <!-- 5b-ii. COMPARISON TABLE (mobile) -->
+            {siteData.homeComparisonTable?.rows?.length ? (
+              <section class="section section-padding">
+                <h2 class="section-title">{siteData.homeComparisonTable.title}</h2>
+                <p class="readable">{siteData.homeComparisonTable.intro}</p>
+                <div style="overflow-x:auto">
+                  <table class="compare-table" style="margin-top:16px;min-width:480px">
+                    <thead>
+                      <tr class="compare-header">
+                        {siteData.homeComparisonTable.columns.map((c, i) => (
+                          <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === siteData.homeComparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {siteData.homeComparisonTable.rows.map((r) => (
+                        <tr class="compare-row">
+                          {r.map((cell, i) => (
+                            i === 0
+                              ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                              : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            ) : null}
+
+            <!-- 5b-iii. GUIDE SECTION (mobile) -->
+            {siteData.homeGuideSection ? (
+              <section class="section section-padding">
+                <h2 class="section-title">{siteData.homeGuideSection.title}</h2>
+                <p class="readable">{siteData.homeGuideSection.intro}</p>
+                <ul class="bullets" style="margin-top:12px">{siteData.homeGuideSection.points.map((x) => <li>{x}</li>)}</ul>
+              </section>
+            ) : null}
+
             <!-- 5c. REAL SITUATIONS -->
             <ScenariosWeHandle
               title="Real situations we handle"
@@ -515,6 +610,22 @@ const jsonLd = buildJsonLd({
                 <a class="chiplink" href={EN("/services/")}>All services →</a>
               </p>
             </section>
+
+            <!-- 6b. FOR DEALERS, BUSINESSES & NEW COMPANIES -->
+            {siteData.businessAudiences?.length ? (
+              <section class="section section-padding">
+                <h2 class="section-title">For dealers, businesses & new companies</h2>
+                <div class="grid grid-1">
+                  {siteData.businessAudiences.map((x) => (
+                    <a class="card" href={x.href}>
+                      <div class="card-row"><span class="chip">{x.tag}</span></div>
+                      <h3 class="card-title">{x.title}</h3>
+                      <p class="card-desc readable" title={x.desc}>{x.desc}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <!-- 7. AREAS WE SERVE -->
             <section class="section section-padding" aria-label="Locations">
@@ -709,6 +820,15 @@ const jsonLd = buildJsonLd({
       @media (max-width: 980px){
         .grid-2 { grid-template-columns: 1fr; }
       }
+
+      .compare-table{width:100%;border:1px solid var(--border,#e7e9ee);border-radius:12px;overflow:hidden;border-collapse:collapse}
+      .compare-header, .compare-row{display:table-row}
+      .compare-header{background:var(--surface,#f7f8fa);font-weight:900;font-size:13px}
+      .compare-row{border-top:1px solid var(--border,#e7e9ee)}
+      .compare-cell{display:table-cell;padding:10px 12px;font-size:13px;line-height:1.35;text-align:left;font-weight:400}
+      .compare-k{font-weight:700;opacity:.85}
+      .compare-us{background:rgba(46,125,50,.06);font-weight:600}
+      @media (max-width:520px){.compare-header{font-size:11px}.compare-cell{padding:8px 6px}}
     </style>
   </body>
 </html>

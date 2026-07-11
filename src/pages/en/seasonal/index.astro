@@ -54,6 +54,18 @@ for (const [slug, page] of Object.entries(allSeasonal)) {
   if (!grouped[cat]) grouped[cat] = [];
   grouped[cat].push({ slug, ...page, href: EN(`/seasonal/${slug}/`) });
 }
+
+// Compact "what's relevant right now" reference — month-aware, not hardcoded to one season.
+const currentMonth = new Date().getMonth(); // 0=Jan
+const seasonWindows = [
+  { catKey: "monsoon", label: "Monsoon Season", months: [5, 6, 7, 8, 9, 10] }, // Jun-Nov
+  { catKey: "financial-year", label: "Financial Year — End & Start", months: [0, 1, 2, 3] }, // Jan-Apr
+  { catKey: "quarterly", label: "Mid-Year & Quarterly Reviews", months: [6, 7, 8] }, // Jul-Sep
+  { catKey: "calendar-year", label: "Year-End Review", months: [10, 11] }, // Nov-Dec
+];
+const activeSeasonKeys = new Set(
+  seasonWindows.filter((s) => s.months.includes(currentMonth)).map((s) => s.catKey)
+);
 ---
 
 <html lang="en">
@@ -99,12 +111,33 @@ for (const [slug, page] of Object.entries(allSeasonal)) {
             <PageActionBar brand={siteData.brand} context="seasonal insurance guidance" />
           </section>
 
+          <section class="section section-padding" aria-label="What's relevant right now">
+            <h2 class="section-title">What's relevant right now</h2>
+            <table class="compare-table" style="margin-top:14px">
+              <thead>
+                <tr class="compare-header">
+                  <th class="compare-cell compare-k" scope="col">Season / window</th>
+                  <th class="compare-cell compare-us" scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(categories).map(([catKey, catInfo]) => (
+                  <tr class="compare-row">
+                    <th class="compare-cell compare-k" scope="row">{catInfo.label}</th>
+                    <td class="compare-cell compare-us">{activeSeasonKeys.has(catKey) ? "Active now" : "Off-season"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
           {Object.entries(categories).map(([catKey, catInfo]) => {
             const pages = grouped[catKey] || [];
             if (!pages.length) return null;
+            const isActive = activeSeasonKeys.has(catKey);
             return (
               <section class="section section-padding" aria-label={catInfo.label}>
-                <h2 class="section-title">{catInfo.label}</h2>
+                <h2 class="section-title">{catInfo.label}{isActive ? " — active now" : ""}</h2>
                 <p class="section-sub">{catInfo.desc}</p>
                 <div class="seasonal-cards-grid">
                   {pages.map((pg) => (
@@ -170,12 +203,35 @@ for (const [slug, page] of Object.entries(allSeasonal)) {
             <PageActionBar brand={siteData.brand} context="seasonal insurance guidance" />
           </section>
 
+          <section class="section section-padding">
+            <h2 class="section-title">What's relevant right now</h2>
+            <div style="overflow-x:auto">
+              <table class="compare-table" style="margin-top:12px;min-width:360px">
+                <thead>
+                  <tr class="compare-header">
+                    <th class="compare-cell compare-k" scope="col">Season</th>
+                    <th class="compare-cell compare-us" scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(categories).map(([catKey, catInfo]) => (
+                    <tr class="compare-row">
+                      <th class="compare-cell compare-k" scope="row">{catInfo.label}</th>
+                      <td class="compare-cell compare-us">{activeSeasonKeys.has(catKey) ? "Active now" : "Off-season"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           {Object.entries(categories).map(([catKey, catInfo]) => {
             const pages = grouped[catKey] || [];
             if (!pages.length) return null;
+            const isActive = activeSeasonKeys.has(catKey);
             return (
               <section class="section section-padding">
-                <h2 class="section-title">{catInfo.label}</h2>
+                <h2 class="section-title">{catInfo.label}{isActive ? " — active now" : ""}</h2>
                 <div class="seasonal-cards-grid">
                   {pages.map((pg) => (
                     <a class="seasonal-card" href={pg.href}>

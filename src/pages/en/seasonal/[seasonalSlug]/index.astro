@@ -170,6 +170,34 @@ const urgencyClass = page.urgency === "high" ? "urgency-high" : "urgency-medium"
             </section>
           ) : null}
 
+          <!-- Comparison table -->
+          {page.comparisonTable?.rows?.length ? (
+            <section class="section section-padding" aria-label="Comparison">
+              <h2 class="section-title">{page.comparisonTable.title || "How this compares"}</h2>
+              {page.comparisonTable.intro ? <p class="readable">{page.comparisonTable.intro}</p> : null}
+              <table class="compare-table" style="margin-top:16px">
+                <thead>
+                  <tr class="compare-header">
+                    {page.comparisonTable.columns.map((c, i) => (
+                      <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === page.comparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {page.comparisonTable.rows.map((r) => (
+                    <tr class="compare-row">
+                      {r.map((cell, i) => (
+                        i === 0
+                          ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                          : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
+
           <!-- MID-PAGE CTA -->
           <ConversionBlock siteData={siteData} brand={siteData.brand} />
 
@@ -328,6 +356,36 @@ const urgencyClass = page.urgency === "high" ? "urgency-high" : "urgency-medium"
                   </li>
                 ))}
               </ul>
+            </section>
+          ) : null}
+
+          <!-- Comparison table (mobile) -->
+          {page.comparisonTable?.rows?.length ? (
+            <section class="section section-padding">
+              <h2 class="section-title">{page.comparisonTable.title || "How this compares"}</h2>
+              {page.comparisonTable.intro ? <p class="readable">{page.comparisonTable.intro}</p> : null}
+              <div style="overflow-x:auto">
+                <table class="compare-table" style="margin-top:16px;min-width:420px">
+                  <thead>
+                    <tr class="compare-header">
+                      {page.comparisonTable.columns.map((c, i) => (
+                        <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === page.comparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {page.comparisonTable.rows.map((r) => (
+                      <tr class="compare-row">
+                        {r.map((cell, i) => (
+                          i === 0
+                            ? <th class="compare-cell compare-k" scope="row">{cell}</th>
+                            : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           ) : null}
 

@@ -34,6 +34,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — We shortlist the best options", text: "Based on 30 years of claim handling experience, we recommend 2-3 insurers that fit your exact situation. No bias — we work with all major companies." },
       { title: "Step 3 — Compare and decide", text: "We explain the differences in plain language. You choose. We handle the documentation." },
     ],
+    comparisonTable: {
+      title: "How to actually evaluate 'best'",
+      intro: "Brand recognition isn't the same as fit — here's what matters more.",
+      columns: ["What you're checking", "Weak signal", "Strong signal"],
+      rows: [
+        ["Claim settlement", "Marketing claims about speed", "Actual track record for your policy type"],
+        ["Cashless network", "\"Wide network\" claims", "Confirmed tie-up with your specific hospital/garage"],
+        ["Local support", "Call center only", "A person who knows your case, reachable directly"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance", href: EN("/policies/car-insurance/") },
       { label: "Health Insurance", href: EN("/policies/health-insurance/") },
@@ -200,6 +211,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Share your requirement", text: "WhatsApp or call with your insurance need. We give honest guidance — including when insurance is NOT the right solution." },
       { title: "Step 3 — Transparent process", text: "Clear documentation, no hidden terms, and claim support you can count on." },
     ],
+    comparisonTable: {
+      title: "How to check if an agent is genuinely trustworthy",
+      intro: "Anyone can claim to be trustworthy — here's what's actually verifiable.",
+      columns: ["Trust signal", "How to verify"],
+      rows: [
+        ["IRDAI license", "Check the license number on the official IRDAI website — we share ours on request"],
+        ["Google rating", "Read the actual reviews on Google Maps, not a screenshot"],
+        ["Accountability", "Ask if you're reaching a named person or a rotating call center"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Services", href: EN("/services/") },
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
@@ -236,6 +258,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Contact us", text: "WhatsApp or call with your insurance requirement. First consultation is always free and honest." },
       { title: "Step 3 — Experience the difference", text: "See why 100+ customers rated us 4.9★ — through actual service, not sales pressure." },
     ],
+    comparisonTable: {
+      title: "What makes a rating actually meaningful",
+      intro: "A star rating alone doesn't tell the full story — this does.",
+      columns: ["What to check", "Weak signal", "Strong signal"],
+      rows: [
+        ["Review volume", "A handful of reviews", "100+ reviews over years, not a launch spike"],
+        ["Review content", "Generic \"good service\" comments", "Specific claim/renewal experiences described"],
+        ["Consistency", "High rating, but recent reviews trending down", "Rating held steady over a long period"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Services", href: EN("/services/") },
       { label: "Insurance Policy Guides", href: EN("/policies/") },
@@ -276,6 +309,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — We find the best value", text: "We compare options across multiple insurers and show you 2-3 choices with clear trade-offs explained." },
       { title: "Step 3 — Decide with confidence", text: "You pick the option that fits your budget AND your coverage needs. We handle all documentation." },
     ],
+    comparisonTable: {
+      title: "Cheapest vs. affordable — not the same thing",
+      intro: "The lowest listed price and genuine value often diverge exactly where it matters.",
+      columns: ["What matters", "Cheapest option", "Affordable (right-fit) option"],
+      rows: [
+        ["IDV/sum insured", "Often set low to cut premium", "Set to realistic value"],
+        ["Add-ons", "Stripped to the bare minimum", "Kept if genuinely relevant to your risk"],
+        ["Claim payout", "Can be reduced by exclusions you didn't notice", "Matches what you actually expected"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
@@ -312,6 +356,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — We build the claim file", text: "We compile all required documents, check for gaps, and submit a clean claim file to the insurer." },
       { title: "Step 3 — Track to settlement", text: "We follow up with the insurer, coordinate surveyor visits, and keep you updated until your claim is settled." },
     ],
+    comparisonTable: {
+      title: "Claim timelines — documented vs. undocumented",
+      intro: "The single biggest factor in claim speed is documentation quality, not insurer goodwill.",
+      columns: ["Claim type", "With documentation gaps", "With clean documentation"],
+      rows: [
+        ["Motor own-damage", "Weeks to months", "7–15 days"],
+        ["Health cashless", "Can stall at approval", "Same-day to 3 days"],
+        ["Health reimbursement", "30+ days, repeated queries", "15–30 days"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Claim Support Services", href: EN("/services/claims-support/") },
       { label: "Car Insurance Claims", href: EN("/policies/car-insurance/") },
@@ -348,6 +403,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Digital preparation", text: "We handle most paperwork digitally first — proposals, quotes, document scans. This minimizes visit time." },
       { title: "Step 3 — In-person visit", text: "We visit for document verification, signatures, and any physical inspection coordination needed." },
     ],
+    comparisonTable: {
+      title: "Office visit vs. doorstep/WhatsApp",
+      intro: "Both get the same policy issued — this is what actually differs.",
+      columns: ["What matters", "Office visit", "Doorstep / WhatsApp"],
+      rows: [
+        ["Time cost", "Travel + waiting", "Minimal — most of it happens digitally"],
+        ["Documentation", "Same checklist either way", "Prepared digitally first, visit only for signatures"],
+        ["Cost", "No difference", "No difference — doorstep isn't a paid add-on"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Insurance Services", href: EN("/services/") },
       { label: "Insurance Renewal Help", href: EN("/insurance-renewal-near-me/") },
@@ -384,6 +450,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Hospital network check", text: "We check which insurers have cashless hospitals near your home. This is the most important factor — not just the premium." },
       { title: "Step 3 — Plan recommendation", text: "We recommend 2-3 plans with clear comparison of coverage, limits, and nearby cashless hospitals." },
     ],
+    comparisonTable: {
+      title: "Planned admission vs. emergency — how cashless actually works",
+      intro: "The process differs depending on whether it's planned or an emergency.",
+      columns: ["Situation", "What happens"],
+      rows: [
+        ["Planned admission, network hospital", "Pre-authorization submitted, insurer approves before treatment, cashless settlement"],
+        ["Emergency, network hospital", "Treated first, authorization processed alongside admission"],
+        ["Emergency, non-network hospital", "Treated first, you pay, then claim reimbursement afterward"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
       { label: "Group Health Insurance", href: EN("/services/business-msme/group-health-employee-benefits-insurance/") },
@@ -425,6 +502,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Compare and choose", text: "We send 2-3 best options with premium, IDV, and add-on comparison. You pick." },
       { title: "Step 3 — Policy + claim-ready setup", text: "Policy issued. We set up your documentation so claims are smooth — not just the policy." },
     ],
+    comparisonTable: {
+      title: "Online-only vs. local agent — same premium, different support",
+      intro: "The base premium is identical either way — this is what actually changes.",
+      columns: ["What matters", "Online only", "Local agent"],
+      rows: [
+        ["IDV accuracy", "Auto-filled, easy to miss an error", "Checked against your car's real value"],
+        ["Add-on relevance", "Generic upsell list", "Matched to Chennai driving conditions (waterlogging, etc.)"],
+        ["Claim support", "Self-service / call center", "Someone who handles it in person if needed"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance Guide", href: EN("/policies/car-insurance/") },
       { label: "Insurance Renewal Help", href: EN("/insurance-renewal-near-me/") },
@@ -462,6 +550,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Hospital network + plan comparison", text: "We check cashless networks near you and recommend 2-3 plans with clear trade-offs." },
       { title: "Step 3 — Policy + claim readiness", text: "Policy issued with all disclosures correctly made. We set up your documentation so claims go smoothly." },
     ],
+    comparisonTable: {
+      title: "Individual plan vs. family floater",
+      intro: "Both are valid — the right choice depends on your family's situation.",
+      columns: ["What matters", "Individual plan", "Family floater"],
+      rows: [
+        ["Sum insured", "Separate for each person", "One shared pool for the whole family"],
+        ["Premium", "Higher combined cost", "More affordable overall"],
+        ["Risk if one person claims big", "Others unaffected", "Less remains for the rest of the family that year"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
       { label: "Cashless Health Insurance Chennai", href: EN("/cashless-health-insurance-chennai/") },
@@ -498,6 +597,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Get options", text: "We compare and send 2-3 best options. You choose. No forms to fill." },
       { title: "Step 3 — Instant policy + claim backup", text: "Policy issued digitally. Claim support available whenever you need it." },
     ],
+    comparisonTable: {
+      title: "Third-party only vs. comprehensive",
+      intro: "Third-party is legally mandatory either way — this is about your own bike.",
+      columns: ["What matters", "Third-party only", "Comprehensive"],
+      rows: [
+        ["Cost", "₹482–₹1,193/year (IRDAI-fixed)", "₹2,000–₹5,000/year depending on value/age"],
+        ["Your own bike", "Not covered", "Covered (accident, theft, fire)"],
+        ["Best for", "Very old bikes, low resale value", "Bikes under 5 years or higher value"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Bike Insurance Guide", href: EN("/policies/bike-insurance/") },
       { label: "Car Insurance Near Me", href: EN("/car-insurance-near-me/") },
@@ -534,6 +644,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Needs analysis", text: "We calculate the right sum assured and recommend the most suitable plan type — not the one that pays us the highest commission." },
       { title: "Step 3 — Policy and documentation", text: "Policy issued. Nominee details properly set up. Annual premium reminders included." },
     ],
+    comparisonTable: {
+      title: "Term insurance vs. LIC endowment",
+      intro: "Both are valid — they solve different problems.",
+      columns: ["What matters", "Term insurance", "LIC endowment"],
+      rows: [
+        ["Cover for the premium paid", "Maximum cover, lowest cost", "Lower cover, higher cost"],
+        ["Maturity payout", "None — pure protection", "Yes — money returned at maturity"],
+        ["Best for", "Income replacement for dependents", "Combining savings with some protection"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Insurance Services", href: EN("/services/") },
       { label: "Health Insurance Guide", href: EN("/policies/health-insurance/") },
@@ -574,6 +695,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Compare options", text: "We compare across insurers for your specific need and Anna Nagar hospital networks (for health)." },
       { title: "Step 3 — Doorstep completion", text: "We visit Anna Nagar for document collection and policy delivery if needed." },
     ],
+    comparisonTable: {
+      title: "What Anna Nagar residents typically ask for",
+      intro: "A quick reference for the most common needs in this area.",
+      columns: ["Need", "What we check"],
+      rows: [
+        ["Car/bike renewal", "IDV, NCB, add-ons matched to actual usage"],
+        ["Health insurance", "Cashless tie-ups with Kaveri, Billroth, Apollo First Med"],
+        ["Business/shop cover", "Sum insured matched to real stock/premises value"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance", href: EN("/policies/car-insurance/") },
       { label: "Health Insurance", href: EN("/policies/health-insurance/") },
@@ -609,6 +741,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Tailored comparison", text: "We compare options based on your requirement and local hospital networks." },
       { title: "Step 3 — Complete at your doorstep", text: "Document collection and policy delivery at your home or office." },
     ],
+    comparisonTable: {
+      title: "What Tambaram-area residents typically ask for",
+      intro: "A quick reference for the most common needs in this area.",
+      columns: ["Need", "What we check"],
+      rows: [
+        ["Car/bike renewal", "IDV, NCB, add-ons matched to actual usage"],
+        ["Health insurance", "Cashless tie-ups with Sundaram Medical, SRM Hospital"],
+        ["Commercial vehicle / GST Road transport", "Permit and usage disclosure alignment"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance", href: EN("/policies/car-insurance/") },
       { label: "Health Insurance", href: EN("/policies/health-insurance/") },
@@ -644,6 +787,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Compare and choose", text: "We send options across insurers with clear comparison. You pick what works." },
       { title: "Step 3 — Policy + claim support", text: "Policy issued. Local claim support available for Velachery and surrounding areas." },
     ],
+    comparisonTable: {
+      title: "What Velachery-area residents typically ask for",
+      intro: "A quick reference for the most common needs in this area.",
+      columns: ["Need", "What we check"],
+      rows: [
+        ["Car/bike renewal", "IDV, NCB, add-ons — quick WhatsApp process for working professionals"],
+        ["Health insurance", "Cashless tie-ups with Global, SRM, Chettinad"],
+        ["Monsoon/flood-prone car cover", "Engine protection add-on, since this area floods seasonally"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance", href: EN("/policies/car-insurance/") },
       { label: "Health Insurance", href: EN("/policies/health-insurance/") },
@@ -679,6 +833,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Customized comparison", text: "We compare across 15+ insurers for your specific situation. Shop insurance included." },
       { title: "Step 3 — Complete at your convenience", text: "Digital documentation or doorstep visit — your choice." },
     ],
+    comparisonTable: {
+      title: "What T. Nagar residents and businesses typically ask for",
+      intro: "A quick reference for the most common needs in this area.",
+      columns: ["Need", "What we check"],
+      rows: [
+        ["Shop/showroom insurance", "Stock value matched to actual inventory (textiles, jewellery, electronics)"],
+        ["Health insurance", "Cashless tie-ups with Apollo, MIOT, Fortis, Kauvery"],
+        ["Car/bike renewal", "IDV, NCB, add-ons matched to actual usage"],
+      ],
+    },
+
     recommendedServices: [
       { label: "All Services", href: EN("/services/") },
       { label: "Fire & Property Insurance", href: EN("/services/industrial/fire-burglary-commercial-property-insurance/") },
@@ -720,6 +885,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Cover matched to your trade lane", text: "We align sum insured and cover period to your actual shipment, not a generic template." },
       { title: "Step 3 — Certificate before dispatch", text: "Insurance certificate issued in time for port/customs documentation." },
     ],
+    comparisonTable: {
+      title: "Common Incoterms — who bears the risk, when",
+      intro: "Knowing this determines what you actually need to insure.",
+      columns: ["Incoterm", "When your risk starts"],
+      rows: [
+        ["FOB (Free on Board)", "Once goods are loaded onto the vessel at origin port"],
+        ["CIF (Cost, Insurance, Freight)", "Seller insures to destination port — verify what's actually covered"],
+        ["EXW (Ex Works)", "From the seller's premises — the longest exposure window for the buyer"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Import / Export Cargo Insurance", href: EN("/services/marine/import-export-insurance/") },
       { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
@@ -755,6 +931,16 @@ export const intentExpansionPages = {
       { title: "Step 2 — Survey-backed valuation", text: "We help line up a current survey if you don't have one, so the sum insured is defensible at claim time." },
       { title: "Step 3 — Policy issued", text: "Hull, machinery and liability cover matched to actual operation (port-based vs open water, as applicable)." },
     ],
+    comparisonTable: {
+      title: "With a current survey vs. without",
+      intro: "This single document is what actually speeds up both the quote and any future claim.",
+      columns: ["What matters", "No current survey", "Current survey on file"],
+      rows: [
+        ["Quoting speed", "Slower — insurer estimates conservatively", "Faster, more accurate valuation"],
+        ["Claim dispute risk", "Higher — valuation questioned at claim time", "Lower — value already established"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Marine Hull & Inland Vessel Insurance", href: EN("/services/marine/marine-hull-inland-vessel-insurance/") },
       { label: "Import / Export Cargo Insurance", href: EN("/services/marine/import-export-insurance/") },
@@ -789,6 +975,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Cover structured by category", text: "We piece together the right combination (property, machinery breakdown, liability) instead of one generic industrial policy." },
       { title: "Step 3 — Documentation and claim readiness", text: "Maintenance records and safety compliance discipline set up so claims aren't delayed later." },
     ],
+    comparisonTable: {
+      title: "Fire policy alone vs. structured multi-category cover",
+      intro: "Mixed operations (extraction + processing + transport) rarely fit under one policy type.",
+      columns: ["Risk", "Fire policy alone", "Structured cover"],
+      rows: [
+        ["Building/stock fire", "Covered", "Covered"],
+        ["Processing equipment breakdown", "Not covered", "Covered under machinery breakdown"],
+        ["Third-party site incidents", "Not covered", "Covered under liability"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Mining / Heavy Industrial Insurance", href: EN("/services/industrial/mining-industrial-insurance/") },
       { label: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
@@ -824,6 +1021,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Sum insured matched to replacement cost", text: "We size cover to actual replacement value, not the original purchase price." },
       { title: "Step 3 — Policy issued", text: "Machinery breakdown cover set up alongside your existing fire/property policy, not duplicating it." },
     ],
+    comparisonTable: {
+      title: "Fire policy vs. machinery breakdown — the coverage gap",
+      intro: "Confirmed earlier across the site, but worth restating for Oragadam's equipment-heavy units.",
+      columns: ["Cause of loss", "Fire policy", "Machinery Breakdown"],
+      rows: [
+        ["Fire, explosion", "Covered", "Not applicable"],
+        ["Sudden mechanical/electrical failure", "Not covered", "Covered"],
+        ["Production stoppage from breakdown", "Not covered", "Covered with consequential loss add-on"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
       { label: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
@@ -859,6 +1067,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Right-sized modules", text: "We size equipment and business-interruption cover to what your office actually has and does." },
       { title: "Step 3 — Policy issued", text: "Clear on what's covered and what isn't, so there's no surprise at claim time." },
     ],
+    comparisonTable: {
+      title: "Shop package vs. office package — why they differ",
+      intro: "A shop policy is built around stock; an office has almost none.",
+      columns: ["What's covered", "Shop package", "Office package"],
+      rows: [
+        ["Stock/inventory", "Central focus", "Minimal or not applicable"],
+        ["Equipment (laptops, servers)", "Often underweighted", "Sized correctly as the main asset"],
+        ["Business interruption", "Sometimes bundled generically", "Matched to actual revenue-at-risk"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
       { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
@@ -894,6 +1113,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Cover matched to real exposure", text: "We align cover to your actual service/advice risk, not a generic liability template." },
       { title: "Step 3 — Policy issued", text: "Clear on trigger conditions and notification requirements so a future claim isn't delayed by a technicality." },
     ],
+    comparisonTable: {
+      title: "D&O vs. Professional Indemnity",
+      intro: "Often confused, but they protect different things.",
+      columns: ["What matters", "D&O", "Professional Indemnity"],
+      rows: [
+        ["Who's protected", "Directors/officers personally", "The business itself"],
+        ["What triggers a claim", "A management decision", "An error or omission in advice/service delivered"],
+        ["Typical buyer", "Companies with a board or external investors", "Consultancies and service firms"],
+      ],
+    },
+
     recommendedServices: [
       { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
       { label: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
@@ -929,6 +1159,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — Valuation and usage check", text: "We align declared value to reconstruction cost and confirm usage type matches what's being insured." },
       { title: "Step 3 — Policy issued", text: "Cover set up for the property's actual current stage — not a generic template." },
     ],
+    comparisonTable: {
+      title: "Cover needs by property stage",
+      intro: "What needs insuring changes as your property moves through these stages.",
+      columns: ["Stage", "What's typically insured"],
+      rows: [
+        ["Vacant land", "Boundary wall/structures, limited scope"],
+        ["Under construction", "Interim/CAR-style cover for the works in progress"],
+        ["Completed property", "Full structure at reconstruction cost, not market value"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Land & Property Insurance", href: EN("/services/industrial/land-property-insurance/") },
       { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
@@ -969,6 +1210,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — We check the numbers", text: "IDV, NCB and add-ons reviewed against what actually fits your bike and usage." },
       { title: "Step 3 — Renewed or fixed", text: "Policy renewed cleanly, or corrected if something was off." },
     ],
+    comparisonTable: {
+      title: "Renewed blind vs. renewed with a quick check",
+      intro: "Most Tambaram-area renewal problems trace back to skipping this.",
+      columns: ["What matters", "Renewed blind", "Renewed with a check"],
+      rows: [
+        ["IDV", "Carried forward unchanged", "Verified against current value"],
+        ["NCB", "Assumed correct", "Confirmed and carried forward properly"],
+        ["Add-ons", "Same bundle every year", "Reviewed against actual commute usage"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
       { label: "Auto Rickshaw Insurance", href: EN("/services/personal/auto-rickshaw-insurance/") },
@@ -1002,6 +1254,17 @@ export const intentExpansionPages = {
       { title: "Step 2 — We check IDV/NCB/add-ons", text: "Reviewed against your car's actual value and usage pattern." },
       { title: "Step 3 — Renewed cleanly", text: "Policy renewed with the right cover, no overpaying for add-ons you don't need." },
     ],
+    comparisonTable: {
+      title: "City-only add-ons vs. city + highway trips",
+      intro: "Add-on relevance changes based on how you actually drive.",
+      columns: ["Add-on", "City-only driving", "Regular highway trips"],
+      rows: [
+        ["Zero Depreciation", "Recommended if under 5 years old", "Recommended if under 5 years old"],
+        ["Engine Protect (waterlogging)", "Valuable — Velachery floods seasonally", "Still valuable"],
+        ["Roadside Assistance", "Less critical", "More valuable given distance from help"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Car Insurance Support", href: EN("/services/personal/car-insurance-support/") },
       { label: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
@@ -1034,6 +1297,16 @@ export const intentExpansionPages = {
       { title: "Step 2 — Usage check", text: "We confirm the policy's usage category actually matches the permit." },
       { title: "Step 3 — Renewed or corrected", text: "Policy renewed cleanly, or corrected if the usage category was wrong." },
     ],
+    comparisonTable: {
+      title: "Personal vs. commercial-permit usage",
+      intro: "This single declaration is what most claim disputes trace back to.",
+      columns: ["Usage type", "What it means"],
+      rows: [
+        ["Personal", "No fare-paying passengers — limited real-world applicability for autos"],
+        ["Commercial permit", "Registered for hire — must match the policy's declared usage category"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Auto Rickshaw Insurance", href: EN("/services/personal/auto-rickshaw-insurance/") },
       { label: "Bike Insurance Support", href: EN("/services/personal/bike-insurance-support/") },
@@ -1065,6 +1338,16 @@ export const intentExpansionPages = {
       { title: "Step 2 — Load-type check", text: "We confirm the declared goods type matches what's actually carried." },
       { title: "Step 3 — Renewed or corrected", text: "Policy renewed cleanly, or corrected if the load-type declaration was off." },
     ],
+    comparisonTable: {
+      title: "Load-type declared vs. mismatched",
+      intro: "The single biggest reason small commercial-vehicle claims get disputed.",
+      columns: ["What matters", "Load-type mismatch", "Correctly declared"],
+      rows: [
+        ["Claim risk", "High — insurer questions coverage at claim time", "Low — matches what's actually carried"],
+        ["Renewal accuracy", "Carried forward from an old declaration", "Reviewed at each renewal"],
+      ],
+    },
+
     recommendedServices: [
       { label: "Tempo / Mini Truck Insurance", href: EN("/services/personal/tempo-mini-truck-insurance/") },
       { label: "Goods Carrying Vehicle Insurance", href: EN("/services/transport-fleet/goods-carrying-vehicle-insurance/") },
@@ -1469,6 +1752,1039 @@ export const intentExpansionPages = {
       { q: "Can we start with minimal cover and add more as the business grows?", a: "Yes — that's the right approach. We set up what's needed now and review again as you add employees, premises, or vehicles, rather than overselling a bundle you don't need yet." },
       { q: "We're an MSME registered a year ago with no insurance at all — is it too late to start?", a: "No. It's common for MSMEs to run a year or more before formalising insurance. We assess what you have today and set up cover matched to your current operations, not a backdated ideal." },
       { q: "Do you support startups and MSMEs outside Chennai city, across Tamil Nadu?", a: "Yes. We're based in Sholavaram (Chennai outskirts) and prioritise Chennai city and its outskirts, but we support new businesses and MSMEs across Tamil Nadu." },
+    ],
+  },
+
+  // ===========================
+  // VERTICAL / INDUSTRY PERSONA PAGES (business-audience expansion)
+  // ===========================
+
+  "export-import-business-insurance-chennai": {
+    slug: "export-import-business-insurance-chennai",
+    seoTitle: "Export & Import Business Insurance in Chennai — Cargo, Incoterms & Trade Risk",
+    seoDesc: "Insurance for exporters and importers in Chennai — marine cargo cover matched to your Incoterms, customs-hold protection, and claim-ready documentation for cross-border trade. Call 7448324068.",
+    heroH1: "Export & Import Business Insurance in Chennai",
+    heroP: "Every trade lane carries a different risk profile — a first-time exporter shipping FOB has a different exposure window than an established importer bringing in machinery CIF. I'll match your cover to your actual Incoterms and trade pattern, not sell you a generic marine policy.",
+    intentSignals: ["export business insurance chennai", "import business insurance chennai", "exporter insurance chennai", "importer insurance chennai", "trade credit insurance chennai", "cargo insurance for exporters"],
+    whoThisHelps: [
+      "Exporters and importers routing shipments through Chennai Port, Ennore, or Kattupalli.",
+      "Manufacturers and traders new to EXIM who are unsure who bears risk at each shipping stage.",
+      "Established trading companies reviewing whether their current cargo cover still matches their trade volume.",
+    ],
+    whatYouGet: [
+      "Cover matched to your actual Incoterms (FOB/CIF/EXW/etc.) — so you know exactly when your risk starts and ends.",
+      "Invoice and letter-of-credit matching, so insured value ties back to real trade documents, not a round estimate.",
+      "Guidance on customs-hold and warehousing period cover for shipments stuck in clearance.",
+      "Claim support with proper survey coordination if cargo is damaged or lost in transit.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Share your trade lane details", text: "WhatsApp your Incoterm, invoice value, and route (port of loading/discharge)." },
+      { title: "Step 2 — Cover matched to your trade lane", text: "We align sum insured and cover period to your actual shipment pattern, not a generic template." },
+      { title: "Step 3 — Certificate before dispatch", text: "Insurance certificate issued in time for port/customs documentation, every shipment." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "First-time exporter",
+        forWhom: "You're new to EXIM and unsure who bears risk at each shipping stage.",
+        points: [
+          "We explain your Incoterm in plain terms — exactly when your risk starts and ends on this specific shipment.",
+          "Cover set up matched to your invoice value, not a guessed figure.",
+          "Documentation guidance so your first claim (if ever needed) isn't the first time you're learning the process.",
+        ],
+        ctaLabel: "WhatsApp — first export shipment",
+        waText: "Hi, this is our first export shipment and we need cargo insurance guidance matched to our Incoterm.",
+      },
+      {
+        label: "Established importer/exporter, regular shipments",
+        forWhom: "You ship regularly and want a consistent process, not a one-off policy each time.",
+        points: [
+          "A repeatable invoice/LC-matching habit so every shipment is claim-ready by default.",
+          "One contact across all your regular trade lanes, not a different arrangement per shipment.",
+          "Periodic review of whether your cover still matches your current trade volume.",
+        ],
+        ctaLabel: "WhatsApp — regular EXIM cover",
+        waText: "Hi, we ship regularly for export/import and want a consistent cargo insurance process set up.",
+      },
+      {
+        label: "Cargo damaged or lost — filing a claim",
+        forWhom: "A shipment has already been damaged, delayed at customs, or lost in transit.",
+        points: [
+          "We confirm what your policy actually covers for this specific loss — sea leg only, or warehouse-to-warehouse.",
+          "Guidance on preserving survey evidence and gathering invoice/LC proof before the surveyor visits.",
+          "Support through the claim process from report to settlement.",
+        ],
+        ctaLabel: "WhatsApp — cargo claim",
+        waText: "Hi, our export/import shipment was damaged or delayed and we need help with the insurance claim.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "Common Incoterms — who bears the risk, when",
+      intro: "Knowing this determines what you actually need to insure and from which point.",
+      columns: ["Incoterm", "When your risk starts"],
+      rows: [
+        ["FOB (Free on Board)", "Once goods are loaded onto the vessel at origin port"],
+        ["CIF (Cost, Insurance, Freight)", "Seller insures to destination port — verify what's actually covered"],
+        ["EXW (Ex Works)", "From the seller's premises — the longest exposure window for the buyer"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "What actually causes export/import cargo claims to stall",
+        intro: "Not insurer unfairness — usually one of these, and all are avoidable with the right setup upfront.",
+        points: [
+          "Insured value not matching the invoice or letter of credit — the two must tie back to each other.",
+          "No survey done at destination when damage is suspected — get one immediately, don't wait to dispute.",
+          "Gaps in cover during customs hold or transshipment — confirm your policy covers the full warehouse-to-warehouse journey, not just port-to-port.",
+          "Declared route/carrier not matching the actual shipping line used.",
+        ],
+      },
+    ],
+
+    scenarios: [
+      {
+        title: "First-time exporter confused about Incoterms",
+        situation: "A manufacturer shipping their first export order didn't know whether they or the buyer were responsible for insuring the cargo under the agreed FOB terms.",
+        howWeHelped: "We explained exactly where their risk ended (once loaded at the origin port) and set up cover for that specific window, avoiding both a gap and unnecessary duplicate cover.",
+        waText: "Hi, we're shipping our first export order and aren't sure whether we need to insure it under our Incoterms.",
+      },
+      {
+        title: "Importer's machinery shipment damaged at customs hold",
+        situation: "A trading company's imported machinery was damaged while held at customs, and their existing policy's cover period was unclear about whether the hold period was included.",
+        howWeHelped: "We confirmed the customs-hold period was covered under their policy wording, coordinated the survey, and supported the claim through to settlement.",
+        waText: "Hi, our imported machinery was damaged during a customs hold and we need help understanding our claim.",
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Import / Export Cargo Insurance", href: EN("/services/marine/import-export-insurance/") },
+      { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+      { label: "Marine Hull & Inland Vessel Insurance", href: EN("/services/marine/marine-hull-inland-vessel-insurance/") },
+      { label: "Manufacturer Export Insurance", href: EN("/manufacturer-export-insurance-chennai/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+      { label: "All Services", href: EN("/services/") },
+    ],
+    faqs: [
+      { q: "Does cargo insurance cover the whole journey or just the sea leg?", a: "Depends on the policy — warehouse-to-warehouse cover is available and usually recommended, not just port-to-port (as applicable)." },
+      { q: "What documents do I need before shipment?", a: "Invoice, packing list, and the Incoterm agreed with your buyer/seller — we align the sum insured to these before issuing cover." },
+      { q: "Do you cover shipments through Chennai Port, Ennore, and Kattupalli?", a: "Yes, we support cargo movement through all major Chennai-area ports and can coordinate cover for any trade lane you use." },
+      { q: "Can you help if our export business is new and we've never bought cargo insurance before?", a: "Yes — this is common. We explain Incoterms in plain language and set up cover matched to your actual first shipment, not a generic policy." },
+    ],
+  },
+
+  "insurance-for-professionals-consultants-chennai": {
+    slug: "insurance-for-professionals-consultants-chennai",
+    seoTitle: "Insurance for Professionals & Consultants in Chennai — Liability, Office & Health Cover",
+    seoDesc: "Insurance for consultants, freelancers, CAs, architects, and agencies in Chennai — professional indemnity, office equipment, and health cover matched to how you actually work. Call 7448324068.",
+    heroH1: "Insurance for Professionals & Consultants in Chennai",
+    heroP: "If your business is advice, design, or a service delivered — not physical stock — your real exposure is different from a shop or factory. I'll help you cover what actually matters: professional liability, the equipment your work depends on, and your own health cover if you're self-employed.",
+    intentSignals: ["insurance for consultants chennai", "freelancer insurance chennai", "professional indemnity for CA architects chennai", "self employed insurance chennai", "insurance for agencies chennai"],
+    whoThisHelps: [
+      "Independent consultants, freelancers, and self-employed professionals (CAs, architects, designers, IT consultants).",
+      "Small agencies and service firms delivering advice or work product to clients.",
+      "Professionals who've never had insurance beyond a personal health policy and aren't sure what a growing practice needs.",
+    ],
+    whatYouGet: [
+      "Professional Indemnity cover — protection if a client claims loss due to advice, error, or omission in the service you delivered.",
+      "Office/equipment cover for laptops, software licenses, and furniture — since a landlord's policy rarely covers your equipment.",
+      "Guidance on whether D&O is relevant if you've incorporated with a board or investors.",
+      "Personal health insurance guidance, since self-employed professionals don't have an employer's group policy as a fallback.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe what you do", text: "WhatsApp your practice type (consulting, design, accounting, IT, etc.) and whether you work solo or with a small team." },
+      { title: "Step 2 — Cover matched to real exposure", text: "We align cover to your actual service/advice risk, not a generic liability template built for a shop." },
+      { title: "Step 3 — Policy issued", text: "Clear on trigger conditions and notification requirements, so a future claim isn't delayed by a technicality you didn't know about." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Solo freelancer / self-employed professional",
+        forWhom: "You work independently — no employees, no office lease, just your own advice or work product.",
+        points: [
+          "Professional Indemnity sized to your actual client contract values, not an inflated generic figure.",
+          "Personal health insurance guidance, since you don't have an employer's group policy to fall back on.",
+          "No unnecessary add-ons — we don't sell a small-business bundle you don't need as a solo operator.",
+        ],
+        ctaLabel: "WhatsApp — freelancer/solo cover",
+        waText: "Hi, I'm a self-employed professional/freelancer and want to understand what insurance I actually need.",
+      },
+      {
+        label: "Small agency or consulting firm",
+        forWhom: "You have a small team delivering client work, possibly with an office lease.",
+        points: [
+          "Professional Indemnity for the firm, sized to your typical project/contract value.",
+          "Office equipment cover for the team's laptops, servers, and furniture.",
+          "Group health guidance if you're formalizing employee benefits as the team grows.",
+        ],
+        ctaLabel: "WhatsApp — agency/firm cover",
+        waText: "Hi, we run a small consulting/agency team and want our professional liability and office cover reviewed.",
+      },
+      {
+        label: "Incorporated with investors or a board",
+        forWhom: "Your practice has grown into a company with external stakeholders — director liability is now a real personal exposure.",
+        points: [
+          "D&O cover explained clearly — this protects directors personally, separate from the company's general liability.",
+          "Guidance on which cover your business genuinely needs at this stage, since D&O and PI are often confused.",
+          "Documentation formatted for investor due diligence if that's ever requested.",
+        ],
+        ctaLabel: "WhatsApp — D&O for incorporated practice",
+        waText: "Hi, our consulting practice is now incorporated with a board/investors and we want to understand if we need D&O cover.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "Professional Indemnity vs. D&O — which applies to you",
+      intro: "Often confused, but they protect different things.",
+      columns: ["What matters", "Professional Indemnity", "D&O"],
+      rows: [
+        ["Who's protected", "The business itself", "Directors/officers personally"],
+        ["What triggers a claim", "An error or omission in advice/service delivered", "A management decision"],
+        ["Typical buyer", "Consultants, agencies, service firms", "Companies with a board or external investors"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "What most professionals get wrong about their own insurance",
+        intro: "A few patterns we see repeatedly with consultants and freelancers.",
+        points: [
+          "Assuming a landlord's building insurance covers your office equipment — it almost never does.",
+          "Not having Professional Indemnity because 'nothing's gone wrong yet' — the point of PI is that it's there before something does.",
+          "Confusing Professional Indemnity (protects the business for service errors) with D&O (protects directors personally) — buying one when you actually need the other.",
+          "Relying on an employer's health cover memory from a previous job, without realizing self-employment means no group policy exists anymore.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
+      { label: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
+      { label: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { label: "Freelancer & Self-Employed Insurance", href: EN("/freelancer-self-employed-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "All Services", href: EN("/services/") },
+    ],
+    faqs: [
+      { q: "Do freelancers really need professional indemnity insurance?", a: "If your work involves advice, design, or a deliverable a client could claim was faulty or caused them loss, yes — even as a solo freelancer. The cost is usually modest relative to the protection." },
+      { q: "I work from home — do I need office insurance?", a: "If you have meaningful equipment (laptop, monitors, specialized software/hardware), it's worth covering separately from your home insurance, which often excludes business equipment or has low sub-limits for it." },
+      { q: "What's the difference between Professional Indemnity and Public Liability?", a: "Professional Indemnity covers claims arising from your advice or service (an error, omission, or bad outcome from your work). Public Liability covers physical injury or property damage to a third party — relevant if clients visit your office." },
+      { q: "Can you set up health insurance for a self-employed person?", a: "Yes. Since you don't have an employer's group policy, we help you choose an individual or family plan matched to your situation, with proper disclosure guidance." },
+    ],
+  },
+
+  "wholesale-trader-retailer-insurance-chennai": {
+    slug: "wholesale-trader-retailer-insurance-chennai",
+    seoTitle: "Insurance for Wholesalers, Traders & Retailers in Chennai — Stock & Fire Cover",
+    seoDesc: "Insurance for wholesale traders and retail shop owners in Chennai — stock declaration, fire and burglary cover sized to fluctuating inventory. For T. Nagar, wholesale markets, and retail belts. Call 7448324068.",
+    heroH1: "Insurance for Wholesalers, Traders & Retailers in Chennai",
+    heroP: "A wholesaler's stock value swings hard between seasons, and a retailer's biggest risk is usually fire or theft of exactly what's on the shelf. I'll size your cover to your actual stock pattern, not a flat figure that's wrong most of the year.",
+    intentSignals: ["wholesale trader insurance chennai", "retail shop insurance chennai", "textile wholesale insurance t nagar", "trader stock insurance chennai", "retailer fire insurance chennai"],
+    whoThisHelps: [
+      "Wholesale traders in markets and commercial hubs (textiles, electronics, hardware, general goods).",
+      "Retail shop and showroom owners with stock value that fluctuates seasonally.",
+      "Distributors holding inventory for multiple brands or product lines under one roof.",
+    ],
+    whatYouGet: [
+      "Stock declaration structure so your cover matches actual stock levels through the year, not a flat annual figure.",
+      "Fire and burglary cover sized to peak stock value — the average clause punishes underinsurance at exactly the wrong moment.",
+      "Guidance on security conditions required for burglary cover to actually pay out.",
+      "Public liability if customers or buyers regularly visit your premises.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Share your stock pattern", text: "WhatsApp your typical stock value range through the year — off-season vs. peak season (festival, wedding season, etc.)." },
+      { title: "Step 2 — Cover sized to peak, not average", text: "We size sum insured to your highest stock-holding point, since that's what the average clause checks against." },
+      { title: "Step 3 — Policy issued", text: "Fire, burglary, and stock declaration structure set up together, with a simple habit for keeping declarations current." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Wholesale trader, seasonal stock swings",
+        forWhom: "Your stock value varies significantly by season — wedding season, festival stock-up, or bulk seasonal buying.",
+        points: [
+          "Stock declaration policy structure so cover tracks your actual holding, not a flat figure that's wrong most months.",
+          "We size cover to your peak, since that's what matters most for the average clause.",
+          "Guidance on declaration rhythm — how often to update the insurer on current stock value.",
+        ],
+        ctaLabel: "WhatsApp — seasonal stock cover",
+        waText: "Hi, we're a wholesale trader with seasonal stock swings and want the right insurance structure.",
+      },
+      {
+        label: "Retail shop owner, fixed location",
+        forWhom: "You run a shop or showroom with relatively stable stock and want straightforward fire/burglary cover.",
+        points: [
+          "Sum insured checked against actual current stock and premises value, not a rounded guess.",
+          "Burglary security conditions reviewed against what's genuinely in place at your shop.",
+          "Public liability included if customers regularly visit.",
+        ],
+        ctaLabel: "WhatsApp — retail shop cover",
+        waText: "Hi, we run a retail shop and want our fire/burglary insurance reviewed.",
+      },
+      {
+        label: "Filing a claim — fire, theft, or stock loss",
+        forWhom: "An incident has already happened at your shop or godown.",
+        points: [
+          "We check what proof you have (invoices, stock register, photos) and what's still missing before the surveyor visits.",
+          "Honest guidance on the average clause if your declared stock turns out to be lower than actual holding.",
+          "Support through documentation and the surveyor process.",
+        ],
+        ctaLabel: "WhatsApp — active claim",
+        waText: "Hi, we've had a fire/theft incident at our shop and need help with the insurance claim.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "Flat annual sum insured vs. stock declaration policy",
+      intro: "For traders with fluctuating stock, this distinction decides whether a claim pays out fully or gets reduced.",
+      columns: ["What matters", "Flat sum insured", "Stock declaration policy"],
+      rows: [
+        ["Off-season cover", "Same figure whether stock is low or high", "Adjusted to reflect actual declared stock"],
+        ["Peak-season claim", "Risk of underinsurance if peak wasn't accounted for", "Matched to declared peak value"],
+        ["Premium fairness", "Pay the same regardless of actual average holding", "Can reflect true average exposure"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "The average clause, explained for traders",
+        intro: "This is the single most consequential concept for wholesale and retail stock insurance.",
+        points: [
+          "If your actual peak stock value is ₹50 lakh but you've insured for ₹30 lakh, you're 40% underinsured at that peak.",
+          "On a claim — even a small, partial one — the insurer pays only 60% of the loss, proportionate to how underinsured you are.",
+          "The fix: declare your stock value honestly at peak season, and keep basic proof (invoices, stock register) on file so a claim doesn't stall on valuation disputes.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { label: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { label: "Small Business Insurance", href: EN("/small-business-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "We're a textile wholesaler near T. Nagar — do you cover high-value stock like this?", a: "Yes. High-value inventory (textiles, jewellery, electronics) just needs accurate valuation and, for burglary cover, confirmation that your security setup meets the insurer's conditions." },
+      { q: "How is sum insured calculated for fluctuating stock?", a: "Ideally on the maximum stock value at any point in the year, not an average — insuring for average value under-protects you at your riskiest (highest-value) moment." },
+      { q: "Does burglary cover require specific security measures?", a: "Yes, typically — grills, locks, and sometimes a watchman or alarm system, depending on the insurer and your stock value. We check your setup against the policy's actual requirements before you buy." },
+      { q: "Can a wholesale market stall or small shop get proper stock insurance?", a: "Yes, regardless of size. The insurer assesses construction type and security measures, and we help you present this accurately to get fair terms." },
+    ],
+  },
+
+  "hotel-restaurant-insurance-chennai": {
+    slug: "hotel-restaurant-insurance-chennai",
+    seoTitle: "Hotel & Restaurant Insurance in Chennai — Property, Liability & Staff Cover",
+    seoDesc: "Insurance for hotels, restaurants, and lodges in Chennai — fire and property cover, public liability for guest/customer incidents, and staff accident cover. Call 7448324068.",
+    heroH1: "Hotel & Restaurant Insurance in Chennai",
+    heroP: "A hotel or restaurant carries a mix of risks a standard shop policy doesn't quite fit — guests and diners on the premises, food safety exposure, kitchen fire risk, and staff working around equipment daily. I'll help you cover what's actually relevant to hospitality, not a generic commercial package.",
+    intentSignals: ["hotel insurance chennai", "restaurant insurance chennai", "lodge insurance chennai", "hospitality insurance chennai", "kitchen fire insurance chennai", "guest liability insurance chennai"],
+    whoThisHelps: [
+      "Hotel and lodge owners needing property, fire, and guest liability cover.",
+      "Restaurant, cafe, and catering business owners covering kitchen fire risk and customer liability.",
+      "Hospitality businesses with staff working around kitchen equipment or guest-facing operations.",
+    ],
+    whatYouGet: [
+      "Fire and property cover sized to your building, kitchen equipment, and furnishings.",
+      "Public liability for guest or customer incidents on your premises — a slip, a food-safety complaint, or property damage claim.",
+      "Guidance on Workmen Compensation for kitchen and housekeeping staff, given the physical nature of the work.",
+      "Business interruption guidance if a fire or major incident would stop you from operating.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your property", text: "WhatsApp your property type (hotel/lodge/restaurant/cafe), size, and staff count." },
+      { title: "Step 2 — Cover matched to hospitality risk", text: "We size fire, liability, and WC cover to your actual kitchen/guest-facing operations, not a generic shop template." },
+      { title: "Step 3 — Policy issued", text: "Clear on what's covered for guest incidents, kitchen fire, and staff injury, so there's no surprise at claim time." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Restaurant or cafe owner",
+        forWhom: "You run a food service business with a kitchen and dine-in or takeaway customers.",
+        points: [
+          "Kitchen fire risk assessed properly — cooking equipment and LPG usage change your fire load significantly.",
+          "Public liability for customer incidents, from a slip on the floor to a food-safety complaint.",
+          "Workmen Compensation for kitchen staff, who face real physical risk daily.",
+        ],
+        ctaLabel: "WhatsApp — restaurant/cafe cover",
+        waText: "Hi, we run a restaurant/cafe and want our fire, liability, and staff insurance reviewed.",
+      },
+      {
+        label: "Hotel or lodge owner",
+        forWhom: "You run guest accommodation and need broader property and guest-liability cover.",
+        points: [
+          "Property cover sized to the building, furnishings, and any in-house dining/kitchen operations.",
+          "Guest liability cover for incidents on your premises — injury, property damage, or loss claims.",
+          "Staff cover across housekeeping, kitchen, and front-desk roles.",
+        ],
+        ctaLabel: "WhatsApp — hotel/lodge cover",
+        waText: "Hi, we run a hotel/lodge and want our property and guest liability insurance reviewed.",
+      },
+      {
+        label: "After an incident — fire, injury, or claim",
+        forWhom: "A kitchen fire, guest injury, or property incident has already happened.",
+        points: [
+          "We check what proof you have and what's still needed before the surveyor or investigator visits.",
+          "Guidance on guest/customer liability claims specifically, which have different documentation needs than a standard property claim.",
+          "Support through the claim process from report to settlement.",
+        ],
+        ctaLabel: "WhatsApp — active hospitality claim",
+        waText: "Hi, we've had an incident at our hotel/restaurant and need help with the insurance claim.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "Generic shop policy vs. hospitality-specific cover",
+      intro: "A shop policy is built for retail risk; hospitality has a different profile entirely.",
+      columns: ["What's covered", "Generic shop package", "Hospitality-specific cover"],
+      rows: [
+        ["Kitchen fire load (LPG, cooking equipment)", "Often underweighted", "Assessed specifically as a major fire-load factor"],
+        ["Guest/customer liability", "Basic public liability, if included", "Sized to actual footfall and guest-facing exposure"],
+        ["Staff physical risk (kitchen, housekeeping)", "Standard WC template", "Matched to hospitality-specific roles"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "What makes hospitality risk different from a standard shop",
+        intro: "A few things worth understanding before you buy or renew.",
+        points: [
+          "Kitchen operations (LPG, deep fryers, continuous flame) significantly raise your fire load compared to a typical retail shop — this affects both premium and the safety conditions insurers expect.",
+          "Guest/customer liability is broader than typical retail public liability — think food safety complaints, slip-and-fall incidents, and property damage or loss claims from guests.",
+          "Staff in hospitality (kitchen, housekeeping) face more physical risk day-to-day than office-based roles, which should be reflected in your WC classification.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { label: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { label: "Catering & Event Business Insurance", href: EN("/catering-event-business-insurance-chennai/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Does standard fire insurance cover kitchen fires?", a: "Yes, fire from cooking operations is generally covered under a standard fire policy, but the fire load from kitchen equipment (LPG, deep fryers) affects premium and safety conditions — we make sure this is disclosed and priced correctly, not left as a gap." },
+      { q: "Are we liable if a guest or customer is injured on our premises?", a: "Potentially, yes — this is exactly what public liability cover is for. Without it, you'd bear that cost directly." },
+      { q: "Do we need separate cover for our kitchen staff?", a: "Workmen Compensation should reflect the actual physical risk of kitchen and housekeeping roles, which is different from office-based staff — we help classify this correctly so a claim doesn't hit a disclosure dispute." },
+      { q: "Can you cover a small lodge or a large hotel property?", a: "Yes, we size cover to your actual property — whether it's a small guesthouse or a larger hotel with multiple facilities." },
+    ],
+  },
+
+  "school-trust-ngo-insurance-chennai": {
+    slug: "school-trust-ngo-insurance-chennai",
+    seoTitle: "Insurance for Schools, Trusts & NGOs in Chennai — Property, Liability & Staff Cover",
+    seoDesc: "Insurance for schools, charitable trusts, NGOs, and societies in Chennai — property, public liability for visitors/students, and staff/volunteer cover. Call 7448324068.",
+    heroH1: "Insurance for Schools, Trusts & NGOs in Chennai",
+    heroP: "Institutional entities — schools, trusts, NGOs, cooperative societies — carry real risk that's easy to overlook because there's no obvious 'commercial' framing: a building full of students or visitors, staff and volunteers, and property that often nobody has reviewed insurance for in years. I'll help you cover what's actually exposed.",
+    intentSignals: ["school insurance chennai", "trust insurance chennai", "ngo insurance chennai", "society insurance chennai", "cooperative society insurance chennai", "institutional insurance chennai"],
+    whoThisHelps: [
+      "Schools and educational institutions needing property and student/visitor liability cover.",
+      "Charitable trusts and NGOs with premises, staff, and public-facing programs.",
+      "Cooperative societies and resident associations managing shared property.",
+    ],
+    whatYouGet: [
+      "Property cover for buildings, furnishings, and equipment — sized to actual replacement value, not a figure nobody's revisited in years.",
+      "Public liability for incidents involving students, visitors, or the public on your premises.",
+      "Guidance on group personal accident cover for staff, volunteers, and in some cases students.",
+      "Straightforward documentation, since many institutional bodies have limited administrative bandwidth for insurance paperwork.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your institution", text: "WhatsApp your entity type (school/trust/NGO/society), property details, and approximate staff/student/member count." },
+      { title: "Step 2 — Cover matched to institutional risk", text: "We size property, liability, and accident cover to what your organization actually has and does." },
+      { title: "Step 3 — Policy issued", text: "Documentation kept simple, since institutional administration often doesn't have dedicated insurance expertise in-house." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "School or educational institution",
+        forWhom: "You run or administer a school and need property and student/visitor liability cover.",
+        points: [
+          "Property cover sized to your buildings and equipment, reviewed against actual current replacement value.",
+          "Public liability for incidents involving students or visitors on campus.",
+          "Group personal accident guidance for staff and, where relevant, students.",
+        ],
+        ctaLabel: "WhatsApp — school insurance",
+        waText: "Hi, we run a school and want our property and liability insurance reviewed.",
+      },
+      {
+        label: "Charitable trust or NGO",
+        forWhom: "You run programs with staff, volunteers, and public interaction, often with limited administrative capacity for insurance paperwork.",
+        points: [
+          "Property and liability cover kept straightforward, matched to your actual premises and activities.",
+          "Guidance on covering staff and volunteers, which is often overlooked until an incident happens.",
+          "Simple, low-friction documentation given typical NGO administrative bandwidth.",
+        ],
+        ctaLabel: "WhatsApp — trust/NGO cover",
+        waText: "Hi, we run a trust/NGO and want to set up basic property and liability insurance.",
+      },
+      {
+        label: "Cooperative society or resident association",
+        forWhom: "You manage shared property on behalf of a community — a housing society, cooperative, or similar body.",
+        points: [
+          "Property cover for shared/common areas and structures.",
+          "Public liability for incidents involving residents, staff, or visitors.",
+          "Guidance suited to committee-run administration, not a corporate-scale process.",
+        ],
+        ctaLabel: "WhatsApp — society/cooperative cover",
+        waText: "Hi, we manage a cooperative society/resident association and want our property insurance reviewed.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "No review in years vs. a current policy check",
+      intro: "Institutional insurance is easy to set up once and forget — this is what changes with a periodic review.",
+      columns: ["What matters", "Policy unreviewed for years", "Reviewed periodically"],
+      rows: [
+        ["Sum insured accuracy", "Often based on an outdated valuation", "Matched to current replacement cost"],
+        ["Staff/volunteer cover", "May not exist or may be outdated", "Reviewed as the organization changes"],
+        ["Claim readiness", "Documentation habits unclear", "Simple proof-keeping habit in place"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "Why institutional insurance gets overlooked",
+        intro: "Not because it doesn't matter — because there's rarely a dedicated person tracking it.",
+        points: [
+          "Schools, trusts, and societies are usually run by committees or small admin teams without a dedicated finance/insurance function — policies get set up once and then forgotten.",
+          "Because there's no obvious 'commercial' framing, institutional leaders sometimes assume general liability doesn't apply to them — it does, especially with students, visitors, or the public regularly on premises.",
+          "The fix is simple: a periodic review (even every 2-3 years) catches outdated valuations and coverage gaps before an incident forces the issue.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
+      { label: "Daycare & Coaching Center Insurance", href: EN("/daycare-coaching-center-insurance-chennai/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+      { label: "All Services", href: EN("/services/") },
+    ],
+    faqs: [
+      { q: "Do schools need public liability insurance?", a: "Yes — with students, staff, and visitors regularly on premises, public liability cover protects against claims arising from injury or property damage incidents on campus." },
+      { q: "Can a small NGO or trust with limited budget still get proper cover?", a: "Yes. We help institutional bodies get straightforward, right-sized cover rather than an oversold commercial package — cost is matched to what you actually have and do." },
+      { q: "Does a cooperative society need separate insurance from individual residents' policies?", a: "Yes, for common/shared property and areas — individual unit owners' policies typically don't cover shared structures, common areas, or the society's liability as an entity." },
+      { q: "How often should an institution review its insurance?", a: "At least every 2-3 years, and any time the property, staff count, or activities change materially. Many institutional policies go untouched for far longer than that, which is where gaps quietly appear." },
+    ],
+  },
+
+  "ecommerce-online-seller-insurance-chennai": {
+    slug: "ecommerce-online-seller-insurance-chennai",
+    seoTitle: "Insurance for E-commerce & Online Sellers in Chennai — Stock, Transit & Warehouse Cover",
+    seoDesc: "Insurance for e-commerce businesses and online sellers in Chennai — warehouse/fulfilment stock cover, goods-in-transit for deliveries, and product liability. Call 7448324068.",
+    heroH1: "Insurance for E-commerce & Online Sellers in Chennai",
+    heroP: "An online seller's risk sits in a few specific places — stock sitting in a warehouse or fulfilment space, goods moving to customers, and occasionally a product liability question. I'll help you cover exactly those points instead of a generic retail shop policy that doesn't quite fit an online-only business.",
+    intentSignals: ["ecommerce business insurance chennai", "online seller insurance chennai", "d2c brand insurance chennai", "warehouse insurance ecommerce chennai", "online store insurance chennai"],
+    whoThisHelps: [
+      "D2C brands and online sellers holding stock in a warehouse or fulfilment space.",
+      "E-commerce businesses shipping goods regularly to customers across Tamil Nadu and beyond.",
+      "Online sellers who've grown from a side business into stock levels that need real protection.",
+    ],
+    whatYouGet: [
+      "Warehouse/fulfilment stock cover sized to your actual inventory value, including seasonal peaks (festival sales, etc.).",
+      "Goods-in-transit cover for outbound deliveries, especially for higher-value items.",
+      "Guidance on product liability if a product defect could lead to a customer claim.",
+      "Straightforward documentation suited to a lean, often remote-first team.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Share your business details", text: "WhatsApp your product category, approximate stock value, and where you store/fulfil orders from." },
+      { title: "Step 2 — Cover matched to your actual setup", text: "We size stock and transit cover to your fulfilment pattern, including seasonal sales spikes." },
+      { title: "Step 3 — Policy issued", text: "Set up to work for a lean, digitally-run business — no unnecessary in-person process." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "D2C brand with own warehouse/fulfilment",
+        forWhom: "You hold stock yourself and ship directly to customers.",
+        points: [
+          "Stock cover sized to your actual warehouse holding, including festival-season spikes.",
+          "Goods-in-transit cover for outbound customer shipments, especially higher-value items.",
+          "Guidance on whether product liability is relevant to your specific product category.",
+        ],
+        ctaLabel: "WhatsApp — D2C stock/transit cover",
+        waText: "Hi, we run a D2C brand with our own warehouse and want our stock and transit insurance reviewed.",
+      },
+      {
+        label: "Marketplace seller using third-party fulfilment",
+        forWhom: "You sell through platforms and may use a marketplace's fulfilment/warehousing service.",
+        points: [
+          "We clarify what the marketplace's fulfilment cover actually includes — often less than sellers assume.",
+          "Guidance on whether you need your own stock cover for goods awaiting dispatch to the fulfilment center.",
+          "Straightforward setup that doesn't assume a physical storefront.",
+        ],
+        ctaLabel: "WhatsApp — marketplace seller cover",
+        waText: "Hi, we sell through online marketplaces and want to understand what insurance gap we might have.",
+      },
+      {
+        label: "Growing from side business to real stock value",
+        forWhom: "What started small has grown, and your stock value now genuinely needs protecting.",
+        points: [
+          "An honest assessment of whether you've outgrown 'no insurance' — many sellers reach this point without noticing.",
+          "Cover sized to where your business actually is now, not a large-brand template.",
+          "A starting point that scales with you as the business grows further.",
+        ],
+        ctaLabel: "WhatsApp — growing online business",
+        waText: "Hi, our online business has grown and we think it's time to set up proper stock/transit insurance.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "No cover vs. warehouse + transit cover",
+      intro: "The two points where online sellers actually carry risk — storage and shipping.",
+      columns: ["Risk point", "No cover", "Warehouse + transit cover"],
+      rows: [
+        ["Stock damaged/lost in storage (fire, theft)", "Full loss absorbed by the business", "Covered, sized to peak stock value"],
+        ["Goods damaged/lost in delivery transit", "Absorbed as a cost of doing business or disputed with courier", "Covered directly, regardless of courier fault"],
+        ["Product liability claim", "Full exposure", "Covered if relevant to your product category"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "What a courier's liability actually covers (and doesn't)",
+        intro: "A common misconception among online sellers — worth clarifying before you assume you're covered.",
+        points: [
+          "Courier/logistics partners typically cap their liability for lost or damaged goods at a low fixed amount, far below your actual product value — this is standard in their terms, not a special exclusion.",
+          "Your own goods-in-transit cover pays based on the actual declared value of the shipment, not the courier's capped liability.",
+          "For high-value or fragile products, this gap between courier liability and actual value is exactly where sellers get caught out without their own cover.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+      { label: "Warehouse / Godown Insurance", href: EN("/services/industrial/warehouse-insurance/") },
+      { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+      { label: "Home Business Insurance", href: EN("/home-business-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Does my courier partner's insurance already cover my goods?", a: "Usually only up to a low capped amount stated in their terms — far below actual product value for most goods. Your own goods-in-transit cover fills that gap." },
+      { q: "We store stock in a rented warehouse — do we need our own insurance, or does the warehouse owner's policy cover us?", a: "The warehouse owner's policy typically covers the building, not your stock inside it. You need your own stock cover for your inventory specifically." },
+      { q: "Is product liability relevant for a small online seller?", a: "It depends on your product category — items with any safety, electrical, or consumable element carry more real exposure than say, printed merchandise. We assess based on what you actually sell." },
+      { q: "Can insurance handle seasonal sales spikes, like festival season stock buildup?", a: "Yes — this is exactly what stock declaration structures are for. We size cover to your peak holding period, not a flat year-round average." },
+    ],
+  },
+
+  "hospital-clinic-insurance-chennai": {
+    slug: "hospital-clinic-insurance-chennai",
+    seoTitle: "Insurance for Hospitals & Clinics in Chennai — Property, Equipment & Professional Cover",
+    seoDesc: "Insurance for hospitals, clinics, and diagnostic centers in Chennai — property and equipment breakdown cover, professional indemnity, and staff cover. Call 7448324068.",
+    heroH1: "Insurance for Hospitals & Clinics in Chennai",
+    heroP: "A hospital or clinic carries a genuinely different risk profile — expensive diagnostic and treatment equipment that can fail without any fire or accident involved, a professional liability exposure tied directly to patient outcomes, and staff working in a physically demanding environment. I'll help you cover what's actually at stake, not a generic office package.",
+    intentSignals: ["hospital insurance chennai", "clinic insurance chennai", "diagnostic center insurance chennai", "medical equipment insurance chennai", "doctor professional indemnity chennai"],
+    whoThisHelps: [
+      "Hospital and nursing home owners needing property, equipment, and liability cover.",
+      "Clinic and diagnostic center owners with valuable medical equipment exposure.",
+      "Doctors and medical practitioners needing professional indemnity cover distinct from the facility's general policy.",
+    ],
+    whatYouGet: [
+      "Property and fire cover for the building, sized to actual reconstruction value.",
+      "Machinery/equipment breakdown cover for diagnostic and treatment equipment — a fire policy alone doesn't cover mechanical or electrical failure.",
+      "Guidance on professional indemnity for practitioners, separate from the facility's general liability.",
+      "Workmen Compensation guidance for medical, nursing, and support staff given the physically demanding nature of the work.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your facility", text: "WhatsApp your facility type (hospital/clinic/diagnostic center), key equipment, and staff count." },
+      { title: "Step 2 — Cover matched to healthcare risk", text: "We size property, equipment breakdown, and liability cover to your actual facility and equipment value." },
+      { title: "Step 3 — Policy issued", text: "Clear on what's covered for equipment failure, property loss, and professional liability, so there's no ambiguity at claim time." },
+    ],
+
+    personaGuideTitle: "Which of these is you?",
+    personaGuide: [
+      {
+        label: "Clinic or small nursing home",
+        forWhom: "You run a smaller facility with essential diagnostic/treatment equipment.",
+        points: [
+          "Property and equipment breakdown cover sized to your actual setup, not a large-hospital template.",
+          "Guidance on professional indemnity for the practicing doctor(s), distinct from facility cover.",
+          "Straightforward setup matched to a smaller administrative team.",
+        ],
+        ctaLabel: "WhatsApp — clinic/nursing home cover",
+        waText: "Hi, we run a clinic/small nursing home and want our property and equipment insurance reviewed.",
+      },
+      {
+        label: "Hospital or diagnostic center with significant equipment",
+        forWhom: "You have high-value diagnostic or treatment equipment (imaging, lab, OT equipment) as a major asset.",
+        points: [
+          "Machinery breakdown cover assessed as a distinct exposure from fire — sudden equipment failure isn't a fire-policy matter.",
+          "Sum insured reviewed against actual equipment replacement cost, which is often underestimated over time.",
+          "Liability cover sized to your facility's actual patient volume and service scope.",
+        ],
+        ctaLabel: "WhatsApp — hospital/diagnostic equipment cover",
+        waText: "Hi, we run a hospital/diagnostic center with significant equipment and want our insurance reviewed.",
+      },
+      {
+        label: "Individual doctor / practitioner",
+        forWhom: "You practice independently or within a facility and need your own professional cover.",
+        points: [
+          "Professional indemnity sized to your specialty and practice pattern, separate from the facility's own policy.",
+          "Clarity on what the facility's cover includes versus what's your personal responsibility to insure.",
+          "Guidance suited to a busy practice with limited time for insurance administration.",
+        ],
+        ctaLabel: "WhatsApp — doctor professional indemnity",
+        waText: "Hi, I'm a practicing doctor and want to understand my professional indemnity insurance needs.",
+      },
+    ],
+
+    comparisonTable: {
+      title: "Fire policy alone vs. fire + equipment breakdown",
+      intro: "This gap matters more in healthcare than almost any other sector, given equipment value.",
+      columns: ["Cause of loss", "Fire policy alone", "+ Machinery Breakdown"],
+      rows: [
+        ["Fire, explosion damage to equipment", "Covered", "Covered"],
+        ["Sudden equipment failure (no fire involved)", "Not covered", "Covered"],
+        ["Diagnostic downtime from equipment failure", "Not covered", "Covered with consequential loss add-on"],
+      ],
+    },
+
+    guideSections: [
+      {
+        title: "Why healthcare facilities need more than a standard property policy",
+        intro: "The equipment and liability profile here is genuinely different from a typical commercial property.",
+        points: [
+          "Diagnostic and treatment equipment (imaging machines, lab analyzers, OT equipment) represents concentrated value that can fail mechanically or electrically without any fire involved — a standard fire policy doesn't respond to this.",
+          "Professional liability in healthcare is tied directly to patient outcomes, which is a distinct exposure from general commercial liability and usually needs its own dedicated cover for practitioners.",
+          "Staff in clinical and support roles face genuine physical and exposure risk that should be reflected accurately in Workmen Compensation classification, not treated as generic office staff.",
+        ],
+      },
+    ],
+
+    recommendedServices: [
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { label: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
+      { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
+      { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { label: "Diagnostic Lab & Pharmacy Insurance", href: EN("/diagnostic-lab-pharmacy-insurance-chennai/") },
+      { label: "Claim Support & Documentation", href: EN("/services/claims-support/") },
+    ],
+    faqs: [
+      { q: "Does our hospital's fire policy cover equipment breakdown too?", a: "No — a standard fire policy covers fire, explosion, and allied perils. Equipment that fails mechanically or electrically without a fire involved needs a separate Machinery Breakdown policy." },
+      { q: "Is professional indemnity for a doctor separate from the hospital's general insurance?", a: "Generally yes — the facility's property and general liability cover is distinct from a practitioner's personal professional indemnity, which covers claims tied to their individual medical decisions and care." },
+      { q: "How is sum insured calculated for expensive diagnostic equipment?", a: "Based on current replacement cost, not original purchase price — equipment value and replacement cost can change substantially over the years, and this should be reviewed periodically." },
+      { q: "Do you cover small clinics as well as larger hospitals?", a: "Yes — we size cover to your actual facility, whether it's a single-doctor clinic or a larger multi-specialty hospital." },
+    ],
+  },
+
+  // ===========================
+  // ALIAS / COMPANION PAGES (distinct angle, cross-linked to primary vertical page)
+  // ===========================
+
+  "manufacturer-export-insurance-chennai": {
+    slug: "manufacturer-export-insurance-chennai",
+    seoTitle: "Insurance for Manufacturers Who Export — Chennai Factory to Port Cover",
+    seoDesc: "Insurance for manufacturers exporting from Chennai — factory property cover plus export cargo insurance for the same operation, coordinated together. Call 7448324068.",
+    heroH1: "Insurance for Manufacturers Who Export, in Chennai",
+    heroP: "If you manufacture and export, your risk sits in two places that are easy to insure separately and badly — the factory itself, and the goods once they leave for the port. I'll help you coordinate both under one view instead of two disconnected policies that don't talk to each other.",
+    intentSignals: ["manufacturer export insurance chennai", "factory to port insurance chennai", "export manufacturer insurance", "manufacturing unit export cover chennai"],
+    whoThisHelps: [
+      "Manufacturers who both produce and export goods, not just pure trading companies.",
+      "Factory owners whose export volume has grown to the point where cargo risk needs proper attention, not an afterthought.",
+      "Businesses juggling factory insurance and export cargo cover from two different, uncoordinated agents.",
+    ],
+    whatYouGet: [
+      "Factory property and machinery cover reviewed alongside your export cargo cover, so nothing falls in the gap between the two.",
+      "Cargo cover matched to your actual Incoterms for export shipments, not a generic marine policy.",
+      "One point of contact whether the issue is a factory claim or a cargo claim.",
+      "Guidance on the handover point — where factory-side risk ends and transit risk begins.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your operation", text: "WhatsApp what you manufacture, your factory location, and your typical export destinations/Incoterms." },
+      { title: "Step 2 — Coordinated cover", text: "We review factory property and export cargo cover together, so the handover point between the two is actually covered." },
+      { title: "Step 3 — One point of contact", text: "Factory or cargo claim — same advisor, same process." },
+    ],
+    comparisonTable: {
+      title: "Separate uncoordinated policies vs. reviewed together",
+      intro: "Manufacturers who export often have factory and cargo cover from two different sources — this is what that gap costs.",
+      columns: ["What matters", "Uncoordinated", "Reviewed together"],
+      rows: [
+        ["Handover point (factory to port)", "Risk of an uncovered gap", "Confirmed covered on both sides"],
+        ["Claim coordination", "Two separate agents, two processes", "One point of contact regardless of claim type"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Factory Insurance", href: EN("/services/industrial/factory-insurance/") },
+      { label: "Export & Import Business Insurance", href: EN("/export-import-business-insurance-chennai/") },
+      { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+      { label: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
+    ],
+    faqs: [
+      { q: "We already have factory insurance — do we need separate export cargo cover too?", a: "Yes, they cover different things. Factory insurance protects your building, machinery and stock on-site. Export cargo insurance covers goods once they're in transit to the buyer. We review both together so there's no gap at the handover point." },
+      { q: "Can one agent handle both our factory and our export cargo insurance?", a: "Yes — that's exactly the point of reviewing them together. One point of contact for both, rather than chasing two different agents for two different claim types." },
+    ],
+  },
+
+  "freelancer-self-employed-insurance-chennai": {
+    slug: "freelancer-self-employed-insurance-chennai",
+    seoTitle: "Insurance for Freelancers & Self-Employed Individuals — Chennai",
+    seoDesc: "Insurance for freelancers and self-employed individuals in Chennai — health cover without an employer, and professional liability if your work involves advice or delivery. Call 7448324068.",
+    heroH1: "Insurance for Freelancers & Self-Employed Individuals in Chennai",
+    heroP: "Going independent means losing the safety net an employer used to quietly provide — group health, and sometimes a sense that 'the company' absorbed certain risks. I'll help you rebuild that safety net properly: your own health cover, and liability protection if your work could ever be blamed for a client's loss.",
+    intentSignals: ["freelancer insurance chennai", "self employed health insurance chennai", "gig worker insurance chennai", "independent professional insurance chennai"],
+    whoThisHelps: [
+      "Freelancers and gig-economy workers who left a salaried job and lost employer health cover.",
+      "Independent professionals (writers, designers, developers, consultants) without a registered firm.",
+      "Anyone self-employed who's been putting off buying their own health/liability cover.",
+    ],
+    whatYouGet: [
+      "Health insurance guidance for individuals without an employer group policy — the single most common gap after going independent.",
+      "Professional liability guidance if your freelance work involves advice, design, or a deliverable a client could dispute.",
+      "Straightforward setup — no unnecessary business-entity paperwork for a solo freelancer.",
+      "Honest guidance on what's genuinely needed at this stage versus what can wait.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Tell us your situation", text: "WhatsApp what kind of freelance/independent work you do, and whether you currently have any health cover." },
+      { title: "Step 2 — Priority-first guidance", text: "We tell you what matters most right now — usually health cover first, liability cover if your work has that exposure." },
+      { title: "Step 3 — Set up cleanly", text: "Policies arranged for an individual, without unnecessary business-entity complexity." },
+    ],
+    comparisonTable: {
+      title: "Employed vs. freelance — what changes about your cover",
+      intro: "The biggest shift most people don't plan for when going independent.",
+      columns: ["What matters", "As an employee", "As a freelancer/self-employed"],
+      rows: [
+        ["Health insurance", "Employer group policy, automatic", "Your own responsibility — no automatic fallback"],
+        ["Liability for your work", "Often covered under employer's policies", "Your own exposure if work is disputed"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Health Insurance Support", href: EN("/services/personal/health-insurance-support/") },
+      { label: "Insurance for Professionals & Consultants", href: EN("/insurance-for-professionals-consultants-chennai/") },
+      { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
+      { label: "All Services", href: EN("/services/") },
+    ],
+    faqs: [
+      { q: "I just left my job to freelance — what insurance should I sort out first?", a: "Health insurance is usually the priority — your employer's group cover ends the moment you leave, and a medical event without any cover is the most immediate risk. Professional liability comes next if your freelance work involves advice or deliverables clients could dispute." },
+      { q: "Do I need to register a business to buy freelancer insurance?", a: "No — health insurance and even professional indemnity can typically be bought as an individual, without a registered business entity." },
+    ],
+  },
+
+  "small-business-insurance-chennai": {
+    slug: "small-business-insurance-chennai",
+    seoTitle: "Small Business Insurance in Chennai — Shops, Traders & Local Businesses",
+    seoDesc: "Small business insurance in Chennai for shops, traders, and local businesses — fire, stock, and liability cover sized to what you actually have. Call 7448324068.",
+    heroH1: "Small Business Insurance in Chennai",
+    heroP: "'Small business insurance' means something different for every business that searches for it — a shop, a trading counter, a small workshop, a home-based operation. I'll help you figure out what that actually means for your specific business, not sell you a generic bundle.",
+    intentSignals: ["small business insurance chennai", "local business insurance chennai", "shop owner insurance chennai", "small trader insurance chennai"],
+    whoThisHelps: [
+      "Small shop and trading business owners unsure what insurance actually applies to them.",
+      "Local business owners who've never had a formal insurance conversation before.",
+      "Anyone comparing 'small business insurance' options and finding the search results too generic to be useful.",
+    ],
+    whatYouGet: [
+      "A plain conversation about what your specific small business actually needs — not a generic package pitch.",
+      "Fire, burglary, and stock cover sized to your real premises and inventory value.",
+      "Public liability guidance if customers or the public visit your premises.",
+      "Honest guidance on what can wait until the business grows further.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Tell us about your business", text: "WhatsApp what your business does, whether you have a shop/premises, and roughly what you'd want protected." },
+      { title: "Step 2 — We match you to the right category", text: "Trader, shop owner, service business — we point you to the specific cover that actually fits, not a generic bundle." },
+      { title: "Step 3 — Set up right-sized", text: "Cover matched to your actual business size and risk, nothing oversold." },
+    ],
+    comparisonTable: {
+      title: "Generic 'small business package' vs. matched to your actual business",
+      intro: "\"Small business insurance\" searches often lead to generic bundles — here's why that's the wrong starting point.",
+      columns: ["What matters", "Generic bundle", "Matched to your business"],
+      rows: [
+        ["Cover relevance", "One-size-fits-all modules", "Only what your specific business actually needs"],
+        ["Cost", "Pay for modules you may not use", "Pay for what's relevant"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Shop & MSME Package Insurance", href: EN("/services/business-msme/shop-msme-insurance/") },
+      { label: "Wholesale, Trader & Retailer Insurance", href: EN("/wholesale-trader-retailer-insurance-chennai/") },
+      { label: "New Business / Startup Insurance", href: EN("/new-business-startup-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+    ],
+    faqs: [
+      { q: "What exactly counts as 'small business insurance'?", a: "It's not one specific product — it depends on what your business is. A shop needs fire/stock/burglary cover, a service business needs liability cover, a trader needs stock cover matched to fluctuating inventory. We help you figure out which applies to you." },
+      { q: "Is small business insurance expensive?", a: "It scales to your business size — a small shop's cover costs far less than a large factory's. We size it to what you actually have, so you're not paying for coverage built for a much bigger operation." },
+    ],
+  },
+
+  "catering-event-business-insurance-chennai": {
+    slug: "catering-event-business-insurance-chennai",
+    seoTitle: "Insurance for Catering & Event Businesses in Chennai",
+    seoDesc: "Insurance for catering companies and event businesses in Chennai — equipment cover, public liability for events, and food-safety exposure. Call 7448324068.",
+    heroH1: "Insurance for Catering & Event Businesses in Chennai",
+    heroP: "A catering or event business doesn't operate from one fixed premises the way a restaurant does — your risk moves with you, to weddings, corporate events, and venues you don't control. I'll help you cover the equipment, liability, and food-safety exposure that comes with working off-site.",
+    intentSignals: ["catering business insurance chennai", "event company insurance chennai", "wedding catering insurance chennai", "banquet insurance chennai"],
+    whoThisHelps: [
+      "Catering companies serving weddings, corporate events, and functions across multiple venues.",
+      "Event management businesses handling equipment, staff, and public liability across temporary locations.",
+      "Banquet and function-hall operators combining a fixed venue with catering operations.",
+    ],
+    whatYouGet: [
+      "Equipment cover for catering gear (cooking equipment, transport vehicles for supplies) that moves between venues.",
+      "Public liability for incidents at events you're running — a guest injury, food-safety complaint, or property damage at the venue.",
+      "Guidance on Workmen Compensation for kitchen and event staff working physically demanding, often off-site roles.",
+      "Cover that accounts for the fact that your 'premises' changes with every event.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your operation", text: "WhatsApp your business type (catering/events), typical event scale, and staff count." },
+      { title: "Step 2 — Cover matched to off-site risk", text: "We size equipment, liability, and staff cover to a business that operates across multiple venues, not one fixed premises." },
+      { title: "Step 3 — Policy issued", text: "Clear on what's covered at events versus at your base kitchen/storage, so there's no gap between the two." },
+    ],
+    comparisonTable: {
+      title: "Fixed-premises restaurant cover vs. mobile catering/event cover",
+      intro: "The off-site nature of catering and events changes what actually needs covering.",
+      columns: ["What matters", "Fixed restaurant policy", "Catering/event cover"],
+      rows: [
+        ["Where liability applies", "One premises", "Every venue you work at"],
+        ["Equipment cover", "Assumed stationary", "Covered while in transit and in use off-site"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Hotel & Restaurant Insurance", href: EN("/hotel-restaurant-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Workmen Compensation (WC)", href: EN("/services/construction/workmen-compensation/") },
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+    ],
+    faqs: [
+      { q: "Does our restaurant's fire policy cover our catering events elsewhere?", a: "Not automatically — a fixed-premises fire policy is built around your one location. Catering and event work needs liability and equipment cover that follows you to each venue." },
+      { q: "Are we liable if a guest is injured at a wedding we're catering?", a: "Potentially, depending on the circumstances — this is exactly what event-specific public liability cover addresses. We help you understand your exposure at venues you don't control." },
+    ],
+  },
+
+  "daycare-coaching-center-insurance-chennai": {
+    slug: "daycare-coaching-center-insurance-chennai",
+    seoTitle: "Insurance for Daycares & Coaching Centers in Chennai",
+    seoDesc: "Insurance for daycare centers, tuition centers, and coaching institutes in Chennai — property, child/student liability, and staff cover. Call 7448324068.",
+    heroH1: "Insurance for Daycares & Coaching Centers in Chennai",
+    heroP: "A daycare or coaching center is smaller than a formal school but carries similar real exposure — children or students on your premises, staff responsible for their safety, and a building that's easy to under-review once it's set up. I'll help you cover what actually matters at this scale.",
+    intentSignals: ["daycare insurance chennai", "coaching center insurance chennai", "tuition center insurance chennai", "preschool insurance chennai"],
+    whoThisHelps: [
+      "Daycare and preschool operators responsible for young children on their premises.",
+      "Tuition and coaching center owners with students attending regularly.",
+      "Small institutional operators who assumed formal insurance was only for larger schools.",
+    ],
+    whatYouGet: [
+      "Property cover sized to your actual premises, right-sized for a smaller operation.",
+      "Public liability for incidents involving children or students on your premises.",
+      "Guidance on staff cover appropriate to your team size.",
+      "A straightforward setup that doesn't assume large-school scale or administration.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your center", text: "WhatsApp your center type (daycare/coaching/tuition), premises details, and staff/student count." },
+      { title: "Step 2 — Cover matched to your scale", text: "We size property, liability, and staff cover to a smaller operation, not a large-school template." },
+      { title: "Step 3 — Policy issued", text: "Simple documentation suited to a small team without dedicated administrative staff for insurance." },
+    ],
+    comparisonTable: {
+      title: "Assuming you're too small to need cover vs. right-sized cover",
+      intro: "A common assumption among smaller institutional operators — worth reconsidering.",
+      columns: ["What matters", "No formal cover", "Right-sized cover"],
+      rows: [
+        ["Child/student incident on premises", "Full exposure absorbed directly", "Covered under public liability"],
+        ["Property loss (fire, theft)", "Full loss to the operator", "Covered, sized to actual premises"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Schools, Trusts & NGOs Insurance", href: EN("/school-trust-ngo-insurance-chennai/") },
+      { label: "Public Liability", href: EN("/services/liability/public-liability/") },
+      { label: "Fire & Burglary (Commercial Property)", href: EN("/services/industrial/fire-burglary-insurance/") },
+      { label: "Office Insurance Package", href: EN("/services/business-msme/office-insurance/") },
+    ],
+    faqs: [
+      { q: "Is our coaching center too small to need public liability insurance?", a: "No — size doesn't determine whether liability exposure exists. If students are regularly on your premises, the exposure is real regardless of how many students you have." },
+      { q: "Do daycares need different cover than a regular office?", a: "Yes — with young children on premises, the liability profile and safety expectations are different from a standard office, and this should be reflected in how your cover is set up." },
+    ],
+  },
+
+  "home-business-insurance-chennai": {
+    slug: "home-business-insurance-chennai",
+    seoTitle: "Insurance for Home-Based Businesses & Makers in Chennai",
+    seoDesc: "Insurance for home-based businesses, makers, and small online sellers in Chennai — stock cover for inventory kept at home, and transit cover for deliveries. Call 7448324068.",
+    heroH1: "Insurance for Home-Based Businesses & Makers in Chennai",
+    heroP: "If you make or sell from home — baked goods, handmade products, a small online shop run from a spare room — your home insurance (if you even have one) almost certainly doesn't cover the business side. I'll help you cover the stock and shipping risk without needing a commercial-scale setup.",
+    intentSignals: ["home business insurance chennai", "home based seller insurance chennai", "maker insurance chennai", "small online shop insurance chennai"],
+    whoThisHelps: [
+      "Home-based makers and small business owners running operations from a residence.",
+      "Small online sellers with modest stock levels who haven't reached warehouse scale.",
+      "Anyone whose side business has grown enough that home insurance clearly wouldn't cover a loss.",
+    ],
+    whatYouGet: [
+      "Stock cover for inventory kept at home, sized to your actual holding — not a warehouse-scale policy you don't need.",
+      "Goods-in-transit cover for deliveries and shipments, even at a small scale.",
+      "Honest guidance on whether you've reached the point where dedicated cover makes sense.",
+      "A simple setup that doesn't assume a commercial premises or large team.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Tell us about your business", text: "WhatsApp what you make/sell, roughly how much stock you hold, and how you ship to customers." },
+      { title: "Step 2 — Right-sized cover", text: "We size stock and transit cover to your actual small-scale operation, not a warehouse-level policy." },
+      { title: "Step 3 — Set up simply", text: "No unnecessary complexity — cover matched to a home-based operation." },
+    ],
+    comparisonTable: {
+      title: "Home insurance vs. dedicated stock/transit cover",
+      intro: "The gap most home-based sellers don't realize exists until it matters.",
+      columns: ["What matters", "Home insurance alone", "Dedicated business stock/transit cover"],
+      rows: [
+        ["Business inventory damaged/stolen", "Typically excluded or has very low sub-limits", "Covered, sized to your actual stock"],
+        ["Goods lost/damaged in delivery", "Not covered at all", "Covered directly"],
+      ],
+    },
+    recommendedServices: [
+      { label: "E-commerce & Online Seller Insurance", href: EN("/ecommerce-online-seller-insurance-chennai/") },
+      { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+      { label: "Marine Cargo / Goods-in-Transit", href: EN("/services/marine/marine-cargo-goods-in-transit-insurance/") },
+      { label: "All Services", href: EN("/services/") },
+    ],
+    faqs: [
+      { q: "Does my home insurance cover the stock for my home-based business?", a: "Almost certainly not, or only up to a very low sub-limit — home policies are built around personal belongings, not business inventory. This is exactly the gap dedicated stock cover fills." },
+      { q: "My business is still small — is it too early for insurance?", a: "If you're holding real stock value or shipping regularly, it's worth at least a conversation — cover can be sized small to match a small business, so it's not an all-or-nothing decision." },
+    ],
+  },
+
+  "diagnostic-lab-pharmacy-insurance-chennai": {
+    slug: "diagnostic-lab-pharmacy-insurance-chennai",
+    seoTitle: "Insurance for Diagnostic Labs & Pharmacies in Chennai",
+    seoDesc: "Insurance for diagnostic laboratories and pharmacies in Chennai — equipment breakdown cover, stock cover for medicines, and professional liability. Call 7448324068.",
+    heroH1: "Insurance for Diagnostic Labs & Pharmacies in Chennai",
+    heroP: "A diagnostic lab and a pharmacy both carry a different risk mix from a general clinic — labs depend on sensitive, expensive testing equipment, and pharmacies hold high-value, sometimes temperature-sensitive stock. I'll help you cover what's specific to your operation.",
+    intentSignals: ["diagnostic lab insurance chennai", "pharmacy insurance chennai", "pathology lab insurance chennai", "medical store insurance chennai"],
+    whoThisHelps: [
+      "Diagnostic and pathology lab owners with equipment-heavy operations.",
+      "Pharmacy and medical store owners holding significant medicine stock value.",
+      "Multi-branch diagnostic or pharmacy chains needing consistent cover across locations.",
+    ],
+    whatYouGet: [
+      "Machinery breakdown cover for lab testing equipment — separate from fire cover, since equipment failure often has nothing to do with fire.",
+      "Stock cover for pharmacy inventory, including guidance on temperature-sensitive stock exposure.",
+      "Professional liability guidance if lab results or pharmacy dispensing could be disputed.",
+      "Consistent cover structure across multiple branches if you operate more than one location.",
+    ],
+    howSupportWorks: [
+      { title: "Step 1 — Describe your operation", text: "WhatsApp whether you run a diagnostic lab, pharmacy, or both, plus key equipment and stock value." },
+      { title: "Step 2 — Cover matched to your specific risk", text: "We size equipment breakdown, stock, and liability cover to what a lab or pharmacy actually needs, not a generic shop template." },
+      { title: "Step 3 — Policy issued", text: "Clear on what's covered for equipment failure versus fire versus stock loss, so there's no ambiguity at claim time." },
+    ],
+    comparisonTable: {
+      title: "Generic shop cover vs. lab/pharmacy-specific cover",
+      intro: "Equipment and stock profile here is different enough from a typical shop to matter.",
+      columns: ["What's covered", "Generic shop policy", "Lab/pharmacy-specific cover"],
+      rows: [
+        ["Lab equipment mechanical/electrical failure", "Not covered under fire policy", "Covered under machinery breakdown"],
+        ["High-value medicine stock", "May be underweighted in a generic policy", "Sized to actual pharmacy stock value"],
+      ],
+    },
+    recommendedServices: [
+      { label: "Hospitals & Clinics Insurance", href: EN("/hospital-clinic-insurance-chennai/") },
+      { label: "Machinery Breakdown Insurance", href: EN("/services/industrial/machinery-breakdown-insurance/") },
+      { label: "Stock Declaration Policies", href: EN("/services/industrial/stock-declaration-insurance/") },
+      { label: "D&O / Professional Indemnity Insurance", href: EN("/services/liability/professional-liability-do-insurance/") },
+    ],
+    faqs: [
+      { q: "Does fire insurance cover our lab testing equipment if it just breaks down?", a: "No — fire insurance only responds to fire, explosion, and similar perils. Equipment that fails mechanically or electrically on its own needs a separate Machinery Breakdown policy." },
+      { q: "How is stock value calculated for a pharmacy?", a: "Based on actual medicine inventory value at your highest stock-holding point, similar to how retail stock declaration works — we help you set this accurately so a claim doesn't get reduced for underinsurance." },
     ],
   },
 };
