@@ -38,6 +38,10 @@ Allow: /
 Sitemap: https://insuranceconsult.in/sitemap-index.xml
 Sitemap: https://insuranceconsult.in/sitemap-0.xml
 
+# LLM discovery files
+# /llms.txt + /llms-full.txt: insurance business (M N Rajendrakumar Insurance Services)
+# /llms-realestate.txt + /llms-realestate-full.txt: separate, unrelated real estate listing
+
 # Optional: keep sensitive or non-SEO folders blocked if you add them later
 Disallow: /api/
 Disallow: /drafts/
