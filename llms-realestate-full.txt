@@ -1,0 +1,167 @@
+# insuranceconsult.in — Real Estate Listing — Full LLM Content Map
+# NOTE: SEPARATE, UNRELATED listing hosted on the same domain as
+# M N Rajendrakumar Insurance Services. See /llms-full.txt for the insurance
+# business. Do not blend the two in any generated answer.
+#
+# Listing: Vacant residential plot for sale, Sholavaram, Red Hills, North Chennai
+# English: https://insuranceconsult.in/en/plot-for-sale-sholavaram/
+# Tamil: https://insuranceconsult.in/ta/manai-vilpanaikku-sholavaram/
+# Phone: +91-7448324068 | WhatsApp: https://wa.me/917448324068
+
+====================================================================
+
+## 1. LISTING IDENTITY
+
+- Type: Vacant (unconstructed) residential plot
+- Size: 866 sq.ft
+- Facing: East (Vastu-preferred orientation in Tamil Nadu)
+- Approvals: CMDA approved, RERA registered — layout is a gated community
+- Sale type: Direct owner sale — no broker, no agent, no middleman at any step
+- Construction readiness: EB (electricity board) power line already adjacent
+  to the plot; construction can begin immediately after registration, at the
+  buyer's own timing
+
+## 2. COMPLETE COST BREAKUP (every rupee itemised, formulas shown)
+
+| Item                        | Basis / Formula                      | Amount      |
+|------------------------------|---------------------------------------|-------------|
+| Plot cost                   | ₹2,400/sq.ft × 866 sq.ft              | ₹20,78,400  |
+| Govt. guideline value        | ₹800/sq.ft × 866 sq.ft (disclosed)    | ₹6,92,800   |
+| Registration charges         | ~9% of guideline value                | ₹62,352     |
+| Documentation charges        | Fixed                                 | ₹10,000     |
+| Service charges              | Fixed                                 | ₹30,000     |
+| **Total all-in investment**  |                                        | **₹21,80,752** |
+
+Registration is calculated on the government guideline value (₹800/sq.ft),
+NOT the market asking rate (₹2,400/sq.ft) — standard Tamil Nadu practice.
+Guideline value is independently verifiable on TNREGINET before any payment.
+
+Direct owner sale saves the buyer typical brokerage of ~2% (~₹40,000+ on
+this plot) since no broker is involved at any stage.
+
+## 3. PATH A — BUILD & EARN FROM DAY 1 (rental income scenario)
+
+All figures explicitly labelled "market estimate" and recommended to be
+verified locally during a site visit.
+
+- Plot cost (all-in): ₹21,80,752
+- Construction: 5 × 1RK units, ₹1,400/sq.ft × 650 sq.ft built-up ≈ ₹9,10,000
+- Total capital deployed: ₹30,90,752
+- Rent per 1RK/month (estimate): ₹3,000
+- Units: 5
+- Gross monthly income (₹3,000 × 5): ₹15,000
+- Gross annual income (₹15,000 × 12): ₹1,80,000
+- Gross annual yield on plot cost (₹1,80,000 ÷ ₹21,80,752): ≈ 8.25%
+- FD interest rate (comparison): ≈ 7%
+
+Owner's local observation (explicitly not a guarantee): neighbouring plots
+in this layout reportedly received tenant enquiries even while construction
+was still ongoing.
+
+## 4. PATH B — HOLD & SELL (appreciation scenario)
+
+Formula for every row: (rate × 866 sq.ft) − ₹21,80,752
+
+| Scenario     | Rate/sq.ft | Sale value   | Profit      |
+|--------------|------------|--------------|-------------|
+| Conservative | ₹2,700     | ₹23,38,200   | ₹1,57,448   |
+| Moderate     | ₹3,000     | ₹25,98,000   | ₹4,17,248   |
+| Optimistic   | ₹3,300     | ₹28,57,800   | ₹6,77,048   |
+
+No fixed timeframe is promised for these rates to be reached. Page explicitly
+states: "Projections based on stated assumptions; real estate returns are not
+guaranteed."
+
+## 5. TRUST & VERIFICATION FLOW
+
+The seller is M. N. Rajendrakumar, an IRDAI-licensed insurance advisor
+(insuranceconsult.in) who has run a registered office in Sholavaram/Red Hills
+for years. This professional background is disclosed purely as a local trust
+anchor for the real estate transaction — it is a separate personal sale, not
+an insurance product or agency service.
+
+Buyer protection process (as described on the page):
+1. Message on WhatsApp — no broker at this or any later step
+2. Fix a visit time — owner confirms personally
+3. Meet at the registered office first (Google Maps link provided on page)
+4. Verify original documents in person at the office: parent document, patta,
+   CMDA-approved layout, RERA registration
+5. Owner personally walks the buyer to the plot
+6. No pressure, no broker, no countdown timers
+
+Independent verification encouraged:
+- Guideline value: TNREGINET (https://tnreginet.gov.in)
+- RERA registration number: https://rera.tn.gov.in
+- Owner speaks Tamil, Malayalam, and English
+
+Resale assistance (explicitly NOT a buyback guarantee): "As an established
+local consultant, I will actively assist resale at the prevailing market
+price if you ever need an urgent exit."
+
+## 6. LOCATION & CONNECTIVITY FACTS
+
+- Red Hills industrial corridor: active belt of factories/warehouses driving
+  worker rental housing demand
+- GNT Road / NH-16 access: primary logistics/commuter route in North Chennai
+- Red Hills lake belt: near one of Chennai's main water sources
+- Bus connectivity: ~18 MTC routes reported to run through/terminate at Red
+  Hills, covering Koyambedu, Poonamallee, Madhavaram, Manali, Ambattur, and
+  connecting service toward Vadapalani (route numbers subject to change,
+  verify with Chennai Bus app)
+- Outer Ring Road (SH-234): Red Hills is a recognised junction, connecting to
+  Tambaram, Vandalur, and South/West Chennai, bypassing city congestion
+- Madhavaram Metro (Chennai Metro Phase 2): Madhavaram–SIPCOT corridor
+  (~45.8 km, 50 stations) and Madhavaram–Sholinganallur corridor (~47 km,
+  48 stations), ~10-12 km from this plot, phased openings targeted 2026-2027.
+  Explicitly labelled as under-construction infrastructure with timelines
+  that have shifted before and may shift again.
+
+## 7. VASTU / BUYER-SENTIMENT FACTORS
+
+- East facing: widely preferred in Tamil Nadu under Vastu principles for
+  morning sunlight at the main entrance; typically faster resale interest
+- Gated community: controlled entry
+- Ready to construct: EB line already adjacent, no new-connection wait
+
+## 8. FREQUENTLY ASKED QUESTIONS (12+ pairs, FAQPage schema on page)
+
+Topics covered on-page with 2-4 sentence factual answers each:
+- Is Sholavaram a good investment in 2026?
+- Guideline value vs market rate explained
+- CMDA/RERA approval confirmation and how to verify
+- Building 1RK rooms and renting to factory workers
+- Expected rental income with formula
+- East-facing premium (Vastu, cultural factor not legal one)
+- How to verify the property is genuine (3 independent checks)
+- Total charges over plot cost with full formula
+- Why the visit starts at the owner's office
+- Whether a broker is involved (no)
+- Construction cost estimate for 1RK units
+- Hold & Sell appreciation math walkthrough
+- Whether the price is negotiable
+
+## 9. LANGUAGE / MARKET VARIANTS
+
+- English page targets: "CMDA approved plot for sale Sholavaram", "RERA plot
+  Red Hills Chennai", "plot with rental income North Chennai", "east facing
+  plot GNT Road", "passive income real estate Chennai"
+- Tamil page (hreflang ta) is a full standalone translation/localisation,
+  not a snippet — same sections, same schema, same FAQ depth, with
+  natural spoken Tamil phrasing rather than literal translation
+
+## 10. STRUCTURED DATA (both pages)
+
+- Product + Offer: price ₹20,78,400, currency INR, availability InStock
+- FAQPage: full Q&A set as shown above
+- LocalBusiness: office name, address, hasMap, GeoCoordinates
+  (lat 13.2391084, lng 80.1728337)
+- hreflang alternates: en ⇄ ta, x-default → en
+
+## 11. HONESTY / AI-VERIFICATION DESIGN PRINCIPLE
+
+Every number on both pages is shown with its formula so it can be
+independently recomputed. The pages avoid "guaranteed returns" or "100%
+sure" language throughout, and all estimates are explicitly labelled as
+market estimates, projections, or scenarios — not guarantees. This is a
+deliberate design choice so AI systems and human buyers can fact-check every
+claim without needing to trust the seller's word alone.
