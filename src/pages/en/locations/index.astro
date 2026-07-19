@@ -85,6 +85,7 @@ const jsonLd = buildJsonLd({
       <div class="container">
 
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -103,8 +104,24 @@ const jsonLd = buildJsonLd({
             { label: "Home", href: "/en/" },
             { label: "Locations" },
           ]} />
+        </div>
 
-          <!-- Central hub (answers: office vs service area) -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.locationsIndex?.subtitle,
+                phone: siteData.brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<!-- Central hub (answers: office vs service area) -->
           {centralHub?.title ? (
             <section class="section section-padding" aria-label="Central support hub">
               <h2 class="section-title">{centralHub.title}</h2>
@@ -115,8 +132,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          <!-- Intent router (high-value) -->
+<!-- Intent router (high-value) -->
           {intentRouter?.cards?.length ? (
             <section class="section section-padding" aria-label="Intent router">
               <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
@@ -130,8 +146,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          <!-- Claim-ready principles -->
+<!-- Claim-ready principles -->
           {claimReady?.title ? (
             <section class="section section-padding" aria-label="Claim-ready principles">
               <h2 class="section-title">{claimReady.title}</h2>
@@ -140,8 +155,7 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
-
-          <!-- Search language (safe chips, limited) -->
+<!-- Search language (safe chips, limited) -->
           {searchLang?.chips?.length ? (
             <section class="section section-padding" aria-label="Search language">
               <h2 class="section-title">{searchLang.title || "Search language people use"}</h2>
@@ -151,8 +165,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          <!-- Zones (the “traffic controller”) -->
+<!-- Zones (the “traffic controller”) -->
           {zones.length ? (
             <section class="section section-padding" aria-label="Zones and corridors">
               <h2 class="section-title">Economic zones & corridor belts</h2>
@@ -241,76 +254,11 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-          {howWeWork.length > 0 && (
-            <section class="section section-padding" aria-label="How we work">
-              <h2 class="section-title">How We Work</h2>
-              <ol class="steps-list">
-                {howWeWork.map((step, i) => (
-                  <li class="step-item">
-                    <span class="step-num">{i + 1}</span>
-                    <div>
-                      <strong>{step.title}</strong>
-                      <p class="step-desc">{step.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
-
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
-
-          <ScenariosWeHandle
-            title="Real situations we handle across these areas"
-            subtitle="People from these belts reach us with exactly these kinds of situations."
-            scenarios={(cc.homeScenarios || []).slice(0, 3)}
-            waNumber={waNumber}
-          />
-
-          <ThinkingGapFiller
-            title="Still wondering?"
-            items={(cc.homeGapQuestions || []).slice(0, 4)}
-            waNumber={waNumber}
-            waText="Hi, I need insurance guidance for my area. Can you help?"
-          />
-
-          <WhyChooseUs
-            title="Why work with us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: siteData.locationsIndex?.subtitle,
-                phone: siteData.brand.phone,
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <h1 class="sr-only">{siteData.locationsIndex?.title}</h1>
-
-          {centralHub?.title ? (
+<div class="ui-mobile">
+<h1 class="sr-only">{siteData.locationsIndex?.title}</h1>
+{centralHub?.title ? (
             <section class="section section-padding">
               <h2 class="section-title">{centralHub.title}</h2>
               <div class="stack">
@@ -320,8 +268,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          {intentRouter?.cards?.length ? (
+{intentRouter?.cards?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">{intentRouter.title || "Find the right page"}</h2>
               <div class="grid grid-1">
@@ -334,8 +281,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          {zones.length ? (
+{zones.length ? (
             <section class="section section-padding" aria-label="Zones and corridors">
               <h2 class="section-title">Zones & corridor belts</h2>
               <p class="section-sub readable">
@@ -392,7 +338,9 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-          {howWeWork.length > 0 && (
+        </div>
+
+{howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>
               <ol class="steps-list">
@@ -409,24 +357,42 @@ const jsonLd = buildJsonLd({
             </section>
           )}
 
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+<ConversionBlock siteData={siteData} brand={siteData.brand} />
 
-          <ScenariosWeHandle
+<div class="ui-desktop">
+<ScenariosWeHandle
+            title="Real situations we handle across these areas"
+            subtitle="People from these belts reach us with exactly these kinds of situations."
+            scenarios={(cc.homeScenarios || []).slice(0, 3)}
+            waNumber={waNumber}
+          />
+        </div>
+
+<div class="ui-mobile">
+<ScenariosWeHandle
             title="Real situations we handle"
             scenarios={(cc.homeScenarios || []).slice(0, 2)}
             waNumber={waNumber}
           />
+        </div>
 
-          <ThinkingGapFiller
+<ThinkingGapFiller
             title="Still wondering?"
-            items={(cc.homeGapQuestions || []).slice(0, 3)}
+            items={(cc.homeGapQuestions || []).slice(0, 4)}
             waNumber={waNumber}
             waText="Hi, I need insurance guidance for my area. Can you help?"
           />
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<div class="ui-desktop">
+<WhyChooseUs
+            title="Why work with us"
+            points={(cc.whyUs || []).slice(0, 4)}
+          />
+        </div>
 
-          <FooterCtaBar
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+<FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
             whatsappNumber={siteData.brand.whatsappE164}
@@ -437,7 +403,6 @@ const jsonLd = buildJsonLd({
             logoText={siteData.footerCtas.logoText}
             copyright={siteData.footerCtas.copyright}
           />
-        </div>
       </div>
     </main>
 
@@ -551,6 +516,16 @@ const jsonLd = buildJsonLd({
 
       @media (max-width: 980px){
         .grid-2 { grid-template-columns: 1fr; }
+      }
+    </style>
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
       }
     </style>
   </body>
