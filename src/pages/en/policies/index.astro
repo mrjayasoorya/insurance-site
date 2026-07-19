@@ -85,6 +85,7 @@ const categories = [
       <div class="container">
 
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -105,8 +106,27 @@ const categories = [
             { label: "Home", href: EN("/") },
             { label: "Insurance Policies" },
           ]} />
+        </div>
 
-          <section class="section section-padding" aria-label="Policy guides overview">
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: "Complete insurance policy guides — coverage, claims & what to check before buying.",
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: "Hi, I want to understand my insurance options. Please guide me.",
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<section class="section section-padding" aria-label="Policy guides overview">
             <h1 class="section-title">Insurance Policy Guides</h1>
             <p class="section-sub readable">
               Understand exactly what each insurance policy covers, how claims work, what affects your premium,
@@ -114,8 +134,7 @@ const categories = [
             </p>
             <PageActionBar brand={siteData.brand} context="insurance policy guidance" />
           </section>
-
-          <!-- Why these guides matter -->
+<!-- Why these guides matter -->
           <section class="section section-padding" aria-label="Why these guides">
             <h2 class="section-title">Why read these guides before buying?</h2>
             <div class="grid grid-3">
@@ -133,8 +152,7 @@ const categories = [
               </div>
             </div>
           </section>
-
-          <!-- Which guide is for me — quick reference -->
+<!-- Which guide is for me — quick reference -->
           {policyCards.length ? (
             <section class="section section-padding" aria-label="Which guide is for me">
               <h2 class="section-title">Which guide is for you?</h2>
@@ -158,8 +176,7 @@ const categories = [
               </table>
             </section>
           ) : null}
-
-          <!-- Policy categories -->
+<!-- Policy categories -->
           {categories.map(cat => {
             const cards = cat.slugs.map(s => policyCards.find(p => p.slug === s)).filter(Boolean);
             return cards.length ? (
@@ -178,8 +195,7 @@ const categories = [
               </section>
             ) : null;
           })}
-
-          <!-- Coming soon -->
+<!-- Coming soon -->
           <section class="section section-padding" aria-label="More guides coming">
             <h2 class="section-title">More guides coming soon</h2>
             <div class="grid grid-3">
@@ -198,62 +214,17 @@ const categories = [
               ))}
             </div>
           </section>
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
-          <SmartAssistForm
-            brand={siteData.brand}
-            id="sa-desk"
-            heading="Not sure which policy you need? Tell us your situation"
-            subheading="Pick your situation — we build the WhatsApp message, you just send."
-          />
-
-          <WhyChooseUs
-            title="Why get guidance from us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: "Complete insurance policy guides — coverage, claims & what to check before buying.",
-                phone: siteData.brand.phone,
-                phoneE164: siteData.brand.phoneE164,
-                whatsappE164: siteData.brand.whatsappE164,
-                whatsappPrefill: "Hi, I want to understand my insurance options. Please guide me.",
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <section class="section section-padding">
+<div class="ui-mobile">
+<section class="section section-padding">
             <h1 class="section-title">Insurance Policy Guides</h1>
             <p class="section-sub readable">
               Understand what each policy covers, how claims work, and what to check — from 30+ years of real experience.
             </p>
             <PageActionBar brand={siteData.brand} context="insurance policy guidance" />
           </section>
-
-          <!-- Which guide is for me — quick reference (mobile) -->
+<!-- Which guide is for me — quick reference (mobile) -->
           {policyCards.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Which guide is for you?</h2>
@@ -279,8 +250,7 @@ const categories = [
               </div>
             </section>
           ) : null}
-
-          <!-- All policy cards combined for mobile -->
+<!-- All policy cards combined for mobile -->
           <section class="section section-padding">
             <h2 class="section-title">Policy Guides</h2>
             <div class="grid grid-1">
@@ -292,24 +262,36 @@ const categories = [
               ))}
             </div>
           </section>
+        </div>
 
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+<ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
 
-          <SmartAssistForm
+<div class="ui-desktop">
+<SmartAssistForm
+            brand={siteData.brand}
+            id="sa-desk"
+            heading="Not sure which policy you need? Tell us your situation"
+            subheading="Pick your situation — we build the WhatsApp message, you just send."
+          />
+        </div>
+
+<div class="ui-mobile">
+<SmartAssistForm
             brand={siteData.brand}
             id="sa-mob"
             heading="Not sure which policy? Tell us your situation"
             subheading="Pick your situation — we build the message, you just send."
           />
+        </div>
 
-          <WhyChooseUs
+<WhyChooseUs
             title="Why get guidance from us"
             points={(cc.whyUs || []).slice(0, 4)}
           />
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-          <FooterCtaBar
+<FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
             whatsappNumber={siteData.brand.whatsappE164}
@@ -320,7 +302,6 @@ const categories = [
             logoText={siteData.footerCtas.logoText}
             copyright={siteData.footerCtas.copyright}
           />
-        </div>
 
       </div>
     </main>
@@ -338,6 +319,16 @@ const categories = [
       .card-muted {
         opacity: .6;
         pointer-events: none;
+      }
+    </style>
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
       }
     </style>
   </body>
