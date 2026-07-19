@@ -101,8 +101,8 @@ const jsonLd = buildJsonLd({
   <body>
     <main class="app">
       <div class="container">
-
-        <!-- ========================= DESKTOP ========================= -->
+        <!-- SINGLE DOM: hero variants switch at 820px (existing .ui-desktop/.ui-mobile breakpoint);
+             all content below renders once. Mobile differences reproduced via CSS at 820px. -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -122,79 +122,101 @@ const jsonLd = buildJsonLd({
             { label: "Locations", href: EN("/locations/") },
             { label: data.heroH1 || data.name },
           ]} />
+        </div>
 
-          {data.postalCode ? (
-            <p class="readable" style="opacity:.75;font-size:14px;margin:4px 0 0">
-              {data.name} — Pin code {data.postalCode}
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: data.heroP,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+
+          <!-- MobileHero uses <h2>; this gives the page a real <h1> below 820px (as before) -->
+          <h1 class="sr-only">{data.heroH1}</h1>
+        </div>
+
+        {data.postalCode ? (
+          <p class="readable loc-pin" style="opacity:.75;font-size:14px;margin:4px 0 0">
+            {data.name} — Pin code {data.postalCode}
+          </p>
+        ) : null}
+
+        <!-- 2. Services available here (PRIMARY user intent) -->
+        {serviceCards?.length ? (
+          <section class="section section-padding" aria-label="Services supported">
+            <h2 class="section-title"><span class="ui-desktop">Services available in {data.name}</span><span class="ui-mobile">Services in {data.name}</span></h2>
+            <p class="section-sub readable ui-desktop">
+              Beyond the obvious cover, these are the risks people in {data.name} commonly ask about once we start talking—worth a look even if you called about something else.
             </p>
-          ) : null}
+            <p class="section-sub readable ui-mobile">
+              Worth a look even if you called about something else—these are the risks people here commonly ask about once we start talking.
+            </p>
+            <div class="grid grid-2">
+              {serviceCards.map((s, i) => (
+                <a class={`card lg-card lg-card--${i % 4}`} href={s.href}>
+                  <h3 class="card-title">{s.title}</h3>
+                  <p class="card-desc readable">{s.desc}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
-          <!-- 2. Services available here (PRIMARY user intent) -->
-          {serviceCards?.length ? (
-            <section class="section section-padding" aria-label="Services supported">
-              <h2 class="section-title">Services available in {data.name}</h2>
-              <p class="section-sub readable">
-                Beyond the obvious cover, these are the risks people in {data.name} commonly ask about once we start talking—worth a look even if you called about something else.
-              </p>
-              <div class="grid grid-2">
-                {serviceCards.map((s, i) => (
-                  <a class={`card lg-card lg-card--${i % 4}`} href={s.href}>
-                    <h3 class="card-title">{s.title}</h3>
-                    <p class="card-desc readable">{s.desc}</p>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ) : null}
+        <!-- 3. How support works from here -->
+        {data.anchorAndCoordination?.title ? (
+          <section class="section section-padding" aria-label="How support works">
+            <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
+            {data.anchorAndCoordination.intro ? (
+              <p class="section-sub readable">{data.anchorAndCoordination.intro}</p>
+            ) : null}
+            {data.anchorAndCoordination.bullets?.length ? (
+              <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul>
+            ) : null}
+          </section>
+        ) : null}
 
-          <!-- 3. How support works from here -->
-          {data.anchorAndCoordination?.title ? (
-            <section class="section section-padding" aria-label="How support works">
-              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
-              {data.anchorAndCoordination.intro ? (
-                <p class="section-sub readable">{data.anchorAndCoordination.intro}</p>
-              ) : null}
-              {data.anchorAndCoordination.bullets?.length ? (
-                <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul>
-              ) : null}
-            </section>
-          ) : null}
-
-          <!-- 4. Common requests -->
-          {data.commonRequests?.items?.length ? (
+        <!-- 4. Common requests (desktop-only, as before) -->
+        {data.commonRequests?.items?.length ? (
+          <div class="ui-desktop">
             <section class="section section-padding" aria-label="Common requests">
               <h2 class="section-title">{data.commonRequests.title || `Common requests from ${data.name}`}</h2>
               <ul class="bullets">{data.commonRequests.items.map((x) => <li>{x}</li>)}</ul>
             </section>
-          ) : null}
+          </div>
+        ) : null}
 
-          <!-- 4b. Who you are — persona-specific guidance -->
-          {data.personaGuide?.length ? (
-            <section class="section section-padding" aria-label="Guidance by situation">
-              <h2 class="section-title">{data.personaGuideTitle || "Find your situation"}</h2>
-              <div class="persona-grid">
-                {data.personaGuide.map((p) => (
-                  <div class="persona-card">
-                    <h3 class="persona-heading">{p.label}</h3>
-                    {p.forWhom ? <p class="persona-sub readable">{p.forWhom}</p> : null}
-                    <ul class="bullets">{p.points.map((pt) => <li>{pt}</li>)}</ul>
-                    {p.waText && waNumber ? (
-                      <a class="persona-cta" href={`https://wa.me/${waNumber}?text=${encodeURIComponent(p.waText)}`} target="_blank" rel="noopener">
-                        {p.ctaLabel || "WhatsApp about this"}
-                      </a>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+        <!-- 4b. Who you are — persona-specific guidance -->
+        {data.personaGuide?.length ? (
+          <section class="section section-padding" aria-label="Guidance by situation">
+            <h2 class="section-title">{data.personaGuideTitle || "Find your situation"}</h2>
+            <div class="persona-grid">
+              {data.personaGuide.map((p) => (
+                <div class="persona-card">
+                  <h3 class="persona-heading">{p.label}</h3>
+                  {p.forWhom ? <p class="persona-sub readable">{p.forWhom}</p> : null}
+                  <ul class="bullets">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+                  {p.waText && waNumber ? (
+                    <a class="persona-cta" href={`https://wa.me/${waNumber}?text=${encodeURIComponent(p.waText)}`} target="_blank" rel="noopener">
+                      {p.ctaLabel || "WhatsApp about this"}
+                    </a>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
-          <!-- 4c. Comparison table -->
-          {data.comparisonTable?.rows?.length ? (
-            <section class="section section-padding" aria-label="Comparison">
-              <h2 class="section-title">{data.comparisonTable.title || "How this compares"}</h2>
-              {data.comparisonTable.intro ? <p class="readable">{data.comparisonTable.intro}</p> : null}
-              <table class="compare-table" style="margin-top:16px">
+        <!-- 4c. Comparison table (scroll wrapper always present; min-width below 820px only) -->
+        {data.comparisonTable?.rows?.length ? (
+          <section class="section section-padding" aria-label="Comparison">
+            <h2 class="section-title">{data.comparisonTable.title || "How this compares"}</h2>
+            {data.comparisonTable.intro ? <p class="readable">{data.comparisonTable.intro}</p> : null}
+            <div class="compare-scroll" style="overflow-x:auto">
+              <table class="compare-table">
                 <thead>
                   <tr class="compare-header">
                     {data.comparisonTable.columns.map((c, i) => (
@@ -214,65 +236,80 @@ const jsonLd = buildJsonLd({
                   ))}
                 </tbody>
               </table>
-            </section>
-          ) : null}
+            </div>
+          </section>
+        ) : null}
 
-          <!-- SCENARIOS WE HANDLE — trust before the ask -->
-          <ScenariosWeHandle
-            title={`Real situations we handle in ${data.name}`}
-            subtitle="People from this area reach us with exactly these kinds of situations."
-            scenarios={(data.scenarios?.length ? data.scenarios : (cc.homeScenarios || [])).slice(0, 3)}
-            waNumber={waNumber}
+        <!-- SCENARIOS WE HANDLE: 3 in DOM; 3rd + subtitle hidden below 820px (was mobile slice(0,2)) -->
+        <ScenariosWeHandle
+          title={`Real situations we handle in ${data.name}`}
+          titleMobile="Real situations we handle"
+          subtitle="People from this area reach us with exactly these kinds of situations."
+          scenarios={(data.scenarios?.length ? data.scenarios : (cc.homeScenarios || [])).slice(0, 3)}
+          waNumber={waNumber}
+        />
+
+        <!-- STILL WONDERING: 4 in DOM; 4th hidden below 820px (was mobile slice(0,3)) -->
+        <ThinkingGapFiller
+          title="Still wondering?"
+          items={(cc.homeGapQuestions || []).slice(0, 4)}
+          waNumber={waNumber}
+          waText={`Hi, I'm from ${data.name} area and need insurance guidance. Can you help?`}
+        />
+
+        <!-- USER QUESTIONS (mobile-only, as before) -->
+        <div class="ui-mobile">
+          <UserQuestionsBlock
+            title="Common questions before you contact us"
+            items={cc.userQuestions || []}
           />
+        </div>
 
-          <!-- STILL WONDERING -->
-          <ThinkingGapFiller
-            title="Still wondering?"
-            items={(cc.homeGapQuestions || []).slice(0, 4)}
-            waNumber={waNumber}
-            waText={`Hi, I'm from ${data.name} area and need insurance guidance. Can you help?`}
-          />
+        <!-- WHY CHOOSE US -->
+        <WhyChooseUs
+          title="Why work with us"
+          points={(cc.whyUs || []).slice(0, 4)}
+        />
 
-          <!-- WHY CHOOSE US -->
-          <WhyChooseUs
-            title="Why work with us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
+        <!-- MID-PAGE CTA — after trust content -->
+        <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
 
-          <!-- MID-PAGE CTA — now after trust content, not before -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
+        <!-- SMART ASSIST — location page capture -->
+        <SmartAssistForm
+          brand={siteData.brand}
+          id="sa-desk"
+          heading="Need insurance support here? Send a quick message"
+          subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
+        />
 
-          <!-- SMART ASSIST — location page capture -->
-          <SmartAssistForm
-            brand={siteData.brand}
-            id="sa-desk"
-            heading="Need insurance support here? Send a quick message"
-            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
-          />
-
-          <!-- 5. Next steps -->
-          {data.nextSteps?.bullets?.length ? (
+        <!-- 5. Next steps (desktop-only, as before) -->
+        {data.nextSteps?.bullets?.length ? (
+          <div class="ui-desktop">
             <section class="section section-padding" aria-label="Next steps">
               <h2 class="section-title">{data.nextSteps.title || "What to do next"}</h2>
               <ul class="bullets">{data.nextSteps.bullets.map((x) => <li>{x}</li>)}</ul>
             </section>
-          ) : null}
+          </div>
+        ) : null}
 
-          <!-- 6. FAQs -->
-          {data.faqs?.length ? (
-            <section class="section section-padding" aria-label="FAQs">
+        <!-- 6. FAQs (desktop h2 hidden on mobile; accordion group label unified to "FAQs") -->
+        {data.faqs?.length ? (
+          <section class="section section-padding" aria-label="FAQs">
+            <div class="ui-desktop">
               <h2 class="section-title">FAQs for {data.name}</h2>
-              <MobileAccordion
-                sections={[{
-                  title: "Questions people ask",
-                  items: data.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                }]}
-                defaultOpen={true}
-              />
-            </section>
-          ) : null}
+            </div>
+            <MobileAccordion
+              sections={[{
+                title: "FAQs",
+                items: data.faqs.map((f) => ({ strong: f.q, text: f.a })),
+              }]}
+              defaultOpen={true}
+            />
+          </section>
+        ) : null}
 
-          <!-- 7. Quick actions -->
+        <!-- 7. Quick actions (desktop-only, as before) -->
+        <div class="ui-desktop">
           <section class="section section-padding" aria-label="Quick actions">
             <h2 class="section-title">Quick actions</h2>
             <div class="grid grid-2">
@@ -284,222 +321,42 @@ const jsonLd = buildJsonLd({
               ))}
             </div>
           </section>
-
-          <!-- 8. Nearby areas -->
-          {nearbyItems?.length ? (
-            <section class="section section-padding" aria-label="Nearby areas">
-              <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas we also support"}</h2>
-              <ul class="link-rows" role="list">
-                {nearbyItems.map((x) => (
-                  <li class="link-row">
-                    <a class="rowlink" href={x.href}>
-                      <span class="rowtitle">{x.label}</span>
-                      <span class="rowdesc">{x.desc || "Open local context"}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero brand={{
-              name: siteData.brand.name,
-              tagline: siteData.brand.tagline,
-              subtitle: data.heroP,
-              phone: siteData.brand.phone,
-              areaChips: [],
-            }} />
-          </header>
-
-          <!-- 1. H1 only (sr-only) — MobileHero above already shows this title's
-               subtitle text + CTA buttons; MobileHero uses <h2>, so this exists
-               solely to give the page a real, visible-to-crawlers <h1>. -->
-          <h1 class="sr-only">{data.heroH1}</h1>
-
-          {data.postalCode ? (
-            <p class="readable" style="opacity:.75;font-size:14px;margin:4px 0 0;padding:0 16px">
-              {data.name} — Pin code {data.postalCode}
-            </p>
-          ) : null}
-
-          <!-- 2. Services available -->
-          {serviceCards?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Services in {data.name}</h2>
-              <p class="section-sub readable">
-                Worth a look even if you called about something else—these are the risks people here commonly ask about once we start talking.
-              </p>
-              <div class="grid grid-1">
-                {serviceCards.map((s, i) => (
-                  <a class={`card lg-card lg-card--${i % 4}`} href={s.href}>
-                    <h3 class="card-title">{s.title}</h3>
-                    <p class="card-desc readable">{s.desc}</p>
+        <!-- 8. Nearby areas -->
+        {nearbyItems?.length ? (
+          <section class="section section-padding" aria-label="Nearby areas">
+            {data.nearbyAreas?.title ? (
+              <h2 class="section-title">{data.nearbyAreas.title}</h2>
+            ) : (
+              <h2 class="section-title"><span class="ui-desktop">Nearby areas we also support</span><span class="ui-mobile">Nearby areas</span></h2>
+            )}
+            <ul class="link-rows" role="list">
+              {nearbyItems.map((x) => (
+                <li class="link-row">
+                  <a class="rowlink" href={x.href}>
+                    <span class="rowtitle">{x.label}</span>
+                    <span class="rowdesc">{x.desc || "Open local context"}</span>
                   </a>
-                ))}
-              </div>
-            </section>
-          ) : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
-          <!-- 3. How support works -->
-          {data.anchorAndCoordination?.title ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.anchorAndCoordination.title}</h2>
-              {data.anchorAndCoordination.intro ? <p class="section-sub readable">{data.anchorAndCoordination.intro}</p> : null}
-              {data.anchorAndCoordination.bullets?.length ? <ul class="bullets">{data.anchorAndCoordination.bullets.map((x) => <li>{x}</li>)}</ul> : null}
-            </section>
-          ) : null}
+        <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-          <!-- 3b. Who you are — persona-specific guidance (mobile) -->
-          {data.personaGuide?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.personaGuideTitle || "Find your situation"}</h2>
-              <div class="persona-grid">
-                {data.personaGuide.map((p) => (
-                  <div class="persona-card">
-                    <h3 class="persona-heading">{p.label}</h3>
-                    {p.forWhom ? <p class="persona-sub readable">{p.forWhom}</p> : null}
-                    <ul class="bullets">{p.points.map((pt) => <li>{pt}</li>)}</ul>
-                    {p.waText && waNumber ? (
-                      <a class="persona-cta" href={`https://wa.me/${waNumber}?text=${encodeURIComponent(p.waText)}`} target="_blank" rel="noopener">
-                        {p.ctaLabel || "WhatsApp about this"}
-                      </a>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- 3c. Comparison table (mobile) -->
-          {data.comparisonTable?.rows?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.comparisonTable.title || "How this compares"}</h2>
-              {data.comparisonTable.intro ? <p class="readable">{data.comparisonTable.intro}</p> : null}
-              <div style="overflow-x:auto">
-                <table class="compare-table" style="margin-top:16px;min-width:480px">
-                  <thead>
-                    <tr class="compare-header">
-                      {data.comparisonTable.columns.map((c, i) => (
-                        <th class={`compare-cell ${i === 0 ? "compare-k" : ""} ${i === data.comparisonTable.columns.length - 1 ? "compare-us" : ""}`} scope="col">{c}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.comparisonTable.rows.map((r) => (
-                      <tr class="compare-row">
-                        {r.map((cell, i) => (
-                          i === 0
-                            ? <th class="compare-cell compare-k" scope="row">{cell}</th>
-                            : <td class={`compare-cell ${i === r.length - 1 ? "compare-us" : ""}`}>{cell}</td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          ) : null}
-
-          <!-- SCENARIOS (mobile) — trust before the ask -->
-          <ScenariosWeHandle
-            title="Real situations we handle"
-            scenarios={(data.scenarios?.length ? data.scenarios : (cc.homeScenarios || [])).slice(0, 2)}
-            waNumber={waNumber}
-          />
-
-          <!-- STILL WONDERING (mobile) -->
-          <ThinkingGapFiller
-            title="Still wondering?"
-            items={(cc.homeGapQuestions || []).slice(0, 3)}
-            waNumber={waNumber}
-            waText={`Hi, I'm from ${data.name} area and need insurance guidance. Can you help?`}
-          />
-
-          <!-- USER QUESTIONS -->
-          <UserQuestionsBlock
-            title="Common questions before you contact us"
-            items={cc.userQuestions || []}
-          />
-
-          <!-- WHY CHOOSE US -->
-          <WhyChooseUs
-            title="Why work with us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <!-- MID-PAGE CTA — now after trust content, not before -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
-          <!-- SMART ASSIST — location page capture (mobile) -->
-          <SmartAssistForm
-            brand={siteData.brand}
-            id="sa-mob"
-            heading="Need insurance support here? Send a quick message"
-            subheading="Pick your situation — we pre-fill the WhatsApp message, you just send."
-          />
-
-          <!-- 4. FAQs -->
-          {data.faqs?.length ? (
-            <section class="section section-padding">
-              <MobileAccordion
-                sections={[{
-                  title: "FAQs",
-                  items: data.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                }]}
-                defaultOpen={true}
-              />
-            </section>
-          ) : null}
-
-          <!-- 5. Nearby areas -->
-          {nearbyItems?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.nearbyAreas?.title || "Nearby areas"}</h2>
-              <ul class="link-rows" role="list">
-                {nearbyItems.map((x) => (
-                  <li class="link-row">
-                    <a class="rowlink" href={x.href}>
-                      <span class="rowtitle">{x.label}</span>
-                      <span class="rowdesc">{x.desc || "Open local context"}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
-        </div>
+        <FooterCtaBar
+          title={siteData.footerCtas.title}
+          subtitle={siteData.footerCtas.subtitle}
+          whatsappNumber={siteData.brand.whatsappE164}
+          whatsappText={siteData.brand.whatsappPrefill}
+          callNumber={siteData.brand.phoneE164}
+          callLabel={siteData.footerCtas.callLabel}
+          brandName={siteData.footerCtas.brandName}
+          logoText={siteData.footerCtas.logoText}
+          copyright={siteData.footerCtas.copyright}
+        />
 
       </div>
     </main>
@@ -542,6 +399,32 @@ const jsonLd = buildJsonLd({
       .rowtitle{ font-weight: 950; }
       .rowdesc{ color: var(--muted); font-size: 13px; line-height: 1.35; }
       @media (max-width: 980px){ .grid-2{ grid-template-columns: 1fr; } }
+
+      .persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+      .persona-card{border:1px solid var(--border);border-radius:16px;background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:8px}
+      .persona-heading{margin:0;font-size:16px;font-weight:950;letter-spacing:-0.01em}
+      .persona-sub{margin:0;font-size:13px;opacity:.8}
+      .persona-cta{margin-top:auto;display:inline-block;padding:9px 14px;border-radius:10px;background:#25D366;color:#0b0d12;font-weight:800;font-size:13px;text-decoration:none;text-align:center}
+      .compare-table{width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;border-collapse:collapse}
+      .compare-header, .compare-row{display:table-row}
+      .compare-header{background:var(--surface);font-weight:900;font-size:13px}
+      .compare-row{border-top:1px solid var(--border)}
+      .compare-cell{display:table-cell;padding:10px 12px;font-size:13px;line-height:1.35;text-align:left;font-weight:400}
+      .compare-k{font-weight:700;opacity:.85}
+      .compare-us{background:rgba(46,125,50,.06);font-weight:600}
+      @media (max-width:520px){.compare-header{font-size:11px}.compare-cell{padding:8px 6px}}
+
+      /* Single-DOM merge: reproduce previous mobile tree at the existing 820px switch */
+      @media (min-width: 821px){
+        .compare-scroll{margin-top:16px}
+      }
+      @media (max-width: 820px){
+        .loc-pin{padding:0 16px}
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(3){display:none}
+        .tgf-list > .tgf-item:nth-child(4){display:none}
+        .compare-scroll .compare-table{min-width:480px;margin-top:16px}
+      }
     </style>
   </body>
 </html>

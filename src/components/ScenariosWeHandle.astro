@@ -11,6 +11,7 @@
  */
 const {
   title = "Real situations we handle",
+  titleMobile = "",
   subtitle = "",
   scenarios = [],
   waNumber = "",
@@ -19,7 +20,11 @@ const {
 
 {scenarios.length > 0 && (
   <section class="swh section section-padding" aria-labelledby="swh-title">
-    <h2 id="swh-title" class="section-title">{title}</h2>
+    {titleMobile && titleMobile !== title ? (
+      <h2 id="swh-title" class="section-title"><span class="ui-desktop">{title}</span><span class="ui-mobile">{titleMobile}</span></h2>
+    ) : (
+      <h2 id="swh-title" class="section-title">{title}</h2>
+    )}
     {subtitle && <p class="section-sub readable">{subtitle}</p>}
 
     <div class="swh-grid">
