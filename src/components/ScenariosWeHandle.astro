@@ -13,6 +13,7 @@ const {
   title = "Real situations we handle",
   titleMobile = "",
   subtitle = "",
+  subtitleMobile = "",
   scenarios = [],
   waNumber = "",
 } = Astro.props;
@@ -25,7 +26,11 @@ const {
     ) : (
       <h2 id="swh-title" class="section-title">{title}</h2>
     )}
-    {subtitle && <p class="section-sub readable">{subtitle}</p>}
+    {subtitle && subtitleMobile && subtitleMobile !== subtitle ? (
+      <p class="section-sub readable"><span class="ui-desktop">{subtitle}</span><span class="ui-mobile">{subtitleMobile}</span></p>
+    ) : (
+      subtitle && <p class="section-sub readable">{subtitle}</p>
+    )}
 
     <div class="swh-grid">
       {scenarios.map((s, i) => (

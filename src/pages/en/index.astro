@@ -125,6 +125,7 @@ const jsonLd = buildJsonLd({
       <div class="container">
 
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -138,8 +139,25 @@ const jsonLd = buildJsonLd({
               }}
             />
           </header>
+        </div>
 
-          <main>
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              heroH1={siteData.pageFlow.heroH1}
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: siteData.pageFlow.heroP,
+                phone: siteData.brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<main>
             <!-- 1. WHO WE ARE — clear identity + what you can do here -->
             <section class="section section-padding" aria-labelledby="home-intro">
               <h2 id="home-intro" class="section-title">
@@ -297,6 +315,7 @@ const jsonLd = buildJsonLd({
             <ScenariosWeHandle
               title="Real situations we handle"
               subtitle="These are actual scenarios we've guided clients through. If your situation is similar, we can help."
+              subtitleMobile="If your situation is similar, we can help."
               scenarios={(cc.homeScenarios || []).slice(0, 2)}
               waNumber={waNumber}
             />
@@ -410,22 +429,8 @@ const jsonLd = buildJsonLd({
           </main>
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              heroH1={siteData.pageFlow.heroH1}
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: siteData.pageFlow.heroP,
-                phone: siteData.brand.phone,
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <main>
+<div class="ui-mobile">
+<main>
             <!-- 1. WHO WE ARE -->
             <section class="section section-padding" aria-labelledby="m-home-intro">
               <h2 id="m-home-intro" class="section-title">
@@ -829,6 +834,13 @@ const jsonLd = buildJsonLd({
       .compare-k{font-weight:700;opacity:.85}
       .compare-us{background:rgba(46,125,50,.06);font-weight:600}
       @media (max-width:520px){.compare-header{font-size:11px}.compare-cell{padding:8px 6px}}
+    </style>
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .tgf-list > .tgf-item:nth-child(n+5){display:none}
+      }
     </style>
   </body>
 </html>
