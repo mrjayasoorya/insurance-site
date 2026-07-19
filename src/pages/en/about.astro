@@ -93,6 +93,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
         <!-- =========================
              DESKTOP
         ========================== -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -105,8 +106,24 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               }}
             />
           </header>
+        </div>
 
-          <!-- H1 -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: aboutPage.heroSubtitle || "Licensed, claim-first guidance — no lead-selling, no spam.",
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<!-- H1 -->
           <section class="section section-padding" aria-labelledby="about-title">
             <h1 id="about-title" class="section-title">
               About {brand.name} — Licensed Insurance Agency in Chennai (Red Hills / Sholavaram Base)
@@ -121,8 +138,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               </p>
             </div>
           </section>
-
-          <!-- CTA #1 (top-stage) -->
+<!-- CTA #1 (top-stage) -->
           <section class="section section-padding" aria-labelledby="cta-top-title">
             <div class="cta-card" >
               <h2 id="cta-top-title" class="cta-title">{ctas.primary?.title || "Talk to a licensed expert (no spam, no call center)"}</h2>
@@ -152,8 +168,30 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               </div> -->
             </div>
           </section>
+        </div>
 
-          <!-- Pillars -->
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-about-title">
+            <h1 id="m-about-title" class="section-title">About {brand.name} — Licensed Insurance Agency in Chennai</h1>
+            <p class="section-sub">
+              Documentation-first, claim-first insurance guidance. Direct expert access and on-spot support across Chennai.
+            </p>
+          </section>
+<!-- Mobile CTA #1 -->
+          <section class="section section-padding" aria-labelledby="m-cta-top-title">
+            <div class="cta-card">
+              <h2 id="m-cta-top-title" class="cta-title">{ctas.primary?.title || "Talk to a licensed expert (no spam, no call center)"}</h2>
+              <p class="cta-sub">{ctas.primary?.subtitle || "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.primary?.callLabel || "Call Now"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.primary?.whatsappLabel || "WhatsApp Now"}</a>
+              </div>
+              <p class="cta-note">No lead resale. No spam.</p>
+            </div>
+          </section>
+        </div>
+
+<!-- Pillars -->
           <section class="section section-padding" aria-labelledby="pillars-title">
             <h2 id="pillars-title" class="section-title">What you get from us (clear and practical)</h2>
             <ul class="area-rows" role="list" aria-label="Value pillars">
@@ -166,7 +204,8 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
             </ul>
           </section>
 
-          <!-- Anti-aggregator -->
+<div class="ui-desktop">
+<!-- Anti-aggregator -->
           <section class="section section-padding" aria-labelledby="anti-agg-title">
             <h2 id="anti-agg-title" class="section-title">Are you Justdial / PolicyBazaar? No.</h2>
             <div class="section-sub">
@@ -183,8 +222,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               </ul>
             ) : null}
           </section>
-
-          <!-- CTA #2 (No-pressure quote) -->
+<!-- CTA #2 (No-pressure quote) -->
           <section class="section section-padding" aria-labelledby="cta-quote-title">
             <div class="cta-card cta-soft" >
               <h2 id="cta-quote-title" class="cta-title">{ctas.noPressureQuote?.title || "Need a quote? We quote without forcing a policy"}</h2>
@@ -212,8 +250,30 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               <p class="cta-note">We explain exclusions, add-ons, and claim conditions before you spend money.</p>
             </div>
           </section>
+        </div>
 
-          <!-- What we do -->
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-anti-agg-title">
+            <h2 id="m-anti-agg-title" class="section-title">Are you Justdial / PolicyBazaar? No.</h2>
+            <p class="section-sub">
+              <strong>We are not a lead-generation site.</strong> We don’t sell your data. You speak to licensed experts, not a call center. No spam. No multiple calls.
+            </p>
+          </section>
+<!-- Mobile CTA #2 (Renewal) -->
+          <section class="section section-padding" aria-labelledby="m-cta-renewal-title">
+            <div class="cta-card cta-soft">
+              <h2 id="m-cta-renewal-title" class="cta-title">{ctas.renewalAudit?.title || "Renewal Audit before you pay"}</h2>
+              <p class="cta-sub">{ctas.renewalAudit?.subtitle || "No pressure to buy. We check gaps first."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.renewalAudit?.callLabel || "Call for Renewal Audit"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.renewalAudit?.whatsappLabel || "WhatsApp Renewal Details"}</a>
+              </div>
+              <p class="cta-note">Renewal clarity first. You decide after.</p>
+            </div>
+          </section>
+        </div>
+
+<!-- What we do -->
           <section class="section section-padding" aria-labelledby="what-we-do-title">
             <h2 id="what-we-do-title" class="section-title">What do you do for customers?</h2>
             <p class="section-sub">
@@ -224,7 +284,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
             </ul>
           </section>
 
-          <!-- Renewal section (pain-point + process) -->
+<!-- Renewal section (pain-point + process) -->
           <section class="section section-padding" aria-labelledby="renewal-title">
             <h2 id="renewal-title" class="section-title">Renewals: what we do differently (and why it matters)</h2>
             <div class="section-sub">
@@ -252,7 +312,8 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
             </ul>
           </section>
 
-          <!-- CTA #3 (Renewal audit) -->
+<div class="ui-desktop">
+<!-- CTA #3 (Renewal audit) -->
           <section class="section section-padding" aria-labelledby="cta-renewal-title">
             <div class="cta-card" >
               <h2 id="cta-renewal-title" class="cta-title">{ctas.renewalAudit?.title || "Renewal coming up? Get a Renewal Audit before you pay"}</h2>
@@ -280,8 +341,24 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               <p class="cta-note">Renewal guidance without forcing a policy. You decide after clarity.</p>
             </div>
           </section>
+        </div>
 
-          <!-- Claim rejection + claim-ready -->
+<div class="ui-mobile">
+<!-- Mobile CTA #3 (Claim SOS) -->
+          <section class="section section-padding" aria-labelledby="m-cta-claim-title">
+            <div class="cta-card cta-urgent">
+              <h2 id="m-cta-claim-title" class="cta-title">{ctas.claimSOS?.title || "Claim support: first 60 minutes"}</h2>
+              <p class="cta-sub">{ctas.claimSOS?.subtitle || "We guide steps and documentation."}</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href={callHref}>{ctas.claimSOS?.callLabel || "Call for Claim Guidance"}</a>
+                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.claimSOS?.whatsappLabel || "WhatsApp Claim Help"}</a>
+              </div>
+              <p class="cta-note">Early mistakes create avoidable rejection risk.</p>
+            </div>
+          </section>
+        </div>
+
+<!-- Claim rejection + claim-ready -->
           <section class="section section-padding" aria-labelledby="claim-ready-title">
             <h2 id="claim-ready-title" class="section-title">How we reduce claim rejection risk</h2>
             <div class="section-sub">
@@ -297,7 +374,8 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
             </ul>
           </section>
 
-          <!-- CTA #4 (Claim SOS) -->
+<div class="ui-desktop">
+<!-- CTA #4 (Claim SOS) -->
           <section class="section section-padding" aria-labelledby="cta-claim-title">
             <div class="cta-card cta-urgent" >
               <h2 id="cta-claim-title" class="cta-title">{ctas.claimSOS?.title || "Claim support: what to do in the first 60 minutes"}</h2>
@@ -325,8 +403,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               <p class="cta-note">We guide reporting steps and proof discipline. Insurer decisions follow policy terms and insurer process.</p>
             </div>
           </section>
-
-          <!-- Founder + on-spot support -->
+<!-- Founder + on-spot support -->
           <section class="section section-padding" aria-labelledby="founder-title">
             <h2 id="founder-title" class="section-title">Who leads this agency?</h2>
             <div class="section-sub">
@@ -350,16 +427,14 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               </ul>
             ) : null}
           </section>
-
-          <!-- Language -->
+<!-- Language -->
           <section class="section section-padding" aria-labelledby="lang-title">
             <h2 id="lang-title" class="section-title">Tamil • English • Malayalam — policy clarity without translation loss</h2>
             <p class="section-sub">
               We consult in <strong>{langsCsv}</strong>. We explain exclusions, endorsements, waiting periods, and claim steps without ambiguity.
             </p>
           </section>
-
-          <!-- Services -->
+<!-- Services -->
           <section class="section section-padding" aria-labelledby="services-title">
             <h2 id="services-title" class="section-title">Services we support</h2>
             <p class="section-sub">These pages explain coverage and documentation in plain language.</p>
@@ -374,8 +449,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               ))}
             </ul>
           </section>
-
-          <!-- FAQ -->
+<!-- FAQ -->
           <section class="section section-padding" aria-labelledby="faq-title">
             <h2 id="faq-title" class="section-title">FAQs (Chennai “near me” + claims + renewals)</h2>
             <ul class="area-rows" role="list" aria-label="FAQ list">
@@ -387,191 +461,27 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               ))}
             </ul>
           </section>
-
-          <!-- USER QUESTIONS: Quick reassurance block -->
+<!-- USER QUESTIONS: Quick reassurance block -->
           <UserQuestionsBlock
             title="Quick answers — before you contact us"
             items={cc.userQuestions || []}
           />
-
-          <!-- SCENARIOS WE HANDLE -->
+<!-- SCENARIOS WE HANDLE -->
           <ScenariosWeHandle
             title="Real situations we've handled"
             subtitle="Commercial, vehicle, health, industrial — these are the exact kinds of cases we see."
             scenarios={(cc.homeScenarios || []).slice(0, 3)}
             waNumber={waNumber}
           />
-
-          <!-- WHY CHOOSE US -->
+<!-- WHY CHOOSE US -->
           <WhyChooseUs
             title="Why clients choose us"
             points={(cc.whyUs || [])}
           />
-
-          <!-- SMART ASSIST — about page conversion -->
-          <SmartAssistForm
-            brand={brand}
-            id="sa-desk"
-            heading="Ready to connect? Build your WhatsApp message"
-            subheading="Pick your situation — we pre-fill the message, you just send."
-          />
-
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
-          <LocalIdentitySection brand={brand} pageTitle="About" />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <section aria-label="Contact CTA">
-            <FooterCtaBar
-              title={siteData.footerCtas.title}
-              subtitle={siteData.footerCtas.subtitle}
-              whatsappNumber={brand.whatsappE164}
-              whatsappText={brand.whatsappPrefill}
-              callNumber={brand.phoneE164}
-              callLabel={siteData.footerCtas.callLabel}
-              brandName={siteData.footerCtas.brandName}
-              logoText={siteData.footerCtas.logoText}
-              copyright={siteData.footerCtas.copyright}
-            />
-          </section>
         </div>
 
-        <!-- =========================
-             MOBILE
-        ========================== -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              brand={{
-                name: brand.name,
-                tagline: brand.tagline,
-                subtitle: aboutPage.heroSubtitle || "Licensed, claim-first guidance — no lead-selling, no spam.",
-                phone: brand.phone,
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <section class="section section-padding" aria-labelledby="m-about-title">
-            <h1 id="m-about-title" class="section-title">About {brand.name} — Licensed Insurance Agency in Chennai</h1>
-            <p class="section-sub">
-              Documentation-first, claim-first insurance guidance. Direct expert access and on-spot support across Chennai.
-            </p>
-          </section>
-
-          <!-- Mobile CTA #1 -->
-          <section class="section section-padding" aria-labelledby="m-cta-top-title">
-            <div class="cta-card">
-              <h2 id="m-cta-top-title" class="cta-title">{ctas.primary?.title || "Talk to a licensed expert (no spam, no call center)"}</h2>
-              <p class="cta-sub">{ctas.primary?.subtitle || "One advisor. One file trail. Clear answers in Tamil, English, or Malayalam."}</p>
-              <div class="cta-actions">
-                <a class="btn btn-primary" href={callHref}>{ctas.primary?.callLabel || "Call Now"}</a>
-                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.primary?.whatsappLabel || "WhatsApp Now"}</a>
-              </div>
-              <p class="cta-note">No lead resale. No spam.</p>
-            </div>
-          </section>
-
-                    <!-- Pillars -->
-          <section class="section section-padding" aria-labelledby="pillars-title">
-            <h2 id="pillars-title" class="section-title">What you get from us (clear and practical)</h2>
-            <ul class="area-rows" role="list" aria-label="Value pillars">
-              {(aboutPage.valuePillars || []).map((p) => (
-                <li class="area-row">
-                  <h3 class="area-name">{p.title}</h3>
-                  <p class="area-notes">{p.desc}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section class="section section-padding" aria-labelledby="m-anti-agg-title">
-            <h2 id="m-anti-agg-title" class="section-title">Are you Justdial / PolicyBazaar? No.</h2>
-            <p class="section-sub">
-              <strong>We are not a lead-generation site.</strong> We don’t sell your data. You speak to licensed experts, not a call center. No spam. No multiple calls.
-            </p>
-          </section>
-
-          <!-- Mobile CTA #2 (Renewal) -->
-          <section class="section section-padding" aria-labelledby="m-cta-renewal-title">
-            <div class="cta-card cta-soft">
-              <h2 id="m-cta-renewal-title" class="cta-title">{ctas.renewalAudit?.title || "Renewal Audit before you pay"}</h2>
-              <p class="cta-sub">{ctas.renewalAudit?.subtitle || "No pressure to buy. We check gaps first."}</p>
-              <div class="cta-actions">
-                <a class="btn btn-primary" href={callHref}>{ctas.renewalAudit?.callLabel || "Call for Renewal Audit"}</a>
-                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.renewalAudit?.whatsappLabel || "WhatsApp Renewal Details"}</a>
-              </div>
-              <p class="cta-note">Renewal clarity first. You decide after.</p>
-            </div>
-          </section>
-                    <!-- What we do -->
-          <section class="section section-padding" aria-labelledby="what-we-do-title">
-            <h2 id="what-we-do-title" class="section-title">What do you do for customers?</h2>
-            <p class="section-sub">
-              We do the work that decides outcomes later: correct disclosures, clean documentation, and claim-ready servicing.
-            </p>
-            <ul class="bullets">
-              {(aboutPage.whatWeDo?.bullets || []).map((b) => <li>{b}</li>)}
-            </ul>
-          </section>
-
-          <!-- Renewal section (pain-point + process) -->
-          <section class="section section-padding" aria-labelledby="renewal-title">
-            <h2 id="renewal-title" class="section-title">Renewals: what we do differently (and why it matters)</h2>
-            <div class="section-sub">
-              <p style="margin:0 0 10px">
-                Most renewal mistakes happen because people renew blindly. Risk changes over a year: mileage, usage, storage, drivers, assets, value, and business exposure.
-              </p>
-              <p style="margin:0">
-                We audit the renewal file and remove surprises before policy issuance.
-              </p>
-            </div>
-
-            <ul class="area-rows" role="list" aria-label="Renewal process">
-              <li class="area-row">
-                <h3 class="area-name">Renewal check</h3>
-                <p class="area-notes">Declared value, add-ons, exclusions, endorsements, and changes in usage/exposure.</p>
-              </li>
-              <li class="area-row">
-                <h3 class="area-name">Continuity discipline</h3>
-                <p class="area-notes">We prevent gaps that create claim disputes later.</p>
-              </li>
-              <li class="area-row">
-                <h3 class="area-name">Documentation refresh</h3>
-                <p class="area-notes">We update proofs and declarations so the file stays clean year-to-year.</p>
-              </li>
-            </ul>
-          </section>
-
-          <!-- Mobile CTA #3 (Claim SOS) -->
-          <section class="section section-padding" aria-labelledby="m-cta-claim-title">
-            <div class="cta-card cta-urgent">
-              <h2 id="m-cta-claim-title" class="cta-title">{ctas.claimSOS?.title || "Claim support: first 60 minutes"}</h2>
-              <p class="cta-sub">{ctas.claimSOS?.subtitle || "We guide steps and documentation."}</p>
-              <div class="cta-actions">
-                <a class="btn btn-primary" href={callHref}>{ctas.claimSOS?.callLabel || "Call for Claim Guidance"}</a>
-                <a class="btn btn-ghost" href={waHref} target="_blank" rel="noopener">{ctas.claimSOS?.whatsappLabel || "WhatsApp Claim Help"}</a>
-              </div>
-              <p class="cta-note">Early mistakes create avoidable rejection risk.</p>
-            </div>
-          </section>
-
-                    <!-- Claim rejection + claim-ready -->
-          <section class="section section-padding" aria-labelledby="claim-ready-title">
-            <h2 id="claim-ready-title" class="section-title">How we reduce claim rejection risk</h2>
-            <div class="section-sub">
-              <p style="margin:0 0 10px">
-                Claim rejection fear is rational. Most claim friction is predictable: mismatch in declared details, missing proofs, or timeline errors.
-              </p>
-              <p style="margin:0">
-                We prevent avoidable disputes with Claim-Ready Documentation discipline before the loss happens.
-              </p>
-            </div>
-            <ul class="bullets">
-              {(aboutPage.claimReady?.bullets || []).map((b) => <li>{b}</li>)}
-            </ul>
-          </section>
-
-          <!-- Mobile CTA #4 (No-pressure quote) -->
+<div class="ui-mobile">
+<!-- Mobile CTA #4 (No-pressure quote) -->
           <section class="section section-padding" aria-labelledby="m-cta-quote-title">
             <div class="cta-card cta-soft">
               <h2 id="m-cta-quote-title" class="cta-title">{ctas.noPressureQuote?.title || "No-pressure quote"}</h2>
@@ -583,33 +493,34 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               <p class="cta-note">No forcing. No spam.</p>
             </div>
           </section>
-
-          <section class="section section-padding" aria-labelledby="m-lang-title">
+<section class="section section-padding" aria-labelledby="m-lang-title">
             <h2 id="m-lang-title" class="section-title">Tamil • English • Malayalam</h2>
             <p class="section-sub">We consult in <strong>{langsCsv}</strong>.</p>
           </section>
-
-          <!-- USER QUESTIONS -->
+<!-- USER QUESTIONS -->
           <UserQuestionsBlock
             title="Common questions before you contact us"
             items={cc.userQuestions || []}
           />
-
-          <!-- SCENARIOS WE HANDLE -->
+<!-- SCENARIOS WE HANDLE -->
           <ScenariosWeHandle
             title="Real situations we’ve handled"
             subtitle="Commercial, vehicle, health, industrial — these are the exact kinds of cases we see."
             scenarios={(cc.homeScenarios || []).slice(0, 2)}
             waNumber={waNumber}
           />
-          <!-- SMART ASSIST — about page conversion (mobile) -->
+        </div>
+
+<!-- SMART ASSIST — about page conversion -->
           <SmartAssistForm
             brand={brand}
-            id="sa-mob"
+            id="sa-desk"
             heading="Ready to connect? Build your WhatsApp message"
             subheading="Pick your situation — we pre-fill the message, you just send."
           />
-          <section class="section section-padding" aria-labelledby="m-services-title">
+
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-services-title">
             <h2 id="m-services-title" class="section-title">Services we support</h2>
             <ul class="service-links" role="list">
               {services.map((s) => (
@@ -622,8 +533,7 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               ))}
             </ul>
           </section>
-
-          <section class="section section-padding" aria-labelledby="m-faq-title">
+<section class="section section-padding" aria-labelledby="m-faq-title">
             <h2 id="m-faq-title" class="section-title">FAQs</h2>
             <ul class="area-rows" role="list">
               {(aboutPage.faqs || []).map((f) => (
@@ -634,18 +544,20 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               ))}
             </ul>
           </section>
-
-          <!-- WHY CHOOSE US -->
+<!-- WHY CHOOSE US -->
           <WhyChooseUs
             title="Why clients choose us"
             points={(cc.whyUs || []).slice(0, 4)}
           />
+        </div>
 
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
-          <LocalIdentitySection brand={brand} pageTitle="About" />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={brand} />
 
-          <section aria-label="Contact CTA">
+<LocalIdentitySection brand={brand} pageTitle="About" />
+
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+<section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}
@@ -658,12 +570,20 @@ const waNumber = (brand.whatsappE164 || "").replace("+", "");
               copyright={siteData.footerCtas.copyright}
             />
           </section>
-        </div>
 
       </div>
     </main>
 
     <GlobalOverlays />
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
+      }
+    </style>
   </body>
 </html>
 

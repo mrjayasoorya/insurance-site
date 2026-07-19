@@ -78,6 +78,7 @@ const jsonLd = buildJsonLd({
         <!-- =========================
              DESKTOP
         ========================== -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -90,8 +91,24 @@ const jsonLd = buildJsonLd({
               }}
             />
           </header>
+        </div>
 
-          <section class="section section-padding" aria-labelledby="contact-title">
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: brand.name,
+                tagline: brand.tagline,
+                subtitle: "Call, WhatsApp, address and map—simple and crawl-friendly.",
+                phone: brand.phone,
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<section class="section section-padding" aria-labelledby="contact-title">
             <h1 id="contact-title" class="section-title">Contact</h1>
             <p class="section-sub">
               For commercial insurance guidance, renewals, and claim process support across Chennai North & Chennai outskirts.
@@ -161,8 +178,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           </section>
-
-          <!-- ✅ Map (if embed exists) -->
+<!-- ✅ Map (if embed exists) -->
           {brand.mapEmbedUrl ? (
             <section class="section section-padding" aria-labelledby="map-title" style="padding-top:22px;">
               <h2 id="map-title" class="section-title">Location map</h2>
@@ -182,8 +198,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
-
-          <section aria-labelledby="office-info" class="section section-padding">
+<section aria-labelledby="office-info" class="section section-padding">
   <h2 id="office-info" class="section-title">
     {siteData.officeInfo.title}
   </h2>
@@ -194,93 +209,10 @@ const jsonLd = buildJsonLd({
     ))}
   </ul>
 </section>
-
-          <!-- ✅ Areas (non-confusing, not fake) -->
-                    <section
-            class="section section-padding"
-            aria-label="Areas we commonly serve"
-          >
-            <h2 class="section-title">Areas We Commonly Serve</h2>
-            <p class="section-sub readable">
-              Browse location pages for local context and the services commonly
-              supported there.
-            </p>
-
-            <div class="grid grid-2">
-              {
-                siteData.locationsIndex?.zones
-                  ?.flatMap((g) => g.locations || [])
-                  .slice(0, 12)
-                  .map((loc, i) => (
-                    <a class={`card lg-card lg-card--${i % 4}`} href={EN(`/locations/${loc.slug}/`)}>
-                      <h3 class="card-title">{loc.name}</h3>
-                      <p class="card-desc">Open local service guide</p>
-                    </a>
-                  ))
-              }
-            </div>
-
-            <p class="section-sub" style="margin-top:12px">
-              <a class="chiplink" href={EN("/locations/")}>View all locations</a
-              >
-            </p>
-          </section>
-<NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
-
-          <!-- USER QUESTIONS: area, language, scope -->
-          <UserQuestionsBlock
-            title="Common questions — before you reach out"
-            items={cc.userQuestions || []}
-          />
-
-          <!-- SMART ASSIST — contact page WhatsApp builder -->
-          <SmartAssistForm
-            brand={brand}
-            id="sa-desk"
-            heading="Pre-fill your WhatsApp message"
-            subheading="Pick your situation below — we build the message, you just send."
-          />
-
-          <!-- WHY CHOOSE US -->
-          <WhyChooseUs
-            title="What makes us different"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <section aria-label="Contact CTA">
-            <FooterCtaBar
-              title={siteData.footerCtas.title}
-              subtitle={siteData.footerCtas.subtitle}
-              whatsappNumber={brand.whatsappE164}
-              whatsappText={brand.whatsappPrefill}
-              callNumber={brand.phoneE164}
-              callLabel={siteData.footerCtas.callLabel}
-              brandName={siteData.footerCtas.brandName}
-              logoText={siteData.footerCtas.logoText}
-              copyright={siteData.footerCtas.copyright}
-            />
-          </section>
         </div>
 
-        <!-- =========================
-             MOBILE
-        ========================== -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              brand={{
-                name: brand.name,
-                tagline: brand.tagline,
-                subtitle: "Call, WhatsApp, address and map—simple and crawl-friendly.",
-                phone: brand.phone,
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <section class="section section-padding" aria-labelledby="m-contact-title">
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-contact-title">
             <h1 id="m-contact-title" class="section-title">Contact</h1>
             <p class="section-sub">
               Commercial-first guidance + renewals + claim process support for Chennai North & Chennai outskirts.
@@ -332,8 +264,7 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           </section>
-
-          {brand.mapEmbedUrl ? (
+{brand.mapEmbedUrl ? (
             <section class="section section-padding" aria-labelledby="m-map-title" style="padding-top:22px;">
               <h2 id="m-map-title" class="section-title">Location map</h2>
               <div class="mapbox" role="group" aria-label="Google map">
@@ -350,8 +281,9 @@ const jsonLd = buildJsonLd({
               </div>
             </section>
           ) : null}
+        </div>
 
-
+<!-- ✅ Areas (non-confusing, not fake) -->
                     <section
             class="section section-padding"
             aria-label="Areas we commonly serve"
@@ -381,31 +313,32 @@ const jsonLd = buildJsonLd({
               >
             </p>
           </section>
+
 <NearMeTrustSection data={{nearMeIntent: siteData.nearMeIntent, trustValidation: siteData.trustValidation}} />
 
-          <!-- USER QUESTIONS -->
+<!-- USER QUESTIONS: area, language, scope -->
           <UserQuestionsBlock
             title="Common questions — before you reach out"
             items={cc.userQuestions || []}
           />
 
-          <!-- SMART ASSIST — contact page WhatsApp builder (mobile) -->
+<!-- SMART ASSIST — contact page WhatsApp builder -->
           <SmartAssistForm
             brand={brand}
-            id="sa-mob"
+            id="sa-desk"
             heading="Pre-fill your WhatsApp message"
             subheading="Pick your situation below — we build the message, you just send."
           />
 
-          <!-- WHY CHOOSE US -->
+<!-- WHY CHOOSE US -->
           <WhyChooseUs
             title="What makes us different"
             points={(cc.whyUs || []).slice(0, 4)}
           />
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
-          <section aria-label="Contact CTA">
+<section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}
@@ -418,11 +351,20 @@ const jsonLd = buildJsonLd({
               copyright={siteData.footerCtas.copyright}
             />
           </section>
-        </div>
       </div>
     </main>
 
     <GlobalOverlays />
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
+      }
+    </style>
   </body>
 </html>
 
