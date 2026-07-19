@@ -54,6 +54,7 @@ const jsonLd = buildJsonLd({
     <main class="app">
       <div class="container">
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -69,15 +70,29 @@ const jsonLd = buildJsonLd({
             { label: "Home", href: EN("/") },
             { label: "Commercial Authority" },
           ]} />
+        </div>
 
-          <!-- 1. H1 + CTA -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: siteData.commercialAuthorityPosts.subtitle,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+        </div>
+
+<!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{siteData.commercialAuthorityPosts.title}</h1>
             <p class="section-sub readable">{siteData.commercialAuthorityPosts.subtitle}</p>
             <PageActionBar brand={siteData.brand} context="Commercial authority guidance" />
           </section>
 
-          <!-- 2. Not sure where to start? -->
+<div class="ui-desktop">
+<!-- 2. Not sure where to start? -->
           <section class="section section-padding" aria-label="Not sure where to start">
             <h2 class="section-title">Not sure where to start?</h2>
             <p class="section-sub readable">If you're not sure what you need, pick the option that fits your situation:</p>
@@ -100,70 +115,10 @@ const jsonLd = buildJsonLd({
               </a>
             </div>
           </section>
-
-          <!-- 3. Blog posts -->
-          <BlogSection
-            title={siteData.commercialAuthorityPosts.title}
-            subtitle={siteData.commercialAuthorityPosts.subtitle}
-            viewAllHref={siteData.commercialAuthorityPosts.viewAllHref}
-            viewMoreHref={siteData.commercialAuthorityPosts.viewMoreHref}
-            categories={siteData.commercialAuthorityPosts.categories}
-          />
-
-          <!-- MID-PAGE CTA -->
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
-
-          <!-- 4. How our process works -->
-          {siteData.aboutPage?.howWeWork?.steps?.length ? (
-            <section class="section section-padding" aria-label="How our process works">
-              <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
-              <div class="grid grid-2">
-                {siteData.aboutPage.howWeWork.steps.map((step, i) => (
-                  <article class={`card lg-card lg-card--${i % 4}`}>
-                    <h3 class="card-title">{step.title}</h3>
-                    <p class="card-desc readable">{step.desc}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero brand={{
-              name: siteData.brand.name,
-              tagline: siteData.brand.tagline,
-              subtitle: siteData.commercialAuthorityPosts.subtitle,
-              phone: siteData.brand.phone,
-              areaChips: [],
-            }} />
-          </header>
-
-          <!-- 1. H1 + CTA -->
-          <section class="section section-padding">
-            <h1 class="section-title">{siteData.commercialAuthorityPosts.title}</h1>
-            <p class="section-sub readable">{siteData.commercialAuthorityPosts.subtitle}</p>
-            <PageActionBar brand={siteData.brand} context="Commercial authority guidance" />
-          </section>
-
-          <!-- 2. Not sure where to start? -->
+<div class="ui-mobile">
+<!-- 2. Not sure where to start? -->
           <section class="section section-padding">
             <h2 class="section-title">Not sure where to start?</h2>
             <div class="grid grid-1">
@@ -177,8 +132,9 @@ const jsonLd = buildJsonLd({
               </a>
             </div>
           </section>
+        </div>
 
-          <!-- 3. Blog posts -->
+<!-- 3. Blog posts -->
           <BlogSection
             title={siteData.commercialAuthorityPosts.title}
             subtitle={siteData.commercialAuthorityPosts.subtitle}
@@ -187,10 +143,30 @@ const jsonLd = buildJsonLd({
             categories={siteData.commercialAuthorityPosts.categories}
           />
 
+<div class="ui-desktop">
+<!-- MID-PAGE CTA -->
           <ConversionBlock siteData={siteData} brand={siteData.brand} />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<!-- 4. How our process works -->
+          {siteData.aboutPage?.howWeWork?.steps?.length ? (
+            <section class="section section-padding" aria-label="How our process works">
+              <h2 class="section-title">{siteData.aboutPage.howWeWork.title || "How our process works"}</h2>
+              <div class="grid grid-2">
+                {siteData.aboutPage.howWeWork.steps.map((step, i) => (
+                  <article class={`card lg-card lg-card--${i % 4}`}>
+                    <h3 class="card-title">{step.title}</h3>
+                    <p class="card-desc readable">{step.desc}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
 
-          <FooterCtaBar
+<ConversionBlock siteData={siteData} brand={siteData.brand} />
+
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+<FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
             whatsappNumber={siteData.brand.whatsappE164}
@@ -201,7 +177,6 @@ const jsonLd = buildJsonLd({
             logoText={siteData.footerCtas.logoText}
             copyright={siteData.footerCtas.copyright}
           />
-        </div>
       </div>
     </main>
 
@@ -216,6 +191,16 @@ const jsonLd = buildJsonLd({
       .card-title{font-size:16px;margin:8px 0 6px}
       .card-desc{margin:0;opacity:.85}
       @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
+    </style>
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
+      }
     </style>
   </body>
 </html>
