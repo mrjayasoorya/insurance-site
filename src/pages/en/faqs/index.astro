@@ -65,6 +65,7 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
       <div class="container">
 
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -80,16 +81,29 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             { label: "Home", href: EN("/") },
             { label: "FAQs" },
           ]} />
+        </div>
 
-          <section class="section section-padding" aria-labelledby="faq-page-title">
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: brand.name,
+              tagline: brand.tagline,
+              subtitle: "Claim-first FAQs for Chennai North & NH-facing belts.",
+              phone: brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+        </div>
+
+<div class="ui-desktop">
+<section class="section section-padding" aria-labelledby="faq-page-title">
             <h1 id="faq-page-title" class="section-title">FAQs</h1>
             <p class="section-sub">
               Real questions we get from fleets, warehouses, contractors, MSMEs and families. Built to reduce claim delays by improving clarity and documentation discipline.
             </p>
             <PageActionBar brand={brand} context="FAQs" />
           </section>
-
-          <!-- Not sure what you need? -->
+<!-- Not sure what you need? -->
           <section class="section section-padding" aria-label="Not sure what you need">
             <h2 class="section-title">Not sure what you need?</h2>
             <p class="section-sub readable">If your question isn't answered below, these links can help you take the right next step:</p>
@@ -112,8 +126,32 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               </a>
             </div>
           </section>
+        </div>
 
-          <!-- FAQ sections -->
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-faq-page-title">
+            <h1 id="m-faq-page-title" class="section-title">FAQs</h1>
+            <p class="section-sub">
+              Real questions across claims, fleets, warehouses, contractors, MSMEs and families.
+            </p>
+            <PageActionBar brand={brand} context="FAQs" />
+          </section>
+<section class="section section-padding">
+            <h2 class="section-title">Not sure what you need?</h2>
+            <div class="grid grid-1">
+              <a class="card lg-card lg-card--0" href={EN("/insurance-near-me/")}>
+                <h3 class="card-title">Find insurance help nearby</h3>
+                <p class="card-desc">Visit or reach us by WhatsApp/phone.</p>
+              </a>
+              <a class="card lg-card lg-card--1" href={EN("/services/")}>
+                <h3 class="card-title">Browse all services</h3>
+                <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
+              </a>
+            </div>
+          </section>
+        </div>
+
+<!-- FAQ sections -->
           {
             Object.keys(siteData.faqsPage || {}).map((key) => {
               const faqGroup = siteData.faqsPage[key];
@@ -128,7 +166,8 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             })
           }
 
-          <!-- Services we support -->
+<div class="ui-desktop">
+<!-- Services we support -->
           <section class="section section-padding" aria-labelledby="services-title">
             <h2 id="services-title" class="section-title">Services we support</h2>
             <p class="section-sub">
@@ -145,8 +184,7 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               ))}
             </ul>
           </section>
-
-          <!-- Areas -->
+<!-- Areas -->
           <section aria-labelledby="area-title" class="section section-padding">
             <h2 id="area-title" class="section-title">{siteData.faqsAreas.title}</h2>
             <p class="section-sub">{siteData.faqsAreas.intro}</p>
@@ -160,92 +198,10 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             </ul>
             <p class="section-sub" style="margin-top:10px">{siteData.faqsAreas.note}</p>
           </section>
-
-          <!-- How we work -->
-          {howWeWork.length > 0 && (
-            <section class="section section-padding" aria-label="How we work">
-              <h2 class="section-title">How We Work</h2>
-              <ol class="steps-list">
-                {howWeWork.map((step, i) => (
-                  <li class="step-item">
-                    <span class="step-num">{i + 1}</span>
-                    <div>
-                      <strong>{step.title}</strong>
-                      <p class="step-desc">{step.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
-
-          <ConversionBlock siteData={siteData} brand={brand} />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <section aria-label="Contact CTA">
-            <FooterCtaBar
-              title={siteData.footerCtas.title}
-              subtitle={siteData.footerCtas.subtitle}
-              whatsappNumber={brand.whatsappE164}
-              whatsappText={brand.whatsappPrefill}
-              callNumber={brand.phoneE164}
-              callLabel={siteData.footerCtas.callLabel}
-              brandName={siteData.footerCtas.brandName}
-              logoText={siteData.footerCtas.logoText}
-              copyright={siteData.footerCtas.copyright}
-            />
-          </section>
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero brand={{
-              name: brand.name,
-              tagline: brand.tagline,
-              subtitle: "Claim-first FAQs for Chennai North & NH-facing belts.",
-              phone: brand.phone,
-              areaChips: [],
-            }} />
-          </header>
-
-          <section class="section section-padding" aria-labelledby="m-faq-page-title">
-            <h1 id="m-faq-page-title" class="section-title">FAQs</h1>
-            <p class="section-sub">
-              Real questions across claims, fleets, warehouses, contractors, MSMEs and families.
-            </p>
-            <PageActionBar brand={brand} context="FAQs" />
-          </section>
-
-          <section class="section section-padding">
-            <h2 class="section-title">Not sure what you need?</h2>
-            <div class="grid grid-1">
-              <a class="card lg-card lg-card--0" href={EN("/insurance-near-me/")}>
-                <h3 class="card-title">Find insurance help nearby</h3>
-                <p class="card-desc">Visit or reach us by WhatsApp/phone.</p>
-              </a>
-              <a class="card lg-card lg-card--1" href={EN("/services/")}>
-                <h3 class="card-title">Browse all services</h3>
-                <p class="card-desc">Transport, industrial, construction & personal insurance.</p>
-              </a>
-            </div>
-          </section>
-
-          {
-            Object.keys(siteData.faqsPage || {}).map((key) => {
-              const faqGroup = siteData.faqsPage[key];
-              return faqGroup ? (
-                <FAQSection
-                  title={faqGroup.title}
-                  intro={faqGroup.intro}
-                  items={faqGroup.items}
-                  sectionId={key}
-                />
-              ) : null;
-            })
-          }
-
-          <section class="section section-padding" aria-labelledby="m-services-title">
+<div class="ui-mobile">
+<section class="section section-padding" aria-labelledby="m-services-title">
             <h2 id="m-services-title" class="section-title">Services we support</h2>
             <p class="section-sub">Explore service pages for structured, claim-first guidance.</p>
             <ul class="service-links" role="list">
@@ -259,7 +215,9 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               ))}
             </ul>
           </section>
+        </div>
 
+<!-- How we work -->
           {howWeWork.length > 0 && (
             <section class="section section-padding" aria-label="How we work">
               <h2 class="section-title">How We Work</h2>
@@ -277,10 +235,11 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
             </section>
           )}
 
-          <ConversionBlock siteData={siteData} brand={brand} />
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<ConversionBlock siteData={siteData} brand={brand} />
 
-          <section aria-label="Contact CTA">
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+<section aria-label="Contact CTA">
             <FooterCtaBar
               title={siteData.footerCtas.title}
               subtitle={siteData.footerCtas.subtitle}
@@ -293,11 +252,20 @@ const howWeWork = siteData.aboutPage?.howWeWork?.steps || [];
               copyright={siteData.footerCtas.copyright}
             />
           </section>
-        </div>
       </div>
     </main>
 
     <GlobalOverlays />
+  
+    <style is:global>
+      /* Single-DOM merge: hide desktop-only extras below the existing 820px switch */
+      @media (max-width: 820px){
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
+      }
+    </style>
   </body>
 </html>
 
