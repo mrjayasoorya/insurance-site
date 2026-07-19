@@ -102,7 +102,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
     <main class="app">
       <div class="container">
 
-        <!-- ========================= DESKTOP ========================= -->
+        <!-- SINGLE DOM: hero variants switch at 820px; content below renders once. -->
         <div class="ui-desktop">
           <header>
             <DesktopHero
@@ -124,6 +124,25 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
             { label: "Insurance Policies", href: EN("/policies/") },
             { label: data.heroH1 },
           ]} />
+        </div>
+
+        <div class="ui-mobile">
+          <header>
+            <MobileHero
+              brand={{
+                name: siteData.brand.name,
+                tagline: siteData.brand.tagline,
+                subtitle: data.heroP,
+                phone: siteData.brand.phone,
+                phoneE164: siteData.brand.phoneE164,
+                whatsappE164: siteData.brand.whatsappE164,
+                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
+                areaChips: [],
+              }}
+            />
+          </header>
+        </div>
+
 
           <!-- 1. H1 + CTA -->
           <section class="section section-padding" aria-label="Policy overview">
@@ -201,7 +220,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
                   <thead>
                     <tr class="compare-header">
                       <th class="compare-cell compare-k" scope="col">Factor</th>
-                      <th class="compare-cell" scope="col">Online / Aggregator</th>
+                      <th class="compare-cell" scope="col"><span class="ui-desktop">Online / Aggregator</span><span class="ui-mobile">Online</span></th>
                       <th class="compare-cell compare-us" scope="col">With Us</th>
                     </tr>
                   </thead>
@@ -222,6 +241,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
           <!-- SCENARIOS WE HANDLE -->
           <ScenariosWeHandle
             title={`Real situations we've handled — ${data.heroH1.split('—')[0].trim()}`}
+            titleMobile="Real situations we've handled"
             subtitle="If your situation is similar, we can help. Send a WhatsApp message."
             scenarios={svcScenarios}
             waNumber={waNumber}
@@ -284,7 +304,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
                 ))}
               </div>
               {data.claimProcess.ourRole ? (
-                <div class="our-role-box" style="margin-top:16px">
+                <div class="ui-desktop our-role-box" style="margin-top:16px">
                   <strong>Our role at each step:</strong>
                   <p class="readable" style="margin-top:4px">{data.claimProcess.ourRole}</p>
                 </div>
@@ -322,12 +342,14 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
             brand={siteData.brand}
             id="sa-desk"
             heading="Need help with this? Pre-fill your WhatsApp message"
+            headingMobile="Need help? Pre-fill your WhatsApp message"
             subheading="Pick your situation — we build the message, you just send."
           />
 
           <!-- WHY CHOOSE US -->
           <WhyChooseUs
             title="Why work with us for this"
+            titleMobile="Why work with us"
             points={(cc.whyUs || []).slice(0, 4)}
           />
 
@@ -364,6 +386,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
           ) : null}
 
           <!-- Quick actions -->
+          <div class="ui-desktop">
           <section class="section section-padding" aria-label="Quick actions">
             <h2 class="section-title">Quick actions</h2>
             <div class="grid grid-2">
@@ -375,6 +398,7 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
               ))}
             </div>
           </section>
+          </div>
 
           <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
 
@@ -389,264 +413,6 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
             logoText={siteData.footerCtas.logoText}
             copyright={siteData.footerCtas.copyright}
           />
-        </div>
-
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero
-              brand={{
-                name: siteData.brand.name,
-                tagline: siteData.brand.tagline,
-                subtitle: data.heroP,
-                phone: siteData.brand.phone,
-                phoneE164: siteData.brand.phoneE164,
-                whatsappE164: siteData.brand.whatsappE164,
-                whatsappPrefill: `Hi, I need help with ${data.heroH1}. Please guide me.`,
-                areaChips: [],
-              }}
-            />
-          </header>
-
-          <!-- 1. H1 + CTA -->
-          <section class="section section-padding">
-            <h1 class="section-title">{data.heroH1}</h1>
-            <p class="section-sub readable">{data.heroP}</p>
-            <PageActionBar brand={siteData.brand} context={data.heroH1 || ""} />
-          </section>
-
-          <!-- 2. At a glance -->
-          {atAGlance.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">At a glance</h2>
-              <div class="glance">
-                {atAGlance.map(x => (
-                  <div class="glance-row">
-                    <div class="glance-k">{x.k}</div>
-                    <div class="glance-v">{x.v}</div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- 3. What is this insurance? -->
-          {data.whatIsIt ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.whatIsIt.title || "What is this insurance?"}</h2>
-              <p class="readable">{data.whatIsIt.text}</p>
-              {data.whatIsIt.bullets?.length ? (
-                <ul class="bullets" style="margin-top:12px">{data.whatIsIt.bullets.map(b => <li>{b}</li>)}</ul>
-              ) : null}
-            </section>
-          ) : null}
-
-          <!-- 4. What you might need -->
-          {data.userNeeds?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">What you might need</h2>
-              <div class="grid grid-1">
-                {data.userNeeds.map(n => (
-                  <div class="card">
-                    <h3 class="card-title">{n.title}</h3>
-                    <p class="card-desc readable">{n.text}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- 5. Common problems -->
-          {data.commonProblems?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Common problems people face</h2>
-              <div class="problem-list">
-                {data.commonProblems.map(p => (
-                  <div class="problem-item">
-                    <div class="problem-icon">✗</div>
-                    <div>
-                      <strong>{p.title}</strong>
-                      <p class="readable" style="margin-top:4px;opacity:.85">{p.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- 6. Market comparison -->
-          {data.marketComparison ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.marketComparison.title || "How the market works"}</h2>
-              <p class="readable">{data.marketComparison.intro}</p>
-              {data.marketComparison.rows?.length ? (
-                <table class="compare-table" style="margin-top:16px">
-                  <thead>
-                    <tr class="compare-header">
-                      <th class="compare-cell compare-k" scope="col">Factor</th>
-                      <th class="compare-cell" scope="col">Online</th>
-                      <th class="compare-cell compare-us" scope="col">With Us</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.marketComparison.rows.map(r => (
-                      <tr class="compare-row">
-                        <th class="compare-cell compare-k" scope="row">{r.factor}</th>
-                        <td class="compare-cell">{r.online}</td>
-                        <td class="compare-cell compare-us">{r.withUs}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : null}
-            </section>
-          ) : null}
-
-          <!-- SCENARIOS -->
-          <ScenariosWeHandle
-            title="Real situations we've handled"
-            scenarios={svcScenarios.slice(0, 2)}
-            waNumber={waNumber}
-          />
-
-          <!-- MID CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
-          <!-- 7. Our approach -->
-          {data.ourApproach ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.ourApproach.title || "How we handle this differently"}</h2>
-              <p class="readable">{data.ourApproach.intro}</p>
-              {data.ourApproach.steps?.length ? (
-                <div class="steps-grid" style="margin-top:16px">
-                  {data.ourApproach.steps.map((s, i) => (
-                    <div class="step-card">
-                      <div class="step-num">{i + 1}</div>
-                      <div>
-                        <strong>{s.title}</strong>
-                        <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </section>
-          ) : null}
-
-          <!-- 8. Coverage types -->
-          {data.coverageTypes?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Coverage types explained</h2>
-              {data.coverageTypes.map(ct => (
-                <details class="expand-block" style="margin-bottom:12px">
-                  <summary class="expand-trigger">{ct.title}</summary>
-                  <p class="readable" style="margin-top:8px">{ct.text}</p>
-                  {ct.bullets?.length ? (
-                    <ul class="bullets" style="margin-top:8px">{ct.bullets.map(b => <li>{b}</li>)}</ul>
-                  ) : null}
-                </details>
-              ))}
-            </section>
-          ) : null}
-
-          <!-- 9. Claim process -->
-          {data.claimProcess?.steps?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">{data.claimProcess.title || "How claims work"}</h2>
-              {data.claimProcess.intro ? <p class="readable">{data.claimProcess.intro}</p> : null}
-              <div class="steps-grid" style="margin-top:14px">
-                {data.claimProcess.steps.map((s, i) => (
-                  <div class="step-card">
-                    <div class="step-num">{i + 1}</div>
-                    <div>
-                      <strong>{s.title}</strong>
-                      <p class="readable" style="margin-top:4px;opacity:.85">{s.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- 10. Documents -->
-          {data.documents?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Documents you'll need</h2>
-              <ul class="bullets">{data.documents.map(d => <li>{d}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- 11. Pricing -->
-          {data.pricingFactors?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">What affects your premium</h2>
-              <ul class="bullets">{data.pricingFactors.map(p => <li>{p}</li>)}</ul>
-            </section>
-          ) : null}
-
-          <!-- GAP-FILLER -->
-          <ThinkingGapFiller
-            title="Still wondering?"
-            items={svcGapQs.slice(0, 3)}
-            waNumber={waNumber}
-            waText={`Hi, I have a question about ${data.heroH1.split('—')[0].trim()}. Can you guide me?`}
-          />
-
-          <!-- SMART ASSIST -->
-          <SmartAssistForm
-            brand={siteData.brand}
-            id="sa-mob"
-            heading="Need help? Pre-fill your WhatsApp message"
-            subheading="Pick your situation — we build the message, you just send."
-          />
-
-          <!-- WHY CHOOSE US -->
-          <WhyChooseUs
-            title="Why work with us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <!-- FAQs -->
-          {data.faqs?.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Frequently asked questions</h2>
-              <MobileAccordion sections={[{ title: "Questions people ask", items: data.faqs.map(f => ({ strong: f.q, text: f.a })) }]} defaultOpen={true} />
-            </section>
-          ) : null}
-
-          <!-- FINAL CTA -->
-          <ConversionBlock siteData={siteData} block={siteData.conversionBlocks.default} brand={siteData.brand} />
-
-          <!-- Related policies -->
-          {relatedPolicies.length ? (
-            <section class="section section-padding">
-              <h2 class="section-title">Related insurance guides</h2>
-              <div class="grid grid-1">
-                {relatedPolicies.map(l => (
-                  <a class="card" href={l.href}>
-                    <h3 class="card-title">{l.label}</h3>
-                    <p class="card-desc readable">{l.desc}</p>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
-        </div>
-
       </div>
     </main>
 
@@ -786,6 +552,14 @@ const svcGapQs = data.gapQuestions || cc.homeGapQuestions?.slice(0, 3) || [];
         background: rgba(46,125,50,.04);
       }
 
+      /* Single-DOM merge: reproduce previous mobile tree at the existing 820px switch */
+      @media (max-width: 820px){
+        .grid-2, .grid-3{grid-template-columns:1fr}
+        .swh > .section-sub{display:none}
+        .swh-grid > .swh-card:nth-child(n+3){display:none}
+        .tgf > .section-sub{display:none}
+        .tgf-list > .tgf-item:nth-child(n+4){display:none}
+      }
       @media (max-width: 520px){
         .glance-row{ grid-template-columns: 1fr; }
         .compare-header{ font-size:11px; }

@@ -13,6 +13,7 @@ const {
   brand = {},
   mode = "inline",
   heading = "Send us a message on WhatsApp",
+  headingMobile = "",
   subheading = "Pre-filled for you — answer questions to customise, or send directly.",
   cooldownHours = 24,
   id = "sa",
@@ -56,7 +57,11 @@ const uid = id;
   <div class="sa-inner" data-sa-body>
     {/* Heading — spans full width above the 2-col grid */}
     <div class="sa-title">
-      <h2 class="sa-h">{heading}</h2>
+      {headingMobile && headingMobile !== heading ? (
+        <h2 class="sa-h"><span class="ui-desktop">{heading}</span><span class="ui-mobile">{headingMobile}</span></h2>
+      ) : (
+        <h2 class="sa-h">{heading}</h2>
+      )}
       <p class="sa-sub">{subheading}</p>
     </div>
 

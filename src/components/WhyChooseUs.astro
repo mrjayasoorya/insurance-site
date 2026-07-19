@@ -10,6 +10,7 @@
  */
 const {
   title = "Why work with us",
+  titleMobile = "",
   subtitle = "",
   points = [],
 } = Astro.props;
@@ -17,7 +18,11 @@ const {
 
 {points.length > 0 && (
   <section class="wcu section section-padding" aria-labelledby="wcu-title">
-    <h2 id="wcu-title" class="section-title">{title}</h2>
+    {titleMobile && titleMobile !== title ? (
+      <h2 id="wcu-title" class="section-title"><span class="ui-desktop">{title}</span><span class="ui-mobile">{titleMobile}</span></h2>
+    ) : (
+      <h2 id="wcu-title" class="section-title">{title}</h2>
+    )}
     {subtitle && <p class="section-sub readable">{subtitle}</p>}
 
     <div class="wcu-grid">
