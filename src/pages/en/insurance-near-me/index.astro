@@ -67,6 +67,7 @@ const jsonLd = buildJsonLd({
       <div class="container">
 
         <!-- ========================= DESKTOP ========================= -->
+                <!-- SINGLE DOM: merged; divergent blocks remain per-breakpoint via ui-desktop/ui-mobile -->
         <div class="ui-desktop">
           <header>
             <DesktopHero brand={{
@@ -82,31 +83,43 @@ const jsonLd = buildJsonLd({
             { label: "Home", href: EN("/") },
             { label: page.heroH1 },
           ]} />
+        </div>
 
-          <!-- 1. H1 + CTA -->
+        <div class="ui-mobile">
+          <header>
+            <MobileHero brand={{
+              name: siteData.brand.name,
+              tagline: siteData.brand.tagline,
+              subtitle: page.heroP,
+              phone: siteData.brand.phone,
+              areaChips: [],
+            }} />
+          </header>
+        </div>
+
+<!-- 1. H1 + CTA -->
           <section class="section section-padding">
             <h1 class="section-title">{page.heroH1}</h1>
             <p class="section-sub readable">{page.heroP}</p>
             <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
           </section>
 
-          <!-- 2. Who this helps -->
+<div class="ui-desktop">
+<!-- 2. Who this helps -->
           {page.whoThisHelps?.length ? (
             <section class="section section-padding" aria-label="Who this helps">
               <h2 class="section-title">Who this helps</h2>
               <ul class="bullets">{page.whoThisHelps.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
-
-          <!-- 3. What you get -->
+<!-- 3. What you get -->
           {page.whatYouGet?.length ? (
             <section class="section section-padding" aria-label="What you get">
               <h2 class="section-title">What you get</h2>
               <ul class="bullets">{page.whatYouGet.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
-
-          <!-- 4. How support works -->
+<!-- 4. How support works -->
           {page.howSupportWorks?.length ? (
             <section class="section section-padding" aria-label="How support works">
               <h2 class="section-title">How support works</h2>
@@ -120,117 +133,17 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
-
-          <!-- USER QUESTIONS: area, language, scope -->
-          <UserQuestionsBlock
-            title="Common questions before you contact us"
-            items={cc.userQuestions || []}
-          />
-
-          <!-- SMART ASSIST — ready to reach out -->
-          <SmartAssistForm
-            brand={siteData.brand}
-            id="sa-desk"
-            heading="Ready to reach out? Pre-fill your WhatsApp in 30 seconds"
-            subheading="Pick your situation — we build the message, you just send."
-          />
-
-          <!-- SCENARIOS WE HANDLE -->
-          <ScenariosWeHandle
-            title="Real situations we handle"
-            subtitle="People reach us with exactly these kinds of situations."
-            scenarios={(cc.homeScenarios || []).slice(0, 3)}
-            waNumber={waNumber}
-          />
-
-          <!-- 7. Recommended services -->
-          {page.recommendedServices?.length ? (
-            <section class="section section-padding" aria-label="Recommended pages">
-              <h2 class="section-title">Recommended services</h2>
-              <div class="grid grid-2">
-                {page.recommendedServices.map((x, i) => (
-                  <a class={`card lg-card lg-card--${i % 4}`} href={x.href}>
-                    <h3 class="card-title">{x.label}</h3>
-                    <p class="card-desc">Coverage, documents & guidance</p>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <!-- STILL WONDERING -->
-          <ThinkingGapFiller
-            title="Still wondering?"
-            items={(cc.homeGapQuestions || []).slice(0, 4)}
-            waNumber={waNumber}
-            waText={`Hi, I need help finding insurance near me. Can you guide me?`}
-          />
-
-          <!-- WHY CHOOSE US -->
-          <WhyChooseUs
-            title="Why work with us"
-            points={(cc.whyUs || []).slice(0, 4)}
-          />
-
-          <!-- 8. FAQs -->
-          {page.faqs?.length ? (
-            <section class="section section-padding" aria-label="FAQs">
-              <h2 class="section-title">Frequently asked questions</h2>
-              <MobileAccordion
-                sections={[{
-                  title: "Questions people ask",
-                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
-                }]}
-                defaultOpen={true}
-              />
-            </section>
-          ) : null}
-
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
-
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
-        <!-- ========================= MOBILE ========================= -->
-        <div class="ui-mobile">
-          <header>
-            <MobileHero brand={{
-              name: siteData.brand.name,
-              tagline: siteData.brand.tagline,
-              subtitle: page.heroP,
-              phone: siteData.brand.phone,
-              areaChips: [],
-            }} />
-          </header>
-
-          <!-- 1. H1 + CTA -->
-          <section class="section section-padding">
-            <h1 class="section-title">{page.heroH1}</h1>
-            <p class="section-sub readable">{page.heroP}</p>
-            <PageActionBar brand={siteData.brand} context={page.heroH1 || ""} />
-          </section>
-
-          <!-- 2. Who this helps -->
+<div class="ui-mobile">
+<!-- 2. Who this helps -->
           {page.whoThisHelps?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">Who this helps</h2>
               <ul class="bullets">{page.whoThisHelps.map((x) => <li>{x}</li>)}</ul>
             </section>
           ) : null}
-
-          <!-- 3. How support works -->
+<!-- 3. How support works -->
           {page.howSupportWorks?.length ? (
             <section class="section section-padding">
               <h2 class="section-title">How support works</h2>
@@ -244,22 +157,23 @@ const jsonLd = buildJsonLd({
               </ul>
             </section>
           ) : null}
+        </div>
 
-          <!-- USER QUESTIONS -->
+<!-- USER QUESTIONS: area, language, scope -->
           <UserQuestionsBlock
             title="Common questions before you contact us"
             items={cc.userQuestions || []}
           />
 
-          <!-- SMART ASSIST — ready to reach out -->
+<!-- SMART ASSIST — ready to reach out -->
           <SmartAssistForm
             brand={siteData.brand}
-            id="sa-mob"
+            id="sa-desk"
             heading="Ready to reach out? Pre-fill your WhatsApp in 30 seconds"
             subheading="Pick your situation — we build the message, you just send."
           />
 
-          <!-- SCENARIOS WE HANDLE -->
+<!-- SCENARIOS WE HANDLE -->
           <ScenariosWeHandle
             title="Real situations we handle"
             subtitle="People reach us with exactly these kinds of situations."
@@ -267,7 +181,25 @@ const jsonLd = buildJsonLd({
             waNumber={waNumber}
           />
 
-          <!-- FAQs -->
+<div class="ui-desktop">
+<!-- 7. Recommended services -->
+          {page.recommendedServices?.length ? (
+            <section class="section section-padding" aria-label="Recommended pages">
+              <h2 class="section-title">Recommended services</h2>
+              <div class="grid grid-2">
+                {page.recommendedServices.map((x, i) => (
+                  <a class={`card lg-card lg-card--${i % 4}`} href={x.href}>
+                    <h3 class="card-title">{x.label}</h3>
+                    <p class="card-desc">Coverage, documents & guidance</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+
+<div class="ui-mobile">
+<!-- FAQs -->
           {page.faqs?.length ? (
             <section class="section section-padding">
               <MobileAccordion
@@ -279,8 +211,9 @@ const jsonLd = buildJsonLd({
               />
             </section>
           ) : null}
+        </div>
 
-          <!-- STILL WONDERING -->
+<!-- STILL WONDERING -->
           <ThinkingGapFiller
             title="Still wondering?"
             items={(cc.homeGapQuestions || []).slice(0, 4)}
@@ -288,17 +221,33 @@ const jsonLd = buildJsonLd({
             waText={`Hi, I need help finding insurance near me. Can you guide me?`}
           />
 
-          <!-- WHY CHOOSE US -->
+<!-- WHY CHOOSE US -->
           <WhyChooseUs
             title="Why work with us"
             points={(cc.whyUs || []).slice(0, 4)}
           />
 
-          <ConversionBlock siteData={siteData} brand={siteData.brand} />
+<div class="ui-desktop">
+<!-- 8. FAQs -->
+          {page.faqs?.length ? (
+            <section class="section section-padding" aria-label="FAQs">
+              <h2 class="section-title">Frequently asked questions</h2>
+              <MobileAccordion
+                sections={[{
+                  title: "Questions people ask",
+                  items: page.faqs.map((f) => ({ strong: f.q, text: f.a })),
+                }]}
+                defaultOpen={true}
+              />
+            </section>
+          ) : null}
+        </div>
 
-          <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+<ConversionBlock siteData={siteData} brand={siteData.brand} />
 
-          <FooterCtaBar
+<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+
+<FooterCtaBar
             title={siteData.footerCtas.title}
             subtitle={siteData.footerCtas.subtitle}
             whatsappNumber={siteData.brand.whatsappE164}
@@ -309,7 +258,6 @@ const jsonLd = buildJsonLd({
             logoText={siteData.footerCtas.logoText}
             copyright={siteData.footerCtas.copyright}
           />
-        </div>
 
       </div>
     </main>
@@ -331,5 +279,6 @@ const jsonLd = buildJsonLd({
       .area-notes{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
       @media (max-width: 980px){.grid-2{grid-template-columns:1fr}}
     </style>
+  
   </body>
 </html>
