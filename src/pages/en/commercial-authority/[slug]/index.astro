@@ -39,18 +39,6 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/${
               }}
             />
           </header>
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
 
         <div class="ui-mobile">
@@ -65,19 +53,21 @@ post.canonical = `${canonicalBase.replace(/\/$/, "")}/en/commercial-authority/${
               }}
             />
           </header>
-<BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
-          <FooterCtaBar
-            title={siteData.footerCtas.title}
-            subtitle={siteData.footerCtas.subtitle}
-            whatsappNumber={siteData.brand.whatsappE164}
-            whatsappText={siteData.brand.whatsappPrefill}
-            callNumber={siteData.brand.phoneE164}
-            callLabel={siteData.footerCtas.callLabel}
-            brandName={siteData.footerCtas.brandName}
-            logoText={siteData.footerCtas.logoText}
-            copyright={siteData.footerCtas.copyright}
-          />
         </div>
+
+        <BacklinksRow title={siteData.backlinks.title} links={siteData.backlinks.links} />
+        <FooterCtaBar
+          title={siteData.footerCtas.title}
+          subtitle={siteData.footerCtas.subtitle}
+          whatsappNumber={siteData.brand.whatsappE164}
+          whatsappText={siteData.brand.whatsappPrefill}
+          callNumber={siteData.brand.phoneE164}
+          callLabel={siteData.footerCtas.callLabel}
+          brandName={siteData.footerCtas.brandName}
+          logoText={siteData.footerCtas.logoText}
+          copyright={siteData.footerCtas.copyright}
+        />
+
       </div>
     </main>
     <GlobalOverlays />
